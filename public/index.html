@@ -1,0 +1,2216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 784 1277'><polygon fill='%23343434' points='392.07,0 383.5,29.11 383.5,873.74 392.07,882.29 784.13,650.54'/><polygon fill='%238C8C8C' points='392.07,0 0,650.54 392.07,882.29 392.07,472.33'/><polygon fill='%233C3C3B' points='392.07,956.52 387.24,962.41 387.24,1263.28 392.07,1277.38 784.37,724.89'/><polygon fill='%238C8C8C' points='392.07,1277.38 392.07,956.52 0,724.89'/><polygon fill='%23141414' points='392.07,882.29 784.13,650.54 392.07,472.33'/><polygon fill='%23393939' points='0,650.54 392.07,882.29 392.07,472.33'/></svg>">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net https://va.vercel-scripts.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://ethereum.publicnode.com https://1rpc.io https://eth.llamarpc.com https://vitals.vercel-insights.com https://api.coingecko.com; img-src 'self' data:; font-src 'self';">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<title>Forgotten ETH - Recover Unclaimed Balances</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js" integrity="sha384-NRAZj94DQk3dgtsOZzVYHbYVV1DFkF5QhL5RRxF0ILZLi6OQ7CsMlun748D42JbO" crossorigin="anonymous"></script>
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg2: #f8f9fa;
+    --bg3: #f0f1f3;
+    --border: #e0e0e0;
+    --border-strong: #ccc;
+    --text: #1a1a1a;
+    --text2: #666;
+    --accent: #d946ef;
+    --accent2: #c026d3;
+    --accent-glow: transparent;
+    --green: #008a00;
+    --green-glow: transparent;
+    --red: #cc0000;
+    --yellow: #cc8800;
+    --orange: #cc5500;
+    --glass: #f8f9fa;
+    --glass-border: #e0e0e0;
+    --radius: 6px;
+    --radius-sm: 4px;
+    --radius-xs: 3px;
+  }
+
+  [data-theme="dark"] {
+    --bg: #0f1117;
+    --bg2: #1a1d27;
+    --bg3: #22262f;
+    --border: #2a2e3a;
+    --border-strong: #3a3f4b;
+    --text: #e1e4ed;
+    --text2: #8b8fa3;
+    --accent: #d946ef;
+    --accent2: #e879f9;
+    --accent-glow: transparent;
+    --green: #34d399;
+    --green-glow: transparent;
+    --red: #f87171;
+    --yellow: #fbbf24;
+    --orange: #fb923c;
+    --glass: #1a1d27;
+    --glass-border: #2a2e3a;
+  }
+  [data-theme="dark"] a:hover { color: #e879f9; }
+  [data-theme="dark"] .wallet-btn.connected { background: var(--bg2); border: 1px solid var(--green); color: var(--green); }
+  [data-theme="dark"] .wallet-btn.connected:hover { border-color: var(--red); color: var(--red); }
+  [data-theme="dark"] .claim-banner { background: #0d2818; border-color: #166534; }
+  [data-theme="dark"] .claim-row { background: var(--bg2); border-color: var(--border); }
+  [data-theme="dark"] .network-warn { background: #2a1215; border-color: #7f1d1d; }
+  [data-theme="dark"] .table-wrap { background: var(--bg2); }
+  [data-theme="dark"] .search-box input,
+  [data-theme="dark"] .min-balance input { background: var(--bg2); color: var(--text); }
+  [data-theme="dark"] .btn.ghost { background: var(--bg2); border-color: var(--border); color: var(--text2); }
+  [data-theme="dark"] .btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+  [data-theme="dark"] thead th { background: var(--bg3); }
+  [data-theme="dark"] tbody tr { border-bottom-color: var(--border); }
+  [data-theme="dark"] tbody tr:hover { background: #1f1525; }
+  [data-theme="dark"] .pagination { border-top-color: var(--border); }
+  [data-theme="dark"] .pagination .pages button { background: var(--bg2); border-color: var(--border); color: var(--text2); }
+  [data-theme="dark"] .pagination .pages button:hover { border-color: var(--accent); color: var(--accent); }
+  [data-theme="dark"] .pagination .pages button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  [data-theme="dark"] .page-size select { background: var(--bg2); border-color: var(--border); color: var(--text); }
+  [data-theme="dark"] .claim-btn:disabled { background: #3a3f4b; color: #666; }
+
+  /* Theme toggle */
+  #themeToggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--text2);
+    transition: color 150ms ease;
+    padding: 0;
+    line-height: 1;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  #themeToggle:hover { color: var(--accent); }
+
+  /* Navigation bar */
+  .header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-top: 10px;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .header-nav a {
+    color: var(--text2);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+  .header-nav a:hover { color: var(--accent); }
+  .header-nav .nav-sep {
+    color: var(--border-strong);
+    margin: 0 10px;
+    user-select: none;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  a { color: var(--accent); text-decoration: underline; }
+  a:hover { color: #a21caf; }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px 32px; }
+
+  /* ── Header ── */
+  .header { padding: 28px 0 18px; border-bottom: 1px solid var(--border); text-align: center; }
+  .header-left { }
+  .header h1 { font-size: 34px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .header .subtitle { font-size: 15px; color: var(--text2); font-weight: 400; }
+  .header-row { display: flex; align-items: center; justify-content: flex-end; margin-top: 12px; }
+  .wallet-area { display: flex; align-items: center; gap: 10px; }
+  .wallet-btn { padding: 8px 18px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); cursor: pointer; font-size: 13px; font-weight: 600; }
+  .wallet-btn:hover { background: #a21caf; }
+  .wallet-btn.connected { background: #fff; border: 1px solid var(--green); color: var(--green); }
+  .wallet-btn.connected:hover { border-color: var(--red); color: var(--red); }
+  .wallet-addr { font-family: monospace; font-size: 12px; color: var(--text2); background: var(--bg2); padding: 4px 10px; border-radius: var(--radius); border: 1px solid var(--border); }
+
+  /* ── Description ── */
+  .site-desc { color: var(--text2); font-size: 13px; line-height: 1.6; max-width: 680px; padding: 16px 0 12px; margin: 0 auto; text-align: center; }
+
+  /* ── Project description ── */
+  .project-desc { color: var(--text2); font-size: 13px; line-height: 1.6; margin-bottom: 16px; }
+
+  /* ── Connect CTA (hidden) ── */
+  .connect-cta { display: none; }
+
+  /* ── Claim Banner ── */
+  .claim-banner { display: none; background: #f0fdf4; border: 1px solid #86efac; border-radius: var(--radius); padding: 20px; margin: 20px 0; }
+  .claim-banner.visible { display: block; }
+  .claim-banner h2 { font-size: 16px; margin-bottom: 12px; color: var(--green); font-weight: 700; }
+  .claim-row { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; padding: 12px 16px; background: #fff; border-radius: var(--radius-sm); border: 1px solid #e0e0e0; }
+  .claim-row .dex-name { font-weight: 700; width: 110px; font-size: 14px; }
+  .claim-row .claim-amount { font-family: monospace; font-size: 18px; font-weight: 700; color: var(--accent); flex: 1; }
+  .claim-btn { padding: 8px 22px; background: var(--green); color: #fff; border: none; border-radius: var(--radius); cursor: pointer; font-size: 13px; font-weight: 700; }
+  .claim-btn:hover { background: #006d00; }
+  .claim-btn:disabled { background: #ccc; color: #888; cursor: not-allowed; }
+  .claim-btn.pending { background: var(--yellow); color: #000; }
+  .claim-status { font-size: 12px; color: var(--text2); margin-top: 4px; }
+  .claim-details { font-size: 11px; color: var(--text2); font-family: monospace; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 12px; margin-top: 6px; line-height: 1.8; word-break: break-all; }
+  .claim-details span { color: var(--text); font-weight: 600; }
+  .tip-box { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-top: 12px; text-align: center; }
+  .tip-box p { font-size: 13px; color: var(--text2); margin-bottom: 8px; }
+  .tip-box .tip-addr { font-family: monospace; font-size: 12px; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 6px 12px; display: inline-block; user-select: all; cursor: pointer; }
+
+  /* Celebration animation */
+  @keyframes celebratePulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
+  @keyframes celebrateGlow { 0% { box-shadow: 0 0 5px rgba(0,138,0,0.2); } 50% { box-shadow: 0 0 20px rgba(0,138,0,0.4); } 100% { box-shadow: 0 0 5px rgba(0,138,0,0.2); } }
+  .claim-banner.celebrate { animation: celebratePulse 0.6s ease-out, celebrateGlow 2s ease-in-out infinite; }
+  .claim-total { font-size: 28px; font-weight: 800; color: var(--green); margin: 8px 0; letter-spacing: -0.5px; }
+  .claim-total-usd { font-size: 16px; font-weight: 600; color: var(--text2); margin-bottom: 12px; }
+
+  /* Donation card */
+  .donation-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-top: 16px; text-align: center; }
+  .donation-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+  .donation-card p { font-size: 13px; color: var(--text2); margin-bottom: 14px; line-height: 1.5; }
+  .donation-btns { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
+  .donation-btn { padding: 10px 18px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+  .donation-btn:hover { border-color: var(--green); color: var(--green); }
+  .donation-btn.recommended { background: var(--green); color: #fff; border-color: var(--green); }
+  .donation-btn.recommended:hover { opacity: 0.9; }
+  .donation-skip { font-size: 12px; color: var(--text2); cursor: pointer; border: none; background: none; padding: 6px 12px; font-family: inherit; }
+  .donation-skip:hover { color: var(--text); }
+  .donation-fine { font-size: 11px; color: var(--text2); margin-top: 10px; }
+
+  /* Share buttons */
+  .share-btns { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
+  .share-btn { padding: 6px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg); color: var(--text2); font-size: 12px; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+  .share-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+
+  .claim-none { color: var(--text2); font-size: 13px; }
+  .no-balance-msg { color: var(--text2); font-size: 13px; padding: 8px 0; }
+
+  /* ── Network warning ── */
+  .network-warn { background: #fff0f0; color: var(--red); padding: 10px 16px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; margin-bottom: 12px; display: none; border: 1px solid #fca5a5; }
+  .network-warn.visible { display: block; }
+
+  /* ── Tabs ── */
+  .tabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 1px solid var(--border); margin: 20px 0 24px; overflow-x: auto; -webkit-overflow-scrolling: touch; justify-content: center; }
+  .tab { padding: 8px 16px; font-size: 13px; font-weight: 600; color: var(--text2); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; user-select: none; white-space: nowrap; }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab .badge { display: inline-block; background: var(--bg2); color: var(--text2); font-size: 11px; padding: 1px 8px; border-radius: 3px; margin-left: 6px; }
+  .tab.active .badge { background: var(--accent); color: #fff; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── Summary Cards ── */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+  .card .label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 700; }
+  .card .value { font-size: 22px; font-weight: 700; }
+  .card .value.eth { color: var(--accent); }
+  .card .value.green { color: var(--green); }
+
+  /* ── Charts ── */
+  .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .chart-box { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+  .chart-box h3 { font-size: 12px; color: var(--text2); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .chart-box canvas { max-height: 280px; }
+
+  /* ── Controls ── */
+  .controls { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; flex-wrap: wrap; }
+  .search-box { flex: 1; min-width: 280px; position: relative; }
+  .search-box input { width: 100%; padding: 8px 12px 8px 34px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); font-size: 13px; outline: none; }
+  .search-box input:focus { border-color: var(--accent); }
+  .search-box svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text2); }
+  .result-count { font-size: 12px; color: var(--text2); }
+  .min-balance { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); }
+  .min-balance input { width: 80px; padding: 7px 10px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); font-size: 12px; outline: none; }
+  .min-balance input:focus { border-color: var(--accent); }
+  .btn { padding: 7px 14px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); cursor: pointer; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .btn:hover { background: #a21caf; }
+  .btn.sm { padding: 3px 10px; font-size: 11px; }
+  .btn.ghost { background: #fff; border: 1px solid var(--border); color: var(--text2); }
+  .btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── Table ── */
+  .table-wrap { overflow-x: auto; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th { position: sticky; top: 0; background: var(--bg2); padding: 10px 12px; text-align: left; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); cursor: pointer; user-select: none; border-bottom: 1px solid var(--border); }
+  thead th:hover { color: var(--text); }
+  thead th.sorted { color: var(--text); }
+  tbody tr { border-bottom: 1px solid #f0f0f0; }
+  tbody tr:hover { background: #fdf4ff; }
+  tbody td { padding: 8px 12px; }
+  .addr { font-family: monospace; font-size: 12px; }
+  .bal-eth { font-family: monospace; text-align: right; font-weight: 400; }
+  .last-tx { font-size: 12px; color: var(--text2); white-space: nowrap; }
+
+  /* ── Pagination ── */
+  .pagination { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-top: 1px solid #f0f0f0; font-size: 12px; color: var(--text2); }
+  .pagination .pages { display: flex; gap: 3px; align-items: center; }
+  .pagination .pages button { min-width: 28px; height: 28px; padding: 0 6px; border: 1px solid var(--border); background: #fff; color: var(--text2); border-radius: var(--radius-sm); cursor: pointer; font-size: 12px; }
+  .pagination .pages button:hover { border-color: var(--accent); color: var(--accent); }
+  .pagination .pages button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .page-size select { padding: 4px 8px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); font-size: 12px; }
+
+  .contract-info { font-family: monospace; font-size: 12px; color: var(--text2); margin-bottom: 16px; }
+
+  .loading { text-align: center; padding: 60px; color: var(--text2); }
+  .loading .spinner { display: inline-block; width: 32px; height: 32px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 12px; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── About Section ── */
+  .about-section { border-top: 1px solid var(--border); margin-top: 40px; padding: 24px 0 8px; }
+  .about-section h2 { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+  .about-section p, .about-section ul { font-size: 13px; color: var(--text2); line-height: 1.7; margin-bottom: 10px; }
+  .about-section ul { padding-left: 20px; }
+  .about-section li { margin-bottom: 4px; }
+  .about-section .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .about-section .about-block { }
+  .about-section .about-block h3 { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+
+  /* ── Summary Stats Row ── */
+  .stats-row { display: flex; gap: 24px; margin: 16px 0 4px; font-size: 13px; flex-wrap: wrap; justify-content: center; }
+
+  @media (max-width: 768px) {
+    .charts { grid-template-columns: 1fr; }
+    .cards { grid-template-columns: repeat(2, 1fr); }
+    .header { text-align: center; }
+    .header-row { justify-content: center; }
+    .claim-row { flex-direction: column; gap: 10px; text-align: center; }
+    .claim-row .dex-name { width: auto; }
+    .tabs { flex-wrap: nowrap; }
+    .about-section .about-grid { grid-template-columns: 1fr; }
+    .stats-row { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="header-left">
+      <h1>&#926; Forgotten ETH</h1>
+      <div class="subtitle">Did you forget to withdraw your ETH?</div>
+      <nav class="header-nav">
+        <a href="#about">About</a>
+        <span class="nav-sep">·</span>
+        <button id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode"></button>
+      </nav>
+    </div>
+  </div>
+
+  <p class="site-desc">Thousands of ETH sit forgotten in defunct contracts. Portfolio trackers like DeBank, Zerion, and Zapper do not detect these balances, so you may have ETH stuck without knowing, available to be withdrawn.</p>
+
+  <div class="connect-cta" id="connectCta"></div>
+
+  <div style="display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;margin:16px 0;padding:16px 0">
+    <div class="wallet-area">
+      <span class="wallet-addr" id="walletAddr"></span>
+      <button class="wallet-btn" id="walletBtn" onclick="connectWallet()" style="padding:8px 18px;font-size:13px">Connect Wallet</button>
+    </div>
+    <span style="color:var(--text2);font-size:13px">or</span>
+    <input type="text" id="manualAddrInput" placeholder="0x..." style="width:100%;max-width:420px;padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius);font-family:monospace;font-size:12px;outline:none;background:var(--bg2);color:var(--text)" onkeydown="if(event.key==='Enter')checkManualAddress()">
+    <button class="btn" onclick="checkManualAddress()" style="padding:8px 18px;font-size:13px">Check</button>
+  </div>
+
+  <div class="network-warn" id="networkWarn">Please switch to Ethereum Mainnet to claim your ETH.</div>
+
+  <div class="claim-banner" id="claimBanner">
+    <h2 id="claimBannerTitle">Your Claimable ETH</h2>
+    <div id="claimRows"></div>
+  </div>
+
+  <div style="text-align:center;margin:16px 0 4px">
+    <div style="font-size:15px;font-weight:700;margin-bottom:6px"><b>Total Tracked:</b> <span id="totalAllEth" style="color:var(--accent)">...</span></div>
+    <div class="stats-row">
+      <span><b>DEX:</b> <span id="totalDexEth" style="color:var(--accent)">...</span></span>
+      <span><b>NFT:</b> <span id="totalNftEth" style="color:var(--accent)">...</span></span>
+      <span><b>ICO:</b> <span id="totalIcoEth" style="color:var(--accent)">...</span></span>
+      <span><b>ENS:</b> <span id="totalEnsEth" style="color:var(--accent)">...</span></span>
+      <span><b>Gambling:</b> <span id="totalGamblingEth" style="color:var(--accent)">...</span></span>
+    </div>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <div class="tab active" data-tab="idex">IDEX v1 <span class="badge" id="badge-idex">...</span></div>
+    <div class="tab" data-tab="etherdelta">EtherDelta v2 <span class="badge" id="badge-etherdelta">...</span></div>
+    <div class="tab" data-tab="enclaves">Unknown DEX <span class="badge" id="badge-enclaves">...</span></div>
+    <div class="tab" data-tab="singularx">SingularX <span class="badge" id="badge-singularx">...</span></div>
+    <div class="tab" data-tab="tokenstore">Token.Store <span class="badge" id="badge-tokenstore">...</span></div>
+    <div class="tab" data-tab="mooncatrescue">MoonCatRescue <span class="badge" id="badge-mooncatrescue">...</span></div>
+    <div class="tab" data-tab="etherdelta_m1">EtherDelta v1 <span class="badge" id="badge-etherdelta_m1">...</span></div>
+    <div class="tab" data-tab="joyso">Joyso <span class="badge" id="badge-joyso">...</span></div>
+    <div class="tab" data-tab="ethen">ETHEN <span class="badge" id="badge-ethen">...</span></div>
+    <div class="tab" data-tab="decentrex">Decentrex <span class="badge" id="badge-decentrex">...</span></div>
+    <div class="tab" data-tab="bitcratic">Bitcratic <span class="badge" id="badge-bitcratic">...</span></div>
+    <div class="tab" data-tab="ens_old">ENS Old <span class="badge" id="badge-ens_old">...</span></div>
+    <div class="tab" data-tab="confideal">Confideal <span class="badge" id="badge-confideal">...</span></div>
+    <div class="tab" data-tab="dada">DADA <span class="badge" id="badge-dada">...</span></div>
+    <div class="tab" data-tab="enclavesdex">EnclavesDex <span class="badge" id="badge-enclavesdex">...</span></div>
+    <div class="tab" data-tab="etherc">EtherC <span class="badge" id="badge-etherc">...</span></div>
+    <div class="tab" data-tab="fomo3d_long">Fomo3D Long <span class="badge" id="badge-fomo3d_long">...</span></div>
+    <div class="tab" data-tab="fomo3d_quick">Fomo3D Quick <span class="badge" id="badge-fomo3d_quick">...</span></div>
+    <div class="tab" data-tab="fomo3d_short">Fomo3D Short <span class="badge" id="badge-fomo3d_short">...</span></div>
+    <div class="tab" data-tab="etherdelta_m0">EtherDelta v0 <span class="badge" id="badge-etherdelta_m0">...</span></div>
+    <div class="tab" data-tab="neufund">Neufund <span class="badge" id="badge-neufund">...</span></div>
+    <div class="tab" data-tab="bancor_eth">Bancor ETH <span class="badge" id="badge-bancor_eth">...</span></div>
+  </div>
+
+  <!-- IDEX Panel -->
+  <div class="tab-panel active" id="panel-idex">
+    <div class="loading" id="loading-idex"><div class="spinner"></div><div>Loading IDEX data...</div></div>
+    <div id="app-idex" style="display:none">
+      <p class="project-desc"><b>IDEX v1</b> was one of the first decentralized exchanges on Ethereum, launched in 2017. It used an off-chain order book with onchain settlement and required users to deposit ETH into the contract before trading. The platform migrated to v2 in 2019, leaving thousands of user balances unclaimed in the original contract.</p>
+      <div class="contract-info" id="contract-idex"></div>
+      <div class="cards" id="cards-idex"></div>
+      <div class="controls">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search-idex" placeholder="Search by address (0x...)">
+        </div>
+        <div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-idex" step="0.01" value="0" min="0"></div>
+        <span class="result-count" id="count-idex"></span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th data-sort="rank" data-tab="idex" class="sorted">Rank</th>
+            <th>Address</th>
+            <th data-sort="balance" data-tab="idex" style="text-align:right">Balance (ETH)</th>
+          </tr></thead>
+          <tbody id="tbody-idex"></tbody>
+        </table>
+        <div class="pagination">
+          <div><span id="pageInfo-idex"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-idex"><option>25</option><option selected>50</option><option>100</option></select></span></div>
+          <div class="pages" id="pages-idex"></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-idex" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.idex,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('idex')}}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EtherDelta Panel -->
+  <div class="tab-panel" id="panel-etherdelta">
+    <div class="loading" id="loading-etherdelta"><div class="spinner"></div><div>Loading EtherDelta data...</div></div>
+    <div id="app-etherdelta" style="display:none">
+      <p class="project-desc"><b>EtherDelta v2</b> was the main EtherDelta decentralized exchange contract, launched in February 2017. It pioneered the onchain order book model where users deposited ETH and tokens into the smart contract to trade. The platform was abandoned after an SEC enforcement action in 2018, but the contract and its user balances remain onchain.</p>
+      <div class="contract-info" id="contract-etherdelta"></div>
+      <div class="cards" id="cards-etherdelta"></div>
+      <div class="controls">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search-etherdelta" placeholder="Search by address (0x...)">
+        </div>
+        <div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-etherdelta" step="0.01" value="0" min="0"></div>
+        <span class="result-count" id="count-etherdelta"></span>
+              </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th data-sort="rank" data-tab="etherdelta" class="sorted">Rank</th>
+            <th>Address</th>
+            <th data-sort="balance" data-tab="etherdelta" style="text-align:right">Balance (ETH)</th>
+          </tr></thead>
+          <tbody id="tbody-etherdelta"></tbody>
+        </table>
+        <div class="pagination">
+          <div><span id="pageInfo-etherdelta"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-etherdelta"><option>25</option><option selected>50</option><option>100</option></select></span></div>
+          <div class="pages" id="pages-etherdelta"></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-etherdelta" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.etherdelta,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('etherdelta')}}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Token.Store Panel -->
+  <div class="tab-panel" id="panel-tokenstore">
+    <div class="loading" id="loading-tokenstore"><div class="spinner"></div><div>Loading Token.Store data...</div></div>
+    <div id="app-tokenstore" style="display:none">
+      <p class="project-desc"><b>Token.Store</b> was an early decentralized exchange from 2017, similar in design to EtherDelta. It used the same deposit/withdraw pattern with a tokens mapping for user balances. The platform went offline but the smart contract with user funds persists on Ethereum mainnet.</p>
+      <div class="contract-info" id="contract-tokenstore"></div>
+      <div class="cards" id="cards-tokenstore"></div>
+      <div class="controls">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search-tokenstore" placeholder="Search by address (0x...)">
+        </div>
+        <div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-tokenstore" step="0.01" value="0" min="0"></div>
+        <span class="result-count" id="count-tokenstore"></span>
+        
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th data-sort="rank" data-tab="tokenstore" class="sorted">Rank</th>
+            <th>Address</th>
+            <th data-sort="balance" data-tab="tokenstore" style="text-align:right">Balance (ETH)</th>
+          </tr></thead>
+          <tbody id="tbody-tokenstore"></tbody>
+        </table>
+        <div class="pagination">
+          <div><span id="pageInfo-tokenstore"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-tokenstore"><option>25</option><option selected>50</option><option>100</option></select></span></div>
+          <div class="pages" id="pages-tokenstore"></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-tokenstore" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.tokenstore,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('tokenstore')}}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EtherDelta M1 Panel -->
+  <div class="tab-panel" id="panel-etherdelta_m1">
+    <div class="loading" id="loading-etherdelta_m1"><div class="spinner"></div><div>Loading EtherDelta v1 data...</div></div>
+    <div id="app-etherdelta_m1" style="display:none">
+      <p class="project-desc"><b>EtherDelta v1</b> is the earliest deployment of the EtherDelta decentralized exchange from December 2016. It uses the same deposit/withdraw pattern with a tokens mapping. The contract has been inactive since early 2017 but still holds user balances.</p>
+      <div class="contract-info" id="contract-etherdelta_m1"></div>
+      <div class="cards" id="cards-etherdelta_m1"></div>
+      <div class="controls">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search-etherdelta_m1" placeholder="Search by address (0x...)">
+        </div>
+        <div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-etherdelta_m1" step="0.01" value="0" min="0"></div>
+        <span class="result-count" id="count-etherdelta_m1"></span>
+        
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th data-sort="rank" data-tab="etherdelta_m1" class="sorted">Rank</th>
+            <th>Address</th>
+            <th data-sort="balance" data-tab="etherdelta_m1" style="text-align:right">Balance (ETH)</th>
+          </tr></thead>
+          <tbody id="tbody-etherdelta_m1"></tbody>
+        </table>
+        <div class="pagination">
+          <div><span id="pageInfo-etherdelta_m1"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-etherdelta_m1"><option>25</option><option selected>50</option><option>100</option></select></span></div>
+          <div class="pages" id="pages-etherdelta_m1"></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-etherdelta_m1" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.etherdelta_m1,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('etherdelta_m1')}}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SingularX Panel -->
+  <div class="tab-panel" id="panel-singularx">
+    <div class="loading" id="loading-singularx"><div class="spinner"></div><div>Loading SingularX data...</div></div>
+    <div id="app-singularx" style="display:none">
+      <p class="project-desc"><b>SingularX</b> was an EtherDelta-style decentralized exchange. It used the same deposit/withdraw pattern with a <code>tokens</code> mapping for user balances. The platform is defunct but the contract holds over 850 ETH in unclaimed user deposits.</p>
+      <div class="contract-info" id="contract-singularx"></div>
+      <div class="cards" id="cards-singularx"></div>
+      <div class="controls">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search-singularx" placeholder="Search by address (0x...)">
+        </div>
+        <div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-singularx" step="0.01" value="0" min="0"></div>
+        <span class="result-count" id="count-singularx"></span>
+        
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th data-sort="rank" data-tab="singularx" class="sorted">Rank</th>
+            <th>Address</th>
+            <th data-sort="balance" data-tab="singularx" style="text-align:right">Balance (ETH)</th>
+          </tr></thead>
+          <tbody id="tbody-singularx"></tbody>
+        </table>
+        <div class="pagination">
+          <div><span id="pageInfo-singularx"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-singularx"><option>25</option><option selected>50</option><option>100</option></select></span></div>
+          <div class="pages" id="pages-singularx"></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-singularx" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.singularx,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('singularx')}}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unknown DEX Panel -->
+  <div class="tab-panel" id="panel-enclaves">
+    <div class="loading" id="loading-enclaves"><div class="spinner"></div><div>Loading Unknown DEX data...</div></div>
+    <div id="app-enclaves" style="display:none">
+      <p class="project-desc"><b>Unknown DEX</b> is an unverified EtherDelta-style DEX contract from 2017 with over 2,500 ETH in unclaimed user deposits. It uses the same <code>tokens(address,address)</code> mapping and <code>withdraw(uint256)</code> pattern. The protocol behind this contract has not been identified.</p>
+      <div class="contract-info" id="contract-enclaves"></div>
+      <div class="cards" id="cards-enclaves"></div>
+      <div class="controls">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search-enclaves" placeholder="Search by address (0x...)">
+        </div>
+        <div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-enclaves" step="0.01" value="0" min="0"></div>
+        <span class="result-count" id="count-enclaves"></span>
+        
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th data-sort="rank" data-tab="enclaves" class="sorted">Rank</th>
+            <th>Address</th>
+            <th data-sort="balance" data-tab="enclaves" style="text-align:right">Balance (ETH)</th>
+          </tr></thead>
+          <tbody id="tbody-enclaves"></tbody>
+        </table>
+        <div class="pagination">
+          <div><span id="pageInfo-enclaves"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-enclaves"><option>25</option><option selected>50</option><option>100</option></select></span></div>
+          <div class="pages" id="pages-enclaves"></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-enclaves" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.enclaves,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('enclaves')}}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decentrex Panel -->
+  <div class="tab-panel" id="panel-decentrex">
+    <div class="loading" id="loading-decentrex"><div class="spinner"></div><div>Loading Decentrex data...</div></div>
+    <div id="app-decentrex" style="display:none">
+      <p class="project-desc"><b>Decentrex</b> was an EtherDelta fork that operated as a decentralized exchange. It used the same deposit/withdraw pattern with a <code>tokens</code> mapping for user balances.</p>
+      <div class="contract-info" id="contract-decentrex"></div>
+      <div class="cards" id="cards-decentrex"></div>
+      <div class="controls"><div class="search-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" id="search-decentrex" placeholder="Search by address (0x...)"></div><div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-decentrex" step="0.01" value="0" min="0"></div><span class="result-count" id="count-decentrex"></span></div>
+      <div class="table-wrap"><table><thead><tr><th data-sort="rank" data-tab="decentrex" class="sorted">Rank</th><th>Address</th><th data-sort="balance" data-tab="decentrex" style="text-align:right">Balance (ETH)</th></tr></thead><tbody id="tbody-decentrex"></tbody></table><div class="pagination"><div><span id="pageInfo-decentrex"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-decentrex"><option>25</option><option selected>50</option><option>100</option></select></span></div><div class="pages" id="pages-decentrex"></div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-decentrex" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.decentrex,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('decentrex')}}"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Joyso Panel -->
+  <div class="tab-panel" id="panel-joyso">
+    <div class="loading" id="loading-joyso"><div class="spinner"></div><div>Loading Joyso data...</div></div>
+    <div id="app-joyso" style="display:none">
+      <p class="project-desc"><b>Joyso</b> was a hybrid decentralized exchange that combined offchain matching with onchain settlement. It used <code>getBalance(address,address)</code> for balance tracking and <code>withdraw(address,uint256)</code> for withdrawals, similar to IDEX's pattern.</p>
+      <div class="contract-info" id="contract-joyso"></div>
+      <div class="cards" id="cards-joyso"></div>
+      <div class="controls"><div class="search-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" id="search-joyso" placeholder="Search by address (0x...)"></div><div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-joyso" step="0.01" value="0" min="0"></div><span class="result-count" id="count-joyso"></span></div>
+      <div class="table-wrap"><table><thead><tr><th data-sort="rank" data-tab="joyso" class="sorted">Rank</th><th>Address</th><th data-sort="balance" data-tab="joyso" style="text-align:right">Balance (ETH)</th></tr></thead><tbody id="tbody-joyso"></tbody></table><div class="pagination"><div><span id="pageInfo-joyso"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-joyso"><option>25</option><option selected>50</option><option>100</option></select></span></div><div class="pages" id="pages-joyso"></div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-joyso" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.joyso,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('joyso')}}"></div></div></div>
+    </div>
+  </div>
+
+  <!-- ETHEN Panel -->
+  <div class="tab-panel" id="panel-ethen">
+    <div class="loading" id="loading-ethen"><div class="spinner"></div><div>Loading ETHEN data...</div></div>
+    <div id="app-ethen" style="display:none">
+      <p class="project-desc"><b>ETHEN</b> was a decentralized exchange with a custom contract design. It stores ETH balances in a <code>balances(address)</code> mapping and uses <code>withdrawEther(uint256)</code> instead of the standard EtherDelta <code>withdraw</code> function.</p>
+      <div class="contract-info" id="contract-ethen"></div>
+      <div class="cards" id="cards-ethen"></div>
+      <div class="controls"><div class="search-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" id="search-ethen" placeholder="Search by address (0x...)"></div><div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-ethen" step="0.01" value="0" min="0"></div><span class="result-count" id="count-ethen"></span></div>
+      <div class="table-wrap"><table><thead><tr><th data-sort="rank" data-tab="ethen" class="sorted">Rank</th><th>Address</th><th data-sort="balance" data-tab="ethen" style="text-align:right">Balance (ETH)</th></tr></thead><tbody id="tbody-ethen"></tbody></table><div class="pagination"><div><span id="pageInfo-ethen"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-ethen"><option>25</option><option selected>50</option><option>100</option></select></span></div><div class="pages" id="pages-ethen"></div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-ethen" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.ethen,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('ethen')}}"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Bitcratic Panel -->
+  <div class="tab-panel" id="panel-bitcratic">
+    <div class="loading" id="loading-bitcratic"><div class="spinner"></div><div>Loading Bitcratic data...</div></div>
+    <div id="app-bitcratic" style="display:none">
+      <p class="project-desc"><b>Bitcratic</b> was a decentralized exchange forked from the EtherDelta codebase. It used the same <code>tokens</code> deposit mapping and <code>withdraw</code> function.</p>
+      <div class="contract-info" id="contract-bitcratic"></div>
+      <div class="cards" id="cards-bitcratic"></div>
+      <div class="controls"><div class="search-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" id="search-bitcratic" placeholder="Search by address (0x...)"></div><div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-bitcratic" step="0.01" value="0" min="0"></div><span class="result-count" id="count-bitcratic"></span></div>
+      <div class="table-wrap"><table><thead><tr><th data-sort="rank" data-tab="bitcratic" class="sorted">Rank</th><th>Address</th><th data-sort="balance" data-tab="bitcratic" style="text-align:right">Balance (ETH)</th></tr></thead><tbody id="tbody-bitcratic"></tbody></table><div class="pagination"><div><span id="pageInfo-bitcratic"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-bitcratic"><option>25</option><option selected>50</option><option>100</option></select></span></div><div class="pages" id="pages-bitcratic"></div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-bitcratic" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.bitcratic,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('bitcratic')}}"></div></div></div>
+    </div>
+  </div>
+
+  <!-- EtherC Panel -->
+  <div class="tab-panel" id="panel-etherc">
+    <div class="loading" id="loading-etherc"><div class="spinner"></div><div>Loading EtherC data...</div></div>
+    <div id="app-etherc" style="display:none">
+      <p class="project-desc"><b>EtherC</b> was a decentralized exchange using the EtherDelta deposit/withdraw pattern with a <code>tokens</code> mapping for user balances.</p>
+      <div class="contract-info" id="contract-etherc"></div>
+      <div class="cards" id="cards-etherc"></div>
+      <div class="controls"><div class="search-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" id="search-etherc" placeholder="Search by address (0x...)"></div><div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-etherc" step="0.01" value="0" min="0"></div><span class="result-count" id="count-etherc"></span></div>
+      <div class="table-wrap"><table><thead><tr><th data-sort="rank" data-tab="etherc" class="sorted">Rank</th><th>Address</th><th data-sort="balance" data-tab="etherc" style="text-align:right">Balance (ETH)</th></tr></thead><tbody id="tbody-etherc"></tbody></table><div class="pagination"><div><span id="pageInfo-etherc"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-etherc"><option>25</option><option selected>50</option><option>100</option></select></span></div><div class="pages" id="pages-etherc"></div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-etherc" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.etherc,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('etherc')}}"></div></div></div>
+    </div>
+  </div>
+
+  <!-- EnclavesDex Panel -->
+  <div class="tab-panel" id="panel-enclavesdex">
+    <div class="loading" id="loading-enclavesdex"><div class="spinner"></div><div>Loading EnclavesDex data...</div></div>
+    <div id="app-enclavesdex" style="display:none">
+      <p class="project-desc"><b>EnclavesDex</b> was a decentralized exchange and liquidity aggregator launched in 2018. It used the EtherDelta-style <code>tokens</code> mapping for user deposits.</p>
+      <div class="contract-info" id="contract-enclavesdex"></div>
+      <div class="cards" id="cards-enclavesdex"></div>
+      <div class="controls"><div class="search-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" id="search-enclavesdex" placeholder="Search by address (0x...)"></div><div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-enclavesdex" step="0.01" value="0" min="0"></div><span class="result-count" id="count-enclavesdex"></span></div>
+      <div class="table-wrap"><table><thead><tr><th data-sort="rank" data-tab="enclavesdex" class="sorted">Rank</th><th>Address</th><th data-sort="balance" data-tab="enclavesdex" style="text-align:right">Balance (ETH)</th></tr></thead><tbody id="tbody-enclavesdex"></tbody></table><div class="pagination"><div><span id="pageInfo-enclavesdex"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-enclavesdex"><option>25</option><option selected>50</option><option>100</option></select></span></div><div class="pages" id="pages-enclavesdex"></div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-enclavesdex" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.enclavesdex,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('enclavesdex')}}"></div></div></div>
+    </div>
+  </div>
+
+  <!-- ENS Old Registrar Panel -->
+  <div class="tab-panel" id="panel-ens_old">
+    <div class="loading" id="loading-ens_old"><div class="spinner"></div><div>Loading ENS data...</div></div>
+    <div id="app-ens_old" style="display:none">
+      <p class="project-desc"><b>ENS Old Registrar</b> was the original Ethereum Name Service auction system (2017-2019). Users deposited ETH as bids for .eth domains. Each bid created a separate Deed contract holding the deposit. Many were never released after the migration to the new registrar. Connect your wallet to release deeds and reclaim your ETH directly from this site.</p>
+      <div class="contract-info" id="contract-ens_old"></div>
+      <div class="cards" id="cards-ens_old"></div>
+      <div class="controls"><div class="search-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" id="search-ens_old" placeholder="Search by address (0x...)"></div><div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-ens_old" step="0.01" value="0" min="0"></div><span class="result-count" id="count-ens_old"></span></div>
+      <div class="table-wrap"><table><thead><tr><th data-sort="rank" data-tab="ens_old" class="sorted">Rank</th><th>Address</th><th data-sort="balance" data-tab="ens_old" style="text-align:right">Balance (ETH)</th></tr></thead><tbody id="tbody-ens_old"></tbody></table><div class="pagination"><div><span id="pageInfo-ens_old"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-ens_old"><option>25</option><option selected>50</option><option>100</option></select></span></div><div class="pages" id="pages-ens_old"></div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-ens_old" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.ens_old,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('ens_old')}}"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Confideal Panel -->
+  <div class="tab-panel" id="panel-confideal">
+    <div class="loading" id="loading-confideal"><div class="spinner"></div><div>Loading Confideal data...</div></div>
+    <div id="app-confideal" style="display:none">
+      <p class="project-desc"><b>Confideal</b> was a 2017 ICO crowdfunding contract. Contributors sent ETH tracked in a <code>contributions(address)</code> mapping. If the funding goal was not reached, contributors can call <code>withdrawRefund()</code> to reclaim their ETH.</p>
+      <div class="contract-info" id="contract-confideal"></div>
+      <div class="cards" id="cards-confideal"></div>
+      <div class="controls"><div class="search-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" id="search-confideal" placeholder="Search by address (0x...)"></div><div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-confideal" step="0.01" value="0" min="0"></div><span class="result-count" id="count-confideal"></span></div>
+      <div class="table-wrap"><table><thead><tr><th data-sort="rank" data-tab="confideal" class="sorted">Rank</th><th>Address</th><th data-sort="balance" data-tab="confideal" style="text-align:right">Balance (ETH)</th></tr></thead><tbody id="tbody-confideal"></tbody></table><div class="pagination"><div><span id="pageInfo-confideal"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-confideal"><option>25</option><option selected>50</option><option>100</option></select></span></div><div class="pages" id="pages-confideal"></div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-confideal" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.confideal,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('confideal')}}"></div></div></div>
+    </div>
+  </div>
+
+  <!-- DADA Collectible Panel -->
+  <div class="tab-panel" id="panel-dada">
+    <div class="loading" id="loading-dada"><div class="spinner"></div><div>Loading DADA data...</div></div>
+    <div id="app-dada" style="display:none">
+      <p class="project-desc"><b>DADA Collectible</b> was an early NFT art marketplace launched in October 2017. Artists and collectors could buy, sell, and trade digital art prints with a profit-sharing model. Sellers accumulated ETH in a <code>pendingWithdrawals</code> mapping that many never claimed.</p>
+      <div class="contract-info" id="contract-dada"></div>
+      <div class="cards" id="cards-dada"></div>
+      <div class="controls">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search-dada" placeholder="Search by address (0x...)">
+        </div>
+        <div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-dada" step="0.01" value="0" min="0"></div>
+        <span class="result-count" id="count-dada"></span>
+        
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th data-sort="rank" data-tab="dada" class="sorted">Rank</th>
+            <th>Address</th>
+            <th data-sort="balance" data-tab="dada" style="text-align:right">Balance (ETH)</th>
+          </tr></thead>
+          <tbody id="tbody-dada"></tbody>
+        </table>
+        <div class="pagination">
+          <div><span id="pageInfo-dada"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-dada"><option>25</option><option selected>50</option><option>100</option></select></span></div>
+          <div class="pages" id="pages-dada"></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-dada" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.dada,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('dada')}}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MoonCatRescue Panel -->
+  <div class="tab-panel" id="panel-mooncatrescue">
+    <div class="loading" id="loading-mooncatrescue"><div class="spinner"></div><div>Loading MoonCatRescue data...</div></div>
+    <div id="app-mooncatrescue" style="display:none">
+      <p class="project-desc"><b>MoonCatRescue</b> was one of the earliest NFT projects on Ethereum, launched in August 2017. Users could rescue, adopt, and trade digital cats. Sellers accumulated ETH in a <code>pendingWithdrawals</code> mapping that many never claimed. Fun fact: a bug in the contract sent ~100 ETH of genesis cat sales to <code>address(0)</code> instead of the owner, because <code>catOwners</code> was never set for genesis cats before selling them. That ETH is permanently stuck.</p>
+      <div class="contract-info" id="contract-mooncatrescue"></div>
+      <div class="cards" id="cards-mooncatrescue"></div>
+      <div class="controls">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search-mooncatrescue" placeholder="Search by address (0x...)">
+        </div>
+        <div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-mooncatrescue" step="0.01" value="0" min="0"></div>
+        <span class="result-count" id="count-mooncatrescue"></span>
+        
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th data-sort="rank" data-tab="mooncatrescue" class="sorted">Rank</th>
+            <th>Address</th>
+            <th data-sort="balance" data-tab="mooncatrescue" style="text-align:right">Balance (ETH)</th>
+          </tr></thead>
+          <tbody id="tbody-mooncatrescue"></tbody>
+        </table>
+        <div class="pagination">
+          <div><span id="pageInfo-mooncatrescue"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-mooncatrescue"><option>25</option><option selected>50</option><option>100</option></select></span></div>
+          <div class="pages" id="pages-mooncatrescue"></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-mooncatrescue" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.mooncatrescue,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('mooncatrescue')}}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fomo3D Long Panel -->
+  <div class="tab-panel" id="panel-fomo3d_long">
+    <div class="loading" id="loading-fomo3d_long"><div class="spinner"></div><div>Loading Fomo3D Long data...</div></div>
+    <div id="app-fomo3d_long" style="display:none">
+      <p class="project-desc"><b>Fomo3D Long</b> was a popular Ethereum gambling game by Team JUST, launched in July 2018. Players bought "keys" that generated dividends from subsequent purchases. Winnings, dividends, and affiliate earnings accumulated in player vaults that many never withdrew. The contract still holds ~1,119 ETH in unclaimed vaults.</p>
+      <div class="contract-info" id="contract-fomo3d_long"></div>
+      <div class="cards" id="cards-fomo3d_long"></div>
+      <div class="controls">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search-fomo3d_long" placeholder="Search by address (0x...)">
+        </div>
+        <div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-fomo3d_long" step="0.01" value="0" min="0"></div>
+        <span class="result-count" id="count-fomo3d_long"></span>
+        
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th data-sort="rank" data-tab="fomo3d_long" class="sorted">Rank</th>
+            <th>Address</th>
+            <th data-sort="balance" data-tab="fomo3d_long" style="text-align:right">Balance (ETH)</th>
+          </tr></thead>
+          <tbody id="tbody-fomo3d_long"></tbody>
+        </table>
+        <div class="pagination">
+          <div><span id="pageInfo-fomo3d_long"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-fomo3d_long"><option>25</option><option selected>50</option><option>100</option></select></span></div>
+          <div class="pages" id="pages-fomo3d_long"></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-fomo3d_long" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.fomo3d_long,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('fomo3d_long')}}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fomo3D Quick Panel -->
+  <div class="tab-panel" id="panel-fomo3d_quick">
+    <div class="loading" id="loading-fomo3d_quick"><div class="spinner"></div><div>Loading Fomo3D Quick data...</div></div>
+    <div id="app-fomo3d_quick" style="display:none">
+      <p class="project-desc"><b>Fomo3D Quick</b> was a faster-round variant of the Fomo3D gambling game by Team JUST (2018). Same mechanics as Fomo3D Long but with shorter rounds. Player vaults with unclaimed winnings, dividends, and affiliate earnings remain in the contract (~85 ETH).</p>
+      <div class="contract-info" id="contract-fomo3d_quick"></div>
+      <div class="cards" id="cards-fomo3d_quick"></div>
+      <div class="controls">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search-fomo3d_quick" placeholder="Search by address (0x...)">
+        </div>
+        <div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-fomo3d_quick" step="0.01" value="0" min="0"></div>
+        <span class="result-count" id="count-fomo3d_quick"></span>
+        
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th data-sort="rank" data-tab="fomo3d_quick" class="sorted">Rank</th>
+            <th>Address</th>
+            <th data-sort="balance" data-tab="fomo3d_quick" style="text-align:right">Balance (ETH)</th>
+          </tr></thead>
+          <tbody id="tbody-fomo3d_quick"></tbody>
+        </table>
+        <div class="pagination">
+          <div><span id="pageInfo-fomo3d_quick"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-fomo3d_quick"><option>25</option><option selected>50</option><option>100</option></select></span></div>
+          <div class="pages" id="pages-fomo3d_quick"></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-fomo3d_quick" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.fomo3d_quick,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('fomo3d_quick')}}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fomo3D Short Panel -->
+  <div class="tab-panel" id="panel-fomo3d_short">
+    <div class="loading" id="loading-fomo3d_short"><div class="spinner"></div><div>Loading Fomo3D Short data...</div></div>
+    <div id="app-fomo3d_short" style="display:none">
+      <p class="project-desc"><b>Fomo3D Short</b> was another variant of the Fomo3D gambling game by Team JUST (2018). Player vaults with unclaimed winnings, dividends, and affiliate earnings remain in the contract (~78 ETH).</p>
+      <div class="contract-info" id="contract-fomo3d_short"></div>
+      <div class="cards" id="cards-fomo3d_short"></div>
+      <div class="controls">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search-fomo3d_short" placeholder="Search by address (0x...)">
+        </div>
+        <div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-fomo3d_short" step="0.01" value="0" min="0"></div>
+        <span class="result-count" id="count-fomo3d_short"></span>
+        
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th data-sort="rank" data-tab="fomo3d_short" class="sorted">Rank</th>
+            <th>Address</th>
+            <th data-sort="balance" data-tab="fomo3d_short" style="text-align:right">Balance (ETH)</th>
+          </tr></thead>
+          <tbody id="tbody-fomo3d_short"></tbody>
+        </table>
+        <div class="pagination">
+          <div><span id="pageInfo-fomo3d_short"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-fomo3d_short"><option>25</option><option selected>50</option><option>100</option></select></span></div>
+          <div class="pages" id="pages-fomo3d_short"></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-fomo3d_short" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.fomo3d_short,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('fomo3d_short')}}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EtherDelta v0 Panel -->
+  <div class="tab-panel" id="panel-etherdelta_m0">
+    <div class="loading" id="loading-etherdelta_m0"><div class="spinner"></div><div>Loading EtherDelta v0 data...</div></div>
+    <div id="app-etherdelta_m0" style="display:none">
+      <p class="project-desc"><b>EtherDelta v0</b> was the earliest version of the EtherDelta decentralized exchange, deployed in August 2016 using Solidity 0.3.6. It was the first iteration before v1 and v2. Users deposited ETH to trade tokens onchain. The contract still holds ~221 ETH in unclaimed user balances.</p>
+      <div class="contract-info" id="contract-etherdelta_m0"></div>
+      <div class="cards" id="cards-etherdelta_m0"></div>
+      <div class="controls">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search-etherdelta_m0" placeholder="Search by address (0x...)">
+        </div>
+        <div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-etherdelta_m0" step="0.01" value="0" min="0"></div>
+        <span class="result-count" id="count-etherdelta_m0"></span>
+        
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th data-sort="rank" data-tab="etherdelta_m0" class="sorted">Rank</th>
+            <th>Address</th>
+            <th data-sort="balance" data-tab="etherdelta_m0" style="text-align:right">Balance (ETH)</th>
+          </tr></thead>
+          <tbody id="tbody-etherdelta_m0"></tbody>
+        </table>
+        <div class="pagination">
+          <div><span id="pageInfo-etherdelta_m0"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-etherdelta_m0"><option>25</option><option selected>50</option><option>100</option></select></span></div>
+          <div class="pages" id="pages-etherdelta_m0"></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-etherdelta_m0" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.etherdelta_m0,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('etherdelta_m0')}}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Neufund EtherToken Panel -->
+  <div class="tab-panel" id="panel-neufund">
+    <div class="loading" id="loading-neufund"><div class="spinner"></div><div>Loading Neufund data...</div></div>
+    <div id="app-neufund" style="display:none">
+      <p class="project-desc"><b>Neufund EtherToken</b> was a wrapped ETH token used by the Neufund equity token platform (2017). Users deposited ETH into the ICBM (Initial Capital Building Mechanism) and received ETH-T tokens. Neufund is now defunct but the contract still holds ~3,420 ETH. Holders of ETH-T tokens can withdraw their ETH.</p>
+      <div class="contract-info" id="contract-neufund"></div>
+      <div class="cards" id="cards-neufund"></div>
+      <div class="controls">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search-neufund" placeholder="Search by address (0x...)">
+        </div>
+        <div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-neufund" step="0.01" value="0" min="0"></div>
+        <span class="result-count" id="count-neufund"></span>
+        
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th data-sort="rank" data-tab="neufund" class="sorted">Rank</th>
+            <th>Address</th>
+            <th data-sort="balance" data-tab="neufund" style="text-align:right">Balance (ETH)</th>
+          </tr></thead>
+          <tbody id="tbody-neufund"></tbody>
+        </table>
+        <div class="pagination">
+          <div><span id="pageInfo-neufund"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-neufund"><option>25</option><option selected>50</option><option>100</option></select></span></div>
+          <div class="pages" id="pages-neufund"></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-neufund" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.neufund,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('neufund')}}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bancor Old ETH Token Panel -->
+  <div class="tab-panel" id="panel-bancor_eth">
+    <div class="loading" id="loading-bancor_eth"><div class="spinner"></div><div>Loading Bancor ETH data...</div></div>
+    <div id="app-bancor_eth" style="display:none">
+      <p class="project-desc"><b>Bancor Old ETH Token</b> was Bancor's original wrapped ETH token (2017), used to allow ETH to participate in Bancor liquidity pools as an ERC-20 token. Bancor later deprecated this contract in favor of newer versions. The contract still holds ~95 ETH from users who never unwrapped their tokens.</p>
+      <div class="contract-info" id="contract-bancor_eth"></div>
+      <div class="cards" id="cards-bancor_eth"></div>
+      <div class="controls">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search-bancor_eth" placeholder="Search by address (0x...)">
+        </div>
+        <div class="min-balance"><span>Min ETH:</span><input type="number" id="minBal-bancor_eth" step="0.01" value="0" min="0"></div>
+        <span class="result-count" id="count-bancor_eth"></span>
+        
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th data-sort="rank" data-tab="bancor_eth" class="sorted">Rank</th>
+            <th>Address</th>
+            <th data-sort="balance" data-tab="bancor_eth" style="text-align:right">Balance (ETH)</th>
+          </tr></thead>
+          <tbody id="tbody-bancor_eth"></tbody>
+        </table>
+        <div class="pagination">
+          <div><span id="pageInfo-bancor_eth"></span>&nbsp;&nbsp;<span class="page-size">Rows: <select id="pageSz-bancor_eth"><option>25</option><option selected>50</option><option>100</option></select></span></div>
+          <div class="pages" id="pages-bancor_eth"></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:12px;color:var(--text2)">Go to</span><input type="number" min="1" id="goto-bancor_eth" style="width:55px;padding:4px 6px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;text-align:center" onkeydown="if(event.key==='Enter'){const t=tabState.bancor_eth,p=parseInt(this.value)-1,max=Math.ceil((t.pagination?.totalPages||1))-1;if(p>=0&&p<=max){t.page=p;applyFilters('bancor_eth')}}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <div class="about-section" id="about">
+    <h2>About Forgotten ETH</h2>
+    <div class="about-grid">
+      <div class="about-block">
+        <h3>What is this?</h3>
+        <p>A tool to find and recover ETH stuck in defunct smart contracts on Ethereum. Thousands of ETH remain locked in old DEXes, NFT marketplaces, ENS auctions, and ICO contracts that shut down years ago. Portfolio trackers do not detect these balances.</p>
+      </div>
+      <div class="about-block">
+        <h3>How it works</h3>
+        <p>Connect your wallet or search any address to check for unclaimed ETH across 22 contracts. All withdrawals go directly to your wallet from the original smart contract. If a balance is found, the site crafts a withdrawal transaction for you to review and sign. You can also claim directly from Etherscan.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ZERO_ADDR = '0x0000000000000000000000000000000000000000';
+const PUBLIC_RPC = 'https://ethereum.publicnode.com';
+
+// API session token (auto-refreshes every 9 min)
+let _apiToken = null;
+let _apiTokenExpiry = 0;
+async function getApiToken() {
+  if (_apiToken && Date.now() < _apiTokenExpiry) return _apiToken;
+  const resp = await fetch('/api/token');
+  if (!resp.ok) throw new Error('Token request failed');
+  const data = await resp.json();
+  _apiToken = data.token;
+  _apiTokenExpiry = Date.now() + (data.expires_in - 60) * 1000; // refresh 1 min before expiry
+  return _apiToken;
+}
+
+// ETH price from CoinGecko (cached 5 min)
+let _ethPrice = null;
+let _ethPriceExpiry = 0;
+async function getEthPrice() {
+  if (_ethPrice && Date.now() < _ethPriceExpiry) return _ethPrice;
+  try {
+    const resp = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd');
+    const data = await resp.json();
+    _ethPrice = data.ethereum.usd;
+    _ethPriceExpiry = Date.now() + 300000;
+  } catch (e) { _ethPrice = _ethPrice || 0; }
+  return _ethPrice;
+}
+function fmtUsd(v) { return '$' + parseFloat(v).toLocaleString('en', {minimumFractionDigits: 0, maximumFractionDigits: 0}); }
+
+// Donation flow
+const DONATION_ADDRESS = 'DONATION_ADDRESS_HERE';
+
+async function sendDonation(amountWei) {
+  if (!walletSigner) { alert('Please connect your wallet first.'); return; }
+  try {
+    const tx = await walletSigner.sendTransaction({ to: DONATION_ADDRESS, value: amountWei });
+    window.va?.track?.('donation_sent', { amount_eth: ethers.formatEther(amountWei), tx_hash: tx.hash });
+    document.getElementById('donationCard').innerHTML = '<div style="padding:16px;text-align:center"><p style="font-size:15px;font-weight:700;color:var(--green);margin-bottom:8px">Thank you for your support!</p><p style="font-size:13px;color:var(--text2);margin-bottom:12px">Your donation helps us keep finding forgotten contracts and building recovery tools.</p><div class="share-btns"><button class="share-btn" onclick="shareResult()">Share this tool</button></div></div>';
+  } catch (e) {
+    if (e.code !== 'ACTION_REJECTED' && e.code !== 4001) console.error('Donation error:', e);
+  }
+}
+
+function renderDonationCard(claimedEth) {
+  const ethPrice = _ethPrice || 0;
+  const pcts = [
+    { pct: 2, label: 'A little thanks' },
+    { pct: 5, label: 'Recommended' },
+    { pct: 10, label: 'Generous' },
+  ];
+  const btns = pcts.map(p => {
+    const amt = (claimedEth * p.pct / 100);
+    const usd = ethPrice ? ' (' + fmtUsd(amt * ethPrice) + ')' : '';
+    const cls = p.pct === 5 ? 'donation-btn recommended' : 'donation-btn';
+    return `<button class="${cls}" onclick="sendDonation(ethers.parseEther('${amt.toFixed(6)}'))">${p.pct}% &middot; ${amt.toFixed(4)} ETH${usd}</button>`;
+  }).join('');
+
+  return `<div class="donation-card" id="donationCard">
+    <h3>This tool is free and community-supported</h3>
+    <p>Forgotten ETH is built by independent developers. No fees, no middlemen. If we saved you time and money, consider leaving a tip.</p>
+    <div class="donation-btns">${btns}</div>
+    <p class="donation-fine">100% voluntary. No tip is taken from your withdrawal.</p>
+    <button class="donation-skip" onclick="document.getElementById('donationCard').style.display='none'">Maybe later</button>
+  </div>`;
+}
+
+// Share
+function shareResult(text) {
+  const url = 'https://forgotten-eth.vercel.app';
+  const msg = text || 'I just discovered forgotten ETH using Forgotten ETH - a free tool that scans 22 defunct contracts for unclaimed balances.';
+  const shareData = { title: 'Forgotten ETH', text: msg, url };
+  if (navigator.share) {
+    navigator.share(shareData).catch(() => {});
+  } else {
+    const tweetUrl = 'https://x.com/intent/tweet?text=' + encodeURIComponent(msg + ' ' + url);
+    window.open(tweetUrl, '_blank');
+  }
+}
+
+function renderShareButtons(prefix) {
+  return `<div class="share-btns">
+    <button class="share-btn" onclick="navigator.clipboard.writeText('https://forgotten-eth.vercel.app').then(()=>this.textContent='Copied!')">Copy Link</button>
+    <button class="share-btn" onclick="shareResult('${prefix}')">Share</button>
+  </div>`;
+}
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+function isAddr(s) { return /^0x[0-9a-fA-F]{40}$/.test(s); }
+
+// Live onchain balance check cache
+const liveBalanceCache = new Map(); // addr -> { key, balance: bigint, checked: timestamp }
+
+async function checkLiveBalance(address, contractAddr) {
+  const cacheKey = contractAddr + ':' + address;
+  const cached = liveBalanceCache.get(cacheKey);
+  if (cached && Date.now() - cached.checked < 300000) return cached.balance;
+  try {
+    const provider = new ethers.JsonRpcProvider(PUBLIC_RPC);
+    const cfg = Object.values(EXCHANGES).find(e => e.contract.toLowerCase() === contractAddr.toLowerCase());
+    if (!cfg) return null;
+    const contract = new ethers.Contract(contractAddr, [cfg.balanceAbi], provider);
+    const result = await contract[cfg.balanceCall](...cfg.balanceArgs(address));
+    const balance = cfg.balanceTransform ? cfg.balanceTransform(result) : result;
+    liveBalanceCache.set(cacheKey, { balance, checked: Date.now() });
+    return balance;
+  } catch(e) {
+    console.error('Live balance check failed:', e);
+    return null;
+  }
+}
+
+// ─── ENS Deed Lookup ───
+const ENS_REGISTRAR = '0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef';
+// Precomputed: keccak256('HashRegistered(bytes32,address,uint256,uint256)')
+const ENS_HASH_REGISTERED_TOPIC = '0x0f0c27adfd84b60b6f456b0e87cdccb1e5fb9603991588d87fa99f5b6b61e670';
+const ENS_DEED_ABI = ['function owner() view returns (address)', 'function value() view returns (uint256)'];
+const ENS_REGISTRAR_ABI = [
+  'function entries(bytes32 _hash) view returns (uint8, address, uint256, uint256, uint256)',
+  'function releaseDeed(bytes32 _hash)',
+];
+// Old registrar deployed ~block 3648000, migration ended ~block 9380000
+const ENS_FROM_BLOCK = 3648000;
+const ENS_TO_BLOCK = 9380000;
+
+async function lookupENSDeeds(ownerAddress, walletProv) {
+  // Use public RPC for historical log queries (wallet RPCs often restrict range)
+  const provider = new ethers.JsonRpcProvider(PUBLIC_RPC);
+  const paddedOwner = ethers.zeroPadValue(ownerAddress, 32);
+  const deeds = [];
+  try {
+    // Query in chunks to avoid RPC limits (some providers cap at 2000 blocks)
+    const chunkSize = 500000;
+    const allLogs = [];
+    for (let from = ENS_FROM_BLOCK; from <= ENS_TO_BLOCK; from += chunkSize) {
+      const to = Math.min(from + chunkSize - 1, ENS_TO_BLOCK);
+      try {
+        const logs = await provider.getLogs({
+          address: ENS_REGISTRAR,
+          topics: [ENS_HASH_REGISTERED_TOPIC, null, paddedOwner],
+          fromBlock: from,
+          toBlock: to,
+        });
+        allLogs.push(...logs);
+      } catch (e) {
+        // If chunk too large, try smaller chunks
+        const smallChunk = 100000;
+        for (let sf = from; sf <= to; sf += smallChunk) {
+          const st = Math.min(sf + smallChunk - 1, to);
+          try {
+            const logs = await provider.getLogs({
+              address: ENS_REGISTRAR,
+              topics: [ENS_HASH_REGISTERED_TOPIC, null, paddedOwner],
+              fromBlock: sf,
+              toBlock: st,
+            });
+            allLogs.push(...logs);
+          } catch (e2) {
+            console.warn('ENS log query failed for range', sf, '-', st, e2);
+          }
+        }
+      }
+    }
+
+    if (allLogs.length === 0) return deeds;
+
+    // Extract unique labelHashes
+    const labelHashes = [...new Set(allLogs.map(log => log.topics[1]))];
+
+    // Check each deed via entries() to see if it still has value
+    const registrar = new ethers.Contract(ENS_REGISTRAR, ENS_REGISTRAR_ABI, provider);
+    for (const labelHash of labelHashes) {
+      try {
+        const entry = await registrar.entries(labelHash);
+        const deedAddr = entry[1];
+        // entry[0] = state (0=Open, 1=Auction, 2=Owned, 3=Forbidden, 4=Reveal, 5=NotYetAvailable)
+        // Deed address must not be zero
+        if (deedAddr === ethers.ZeroAddress) continue;
+
+        // Check deed has ETH and owner matches
+        const deed = new ethers.Contract(deedAddr, ENS_DEED_ABI, provider);
+        const [deedOwner, deedValue] = await Promise.all([deed.owner(), deed.value()]);
+        if (deedOwner.toLowerCase() === ownerAddress.toLowerCase() && deedValue > 0n) {
+          deeds.push({ labelHash, deedAddress: deedAddr, value: deedValue });
+        }
+      } catch (e) {
+        // Deed may have self-destructed (already released)
+      }
+    }
+  } catch (e) {
+    console.error('ENS deed lookup failed:', e);
+  }
+  return deeds;
+}
+
+const EXCHANGES = {
+  idex: {
+
+    name: 'IDEX v1',
+    color: '#6366f1',
+    contract: '0x2a0c0DBEcC7E4D658f48E01e3fA353F44050c208',
+    deployed: 'September 2017',
+    balanceAbi: 'function tokens(address, address) view returns (uint256)',
+    balanceArgs: (user) => [ZERO_ADDR, user],
+    balanceCall: 'tokens',
+    // Withdraw config
+    withdrawAbi: 'function withdraw(address token, uint256 amount) returns (bool)',
+    withdrawArgs: (amount) => [ZERO_ADDR, amount],
+    withdrawCall: 'withdraw',
+  },
+  etherdelta: {
+    name: 'EtherDelta v2',
+    color: '#f97316',
+    contract: '0x8d12A197cB00D4747a1fe03395095ce2A5CC6819',
+    deployed: 'February 2017',
+    balanceAbi: 'function tokens(address, address) view returns (uint256)',
+    balanceArgs: (user) => [ZERO_ADDR, user],
+    balanceCall: 'tokens',
+    withdrawAbi: 'function withdraw(uint256 amount)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'withdraw',
+  },
+  tokenstore: {
+    name: 'Token.Store',
+    color: '#22c55e',
+    contract: '0x1ce7ae555139c5ef5a57cc8d814a867ee6ee33d8',
+    deployed: 'August 2017',
+    balanceAbi: 'function tokens(address, address) view returns (uint256)',
+    balanceArgs: (user) => [ZERO_ADDR, user],
+    balanceCall: 'tokens',
+    withdrawAbi: 'function withdraw(uint256 amount)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'withdraw',
+  },
+  etherdelta_m1: {
+    name: 'EtherDelta v1',
+    color: '#f59e0b',
+    contract: '0x373c55c277b866a69dc047cad488154ab9759466',
+    deployed: 'December 2016',
+    balanceAbi: 'function tokens(address, address) view returns (uint256)',
+    balanceArgs: (user) => [ZERO_ADDR, user],
+    balanceCall: 'tokens',
+    withdrawAbi: 'function withdraw(uint256 amount)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'withdraw',
+  },
+  singularx: {
+    name: 'SingularX',
+    color: '#0ea5e9',
+    contract: '0x9a2d163ab40f88c625fd475e807bbc3556566f80',
+    deployed: 'March 2018',
+    balanceAbi: 'function tokens(address, address) view returns (uint256)',
+    balanceArgs: (user) => [ZERO_ADDR, user],
+    balanceCall: 'tokens',
+    withdrawAbi: 'function withdraw(uint256 amount)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'withdraw',
+  },
+  enclaves: {
+    name: 'Unknown DEX',
+    color: '#14b8a6',
+    contract: '0x4d55f76ce2dbbae7b48661bef9bd144ce0c9091b',
+    deployed: 'September 2017',
+    balanceAbi: 'function tokens(address, address) view returns (uint256)',
+    balanceArgs: (user) => [ZERO_ADDR, user],
+    balanceCall: 'tokens',
+    withdrawAbi: 'function withdraw(uint256 amount)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'withdraw',
+  },
+  decentrex: {
+    name: 'Decentrex',
+    color: '#64748b',
+    contract: '0xbf29685856fae1e228878dfb35b280c0adcc3b05',
+    deployed: 'July 2017',
+    balanceAbi: 'function tokens(address, address) view returns (uint256)',
+    balanceArgs: (user) => [ZERO_ADDR, user],
+    balanceCall: 'tokens',
+    withdrawAbi: 'function withdraw(uint256 amount)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'withdraw',
+  },
+  joyso: {
+    name: 'Joyso',
+    color: '#10b981',
+    contract: '0x04f062809b244e37e7fdc21d9409469c989c2342',
+    deployed: 'September 2018',
+    balanceAbi: 'function getBalance(address, address) view returns (uint256)',
+    balanceArgs: (user) => [ZERO_ADDR, user],
+    balanceCall: 'getBalance',
+    withdrawAbi: 'function withdraw(address token, uint256 amount)',
+    withdrawArgs: (amount) => [ZERO_ADDR, amount],
+    withdrawCall: 'withdraw',
+  },
+  ethen: {
+    name: 'ETHEN',
+    color: '#a855f7',
+    contract: '0xf4c27b8b002389864ac214cb13bfeef4cc5c4e8d',
+    deployed: 'October 2018',
+    balanceAbi: 'function balances(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balances',
+    withdrawAbi: 'function withdrawEther(uint256 _amount)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'withdrawEther',
+  },
+  bitcratic: {
+    name: 'Bitcratic',
+    color: '#f43f5e',
+    contract: '0x3c020e014069df790d4f4e63fd297ba4e1c8e51f',
+    deployed: 'June 2018',
+    balanceAbi: 'function tokens(address, address) view returns (uint256)',
+    balanceArgs: (user) => [ZERO_ADDR, user],
+    balanceCall: 'tokens',
+    withdrawAbi: 'function withdraw(uint256 amount)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'withdraw',
+  },
+  etherc: {
+    name: 'EtherC',
+    color: '#06b6d4',
+    contract: '0xd8d48e52f39ab2d169c8b562c53589e6c71ac4d3',
+    deployed: 'April 2018',
+    balanceAbi: 'function tokens(address, address) view returns (uint256)',
+    balanceArgs: (user) => [ZERO_ADDR, user],
+    balanceCall: 'tokens',
+    withdrawAbi: 'function withdraw(uint256 amount)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'withdraw',
+  },
+  enclavesdex: {
+    name: 'EnclavesDex',
+    color: '#84cc16',
+    contract: '0xbf45f4280cfbe7c2d2515a7d984b8c71c15e82b7',
+    deployed: 'June 2018',
+    balanceAbi: 'function tokens(address, address) view returns (uint256)',
+    balanceArgs: (user) => [ZERO_ADDR, user],
+    balanceCall: 'tokens',
+    withdrawAbi: 'function withdraw(uint256 amount)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'withdraw',
+  },
+  ens_old: {
+    name: 'ENS Old Registrar',
+    color: '#3b82f6',
+    contract: '0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef',
+    deployed: 'May 2017',
+    // ENS balance is pre-computed from Deed owner() scan
+    // On-site claiming uses releaseDeed(bytes32 labelHash) looked up via HashRegistered events
+    balanceAbi: null,
+    balanceArgs: null,
+    balanceCall: null,
+    withdrawAbi: 'function releaseDeed(bytes32 _hash)',
+    withdrawArgs: null,
+    withdrawCall: 'releaseDeed',
+    category: 'ens',
+    noWalletCheck: true,
+    ensDeeds: true,
+  },
+  confideal: {
+    name: 'Confideal',
+    color: '#e11d48',
+    contract: '0x22a97c80d7e0a9ae616737e3b8b531248f4ef91d',
+    deployed: 'November 2017',
+    balanceAbi: 'function contributions(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'contributions',
+    withdrawAbi: 'function withdrawRefund()',
+    withdrawArgs: () => [],
+    withdrawCall: 'withdrawRefund',
+    category: 'ico',
+  },
+  dada: {
+    name: 'DADA Collectible',
+    category: 'nft',
+    color: '#ec4899',
+    contract: '0x068696a3cf3c4676b65f1c9975dd094260109d02',
+    deployed: 'October 2017',
+    balanceAbi: 'function pendingWithdrawals(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'pendingWithdrawals',
+    withdrawAbi: 'function withdraw()',
+    withdrawArgs: () => [],
+    withdrawCall: 'withdraw',
+  },
+  mooncatrescue: {
+    name: 'MoonCatRescue',
+    category: 'nft',
+    color: '#8b5cf6',
+    contract: '0x60cd862c9c687a9de49aecdc3a99b74a4fc54ab6',
+    deployed: 'August 2017',
+    balanceAbi: 'function pendingWithdrawals(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'pendingWithdrawals',
+    withdrawAbi: 'function withdraw()',
+    withdrawArgs: () => [],
+    withdrawCall: 'withdraw',
+  },
+  fomo3d_long: {
+    name: 'Fomo3D Long',
+    category: 'gambling',
+    color: '#ef4444',
+    contract: '0xA62142888ABa8370742bE823c1782D17A0389Da1',
+    deployed: 'July 2018',
+    balanceAbi: 'function getPlayerInfoByAddress(address) view returns (uint256, bytes32, uint256, uint256, uint256, uint256, uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'getPlayerInfoByAddress',
+    balanceTransform: (result) => result[3] + result[4] + result[5],
+    withdrawAbi: 'function withdraw()',
+    withdrawArgs: () => [],
+    withdrawCall: 'withdraw',
+  },
+  fomo3d_quick: {
+    name: 'Fomo3D Quick',
+    category: 'gambling',
+    color: '#f97316',
+    contract: '0x4e8ecf79ade5e2c49b9e30d795517a81e0bf00b8',
+    deployed: 'July 2018',
+    balanceAbi: 'function getPlayerInfoByAddress(address) view returns (uint256, bytes32, uint256, uint256, uint256, uint256, uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'getPlayerInfoByAddress',
+    balanceTransform: (result) => result[3] + result[4] + result[5],
+    withdrawAbi: 'function withdraw()',
+    withdrawArgs: () => [],
+    withdrawCall: 'withdraw',
+  },
+  fomo3d_short: {
+    name: 'Fomo3D Short',
+    category: 'gambling',
+    color: '#fb923c',
+    contract: '0x52083b1a21a5abc422b1b0bce5c43ca86ef74cd1',
+    deployed: 'July 2018',
+    balanceAbi: 'function getPlayerInfoByAddress(address) view returns (uint256, bytes32, uint256, uint256, uint256, uint256, uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'getPlayerInfoByAddress',
+    balanceTransform: (result) => result[3] + result[4] + result[5],
+    withdrawAbi: 'function withdraw()',
+    withdrawArgs: () => [],
+    withdrawCall: 'withdraw',
+  },
+  etherdelta_m0: {
+    name: 'EtherDelta v0',
+    color: '#d97706',
+    contract: '0x4aea7cf559f67cedcad07e12ae6bc00f07e8cf65',
+    deployed: 'August 2016',
+    balanceAbi: 'function balanceOf(address, address) view returns (uint256)',
+    balanceArgs: (user) => [ZERO_ADDR, user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: 'function withdraw(uint256 amount)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'withdraw',
+  },
+  neufund: {
+    name: 'Neufund EtherToken',
+    category: 'ico',
+    color: '#0d9488',
+    contract: '0xb59a226a2b8a2f2b0512baa35cc348b6b213b671',
+    deployed: 'November 2017',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: 'function withdraw(uint256 amount)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'withdraw',
+  },
+  bancor_eth: {
+    name: 'Bancor Old ETH Token',
+    category: 'ico',
+    color: '#1d4ed8',
+    contract: '0xD76b5c2A23ef78368d8E34288B5b65D616B746aE',
+    deployed: 'June 2017',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: 'function withdraw(uint256 amount)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'withdraw',
+  },
+};
+
+// Per-tab state
+const tabState = {};
+for (const key of Object.keys(EXCHANGES)) {
+  tabState[key] = { meta: null, rows: [], pagination: null, page: 0, pageSize: 50, sortField: 'rank', sortAsc: true };
+}
+
+// Wallet state
+let walletProvider = null;
+let walletSigner = null;
+let walletAddress = null;
+let userBalances = {}; // { idex: BigInt, etherdelta: BigInt }
+
+// Helpers
+function fmtEth(v) {
+  const n = parseFloat(v);
+  if (n >= 1) return n.toLocaleString('en', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+  return n.toLocaleString('en', {minimumFractionDigits: 4, maximumFractionDigits: 4});
+}
+function fmtNum(n) { return Number(n).toLocaleString('en'); }
+function truncAddr(a) { return a.slice(0, 8) + '...' + a.slice(-6); }
+function etherscanAddr(a) { return `https://etherscan.io/address/${a}`; }
+function etherscanTx(h) { return `https://etherscan.io/tx/${h}`; }
+
+// ─── Web3 Wallet ───
+
+async function connectWallet() {
+  if (walletAddress) {
+    // Disconnect
+    walletProvider = null;
+    walletSigner = null;
+    walletAddress = null;
+    userBalances = {};
+    document.getElementById('walletBtn').textContent = 'Connect Wallet';
+    document.getElementById('walletBtn').classList.remove('connected');
+    document.getElementById('walletAddr').textContent = '';
+    document.getElementById('claimBanner').classList.remove('visible');
+    document.getElementById('networkWarn').classList.remove('visible');
+    document.getElementById('connectCta').style.display = '';
+    return;
+  }
+
+  if (!window.ethereum) {
+    alert('No wallet detected. Please install MetaMask or another Web3 wallet.');
+    return;
+  }
+
+  try {
+    // Request fresh wallet selection (forces provider picker if multiple wallets)
+    walletProvider = new ethers.BrowserProvider(window.ethereum);
+    try {
+      await walletProvider.send('wallet_requestPermissions', [{ eth_accounts: {} }]);
+    } catch(e) {
+      // Fallback for wallets that don't support wallet_requestPermissions
+    }
+    const accounts = await walletProvider.send('eth_requestAccounts', []);
+    walletSigner = await walletProvider.getSigner();
+    walletAddress = await walletSigner.getAddress();
+
+    document.getElementById('walletBtn').textContent = 'Disconnect';
+    document.getElementById('walletBtn').classList.add('connected');
+    document.getElementById('walletAddr').textContent = truncAddr(walletAddress);
+    document.getElementById('connectCta').style.display = 'none';
+
+    window.va?.track?.('wallet_connected');
+
+    try { await checkNetwork(); } catch(e) { console.warn('Network check failed:', e); }
+
+    // Show loading state while checking balances
+    const banner = document.getElementById('claimBanner');
+    const rowsEl = document.getElementById('claimRows');
+    rowsEl.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2)"><div class="spinner" style="display:inline-block;width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:8px"></div><div>Checking ' + Object.keys(EXCHANGES).length + ' contracts for unclaimed ETH...</div></div>';
+    banner.classList.add('visible');
+
+    try { await checkUserBalances(); } catch(e) { console.error('Balance check failed:', e); }
+  } catch (e) {
+    console.error('Wallet connection failed:', e);
+    alert('Failed to connect wallet: ' + (e.message || e.code || 'Unknown error'));
+  }
+}
+
+async function checkNetwork() {
+  const network = await walletProvider.getNetwork();
+  const isMainnet = network.chainId === 1n;
+  document.getElementById('networkWarn').classList.toggle('visible', !isMainnet);
+  return isMainnet;
+}
+
+async function checkUserBalances() {
+  if (!walletAddress || !walletProvider) return;
+
+  window.va?.track?.('address_checked', { method: 'wallet' });
+
+  const banner = document.getElementById('claimBanner');
+  const rowsEl = document.getElementById('claimRows');
+  let html = '';
+  let hasBalance = false;
+
+  // Fetch pre-computed balances from API (avoids loading full JSON)
+  let apiBalances = {};
+  try {
+    const apiToken = await getApiToken();
+    const apiResp = await fetch(`/api/check?address=${walletAddress}&token=${apiToken}`);
+    if (apiResp.ok) {
+      const apiData = await apiResp.json();
+      apiBalances = apiData.balances || {};
+    }
+  } catch (e) { console.warn('API check failed, falling back to local data', e); }
+
+  for (const [key, cfg] of Object.entries(EXCHANGES)) {
+    try {
+      let balance;
+      if (cfg.noWalletCheck) {
+        // Use API response first, fall back to loaded JSON data
+        if (apiBalances[key]) {
+          balance = BigInt(apiBalances[key].balance_wei);
+          // Store deed data from API for ENS
+          if (apiBalances[key].deeds) window._apiDeeds = apiBalances[key].deeds;
+        } else { balance = 0n; }
+      } else {
+        const contract = new ethers.Contract(cfg.contract, [cfg.balanceAbi], walletProvider);
+        const result = await contract[cfg.balanceCall](...cfg.balanceArgs(walletAddress));
+        balance = cfg.balanceTransform ? cfg.balanceTransform(result) : result;
+      }
+      userBalances[key] = balance;
+
+      if (balance > 0n) {
+        hasBalance = true;
+        const ethAmount = ethers.formatEther(balance);
+
+        if (cfg.ensDeeds) {
+          // ENS: check for pre-mapped deed data first, fall back to event log lookup
+          // Check API response first, then local JSON data
+          const apiDeeds = window._apiDeeds || null;
+          const preDeeds = apiDeeds || null;
+
+          html += `
+            <div class="claim-row">
+              <span class="dex-name">${cfg.name}</span>
+              <span class="claim-amount">${fmtEth(ethAmount)} ETH (total)</span>
+              <span style="font-size:12px;color:var(--text2)" id="ensLookupStatus">${preDeeds ? '' : 'Looking up deeds...'}</span>
+            </div>
+            <div id="ensDeedRows"></div>`;
+
+          const renderDeeds = (deeds) => {
+            const statusEl = document.getElementById('ensLookupStatus');
+            const rowsEl = document.getElementById('ensDeedRows');
+            if (!deeds || deeds.length === 0) {
+              statusEl.textContent = '';
+              rowsEl.innerHTML = `<div class="claim-details">
+                No deed hashes found for your address. Your deed ownership may have been transferred.
+                You can reclaim via <a href="https://reclaim.ens.domains" target="_blank">reclaim.ens.domains</a>
+                or enter your domain name below.
+                <div style="margin-top:8px;display:flex;gap:6px;align-items:center">
+                  <input type="text" id="ensManualHash" placeholder="Enter label (e.g. vitalik) or labelHash (0x...)" style="flex:1;padding:6px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-family:inherit">
+                  <button class="claim-btn" onclick="ensManualRelease()">Release</button>
+                </div>
+              </div>`;
+              return;
+            }
+            statusEl.textContent = `${deeds.length} deed${deeds.length > 1 ? 's' : ''} found`;
+            window._ensDeeds = deeds;
+            let deedHtml = '';
+            deeds.forEach((d, i) => {
+              const ethVal = d.value_eth || ethers.formatEther(d.value);
+              deedHtml += `
+                <div class="claim-row" style="padding-left:24px">
+                  <span class="dex-name" style="font-size:12px">Deed ${i+1}</span>
+                  <span class="claim-amount">${fmtEth(ethVal)} ETH</span>
+                  <button class="claim-btn" id="claimBtn-ens-${i}" onclick="claimENSDeed(${i})">Release Deed</button>
+                </div>
+                <div class="claim-details" style="padding-left:24px">
+                  <span>Deed:</span> <a href="${etherscanAddr(d.deedAddress)}" target="_blank">${d.deedAddress}</a><br>
+                  <span>Hash:</span> <code style="font-size:11px">${d.labelHash}</code>
+                </div>
+                <div class="claim-status" id="claimStatus-ens-${i}"></div>`;
+            });
+            deedHtml += `<div class="claim-details" style="margin-top:8px;padding-left:24px">
+              <span style="font-size:12px;color:var(--text2)">Have another deed? Enter label or hash:</span>
+              <div style="margin-top:4px;display:flex;gap:6px;align-items:center">
+                <input type="text" id="ensManualHash" placeholder="e.g. vitalik or 0xaf2c..." style="flex:1;padding:6px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-family:inherit">
+                <button class="claim-btn" onclick="ensManualRelease()">Release</button>
+              </div>
+            </div>`;
+            rowsEl.innerHTML = deedHtml;
+          };
+
+          if (preDeeds) {
+            // Use pre-mapped deed data — instant, no RPC needed
+            const mapped = preDeeds.map(d => ({
+              labelHash: d.labelHash,
+              deedAddress: d.deedAddress,
+              value: BigInt(d.value_wei),
+              value_eth: d.value_eth,
+            }));
+            setTimeout(() => renderDeeds(mapped), 0);
+          } else {
+            // Fall back to event log lookup
+            lookupENSDeeds(walletAddress, walletProvider).then(deeds => renderDeeds(deeds)).catch(e => {
+              console.error('ENS deed lookup error:', e);
+              document.getElementById('ensLookupStatus').textContent = 'Lookup failed';
+              renderDeeds(null);
+            });
+          }
+        } else if (!cfg.withdrawAbi) {
+          // Contracts without direct withdraw
+          html += `
+            <div class="claim-row">
+              <span class="dex-name">${cfg.name}</span>
+              <span class="claim-amount">${fmtEth(ethAmount)} ETH</span>
+              <span style="font-size:12px;color:var(--text2)">No on-site withdraw</span>
+            </div>`;
+        } else {
+          const wArgs = cfg.withdrawArgs(balance);
+          const argsDisplay = wArgs.length > 0 ? wArgs.map(a => typeof a === 'bigint' ? a.toString() + ' wei (' + ethers.formatEther(a) + ' ETH)' : String(a)).join(', ') : 'none';
+          const funcSig = cfg.withdrawAbi.replace('function ', '');
+          html += `
+            <div class="claim-row">
+              <span class="dex-name">${cfg.name}</span>
+              <span class="claim-amount">${fmtEth(ethAmount)} ETH</span>
+              <button class="claim-btn" id="claimBtn-${key}" onclick="claimETH('${key}')">Withdraw</button>
+            </div>
+            <div class="claim-details">
+              This transaction calls the withdraw function directly on the ${esc(cfg.name)} smart contract. You can verify the contract on Etherscan before signing.<br><br>
+              <span>Contract:</span> <a href="${etherscanAddr(cfg.contract)}" target="_blank">${cfg.contract}</a><br>
+              <span>Function:</span> ${esc(funcSig)}<br>
+              <span>Parameters:</span> ${esc(argsDisplay)}
+            </div>
+            <div class="claim-status" id="claimStatus-${key}"></div>`;
+        }
+      }
+    } catch (e) {
+      console.error(`Error checking ${key} balance:`, e);
+    }
+  }
+
+  const claimCount = Object.values(userBalances).filter(b => b > 0n).length;
+  const ethPrice = await getEthPrice();
+  if (!hasBalance) {
+    html = `<p class="no-balance-msg">No unclaimed ETH found for ${truncAddr(walletAddress)} across all ${Object.keys(EXCHANGES).length} contracts.</p>
+      <p style="font-size:13px;color:var(--text2);margin-top:12px">Have other wallets? Try addresses you used in 2016-2018. Know someone who was active on Ethereum back then?</p>
+      ${renderShareButtons('Check if you have forgotten ETH stuck in old contracts.')}`;
+    document.getElementById('claimBannerTitle').textContent = 'No Claimable ETH Found';
+  } else {
+    let totalEth = 0;
+    for (const b of Object.values(userBalances)) { if (b > 0n) totalEth += parseFloat(ethers.formatEther(b)); }
+    const usdStr = ethPrice ? ' (' + fmtUsd(totalEth * ethPrice) + ')' : '';
+    const prefix = `<div class="claim-total">${fmtEth(totalEth)} ETH${usdStr}</div>`;
+    const seed = `<p style="font-size:13px;color:var(--text2);margin-bottom:12px">Found in <b>${claimCount} contract${claimCount > 1 ? 's' : ''}</b>. This tool is free, open-source, and built by independent developers. No fees — your ETH goes directly to your wallet.</p>`;
+    html = prefix + seed + html;
+    document.getElementById('claimBannerTitle').textContent = 'We found ETH waiting for you';
+    banner.classList.add('celebrate');
+  }
+
+  rowsEl.innerHTML = html;
+  banner.classList.add('visible');
+}
+
+async function claimETH(key) {
+  const cfg = EXCHANGES[key];
+  const btn = document.getElementById('claimBtn-' + key);
+  const statusEl = document.getElementById('claimStatus-' + key);
+  const balance = userBalances[key];
+
+  if (!balance || balance === 0n) return;
+  if (!await checkNetwork()) {
+    alert('Please switch to Ethereum Mainnet first.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Confirming...';
+  btn.classList.add('pending');
+  statusEl.textContent = 'Waiting for wallet confirmation...';
+
+  try {
+    const contract = new ethers.Contract(cfg.contract, [cfg.withdrawAbi], walletSigner);
+    const args = cfg.withdrawArgs(balance);
+    const ethAmount = ethers.formatEther(balance);
+
+    window.va?.track?.('claim_initiated', { exchange: cfg.name, amount_eth: ethAmount });
+
+    const tx = await contract[cfg.withdrawCall](...args);
+
+    btn.textContent = 'Pending...';
+    statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank">${tx.hash.slice(0, 18)}...</a>`;
+
+    window.va?.track?.('claim_submitted', { exchange: cfg.name, amount_eth: ethAmount, tx_hash: tx.hash });
+
+    const receipt = await tx.wait();
+
+    window.va?.track?.('claim_confirmed', { exchange: cfg.name, amount_eth: ethAmount, tx_hash: tx.hash, block: receipt.blockNumber });
+
+    btn.textContent = 'Claimed!';
+    btn.classList.remove('pending');
+    btn.style.background = 'var(--green)';
+    const claimedEthNum = parseFloat(ethAmount);
+    const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
+    statusEl.innerHTML = `Withdrawal confirmed in block ${receipt.blockNumber}. <a href="${etherscanTx(tx.hash)}" target="_blank">View on Etherscan</a>
+      <div style="margin-top:12px;font-size:15px;font-weight:700;color:var(--green)">You recovered ${fmtEth(ethAmount)} ETH${claimUsd}</div>
+      ${renderDonationCard(claimedEthNum)}
+      ${renderShareButtons('I just recovered ' + fmtEth(ethAmount) + ' ETH from an old smart contract using Forgotten ETH.')}`;
+    userBalances[key] = 0n;
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Withdraw';
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      statusEl.textContent = 'Transaction rejected by user.';
+    } else {
+      console.error('Claim error:', e);
+      statusEl.textContent = 'Transaction failed. Please try again.';
+    }
+  }
+}
+
+// ─── ENS Deed Claiming ───
+
+async function claimENSDeed(index) {
+  const deed = window._ensDeeds[index];
+  if (!deed) return;
+  if (!await checkNetwork()) { alert('Please switch to Ethereum Mainnet first.'); return; }
+
+  const btn = document.getElementById('claimBtn-ens-' + index);
+  const statusEl = document.getElementById('claimStatus-ens-' + index);
+  btn.disabled = true;
+  btn.textContent = 'Confirming...';
+  btn.classList.add('pending');
+  statusEl.textContent = 'Waiting for wallet confirmation...';
+
+  try {
+    const registrar = new ethers.Contract(ENS_REGISTRAR, ENS_REGISTRAR_ABI, walletSigner);
+    const ethAmount = ethers.formatEther(deed.value);
+    window.va?.track?.('claim_initiated', { exchange: 'ENS Old Registrar', amount_eth: ethAmount });
+
+    const tx = await registrar.releaseDeed(deed.labelHash);
+    btn.textContent = 'Pending...';
+    statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank">${tx.hash.slice(0, 18)}...</a>`;
+
+    window.va?.track?.('claim_submitted', { exchange: 'ENS Old Registrar', amount_eth: ethAmount, tx_hash: tx.hash });
+
+    const receipt = await tx.wait();
+    window.va?.track?.('claim_confirmed', { exchange: 'ENS Old Registrar', amount_eth: ethAmount, tx_hash: tx.hash, block: receipt.blockNumber });
+
+    btn.textContent = 'Released!';
+    btn.classList.remove('pending');
+    btn.style.background = 'var(--green)';
+    statusEl.innerHTML = `Deed released in block ${receipt.blockNumber}. ${ethAmount} ETH returned. <a href="${etherscanTx(tx.hash)}" target="_blank">View on Etherscan</a>`;
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Release Deed';
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      statusEl.textContent = 'Transaction rejected by user.';
+    } else {
+      console.error('ENS release error:', e);
+      statusEl.textContent = 'Release failed — you may not be the deed owner.';
+    }
+  }
+}
+
+async function ensManualRelease() {
+  const input = document.getElementById('ensManualHash').value.trim();
+  if (!input) { alert('Please enter a domain label or labelHash.'); return; }
+  if (!walletSigner) { alert('Please connect your wallet first.'); return; }
+  if (!await checkNetwork()) { alert('Please switch to Ethereum Mainnet first.'); return; }
+
+  // If input starts with 0x and is 66 chars, treat as labelHash; otherwise hash it
+  let labelHash;
+  if (/^0x[0-9a-fA-F]{64}$/.test(input)) {
+    labelHash = input;
+  } else {
+    // Remove .eth suffix if present
+    const label = input.toLowerCase().replace(/\.eth$/, '');
+    labelHash = ethers.id(label);
+  }
+
+  // Verify deed exists and has value before sending tx
+  const provider = walletProvider || new ethers.JsonRpcProvider(PUBLIC_RPC);
+  const registrar = new ethers.Contract(ENS_REGISTRAR, ENS_REGISTRAR_ABI, provider);
+  try {
+    const entry = await registrar.entries(labelHash);
+    const deedAddr = entry[1];
+    if (deedAddr === ethers.ZeroAddress) {
+      alert('No deed found for this label/hash. It may have already been released.');
+      return;
+    }
+    const deed = new ethers.Contract(deedAddr, ENS_DEED_ABI, provider);
+    const deedOwner = await deed.owner();
+    if (deedOwner.toLowerCase() !== walletAddress.toLowerCase()) {
+      alert(`You are not the owner of this deed.\nDeed owner: ${deedOwner}\nYour address: ${walletAddress}`);
+      return;
+    }
+  } catch (e) {
+    console.error('Deed verification failed:', e);
+  }
+
+  try {
+    const sRegistrar = new ethers.Contract(ENS_REGISTRAR, ENS_REGISTRAR_ABI, walletSigner);
+    const tx = await sRegistrar.releaseDeed(labelHash);
+    window.va?.track?.('claim_submitted', { exchange: 'ENS Old Registrar', tx_hash: tx.hash });
+    alert(`Transaction submitted: ${tx.hash}\nWaiting for confirmation...`);
+    await tx.wait();
+    alert('Deed released successfully! ETH has been returned to your wallet.');
+  } catch (e) {
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      alert('Transaction rejected.');
+    } else {
+      alert('Release failed: ' + (e.reason || e.message || 'Unknown error'));
+    }
+  }
+}
+
+// Listen for account/chain changes
+if (window.ethereum) {
+  window.ethereum.on('accountsChanged', (accounts) => {
+    if (accounts.length === 0) {
+      walletAddress = null;
+      document.getElementById('walletBtn').textContent = 'Connect Wallet';
+      document.getElementById('walletBtn').classList.remove('connected');
+      document.getElementById('walletAddr').textContent = '';
+      document.getElementById('claimBanner').classList.remove('visible');
+      document.getElementById('connectCta').style.display = '';
+      } else {
+      connectWallet();
+    }
+  });
+  window.ethereum.on('chainChanged', () => {
+    if (walletAddress) checkNetwork();
+  });
+}
+
+// ─── Tab Switching ───
+
+document.getElementById('tabs').addEventListener('click', e => {
+  const tab = e.target.closest('.tab');
+  if (!tab) return;
+  const key = tab.dataset.tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  tab.classList.add('active');
+  document.getElementById('panel-' + key).classList.add('active');
+});
+
+// ─── Data Loading & Rendering ───
+
+async function fetchTable(key) {
+  const s = tabState[key];
+  const query = document.getElementById('search-' + key)?.value?.trim() || '';
+  const minBal = parseFloat(document.getElementById('minBal-' + key)?.value) || 0;
+  const sortDir = s.sortField === 'balance' ? (s.sortAsc ? 'asc' : 'desc') : (s.sortAsc ? 'asc' : 'desc');
+  const token = await getApiToken();
+  const params = new URLSearchParams({
+    exchange: key, page: s.page, pageSize: s.pageSize,
+    sort: s.sortField, sortDir, token,
+    ...(query ? { search: query } : {}),
+    ...(minBal > 0 ? { minBal } : {}),
+  });
+  const resp = await fetch('/api/table?' + params);
+  if (!resp.ok) throw new Error('API error');
+  return resp.json();
+}
+
+async function loadExchange(key) {
+  const cfg = EXCHANGES[key];
+  try {
+    const result = await fetchTable(key);
+    tabState[key].meta = result.meta;
+    tabState[key].rows = result.rows;
+    tabState[key].pagination = result.pagination;
+  } catch(e) {
+    document.getElementById('loading-' + key).innerHTML =
+      `<p style="color:var(--text2)">Data not available yet for ${cfg.name}.<br>Run the scanner first, then reload.</p>`;
+    return;
+  }
+  document.getElementById('loading-' + key).style.display = 'none';
+  document.getElementById('app-' + key).style.display = '';
+
+  const d = tabState[key].meta;
+  document.getElementById('badge-' + key).textContent = parseFloat(d.total_eth).toLocaleString('en', {maximumFractionDigits: 0}) + ' ETH';
+  document.getElementById('contract-' + key).innerHTML =
+    `<b>Contract:</b> <a href="${etherscanAddr(d.contract)}" target="_blank">${d.contract}</a>` + (cfg.deployed ? `<br><b>Deployed:</b> ${cfg.deployed}` : '');
+
+  renderCards(key);
+  renderCharts(key);
+  renderTable(key);
+  setupEvents(key);
+}
+
+function renderCards(key) {
+  const d = tabState[key].meta;
+  const cards = [
+    { label: 'Total ETH Locked', value: fmtEth(d.total_eth), cls: 'eth' },
+    { label: 'Addresses with Balance', value: fmtNum(d.addresses_with_balance), cls: 'eth' },
+    { label: 'Coverage', value: d.coverage_pct + '%', cls: 'eth' },
+  ];
+  document.getElementById('cards-' + key).innerHTML = cards.map(c =>
+    `<div class="card"><div class="label">${c.label}</div><div class="value ${c.cls}">${c.value}</div></div>`
+  ).join('');
+}
+
+function renderCharts(key) {
+  const d = tabState[key].meta;
+  if (!d || !d.top_holders || d.top_holders.length === 0) return;
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const gridColor = isDark ? '#2a2e3a' : '#eee';
+  const textColor = isDark ? '#8b8fa3' : '#666';
+
+  const cardsEl = document.getElementById('cards-' + key);
+  let chartDiv = document.getElementById('charts-' + key);
+  if (!chartDiv) {
+    chartDiv = document.createElement('div');
+    chartDiv.id = 'charts-' + key;
+    chartDiv.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 auto 16px;max-width:900px';
+    chartDiv.innerHTML = '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px"><h3 style="font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text2);margin-bottom:8px">Top Holders</h3><div style="height:400px"><canvas id="chartBar-' + key + '"></canvas></div></div><div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px;display:flex;flex-direction:column;justify-content:center"><h3 style="font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text2);margin-bottom:8px">Balance Distribution</h3><canvas id="chartPie-' + key + '" height="200"></canvas></div>';
+    cardsEl.after(chartDiv);
+  }
+
+  // Bar chart - top 20 holders from full dataset (amounts only, no addresses)
+  const top = d.top_holders;
+  new Chart(document.getElementById('chartBar-' + key), {
+    type: 'bar',
+    data: {
+      labels: top.map((_, i) => 'Holder ' + (i + 1)),
+      datasets: [{ data: top, backgroundColor: '#d946ef99' }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => fmtEth(ctx.raw) + ' ETH' } } },
+      scales: {
+        x: { title: { display: true, text: 'ETH', color: textColor, font: { size: 10 } }, ticks: { color: textColor, font: { size: 9 } }, grid: { color: gridColor } },
+        y: { ticks: { display: false }, grid: { display: false } }
+      }
+    }
+  });
+
+  // Pie chart - distribution by bucket
+  const dist = d.distribution || {};
+  const bucketOrder = ['>=100 ETH', '10-100 ETH', '1-10 ETH', '0.1-1 ETH', '0.01-0.1 ETH', '<0.01 ETH'];
+  const labels = bucketOrder.filter(b => dist[b]);
+  const counts = labels.map(b => dist[b].count);
+  const colors = ['#d946ef', '#a855f7', '#06b6d4', '#10b981', '#f59e0b', '#64748b'];
+
+  new Chart(document.getElementById('chartPie-' + key), {
+    type: 'doughnut',
+    data: { labels, datasets: [{ data: counts, backgroundColor: colors }] },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'right', labels: { color: textColor, padding: 8, font: { size: 9 } } },
+        tooltip: { callbacks: { label: ctx => ctx.label + ': ' + fmtNum(ctx.raw) + ' addresses' } }
+      }
+    }
+  });
+}
+
+async function applyFilters(key) {
+  const s = tabState[key];
+  s.page = 0;
+  try {
+    const result = await fetchTable(key);
+    s.rows = result.rows;
+    s.pagination = result.pagination;
+  } catch (e) { console.error('Filter fetch failed', e); }
+  renderTable(key);
+}
+
+function renderTable(key) {
+  const s = tabState[key];
+  const rows = s.rows || [];
+  const p = s.pagination || { page: 0, pageSize: 50, totalRows: 0, totalPages: 0 };
+  const start = p.page * p.pageSize;
+  const end = Math.min(start + rows.length, p.totalRows);
+  const totalPages = p.totalPages;
+
+  document.getElementById('count-' + key).textContent = `${fmtNum(p.totalRows)} addresses`;
+  document.getElementById('pageInfo-' + key).textContent = p.totalRows > 0 ? `Showing ${start + 1}-${end} of ${fmtNum(p.totalRows)}` : 'No results';
+
+  const cfg = EXCHANGES[key];
+  document.getElementById('tbody-' + key).innerHTML = rows.map(b => {
+    if (!isAddr(b.address)) return '';
+    const addr = esc(b.address);
+    const liveKey = cfg.contract + ':' + b.address;
+    const live = liveBalanceCache.get(liveKey);
+    const claimed = live && live.balance === 0n;
+
+    const balDisplay = claimed
+      ? `<span style="color:var(--text2);text-decoration:line-through">${esc(fmtEth(b.balance_eth))}</span> <span style="color:var(--green);font-size:11px">Claimed</span>`
+      : (live ? esc(fmtEth(ethers.formatEther(live.balance))) : esc(fmtEth(b.balance_eth)));
+
+    return `<tr style="${claimed ? 'opacity:0.5' : ''}">
+      <td>${esc(String(b.rank))}</td>
+      <td class="addr"><a href="${etherscanAddr(addr)}" target="_blank" title="${addr}">${addr}</a>${addr === '0x0000000000000000000000000000000000000000' ? ' <span style="color:var(--red);font-size:11px;font-weight:600">permanently locked (bug)</span>' : ''}</td>
+      <td class="bal-eth">${balDisplay}</td>
+    </tr>`;
+  }).join('');
+
+  const el = document.getElementById('pages-' + key);
+  let btns = '';
+  const addBtn = (label, p, active, disabled) => { btns += `<button ${active ? 'class="active"' : ''} ${disabled ? 'disabled style="opacity:0.4;cursor:default"' : ''} data-page="${p}" data-key="${key}">${label}</button>`; };
+  addBtn('First', 0, false, s.page === 0);
+  if (s.page > 0) addBtn('\u2039', s.page - 1);
+  let pStart = Math.max(0, s.page - 3), pEnd = Math.min(totalPages, pStart + 7);
+  if (pEnd - pStart < 7) pStart = Math.max(0, pEnd - 7);
+  for (let i = pStart; i < pEnd; i++) addBtn(i + 1, i, i === s.page);
+  if (s.page < totalPages - 1) addBtn('\u203A', s.page + 1);
+  addBtn('Last', totalPages - 1, false, s.page >= totalPages - 1);
+  el.innerHTML = btns;
+}
+
+
+function setupEvents(key) {
+  let debounce;
+  document.getElementById('search-' + key).addEventListener('input', () => {
+    clearTimeout(debounce);
+    debounce = setTimeout(() => applyFilters(key), 300);
+  });
+  document.getElementById('minBal-' + key).addEventListener('change', () => applyFilters(key));
+  document.getElementById('pageSz-' + key).addEventListener('change', async e => {
+    tabState[key].pageSize = parseInt(e.target.value);
+    tabState[key].page = 0;
+    await applyFilters(key);
+  });
+
+  document.getElementById('pages-' + key).addEventListener('click', async e => {
+    if (e.target.tagName === 'BUTTON') {
+      tabState[key].page = parseInt(e.target.dataset.page);
+      try {
+        const result = await fetchTable(key);
+        tabState[key].rows = result.rows;
+        tabState[key].pagination = result.pagination;
+      } catch (err) { console.error('Page fetch failed', err); }
+      renderTable(key);
+    }
+  });
+
+  document.querySelectorAll(`thead th[data-tab="${key}"][data-sort]`).forEach(th => {
+    th.addEventListener('click', async () => {
+      const field = th.dataset.sort;
+      const s = tabState[key];
+      if (s.sortField === field) s.sortAsc = !s.sortAsc;
+      else { s.sortField = field; s.sortAsc = true; }
+      th.closest('tr').querySelectorAll('th').forEach(t => t.classList.remove('sorted'));
+      th.classList.add('sorted');
+      s.page = 0;
+      await applyFilters(key);
+    });
+  });
+}
+
+// Init
+// Manual address check (no wallet needed)
+async function checkManualAddress() {
+  const input = document.getElementById('manualAddrInput').value.trim();
+  if (!isAddr(input)) { alert('Please enter a valid Ethereum address (0x...)'); return; }
+
+  window.va?.track?.('address_checked', { method: 'manual' });
+
+  const banner = document.getElementById('claimBanner');
+  const rowsEl = document.getElementById('claimRows');
+  rowsEl.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2)"><div class="spinner" style="display:inline-block;width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:8px"></div><div>Checking ' + Object.keys(EXCHANGES).length + ' contracts...</div></div>';
+  banner.classList.add('visible');
+
+  const provider = new ethers.JsonRpcProvider(PUBLIC_RPC);
+  let html = '';
+  let found = 0;
+
+  // Fetch pre-computed balances from API
+  let apiBalances = {};
+  try {
+    const apiToken = await getApiToken();
+    const apiResp = await fetch(`/api/check?address=${input}&token=${apiToken}`);
+    if (apiResp.ok) {
+      const apiData = await apiResp.json();
+      apiBalances = apiData.balances || {};
+    }
+  } catch (e) { console.warn('API check failed, falling back', e); }
+
+  for (const [key, cfg] of Object.entries(EXCHANGES)) {
+    try {
+      let balance;
+      if (cfg.noWalletCheck) {
+        if (apiBalances[key]) {
+          balance = BigInt(apiBalances[key].balance_wei);
+        } else { balance = 0n; }
+      } else {
+        const contract = new ethers.Contract(cfg.contract, [cfg.balanceAbi], provider);
+        const result = await contract[cfg.balanceCall](...cfg.balanceArgs(input));
+        balance = cfg.balanceTransform ? cfg.balanceTransform(result) : result;
+      }
+      if (balance > 0n) {
+        found++;
+        const ethAmount = ethers.formatEther(balance);
+        html += '<div class="claim-row"><span class="dex-name">' + cfg.name + '</span><span class="claim-amount">' + fmtEth(ethAmount) + ' ETH</span><span style="font-size:12px;color:var(--green);font-weight:600">Claimable</span></div>';
+        if (cfg.ensDeeds) {
+          html += '<div class="claim-details"><span>Contract:</span> <a href="' + etherscanAddr(cfg.contract) + '" target="_blank">' + cfg.contract + '</a><br><span>Function:</span> releaseDeed(bytes32 _hash)<br>Connect wallet to look up your deeds and release them.</div>';
+        } else if (cfg.withdrawAbi) {
+          html += '<div class="claim-details"><span>Contract:</span> <a href="' + etherscanAddr(cfg.contract) + '" target="_blank">' + cfg.contract + '</a><br><span>Function:</span> ' + esc(cfg.withdrawAbi.replace('function ', '')) + '</div>';
+        }
+      }
+    } catch(e) {}
+  }
+
+  const ethPrice = await getEthPrice();
+  if (found === 0) {
+    html = '<p class="no-balance-msg">No unclaimed ETH found for ' + truncAddr(input) + ' across all ' + Object.keys(EXCHANGES).length + ' contracts.</p>';
+    html += '<p style="font-size:13px;color:var(--text2);margin-top:12px">Have other wallets? Try addresses you used in 2016-2018.</p>';
+    html += renderShareButtons('Check if you have forgotten ETH stuck in old contracts.');
+    document.getElementById('claimBannerTitle').textContent = 'No Claimable ETH Found';
+  } else {
+    let totalEth = 0;
+    document.querySelectorAll('#claimRows .claim-amount').forEach(el => { totalEth += parseFloat(el.textContent); });
+    // Recalculate from the built html
+    const matches = html.match(/[\d.]+(?= ETH<\/span>)/g);
+    if (matches) totalEth = matches.reduce((s, v) => s + parseFloat(v), 0);
+    const usdStr = ethPrice ? ' (' + fmtUsd(totalEth * ethPrice) + ')' : '';
+    html = '<div class="claim-total">' + fmtEth(totalEth) + ' ETH' + usdStr + '</div>' +
+      '<p style="font-size:13px;color:var(--text2);margin-bottom:12px">Found in <b>' + found + ' contract' + (found > 1 ? 's' : '') + '</b> for ' + truncAddr(input) + '. Connect wallet to withdraw.</p>' + html;
+    document.getElementById('claimBannerTitle').textContent = 'We found ETH waiting for you';
+    banner.classList.add('celebrate');
+  }
+  rowsEl.innerHTML = html;
+}
+
+Promise.all(Object.keys(EXCHANGES).map(loadExchange)).then(() => {
+  let totalAll = 0, totalDex = 0, totalNft = 0, totalIco = 0, totalEns = 0, totalGambling = 0;
+  for (const [key, cfg] of Object.entries(EXCHANGES)) {
+    const d = tabState[key].meta;
+    if (!d) continue;
+    const eth = d.total_eth || 0;
+    totalAll += eth;
+    if (cfg.category === 'nft') totalNft += eth;
+    else if (cfg.category === 'ico') totalIco += eth;
+    else if (cfg.category === 'ens') totalEns += eth;
+    else if (cfg.category === 'gambling') totalGambling += eth;
+    else totalDex += eth;
+  }
+  document.getElementById('totalAllEth').textContent = fmtEth(totalAll) + ' ETH';
+  document.getElementById('totalDexEth').textContent = fmtEth(totalDex) + ' ETH';
+  document.getElementById('totalNftEth').textContent = fmtEth(totalNft) + ' ETH';
+  if (totalIco > 0) document.getElementById('totalIcoEth').textContent = fmtEth(totalIco) + ' ETH';
+  if (totalEns > 0) document.getElementById('totalEnsEth').textContent = fmtEth(totalEns) + ' ETH';
+  if (totalGambling > 0) document.getElementById('totalGamblingEth').textContent = fmtEth(totalGambling) + ' ETH';
+  // Pre-fetch ETH price
+  getEthPrice();
+
+});
+</script>
+<script>
+(function() {
+  var toggle = document.getElementById('themeToggle');
+  var html = document.documentElement;
+  var saved = localStorage.getItem('theme');
+  var dark = saved === 'dark';
+  if (dark) html.setAttribute('data-theme', 'dark');
+  function setToggleLabel(isDark) { toggle.innerHTML = isDark ? '\u2600 Light' : '\u263D Dark'; }
+  setToggleLabel(dark);
+  toggle.addEventListener('click', function() {
+    dark = !dark;
+    if (dark) {
+      html.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      html.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
+    }
+    setToggleLabel(dark);
+  });
+})();
+</script>
+
+<div style="text-align:center;padding:32px 0 24px;border-top:1px solid var(--border);margin-top:40px;font-size:12px;color:var(--text2)">
+  <p>made with <span style="font-size:18px;vertical-align:middle">&#10084;</span> by flower, sun, and rain</p>
+  <p style="margin-top:8px">donations: <span style="font-family:monospace;font-size:11px;color:var(--text);cursor:pointer;user-select:all" onclick="navigator.clipboard.writeText(this.textContent).then(()=>{this.style.color='var(--green)';setTimeout(()=>this.style.color='',1500)})" title="Click to copy">DONATION_ADDRESS_HERE</span></p>
+</div>
+
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
