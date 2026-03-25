@@ -1,0 +1,974 @@
+{
+  "idex": {
+    "name": "IDEX v1",
+    "desc": "IDEX launched in October 2017 as the first hybrid DEX combining off-chain order matching with onchain settlement. Originally branded as Aurora, it grew to process over 4 million orders per day during the ICO boom. IDEX v1 was superseded by v2 in fall 2020.",
+    "category": "dex",
+    "color": "#6366f1",
+    "contract": "0x2a0c0DBEcC7E4D658f48E01e3fA353F44050c208",
+    "deployed": "September 2017",
+    "slug": "idex"
+  },
+  "etherdelta": {
+    "name": "EtherDelta v2",
+    "desc": "EtherDelta launched July 12, 2016 as the first widely-used DEX for ERC-20 tokens. It became the go-to venue for ICO token trading in 2017, peaking at ~$10M daily volume. On December 20, 2017, attackers hijacked its DNS to steal $1.4M from users. In November 2018, the SEC charged its creator with operating an unregistered exchange \u2014 the first such action against a DEX.",
+    "category": "dex",
+    "color": "#f97316",
+    "contract": "0x8d12A197cB00D4747a1fe03395095ce2A5CC6819",
+    "deployed": "February 2017",
+    "slug": "etherdelta"
+  },
+  "tokenstore": {
+    "name": "Token.Store",
+    "desc": "Launched July 30, 2017 as a fully onchain DEX with both onchain order matching and settlement. Processed over 500,000 transactions across 100,000+ accounts and later expanded to EOS. The anonymous team shut it down on June 22, 2020, publishing a farewell citing the rise of AMMs like Uniswap as having made order-book DEXs obsolete.",
+    "category": "dex",
+    "color": "#22c55e",
+    "contract": "0x1ce7ae555139c5ef5a57cc8d814a867ee6ee33d8",
+    "deployed": "August 2017",
+    "slug": "tokenstore"
+  },
+  "etherdelta_m1": {
+    "name": "EtherDelta v1",
+    "desc": "An earlier iteration of the EtherDelta exchange (December 2016). Multiple contract versions were deployed, each requiring users to manually withdraw and redeposit. Superseded by the well-known v2 contract at 0x8d12A197.",
+    "category": "dex",
+    "color": "#f59e0b",
+    "contract": "0x373c55c277b866a69dc047cad488154ab9759466",
+    "deployed": "December 2016",
+    "slug": "etherdelta-m1"
+  },
+  "singularx": {
+    "name": "SingularX",
+    "desc": "SingularX (by SingularDTV) launched November 2017 as a DEX for their blockchain entertainment economy. Based on EtherDelta's architecture, it saw over $3M in 24h volume during the CENNZ listing. SingularDTV rebranded to Breaker in 2019 but failed to deliver on its decentralized Netflix vision.",
+    "category": "dex",
+    "color": "#0ea5e9",
+    "contract": "0x9a2d163ab40f88c625fd475e807bbc3556566f80",
+    "deployed": "March 2018",
+    "slug": "singularx"
+  },
+  "enclaves": {
+    "name": "Unknown DEX",
+    "desc": "An unverified EtherDelta-style DEX contract from September 2017. The protocol behind this contract has not been identified \u2014 the source code is not published on Etherscan but follows the standard deposit/withdraw pattern.",
+    "category": "dex",
+    "color": "#14b8a6",
+    "contract": "0x4d55f76ce2dbbae7b48661bef9bd144ce0c9091b",
+    "deployed": "September 2017",
+    "slug": "enclaves"
+  },
+  "decentrex": {
+    "name": "Decentrex",
+    "desc": "An EtherDelta-fork DEX that was notably served directly from GitHub Pages (circa 2017). Minimal presence online \u2014 one of many EtherDelta forks from the 2017-2018 era that attracted small trading communities.",
+    "category": "dex",
+    "color": "#64748b",
+    "contract": "0xbf29685856fae1e228878dfb35b280c0adcc3b05",
+    "deployed": "July 2017",
+    "slug": "decentrex"
+  },
+  "joyso": {
+    "name": "Joyso",
+    "desc": "Launched in Taiwan, May 2018 after a March 2018 ICO, combining off-chain matching with onchain settlement. Partnered with CoolBitX to offer the first cold-storage DEX trading experience.",
+    "category": "dex",
+    "color": "#10b981",
+    "contract": "0x04f062809b244e37e7fdc21d9409469c989c2342",
+    "deployed": "September 2018",
+    "slug": "joyso"
+  },
+  "ethen": {
+    "name": "ETHEN",
+    "desc": "A decentralized exchange for ERC-20 tokens, founded in 2018 and headquartered in Saint Petersburg, Russia. Used a custom contract design with a direct balances mapping rather than the standard EtherDelta token-tracking pattern.",
+    "category": "dex",
+    "color": "#a855f7",
+    "contract": "0xf4c27b8b002389864ac214cb13bfeef4cc5c4e8d",
+    "deployed": "October 2018",
+    "slug": "ethen"
+  },
+  "bitcratic": {
+    "name": "Bitcratic",
+    "desc": "An EtherDelta-style DEX with off-chain orderbook and onchain settlement (2018). One of the more active EtherDelta forks during the post-ICO trading boom.",
+    "category": "dex",
+    "color": "#f43f5e",
+    "contract": "0x3c020e014069df790d4f4e63fd297ba4e1c8e51f",
+    "deployed": "June 2018",
+    "slug": "bitcratic"
+  },
+  "etherc": {
+    "name": "EtherC",
+    "desc": "Claimed to be the first DEX with gas-free trading via its ETHERCToken (EET) reimbursement system (2018). An unusual approach where gas costs were subsidized through the platform's own token.",
+    "category": "dex",
+    "color": "#06b6d4",
+    "contract": "0xd8d48e52f39ab2d169c8b562c53589e6c71ac4d3",
+    "deployed": "April 2018",
+    "slug": "etherc"
+  },
+  "enclavesdex": {
+    "name": "EnclavesDex",
+    "desc": "A DEX and early liquidity aggregator on Ethereum (June 2018) that routed trades through both its own order book and EtherDelta. An early precursor to the aggregator model later popularized by 1inch.",
+    "category": "dex",
+    "color": "#84cc16",
+    "contract": "0xbf45f4280cfbe7c2d2515a7d984b8c71c15e82b7",
+    "deployed": "June 2018",
+    "slug": "enclavesdex"
+  },
+  "ens_old": {
+    "name": "ENS Old Registrar",
+    "desc": "The ENS Old Registrar (0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef) holds over 11,324 ETH in deed deposits from the original 2017 ENS Vickrey auction system. When ENS migrated to the permanent registrar in May 2019, these deposits were not automatically returned \u2014 users must call releaseDeed(labelHash) to reclaim their locked ETH. Releasing a deed only recovers your deposit; it does not affect your ENS name, which remains registered on the new registrar.",
+    "category": "ens",
+    "color": "#3b82f6",
+    "contract": "0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef",
+    "deployed": "May 2017",
+    "slug": "ens"
+  },
+  "confideal": {
+    "name": "Confideal",
+    "desc": "Confideal was a smart contract platform letting non-technical users create and manage escrow deals on Ethereum without coding. Conducted an ICO in November 2017 for the CDL token, with a Bittrex listing deal. Included an arbitration module for dispute resolution. Failed to gain adoption and went inactive by 2019.",
+    "category": "ico",
+    "color": "#e11d48",
+    "contract": "0x22a97c80d7e0a9ae616737e3b8b531248f4ef91d",
+    "deployed": "November 2017",
+    "slug": "confideal"
+  },
+  "dada": {
+    "name": "DADA Collectible",
+    "desc": "A collaborative digital art platform. Deployed its \"Creeps &amp; Weirdos\" NFT collection on October 5, 2017 \u2014 after CryptoPunks but before CryptoKitties. Featured 108 unique pieces by 30 artists and was the first NFT project to implement artist royalties coded directly into the smart contract, using a modified CryptoPunks contract.",
+    "category": "nft",
+    "color": "#ec4899",
+    "contract": "0x068696a3cf3c4676b65f1c9975dd094260109d02",
+    "deployed": "October 2017",
+    "slug": "dada"
+  },
+  "mooncatrescue": {
+    "name": "MoonCatRescue",
+    "desc": "Deployed August 9, 2017, one of the earliest NFTs on Ethereum \u2014 before the term \"NFT\" or ERC-721 existed. Features 25,440 generative pixel art cats with a proof-of-work minting mechanism. Only 3,365 cats were rescued in 2017; on March 12, 2021 crypto-archaeologists rediscovered it and all remaining 19,000+ cats were rescued within hours. Note: ~100 ETH from the genesis cat is permanently stuck at address(0) due to a contract bug. Users with pending adoption requests must cancel them to reclaim escrowed ETH.",
+    "category": "nft",
+    "color": "#8b5cf6",
+    "contract": "0x60cd862c9c687a9de49aecdc3a99b74a4fc54ab6",
+    "deployed": "August 2017",
+    "slug": "mooncatrescue"
+  },
+  "fomo3d_long": {
+    "name": "Fomo3D Long",
+    "desc": "Players buy keys that reset a countdown timer; the last buyer wins the jackpot. Round 1 ended August 2018 paying 10,469 ETH (~$2.8M), won via a block-stuffing attack that prevented competing transactions. At peak, the contract held over $43M. Note: the isHuman modifier means smart contract wallets cannot withdraw \u2014 only EOAs.",
+    "category": "gambling",
+    "color": "#ef4444",
+    "contract": "0xA62142888ABa8370742bE823c1782D17A0389Da1",
+    "deployed": "July 2018",
+    "slug": "fomo3d-long"
+  },
+  "fomo3d_quick": {
+    "name": "Fomo3D Quick",
+    "desc": "A faster-round variant of Fomo3D (2018) with shorter countdown durations. Same key-purchase mechanic and dividend system as Fomo3D Long. Note: isHuman modifier \u2014 smart contract wallets cannot withdraw.",
+    "category": "gambling",
+    "color": "#f97316",
+    "contract": "0x4e8ecf79ade5e2c49b9e30d795517a81e0bf00b8",
+    "deployed": "July 2018",
+    "slug": "fomo3d-quick"
+  },
+  "fomo3d_short": {
+    "name": "Fomo3D Short",
+    "desc": "Another variant of Fomo3D (2018). Same core mechanics \u2014 key purchases, countdown timer, dividend distribution. Note: isHuman modifier \u2014 smart contract wallets cannot withdraw.",
+    "category": "gambling",
+    "color": "#fb923c",
+    "contract": "0x52083b1a21a5abc422b1b0bce5c43ca86ef74cd1",
+    "deployed": "July 2018",
+    "slug": "fomo3d-short"
+  },
+  "etherdelta_m0": {
+    "name": "EtherDelta v0",
+    "desc": "The earliest EtherDelta contract, deployed around August 2016 using Solidity v0.3.6 \u2014 one of the very first DEX contracts on Ethereum, deployed just months after the DAO hack. The team iterated through multiple versions (Oct 2016, Feb 2017) before the well-known v2; each upgrade required manual migration.",
+    "category": "dex",
+    "color": "#d97706",
+    "contract": "0x4aea7cf559f67cedcad07e12ae6bc00f07e8cf65",
+    "deployed": "August 2016",
+    "slug": "etherdelta-m0"
+  },
+  "neufund": {
+    "name": "Neufund EtherToken",
+    "desc": "Founded in 2016 in Berlin, Neufund conducted the world's first public offering of tokenized equity on Ethereum in November 2018. Deployed over EUR 20M in capital for 11,000 investors from 123 countries; flagship case Greyp Bikes completed the full cycle from tokenization to Porsche acquisition. Shut down January 17, 2022 after years of regulatory uncertainty with BaFin.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0xb59a226a2b8a2f2b0512baa35cc348b6b213b671",
+    "deployed": "November 2017",
+    "slug": "neufund"
+  },
+  "neufund_locked": {
+    "name": "Neufund",
+    "desc": "The ICBM (Initial Capital Building Mechanism) escrow contract where Neufund investors locked ETH in exchange for Neumark (NEU) tokens. All 540-day lock periods expired in 2019. To recover ETH: approveAndCall on NEU (unlocks + returns ETH-T in one tx), then withdraw ETH-T to raw ETH.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0xb1E4675f0dBE360bA90447A7e58c62C762Ad62D4",
+    "deployed": "November 2017",
+    "slug": "neufund-locked"
+  },
+  "bancor_eth": {
+    "name": "Bancor Old ETH Token",
+    "desc": "Bancor launched June 2017 with a then-record $153M ICO and deployed the first-ever automated market maker contracts on Ethereum, inventing bonding curves and liquidity pool tokens before \"DeFi\" was coined. On July 9, 2018, attackers stole 25,000 ETH (~$12.5M) via a compromised upgrade wallet. This is the legacy ETH wrapper from Bancor's early architecture.",
+    "category": "ico",
+    "color": "#1d4ed8",
+    "contract": "0xD76b5c2A23ef78368d8E34288B5b65D616B746aE",
+    "deployed": "June 2017",
+    "slug": "bancor-eth"
+  },
+  "switchdex": {
+    "name": "SwitchDex",
+    "desc": "An EtherDelta-fork DEX by Switch.ag (2019), notable for being active from 2019-2024 with 8,000+ trades \u2014 unusually long-lived for an order-book DEX in the AMM era.",
+    "category": "dex",
+    "color": "#7c3aed",
+    "contract": "0xc3c12a9e63e466a3ba99e07f3ef1f38b8b81ae1b",
+    "deployed": "March 2019",
+    "slug": "switchdex"
+  },
+  "coinchangex": {
+    "name": "Coinchangex",
+    "desc": "An EtherDelta-fork DEX (2018) that shut down around March 2020. Processed a moderate volume of trades during the ICO token trading era.",
+    "category": "dex",
+    "color": "#dc2626",
+    "contract": "0x2f23228b905ceb4734eb42d9b42805296667c93b",
+    "deployed": "May 2018",
+    "slug": "coinchangex"
+  },
+  "swisscryptoexchange": {
+    "name": "SwissCryptoExchange",
+    "desc": "A whitelisted EtherDelta-fork DEX (2018). Unusual in that deposits required whitelist approval, but the withdraw function is permissionless \u2014 anyone with a balance can withdraw.",
+    "category": "dex",
+    "color": "#b91c1c",
+    "contract": "0xbeeb655808e3bdb83b6998f09dfe1e0f2c66a9be",
+    "deployed": "August 2018",
+    "slug": "swisscryptoexchange"
+  },
+  "lscx": {
+    "name": "LSCX",
+    "desc": "The DEX component of Lescovex, a Spanish platform for issuing and trading Ethereum financial contracts (October 2018). Part of a broader ecosystem that included tokenized securities and smart contract templates.",
+    "category": "dex",
+    "color": "#059669",
+    "contract": "0x3da70c70b9574ff185b31d70878a8e3094603c4c",
+    "deployed": "November 2018",
+    "slug": "lscx"
+  },
+  "bitcratic_v1": {
+    "name": "Bitcratic v1",
+    "desc": "The original Bitcratic contract before the team migrated to a newer version. Users who didn't move their funds to the updated contract still have balances here.",
+    "category": "dex",
+    "color": "#ca8a04",
+    "contract": "0x232ba9f3b3643ab28d28ed7ee18600708d60e5fe",
+    "deployed": "January 2019",
+    "slug": "bitcratic-v1"
+  },
+  "marketplace": {
+    "name": "MarketPlace",
+    "desc": "An EtherDelta-fork DEX from the 2017-2018 era. One of dozens of exchanges that cloned EtherDelta's open-source smart contract to launch competing trading platforms.",
+    "category": "dex",
+    "color": "#16a34a",
+    "contract": "0x2f13fa06c0efd2a5c4cf2175a0467084672e648b",
+    "deployed": "June 2018",
+    "slug": "marketplace"
+  },
+  "bitox": {
+    "name": "Bitox",
+    "desc": "An EtherDelta-fork DEX that also offered airdrop aggregation services (2018). Combined token trading with a directory of active ERC-20 airdrops.",
+    "category": "dex",
+    "color": "#0891b2",
+    "contract": "0xb5adb233f28c86cef693451b67e1f2d41da97d21",
+    "deployed": "April 2018",
+    "slug": "bitox"
+  },
+  "ed_fork_6_9eth": {
+    "name": "ED Fork (0xc513)",
+    "desc": "An unverified EtherDelta v2 fork \u2014 source code not published on Etherscan but bytecode matches the standard pattern.",
+    "category": "dex",
+    "color": "#a855f7",
+    "contract": "0xc5138d4bd0ec5c51b6b6bdfcb8528ad9c333af97",
+    "deployed": "September 2018",
+    "slug": "ed-fork-6-9eth"
+  },
+  "ethernext": {
+    "name": "Ethernext",
+    "desc": "An EtherDelta-fork DEX from the 2017-2018 era. One of dozens of exchanges that cloned EtherDelta's open-source smart contract to launch competing trading platforms.",
+    "category": "dex",
+    "color": "#2563eb",
+    "contract": "0x499197314f9903a1ba9bed7ee54cd9eee5900e49",
+    "deployed": "May 2018",
+    "slug": "ethernext"
+  },
+  "seeddex_v2": {
+    "name": "SeedDex v2",
+    "desc": "An EtherDelta-fork DEX from the 2017-2018 era. One of dozens of exchanges that cloned EtherDelta's open-source smart contract to launch competing trading platforms.",
+    "category": "dex",
+    "color": "#65a30d",
+    "contract": "0xd4cc0cda97ec567235b7019c655ec75cd361f712",
+    "deployed": "September 2018",
+    "slug": "seeddex-v2"
+  },
+  "seeddex_v3": {
+    "name": "SeedDex v3",
+    "desc": "An EtherDelta-fork DEX from the 2017-2018 era. One of dozens of exchanges that cloned EtherDelta's open-source smart contract to launch competing trading platforms.",
+    "category": "dex",
+    "color": "#4d7c0f",
+    "contract": "0xcf25ebd54120cf2e4137fab0a91a7f7403a5debf",
+    "deployed": "May 2018",
+    "slug": "seeddex-v3"
+  },
+  "polarisdex": {
+    "name": "PolarisDEX",
+    "desc": "An EtherDelta-fork DEX from the 2017-2018 era. One of dozens of exchanges that cloned EtherDelta's open-source smart contract to launch competing trading platforms.",
+    "category": "dex",
+    "color": "#0284c7",
+    "contract": "0x25066b77ae6174d372a9fe2b1d7886a2be150e9b",
+    "deployed": "January 2019",
+    "slug": "polarisdex"
+  },
+  "ethmall": {
+    "name": "Ethmall",
+    "desc": "An EtherDelta-fork DEX from the 2017-2018 era. One of dozens of exchanges that cloned EtherDelta's open-source smart contract to launch competing trading platforms.",
+    "category": "dex",
+    "color": "#9333ea",
+    "contract": "0x2b44d68555899dbc1ab0892e7330476183dbc932",
+    "deployed": "July 2018",
+    "slug": "ethmall"
+  },
+  "extoke": {
+    "name": "ExToke",
+    "desc": "A fee-free DEX for ERC-20 tokens (2018) that planned to add an ICO launchpad feature. Conducted its own token sale but failed to gain traction.",
+    "category": "dex",
+    "color": "#0e7490",
+    "contract": "0x97c9e0eccc27efef7330e89a8c9414623ba2ee0f",
+    "deployed": "June 2018",
+    "slug": "extoke"
+  },
+  "algodex": {
+    "name": "AlgoDEX",
+    "desc": "An EtherDelta-fork DEX from the 2017-2018 era. One of dozens of exchanges that cloned EtherDelta's open-source smart contract to launch competing trading platforms.",
+    "category": "dex",
+    "color": "#7e22ce",
+    "contract": "0x4bc78f6619991b029b867b6d88d39c196332aba3",
+    "deployed": "December 2019",
+    "slug": "algodex"
+  },
+  "ndex": {
+    "name": "nDEx",
+    "desc": "An EtherDelta-fork DEX from the 2017-2018 era. One of dozens of exchanges that cloned EtherDelta's open-source smart contract to launch competing trading platforms.",
+    "category": "dex",
+    "color": "#c026d3",
+    "contract": "0x51a2b1a38ec83b56009d5e28e6222dbb56c23c22",
+    "deployed": "September 2018",
+    "slug": "ndex"
+  },
+  "edex": {
+    "name": "EDex",
+    "desc": "An EtherDelta-fork DEX from the 2017-2018 era. One of dozens of exchanges that cloned EtherDelta's open-source smart contract to launch competing trading platforms.",
+    "category": "dex",
+    "color": "#d97706",
+    "contract": "0x4fbcfa90ac5a1f7f70b7ecc6dc1589bbe6904b02",
+    "deployed": "September 2019",
+    "slug": "edex"
+  },
+  "tradexone": {
+    "name": "TradexOne",
+    "desc": "An EtherDelta-fork DEX from the 2017-2018 era. One of dozens of exchanges that cloned EtherDelta's open-source smart contract to launch competing trading platforms.",
+    "category": "dex",
+    "color": "#0d9488",
+    "contract": "0xf61a285edf078536a410a5fbc28013f9660e54a8",
+    "deployed": "October 2018",
+    "slug": "tradexone"
+  },
+  "afrodex": {
+    "name": "Afrodex",
+    "desc": "An EtherDelta-fork DEX from the 2017-2018 era. One of dozens of exchanges that cloned EtherDelta's open-source smart contract to launch competing trading platforms.",
+    "category": "dex",
+    "color": "#ea580c",
+    "contract": "0xe8fff15bb5e14095bfdfa8bb85d83cc900c23c56",
+    "deployed": "December 2019",
+    "slug": "afrodex"
+  },
+  "readyplayerone": {
+    "name": "ReadyPlayerONE",
+    "desc": "A Fomo3D-fork gambling game on Ethereum, cloning Fomo3D's key-purchase and countdown-timer mechanic. Note: isHuman modifier \u2014 smart contract wallets cannot withdraw.",
+    "category": "gambling",
+    "color": "#ef4444",
+    "contract": "0x6db943251e4126f913e9733821031791e75df713",
+    "deployed": "July 2018",
+    "slug": "readyplayerone"
+  },
+  "fomo3d_lightning": {
+    "name": "FoMo3D Lightning",
+    "desc": "A Fomo3D-fork gambling game on Ethereum, cloning Fomo3D's key-purchase and countdown-timer mechanic. Note: isHuman modifier \u2014 smart contract wallets cannot withdraw.",
+    "category": "gambling",
+    "color": "#f97316",
+    "contract": "0x24da016c06941ec2c92be28e0a2b2e679f0d1dc7",
+    "deployed": "July 2018",
+    "slug": "fomo3d-lightning"
+  },
+  "etherdelta_v3": {
+    "name": "Etheropt Old",
+    "desc": "The first decentralized options exchange on Ethereum (early 2016), from the creator of EtherDelta. Offered vanilla call and put options on ETH/USD using Poloniex and Coindesk data verified by Reality Keys. Entirely autonomous with no owner and no fees. Shut down in late 2016.",
+    "category": "dex",
+    "color": "#78716c",
+    "contract": "0xc6b330df38d6ef288c953f1f2835723531073ce2",
+    "deployed": "July 2016",
+    "slug": "etherdelta-v3"
+  },
+  "gandhiji": {
+    "name": "GandhiJi",
+    "desc": "was a P3D clone (2018) themed around Indian independence. Direct fork of PoWH3D with identical 10% buy/sell fee mechanics. 8,800+ holders. Fully autonomous, no owner.",
+    "category": "gambling",
+    "color": "#f59e0b",
+    "contract": "0x167cB3F2446F829eb327344b66E271D1a7eFeC9A",
+    "deployed": "April 2018",
+    "slug": "gandhiji"
+  },
+  "zethr": {
+    "name": "Zethr",
+    "desc": "was a P3D-style casino token (2018) where holders \"be the house.\" Users pick dividend rates (2-33%). Includes slots and other casino games. This is the token contract holding user dividends.",
+    "category": "gambling",
+    "color": "#7c3aed",
+    "contract": "0xd48b633045af65ff636f3c6edd744748351e020d",
+    "deployed": "June 2018",
+    "slug": "zethr"
+  },
+  "zethr_main": {
+    "name": "Zethr Casino",
+    "desc": "was the main Zethr casino bankroll contract (2018). Holds house funds and player dividends from casino games.",
+    "category": "gambling",
+    "color": "#6d28d9",
+    "contract": "0xb9ab8eed48852de901c13543042204c6c569b811",
+    "deployed": "June 2018",
+    "slug": "zethr-main"
+  },
+  "ethpyramid": {
+    "name": "EthPyramid",
+    "desc": "was the original Ethereum dividend/pyramid token (early 2018), predating PoWH3D. Later rebranded to EthPhoenix.",
+    "category": "gambling",
+    "color": "#b45309",
+    "contract": "0x2fa0ac498d01632f959d3c18e38f4390b005e200",
+    "deployed": "February 2018",
+    "slug": "ethpyramid"
+  },
+  "fomogame": {
+    "name": "FoMoGame",
+    "desc": "was a Fomo3D clone (2018). Same countdown/key-buying mechanics with player vaults.",
+    "category": "gambling",
+    "color": "#ea580c",
+    "contract": "0x86D179c28cCeb120Cd3f64930Cf1820a88B77D60",
+    "deployed": "July 2018",
+    "slug": "fomogame"
+  },
+  "powh3d": {
+    "name": "PoWH3D",
+    "desc": "A self-aware Ponzi-style token game (February 2018) rewritten after the original PoWH was drained of 200+ ETH via an integer overflow bug. Every buy and sell of P3D tokens incurs a 10% fee distributed to all existing holders. At peak held 16,000 ETH (~$6.4M). Spawned thousands of forks including Fomo3D.",
+    "category": "gambling",
+    "color": "#dc2626",
+    "contract": "0xB3775fB83F7D12A36E0475aBdD1FCA35c091efBe",
+    "deployed": "February 2018",
+    "slug": "powh3d"
+  },
+  "powm": {
+    "name": "POWM",
+    "desc": "was a PoWH3D clone (2018).",
+    "category": "gambling",
+    "color": "#b91c1c",
+    "contract": "0xa146240bf2c04005a743032dc0d241ec0bb2ba2b",
+    "deployed": "April 2018",
+    "slug": "powm"
+  },
+  "pooh": {
+    "name": "POOH",
+    "desc": "was a PoWH3D clone (2018).",
+    "category": "gambling",
+    "color": "#92400e",
+    "contract": "0x4c29d75cc423e8adaa3839892feb66977e295829",
+    "deployed": "April 2018",
+    "slug": "pooh"
+  },
+  "powtf": {
+    "name": "PoWTF",
+    "desc": "was a PoWH3D clone (2018).",
+    "category": "gambling",
+    "color": "#9f1239",
+    "contract": "0x702392282255f8c0993dbbbb148d80d2ef6795b1",
+    "deployed": "April 2018",
+    "slug": "powtf"
+  },
+  "powh_clone1": {
+    "name": "Hourglass Clone A",
+    "desc": "was a PoWH3D clone (2018).",
+    "category": "gambling",
+    "color": "#881337",
+    "contract": "0xe1c9a03cf690256ff7738cbd508c88cf5238a535",
+    "deployed": "April 2018",
+    "slug": "powh-clone1"
+  },
+  "powh_clone2": {
+    "name": "Hourglass Clone B",
+    "desc": "was a PoWH3D clone (2018).",
+    "category": "gambling",
+    "color": "#7f1d1d",
+    "contract": "0x34ba9c7402e1df11709c7983008b5a49d59e963f",
+    "deployed": "April 2018",
+    "slug": "powh-clone2"
+  },
+  "lockedin": {
+    "name": "LOCKEDiN",
+    "desc": "was a PoWH3D clone (2018).",
+    "category": "gambling",
+    "color": "#6b21a8",
+    "contract": "0xdb4837c9d84315abcde80a865f15178f86db3966",
+    "deployed": "April 2018",
+    "slug": "lockedin"
+  },
+  "stronghold": {
+    "name": "StrongHold",
+    "desc": "was a PoWH3D clone (2018).",
+    "category": "gambling",
+    "color": "#5b21b6",
+    "contract": "0x7e7e645e9121dddaf87d0434feb9f113d1dbbb41",
+    "deployed": "April 2018",
+    "slug": "stronghold"
+  },
+  "powh_clone3": {
+    "name": "Hourglass Clone C",
+    "desc": "was a PoWH3D clone (2018).",
+    "category": "gambling",
+    "color": "#4c1d95",
+    "contract": "0x7b6c511a94d35b9cf9979b727335c9798edb5c64",
+    "deployed": "April 2018",
+    "slug": "powh-clone3"
+  },
+  "powh_clone4": {
+    "name": "Hourglass Clone D",
+    "desc": "was a PoWH3D clone (2018).",
+    "category": "gambling",
+    "color": "#831843",
+    "contract": "0xf5aa54d121dfe0d5eeb37c83aed42238f4f2c5c6",
+    "deployed": "April 2018",
+    "slug": "powh-clone4"
+  },
+  "unkoin": {
+    "name": "UnKoin",
+    "desc": "was a PoWH3D clone (2018).",
+    "category": "gambling",
+    "color": "#701a75",
+    "contract": "0x5bedf488d29407bc08e77cd9ee292c2041a61c8c",
+    "deployed": "April 2018",
+    "slug": "unkoin"
+  },
+  "acedapp": {
+    "name": "AceDapp",
+    "desc": "was a PoWH3D clone (October 2019) with the standard Hourglass token mechanics where every buy and sell incurs a 10% fee distributed to all existing holders.",
+    "category": "gambling",
+    "color": "#9f1239",
+    "contract": "0xe65f525ec48c7e95654b9824ecc358454ea9185e",
+    "deployed": "October 2019",
+    "slug": "acedapp"
+  },
+  "cryptominertoken": {
+    "name": "CryptoMinerToken",
+    "desc": "was a dividend-yielding PoWH3D clone (September 2018) hosted at minertoken.cloud, with customized fee tiers: 10% deposit, 4% withdrawal, 1% transfer, and 33% referral rewards.",
+    "category": "gambling",
+    "color": "#a16207",
+    "contract": "0x0a97094c19295e320d5121d72139a150021a2702",
+    "deployed": "September 2018",
+    "slug": "cryptominertoken"
+  },
+  "bluechip": {
+    "name": "BlueChip",
+    "desc": "was a PoWH3D clone (September 2019) implementing the standard 10% fee-sharing dividend mechanism where trading activity generates ETH rewards for token holders.",
+    "category": "gambling",
+    "color": "#4338ca",
+    "contract": "0xabefec93451a2cd5d864ff7b0b1604dfc60e9688",
+    "deployed": "September 2019",
+    "slug": "bluechip"
+  },
+  "rev1": {
+    "name": "REV1",
+    "desc": "was a PoWH3D clone (May 2018) with the standard Hourglass token mechanics where every buy and sell incurs a fee distributed to all existing holders.",
+    "category": "gambling",
+    "color": "#0e7490",
+    "contract": "0x05215fce25902366480696f38c3093e31dbce69a",
+    "deployed": "May 2018",
+    "slug": "rev1"
+  },
+  "potj": {
+    "name": "POTJ",
+    "desc": "Proof of Trevon James, launched April 2018, was a PoWH3D fork with higher fees (20% buys, 25% sells) themed around a crypto YouTube personality involved in the BitConnect case.",
+    "category": "gambling",
+    "color": "#b45309",
+    "contract": "0xc28e860c9132d55a184f9af53fc85e90aa3a0153",
+    "deployed": "April 2018",
+    "slug": "potj"
+  },
+  "lynia": {
+    "name": "LYNIA",
+    "desc": "was a decentralized gaming and gambling platform (August 2018) with PoWH3D-style token-holder rewards. Has an isHuman modifier \u2014 smart contract wallets cannot withdraw.",
+    "category": "gambling",
+    "color": "#86198f",
+    "contract": "0xecfae6f958f7ab15bdf171eeefa568e41eabf641",
+    "deployed": "August 2018",
+    "slug": "lynia"
+  },
+  "blackgold": {
+    "name": "BlackGoldEthereum",
+    "desc": "was a dividend-based PoWH3D clone (July 2020) designed to provide passive income to token holders through a buy/sell/reinvestment mechanism. The project website blackgoldethereum.club is no longer accessible.",
+    "category": "gambling",
+    "color": "#374151",
+    "contract": "0xf72b0b36723f60402cccad7f4358acf2ad474c17",
+    "deployed": "July 2020",
+    "slug": "blackgold"
+  },
+  "proofofcraiggrant": {
+    "name": "ProofOfCraigGrant",
+    "desc": "was a PoWH3D-style token (April 2018) themed around a high-profile BitConnect promoter, part of the 2018 wave of meme-themed dividend tokens on Ethereum.",
+    "category": "gambling",
+    "color": "#78350f",
+    "contract": "0xea61319f55b6543962fe1d7bd990ef74849fc54f",
+    "deployed": "April 2018",
+    "slug": "proofofcraiggrant"
+  },
+  "sportcrypt": {
+    "name": "SportCrypt",
+    "desc": "was a peer-to-peer decentralized sports betting exchange (January 2018) with zero fees and no KYC requirements. Later rebranded to Degens and received a MakerDAO community grant to accept DAI alongside ETH.",
+    "category": "gambling",
+    "color": "#166534",
+    "contract": "0x37304b0ab297f13f5520c523102797121182fb5b",
+    "deployed": "January 2018",
+    "slug": "sportcrypt"
+  },
+  "dailydivs": {
+    "name": "DailyDivs",
+    "desc": "was a PoWH3D clone (October 2018) offering daily dividend distributions to token holders through a 10% buy/sell fee. Has an isHuman modifier \u2014 smart contract wallets cannot withdraw.",
+    "category": "gambling",
+    "color": "#92400e",
+    "contract": "0xd2bfceeab8ffa24cdf94faa2683df63df4bcbdc8",
+    "deployed": "October 2018",
+    "slug": "dailydivs"
+  },
+  "proofofcommunity": {
+    "name": "ProofOfCommunity",
+    "desc": "was a PoWH3D clone (May 2018) with the standard Hourglass token mechanics where every buy and sell incurs a fee distributed to all existing holders.",
+    "category": "gambling",
+    "color": "#1e3a5f",
+    "contract": "0x1739e311ddbf1efdfbc39b74526fd8b600755ada",
+    "deployed": "May 2018",
+    "slug": "proofofcommunity"
+  },
+  "bitconnect_powh": {
+    "name": "BitConnect Token",
+    "desc": "was a PoWH3D clone (June 2019) with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0xfcd3a0f5f416e407647a7518b90354946d316059",
+    "deployed": "June 2019",
+    "slug": "bitconnect-powh"
+  },
+  "eightherbank": {
+    "name": "Eightherbank",
+    "desc": "was a PoWH3D clone (November 2019) with the standard Hourglass dividend token mechanics. Has an isHuman modifier \u2014 smart contract wallets cannot withdraw.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0xc6e5e9c6f4f3d1667df6086e91637cc7c64a13eb",
+    "deployed": "November 2019",
+    "slug": "eightherbank"
+  },
+  "nexgen": {
+    "name": "Nexgen",
+    "desc": "was a PoWH3D clone (June 2019) with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0xffd31e68bf7af89df862435a138615bd60abf574",
+    "deployed": "June 2019",
+    "slug": "nexgen"
+  },
+  "diamonddividend": {
+    "name": "DiamondDividend",
+    "desc": "was a PoWH3D clone (November 2019) with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x84cc06eddb26575a7f0afd7ec2e3e98d31321397",
+    "deployed": "November 2019",
+    "slug": "diamonddividend"
+  },
+  "e25": {
+    "name": "E25 Booster",
+    "desc": "was a PoWH3D clone (February 2019) with the standard Hourglass dividend token mechanics. Has an isHuman modifier \u2014 smart contract wallets cannot withdraw.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0xc3ad35d351b33783f27777e2ee1a4b6f96e4ee34",
+    "deployed": "February 2019",
+    "slug": "e25"
+  },
+  "bitconnect2": {
+    "name": "BitConnect v2",
+    "desc": "was a PoWH3D clone (June 2019) with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x568a693e1094b1e51e8053b2fc642da7161603f5",
+    "deployed": "June 2019",
+    "slug": "bitconnect2"
+  },
+  "ethplatinum": {
+    "name": "ETHPlatinum",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x510f9a9642ac14ded91629a1aad552be4b24b5f0",
+    "deployed": "2018",
+    "slug": "ethplatinum"
+  },
+  "divsnetwork": {
+    "name": "DivsNetwork",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x26e6c899b5a5dc1d4874d828fda515a7eb7baf00",
+    "deployed": "2018",
+    "slug": "divsnetwork"
+  },
+  "ethercenter": {
+    "name": "EtherCenter",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x0e7c28fb8ed4f5f63aabd022deaeeba40ecc335c",
+    "deployed": "2018",
+    "slug": "ethercenter"
+  },
+  "redchip": {
+    "name": "RedChip",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0xcd2de0bd5347f617f832442ebcc1c23a4d618847",
+    "deployed": "2018",
+    "slug": "redchip"
+  },
+  "cxxmain": {
+    "name": "CxxMain",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0xa4dce3845cb88a6fca0291d4eca9e5a96e75e2b4",
+    "deployed": "2018",
+    "slug": "cxxmain"
+  },
+  "familyonly": {
+    "name": "FamilyOnlyToken",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0xbedde30d3532165843f07b1b0e3e90fddbb75918",
+    "deployed": "2018",
+    "slug": "familyonly"
+  },
+  "spw": {
+    "name": "SPW",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x586f3d9e3524eb02448691b158fdcf5ffc2c57b0",
+    "deployed": "2018",
+    "slug": "spw"
+  },
+  "ethdiamond": {
+    "name": "ETHDIAMOND",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0xca1cc76be1f5e5ee492859d8463653cb231991bc",
+    "deployed": "2018",
+    "slug": "ethdiamond"
+  },
+  "ethershares": {
+    "name": "Ethershares",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x2c984ec9bb20b33deb84fbeedf20effda481fdc4",
+    "deployed": "2018",
+    "slug": "ethershares"
+  },
+  "twelvehour": {
+    "name": "TwelveHourToken",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x8f6015289a64c48ccf258c21a999809fc553c3c4",
+    "deployed": "2018",
+    "slug": "twelvehour"
+  },
+  "neutrino81": {
+    "name": "Neutrino81",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x897d6c6772b85bf25b46c6f6da454133478ea6ab",
+    "deployed": "2018",
+    "slug": "neutrino81"
+  },
+  "hourglassx": {
+    "name": "HourglassX",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x058a144951e062fc14f310057d2fd9ef0cf5095b",
+    "deployed": "2018",
+    "slug": "hourglassx"
+  },
+  "fairexchange": {
+    "name": "FairExchange",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0xde2b11b71ad892ac3e47ce99d107788d65fe764e",
+    "deployed": "2018",
+    "slug": "fairexchange"
+  },
+  "pomda": {
+    "name": "POMDA",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x0be5e8f107279cc2d9c3a537ed4ea669b45e443d",
+    "deployed": "2018",
+    "slug": "pomda"
+  },
+  "decentether": {
+    "name": "DecentEther",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x7d2d58d7add0b2d6e06fa85590b60da7741c18c9",
+    "deployed": "2018",
+    "slug": "decentether"
+  },
+  "bitconnect3": {
+    "name": "BitConnect v3",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x38e219ee67a5e1536c5a89fec2da0d69c254cac4",
+    "deployed": "2018",
+    "slug": "bitconnect3"
+  },
+  "furious": {
+    "name": "Furious",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0xb0c4382d4355cdfe94a132fadf92a509b1e25939",
+    "deployed": "2018",
+    "slug": "furious"
+  },
+  "etherdiamond": {
+    "name": "EtherDiamond",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x4af078e47490c0e761a3de260952d9eb4a6ad693",
+    "deployed": "2018",
+    "slug": "etherdiamond"
+  },
+  "powh_clone5": {
+    "name": "Hourglass Clone E",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x12528042299e0fca4d44ae4f42359319b8901fa2",
+    "deployed": "2018",
+    "slug": "powh-clone5"
+  },
+  "cryptosurge": {
+    "name": "CryptoSurge",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x11e165dd03c63771004f929d58b75e4aaf2d1a23",
+    "deployed": "2018",
+    "slug": "cryptosurge"
+  },
+  "hourglass_clone6": {
+    "name": "Hourglass Clone F",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x77b541f90ecfa09f854209eefeca24c295050e2e",
+    "deployed": "2018",
+    "slug": "hourglass-clone6"
+  },
+  "upower": {
+    "name": "UPower",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x5044ac8da9601edf970dcc91a10c5f41c5c548c0",
+    "deployed": "2018",
+    "slug": "upower"
+  },
+  "hourglass_clone7": {
+    "name": "Hourglass Clone G",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0xaa4ec8484e89bed69570825688789589d38eea5e",
+    "deployed": "2018",
+    "slug": "hourglass-clone7"
+  },
+  "redchip2": {
+    "name": "RedChip v2",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0xae384c6e68f5d697d65ed43fd53ef5ea3288f536",
+    "deployed": "2018",
+    "slug": "redchip2"
+  },
+  "omnidex": {
+    "name": "OmniDex",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0x433e631ac0c03e49ca034dbf5543964c80c6b391",
+    "deployed": "2018",
+    "slug": "omnidex"
+  },
+  "spw2": {
+    "name": "SPW v2",
+    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "category": "gambling",
+    "color": "#581c87",
+    "contract": "0xd446a13f9b9f8bcbc3ded73764d08735561b1638",
+    "deployed": "2018",
+    "slug": "spw2"
+  },
+  "bounties": {
+    "name": "Bounties Network",
+    "desc": "was a decentralized bounty platform (December 2017) built by ConsenSys for open-source work and freelance tasks on Ethereum. Bounty issuers who never killed or fulfilled their bounties still have ETH locked in the StandardBounties v1 contract.",
+    "category": "other",
+    "color": "#0369a1",
+    "contract": "0x2af47a65da8cd66729b4209c22017d6a5c2d2400",
+    "deployed": "December 2017",
+    "slug": "bounties"
+  },
+  "ageofdinos": {
+    "name": "Age of Dinos",
+    "desc": "was an NFT Dutch auction (2024). Bidders who overpaid above the clearing price have unclaimed ETH refunds available via claimAndRefund().",
+    "category": "nft",
+    "color": "#65a30d",
+    "contract": "0x19C10FFF96B80208F454034C046CCC4445CD20BA",
+    "deployed": "January 2024",
+    "slug": "ageofdinos"
+  },
+  "personabid": {
+    "name": "PersonaBid",
+    "desc": "was an NFT raffle auction (2024). Bidders who were not selected or overbid have unclaimed ETH refunds available via claimAndRefund().",
+    "category": "nft",
+    "color": "#059669",
+    "contract": "0xDE5D4949F445650325C7C8739610C3A979C7A6DB",
+    "deployed": "March 2024",
+    "slug": "personabid"
+  },
+  "maker_weth": {
+    "name": "Maker W-ETH",
+    "desc": "The original Wrapped Ether contract predating the canonical WETH9. Solved the fundamental problem that native ETH couldn't be used in ERC-20 smart contracts, enabling early DEXs like OasisDEX and Radar Relay. Deprecated when the community converged on WETH9 in late 2017.",
+    "category": "ico",
+    "color": "#1a9641",
+    "contract": "0x2956356cd2a2bf3202f771f50d3d14a367b48070",
+    "deployed": "April 2017",
+    "slug": "maker-weth"
+  }
+}

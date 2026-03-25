@@ -1,6 +1,5 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { verifyToken } from './token.js';
 
 const EXCHANGE_FILES = {
   idex: 'idex_eth_balances.json',
@@ -24,64 +23,114 @@ const EXCHANGE_FILES = {
   fomo3d_short: 'fomo3d_short_eth_balances.json',
   etherdelta_m0: 'etherdelta_m0_eth_balances.json',
   neufund: 'neufund_eth_balances.json',
+  neufund_locked: 'neufund_locked_eth_balances.json',
   bancor_eth: 'bancor_eth_eth_balances.json',
+  switchdex: 'switchdex_eth_balances.json',
+  coinchangex: 'coinchangex_eth_balances.json',
+  etherdelta_v3: 'etherdelta_v3_eth_balances.json',
+  swisscryptoexchange: 'swisscryptoexchange_eth_balances.json',
+  lscx: 'lscx_eth_balances.json',
+  switcheo: 'switcheo_eth_balances.json',
+  bitcratic_v1: 'bitcratic_v1_eth_balances.json',
+  marketplace: 'marketplace_eth_balances.json',
+  bitox: 'bitox_eth_balances.json',
+  ed_fork_6_9eth: 'ed_fork_6_9eth_eth_balances.json',
+  ethernext: 'ethernext_eth_balances.json',
+  seeddex_v2: 'seeddex_v2_eth_balances.json',
+  seeddex_v3: 'seeddex_v3_eth_balances.json',
+  polarisdex: 'polarisdex_eth_balances.json',
+  ethmall: 'ethmall_eth_balances.json',
+  extoke: 'extoke_eth_balances.json',
+  algodex: 'algodex_eth_balances.json',
+  ndex: 'ndex_eth_balances.json',
+  edex: 'edex_eth_balances.json',
+  tradexone: 'tradexone_eth_balances.json',
+  afrodex: 'afrodex_eth_balances.json',
+  readyplayerone: 'readyplayerone_eth_balances.json',
+  fomo3d_lightning: 'fomo3d_lightning_eth_balances.json',
+  gandhiji: 'gandhiji_eth_balances.json',
+  zethr: 'zethr_eth_balances.json',
+  zethr_main: 'zethr_main_eth_balances.json',
+  ethpyramid: 'ethpyramid_eth_balances.json',
+  fomogame: 'fomogame_eth_balances.json',
+  ageofdinos: 'ageofdinos_eth_balances.json',
+  personabid: 'personabid_eth_balances.json',
+  powh3d: 'powh3d_eth_balances.json',
+  maker_weth: 'maker_weth_eth_balances.json',
+  powm: 'powm_eth_balances.json',
+  pooh: 'pooh_eth_balances.json',
+  powtf: 'powtf_eth_balances.json',
+  powh_clone1: 'powh_clone1_eth_balances.json',
+  powh_clone2: 'powh_clone2_eth_balances.json',
+  lockedin: 'lockedin_eth_balances.json',
+  stronghold: 'stronghold_eth_balances.json',
+  powh_clone3: 'powh_clone3_eth_balances.json',
+  powh_clone4: 'powh_clone4_eth_balances.json',
+  unkoin: 'unkoin_eth_balances.json',
+  acedapp: 'acedapp_eth_balances.json',
+  cryptominertoken: 'cryptominertoken_eth_balances.json',
+  bluechip: 'bluechip_eth_balances.json',
+  rev1: 'rev1_eth_balances.json',
+  potj: 'potj_eth_balances.json',
+  lynia: 'lynia_eth_balances.json',
+  blackgold: 'blackgold_eth_balances.json',
+  proofofcraiggrant: 'proofofcraiggrant_eth_balances.json',
+  sportcrypt: 'sportcrypt_eth_balances.json',
+
+  ethplatinum: 'ethplatinum_eth_balances.json',
+  divsnetwork: 'divsnetwork_eth_balances.json',
+  ethercenter: 'ethercenter_eth_balances.json',
+  redchip: 'redchip_eth_balances.json',
+  cxxmain: 'cxxmain_eth_balances.json',
+  familyonly: 'familyonly_eth_balances.json',
+  spw: 'spw_eth_balances.json',
+  ethdiamond: 'ethdiamond_eth_balances.json',
+  ethershares: 'ethershares_eth_balances.json',
+  twelvehour: 'twelvehour_eth_balances.json',
+  neutrino81: 'neutrino81_eth_balances.json',
+  hourglassx: 'hourglassx_eth_balances.json',
+  fairexchange: 'fairexchange_eth_balances.json',
+  pomda: 'pomda_eth_balances.json',
+  decentether: 'decentether_eth_balances.json',
+  bitconnect3: 'bitconnect3_eth_balances.json',
+  furious: 'furious_eth_balances.json',
+  etherdiamond: 'etherdiamond_eth_balances.json',
+  powh_clone5: 'powh_clone5_eth_balances.json',
+  cryptosurge: 'cryptosurge_eth_balances.json',
+  hourglass_clone6: 'hourglass_clone6_eth_balances.json',
+  upower: 'upower_eth_balances.json',
+  hourglass_clone7: 'hourglass_clone7_eth_balances.json',
+  redchip2: 'redchip2_eth_balances.json',
+  omnidex: 'omnidex_eth_balances.json',
+  spw2: 'spw2_eth_balances.json',
+  bounties: 'bounties_eth_balances.json',
+  dailydivs: 'dailydivs_eth_balances.json',
+  proofofcommunity: 'proofofcommunity_eth_balances.json',
+  bitconnect_powh: 'bitconnect_powh_eth_balances.json',
+  eightherbank: 'eightherbank_eth_balances.json',
+  nexgen: 'nexgen_eth_balances.json',
+  diamonddividend: 'diamonddividend_eth_balances.json',
+  e25: 'e25_eth_balances.json',
+  bitconnect2: 'bitconnect2_eth_balances.json',
 };
 
-const rateMap = new Map();
-const RATE_LIMIT = 60;
-const RATE_WINDOW = 60000;
 
-function checkRateLimit(ip) {
-  const now = Date.now();
-  const entry = rateMap.get(ip);
-  if (!entry || now - entry.start > RATE_WINDOW) {
-    rateMap.set(ip, { start: now, count: 1 });
-    return true;
-  }
-  entry.count++;
-  return entry.count <= RATE_LIMIT;
-}
-
-// Two caches: full data for meta, test data for rows
+// Cache: pre-computed meta (tiny files)
 const metaCache = {};
-const testCache = {};
 
 function loadMeta(key) {
   if (metaCache[key]) return metaCache[key];
-  const file = EXCHANGE_FILES[key];
-  if (!file) return null;
   try {
-    const raw = readFileSync(join(process.cwd(), 'data', 'balances', file), 'utf8');
-    const data = JSON.parse(raw);
-    // Top 20 holder balances (amounts only, no addresses exposed)
-    const top20 = (data.balances || []).slice(0, 20).map(b => parseFloat(b.balance_eth));
-    metaCache[key] = {
-      contract: data.contract,
-      contract_eth_balance: data.contract_eth_balance,
-      total_eth: data.total_eth_in_balances,
-      addresses_with_balance: data.addresses_with_balance,
-      coverage_pct: data.coverage_pct,
-      scan_date: data.scan_date,
-      distribution: data.distribution,
-      top_holders: top20,
-    };
-    return metaCache[key];
+    const raw = readFileSync(join(process.cwd(), 'data', 'table_meta', key + '.json'), 'utf8');
+    const meta = JSON.parse(raw);
+    try {
+      const tvlRaw = readFileSync(join(process.cwd(), 'data', 'tvl', key + '.json'), 'utf8');
+      meta.tvl = JSON.parse(tvlRaw).history;
+    } catch (_) {}
+    metaCache[key] = meta;
+    return meta;
   } catch (e) {
     return null;
-  }
-}
-
-function loadTestRows(key) {
-  if (testCache[key]) return testCache[key];
-  const file = EXCHANGE_FILES[key];
-  if (!file) return [];
-  try {
-    const raw = readFileSync(join(process.cwd(), 'public', file), 'utf8');
-    const data = JSON.parse(raw);
-    testCache[key] = data.balances || [];
-    return testCache[key];
-  } catch (e) {
-    return [];
   }
 }
 
@@ -90,18 +139,10 @@ export default function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Token verification
-  const token = req.query.token || req.headers['x-api-token'];
-  if (!verifyToken(token)) {
-    return res.status(403).json({ error: 'Invalid or expired token. Request a token from /api/token first.' });
-  }
+  // No rate limiting needed — table only serves public metadata (no addresses).
+  // Individual address lookups are rate-limited via /api/check.
 
-  const ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for']?.split(',').pop()?.trim() || 'unknown';
-  if (!checkRateLimit(ip)) {
-    return res.status(429).json({ error: 'Rate limit exceeded. Try again in 1 minute.' });
-  }
-
-  const { exchange, page: pageStr, pageSize: pageSizeStr, sort, sortDir, search, minBal: minBalStr } = req.query;
+  const { exchange } = req.query;
 
   if (!exchange || !EXCHANGE_FILES[exchange]) {
     return res.status(400).json({ error: 'Invalid exchange parameter' });
@@ -112,50 +153,21 @@ export default function handler(req, res) {
     return res.status(404).json({ error: 'Data not available' });
   }
 
-  // Rows come from test data (1 address per contract)
-  let filtered = loadTestRows(exchange);
+  // No individual addresses served — privacy protection.
+  // Users check their own address via /api/check.
 
-  const page = Math.max(0, parseInt(pageStr) || 0);
-  const pageSize = Math.min(100, Math.max(1, parseInt(pageSizeStr) || 50));
-  const searchQuery = (search || '').toLowerCase().replace(/[^0-9a-fx]/g, '');
-  const minBal = parseFloat(minBalStr) || 0;
-
-  if (searchQuery) {
-    filtered = filtered.filter(b => b.address.toLowerCase().includes(searchQuery));
-  }
-  if (minBal > 0) {
-    filtered = filtered.filter(b => parseFloat(b.balance_eth) >= minBal);
-  }
-
-  const sortField = sort === 'balance' ? 'balance' : 'rank';
-  const sortAsc = sortDir !== 'desc';
-  if (sortField === 'balance') {
-    filtered = [...filtered].sort((a, b) => {
-      const diff = parseFloat(a.balance_eth) - parseFloat(b.balance_eth);
-      return sortAsc ? diff : -diff;
-    });
-  } else {
-    filtered = [...filtered].sort((a, b) => sortAsc ? a.rank - b.rank : b.rank - a.rank);
-  }
-
-  const totalRows = filtered.length;
-  const totalPages = Math.ceil(totalRows / pageSize);
-  const start = page * pageSize;
-  const rows = filtered.slice(start, start + pageSize).map(b => ({
-    rank: b.rank,
-    address: b.address,
-    balance_eth: b.balance_eth,
-    ...(b.deeds ? { deeds: b.deeds } : {}),
-  }));
-
-  res.setHeader('Cache-Control', 'private, no-store');
+  res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=7200');
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Robots-Tag', 'noindex');
 
+  // Round scan_date to date-only to avoid disclosing operational timing patterns
+  const sanitizedMeta = { ...meta };
+  if (sanitizedMeta.scan_date) {
+    sanitizedMeta.scan_date = sanitizedMeta.scan_date.replace(/\s\d{2}:\d{2}:\d{2}\s*UTC$/, ' UTC');
+  }
+
   return res.status(200).json({
     exchange,
-    meta,
-    pagination: { page, pageSize, totalRows, totalPages },
-    rows,
+    meta: sanitizedMeta,
   });
 }
