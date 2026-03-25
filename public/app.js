@@ -112,8 +112,9 @@ function _makeWalletBtn(icon, name, subtitle, onclick) {
   img.onerror = function() { this.style.display = 'none'; };
   btn.appendChild(img);
   var text = document.createElement('div');
-  text.innerHTML = '<div style="font-size:14px;font-weight:700">' + name + '</div>' +
-    (subtitle ? '<div style="font-size:11px;color:var(--text2);font-weight:400">' + subtitle + '</div>' : '');
+  var _e = function(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
+  text.innerHTML = '<div style="font-size:14px;font-weight:700">' + _e(name) + '</div>' +
+    (subtitle ? '<div style="font-size:11px;color:var(--text2);font-weight:400">' + _e(subtitle) + '</div>' : '');
   btn.appendChild(text);
   btn.addEventListener('click', onclick);
   return btn;
@@ -132,7 +133,7 @@ async function _handleKeystoreConnect() {
       '<div>&#8226; Decryption happens entirely in your browser</div>' +
       '<div>&#8226; No file or password is uploaded to any server</div>' +
       '<div>&#8226; No data is logged or stored</div>' +
-      '<div>&#8226; <a href="https://github.com/q84c6tsm95-create/forgotten-eth/blob/main/public/app.js#:~:text=_handleKeystoreConnect" target="_blank" style="font-size:11px;color:var(--accent-text)">Verify the source code</a></div>' +
+      '<div>&#8226; <a href="https://github.com/q84c6tsm95-create/forgotten-eth/blob/main/public/app.js#L123-L190" target="_blank" style="font-size:11px;color:var(--accent-text)">Verify the source code</a></div>' +
       '</div>' +
       '<div style="margin-bottom:12px"><label style="font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;font-weight:700;display:block;margin-bottom:4px">Keystore File</label>' +
       '<input type="file" id="keystoreFile" accept=".json,.utc,application/json" style="width:100%;padding:8px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:inherit;font-size:12px"></div>' +
@@ -159,6 +160,7 @@ async function _handleKeystoreConnect() {
       var statusEl = document.getElementById('keystoreStatus');
 
       if (!fileInput.files || !fileInput.files[0]) { statusEl.textContent = 'Please select a file.'; statusEl.style.color = 'var(--red)'; return; }
+      if (fileInput.files[0].size > 1024 * 1024) { statusEl.textContent = 'File too large (max 1MB).'; statusEl.style.color = 'var(--red)'; return; }
       if (!passInput.value) { statusEl.textContent = 'Please enter the password.'; statusEl.style.color = 'var(--red)'; return; }
 
       statusEl.textContent = 'Decrypting... (this may take a few seconds)';
@@ -175,7 +177,7 @@ async function _handleKeystoreConnect() {
       } catch (e) {
         this.disabled = false;
         this.textContent = 'Unlock';
-        statusEl.textContent = e.message.includes('invalid') || e.message.includes('password') ? 'Wrong password. Try again.' : 'Error: ' + e.message;
+        statusEl.textContent = (e.message && (e.message.includes('invalid') || e.message.includes('password'))) ? 'Wrong password. Try again.' : 'Could not decrypt file. Check file format and password.';
         statusEl.style.color = 'var(--red)';
       }
     });
@@ -1593,6 +1595,7 @@ async function connectWallet() {
     walletProvider = null;
     walletSigner = null;
     walletAddress = null;
+    _keystoreWallet = null;
     userBalances = {};
     document.getElementById('walletBtn').textContent = 'Connect Wallet';
     document.getElementById('walletBtn').classList.remove('connected');
