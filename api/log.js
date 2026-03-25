@@ -70,10 +70,11 @@ export default async function handler(req, res) {
     const cleanBlockNum = safeNum(block_num, 1e10);
     const cleanContractsFound = safeNum(contracts_found, 1000);
 
-    const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || null;
+    const ip = req.headers['x-forwarded-for']?.split(',').pop()?.trim() || req.socket?.remoteAddress || null;
 
     // Store hashed IP (for dedup/abuse detection) — not raw IP (PII reduction)
-    const ipHash = ip ? createHash('sha256').update(ip + (process.env.IP_HASH_SALT || '')).digest('hex').substring(0, 16) : null;
+    const salt = process.env.IP_HASH_SALT;
+    const ipHash = ip && salt ? createHash('sha256').update(ip + salt).digest('hex').substring(0, 16) : null;
 
     // Rate limit: max 60 events per IP per minute (prevents database flooding)
     if (ipHash) {
