@@ -15,7 +15,7 @@
     "api/table.js": {
       "memory": 256,
       "maxDuration": 10,
-      "includeFiles": "{data/table_meta/**/*.json,data/tvl/**/*.json}"
+      "includeFiles": "{data/table_meta/**/*.json,data/tvl/**/*.json,data/protocols.json}"
     },
     "api/summary.js": {
       "memory": 256,
