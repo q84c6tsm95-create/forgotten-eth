@@ -51,6 +51,10 @@
       "memory": 128,
       "maxDuration": 5,
       "includeFiles": "data/protocol_info.json"
+    },
+    "api/telegram-bot.js": {
+      "memory": 128,
+      "maxDuration": 15
     }
   },
   "headers": [
