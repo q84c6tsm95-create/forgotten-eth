@@ -565,7 +565,7 @@
   .network-warn.visible { display: block; }
 
   /* ── Tabs ── */
-  .tabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 1px solid var(--border); margin: 20px 0 0; overflow: hidden; justify-content: center; max-height: 200px; position: relative; transition: max-height 0.3s ease, margin 0.3s ease; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 1px solid var(--border); margin: 20px 0 0; overflow: hidden; justify-content: center; max-height: 120px; position: relative; transition: max-height 0.3s ease, margin 0.3s ease; }
   .tabs.expanded { margin-bottom: 24px; }
   .tabs-fade { text-align: center; margin: 0 0 24px; }
   .tabs-fade button { background: none; border: none; color: var(--accent-text); font-size: 13px; font-weight: 600; cursor: pointer; padding: 8px 16px; font-family: inherit; }
@@ -729,10 +729,6 @@
       <h1><a href="/" style="color:inherit;text-decoration:none">Forgotten &#926;TH</a></h1>
       <p class="subtitle">Recover ETH stuck in old smart contracts</p>
       <nav class="header-nav">
-        <a href="/">Home</a>
-        <span class="nav-sep">·</span>
-        <a href="#about">About</a>
-        <span class="nav-sep">·</span>
         <a href="#faq">FAQ</a>
         <span class="nav-sep">·</span>
         <button id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode"></button>
@@ -748,8 +744,7 @@
     <p class="hero-tagline">Thousands of ETH sit forgotten in defunct contracts.<br><a href="https://debank.com" target="_blank" rel="noopener noreferrer">DeBank</a>, <a href="https://zerion.io" target="_blank" rel="noopener noreferrer">Zerion</a>, and <a href="https://zapper.xyz" target="_blank" rel="noopener noreferrer">Zapper</a> don't detect them.</p>
     <div class="hero-stat">
       <div class="hero-amount" id="totalAllEth"><span class="hero-eth-value">&mdash;</span> <span class="hero-eth-label">ETH</span></div>
-      <div class="hero-usd" id="totalAllUsd"></div>
-      <div class="hero-label">forgotten across <span id="totalContracts">&mdash;</span> contracts</div>
+      <div class="hero-label">unclaimed across <span id="totalContracts">&mdash;</span> contracts</div>
     </div>
     <p class="hero-cta">You may have ETH stuck &mdash; check any address to find out.</p>
   </div>
@@ -780,6 +775,14 @@
     <div id="claimRows"></div>
   </div>
 
+  <!-- Telegram Bot -->
+  <div style="text-align:center;margin:20px 0">
+    <div style="display:inline-flex;align-items:center;gap:12px;padding:14px 24px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);font-size:13px;color:var(--text2)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--accent)" style="flex-shrink:0"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      <span>Monitor your address & get notified on new contract additions — <a href="https://t.me/forgotteneth_bot" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:600;text-decoration:none">@forgotteneth_bot</a></span>
+    </div>
+  </div>
+
   <div class="explorer-toggle-wrap">
     <button class="btn explorer-toggle" id="explorerToggle">Browse all contracts</button>
   </div>
@@ -794,12 +797,9 @@
 
   </div><!-- /explorerSection -->
 
-  <!-- About Section -->
-  <div class="about-section" id="about">
-    <h2>About</h2>
-    <p>Forgotten ETH finds and recovers ETH stuck in defunct smart contracts. Thousands of ETH remain locked in old DEXes, NFT marketplaces, ENS auctions, and ICO contracts that shut down years ago. Portfolio trackers don't index these — your ETH is still onchain, it just doesn't show up.</p>
-
-    <div class="faq-label" id="faq">Frequently Asked Questions</div>
+  <!-- FAQ Section -->
+  <div class="about-section" id="faq">
+    <div class="faq-label">Frequently Asked Questions</div>
     <div class="faq-list">
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle>How does it work? <span class="faq-arrow">&#x25BC;</span></div>
@@ -807,11 +807,11 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle>Is this safe? <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">Yes. Fully <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a>. No proxy contracts, no intermediaries. Most withdrawals are simple ETH transfers with no approvals needed. A few contracts (e.g. wrapped ETH variants, dividend tokens) require a token burn or two-step process — the UI explains each case. Every withdrawal can be done manually on Etherscan — this site just makes it easier.</div>
+      <div class="faq-a">Yes. Fully <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a>. No proxy contracts, no intermediaries. Most withdrawals are simple ETH transfers with no approvals needed. A few contracts (e.g. wrapped ETH variants, dividend tokens) require a token burn or two-step process — the UI explains each case. Every withdrawal can be done manually on <a href="https://etherscan.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Etherscan</a> — this site just makes it easier.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle>Why can't my portfolio tracker see these? <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">DeBank, Zerion, and Zapper only index active protocols. These contracts are defunct or too obscure to be tracked. Your ETH is still onchain, it just doesn't show up in standard wallet interfaces.</div>
+      <div class="faq-a"><a href="https://debank.com" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">DeBank</a>, <a href="https://zerion.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Zerion</a>, and <a href="https://zapper.xyz" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Zapper</a> only index active protocols. These contracts are defunct or too obscure to be tracked. Your ETH is still onchain, it just doesn't show up in standard wallet interfaces.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle>Do you charge fees? <span class="faq-arrow">&#x25BC;</span></div>
@@ -823,14 +823,15 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle>Don't trust, verify <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">You don't need this site to claim. Every withdrawal can be done directly on Etherscan: go to the contract, click "Write Contract", connect your wallet, call the withdraw function. We simply facilitate the crafting of withdrawal transactions on your behalf — each contract's address and function is shown in the claim details. Our code is <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a> for anyone to audit.</div>
+      <div class="faq-a">You don't need this site to claim. Every withdrawal can be done directly on <a href="https://etherscan.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Etherscan</a>: go to the contract, click "Write Contract", connect your wallet, call the withdraw function. We simply facilitate the crafting of withdrawal transactions on your behalf — each contract's address and function is shown in the claim details. Our code is <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a> for anyone to audit.</div>
     </div>
     </div><!-- /faq-list -->
   </div>
+
 </div>
 
 <footer class="site-footer" id="siteFooter">
-  <p class="footer-credit">made with &#10084; by aaaaaaaaaaway</p>
+  <p class="footer-credit">made with <span style="color:#e11d48;font-size:16px;vertical-align:middle">&#10084;</span> by <strong>aaaaaaaaaaway</strong></p>
 </footer>
 
 <script type="application/ld+json">
