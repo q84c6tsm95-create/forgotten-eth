@@ -20,8 +20,8 @@
 <meta name="twitter:image" content="https://forgotteneth.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js" integrity="sha384-NRAZj94DQk3dgtsOZzVYHbYVV1DFkF5QhL5RRxF0ILZLi6OQ7CsMlun748D42JbO" crossorigin="anonymous"></script>
 <script src="/theme-init.js"></script>
 <style>
@@ -159,7 +159,7 @@
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   input:focus-visible, select:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15); }
 
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px 32px; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 24px 32px; }
 
   /* ── Header ── */
   .header { padding: 36px 0 28px; border-bottom: 1px solid var(--border); text-align: center; }
@@ -190,7 +190,7 @@
   /* ── Connect Section ── */
   .connect-section { background: var(--connect-bg); border: 1px solid var(--connect-border); border-radius: 12px; padding: 28px 24px; margin: 24px 0; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
   .connect-divider { color: var(--text2); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; position: relative; padding: 0 4px; }
-  .connect-input-wrap { position: relative; width: 100%; max-width: 420px; }
+  .connect-input-wrap { position: relative; width: 100%; max-width: 480px; }
   .connect-input { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-family: var(--font-mono); font-size: 13px; outline: none; background: var(--bg); color: var(--text); transition: border-color 0.15s, box-shadow 0.15s; }
   .connect-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1); }
   .connect-feedback { display: none; font-size: 11px; margin-top: 4px; }
@@ -250,8 +250,11 @@
     margin-top: 8px;
   }
 
-  /* Claim rows list */
-  .claim-rows-list { text-align: left; max-width: 680px; margin: 0 auto; }
+  /* Claim rows list — 2 columns on wide screens */
+  .claim-rows-list { text-align: left; max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 0; }
+  @media (min-width: 900px) {
+    .claim-rows-list { grid-template-columns: 1fr 1fr; gap: 10px; }
+  }
 
   /* ── Unified Claim Card ── */
   .claim-card {
@@ -575,6 +578,7 @@
   .tab.active { color: var(--accent-text); border-bottom-color: var(--accent); }
   .tab .badge { display: inline-block; background: var(--bg2); color: var(--text2); font-size: 11px; padding: 1px 8px; border-radius: 3px; margin-left: 6px; }
   .tab.active .badge { background: var(--accent); color: #fff; }
+
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
   .tab-select { display: none; width: 100%; padding: 10px 14px; font-size: 15px; font-weight: 600; font-family: inherit; background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius); margin: 20px 0 32px; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; }
@@ -668,7 +672,7 @@
   .faq-q .faq-arrow { transition: transform 0.2s ease; font-size: 10px; color: var(--text2); }
   .faq-item.open .faq-q .faq-arrow { transform: rotate(180deg); color: var(--accent); }
   .faq-a { max-height: 0; overflow: hidden; padding: 0 20px; font-size: 14px; color: var(--text2); line-height: 1.8; transition: max-height 0.3s ease, padding 0.3s ease; }
-  .faq-item.open .faq-a { max-height: 300px; padding: 16px 20px; }
+  .faq-item.open .faq-a { max-height: 600px; padding: 16px 20px; }
 
   /* ── Watchlist ── */
   .watchlist-bar { display: none; text-align: center; margin: 12px 0 0; font-size: 12px; color: var(--text2); }
@@ -770,7 +774,7 @@
 
   <div class="network-warn" id="networkWarn">Please switch to Ethereum Mainnet to claim your ETH.</div>
 
-  <div class="claim-banner" id="claimBanner">
+  <div class="claim-banner" id="claimBanner" aria-live="polite">
     <h2 id="claimBannerTitle">Your Claimable ETH</h2>
     <div id="claimRows"></div>
   </div>
@@ -802,27 +806,27 @@
     <div class="faq-label">Frequently Asked Questions</div>
     <div class="faq-list">
     <div class="faq-item">
-      <div class="faq-q" data-faq-toggle>How does it work? <span class="faq-arrow">&#x25BC;</span></div>
+      <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">How does it work? <span class="faq-arrow">&#x25BC;</span></div>
       <div class="faq-a">Paste any address or connect your wallet. We check 110 defunct contracts for unclaimed balances. If found, click Withdraw — the transaction goes directly from the original contract to your wallet. We never have custody of your funds.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" data-faq-toggle>Is this safe? <span class="faq-arrow">&#x25BC;</span></div>
+      <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">Is this safe? <span class="faq-arrow">&#x25BC;</span></div>
       <div class="faq-a">Yes. Fully <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a>. No proxy contracts, no intermediaries. Most withdrawals are simple ETH transfers with no approvals needed. A few contracts (e.g. wrapped ETH variants, dividend tokens) require a token burn or two-step process — the UI explains each case. Every withdrawal can be done manually on <a href="https://etherscan.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Etherscan</a> — this site just makes it easier.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" data-faq-toggle>Why can't my portfolio tracker see these? <span class="faq-arrow">&#x25BC;</span></div>
+      <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">Why can't my portfolio tracker see these? <span class="faq-arrow">&#x25BC;</span></div>
       <div class="faq-a"><a href="https://debank.com" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">DeBank</a>, <a href="https://zerion.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Zerion</a>, and <a href="https://zapper.xyz" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Zapper</a> only index active protocols. These contracts are defunct or too obscure to be tracked. Your ETH is still onchain, it just doesn't show up in standard wallet interfaces.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" data-faq-toggle>Do you charge fees? <span class="faq-arrow">&#x25BC;</span></div>
+      <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">Do you charge fees? <span class="faq-arrow">&#x25BC;</span></div>
       <div class="faq-a">No. Completely free. After a successful claim, there's an optional donation prompt — entirely voluntary.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" data-faq-toggle>What contracts are tracked? <span class="faq-arrow">&#x25BC;</span></div>
+      <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">What contracts are tracked? <span class="faq-arrow">&#x25BC;</span></div>
       <div class="faq-a">110 contracts across defunct DEXes (EtherDelta, IDEX v1, Token.Store), dividend tokens (PoWH3D, Fomo3D), NFT auctions (MoonCatRescue, DADA), bounty platforms, ICO escrows, ENS old registrar deeds, and wrapped ETH variants.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" data-faq-toggle>Don't trust, verify <span class="faq-arrow">&#x25BC;</span></div>
+      <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">Don't trust, verify <span class="faq-arrow">&#x25BC;</span></div>
       <div class="faq-a">You don't need this site to claim. Every withdrawal can be done directly on <a href="https://etherscan.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Etherscan</a>: go to the contract, click "Write Contract", connect your wallet, call the withdraw function. We simply facilitate the crafting of withdrawal transactions on your behalf — each contract's address and function is shown in the claim details. Our code is <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a> for anyone to audit.</div>
     </div>
     </div><!-- /faq-list -->
