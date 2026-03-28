@@ -178,19 +178,19 @@
 
   /* ── Hero ── */
   .hero { text-align: center; padding: 20px 0 4px; margin-top: 4px; }
-  .hero-tagline { color: var(--text2); font-size: 14px; line-height: 1.5; max-width: 680px; margin: 0 auto 10px; }
+  .hero-tagline { color: var(--text2); font-size: 15px; line-height: 1.6; max-width: 680px; margin: 0 auto 10px; }
   .hero-stat { margin: 0 auto 4px; }
   .hero-amount { font-family: var(--font-mono); font-size: 48px; font-weight: 800; color: var(--accent); letter-spacing: -2px; line-height: 1.1; transition: color 0.3s; }
   .hero-amount .hero-eth-label { font-size: 28px; font-weight: 600; letter-spacing: -0.5px; opacity: 0.7; }
   .hero-usd { font-size: 16px; font-weight: 600; color: var(--text2); margin-top: 2px; opacity: 0.7; }
   .hero-label { font-size: 14px; color: var(--text2); margin-top: 6px; }
-  .hero-cta { font-size: 13px; font-weight: 600; color: var(--text); margin: 8px auto 0; max-width: 480px; }
+  .hero-cta { font-size: 14px; font-weight: 600; color: var(--text); margin: 8px auto 0; max-width: 600px; }
 
   /* ── Project description ── */
   .project-desc { color: var(--text2); font-size: 13px; line-height: 1.6; margin-bottom: 16px; }
 
   /* ── Connect Section ── */
-  .connect-section { background: var(--connect-bg); border: 1.5px solid var(--connect-border); border-radius: 14px; padding: 28px 32px; margin: 12px auto; font-size: 13px; display: flex; flex-direction: column; align-items: stretch; gap: 16px; max-width: 520px; }
+  .connect-section { background: var(--connect-bg); border: 1.5px solid var(--connect-border); border-radius: 14px; padding: 28px 32px; margin: 12px auto; font-size: 13px; display: flex; flex-direction: column; align-items: stretch; gap: 16px; max-width: 680px; }
   .connect-input-row { display: flex; gap: 10px; align-items: flex-start; }
   .connect-divider { display: flex; align-items: center; gap: 12px; color: var(--text2); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; opacity: 0.5; }
   .connect-divider::before, .connect-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
@@ -254,11 +254,8 @@
     margin-top: 8px;
   }
 
-  /* Claim rows list — 2 columns on wide screens */
-  .claim-rows-list { text-align: left; max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 0; }
-  @media (min-width: 900px) {
-    .claim-rows-list { grid-template-columns: 1fr 1fr; gap: 10px; }
-  }
+  /* Claim rows list — always stacked vertically */
+  .claim-rows-list { text-align: left; max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
 
   /* ── Unified Claim Card ── */
   .claim-card {
@@ -354,16 +351,15 @@
   }
   .claim-card-meta-value a { font-size: 11px; }
   .claim-card-actions {
-    padding: 12px 16px;
+    padding: 14px 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
     border-top: 1px solid var(--border);
     margin: 10px 16px 0;
     padding-left: 0;
     padding-right: 0;
-    padding-bottom: 14px;
   }
   .claim-card-status {
     font-size: 12px;
@@ -521,6 +517,13 @@
   .donation-confirm-btn.pending { background: var(--yellow); color: #000; }
   .donation-skip { font-size: 11px; color: var(--text2); cursor: pointer; border: none; background: none; padding: 4px 8px; font-family: inherit; opacity: 0.4; transition: opacity 0.15s; }
   .donation-skip:hover { opacity: 1; }
+  .donation-custom { display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 14px; }
+  .donation-custom-input { width: 90px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; font-family: var(--font-mono); font-size: 13px; font-weight: 600; color: var(--text); text-align: right; outline: none; -moz-appearance: textfield; }
+  .donation-custom-input::-webkit-inner-spin-button,
+  .donation-custom-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  .donation-custom-input:focus { border-color: var(--accent); }
+  .donation-custom-label { font-size: 13px; color: var(--text2); }
+  .donation-custom-usd { font-size: 11px; color: var(--text2); opacity: 0.6; }
   .donation-error { font-size: 12px; color: var(--red); margin-top: 6px; }
   .donation-success { padding: 12px 0; text-align: center; }
   .donation-success-msg { font-size: 13px; font-weight: 600; color: var(--green); margin-bottom: 4px; }
@@ -766,6 +769,8 @@
         <button id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode"></button>
         <span class="nav-sep">·</span>
         <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" title="View on GitHub" aria-label="GitHub"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+        <span class="nav-sep">&middot;</span>
+        <a href="https://t.me/forgottenETH_bot" target="_blank" rel="noopener noreferrer" title="Telegram Bot" aria-label="Telegram"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
         <span class="nav-sep" id="testModeSep" style="display:none">&middot;</span>
         <button id="testModeBtn" style="display:none"></button>
       </nav>
@@ -776,7 +781,7 @@
     <p class="hero-tagline"><span style="color:var(--text);font-weight:600">Thousands of ETH sit forgotten in defunct contracts from the 2015&ndash;2019 era.</span><br><a href="https://debank.com" target="_blank" rel="noopener noreferrer">DeBank</a>, <a href="https://zerion.io" target="_blank" rel="noopener noreferrer">Zerion</a>, and <a href="https://zapper.xyz" target="_blank" rel="noopener noreferrer">Zapper</a> don't detect them.</p>
     <div class="hero-stat">
       <div class="hero-amount" id="totalAllEth"><span class="hero-eth-value">&mdash;</span> <span class="hero-eth-label">ETH</span></div>
-      <div class="hero-label">unclaimed across <span id="totalContracts">&mdash;</span> contracts</div>
+      <div class="hero-label">unclaimed across <span id="totalContracts">&mdash;</span> contracts and <span id="totalAddresses">&mdash;</span> addresses</div>
     </div>
   </div>
 
