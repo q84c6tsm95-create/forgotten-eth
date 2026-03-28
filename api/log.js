@@ -70,19 +70,20 @@ export default async function handler(req, res) {
     const cleanBlockNum = safeNum(block_num, 1e10);
     const cleanContractsFound = safeNum(contracts_found, 1000);
 
-    const ip = req.headers['x-forwarded-for']?.split(',').pop()?.trim() || req.socket?.remoteAddress || null;
+    const ip = req.headers['cf-connecting-ip'] || req.headers['x-real-ip'] || req.headers['x-forwarded-for']?.split(',')[0]?.trim() || null;
 
     // Store hashed IP (for dedup/abuse detection) — not raw IP (PII reduction)
-    const salt = process.env.IP_HASH_SALT;
+    // Derive salt from any available secret env var (IP_HASH_SALT preferred, ANALYTICS_SECRET as fallback)
+    const salt = process.env.IP_HASH_SALT || process.env.ANALYTICS_SECRET || process.env.TOKEN_SECRET;
     const ipHash = ip && salt ? createHash('sha256').update(ip + salt).digest('hex').substring(0, 16) : null;
 
-    // Rate limit: max 60 events per IP per minute (prevents database flooding)
+    // Rate limit: max 20 events per IP per minute (prevents database flooding)
     if (ipHash) {
       const recent = await sql`
         SELECT COUNT(*) AS cnt FROM events
         WHERE ip = ${ipHash} AND ts > NOW() - INTERVAL '1 minute'
       `;
-      if (parseInt(recent.rows[0].cnt, 10) >= 60) {
+      if (parseInt(recent.rows[0].cnt, 10) >= 20) {
         return res.status(429).json({ error: 'Too many requests' });
       }
     }

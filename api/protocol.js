@@ -186,7 +186,16 @@ function renderPage(slug, key, info, meta) {
   tbody td { padding: 8px 12px; }
 
   /* CTA / Check section */
-  .connect-section { background: var(--connect-bg); border: 1px solid var(--connect-border); border-radius: 12px; padding: 28px 24px; margin: 32px 0; font-size: 13px; text-align: center; }
+  .connect-section { background: var(--connect-bg); border: 1.5px solid var(--connect-border); border-radius: 14px; padding: 28px 32px; margin: 32px auto; font-size: 13px; display: flex; flex-direction: column; align-items: stretch; gap: 16px; max-width: 520px; }
+  .connect-input-row { display: flex; gap: 8px; align-items: center; }
+  .connect-input-wrap { flex: 1; }
+  .connect-input { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-family: var(--font-mono); font-size: 13px; outline: none; background: var(--bg); color: var(--text); transition: border-color 0.15s, box-shadow 0.15s; }
+  .connect-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1); }
+  .connect-divider { display: flex; align-items: center; gap: 12px; color: var(--text2); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; opacity: 0.5; }
+  .connect-divider::before, .connect-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .connect-feedback { display: none; font-size: 11px; margin-top: 4px; }
+  .connect-feedback.error { color: var(--red); }
+  .connect-feedback.info { color: var(--text2); }
   .btn { padding: 7px 14px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); cursor: pointer; font-size: 12px; font-weight: 600; white-space: nowrap; text-decoration: none; display: inline-block; font-family: inherit; }
   .btn:hover { background: #5b21b6; color: #fff; text-decoration: none; }
   .btn.ghost { background: var(--bg); border: 1px solid var(--border); color: var(--text2); }
@@ -244,9 +253,10 @@ function renderPage(slug, key, info, meta) {
   @media (max-width: 768px) {
     .charts { grid-template-columns: 1fr; }
     .cards { grid-template-columns: repeat(2, 1fr); }
-    .check-form { flex-direction: column; }
+    .connect-input-row { flex-direction: column; }
     .chart-wrap { height: 250px; }
-    .connect-section { padding: 20px 16px; }
+    .connect-section { padding: 20px 16px; gap: 14px; max-width: 100%; }
+    .wallet-btn { width: 100%; padding: 12px 18px; font-size: 15px; }
   }
 </style>
 </head>
@@ -265,23 +275,25 @@ function renderPage(slug, key, info, meta) {
         <span class="nav-sep">&middot;</span>
         <button id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode"></button>
         <span class="nav-sep">&middot;</span>
-        <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" title="View on GitHub" aria-label="GitHub"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+        <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" title="View on GitHub" aria-label="GitHub"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+        <span class="nav-sep">&middot;</span>
+        <a href="https://t.me/forgottenETH_bot" target="_blank" rel="noopener noreferrer" title="Telegram Bot" aria-label="Telegram"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
       </nav>
     </div>
   </div>
 
-  <!-- Address check (first — primary action) -->
+  <!-- Address check — matches main page -->
   <div class="connect-section">
-    <div style="display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap">
-      <div class="wallet-area">
-        <span class="wallet-addr" id="walletAddr"></span>
-        <button class="wallet-btn" id="walletBtn" style="padding:8px 18px;font-size:14px">Connect Wallet</button>
+    <div class="connect-input-row">
+      <div class="connect-input-wrap">
+        <input type="text" id="checkAddr" class="connect-input" placeholder="0x... or ENS name" spellcheck="false" autocomplete="off">
       </div>
-      <span style="color:var(--text2);font-size:13px">or</span>
-      <div style="position:relative;width:100%;max-width:420px">
-        <textarea id="checkAddr" placeholder="0x... or vitalik.eth (one per line for multiple)" rows="1" style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius);font-family:var(--font-mono);font-size:13px;outline:none;background:var(--bg);color:var(--text);resize:vertical;min-height:36px;line-height:1.4;field-sizing:content"></textarea>
-      </div>
-      <button class="btn" id="checkBtn" onclick="checkAddress()" style="padding:8px 18px;font-size:14px">Check</button>
+      <button class="btn" id="checkBtn" onclick="checkAddress()" style="padding:10px 24px;font-size:13px;font-weight:700;flex-shrink:0">Check</button>
+    </div>
+    <span class="connect-divider">or</span>
+    <div class="wallet-area" style="justify-content:center">
+      <span class="wallet-addr" id="walletAddr"></span>
+      <button class="wallet-btn" id="walletBtn">Connect Wallet</button>
     </div>
     <div id="checkResult" class="check-result"></div>
   </div>

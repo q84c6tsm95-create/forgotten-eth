@@ -249,6 +249,7 @@ const TEST_MODE = (window.location.hostname === 'localhost' || window.location.h
 const TEST_ADDRESS = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045';
 const TEST_BALANCES = {
   idex:       { wei: ethers.parseEther('0.5'),  eth: '0.5' },
+  digixdao:   { wei: ethers.parseEther('12.5'), eth: '12.5' },
 };
 if (TEST_MODE) console.log('%c[TEST MODE] Simulation active — no real transactions will occur', 'color:#d946ef;font-weight:bold;font-size:14px');
 
@@ -316,7 +317,7 @@ function renderDonationCard(claimedEth) {
   if (claimedEth < 0.01) return '';
 
   var defaultPct = 5;
-  var defaultAmt = (claimedEth * defaultPct / 100).toFixed(4);
+  var defaultAmt = (claimedEth * defaultPct / 100).toFixed(2);
   var btnLabel = 'Donate ' + defaultAmt + ' ETH';
   if (_ethPrice) btnLabel += ' (' + fmtUsd(parseFloat(defaultAmt) * _ethPrice) + ')';
 
@@ -324,9 +325,12 @@ function renderDonationCard(claimedEth) {
     return '<button class="donation-pct-btn' + (isActive ? ' active' : '') + '" data-action="donation-pct" data-pct="' + pct + '">' + pct + '%</button>';
   }
 
+  var usdHint = _ethPrice ? ' <span class="donation-custom-usd" id="donationUsd">(' + fmtUsd(parseFloat(defaultAmt) * _ethPrice) + ')</span>' : '';
+
   return '<div id="donationCardWrap" style="display:none"><div class="donation-card" id="donationCard" data-claim-eth="' + claimedEth + '">' +
     '<div class="donation-copy">If you found this useful, consider a donation.</div>' +
-    '<div class="donation-pct-row">' + pill(10, false) + pill(5, true) + pill(2, false) + '</div>' +
+    '<div class="donation-pct-row">' + pill(8, false) + pill(5, true) + pill(2, false) + '</div>' +
+    '<div class="donation-custom"><input type="number" id="donationAmt" class="donation-custom-input" value="' + defaultAmt + '" step="0.001" min="0" data-claim-eth="' + claimedEth + '"><span class="donation-custom-label">ETH</span>' + usdHint + '</div>' +
     '<div><button data-action="donate-confirm" class="donation-confirm-btn">' + btnLabel + '</button></div>' +
     '<div><button data-action="donation-skip" class="donation-skip">skip</button></div>' +
     '<div class="donation-error"></div>' +
@@ -1713,12 +1717,17 @@ async function connectWallet() {
   }
 
   try {
-    // Show wallet picker (always — keystore works without browser extension)
+    // Show wallet picker (skip if only one browser wallet — connect directly)
     const providers = window._eip6963Providers || [];
-    // Also add window.ethereum as fallback if no EIP-6963 providers found
     const pickProviders = providers.length > 0 ? providers : (window.ethereum ? [{ info: { name: 'Browser Wallet', icon: '', rdns: 'default' }, provider: window.ethereum }] : []);
-    const choice = await _showWalletPicker(pickProviders);
-    if (!choice) return;
+    let choice;
+    if (pickProviders.length === 1) {
+      // Single wallet detected — skip picker, connect directly
+      choice = { type: 'provider', provider: pickProviders[0].provider };
+    } else {
+      choice = await _showWalletPicker(pickProviders);
+      if (!choice) return;
+    }
 
     if (choice.type === 'keystore') {
       const wallet = await _handleKeystoreConnect();
@@ -1739,11 +1748,6 @@ async function connectWallet() {
     } else {
       // Browser wallet provider
       walletProvider = new ethers.BrowserProvider(choice.provider);
-      try {
-        await walletProvider.send('wallet_requestPermissions', [{ eth_accounts: {} }]);
-      } catch(e) {
-        // Fallback for wallets that don't support wallet_requestPermissions
-      }
       const accounts = await walletProvider.send('eth_requestAccounts', []);
       walletSigner = await walletProvider.getSigner();
       walletAddress = await walletSigner.getAddress();
@@ -2029,11 +2033,11 @@ async function checkUserBalances(overrideAddress) {
             actionBtn = `<button class="claim-btn" disabled style="opacity:0.5">No DGD tokens</button>`;
             stepInfo = `<div style="font-size:11px;color:var(--red);margin-top:4px">DGD tokens required to claim. Balance shows value from pre-computed data.</div>`;
           } else if (needsApproval) {
-            actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="digix-approve" data-key="${key}" style="background:var(--text2)">Step 1: Approve DGD</button>`;
-            stepInfo = `<div style="font-size:11px;color:var(--text2);margin-top:4px">2-step: approve DGD tokens to refund contract, then burn for ETH. Burns ALL DGD at once.</div>`;
+            actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="digix-approve" data-key="${key}">Step 1: Approve DGD</button><button class="claim-btn" disabled style="opacity:0.35">Step 2: Claim ETH</button>`;
+            stepInfo = `<div style="font-size:11px;color:var(--text2);margin-top:4px">Burns ALL DGD at once.</div>`;
           } else {
-            actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="digix-burn" data-key="${key}">Claim ETH</button>`;
-            stepInfo = `<div style="font-size:11px;color:var(--green);margin-top:4px">DGD approved. Click to burn DGD and receive ETH. Burns ALL DGD at once.</div>`;
+            actionBtn = `<button class="claim-btn" disabled style="opacity:0.35">Step 1: Approved</button><button class="claim-btn" id="claimBtn-${key}" data-action="digix-burn" data-key="${key}">Step 2: Claim ETH</button>`;
+            stepInfo = `<div style="font-size:11px;color:var(--green);margin-top:4px">DGD approved. Burns ALL DGD at once.</div>`;
           }
           const lastTx = apiBalances[key]?.last_tx_date ? apiBalances[key] : null;
           html += `
@@ -2153,7 +2157,7 @@ async function checkUserBalances(overrideAddress) {
           const wArgs = cfg.withdrawArgs(balance, walletAddress);
           const argsDisplay = wArgs.length > 0 ? wArgs.map(a => typeof a === 'bigint' ? a.toString() + ' wei (' + ethers.formatEther(a) + ' ETH)' : String(a)).join(', ') : 'none';
           const funcSig = cfg.withdrawAbi.replace('function ', '');
-          const exitBtn = cfg.exitAbi ? `<button class="claim-btn" id="exitBtn-${key}" data-action="claim-exit" data-key="${key}" style="margin-left:6px;background:var(--text2)">Exit (sell + withdraw)</button>` : '';
+          const exitBtn = cfg.exitAbi ? `<button class="claim-btn" id="exitBtn-${key}" data-action="claim-exit" data-key="${key}" style="background:var(--text2)">Exit (sell + withdraw)</button>` : '';
           const lastTx = apiBalances[key]?.last_tx_date ? apiBalances[key] : null;
           const adoptionReqs = apiBalances[key]?.adoption_requests;
           html += `
@@ -2400,6 +2404,28 @@ async function digixApprove(key) {
   const cfg = EXCHANGES[key];
   const btn = document.getElementById('claimBtn-' + key);
   const statusEl = document.getElementById('claimStatus-' + key);
+
+  // Test mode: simulate approval
+  if (TEST_MODE) {
+    btn.disabled = true;
+    btn.textContent = 'Approving...';
+    btn.classList.add('pending');
+    await new Promise(r => setTimeout(r, 1000));
+    btn.textContent = 'Step 1: Approved';
+    btn.classList.remove('pending');
+    btn.style.opacity = '0.35';
+    const step2Btn = btn.nextElementSibling;
+    if (step2Btn) {
+      step2Btn.disabled = false;
+      step2Btn.style.opacity = '1';
+      step2Btn.id = 'claimBtn-' + key;
+      step2Btn.dataset.action = 'digix-burn';
+      step2Btn.dataset.key = key;
+    }
+    statusEl.innerHTML = '<span style="color:var(--green)">Approved. Click Step 2 to burn DGD and claim ETH.</span>';
+    return;
+  }
+
   if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
   if (!walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
 
@@ -2413,11 +2439,20 @@ async function digixApprove(key) {
     const tx = await dgdContract.approve(cfg.digixBurn.acidContract, dgdBal);
     statusEl.textContent = 'Waiting for confirmation...';
     await tx.wait();
-    btn.textContent = 'Claim ETH';
+    // Dim step 1, enable step 2
+    btn.textContent = 'Step 1: Approved';
     btn.classList.remove('pending');
-    btn.disabled = false;
-    btn.dataset.action = 'digix-burn';
-    statusEl.innerHTML = '<span style="color:var(--green)">Approved. Click to burn DGD and claim ETH.</span>';
+    btn.disabled = true;
+    btn.style.opacity = '0.35';
+    const step2Btn = btn.nextElementSibling;
+    if (step2Btn) {
+      step2Btn.disabled = false;
+      step2Btn.style.opacity = '1';
+      step2Btn.id = 'claimBtn-' + key;
+      step2Btn.dataset.action = 'digix-burn';
+      step2Btn.dataset.key = key;
+    }
+    statusEl.innerHTML = '<span style="color:var(--green)">Approved. Click Step 2 to burn DGD and claim ETH.</span>';
     window.va?.track?.('digix_approve_confirmed', { exchange: cfg.name, tx_hash: tx.hash });
   } catch (e) {
     btn.disabled = false;
@@ -2435,6 +2470,33 @@ async function digixBurn(key) {
   const cfg = EXCHANGES[key];
   const btn = document.getElementById('claimBtn-' + key);
   const statusEl = document.getElementById('claimStatus-' + key);
+
+  // Test mode: simulate burn
+  if (TEST_MODE) {
+    btn.disabled = true;
+    btn.textContent = 'Burning DGD...';
+    btn.classList.add('pending');
+    await new Promise(r => setTimeout(r, 1500));
+    const ethAmount = ethers.formatEther(userBalances[key] || 0n);
+    const claimedEthNum = parseFloat(ethAmount);
+    const fakeTxHash = '0x' + Array.from({length: 64}, () => '0123456789abcdef'[Math.floor(Math.random()*16)]).join('');
+    btn.textContent = 'Done';
+    btn.classList.remove('pending');
+    btn.style.background = 'var(--green)';
+    btn.style.opacity = '0.7';
+    const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
+    statusEl.innerHTML = `<div class="claim-recovered">
+      <div class="claim-recovered-label">Recovered</div>
+      <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div>
+      <div class="claim-recovered-tx"><a href="${etherscanTx(fakeTxHash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
+      <div style="font-size:10px;color:var(--yellow);margin-top:2px">[TEST MODE]</div>
+    </div>
+    ${renderDonationCard(claimedEthNum)}`;
+    showDonationCardDelayed();
+    userBalances[key] = 0n;
+    return;
+  }
+
   if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
   if (!walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
 
@@ -2553,9 +2615,10 @@ async function neufundWithdrawEthT(key) {
     btn.classList.remove('pending');
     btn.style.background = 'var(--green)';
     btn.style.opacity = '0.7';
+    const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
     statusEl.innerHTML = `<div class="claim-recovered">
         <div class="claim-recovered-label">Recovered</div>
-        <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH</div>
+        <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div>
         <div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
       </div>
       ${renderDonationCard(claimedEthNum)}`;
@@ -2703,9 +2766,10 @@ async function claimENSDeed(index) {
     btn.classList.remove('pending');
     btn.style.background = 'var(--green)';
     btn.style.opacity = '0.7';
+    const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
     statusEl.innerHTML = `<div class="claim-recovered">
       <div class="claim-recovered-label">Released</div>
-      <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH</div>
+      <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div>
       <div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
     </div>
     ${renderDonationCard(claimedEthNum)}`;
@@ -2779,16 +2843,22 @@ async function ensManualRelease() {
 
 // Listen for account/chain changes
 if (window.ethereum) {
-  window.ethereum.on('accountsChanged', (accounts) => {
+  window.ethereum.on('accountsChanged', async (accounts) => {
     if (accounts.length === 0) {
       walletAddress = null;
+      walletSigner = null;
+      walletProvider = null;
       document.getElementById('walletBtn').textContent = 'Connect Wallet';
       document.getElementById('walletBtn').classList.remove('connected');
       document.getElementById('walletAddr').textContent = '';
       document.getElementById('claimBanner').classList.remove('visible');
       document.getElementById('connectCta').style.display = '';
-      } else {
-      connectWallet();
+    } else if (walletProvider && walletAddress) {
+      // Already connected — just update address and re-scan
+      walletSigner = await walletProvider.getSigner();
+      walletAddress = await walletSigner.getAddress();
+      document.getElementById('walletAddr').textContent = truncAddr(walletAddress);
+      try { await checkUserBalances(); } catch(e) {}
     }
   });
   window.ethereum.on('chainChanged', () => {
@@ -3252,7 +3322,7 @@ async function checkManualAddress() {
     const usdStr = ethPrice ? fmtUsd(grandTotalEth * ethPrice) : '';
     finalHtml = '<div class="claim-hero"><div class="claim-hero-amount">' + fmtEth(grandTotalEth) + ' ETH</div>' +
       (usdStr ? '<div class="claim-hero-usd">' + usdStr + '</div>' : '') +
-      '<div class="claim-hero-contracts">' + grandFound + ' contract' + (grandFound > 1 ? 's' : '') + (isMulti ? ' across ' + resolvedAddrs.length + ' addresses' : '') + '</div></div>' +
+      '<div class="claim-hero-contracts">' + grandFound + ' contract' + (grandFound > 1 ? 's' : '') + (resolvedAddrs.length > 1 ? ' across ' + resolvedAddrs.length + ' addresses' : '') + '</div></div>' +
       '<div class="claim-rows-list">' + allHtml + '</div>' +
       '<div style="text-align:center;margin-top:16px">' +
         '<button class="wallet-btn" data-action="connect-for-manual" style="padding:8px 18px;font-size:14px">Connect Wallet to Claim</button>' +
@@ -3336,26 +3406,50 @@ async function _testCheckBalances() {
     if (balance > 0n) {
       hasBalance = true;
       const ethAmount = ethers.formatEther(balance);
-      const wArgs = cfg.withdrawArgs ? cfg.withdrawArgs(balance, walletAddress) : [];
-      const argsDisplay = wArgs.length > 0 ? wArgs.map(a => typeof a === 'bigint' ? a.toString() + ' wei (' + ethers.formatEther(a) + ' ETH)' : String(a)).join(', ') : 'none';
-      const funcSig = cfg.withdrawAbi ? cfg.withdrawAbi.replace('function ', '') : '';
-      const exitBtn2 = cfg.exitAbi ? `<button class="claim-btn" id="exitBtn-${key}" data-action="claim-exit" data-key="${key}" style="margin-left:6px;background:var(--text2)">Exit (sell + withdraw)</button>` : '';
-      html += `
-        <div class="claim-card">
-          <div class="claim-card-header">
-            <span class="claim-card-name">${esc(cfg.name)}</span>
-            <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
-          </div>
-          <div class="claim-card-meta" id="claimDetails-${key}">
-            <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
-            <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">${esc(funcSig)}${cfg.exitAbi ? ' / ' + cfg.exitAbi.replace('function ', '') : ''}</span></div>
-            <div class="claim-card-meta-row"><span class="claim-card-meta-label">Args</span><span class="claim-card-meta-value">${esc(argsDisplay)}</span></div>
-          </div>
-          <div class="claim-card-actions">
-            <button class="claim-btn" id="claimBtn-${key}" data-action="claim-eth" data-key="${key}">Withdraw</button>${exitBtn2}
-          </div>
-          <div class="claim-card-status" id="claimStatus-${key}"></div>
-        </div>`;
+
+      if (cfg.digixBurn) {
+        // 2-step: approve DGD → burn
+        window._digixState = window._digixState || {};
+        window._digixState[key] = { dgdBal: balance, dgdAllowance: 0n };
+        html += `
+          <div class="claim-card">
+            <div class="claim-card-header">
+              <span class="claim-card-name">${esc(cfg.name)}</span>
+              <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
+            </div>
+            <div class="claim-card-meta" id="claimDetails-${key}">
+              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.digixBurn.acidContract)}" target="_blank" rel="noopener noreferrer">${cfg.digixBurn.acidContract}</a></span></div>
+              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value">Approve DGD tokens to the Acid refund contract</span></div>
+              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value">burn() — burns all DGD, returns ETH at 0.193 ETH/DGD</span></div>
+            </div>
+            <div style="font-size:11px;color:var(--text2);margin:4px 16px 0">Burns ALL DGD at once.</div>
+            <div class="claim-card-actions">
+              <button class="claim-btn" id="claimBtn-${key}" data-action="digix-approve" data-key="${key}">Step 1: Approve DGD</button><button class="claim-btn" disabled style="opacity:0.35">Step 2: Claim ETH</button>
+            </div>
+            <div class="claim-card-status" id="claimStatus-${key}"></div>
+          </div>`;
+      } else {
+        const wArgs = cfg.withdrawArgs ? cfg.withdrawArgs(balance, walletAddress) : [];
+        const argsDisplay = wArgs.length > 0 ? wArgs.map(a => typeof a === 'bigint' ? a.toString() + ' wei (' + ethers.formatEther(a) + ' ETH)' : String(a)).join(', ') : 'none';
+        const funcSig = cfg.withdrawAbi ? cfg.withdrawAbi.replace('function ', '') : '';
+        const exitBtn2 = cfg.exitAbi ? `<button class="claim-btn" id="exitBtn-${key}" data-action="claim-exit" data-key="${key}" style="background:var(--text2)">Exit (sell + withdraw)</button>` : '';
+        html += `
+          <div class="claim-card">
+            <div class="claim-card-header">
+              <span class="claim-card-name">${esc(cfg.name)}</span>
+              <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
+            </div>
+            <div class="claim-card-meta" id="claimDetails-${key}">
+              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
+              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">${esc(funcSig)}${cfg.exitAbi ? ' / ' + cfg.exitAbi.replace('function ', '') : ''}</span></div>
+              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Args</span><span class="claim-card-meta-value">${esc(argsDisplay)}</span></div>
+            </div>
+            <div class="claim-card-actions">
+              <button class="claim-btn" id="claimBtn-${key}" data-action="claim-eth" data-key="${key}">Withdraw</button>${exitBtn2}
+            </div>
+            <div class="claim-card-status" id="claimStatus-${key}"></div>
+          </div>`;
+      }
     }
   }
 
@@ -3459,8 +3553,10 @@ async function _testCheckManualAddress(input) {
       const totalEthVal = Math.round(totalData.total_eth);
       const contractCount = totalData.contract_count || Object.keys(EXCHANGES).length;
       // Counting animation for hero numbers
+      const addressCount = totalData.address_count || 0;
       animateCount('totalAllEth', totalEthVal, '.hero-eth-value');
       animateCount('totalContracts', contractCount);
+      if (addressCount) animateCount('totalAddresses', addressCount);
       getEthPrice(); // preload price for claim flow
     }
   } catch(e) {}
@@ -3584,6 +3680,27 @@ document.getElementById('footerDonationAddr')?.addEventListener('click', functio
   });
 });
 
+// Custom donation amount input handler
+document.getElementById('claimBanner').addEventListener('input', function(e) {
+  if (e.target.id === 'donationAmt') {
+    var val = parseFloat(e.target.value) || 0;
+    var usdEl = document.getElementById('donationUsd');
+    if (usdEl && _ethPrice) usdEl.textContent = val > 0 ? '(' + fmtUsd(val * _ethPrice) + ')' : '';
+    var card = e.target.closest('.donation-card');
+    var confirmBtn = card && card.querySelector('.donation-confirm-btn');
+    if (confirmBtn) {
+      var label = 'Donate ' + val.toFixed(2) + ' ETH';
+      if (_ethPrice && val > 0) label += ' (' + fmtUsd(val * _ethPrice) + ')';
+      confirmBtn.textContent = label;
+      confirmBtn.dataset.label = label;
+      confirmBtn.dataset.amt = val.toFixed(4);
+    }
+    // Deselect pills when custom amount is typed
+    var pills = card && card.querySelectorAll('.donation-pct-btn');
+    if (pills) pills.forEach(function(p) { p.classList.remove('active'); });
+  }
+});
+
 // Event delegation on claim banner for all dynamically generated buttons
 document.getElementById('claimBanner').addEventListener('click', function(e) {
   var btn = e.target.closest('[data-action]');
@@ -3611,25 +3728,26 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
   } else if (action === 'ens-manual-release') {
     ensManualRelease();
   } else if (action === 'donate-confirm') {
-    var amt = btn.dataset.amt;
-    if (!amt) {
-      var card = btn.closest('.donation-card');
-      var claimEth = card ? parseFloat(card.dataset.claimEth) || _lastClaimEth : _lastClaimEth;
-      amt = (claimEth * 5 / 100).toFixed(4);
-    }
-    var val = parseFloat(amt);
+    var input = document.getElementById('donationAmt');
+    var val = input ? parseFloat(input.value) : parseFloat(btn.dataset.amt || '0');
     if (!val || val <= 0) return;
     sendDonation(ethers.parseEther(val.toFixed(6)));
   } else if (action === 'donation-pct') {
     var pct = parseInt(btn.dataset.pct);
     var card = btn.closest('.donation-card');
     var claimEth = card ? parseFloat(card.dataset.claimEth) || _lastClaimEth : _lastClaimEth;
-    var amt = (claimEth * pct / 100).toFixed(4);
+    var amt = (claimEth * pct / 100).toFixed(2);
     // Toggle active pill
     btn.closest('.donation-pct-row')?.querySelectorAll('.donation-pct-btn').forEach(function(b) {
       b.classList.remove('active');
     });
     btn.classList.add('active');
+    // Update input
+    var input = document.getElementById('donationAmt');
+    if (input) input.value = amt;
+    // Update USD
+    var usdEl = document.getElementById('donationUsd');
+    if (usdEl && _ethPrice) usdEl.textContent = '(' + fmtUsd(parseFloat(amt) * _ethPrice) + ')';
     // Update the confirm button label
     var confirmBtn = card && card.querySelector('.donation-confirm-btn');
     if (confirmBtn) {
