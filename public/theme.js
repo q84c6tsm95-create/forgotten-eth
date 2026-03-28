@@ -2,7 +2,7 @@
   var toggle = document.getElementById('themeToggle');
   var html = document.documentElement;
   var saved = localStorage.getItem('theme');
-  var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var dark = saved ? saved === 'dark' : true;
   if (dark) html.setAttribute('data-theme', 'dark');
   function setToggleLabel(isDark) { toggle.innerHTML = isDark ? '<span style="font-size:18px">&#9728;</span> Light' : '<span style="font-size:18px">&#9789;</span> Dark'; }
   setToggleLabel(dark);

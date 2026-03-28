@@ -1,0 +1,777 @@
+[
+  {
+    "key": "idex",
+    "name": "IDEX v1",
+    "contract": "0x2a0c0DBEcC7E4D658f48E01e3fA353F44050c208",
+    "category": "dex",
+    "balance_file": "idex_eth_balances.json"
+  },
+  {
+    "key": "etherdelta",
+    "name": "EtherDelta v2",
+    "contract": "0x8d12A197cB00D4747a1fe03395095ce2A5CC6819",
+    "category": "dex",
+    "balance_file": "etherdelta_eth_balances.json"
+  },
+  {
+    "key": "tokenstore",
+    "name": "Token.Store",
+    "contract": "0x1ce7ae555139c5ef5a57cc8d814a867ee6ee33d8",
+    "category": "dex",
+    "balance_file": "tokenstore_eth_balances.json"
+  },
+  {
+    "key": "etherdelta_m1",
+    "name": "EtherDelta v1",
+    "contract": "0x373c55c277b866a69dc047cad488154ab9759466",
+    "category": "dex",
+    "balance_file": "etherdelta_m1_eth_balances.json"
+  },
+  {
+    "key": "singularx",
+    "name": "SingularX",
+    "contract": "0x9a2d163ab40f88c625fd475e807bbc3556566f80",
+    "category": "dex",
+    "balance_file": "singularx_eth_balances.json"
+  },
+  {
+    "key": "enclaves",
+    "name": "Unknown DEX",
+    "contract": "0x4d55f76ce2dbbae7b48661bef9bd144ce0c9091b",
+    "category": "dex",
+    "balance_file": "unknown_dex_eth_balances.json"
+  },
+  {
+    "key": "decentrex",
+    "name": "Decentrex",
+    "contract": "0xbf29685856fae1e228878dfb35b280c0adcc3b05",
+    "category": "dex",
+    "balance_file": "decentrex_eth_balances.json"
+  },
+  {
+    "key": "joyso",
+    "name": "Joyso",
+    "contract": "0x04f062809b244e37e7fdc21d9409469c989c2342",
+    "category": "dex",
+    "balance_file": "joyso_eth_balances.json"
+  },
+  {
+    "key": "ethen",
+    "name": "ETHEN",
+    "contract": "0xf4c27b8b002389864ac214cb13bfeef4cc5c4e8d",
+    "category": "dex",
+    "balance_file": "ethen_eth_balances.json"
+  },
+  {
+    "key": "bitcratic",
+    "name": "Bitcratic",
+    "contract": "0x3c020e014069df790d4f4e63fd297ba4e1c8e51f",
+    "category": "dex",
+    "balance_file": "bitcratic_eth_balances.json"
+  },
+  {
+    "key": "etherc",
+    "name": "EtherC",
+    "contract": "0xd8d48e52f39ab2d169c8b562c53589e6c71ac4d3",
+    "category": "dex",
+    "balance_file": "etherc_eth_balances.json"
+  },
+  {
+    "key": "enclavesdex",
+    "name": "EnclavesDex",
+    "contract": "0xbf45f4280cfbe7c2d2515a7d984b8c71c15e82b7",
+    "category": "dex",
+    "balance_file": "enclavesdex_eth_balances.json"
+  },
+  {
+    "key": "ens_old",
+    "name": "ENS Old Registrar",
+    "contract": "0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef",
+    "category": "dex",
+    "balance_file": "ens_old_eth_balances.json"
+  },
+  {
+    "key": "confideal",
+    "name": "Confideal",
+    "contract": "0x22a97c80d7e0a9ae616737e3b8b531248f4ef91d",
+    "category": "dex",
+    "balance_file": "confideal_eth_balances.json"
+  },
+  {
+    "key": "dada",
+    "name": "DADA Collectible",
+    "contract": "0x068696a3cf3c4676b65f1c9975dd094260109d02",
+    "category": "nft",
+    "balance_file": "dada_eth_balances.json"
+  },
+  {
+    "key": "mooncatrescue",
+    "name": "MoonCatRescue",
+    "contract": "0x60cd862c9c687a9de49aecdc3a99b74a4fc54ab6",
+    "category": "nft",
+    "balance_file": "mooncatrescue_eth_balances.json"
+  },
+  {
+    "key": "fomo3d_long",
+    "name": "Fomo3D Long",
+    "contract": "0xA62142888ABa8370742bE823c1782D17A0389Da1",
+    "category": "gambling",
+    "balance_file": "fomo3d_long_eth_balances.json"
+  },
+  {
+    "key": "fomo3d_quick",
+    "name": "Fomo3D Quick",
+    "contract": "0x4e8ecf79ade5e2c49b9e30d795517a81e0bf00b8",
+    "category": "gambling",
+    "balance_file": "fomo3d_quick_eth_balances.json"
+  },
+  {
+    "key": "fomo3d_short",
+    "name": "Fomo3D Short",
+    "contract": "0x52083b1a21a5abc422b1b0bce5c43ca86ef74cd1",
+    "category": "gambling",
+    "balance_file": "fomo3d_short_eth_balances.json"
+  },
+  {
+    "key": "etherdelta_m0",
+    "name": "EtherDelta v0",
+    "contract": "0x4aea7cf559f67cedcad07e12ae6bc00f07e8cf65",
+    "category": "dex",
+    "balance_file": "etherdelta_m0_eth_balances.json"
+  },
+  {
+    "key": "neufund",
+    "name": "Neufund EtherToken",
+    "contract": "0xb59a226a2b8a2f2b0512baa35cc348b6b213b671",
+    "category": "ico",
+    "balance_file": "neufund_eth_balances.json"
+  },
+  {
+    "key": "neufund_locked",
+    "name": "Neufund",
+    "contract": "0xb1E4675f0dBE360bA90447A7e58c62C762Ad62D4",
+    "category": "ico",
+    "balance_file": "neufund_locked_eth_balances.json"
+  },
+  {
+    "key": "bancor_eth",
+    "name": "Bancor Old ETH Token",
+    "contract": "0xD76b5c2A23ef78368d8E34288B5b65D616B746aE",
+    "category": "ico",
+    "balance_file": "bancor_eth_eth_balances.json"
+  },
+  {
+    "key": "switchdex",
+    "name": "SwitchDex",
+    "contract": "0xc3c12a9e63e466a3ba99e07f3ef1f38b8b81ae1b",
+    "category": "dex",
+    "balance_file": "switchdex_eth_balances.json"
+  },
+  {
+    "key": "coinchangex",
+    "name": "Coinchangex",
+    "contract": "0x2f23228b905ceb4734eb42d9b42805296667c93b",
+    "category": "dex",
+    "balance_file": "coinchangex_eth_balances.json"
+  },
+  {
+    "key": "swisscryptoexchange",
+    "name": "SwissCryptoExchange",
+    "contract": "0xbeeb655808e3bdb83b6998f09dfe1e0f2c66a9be",
+    "category": "dex",
+    "balance_file": "swisscryptoexchange_eth_balances.json"
+  },
+  {
+    "key": "lscx",
+    "name": "LSCX",
+    "contract": "0x3da70c70b9574ff185b31d70878a8e3094603c4c",
+    "category": "dex",
+    "balance_file": "lscx_eth_balances.json"
+  },
+  {
+    "key": "bitcratic_v1",
+    "name": "Bitcratic v1",
+    "contract": "0x232ba9f3b3643ab28d28ed7ee18600708d60e5fe",
+    "category": "dex",
+    "balance_file": "bitcratic_v1_eth_balances.json"
+  },
+  {
+    "key": "marketplace",
+    "name": "MarketPlace",
+    "contract": "0x2f13fa06c0efd2a5c4cf2175a0467084672e648b",
+    "category": "dex",
+    "balance_file": "marketplace_eth_balances.json"
+  },
+  {
+    "key": "bitox",
+    "name": "Bitox",
+    "contract": "0xb5adb233f28c86cef693451b67e1f2d41da97d21",
+    "category": "dex",
+    "balance_file": "bitox_eth_balances.json"
+  },
+  {
+    "key": "ed_fork_6_9eth",
+    "name": "ED Fork (0xc513)",
+    "contract": "0xc5138d4bd0ec5c51b6b6bdfcb8528ad9c333af97",
+    "category": "dex",
+    "balance_file": "ed_fork_6_9eth_eth_balances.json"
+  },
+  {
+    "key": "ethernext",
+    "name": "Ethernext",
+    "contract": "0x499197314f9903a1ba9bed7ee54cd9eee5900e49",
+    "category": "dex",
+    "balance_file": "ethernext_eth_balances.json"
+  },
+  {
+    "key": "seeddex_v2",
+    "name": "SeedDex v2",
+    "contract": "0xd4cc0cda97ec567235b7019c655ec75cd361f712",
+    "category": "dex",
+    "balance_file": "seeddex_v2_eth_balances.json"
+  },
+  {
+    "key": "seeddex_v3",
+    "name": "SeedDex v3",
+    "contract": "0xcf25ebd54120cf2e4137fab0a91a7f7403a5debf",
+    "category": "dex",
+    "balance_file": "seeddex_v3_eth_balances.json"
+  },
+  {
+    "key": "polarisdex",
+    "name": "PolarisDEX",
+    "contract": "0x25066b77ae6174d372a9fe2b1d7886a2be150e9b",
+    "category": "dex",
+    "balance_file": "polarisdex_eth_balances.json"
+  },
+  {
+    "key": "ethmall",
+    "name": "Ethmall",
+    "contract": "0x2b44d68555899dbc1ab0892e7330476183dbc932",
+    "category": "dex",
+    "balance_file": "ethmall_eth_balances.json"
+  },
+  {
+    "key": "extoke",
+    "name": "ExToke",
+    "contract": "0x97c9e0eccc27efef7330e89a8c9414623ba2ee0f",
+    "category": "dex",
+    "balance_file": "extoke_eth_balances.json"
+  },
+  {
+    "key": "algodex",
+    "name": "AlgoDEX",
+    "contract": "0x4bc78f6619991b029b867b6d88d39c196332aba3",
+    "category": "dex",
+    "balance_file": "algodex_eth_balances.json"
+  },
+  {
+    "key": "ndex",
+    "name": "nDEx",
+    "contract": "0x51a2b1a38ec83b56009d5e28e6222dbb56c23c22",
+    "category": "dex",
+    "balance_file": "ndex_eth_balances.json"
+  },
+  {
+    "key": "edex",
+    "name": "EDex",
+    "contract": "0x4fbcfa90ac5a1f7f70b7ecc6dc1589bbe6904b02",
+    "category": "dex",
+    "balance_file": "edex_eth_balances.json"
+  },
+  {
+    "key": "tradexone",
+    "name": "TradexOne",
+    "contract": "0xf61a285edf078536a410a5fbc28013f9660e54a8",
+    "category": "dex",
+    "balance_file": "tradexone_eth_balances.json"
+  },
+  {
+    "key": "afrodex",
+    "name": "Afrodex",
+    "contract": "0xe8fff15bb5e14095bfdfa8bb85d83cc900c23c56",
+    "category": "dex",
+    "balance_file": "afrodex_eth_balances.json"
+  },
+  {
+    "key": "readyplayerone",
+    "name": "ReadyPlayerONE",
+    "contract": "0x6db943251e4126f913e9733821031791e75df713",
+    "category": "gambling",
+    "balance_file": "readyplayerone_eth_balances.json"
+  },
+  {
+    "key": "fomo3d_lightning",
+    "name": "FoMo3D Lightning",
+    "contract": "0x24da016c06941ec2c92be28e0a2b2e679f0d1dc7",
+    "category": "gambling",
+    "balance_file": "fomo3d_lightning_eth_balances.json"
+  },
+  {
+    "key": "etherdelta_v3",
+    "name": "Etheropt Old",
+    "contract": "0xc6b330df38d6ef288c953f1f2835723531073ce2",
+    "category": "dex",
+    "balance_file": "etherdelta_v3_eth_balances.json"
+  },
+  {
+    "key": "gandhiji",
+    "name": "GandhiJi",
+    "contract": "0x167cB3F2446F829eb327344b66E271D1a7eFeC9A",
+    "category": "gambling",
+    "balance_file": "gandhiji_eth_balances.json"
+  },
+  {
+    "key": "zethr",
+    "name": "Zethr",
+    "contract": "0xd48b633045af65ff636f3c6edd744748351e020d",
+    "category": "gambling",
+    "balance_file": "zethr_eth_balances.json"
+  },
+  {
+    "key": "zethr_main",
+    "name": "Zethr Casino",
+    "contract": "0xb9ab8eed48852de901c13543042204c6c569b811",
+    "category": "gambling",
+    "balance_file": "zethr_main_eth_balances.json"
+  },
+  {
+    "key": "ethpyramid",
+    "name": "EthPyramid",
+    "contract": "0x2fa0ac498d01632f959d3c18e38f4390b005e200",
+    "category": "gambling",
+    "balance_file": "ethpyramid_eth_balances.json"
+  },
+  {
+    "key": "fomogame",
+    "name": "FoMoGame",
+    "contract": "0x86D179c28cCeb120Cd3f64930Cf1820a88B77D60",
+    "category": "gambling",
+    "balance_file": "fomogame_eth_balances.json"
+  },
+  {
+    "key": "powh3d",
+    "name": "PoWH3D",
+    "contract": "0xB3775fB83F7D12A36E0475aBdD1FCA35c091efBe",
+    "category": "gambling",
+    "balance_file": "powh3d_eth_balances.json"
+  },
+  {
+    "key": "powm",
+    "name": "POWM",
+    "contract": "0xa146240bf2c04005a743032dc0d241ec0bb2ba2b",
+    "category": "gambling",
+    "balance_file": "powm_eth_balances.json"
+  },
+  {
+    "key": "pooh",
+    "name": "POOH",
+    "contract": "0x4c29d75cc423e8adaa3839892feb66977e295829",
+    "category": "gambling",
+    "balance_file": "pooh_eth_balances.json"
+  },
+  {
+    "key": "powtf",
+    "name": "PoWTF",
+    "contract": "0x702392282255f8c0993dbbbb148d80d2ef6795b1",
+    "category": "gambling",
+    "balance_file": "powtf_eth_balances.json"
+  },
+  {
+    "key": "powh_clone1",
+    "name": "Hourglass Clone A",
+    "contract": "0xe1c9a03cf690256ff7738cbd508c88cf5238a535",
+    "category": "gambling",
+    "balance_file": "powh_clone1_eth_balances.json"
+  },
+  {
+    "key": "powh_clone2",
+    "name": "Hourglass Clone B",
+    "contract": "0x34ba9c7402e1df11709c7983008b5a49d59e963f",
+    "category": "gambling",
+    "balance_file": "powh_clone2_eth_balances.json"
+  },
+  {
+    "key": "lockedin",
+    "name": "LOCKEDiN",
+    "contract": "0xdb4837c9d84315abcde80a865f15178f86db3966",
+    "category": "gambling",
+    "balance_file": "lockedin_eth_balances.json"
+  },
+  {
+    "key": "stronghold",
+    "name": "StrongHold",
+    "contract": "0x7e7e645e9121dddaf87d0434feb9f113d1dbbb41",
+    "category": "gambling",
+    "balance_file": "stronghold_eth_balances.json"
+  },
+  {
+    "key": "powh_clone3",
+    "name": "Hourglass Clone C",
+    "contract": "0x7b6c511a94d35b9cf9979b727335c9798edb5c64",
+    "category": "gambling",
+    "balance_file": "powh_clone3_eth_balances.json"
+  },
+  {
+    "key": "powh_clone4",
+    "name": "Hourglass Clone D",
+    "contract": "0xf5aa54d121dfe0d5eeb37c83aed42238f4f2c5c6",
+    "category": "gambling",
+    "balance_file": "powh_clone4_eth_balances.json"
+  },
+  {
+    "key": "unkoin",
+    "name": "UnKoin",
+    "contract": "0x5bedf488d29407bc08e77cd9ee292c2041a61c8c",
+    "category": "gambling",
+    "balance_file": "unkoin_eth_balances.json"
+  },
+  {
+    "key": "acedapp",
+    "name": "AceDapp",
+    "contract": "0xe65f525ec48c7e95654b9824ecc358454ea9185e",
+    "category": "gambling",
+    "balance_file": "acedapp_eth_balances.json"
+  },
+  {
+    "key": "cryptominertoken",
+    "name": "CryptoMinerToken",
+    "contract": "0x0a97094c19295e320d5121d72139a150021a2702",
+    "category": "gambling",
+    "balance_file": "cryptominertoken_eth_balances.json"
+  },
+  {
+    "key": "bluechip",
+    "name": "BlueChip",
+    "contract": "0xabefec93451a2cd5d864ff7b0b1604dfc60e9688",
+    "category": "gambling",
+    "balance_file": "bluechip_eth_balances.json"
+  },
+  {
+    "key": "rev1",
+    "name": "REV1",
+    "contract": "0x05215fce25902366480696f38c3093e31dbce69a",
+    "category": "gambling",
+    "balance_file": "rev1_eth_balances.json"
+  },
+  {
+    "key": "potj",
+    "name": "POTJ",
+    "contract": "0xc28e860c9132d55a184f9af53fc85e90aa3a0153",
+    "category": "gambling",
+    "balance_file": "potj_eth_balances.json"
+  },
+  {
+    "key": "lynia",
+    "name": "LYNIA",
+    "contract": "0xecfae6f958f7ab15bdf171eeefa568e41eabf641",
+    "category": "gambling",
+    "balance_file": "lynia_eth_balances.json"
+  },
+  {
+    "key": "blackgold",
+    "name": "BlackGoldEthereum",
+    "contract": "0xf72b0b36723f60402cccad7f4358acf2ad474c17",
+    "category": "gambling",
+    "balance_file": "blackgold_eth_balances.json"
+  },
+  {
+    "key": "proofofcraiggrant",
+    "name": "ProofOfCraigGrant",
+    "contract": "0xea61319f55b6543962fe1d7bd990ef74849fc54f",
+    "category": "gambling",
+    "balance_file": "proofofcraiggrant_eth_balances.json"
+  },
+  {
+    "key": "sportcrypt",
+    "name": "SportCrypt",
+    "contract": "0x37304b0ab297f13f5520c523102797121182fb5b",
+    "category": "gambling",
+    "balance_file": "sportcrypt_eth_balances.json"
+  },
+  {
+    "key": "dailydivs",
+    "name": "DailyDivs",
+    "contract": "0xd2bfceeab8ffa24cdf94faa2683df63df4bcbdc8",
+    "category": "gambling",
+    "balance_file": "dailydivs_eth_balances.json"
+  },
+  {
+    "key": "proofofcommunity",
+    "name": "ProofOfCommunity",
+    "contract": "0x1739e311ddbf1efdfbc39b74526fd8b600755ada",
+    "category": "gambling",
+    "balance_file": "proofofcommunity_eth_balances.json"
+  },
+  {
+    "key": "bitconnect_powh",
+    "name": "BitConnect Token",
+    "contract": "0xfcd3a0f5f416e407647a7518b90354946d316059",
+    "category": "gambling",
+    "balance_file": "bitconnect_powh_eth_balances.json"
+  },
+  {
+    "key": "eightherbank",
+    "name": "Eightherbank",
+    "contract": "0xc6e5e9c6f4f3d1667df6086e91637cc7c64a13eb",
+    "category": "gambling",
+    "balance_file": "eightherbank_eth_balances.json"
+  },
+  {
+    "key": "nexgen",
+    "name": "Nexgen",
+    "contract": "0xffd31e68bf7af89df862435a138615bd60abf574",
+    "category": "gambling",
+    "balance_file": "nexgen_eth_balances.json"
+  },
+  {
+    "key": "diamonddividend",
+    "name": "DiamondDividend",
+    "contract": "0x84cc06eddb26575a7f0afd7ec2e3e98d31321397",
+    "category": "gambling",
+    "balance_file": "diamonddividend_eth_balances.json"
+  },
+  {
+    "key": "e25",
+    "name": "E25 Booster",
+    "contract": "0xc3ad35d351b33783f27777e2ee1a4b6f96e4ee34",
+    "category": "gambling",
+    "balance_file": "e25_eth_balances.json"
+  },
+  {
+    "key": "bitconnect2",
+    "name": "BitConnect v2",
+    "contract": "0x568a693e1094b1e51e8053b2fc642da7161603f5",
+    "category": "gambling",
+    "balance_file": "bitconnect2_eth_balances.json"
+  },
+  {
+    "key": "ethplatinum",
+    "name": "ETHPlatinum",
+    "contract": "0x510f9a9642ac14ded91629a1aad552be4b24b5f0",
+    "category": "gambling",
+    "balance_file": "ethplatinum_eth_balances.json"
+  },
+  {
+    "key": "divsnetwork",
+    "name": "DivsNetwork",
+    "contract": "0x26e6c899b5a5dc1d4874d828fda515a7eb7baf00",
+    "category": "gambling",
+    "balance_file": "divsnetwork_eth_balances.json"
+  },
+  {
+    "key": "ethercenter",
+    "name": "EtherCenter",
+    "contract": "0x0e7c28fb8ed4f5f63aabd022deaeeba40ecc335c",
+    "category": "gambling",
+    "balance_file": "ethercenter_eth_balances.json"
+  },
+  {
+    "key": "redchip",
+    "name": "RedChip",
+    "contract": "0xcd2de0bd5347f617f832442ebcc1c23a4d618847",
+    "category": "gambling",
+    "balance_file": "redchip_eth_balances.json"
+  },
+  {
+    "key": "cxxmain",
+    "name": "CxxMain",
+    "contract": "0xa4dce3845cb88a6fca0291d4eca9e5a96e75e2b4",
+    "category": "gambling",
+    "balance_file": "cxxmain_eth_balances.json"
+  },
+  {
+    "key": "familyonly",
+    "name": "FamilyOnlyToken",
+    "contract": "0xbedde30d3532165843f07b1b0e3e90fddbb75918",
+    "category": "gambling",
+    "balance_file": "familyonly_eth_balances.json"
+  },
+  {
+    "key": "spw",
+    "name": "SPW",
+    "contract": "0x586f3d9e3524eb02448691b158fdcf5ffc2c57b0",
+    "category": "gambling",
+    "balance_file": "spw_eth_balances.json"
+  },
+  {
+    "key": "ethdiamond",
+    "name": "ETHDIAMOND",
+    "contract": "0xca1cc76be1f5e5ee492859d8463653cb231991bc",
+    "category": "gambling",
+    "balance_file": "ethdiamond_eth_balances.json"
+  },
+  {
+    "key": "ethershares",
+    "name": "Ethershares",
+    "contract": "0x2c984ec9bb20b33deb84fbeedf20effda481fdc4",
+    "category": "gambling",
+    "balance_file": "ethershares_eth_balances.json"
+  },
+  {
+    "key": "twelvehour",
+    "name": "TwelveHourToken",
+    "contract": "0x8f6015289a64c48ccf258c21a999809fc553c3c4",
+    "category": "gambling",
+    "balance_file": "twelvehour_eth_balances.json"
+  },
+  {
+    "key": "neutrino81",
+    "name": "Neutrino81",
+    "contract": "0x897d6c6772b85bf25b46c6f6da454133478ea6ab",
+    "category": "gambling",
+    "balance_file": "neutrino81_eth_balances.json"
+  },
+  {
+    "key": "hourglassx",
+    "name": "HourglassX",
+    "contract": "0x058a144951e062fc14f310057d2fd9ef0cf5095b",
+    "category": "gambling",
+    "balance_file": "hourglassx_eth_balances.json"
+  },
+  {
+    "key": "fairexchange",
+    "name": "FairExchange",
+    "contract": "0xde2b11b71ad892ac3e47ce99d107788d65fe764e",
+    "category": "gambling",
+    "balance_file": "fairexchange_eth_balances.json"
+  },
+  {
+    "key": "pomda",
+    "name": "POMDA",
+    "contract": "0x0be5e8f107279cc2d9c3a537ed4ea669b45e443d",
+    "category": "gambling",
+    "balance_file": "pomda_eth_balances.json"
+  },
+  {
+    "key": "decentether",
+    "name": "DecentEther",
+    "contract": "0x7d2d58d7add0b2d6e06fa85590b60da7741c18c9",
+    "category": "gambling",
+    "balance_file": "decentether_eth_balances.json"
+  },
+  {
+    "key": "bitconnect3",
+    "name": "BitConnect v3",
+    "contract": "0x38e219ee67a5e1536c5a89fec2da0d69c254cac4",
+    "category": "gambling",
+    "balance_file": "bitconnect3_eth_balances.json"
+  },
+  {
+    "key": "furious",
+    "name": "Furious",
+    "contract": "0xb0c4382d4355cdfe94a132fadf92a509b1e25939",
+    "category": "gambling",
+    "balance_file": "furious_eth_balances.json"
+  },
+  {
+    "key": "etherdiamond",
+    "name": "EtherDiamond",
+    "contract": "0x4af078e47490c0e761a3de260952d9eb4a6ad693",
+    "category": "gambling",
+    "balance_file": "etherdiamond_eth_balances.json"
+  },
+  {
+    "key": "powh_clone5",
+    "name": "Hourglass Clone E",
+    "contract": "0x12528042299e0fca4d44ae4f42359319b8901fa2",
+    "category": "gambling",
+    "balance_file": "powh_clone5_eth_balances.json"
+  },
+  {
+    "key": "cryptosurge",
+    "name": "CryptoSurge",
+    "contract": "0x11e165dd03c63771004f929d58b75e4aaf2d1a23",
+    "category": "gambling",
+    "balance_file": "cryptosurge_eth_balances.json"
+  },
+  {
+    "key": "hourglass_clone6",
+    "name": "Hourglass Clone F",
+    "contract": "0x77b541f90ecfa09f854209eefeca24c295050e2e",
+    "category": "gambling",
+    "balance_file": "hourglass_clone6_eth_balances.json"
+  },
+  {
+    "key": "upower",
+    "name": "UPower",
+    "contract": "0x5044ac8da9601edf970dcc91a10c5f41c5c548c0",
+    "category": "gambling",
+    "balance_file": "upower_eth_balances.json"
+  },
+  {
+    "key": "hourglass_clone7",
+    "name": "Hourglass Clone G",
+    "contract": "0xaa4ec8484e89bed69570825688789589d38eea5e",
+    "category": "gambling",
+    "balance_file": "hourglass_clone7_eth_balances.json"
+  },
+  {
+    "key": "redchip2",
+    "name": "RedChip v2",
+    "contract": "0xae384c6e68f5d697d65ed43fd53ef5ea3288f536",
+    "category": "gambling",
+    "balance_file": "redchip2_eth_balances.json"
+  },
+  {
+    "key": "omnidex",
+    "name": "OmniDex",
+    "contract": "0x433e631ac0c03e49ca034dbf5543964c80c6b391",
+    "category": "gambling",
+    "balance_file": "omnidex_eth_balances.json"
+  },
+  {
+    "key": "spw2",
+    "name": "SPW v2",
+    "contract": "0xd446a13f9b9f8bcbc3ded73764d08735561b1638",
+    "category": "gambling",
+    "balance_file": "spw2_eth_balances.json"
+  },
+  {
+    "key": "bounties",
+    "name": "Bounties Network",
+    "contract": "0x2af47a65da8cd66729b4209c22017d6a5c2d2400",
+    "category": "other",
+    "balance_file": "bounties_eth_balances.json"
+  },
+  {
+    "key": "ageofdinos",
+    "name": "Age of Dinos",
+    "contract": "0x19C10FFF96B80208F454034C046CCC4445CD20BA",
+    "category": "nft",
+    "balance_file": "ageofdinos_eth_balances.json"
+  },
+  {
+    "key": "personabid",
+    "name": "PersonaBid",
+    "contract": "0xDE5D4949F445650325C7C8739610C3A979C7A6DB",
+    "category": "nft",
+    "balance_file": "personabid_eth_balances.json"
+  },
+  {
+    "key": "maker_weth",
+    "name": "Maker W-ETH",
+    "contract": "0x2956356cd2a2bf3202f771f50d3d14a367b48070",
+    "category": "ico",
+    "balance_file": "maker_weth_eth_balances.json"
+  },
+  {
+    "key": "lastwinner",
+    "balance_file": "lastwinner_eth_balances.json",
+    "contract": "0xDd9fd6b6F8f7ea932997992bbE67EabB3e316f3C"
+  },
+  {
+    "key": "digixdao",
+    "name": "DigixDAO",
+    "contract": "0xe0b7927c4af23765cb51314a0e0521a9645f0e2a",
+    "category": "ico",
+    "balance_file": "digixdao_eth_balances.json"
+  },
+  {
+    "key": "p4d",
+    "name": "P4D",
+    "contract": "0x96a4ed03206667017777f010dea4445823acb0fc",
+    "category": "gambling",
+    "balance_file": "p4d_eth_balances.json"
+  }
+]

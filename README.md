@@ -1,34 +1,46 @@
 # Forgotten ETH
 
-**[forgotteneth.com](https://forgotteneth.com)** — Recover ETH stuck in old smart contracts.
+Find and recover ETH stuck in defunct smart contracts on Ethereum.
 
-60,000+ ETH sits unclaimed across 110+ defunct contracts (old DEXes, ICO escrows, ENS deeds, dividend tokens). Portfolio trackers don't detect these balances.
+**[forgotten-eth.vercel.app](https://forgotten-eth.vercel.app)**
 
-## Source Code
+## What is this?
 
-This repository contains the full frontend and API source code for transparency and auditability. The live site is deployed from a private repository that also includes balance data and address indexes.
+Thousands of ETH sit forgotten in old DEXes, NFT marketplaces, ENS auctions, and ICO contracts that shut down years ago. Portfolio trackers like DeBank, Zerion, and Zapper don't index these balances. The ETH is still onchain — it just doesn't show up.
 
-**What's here:**
-- `public/` — Frontend (HTML, JS, CSS, assets)
-- `api/` — Vercel serverless functions
-- `vercel.json` — Routing and security headers
-- `data/protocol_info.json` — Protocol metadata
+This tool checks 110 defunct contracts for unclaimed balances and facilitates withdrawals directly to the user's wallet.
 
-**What's NOT here (private):**
-- Balance data and address indexes (user privacy)
-- Refresh scripts and data pipeline
-- Deployment configuration
+## How it works
 
-## Verify the Code
+1. Paste any Ethereum address or connect a wallet
+2. 110 defunct contracts are checked for unclaimed balances
+3. If found, click Withdraw — the transaction goes directly from the original contract to the wallet
 
-Every withdrawal transaction is crafted client-side and sent directly to the original smart contract. No proxy contracts, no backend involvement. You can verify:
+No custody of funds at any point. Every withdrawal can also be done manually on Etherscan.
 
-1. **Contract addresses** — all shown in the UI and verifiable on Etherscan
-2. **Withdrawal functions** — standard `withdraw()`, `releaseDeed()`, etc. on verified contracts
-3. **Keystore handling** — decryption happens entirely in your browser ([see the code](https://github.com/q84c6tsm95-create/forgotten-eth/blob/main/public/app.js#L123-L190))
-4. **No exfiltration** — CSP blocks all unauthorized network requests
+## Contracts tracked
 
-Report vulnerabilities via [GitHub Security Advisories](https://github.com/q84c6tsm95-create/forgotten-eth/security/advisories/new).
+- **Defunct DEXes** — EtherDelta (v0/v1/v2/v3), IDEX v1, Token.Store, SingularX, Joyso, ETHEN, Decentrex, Bitcratic, and 30+ forks
+- **Dividend tokens** — PoWH3D and 30+ clones (CryptoMinerToken, DailyDivs, GandhiJi, Zethr, etc.)
+- **Fomo3D family** — Fomo3D Long/Quick/Short, FoMoGame, ReadyPlayerONE, Lightning
+- **NFT auctions** — MoonCatRescue, DADA Collectible, Age of Dinos, PersonaBid
+- **ENS old registrar** — Unreleased deed deposits from the original .eth auction system
+- **Bounty platforms** — Bounties Network (StandardBounties v1)
+- **Token wrappers** — Neufund EtherToken, Bancor Old ETH Token, Maker W-ETH
+- **Other** — Confideal ICO refunds, SportCrypt
+
+## Security
+
+- No token approvals for most withdrawals. A few contracts require a token burn or two-step process — the UI explains each case.
+- No proxy contracts or intermediaries
+- Withdrawals go directly from the original contract to the wallet
+- Fully open source — audit the code yourself
+
+## Contact
+
+Know a defunct contract with stuck ETH that should be added? Get in touch:
+
+**forgotten-eth@pm.me**
 
 ## License
 

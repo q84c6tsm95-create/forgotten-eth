@@ -17,6 +17,27 @@ if (window.dispatchEvent) {
   window.dispatchEvent(new Event('eip6963:requestProvider'));
 }
 
+// ─── Counting animation for hero numbers ───
+function animateCount(elId, target, childSelector) {
+  var el = document.getElementById(elId);
+  if (!el) return;
+  var node = childSelector ? el.querySelector(childSelector) : el;
+  if (!node) { el.textContent = target.toLocaleString('en'); return; }
+  var duration = 1200;
+  var start = null;
+  var startVal = 0;
+  function step(ts) {
+    if (!start) start = ts;
+    var progress = Math.min((ts - start) / duration, 1);
+    // Ease out cubic
+    var ease = 1 - Math.pow(1 - progress, 3);
+    var current = Math.round(startVal + (target - startVal) * ease);
+    node.textContent = current.toLocaleString('en');
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
 // ─── Inline error helper (replaces alert()) ───
 function showInlineError(elementId, message, duration) {
   var el = document.getElementById(elementId);
@@ -63,13 +84,19 @@ function _showWalletPicker(providers) {
     if (providers.length === 0) {
       var label2 = document.createElement('div');
       label2.style.cssText = 'font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text2);font-weight:700;margin-bottom:8px';
-      label2.textContent = 'Browser Wallets';
+      label2.textContent = 'No wallet detected — install one';
       modal.appendChild(label2);
       modal.appendChild(_makeWalletBtn(
         '/metamask.svg',
         'MetaMask',
         'Install',
-        function() { window.open('https://metamask.io/download/', '_blank'); }
+        function() { window.open('https://metamask.io/download/', '_blank', 'noopener,noreferrer'); }
+      ));
+      modal.appendChild(_makeWalletBtn(
+        '/rabby.svg',
+        'Rabby Wallet',
+        'Install',
+        function() { window.open('https://rabby.io/', '_blank', 'noopener,noreferrer'); }
       ));
     }
 
@@ -104,7 +131,7 @@ function _showWalletPicker(providers) {
 function _makeWalletBtn(icon, name, subtitle, onclick) {
   var btn = document.createElement('button');
   btn.style.cssText = 'display:flex;align-items:center;gap:12px;width:100%;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:inherit;color:var(--text);margin-bottom:8px;transition:border-color 0.15s,box-shadow 0.15s;text-align:left';
-  btn.onmouseenter = function() { btn.style.borderColor = 'var(--accent)'; btn.style.boxShadow = '0 2px 8px rgba(217,70,239,0.1)'; };
+  btn.onmouseenter = function() { btn.style.borderColor = 'var(--accent)'; btn.style.boxShadow = '0 2px 8px rgba(124,58,237,0.1)'; };
   btn.onmouseleave = function() { btn.style.borderColor = 'var(--border)'; btn.style.boxShadow = 'none'; };
   var img = document.createElement('img');
   img.src = icon;
@@ -133,7 +160,7 @@ async function _handleKeystoreConnect() {
       '<div>&#8226; Decryption happens entirely in your browser</div>' +
       '<div>&#8226; No file or password is uploaded to any server</div>' +
       '<div>&#8226; No data is logged or stored</div>' +
-      '<div>&#8226; <a href="https://github.com/q84c6tsm95-create/forgotten-eth/blob/main/public/app.js#L123-L190" target="_blank" style="font-size:11px;color:var(--accent-text)">Verify the source code</a></div>' +
+      '<div>&#8226; <a href="https://github.com/q84c6tsm95-create/forgotten-eth/blob/main/public/app.js#L123-L190" target="_blank" rel="noopener noreferrer" style="font-size:11px;color:var(--accent-text)">Verify the source code</a></div>' +
       '</div>' +
       '<div style="margin-bottom:12px"><label style="font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;font-weight:700;display:block;margin-bottom:4px">Keystore File</label>' +
       '<input type="file" id="keystoreFile" accept=".json,.utc,application/json" style="width:100%;padding:8px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:inherit;font-size:12px"></div>' +
@@ -248,77 +275,81 @@ const DONATION_ADDRESS = '0x95a708aAAB1D336bB60EF2F40212672F4cf65736';
 async function sendDonation(amountWei) {
   if (!walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
 
+  var card = document.getElementById('donationCard');
+  var sendBtn = card && card.querySelector('.donation-confirm-btn');
+  var errorEl = card && card.querySelector('.donation-error');
+
+  // Loading state
+  if (sendBtn) { sendBtn.disabled = true; sendBtn.textContent = 'Sending...'; sendBtn.classList.add('pending'); }
+  if (errorEl) errorEl.textContent = '';
+
   // ── Test Mode: simulate donation ──
   if (TEST_MODE) {
     console.log('[TEST MODE] Simulated donation:', ethers.formatEther(amountWei), 'ETH');
-    document.getElementById('donationCard').innerHTML = '<div style="padding:12px;text-align:center"><p style="font-size:14px;font-weight:700;color:var(--green);margin-bottom:6px">Much appreciated, darling.</p><p style="font-size:11px;color:var(--yellow)">[TEST MODE]</p><div class="share-btns"><button class="share-btn" data-action="share">Share</button></div></div>';
+    if (card) card.innerHTML = '<div class="donation-success"><div class="donation-success-msg">Thank you for your donation.</div><div style="font-size:11px;color:var(--yellow);margin-top:4px">[TEST MODE]</div></div>';
     return;
   }
 
-  // Guard: do not attempt donation if address is a placeholder
   if (!ethers.isAddress(DONATION_ADDRESS)) {
     showInlineError('walletError', 'Donation address is not configured yet. Thank you for the thought!');
+    if (sendBtn) { sendBtn.disabled = false; sendBtn.textContent = sendBtn.dataset.label || 'Donate'; sendBtn.classList.remove('pending'); }
     return;
   }
 
   try {
-    const tx = await walletSigner.sendTransaction({ to: DONATION_ADDRESS, value: amountWei });
+    var tx = await walletSigner.sendTransaction({ to: DONATION_ADDRESS, value: amountWei });
     window.va?.track?.('donation_sent', { amount_eth: ethers.formatEther(amountWei), tx_hash: tx.hash });
-    _donationDismissed = true;
-    document.getElementById('donationCard').innerHTML = '<div style="padding:12px;text-align:center"><p style="font-size:14px;font-weight:700;color:var(--green);margin-bottom:6px">Much appreciated, darling.</p><div class="share-btns"><button class="share-btn" data-action="share">Share</button></div></div>';
+    if (card) card.innerHTML = '<div class="donation-success"><div class="donation-success-msg">Thank you for your donation.</div><div class="donation-success-tx"><a href="' + etherscanTx(tx.hash) + '" target="_blank" rel="noopener noreferrer">View donation on Etherscan</a></div></div>';
   } catch (e) {
-    if (e.code !== 'ACTION_REJECTED' && e.code !== 4001) console.error('Donation error:', e);
+    // Reset button on any error
+    if (sendBtn) { sendBtn.disabled = false; sendBtn.textContent = sendBtn.dataset.label || 'Donate'; sendBtn.classList.remove('pending'); }
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) return; // User cancelled — silent
+    console.error('Donation error:', e);
+    if (errorEl) errorEl.textContent = 'Transaction failed — try again or skip.';
   }
 }
 
-let _donationDismissed = false;
-let _totalClaimedEth = 0;
+let _lastClaimEth = 0;
 
 function renderDonationCard(claimedEth) {
-  _totalClaimedEth += claimedEth;
-  if (_donationDismissed) return '';
+  _lastClaimEth = claimedEth;
+  if (claimedEth < 0.01) return '';
 
-  const total = _totalClaimedEth;
-  const defaultAmt = (total * 5 / 100).toFixed(4);
+  var defaultPct = 5;
+  var defaultAmt = (claimedEth * defaultPct / 100).toFixed(4);
+  var btnLabel = 'Donate ' + defaultAmt + ' ETH';
+  if (_ethPrice) btnLabel += ' (' + fmtUsd(parseFloat(defaultAmt) * _ethPrice) + ')';
 
-  return `<div class="donation-card" id="donationCard">
-    <div style="margin-bottom:18px">
-      <div style="font-size:14px;color:var(--text);line-height:1.5">Free tool, no fees taken. If this was valuable, consider a tip.</div>
-    </div>
-    <div style="display:flex;gap:12px;justify-content:center;margin-bottom:20px">
-      <button class="donation-pct-btn" data-action="donation-pct" data-pct="2" style="padding:12px 36px;font-family:inherit;font-size:15px;font-weight:600;background:transparent;color:var(--text2);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all 0.15s;flex:1;max-width:140px">2%</button>
-      <button class="donation-pct-btn" data-action="donation-pct" data-pct="5" style="padding:12px 36px;font-family:inherit;font-size:15px;font-weight:600;background:rgba(217,70,239,0.12);color:var(--accent);border:1px solid var(--accent);border-radius:8px;cursor:pointer;transition:all 0.15s;flex:1;max-width:140px">5%</button>
-      <button class="donation-pct-btn" data-action="donation-pct" data-pct="10" style="padding:12px 36px;font-family:inherit;font-size:15px;font-weight:600;background:transparent;color:var(--text2);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all 0.15s;flex:1;max-width:140px">10%</button>
-    </div>
-    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:24px">
-      <div style="display:flex;align-items:center;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 16px;gap:10px">
-        <input type="number" id="donationAmt" value="${defaultAmt}" step="0.001" min="0" style="width:120px;background:none;border:none;outline:none;color:var(--text);font-family:inherit;font-size:18px;font-weight:500;text-align:right;-moz-appearance:textfield">
-        <span style="color:var(--text2);font-size:15px;font-weight:500">ETH</span>
-      </div>
-    </div>
-    <div style="display:flex;gap:12px;justify-content:center;margin-bottom:24px">
-      <button data-action="donate-confirm" style="padding:12px 36px;font-family:inherit;font-size:15px;font-weight:600;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:all 0.15s">Send Tip</button>
-      <button data-action="donation-skip" style="padding:12px 28px;font-family:inherit;font-size:15px;font-weight:500;background:transparent;color:var(--text2);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all 0.15s">Skip</button>
-    </div>
-    <div style="font-size:13px;color:var(--text2);opacity:0.6;word-break:break-all;padding-top:16px;border-top:1px solid var(--border)">or send directly to <span style="cursor:pointer;font-weight:600;color:var(--text)" data-action="copy-donation-addr">${DONATION_ADDRESS}</span> <span data-action="copy-donation-addr" style="cursor:pointer;font-size:12px;opacity:0.7" title="Copy address">&#128203;</span></div>
-  </div>`;
+  function pill(pct, isActive) {
+    return '<button class="donation-pct-btn' + (isActive ? ' active' : '') + '" data-action="donation-pct" data-pct="' + pct + '">' + pct + '%</button>';
+  }
+
+  return '<div id="donationCardWrap" style="display:none"><div class="donation-card" id="donationCard" data-claim-eth="' + claimedEth + '">' +
+    '<div class="donation-copy">If you found this useful, consider a donation.</div>' +
+    '<div class="donation-pct-row">' + pill(10, false) + pill(5, true) + pill(2, false) + '</div>' +
+    '<div><button data-action="donate-confirm" class="donation-confirm-btn">' + btnLabel + '</button></div>' +
+    '<div><button data-action="donation-skip" class="donation-skip">skip</button></div>' +
+    '<div class="donation-error"></div>' +
+  '</div></div>';
+}
+
+// Show donation card after a delay (called after claim success renders)
+function showDonationCardDelayed() {
+  var wrap = document.getElementById('donationCardWrap');
+  if (wrap) setTimeout(function() { wrap.style.display = ''; }, 2500);
 }
 
 // Share
 function shareResult(text) {
-  const url = 'https://forgotteneth.com';
-  const msg = text || 'I just discovered forgotten ETH using Forgotten ETH - a free tool that scans defunct contracts for unclaimed balances.';
-  const shareData = { title: 'Forgotten ETH', text: msg, url };
+  var url = 'https://forgotteneth.com';
+  var msg = text || 'I just discovered forgotten ETH using Forgotten ETH - a free tool that scans defunct contracts for unclaimed balances.';
+  var shareData = { title: 'Forgotten ETH', text: msg, url: url };
   if (navigator.share) {
-    navigator.share(shareData).catch(() => {});
+    navigator.share(shareData).catch(function() {});
   } else {
-    const tweetUrl = 'https://x.com/intent/tweet?text=' + encodeURIComponent(msg + ' ' + url);
-    window.open(tweetUrl, '_blank');
+    var tweetUrl = 'https://x.com/intent/tweet?text=' + encodeURIComponent(msg + ' ' + url);
+    window.open(tweetUrl, '_blank', 'noopener,noreferrer');
   }
-}
-
-function renderShareButtons(prefix) {
-  return '';
 }
 
 function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
@@ -815,6 +846,28 @@ const EXCHANGES = {
       lockedAccount: '0xb1E4675f0dBE360bA90447A7e58c62C762Ad62D4',
     },
   },
+  digixdao: {
+    name: 'DigixDAO',
+    desc: 'DigixDAO launched in March 2016 as one of Ethereum\'s first DAOs, raising 466,648 ETH in a crowdsale that filled its hard cap in just 12 hours. The DAO funded development of Digix\'s gold-backed DGX token, but after years of limited adoption, token holders voted 97% in favor of dissolution via Project Ragnarok in January 2020. The Acid refund contract was deployed in March 2020, allowing any DGD holder to permanently burn their tokens for a pro-rata share of the treasury at roughly 0.193 ETH per DGD.',
+    category: 'ico',
+    color: '#d4a017',
+    contract: '0xe0b7927c4af23765cb51314a0e0521a9645f0e2a',
+    deployed: 'March 2016',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    balanceTransform: (result) => {
+      // DGD raw balance (9 decimals) × weiPerNanoDGD = wei value
+      return result * 193054178n;
+    },
+    withdrawAbi: null,
+    withdrawCall: null,
+    digixBurn: {
+      dgdToken: '0xe0b7927c4af23765cb51314a0e0521a9645f0e2a',
+      acidContract: '0x23Ea10CC1e6EBdB499D24E45369A35f43627062f',
+      rateEthPerDgd: 0.193054,
+    },
+  },
   bancor_eth: {
     name: 'Bancor Old ETH Token',
     desc: 'Bancor launched June 2017 with a then-record $153M ICO and deployed the first-ever automated market maker contracts on Ethereum, inventing bonding curves and liquidity pool tokens before "DeFi" was coined. On July 9, 2018, attackers stole 25,000 ETH (~$12.5M) via a compromised upgrade wallet. This is the legacy ETH wrapper from Bancor\'s early architecture.',
@@ -1027,7 +1080,7 @@ const EXCHANGES = {
   ndex: {
     name: 'nDEx',
     desc: 'An EtherDelta-fork DEX from the 2017-2018 era. One of dozens of exchanges that cloned EtherDelta\'s open-source smart contract to launch competing trading platforms.',
-    color: '#c026d3',
+    color: '#6d28d9',
     contract: '0x51a2b1a38ec83b56009d5e28e6222dbb56c23c22',
     deployed: 'September 2018',
     balanceAbi: 'function tokens(address, address) view returns (uint256)',
@@ -1078,7 +1131,7 @@ const EXCHANGES = {
   },
   readyplayerone: {
     name: 'ReadyPlayerONE',
-    desc: 'A Fomo3D-fork gambling game on Ethereum, cloning Fomo3D\'s key-purchase and countdown-timer mechanic. Note: isHuman modifier — smart contract wallets cannot withdraw.',
+    desc: 'Deployed July 2018, a Fomo3D fork named after the Ernest Cline novel and Spielberg film. Same key-purchase countdown mechanic where the last buyer before the timer expires wins the pot. Note: isHuman modifier — smart contract wallets cannot withdraw.',
     category: 'gambling',
     color: '#ef4444',
     contract: '0x6db943251e4126f913e9733821031791e75df713',
@@ -1091,9 +1144,24 @@ const EXCHANGES = {
     withdrawArgs: () => [],
     withdrawCall: 'withdraw',
   },
+  lastwinner: {
+    name: 'Last Winner',
+    desc: 'A Fomo3D-style gambling game deployed in 2018, also known as "Last Winner" — one of the largest Fomo3D clones by total ETH volume. Players purchase keys that extend a countdown timer; when the timer runs out, the last buyer wins the pot. Unclaimed dividends and affiliate earnings remain withdrawable. Note: isHuman modifier — smart contract wallets cannot withdraw.',
+    category: 'gambling',
+    color: '#ef4444',
+    contract: '0xDd9fd6b6F8f7ea932997992bbE67EabB3e316f3C',
+    deployed: 'August 2018',
+    balanceAbi: 'function getPlayerInfoByAddress(address) view returns (uint256, bytes32, uint256, uint256, uint256, uint256, uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'getPlayerInfoByAddress',
+    balanceTransform: (result) => result[3] + result[4] + result[5],
+    withdrawAbi: 'function withdraw()',
+    withdrawArgs: () => [],
+    withdrawCall: 'withdraw',
+  },
   fomo3d_lightning: {
     name: 'FoMo3D Lightning',
-    desc: 'A Fomo3D-fork gambling game on Ethereum, cloning Fomo3D\'s key-purchase and countdown-timer mechanic. Note: isHuman modifier — smart contract wallets cannot withdraw.',
+    desc: 'One of the earliest Fomo3D clones, deployed July 2018 within weeks of the original. A speed-round variant of the countdown-timer game where rounds resolved faster than standard Fomo3D. Note: isHuman modifier — smart contract wallets cannot withdraw.',
     category: 'gambling',
     color: '#f97316',
     contract: '0x24da016c06941ec2c92be28e0a2b2e679f0d1dc7',
@@ -1221,7 +1289,7 @@ const EXCHANGES = {
   },
   powm: {
     name: 'POWM',
-    desc: 'was a PoWH3D clone (2018).',
+    desc: 'Proof of Weak Math, deployed April 2018 during the first wave of P3D clones. Named as a jab at PoWL, an earlier clone with a coding error that broke its dividend math. Featured a 20% fee and briefly held over 4,000 ETH.',
     category: 'gambling',
     color: '#b91c1c',
     contract: '0xa146240bf2c04005a743032dc0d241ec0bb2ba2b',
@@ -1238,7 +1306,7 @@ const EXCHANGES = {
   },
   pooh: {
     name: 'POOH',
-    desc: 'was a PoWH3D clone (2018).',
+    desc: 'Deployed April 2018, POOH branded itself as "the most honest P3D clone" and an "honest proof of cloning." Same 10% buy/sell fee mechanics as PoWH3D, hosted at number2.io.',
     category: 'gambling',
     color: '#92400e',
     contract: '0x4c29d75cc423e8adaa3839892feb66977e295829',
@@ -1255,7 +1323,7 @@ const EXCHANGES = {
   },
   powtf: {
     name: 'PoWTF',
-    desc: 'was a PoWH3D clone (2018).',
+    desc: 'Short for "Proof of World Trade Francs," deployed April 2018. Named after a fictional stablecoin jokingly proposed by Vitalik Buterin. Featured higher fees than standard P3D: 20% on buys and 25% on sells.',
     category: 'gambling',
     color: '#9f1239',
     contract: '0x702392282255f8c0993dbbbb148d80d2ef6795b1',
@@ -1272,7 +1340,7 @@ const EXCHANGES = {
   },
   powh_clone1: {
     name: 'Hourglass Clone A',
-    desc: 'was a PoWH3D clone (2018).',
+    desc: 'An unnamed PoWH3D fork deployed April 2018, using the same Hourglass dividend token contract with no meaningful modifications. One of dozens of near-identical clones launched during the P3D craze.',
     category: 'gambling',
     color: '#881337',
     contract: '0xe1c9a03cf690256ff7738cbd508c88cf5238a535',
@@ -1289,7 +1357,7 @@ const EXCHANGES = {
   },
   powh_clone2: {
     name: 'Hourglass Clone B',
-    desc: 'was a PoWH3D clone (2018).',
+    desc: 'Another unbranded Hourglass contract deployed April 2018. A direct copy of the PoWH3D source code with identical 10% buy/sell fees distributed to token holders.',
     category: 'gambling',
     color: '#7f1d1d',
     contract: '0x34ba9c7402e1df11709c7983008b5a49d59e963f',
@@ -1306,7 +1374,7 @@ const EXCHANGES = {
   },
   lockedin: {
     name: 'LOCKEDiN',
-    desc: 'was a PoWH3D clone (2018).',
+    desc: 'Deployed April 2018, LOCKEDiN was a PoWH3D fork that emphasized the "lock in your ETH for dividends" angle. Standard Hourglass mechanics where every transaction fee is split among all existing token holders.',
     category: 'gambling',
     color: '#6b21a8',
     contract: '0xdb4837c9d84315abcde80a865f15178f86db3966',
@@ -1323,7 +1391,7 @@ const EXCHANGES = {
   },
   stronghold: {
     name: 'StrongHold',
-    desc: 'was a PoWH3D clone (2018).',
+    desc: 'A PoWH3D clone from April 2018 that branded itself as a safer, more resilient version of the P3D dividend model. Used the same autonomous contract mechanics with no owner and no self-destruct.',
     category: 'gambling',
     color: '#5b21b6',
     contract: '0x7e7e645e9121dddaf87d0434feb9f113d1dbbb41',
@@ -1340,7 +1408,7 @@ const EXCHANGES = {
   },
   powh_clone3: {
     name: 'Hourglass Clone C',
-    desc: 'was a PoWH3D clone (2018).',
+    desc: 'Deployed April 2018 at the peak of the PoWH3D clone wave. An unmodified copy of the Hourglass dividend contract where holding tokens earns a share of all future buy and sell fees.',
     category: 'gambling',
     color: '#4c1d95',
     contract: '0x7b6c511a94d35b9cf9979b727335c9798edb5c64',
@@ -1357,7 +1425,7 @@ const EXCHANGES = {
   },
   powh_clone4: {
     name: 'Hourglass Clone D',
-    desc: 'was a PoWH3D clone (2018).',
+    desc: 'Yet another April 2018 Hourglass fork, part of the rapid proliferation of P3D clones that flooded Ethereum in spring 2018. Identical dividend token mechanics with 10% fees on every transaction.',
     category: 'gambling',
     color: '#831843',
     contract: '0xf5aa54d121dfe0d5eeb37c83aed42238f4f2c5c6',
@@ -1372,9 +1440,26 @@ const EXCHANGES = {
     exitArgs: () => [],
     exitCall: 'exit',
   },
+  p4d: {
+    name: 'P4D',
+    desc: 'A PoWH3D clone from 2018. Standard Hourglass dividend mechanics where ETH deposits mint tokens and trading fees generate passive income for holders.',
+    category: 'gambling',
+    color: '#dc2626',
+    contract: '0x96a4ed03206667017777f010dea4445823acb0fc',
+    deployed: '2018',
+    balanceAbi: 'function dividendsOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'dividendsOf',
+    withdrawAbi: 'function withdraw()',
+    withdrawArgs: () => [],
+    withdrawCall: 'withdraw',
+    exitAbi: 'function exit()',
+    exitArgs: () => [],
+    exitCall: 'exit',
+  },
   unkoin: {
     name: 'UnKoin',
-    desc: 'was a PoWH3D clone (2018).',
+    desc: 'A PoWH3D clone from April 2018 with a play on "unknown coin." Standard Hourglass dividend mechanics where ETH deposits mint tokens and all trading activity generates passive income for holders.',
     category: 'gambling',
     color: '#701a75',
     contract: '0x5bedf488d29407bc08e77cd9ee292c2041a61c8c',
@@ -1391,7 +1476,7 @@ const EXCHANGES = {
   },
   acedapp: {
     name: 'AceDapp',
-    desc: 'was a PoWH3D clone (October 2019) with the standard Hourglass token mechanics where every buy and sell incurs a 10% fee distributed to all existing holders.',
+    desc: 'Deployed October 2019, a late-era PoWH3D clone that launched well after most P3D forks had already lost their user bases. Standard Hourglass dividend mechanics with 10% buy/sell fees.',
     category: 'gambling',
     color: '#9f1239',
     contract: '0xe65f525ec48c7e95654b9824ecc358454ea9185e',
@@ -1408,46 +1493,46 @@ const EXCHANGES = {
   },
   cryptominertoken: { name: 'CryptoMinerToken', desc: 'was a dividend-yielding PoWH3D clone (September 2018) hosted at minertoken.cloud, with customized fee tiers: 10% deposit, 4% withdrawal, 1% transfer, and 33% referral rewards.', category: 'gambling', color: '#a16207', contract: '0x0a97094c19295e320d5121d72139a150021a2702', deployed: 'September 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   bluechip: { name: 'BlueChip', desc: 'was a PoWH3D clone (September 2019) implementing the standard 10% fee-sharing dividend mechanism where trading activity generates ETH rewards for token holders.', category: 'gambling', color: '#4338ca', contract: '0xabefec93451a2cd5d864ff7b0b1604dfc60e9688', deployed: 'September 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  rev1: { name: 'REV1', desc: 'was a PoWH3D clone (May 2018) with the standard Hourglass token mechanics where every buy and sell incurs a fee distributed to all existing holders.', category: 'gambling', color: '#0e7490', contract: '0x05215fce25902366480696f38c3093e31dbce69a', deployed: 'May 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  rev1: { name: 'REV1', desc: 'Deployed May 2018, REV1 was an early PoWH3D fork from the second month of the P3D clone wars. Straightforward dividend token where 10% of every buy and sell is redistributed to holders.', category: 'gambling', color: '#0e7490', contract: '0x05215fce25902366480696f38c3093e31dbce69a', deployed: 'May 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   potj: { name: 'POTJ', desc: 'Proof of Trevon James, launched April 2018, was a PoWH3D fork with higher fees (20% buys, 25% sells) themed around a crypto YouTube personality involved in the BitConnect case.', category: 'gambling', color: '#b45309', contract: '0xc28e860c9132d55a184f9af53fc85e90aa3a0153', deployed: 'April 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  lynia: { name: 'LYNIA', desc: 'was a decentralized gaming and gambling platform (August 2018) with PoWH3D-style token-holder rewards. Has an isHuman modifier — smart contract wallets cannot withdraw.', category: 'gambling', color: '#86198f', contract: '0xecfae6f958f7ab15bdf171eeefa568e41eabf641', deployed: 'August 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  lynia: { name: 'LYNIA', desc: 'A gaming and gambling platform deployed August 2018 that combined PoWH3D-style dividend tokens with provably fair on-chain games. Has an isHuman modifier — smart contract wallets cannot withdraw.', category: 'gambling', color: '#86198f', contract: '0xecfae6f958f7ab15bdf171eeefa568e41eabf641', deployed: 'August 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   blackgold: { name: 'BlackGoldEthereum', desc: 'was a dividend-based PoWH3D clone (July 2020) designed to provide passive income to token holders through a buy/sell/reinvestment mechanism. The project website blackgoldethereum.club is no longer accessible.', category: 'gambling', color: '#374151', contract: '0xf72b0b36723f60402cccad7f4358acf2ad474c17', deployed: 'July 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  proofofcraiggrant: { name: 'ProofOfCraigGrant', desc: 'was a PoWH3D-style token (April 2018) themed around a high-profile BitConnect promoter, part of the 2018 wave of meme-themed dividend tokens on Ethereum.', category: 'gambling', color: '#78350f', contract: '0xea61319f55b6543962fe1d7bd990ef74849fc54f', deployed: 'April 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  proofofcraiggrant: { name: 'ProofOfCraigGrant', desc: 'Deployed April 2018, a meme-themed PoWH3D fork named after Craig Grant, one of BitConnect\'s most prominent YouTube promoters. Part of a series of personality-themed P3D clones alongside Proof of Trevon James.', category: 'gambling', color: '#78350f', contract: '0xea61319f55b6543962fe1d7bd990ef74849fc54f', deployed: 'April 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   sportcrypt: { name: 'SportCrypt', desc: 'was a peer-to-peer decentralized sports betting exchange (January 2018) with zero fees and no KYC requirements. Later rebranded to Degens and received a MakerDAO community grant to accept DAI alongside ETH.', category: 'gambling', color: '#166534', contract: '0x37304b0ab297f13f5520c523102797121182fb5b', deployed: 'January 2018', balanceAbi: 'function getBalance(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'getBalance', withdrawAbi: 'function withdraw(uint256 amount)', withdrawArgs: (amount) => [amount], withdrawCall: 'withdraw' },
   dailydivs: { name: 'DailyDivs', desc: 'was a PoWH3D clone (October 2018) offering daily dividend distributions to token holders through a 10% buy/sell fee. Has an isHuman modifier — smart contract wallets cannot withdraw.', category: 'gambling', color: '#92400e', contract: '0xd2bfceeab8ffa24cdf94faa2683df63df4bcbdc8', deployed: 'October 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  proofofcommunity: { name: 'ProofOfCommunity', desc: 'was a PoWH3D clone (May 2018) with the standard Hourglass token mechanics where every buy and sell incurs a fee distributed to all existing holders.', category: 'gambling', color: '#1e3a5f', contract: '0x1739e311ddbf1efdfbc39b74526fd8b600755ada', deployed: 'May 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  bitconnect_powh: { name: 'BitConnect Token', desc: 'was a PoWH3D clone (June 2019) with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0xfcd3a0f5f416e407647a7518b90354946d316059', deployed: 'June 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  eightherbank: { name: 'Eightherbank', desc: 'was a PoWH3D clone (November 2019) with the standard Hourglass dividend token mechanics. Has an isHuman modifier — smart contract wallets cannot withdraw.', category: 'gambling', color: '#581c87', contract: '0xc6e5e9c6f4f3d1667df6086e91637cc7c64a13eb', deployed: 'November 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  nexgen: { name: 'Nexgen', desc: 'was a PoWH3D clone (June 2019) with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0xffd31e68bf7af89df862435a138615bd60abf574', deployed: 'June 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  diamonddividend: { name: 'DiamondDividend', desc: 'was a PoWH3D clone (November 2019) with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x84cc06eddb26575a7f0afd7ec2e3e98d31321397', deployed: 'November 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  e25: { name: 'E25 Booster', desc: 'was a PoWH3D clone (February 2019) with the standard Hourglass dividend token mechanics. Has an isHuman modifier — smart contract wallets cannot withdraw.', category: 'gambling', color: '#581c87', contract: '0xc3ad35d351b33783f27777e2ee1a4b6f96e4ee34', deployed: 'February 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  bitconnect2: { name: 'BitConnect v2', desc: 'was a PoWH3D clone (June 2019) with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x568a693e1094b1e51e8053b2fc642da7161603f5', deployed: 'June 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  ethplatinum: { name: 'ETHPlatinum', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x510f9a9642ac14ded91629a1aad552be4b24b5f0', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  divsnetwork: { name: 'DivsNetwork', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x26e6c899b5a5dc1d4874d828fda515a7eb7baf00', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  ethercenter: { name: 'EtherCenter', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x0e7c28fb8ed4f5f63aabd022deaeeba40ecc335c', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  redchip: { name: 'RedChip', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0xcd2de0bd5347f617f832442ebcc1c23a4d618847', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  cxxmain: { name: 'CxxMain', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0xa4dce3845cb88a6fca0291d4eca9e5a96e75e2b4', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  familyonly: { name: 'FamilyOnlyToken', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0xbedde30d3532165843f07b1b0e3e90fddbb75918', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  spw: { name: 'SPW', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x586f3d9e3524eb02448691b158fdcf5ffc2c57b0', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  ethdiamond: { name: 'ETHDIAMOND', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0xca1cc76be1f5e5ee492859d8463653cb231991bc', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  ethershares: { name: 'Ethershares', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x2c984ec9bb20b33deb84fbeedf20effda481fdc4', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  twelvehour: { name: 'TwelveHourToken', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x8f6015289a64c48ccf258c21a999809fc553c3c4', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  neutrino81: { name: 'Neutrino81', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x897d6c6772b85bf25b46c6f6da454133478ea6ab', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  hourglassx: { name: 'HourglassX', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x058a144951e062fc14f310057d2fd9ef0cf5095b', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  fairexchange: { name: 'FairExchange', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0xde2b11b71ad892ac3e47ce99d107788d65fe764e', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  pomda: { name: 'POMDA', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x0be5e8f107279cc2d9c3a537ed4ea669b45e443d', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  decentether: { name: 'DecentEther', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x7d2d58d7add0b2d6e06fa85590b60da7741c18c9', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  bitconnect3: { name: 'BitConnect v3', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x38e219ee67a5e1536c5a89fec2da0d69c254cac4', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  furious: { name: 'Furious', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0xb0c4382d4355cdfe94a132fadf92a509b1e25939', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  etherdiamond: { name: 'EtherDiamond', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x4af078e47490c0e761a3de260952d9eb4a6ad693', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  powh_clone5: { name: 'Hourglass Clone E', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x12528042299e0fca4d44ae4f42359319b8901fa2', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  cryptosurge: { name: 'CryptoSurge', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x11e165dd03c63771004f929d58b75e4aaf2d1a23', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  hourglass_clone6: { name: 'Hourglass Clone F', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x77b541f90ecfa09f854209eefeca24c295050e2e', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  upower: { name: 'UPower', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x5044ac8da9601edf970dcc91a10c5f41c5c548c0', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  hourglass_clone7: { name: 'Hourglass Clone G', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0xaa4ec8484e89bed69570825688789589d38eea5e', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  redchip2: { name: 'RedChip v2', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0xae384c6e68f5d697d65ed43fd53ef5ea3288f536', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  omnidex: { name: 'OmniDex', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0x433e631ac0c03e49ca034dbf5543964c80c6b391', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  spw2: { name: 'SPW v2', desc: 'was a PoWH3D clone with the standard Hourglass dividend token mechanics.', category: 'gambling', color: '#581c87', contract: '0xd446a13f9b9f8bcbc3ded73764d08735561b1638', deployed: '2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  proofofcommunity: { name: 'ProofOfCommunity', desc: 'A May 2018 PoWH3D fork that rebranded the dividend token concept around community ownership. Same underlying Hourglass mechanics where all transaction fees are split among existing holders.', category: 'gambling', color: '#1e3a5f', contract: '0x1739e311ddbf1efdfbc39b74526fd8b600755ada', deployed: 'May 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  bitconnect_powh: { name: 'BitConnect Token', desc: 'Deployed June 2019, a PoWH3D clone that borrowed the BitConnect name a year and a half after the original lending platform collapsed. Standard dividend token mechanics; unrelated to the actual BitConnect project.', category: 'gambling', color: '#581c87', contract: '0xfcd3a0f5f416e407647a7518b90354946d316059', deployed: 'June 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  eightherbank: { name: 'Eightherbank', desc: 'A November 2019 PoWH3D fork with a banking theme. Uses the Hourglass dividend model with an isHuman modifier — smart contract wallets cannot withdraw.', category: 'gambling', color: '#581c87', contract: '0xc6e5e9c6f4f3d1667df6086e91637cc7c64a13eb', deployed: 'November 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  nexgen: { name: 'Nexgen', desc: 'Deployed June 2019, a PoWH3D clone that positioned itself as a next-generation dividend token. Identical Hourglass mechanics to P3D with 10% fees on buys and sells.', category: 'gambling', color: '#581c87', contract: '0xffd31e68bf7af89df862435a138615bd60abf574', deployed: 'June 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  diamonddividend: { name: 'DiamondDividend', desc: 'A November 2019 PoWH3D fork using diamond-themed branding for the standard Hourglass dividend model. Holders earn ETH from all future transaction fees proportional to their token balance.', category: 'gambling', color: '#581c87', contract: '0x84cc06eddb26575a7f0afd7ec2e3e98d31321397', deployed: 'November 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  e25: { name: 'E25 Booster', desc: 'Deployed February 2019, a PoWH3D clone with a modified fee structure hinted at by its "25" branding. Has an isHuman modifier — smart contract wallets cannot withdraw.', category: 'gambling', color: '#581c87', contract: '0xc3ad35d351b33783f27777e2ee1a4b6f96e4ee34', deployed: 'February 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  bitconnect2: { name: 'BitConnect v2', desc: 'The second in a series of BitConnect-themed PoWH3D clones, deployed June 2019. Reused the infamous brand name purely for attention; standard P3D dividend token under the hood.', category: 'gambling', color: '#581c87', contract: '0x568a693e1094b1e51e8053b2fc642da7161603f5', deployed: 'June 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  ethplatinum: { name: 'ETHPlatinum', desc: 'Deployed November 2021, one of the last PoWH3D clones ever created on Ethereum mainnet. By this point gas fees made the P3D dividend model largely impractical for small deposits.', category: 'gambling', color: '#581c87', contract: '0x510f9a9642ac14ded91629a1aad552be4b24b5f0', deployed: 'November 2021', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  divsnetwork: { name: 'DivsNetwork', desc: 'A July 2020 PoWH3D fork that framed itself as a dividend distribution network. Fully autonomous contract with no owner, running the same Hourglass token model as every other P3D clone.', category: 'gambling', color: '#581c87', contract: '0x26e6c899b5a5dc1d4874d828fda515a7eb7baf00', deployed: 'July 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  ethercenter: { name: 'EtherCenter', desc: 'Deployed July 2019, EtherCenter was a PoWH3D fork that added no meaningful features over the original. Standard 10% fee on every transaction, distributed pro rata to all token holders.', category: 'gambling', color: '#581c87', contract: '0x0e7c28fb8ed4f5f63aabd022deaeeba40ecc335c', deployed: 'July 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  redchip: { name: 'RedChip', desc: 'An October 2019 PoWH3D clone that borrowed stock market terminology — "red chip" refers to mainland China companies listed in Hong Kong. Standard Hourglass dividend mechanics beneath the branding.', category: 'gambling', color: '#581c87', contract: '0xcd2de0bd5347f617f832442ebcc1c23a4d618847', deployed: 'October 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  cxxmain: { name: 'CxxMain', desc: 'Deployed November 2019 with a cryptic name that may reference C++ programming. A PoWH3D fork with unmodified Hourglass contract code and the same fee-redistribution mechanics.', category: 'gambling', color: '#581c87', contract: '0xa4dce3845cb88a6fca0291d4eca9e5a96e75e2b4', deployed: 'November 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  familyonly: { name: 'FamilyOnlyToken', desc: 'An August 2020 PoWH3D fork with an invitation-only theme suggested by its name. Same Hourglass dividend model where ETH deposits mint tokens and every trade generates passive income for all holders.', category: 'gambling', color: '#581c87', contract: '0xbedde30d3532165843f07b1b0e3e90fddbb75918', deployed: 'August 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  spw: { name: 'SPW', desc: 'Deployed June 2020, SPW was a minimal PoWH3D clone with no discernible branding or website. Pure Hourglass dividend contract mechanics.', category: 'gambling', color: '#581c87', contract: '0x586f3d9e3524eb02448691b158fdcf5ffc2c57b0', deployed: 'June 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  ethdiamond: { name: 'ETHDIAMOND', desc: 'A July 2020 PoWH3D clone using diamond-hands imagery. Identical dividend token contract to P3D — buy and sell fees are pooled and shared among all token holders automatically.', category: 'gambling', color: '#581c87', contract: '0xca1cc76be1f5e5ee492859d8463653cb231991bc', deployed: 'July 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  ethershares: { name: 'Ethershares', desc: 'Deployed December 2018, Ethershares framed P3D-style token ownership as "shares" in an ETH revenue pool. Standard Hourglass mechanics with no technical differences from the original.', category: 'gambling', color: '#581c87', contract: '0x2c984ec9bb20b33deb84fbeedf20effda481fdc4', deployed: 'December 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  twelvehour: { name: 'TwelveHourToken', desc: 'An October 2018 PoWH3D fork, possibly named to suggest rapid dividend accumulation. Uses the same Hourglass contract where transaction fees are continuously redistributed to token holders.', category: 'gambling', color: '#581c87', contract: '0x8f6015289a64c48ccf258c21a999809fc553c3c4', deployed: 'October 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  neutrino81: { name: 'Neutrino81', desc: 'Deployed March 2019 with a physics-inspired name. A PoWH3D fork using the same autonomous dividend token contract — no owner, no admin keys, just the Hourglass buy/sell fee loop.', category: 'gambling', color: '#581c87', contract: '0x897d6c6772b85bf25b46c6f6da454133478ea6ab', deployed: 'March 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  hourglassx: { name: 'HourglassX', desc: 'A December 2018 PoWH3D fork that wore the "Hourglass" name openly — the original P3D contract was called Hourglass internally. Standard dividend mechanics with 10% transaction fees.', category: 'gambling', color: '#581c87', contract: '0x058a144951e062fc14f310057d2fd9ef0cf5095b', deployed: 'December 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  fairexchange: { name: 'FairExchange', desc: 'Deployed October 2018, FairExchange pitched the PoWH3D dividend model as a "fair" alternative to centralized exchanges. Under the surface, identical Hourglass contract code.', category: 'gambling', color: '#581c87', contract: '0xde2b11b71ad892ac3e47ce99d107788d65fe764e', deployed: 'October 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  pomda: { name: 'POMDA', desc: 'A June 2018 PoWH3D fork whose name likely riffs on "Proof of Mass Dividend Accumulation" or similar. Vanilla Hourglass contract — ETH in, tokens out, dividends from all activity.', category: 'gambling', color: '#581c87', contract: '0x0be5e8f107279cc2d9c3a537ed4ea669b45e443d', deployed: 'June 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  decentether: { name: 'DecentEther', desc: 'Deployed August 2020 during DeFi Summer, though it had nothing to do with DeFi — just another PoWH3D clone running the old Hourglass dividend model on a chain now dominated by Uniswap and Compound.', category: 'gambling', color: '#581c87', contract: '0x7d2d58d7add0b2d6e06fa85590b60da7741c18c9', deployed: 'August 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  bitconnect3: { name: 'BitConnect v3', desc: 'The third BitConnect-branded PoWH3D fork, deployed October 2019. By this point the BitConnect name was the subject of SEC enforcement actions, but clone deployers kept reusing it.', category: 'gambling', color: '#581c87', contract: '0x38e219ee67a5e1536c5a89fec2da0d69c254cac4', deployed: 'October 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  furious: { name: 'Furious', desc: 'A July 2020 PoWH3D clone with an aggressive name but stock-standard mechanics. Same autonomous Hourglass contract where buy/sell fees are distributed to all token holders in perpetuity.', category: 'gambling', color: '#581c87', contract: '0xb0c4382d4355cdfe94a132fadf92a509b1e25939', deployed: 'July 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  etherdiamond: { name: 'EtherDiamond', desc: 'Deployed July 2020, a sibling to ETHDIAMOND with nearly identical branding. Both are straight PoWH3D forks where token holders earn a cut of every future transaction.', category: 'gambling', color: '#581c87', contract: '0x4af078e47490c0e761a3de260952d9eb4a6ad693', deployed: 'July 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  powh_clone5: { name: 'Hourglass Clone E', desc: 'An October 2019 unnamed Hourglass fork — one of several unbranded P3D copies that were deployed with no website or community, just the raw contract on Ethereum.', category: 'gambling', color: '#581c87', contract: '0x12528042299e0fca4d44ae4f42359319b8901fa2', deployed: 'October 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  cryptosurge: { name: 'CryptoSurge', desc: 'Deployed October 2019 with a name evoking price surges. A PoWH3D fork using the proven Hourglass mechanics where buying tokens costs a 10% fee that goes straight to existing holders.', category: 'gambling', color: '#581c87', contract: '0x11e165dd03c63771004f929d58b75e4aaf2d1a23', deployed: 'October 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  hourglass_clone6: { name: 'Hourglass Clone F', desc: 'A November 2018 unbranded Hourglass contract. Deployed during the crypto winter bear market when ETH had fallen over 90% from its peak, yet P3D clones were still appearing.', category: 'gambling', color: '#581c87', contract: '0x77b541f90ecfa09f854209eefeca24c295050e2e', deployed: 'November 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  upower: { name: 'UPower', desc: 'Deployed July 2018, UPower was a PoWH3D fork from the summer of the P3D craze. Standard dividend token — deposit ETH, receive tokens, earn from every future transaction on the contract.', category: 'gambling', color: '#581c87', contract: '0x5044ac8da9601edf970dcc91a10c5f41c5c548c0', deployed: 'July 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  hourglass_clone7: { name: 'Hourglass Clone G', desc: 'A May 2018 unbranded Hourglass fork, one of the earliest nameless P3D copies. Deployed during the peak month of clone activity when dozens of identical contracts appeared on Ethereum.', category: 'gambling', color: '#581c87', contract: '0xaa4ec8484e89bed69570825688789589d38eea5e', deployed: 'May 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  redchip2: { name: 'RedChip v2', desc: 'The second iteration of RedChip, deployed October 2019 alongside its predecessor. Another PoWH3D fork with the same dividend token mechanics repackaged under a stock-market-inspired name.', category: 'gambling', color: '#581c87', contract: '0xae384c6e68f5d697d65ed43fd53ef5ea3288f536', deployed: 'October 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  omnidex: { name: 'OmniDex', desc: 'Deployed August 2018, OmniDex distinguished itself with 18% dividends, masternodes, and 0% transfer fees — tweaking the standard P3D formula. Despite the "DEX" name, it was a dividend token, not an exchange.', category: 'gambling', color: '#581c87', contract: '0x433e631ac0c03e49ca034dbf5543964c80c6b391', deployed: 'August 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  spw2: { name: 'SPW v2', desc: 'The second SPW contract, deployed September 2020. A relaunch of the original SPW using the same PoWH3D Hourglass mechanics with no apparent changes.', category: 'gambling', color: '#581c87', contract: '0xd446a13f9b9f8bcbc3ded73764d08735561b1638', deployed: 'September 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   bounties: { name: 'Bounties Network', desc: 'was a decentralized bounty platform (December 2017) built by ConsenSys for open-source work and freelance tasks on Ethereum. Bounty issuers who never killed or fulfilled their bounties still have ETH locked in the StandardBounties v1 contract.', category: 'other', color: '#0369a1', contract: '0x2af47a65da8cd66729b4209c22017d6a5c2d2400', deployed: 'December 2017', balanceAbi: 'function getBounty(uint256) view returns (address, uint256, uint256, bool, uint256, uint256)', balanceArgs: (user) => [0], balanceCall: 'getBounty', balanceTransform: () => 0n, withdrawAbi: 'function killBounty(uint256 _bountyId)', withdrawArgs: (amount) => [0], withdrawCall: 'killBounty', noLiveBalance: true },
   ageofdinos: {
     name: 'Age of Dinos',
@@ -1761,21 +1846,31 @@ async function checkUserBalances(overrideAddress) {
         return { key, balance: 0n };
       }
 
-      // No API balance: trust API (skip RPC entirely)
-      if (!apiEntry) {
+      // High coverage + no API balance: safe to skip (address not in data = no balance)
+      if (covPct >= HIGH_COVERAGE_THRESHOLD && !apiEntry) {
         return { key, balance: 0n };
       }
 
       // HAS API balance: verify onchain to confirm it's still claimable
-      // This is 0-5 RPC calls (only contracts with balance), not 109
+      if (apiEntry) {
+        try {
+          const contract = new ethers.Contract(cfg.contract, [cfg.balanceAbi], walletProvider);
+          const result = await contract[cfg.balanceCall](...cfg.balanceArgs(checkAddr));
+          const balance = cfg.balanceTransform ? cfg.balanceTransform(result) : result;
+          return { key, balance };
+        } catch (rpcErr) {
+          return { key, balance: BigInt(apiEntry.balance_wei) };
+        }
+      }
+
+      // Low coverage + no API entry: check onchain (API might not know about this address)
       try {
         const contract = new ethers.Contract(cfg.contract, [cfg.balanceAbi], walletProvider);
         const result = await contract[cfg.balanceCall](...cfg.balanceArgs(checkAddr));
         const balance = cfg.balanceTransform ? cfg.balanceTransform(result) : result;
         return { key, balance };
       } catch (rpcErr) {
-        // RPC failed: trust API balance
-        return { key, balance: BigInt(apiEntry.balance_wei) };
+        return { key, balance: 0n };
       }
     } catch (e) {
       // RPC failed: fall back to API balance if available
@@ -1828,6 +1923,22 @@ async function checkUserBalances(overrideAddress) {
     }
   }
 
+  // Check DigixDAO DGD allowance for Acid contract
+  window._digixState = {};
+  for (const { key, balance } of balanceResults) {
+    const cfg = EXCHANGES[key];
+    if (cfg.digixBurn && balance > 0n && walletProvider) {
+      try {
+        const dgdContract = new ethers.Contract(cfg.digixBurn.dgdToken, ['function balanceOf(address) view returns (uint256)', 'function allowance(address,address) view returns (uint256)'], walletProvider);
+        const dgdBal = await dgdContract.balanceOf(checkAddr);
+        const dgdAllowance = await dgdContract.allowance(checkAddr, cfg.digixBurn.acidContract);
+        window._digixState[key] = { dgdBal, dgdAllowance };
+      } catch (e) {
+        console.warn('Failed to check DigixDAO state:', e);
+      }
+    }
+  }
+
   for (const { key, balance } of balanceResults) {
     const cfg = EXCHANGES[key];
     userBalances[key] = balance;
@@ -1845,7 +1956,7 @@ async function checkUserBalances(overrideAddress) {
           html += `
             <div class="claim-card">
               <div class="claim-card-header">
-                <span class="claim-card-name">${cfg.name}</span>
+                <span class="claim-card-name">${esc(cfg.name)}</span>
                 <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
                 <span class="claim-card-tag" id="ensLookupStatus">${preDeeds ? 'Claimable' : 'Looking up...'}</span>
               </div>
@@ -1858,7 +1969,7 @@ async function checkUserBalances(overrideAddress) {
             if (!deeds || deeds.length === 0) {
               statusEl.textContent = '';
               rowsEl.innerHTML = `<div class="claim-details visible" style="margin-top:6px">
-                No deeds found. Try <a href="https://reclaim.ens.domains" target="_blank">reclaim.ens.domains</a> or enter manually:
+                No deeds found. Try <a href="https://reclaim.ens.domains" target="_blank" rel="noopener noreferrer">reclaim.ens.domains</a> or enter manually:
                 <div style="margin-top:8px;display:flex;gap:6px;align-items:center">
                   <input type="text" id="ensManualHash" placeholder="Label or hash (e.g. vitalik)" style="flex:1;padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit;background:var(--bg)">
                   <button class="claim-btn" data-action="ens-manual-release">Release</button>
@@ -1906,6 +2017,43 @@ async function checkUserBalances(overrideAddress) {
             });
             window._ensRenderDeeds = renderDeeds;
           }
+        } else if (cfg.digixBurn) {
+          // DigixDAO: 2-step (approve DGD to Acid, then burn)
+          const dxState = window._digixState?.[key];
+          const dgdBal = dxState?.dgdBal || 0n;
+          const dgdAllowance = dxState?.dgdAllowance || 0n;
+          const needsApproval = dgdAllowance < dgdBal;
+          let actionBtn, stepInfo;
+
+          if (dgdBal === 0n) {
+            actionBtn = `<button class="claim-btn" disabled style="opacity:0.5">No DGD tokens</button>`;
+            stepInfo = `<div style="font-size:11px;color:var(--red);margin-top:4px">DGD tokens required to claim. Balance shows value from pre-computed data.</div>`;
+          } else if (needsApproval) {
+            actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="digix-approve" data-key="${key}" style="background:var(--text2)">Step 1: Approve DGD</button>`;
+            stepInfo = `<div style="font-size:11px;color:var(--text2);margin-top:4px">2-step: approve DGD tokens to refund contract, then burn for ETH. Burns ALL DGD at once.</div>`;
+          } else {
+            actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="digix-burn" data-key="${key}">Claim ETH</button>`;
+            stepInfo = `<div style="font-size:11px;color:var(--green);margin-top:4px">DGD approved. Click to burn DGD and receive ETH. Burns ALL DGD at once.</div>`;
+          }
+          const lastTx = apiBalances[key]?.last_tx_date ? apiBalances[key] : null;
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
+              </div>
+              <div class="claim-card-meta" id="claimDetails-${key}">
+                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${lastTx.last_tx_date} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.digixBurn.acidContract)}" target="_blank" rel="noopener noreferrer">${cfg.digixBurn.acidContract}</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value">Approve DGD tokens to the Acid refund contract</span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value">burn() — burns all DGD, returns ETH at 0.193 ETH/DGD</span></div>
+              </div>
+              ${stepInfo}
+              <div class="claim-card-actions">
+                ${actionBtn}
+              </div>
+              <div class="claim-card-status" id="claimStatus-${key}"></div>
+            </div>`;
         } else if (cfg.neufundLocked) {
           // Neufund LockedAccount: 2-step withdrawal (approveAndCall + withdraw ETH-T)
           const nfState = window._neufundLockedState?.[key];
@@ -1935,12 +2083,12 @@ async function checkUserBalances(overrideAddress) {
           html += `
             <div class="claim-card">
               <div class="claim-card-header">
-                <span class="claim-card-name">${cfg.name}</span>
+                <span class="claim-card-name">${esc(cfg.name)}</span>
                 <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
               </div>
               <div class="claim-card-meta" id="claimDetails-${key}">
-                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${lastTx.last_tx_date} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank">view tx</a></span></div>` : ''}
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank">${cfg.contract}</a></span></div>
+                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${lastTx.last_tx_date} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value">approveAndCall(NEU) — burns NEU, returns ETH-T in one tx</span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value">withdraw(amount) — converts ETH-T to raw ETH</span></div>
               </div>
@@ -1955,7 +2103,7 @@ async function checkUserBalances(overrideAddress) {
           html += `
             <div class="claim-card">
               <div class="claim-card-header">
-                <span class="claim-card-name">${cfg.name}</span>
+                <span class="claim-card-name">${esc(cfg.name)}</span>
                 <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
                 <span class="claim-card-tag" style="opacity:0.5">Manual</span>
               </div>
@@ -1986,12 +2134,12 @@ async function checkUserBalances(overrideAddress) {
           html += `
             <div class="claim-card">
               <div class="claim-card-header">
-                <span class="claim-card-name">${cfg.name}</span>
+                <span class="claim-card-name">${esc(cfg.name)}</span>
                 <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
               </div>
               <div class="claim-card-meta" id="claimDetails-${key}">
-                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${lastTx.last_tx_date} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank">view tx</a></span></div>` : ''}
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank">${cfg.contract}</a></span></div>
+                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${lastTx.last_tx_date} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value">lockMe() -- starts ${cfg.twoStep.lockDays}-day unlock timer</span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value">withdraw(0x0, amount) -- after timer expires</span></div>
               </div>
@@ -2011,12 +2159,12 @@ async function checkUserBalances(overrideAddress) {
           html += `
             <div class="claim-card">
               <div class="claim-card-header">
-                <span class="claim-card-name">${cfg.name}</span>
+                <span class="claim-card-name">${esc(cfg.name)}</span>
                 <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
               </div>
               <div class="claim-card-meta" id="claimDetails-${key}">
-                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${lastTx.last_tx_date} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank">view tx</a></span></div>` : ''}
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank">${cfg.contract}</a></span></div>
+                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${lastTx.last_tx_date} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">${esc(funcSig)}${cfg.exitAbi ? ' / ' + cfg.exitAbi.replace('function ', '') : ''}${adoptionReqs ? ' / cancelAdoptionRequest(bytes5)' : ''}</span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Args</span><span class="claim-card-meta-value">${esc(argsDisplay)}</span></div>
               </div>`;
@@ -2048,10 +2196,10 @@ async function checkUserBalances(overrideAddress) {
   const ethPrice = await getEthPrice();
   if (!hasBalance) {
     html = `<div class="no-balance-state">
-      <div class="no-balance-icon">--</div>
-      <p>Nothing found for ${esc(truncAddr(checkAddr))}</p>
-      <p style="font-size:12px">Checked ${Object.keys(EXCHANGES).length} contracts. Try other wallets from 2016-2018.</p>
-      ${renderShareButtons('Check if you have forgotten ETH stuck in old contracts.')}
+      <div class="no-balance-check">&#10003;</div>
+      <div class="no-balance-title">No unclaimed ETH found</div>
+      <div class="no-balance-addr">${esc(checkAddr)}</div>
+      <p style="font-size:12px">Checked ${Object.keys(EXCHANGES).length} contracts. Try other wallets from 2015-2020.</p>
     </div>`;
     document.getElementById('claimBannerTitle').textContent = 'Scan Complete';
   } else {
@@ -2128,6 +2276,7 @@ async function claimETH(key) {
   btn.classList.add('pending');
   statusEl.textContent = 'Confirm in wallet...';
 
+  let tx = null;
   try {
     const contract = new ethers.Contract(cfg.contract, [cfg.withdrawAbi], walletSigner);
     const args = cfg.withdrawArgs(balance, walletAddress);
@@ -2135,14 +2284,14 @@ async function claimETH(key) {
 
     window.va?.track?.('claim_initiated', { exchange: cfg.name, amount_eth: ethAmount });
 
-    const tx = await contract[cfg.withdrawCall](...args);
+    tx = await contract[cfg.withdrawCall](...args);
 
     btn.textContent = 'Pending...';
     const claimedEthNum = parseFloat(ethAmount);
     const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
     statusEl.innerHTML = `<div style="padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);margin-top:8px">
       <div style="font-size:12px;color:var(--text2);margin-bottom:4px">Transaction submitted — waiting for confirmation...</div>
-      <div style="font-family:monospace;font-size:12px;word-break:break-all"><a href="${etherscanTx(tx.hash)}" target="_blank">${tx.hash}</a></div>
+      <div style="font-family:monospace;font-size:12px;word-break:break-all"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash}</a></div>
     </div>`;
 
     window.va?.track?.('claim_submitted', { exchange: cfg.name, amount_eth: ethAmount, tx_hash: tx.hash });
@@ -2159,9 +2308,10 @@ async function claimETH(key) {
     statusEl.innerHTML = `<div class="claim-recovered">
         <div class="claim-recovered-label">Recovered</div>
         <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div>
-        <div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank">View transaction on Etherscan</a></div>
+        <div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
       </div>
       ${renderDonationCard(claimedEthNum)}`;
+    showDonationCardDelayed();
     userBalances[key] = 0n;
   } catch (e) {
     if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
@@ -2174,7 +2324,7 @@ async function claimETH(key) {
       btn.textContent = 'Submitted';
       btn.classList.remove('pending');
       btn.style.opacity = '0.7';
-      statusEl.innerHTML = `Tx sent but confirmation timed out. Check status: <a href="${etherscanTx(tx.hash)}" target="_blank">${tx.hash.slice(0, 18)}...</a>`;
+      statusEl.innerHTML = `Tx sent but confirmation timed out. Check status: <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash.slice(0, 18)}...</a>`;
     } else {
       btn.disabled = false;
       btn.textContent = 'Withdraw';
@@ -2217,7 +2367,7 @@ async function claimLockMe(key) {
     const tx = await contract[cfg.twoStep.lockCall]();
 
     btn.textContent = 'Pending...';
-    statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank">${tx.hash.slice(0, 18)}...</a>`;
+    statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash.slice(0, 18)}...</a>`;
 
     const receipt = await tx.wait();
     window.va?.track?.('lock_confirmed', { exchange: cfg.name, tx_hash: tx.hash });
@@ -2228,7 +2378,7 @@ async function claimLockMe(key) {
     btn.style.opacity = '0.7';
     statusEl.innerHTML = `<div style="padding:10px 0">
         Unlock started. Withdraw available <strong>${unlockDate}</strong> (${cfg.twoStep.lockDays} days).
-        <div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank">View transaction on Etherscan</a></div>
+        <div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
         <div style="font-size:11px;margin-top:4px;color:var(--text2)">Bookmark this page and come back after ${unlockDate} to complete withdrawal.</div>
       </div>`;
   } catch (e) {
@@ -2240,6 +2390,92 @@ async function claimLockMe(key) {
     } else {
       console.error('Lock error:', e);
       statusEl.textContent = 'Failed. Try again.';
+    }
+  }
+}
+
+// ─── DigixDAO Acid (2-step: approve DGD + burn) ───
+
+async function digixApprove(key) {
+  const cfg = EXCHANGES[key];
+  const btn = document.getElementById('claimBtn-' + key);
+  const statusEl = document.getElementById('claimStatus-' + key);
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+  if (!walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Approving...';
+  btn.classList.add('pending');
+
+  try {
+    const dgdContract = new ethers.Contract(cfg.digixBurn.dgdToken, ['function balanceOf(address) view returns (uint256)', 'function approve(address,uint256) returns (bool)'], walletSigner);
+    const dgdBal = await dgdContract.balanceOf(walletAddress);
+    const tx = await dgdContract.approve(cfg.digixBurn.acidContract, dgdBal);
+    statusEl.textContent = 'Waiting for confirmation...';
+    await tx.wait();
+    btn.textContent = 'Claim ETH';
+    btn.classList.remove('pending');
+    btn.disabled = false;
+    btn.dataset.action = 'digix-burn';
+    statusEl.innerHTML = '<span style="color:var(--green)">Approved. Click to burn DGD and claim ETH.</span>';
+    window.va?.track?.('digix_approve_confirmed', { exchange: cfg.name, tx_hash: tx.hash });
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Step 1: Approve DGD';
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      statusEl.textContent = 'Rejected';
+    } else {
+      statusEl.textContent = 'Approve failed: ' + (e.reason || e.message || 'Unknown error');
+    }
+  }
+}
+
+async function digixBurn(key) {
+  const cfg = EXCHANGES[key];
+  const btn = document.getElementById('claimBtn-' + key);
+  const statusEl = document.getElementById('claimStatus-' + key);
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+  if (!walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Burning DGD...';
+  btn.classList.add('pending');
+
+  try {
+    const acidContract = new ethers.Contract(cfg.digixBurn.acidContract, ['function burn()'], walletSigner);
+    const tx = await acidContract.burn();
+    btn.textContent = 'Pending...';
+    statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash.slice(0, 18)}...</a>`;
+
+    window.va?.track?.('claim_submitted', { exchange: cfg.name, tx_hash: tx.hash });
+    const receipt = await tx.wait();
+
+    const ethAmount = ethers.formatEther(userBalances[key] || 0n);
+    const claimedEthNum = parseFloat(ethAmount);
+    const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
+    window.va?.track?.('claim_confirmed', { exchange: cfg.name, amount_eth: ethAmount, tx_hash: tx.hash, block: receipt.blockNumber });
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: claimedEthNum, tx_hash: tx.hash, block_num: receipt.blockNumber });
+    btn.textContent = 'Done';
+    btn.classList.remove('pending');
+    btn.style.background = 'var(--green)';
+    btn.style.opacity = '0.7';
+    statusEl.innerHTML = `<div class="claim-recovered">
+        <div class="claim-recovered-label">Recovered</div>
+        <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div>
+        <div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
+      </div>
+      ${renderDonationCard(claimedEthNum)}`;
+    showDonationCardDelayed();
+    userBalances[key] = 0n;
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Claim ETH';
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      statusEl.textContent = 'Rejected';
+    } else {
+      statusEl.textContent = 'Burn failed: ' + (e.reason || e.message || 'Unknown error');
     }
   }
 }
@@ -2265,13 +2501,13 @@ async function neufundApproveAndUnlock(key) {
       ['function approveAndCall(address spender, uint256 amount, bytes extraData) returns (bool)'], walletSigner);
     const tx = await neuContract.approveAndCall(cfg.neufundLocked.lockedAccount, nfState.neuDue, '0x');
     btn.textContent = 'Pending...';
-    statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank">${tx.hash.slice(0, 18)}...</a>`;
+    statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash.slice(0, 18)}...</a>`;
     await tx.wait();
     btn.textContent = 'Step 2: Withdraw ETH';
     btn.classList.remove('pending');
     btn.disabled = false;
     btn.dataset.action = 'neufund-withdraw-etht';
-    statusEl.innerHTML = `Unlocked! ETH-T in your wallet. <a href="${etherscanTx(tx.hash)}" target="_blank">View tx</a>. Now click "Step 2: Withdraw ETH".`;
+    statusEl.innerHTML = `Unlocked! ETH-T in your wallet. <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View tx</a>. Now click "Step 2: Withdraw ETH".`;
     window.va?.track?.('neufund_unlock_confirmed', { exchange: cfg.name, tx_hash: tx.hash });
   } catch (e) {
     btn.disabled = false;
@@ -2310,7 +2546,7 @@ async function neufundWithdrawEthT(key) {
     const tx = await withdrawContract.withdraw(ethTBal);
     const ethAmount = ethers.formatEther(ethTBal);
     btn.textContent = 'Pending...';
-    statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank">${tx.hash.slice(0, 18)}...</a>`;
+    statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash.slice(0, 18)}...</a>`;
     await tx.wait();
     const claimedEthNum = parseFloat(ethAmount);
     btn.textContent = 'Done';
@@ -2320,10 +2556,10 @@ async function neufundWithdrawEthT(key) {
     statusEl.innerHTML = `<div class="claim-recovered">
         <div class="claim-recovered-label">Recovered</div>
         <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH</div>
-        <div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank">View transaction on Etherscan</a></div>
+        <div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
       </div>
-      ${renderDonationCard(claimedEthNum)}
-      ${renderShareButtons('I just recovered ' + fmtEth(ethAmount) + ' ETH from the Neufund LockedAccount using Forgotten ETH.')}`;
+      ${renderDonationCard(claimedEthNum)}`;
+    showDonationCardDelayed();
     userBalances[key] = 0n;
     window.va?.track?.('claim_confirmed', { exchange: cfg.name, amount_eth: ethAmount, tx_hash: tx.hash });
   } catch (e) {
@@ -2361,18 +2597,18 @@ async function claimExit(key) {
     const tx = await contract[cfg.exitCall](...cfg.exitArgs());
 
     btn.textContent = 'Pending...';
-    statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank">${tx.hash.slice(0, 18)}...</a>`;
+    statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash.slice(0, 18)}...</a>`;
 
     window.va?.track?.('exit_submitted', { exchange: cfg.name, tx_hash: tx.hash });
-    logEvent('claim_confirmed', { address: walletAddress, contract: key, tx_hash: tx.hash });
 
     const receipt = await tx.wait();
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, tx_hash: tx.hash });
     btn.textContent = 'Exited';
     btn.style.background = 'var(--green)';
     btn.style.opacity = '0.7';
     statusEl.innerHTML = `<div class="claim-recovered">
         <div class="claim-recovered-label">Exited</div>
-        <div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank">View transaction on Etherscan</a></div>
+        <div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
       </div>`;
     userBalances[key] = 0n;
     // Disable the withdraw button too
@@ -2412,13 +2648,13 @@ async function cancelMoonCatRequest(key, catIdHex, index) {
     const tx = await contract.cancelAdoptionRequest(catIdHex);
 
     btn.textContent = 'Pending...';
-    statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank">${tx.hash.slice(0, 18)}...</a>`;
+    statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash.slice(0, 18)}...</a>`;
 
     const receipt = await tx.wait();
     btn.textContent = 'Claimed';
     btn.style.background = 'var(--green)';
     btn.style.opacity = '0.7';
-    statusEl.innerHTML = `<div class="claim-recovered"><div class="claim-recovered-label">Recovered</div><div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank">View transaction on Etherscan</a></div></div>`;
+    statusEl.innerHTML = `<div class="claim-recovered"><div class="claim-recovered-label">Recovered</div><div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div></div>`;
   } catch (e) {
     btn.disabled = false;
     btn.textContent = 'Cancel & Claim';
@@ -2453,8 +2689,9 @@ async function claimENSDeed(index) {
     const tx = await registrar.releaseDeed(deed.labelHash);
     btn.textContent = 'Pending...';
     const claimedEthNum = parseFloat(ethAmount);
-    statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank">${tx.hash.slice(0, 18)}...</a>
+    statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash.slice(0, 18)}...</a>
       ${renderDonationCard(claimedEthNum)}`;
+    showDonationCardDelayed();
 
     window.va?.track?.('claim_submitted', { exchange: 'ENS Old Registrar', amount_eth: ethAmount, tx_hash: tx.hash });
 
@@ -2469,10 +2706,10 @@ async function claimENSDeed(index) {
     statusEl.innerHTML = `<div class="claim-recovered">
       <div class="claim-recovered-label">Released</div>
       <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH</div>
-      <div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank">View transaction on Etherscan</a></div>
+      <div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
     </div>
-    ${renderDonationCard(claimedEthNum)}
-    ${renderShareButtons('I just recovered ' + fmtEth(ethAmount) + ' ETH from an old smart contract using Forgotten ETH.')}`;
+    ${renderDonationCard(claimedEthNum)}`;
+    showDonationCardDelayed();
   } catch (e) {
     btn.disabled = false;
     btn.textContent = 'Release';
@@ -2573,7 +2810,7 @@ function filterTabs(query) {
   // Expand tabs while searching so results are visible
   const tabsEl = document.getElementById('tabs');
   if (q) { tabsEl.style.maxHeight = tabsEl.scrollHeight + 'px'; tabsEl.classList.add('expanded'); }
-  else { tabsEl.style.maxHeight = '200px'; tabsEl.classList.remove('expanded'); document.getElementById('tabsToggleBtn').innerHTML = 'More contracts &#x25BE;'; }
+  else { tabsEl.style.maxHeight = '80px'; tabsEl.classList.remove('expanded'); document.getElementById('tabsToggleBtn').innerHTML = 'More contracts &#x25BE;'; }
 }
 
 const loadedTabs = new Set();
@@ -2649,8 +2886,10 @@ async function loadExchange(key) {
   const d = tabState[key].meta;
   const badgeUsd = _ethPrice ? ' (' + fmtUsd(d.total_eth * _ethPrice) + ')' : '';
   document.getElementById('badge-' + key).textContent = fmtEth(d.total_eth) + ' ETH';
+  // Contract info — all values from EXCHANGES config (trusted), escaped for safety
   document.getElementById('contract-' + key).innerHTML =
-    `<b>Contract:</b> <a href="${etherscanAddr(esc(d.contract))}" target="_blank">${esc(d.contract)}</a>` + (cfg.deployed ? `<br><b>Deployed:</b> ${esc(cfg.deployed)}` : '');
+    `<span style="color:var(--text);font-weight:600">Contract</span> <a href="${etherscanAddr(esc(d.contract))}" target="_blank" rel="noopener noreferrer">${esc(d.contract)}</a>` +
+    (cfg.deployed ? `<br><span style="color:var(--text);font-weight:600">Deployed</span> ${esc(cfg.deployed)}` : '');
 
   renderCards(key);
   renderCharts(key);
@@ -2661,11 +2900,11 @@ async function loadExchange(key) {
 function renderCards(key) {
   const d = tabState[key].meta;
   const cards = [
-    { label: 'Unclaimed ETH', value: fmtEth(d.contract_eth_balance), cls: 'eth' },
+    { label: 'Unclaimed ETH', value: fmtEth(d.total_eth), cls: 'eth' },
     { label: 'Addresses', value: fmtNum(d.addresses_with_balance), cls: 'eth' },
   ];
-  let cardsHtml = '<div style="display:flex;gap:12px;justify-content:center;margin-bottom:24px">' +
-    cards.map(c => `<div class="card" style="flex:0 1 220px;text-align:center"><div class="label">${c.label}</div><div class="value ${c.cls}">${c.value}</div></div>`).join('') +
+  let cardsHtml = '<div class="cards">' +
+    cards.map(c => `<div class="card"><div class="label">${c.label}</div><div class="value ${c.cls}">${c.value}</div></div>`).join('') +
     '</div>';
 
   document.getElementById('cards-' + key).innerHTML = cardsHtml;
@@ -2703,8 +2942,8 @@ function renderCharts(key) {
   if (chartInstances['activity-' + key]) { chartInstances['activity-' + key].destroy(); delete chartInstances['activity-' + key]; }
   if (chartInstances['tvl-' + key]) { chartInstances['tvl-' + key].destroy(); delete chartInstances['tvl-' + key]; }
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-  const gridColor = isDark ? '#2a2e3a' : '#eee';
-  const textColor = isDark ? '#8b8fa3' : '#666';
+  const gridColor = isDark ? '#2e2b38' : '#edeae4';
+  const textColor = isDark ? '#9590a6' : '#78716c';
 
   const cardsEl = document.getElementById('cards-' + key);
   let chartDiv = document.getElementById('charts-' + key);
@@ -2717,13 +2956,13 @@ function renderCharts(key) {
     chartDiv.innerHTML =
       '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px">' +
         '<h3 style="font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text2);margin-bottom:8px;font-weight:700">ETH Balance Over Time</h3>' +
-        '<div style="height:500px">' +
+        '<div style="height:300px">' +
           (hasTvl ? '<canvas id="chartTvl-' + key + '"></canvas>' : '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text2);font-size:12px">No TVL data available</div>') +
         '</div>' +
       '</div>' +
       '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px">' +
         '<h3 style="font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text2);margin-bottom:8px;font-weight:700">Contract Interactions</h3>' +
-        '<div style="height:500px">' +
+        '<div style="height:300px">' +
           (hasActivity ? '<canvas id="chartActivity-' + key + '"></canvas>' : '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text2);font-size:12px">No activity data available</div>') +
         '</div>' +
       '</div>';
@@ -2753,8 +2992,8 @@ function renderCharts(key) {
         labels: activity.map(a => a.month),
         datasets: [{
           data: activity.map(a => a.tx_count),
-          backgroundColor: '#d946ef99',
-          borderColor: '#d946ef',
+          backgroundColor: '#7c3aed80',
+          borderColor: '#7c3aed',
           borderWidth: 1,
         }]
       },
@@ -2805,8 +3044,8 @@ function renderCharts(key) {
         labels: tvl.map(t => t.month),
         datasets: [{
           data: tvl.map(t => t.balance_eth),
-          backgroundColor: '#d946ef99',
-          borderColor: '#d946ef',
+          backgroundColor: '#7c3aed80',
+          borderColor: '#7c3aed',
           borderWidth: 1,
         }]
       },
@@ -3006,8 +3245,8 @@ async function checkManualAddress() {
   const ethPrice = await getEthPrice();
   let finalHtml;
   if (grandFound === 0) {
-    const addrDisplay = resolvedAddrs.length === 1 ? esc(truncAddr(resolvedAddrs[0])) : resolvedAddrs.length + ' addresses';
-    finalHtml = '<div class="no-balance-state"><div class="no-balance-icon">--</div><p>Nothing found for ' + addrDisplay + '</p><p style="font-size:15px">Checked ' + Object.keys(EXCHANGES).length + ' contracts. Try other wallets from 2016-2018.</p>' + renderShareButtons('Check if you have forgotten ETH stuck in old contracts.') + '</div>';
+    const addrDisplay = resolvedAddrs.length === 1 ? esc(resolvedAddrs[0]) : resolvedAddrs.length + ' addresses';
+    finalHtml = '<div class="no-balance-state"><div class="no-balance-check">&#10003;</div><div class="no-balance-title">No unclaimed ETH found</div><div class="no-balance-addr">' + addrDisplay + '</div><p>Checked ' + Object.keys(EXCHANGES).length + ' contracts.</p><div class="no-balance-hint">Try other wallets from 2015-2020.</div></div>';
     document.getElementById('claimBannerTitle').textContent = 'Scan Complete';
   } else {
     const usdStr = ethPrice ? fmtUsd(grandTotalEth * ethPrice) : '';
@@ -3039,7 +3278,7 @@ async function connectWalletForManual() {
     const rowsEl = document.getElementById('claimRows');
     rowsEl.innerHTML = `<div style="text-align:center;padding:20px">
       <p style="font-size:14px;font-weight:700;margin-bottom:8px">No wallet detected</p>
-      <p style="font-size:12px;color:var(--text2);margin-bottom:12px">Install <a href="https://metamask.io" target="_blank">MetaMask</a> or another Web3 wallet to withdraw.</p>
+      <p style="font-size:12px;color:var(--text2);margin-bottom:12px">Install <a href="https://metamask.io" target="_blank" rel="noopener noreferrer">MetaMask</a> or another Web3 wallet to withdraw.</p>
       <p style="font-size:12px;color:var(--text2)">You can still paste any address above to check balances without a wallet.</p>
     </div>`;
     banner.classList.add('visible');
@@ -3104,11 +3343,11 @@ async function _testCheckBalances() {
       html += `
         <div class="claim-card">
           <div class="claim-card-header">
-            <span class="claim-card-name">${cfg.name}</span>
+            <span class="claim-card-name">${esc(cfg.name)}</span>
             <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
           </div>
           <div class="claim-card-meta" id="claimDetails-${key}">
-            <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank">${cfg.contract}</a></span></div>
+            <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
             <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">${esc(funcSig)}${cfg.exitAbi ? ' / ' + cfg.exitAbi.replace('function ', '') : ''}</span></div>
             <div class="claim-card-meta-row"><span class="claim-card-meta-label">Args</span><span class="claim-card-meta-value">${esc(argsDisplay)}</span></div>
           </div>
@@ -3153,7 +3392,7 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
   await new Promise(r => setTimeout(r, 1200));
 
   btn.textContent = 'Pending...';
-  statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(fakeTxHash)}" target="_blank">${fakeTxHash.slice(0, 18)}...</a>`;
+  statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(fakeTxHash)}" target="_blank" rel="noopener noreferrer">${fakeTxHash.slice(0, 18)}...</a>`;
 
   // Simulate block confirmation delay
   await new Promise(r => setTimeout(r, 2000));
@@ -3168,11 +3407,11 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
   statusEl.innerHTML = `<div class="claim-recovered">
       <div class="claim-recovered-label">Recovered</div>
       <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div>
-      <div class="claim-recovered-tx"><a href="${etherscanTx(fakeTxHash)}" target="_blank">View transaction on Etherscan</a></div>
+      <div class="claim-recovered-tx"><a href="${etherscanTx(fakeTxHash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
       <div style="font-size:10px;color:var(--yellow);margin-top:2px">[TEST MODE]</div>
     </div>
-    ${renderDonationCard(claimedEthNum)}
-    ${renderShareButtons('I just recovered ' + fmtEth(ethAmount) + ' ETH from an old smart contract using Forgotten ETH.')}`;
+    ${renderDonationCard(claimedEthNum)}`;
+  showDonationCardDelayed();
   userBalances[key] = 0n;
 
   console.log('[TEST MODE] Simulated claim:', cfg.name, ethAmount, 'ETH, fake tx:', fakeTxHash);
@@ -3217,13 +3456,12 @@ async function _testCheckManualAddress(input) {
     const totalResp = await fetch('/api/total');
     if (totalResp.ok) {
       const totalData = await totalResp.json();
-      const totalEthVal = Math.round(totalData.total_contract_eth);
-      document.getElementById('totalAllEth').textContent = totalEthVal.toLocaleString('en') + ' ETH';
-      document.getElementById('totalContracts').textContent = (totalData.contract_count || Object.keys(EXCHANGES).length).toLocaleString('en');
-      // Update USD once price is available
-      getEthPrice().then(price => {
-        if (price) document.getElementById('totalAllUsd').textContent = '(' + fmtUsd(totalEthVal * price) + ')';
-      });
+      const totalEthVal = Math.round(totalData.total_eth);
+      const contractCount = totalData.contract_count || Object.keys(EXCHANGES).length;
+      // Counting animation for hero numbers
+      animateCount('totalAllEth', totalEthVal, '.hero-eth-value');
+      animateCount('totalContracts', contractCount);
+      getEthPrice(); // preload price for claim flow
     }
   } catch(e) {}
 
@@ -3323,7 +3561,7 @@ document.getElementById('explorerToggle').addEventListener('click', function() {
 document.getElementById('tabsToggleBtn').addEventListener('click', function() {
   var t = document.getElementById('tabs'), b = this;
   if (t.classList.contains('expanded')) {
-    t.style.maxHeight = '200px';
+    t.style.maxHeight = '80px';
     t.classList.remove('expanded');
     b.innerHTML = 'More contracts &#x25BE;';
   } else {
@@ -3338,7 +3576,7 @@ document.getElementById('protocolSearch').addEventListener('input', function() {
 });
 
 // Footer donation address copy-to-clipboard
-document.getElementById('footerDonationAddr').addEventListener('click', function() {
+document.getElementById('footerDonationAddr')?.addEventListener('click', function() {
   var el = this;
   navigator.clipboard.writeText(el.textContent).then(function() {
     el.style.color = 'var(--green)';
@@ -3358,6 +3596,10 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     claimExit(btn.dataset.key);
   } else if (action === 'claim-lock') {
     claimLockMe(btn.dataset.key);
+  } else if (action === 'digix-approve') {
+    digixApprove(btn.dataset.key);
+  } else if (action === 'digix-burn') {
+    digixBurn(btn.dataset.key);
   } else if (action === 'neufund-approve-and-unlock') {
     neufundApproveAndUnlock(btn.dataset.key);
   } else if (action === 'neufund-withdraw-etht') {
@@ -3369,33 +3611,45 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
   } else if (action === 'ens-manual-release') {
     ensManualRelease();
   } else if (action === 'donate-confirm') {
-    var input = document.getElementById('donationAmt');
-    var val = parseFloat(input && input.value);
-    if (!val || val <= 0) { if (input) input.focus(); return; }
+    var amt = btn.dataset.amt;
+    if (!amt) {
+      var card = btn.closest('.donation-card');
+      var claimEth = card ? parseFloat(card.dataset.claimEth) || _lastClaimEth : _lastClaimEth;
+      amt = (claimEth * 5 / 100).toFixed(4);
+    }
+    var val = parseFloat(amt);
+    if (!val || val <= 0) return;
     sendDonation(ethers.parseEther(val.toFixed(6)));
   } else if (action === 'donation-pct') {
-    // Percentage toggle — update amount but don't send
     var pct = parseInt(btn.dataset.pct);
-    var amt = (_totalClaimedEth * pct / 100).toFixed(4);
-    var amtInput = document.getElementById('donationAmt');
-    if (amtInput) amtInput.value = amt;
-    btn.closest('[id="donationCard"]')?.querySelectorAll('.donation-pct-btn').forEach(function(b) {
-      b.style.background = 'transparent';
-      b.style.color = 'var(--text2)';
-      b.style.borderColor = 'var(--border)';
+    var card = btn.closest('.donation-card');
+    var claimEth = card ? parseFloat(card.dataset.claimEth) || _lastClaimEth : _lastClaimEth;
+    var amt = (claimEth * pct / 100).toFixed(4);
+    // Toggle active pill
+    btn.closest('.donation-pct-row')?.querySelectorAll('.donation-pct-btn').forEach(function(b) {
+      b.classList.remove('active');
     });
-    btn.style.background = 'rgba(217,70,239,0.12)';
-    btn.style.color = 'var(--accent)';
-    btn.style.borderColor = 'var(--accent)';
+    btn.classList.add('active');
+    // Update the confirm button label
+    var confirmBtn = card && card.querySelector('.donation-confirm-btn');
+    if (confirmBtn) {
+      var label = 'Donate ' + amt + ' ETH';
+      if (_ethPrice) label += ' (' + fmtUsd(parseFloat(amt) * _ethPrice) + ')';
+      confirmBtn.textContent = label;
+      confirmBtn.dataset.label = label;
+      confirmBtn.dataset.amt = amt;
+    }
   } else if (action === 'copy-donation-addr') {
     navigator.clipboard.writeText(DONATION_ADDRESS).then(function() {
       btn.style.color = 'var(--green)';
-      setTimeout(function() { btn.style.color = 'var(--text)'; }, 1500);
+      setTimeout(function() { btn.style.color = ''; }, 1500);
     });
   } else if (action === 'donation-skip') {
-    _donationDismissed = true;
     var card = document.getElementById('donationCard');
-    if (card) card.style.display = 'none';
+    if (card) {
+      card.classList.add('hiding');
+      setTimeout(function() { var wrap = document.getElementById('donationCardWrap'); if (wrap) wrap.style.display = 'none'; }, 300);
+    }
   } else if (action === 'share') {
     shareResult(btn.dataset.shareText || undefined);
   } else if (action === 'copy-link') {
