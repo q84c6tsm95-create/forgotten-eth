@@ -109,7 +109,7 @@
   },
   "ens_old": {
     "name": "ENS Old Registrar",
-    "desc": "The ENS Old Registrar (0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef) holds over 11,324 ETH in deed deposits from the original 2017 ENS Vickrey auction system. When ENS migrated to the permanent registrar in May 2019, these deposits were not automatically returned \u2014 users must call releaseDeed(labelHash) to reclaim their locked ETH. Releasing a deed only recovers your deposit; it does not affect your ENS name, which remains registered on the new registrar.",
+    "desc": "The original .eth registrar launched May 4, 2017 (Star Wars Day) after an earlier March launch was aborted due to a bug. Used Vickrey sealed-bid auctions where winning bids were locked in deed contracts. Replaced by the permanent registrar on May 4, 2019; names not migrated by May 2020 returned to the pool, but deed deposits can still be reclaimed via releaseDeed().",
     "category": "ens",
     "color": "#3b82f6",
     "contract": "0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef",
@@ -379,7 +379,7 @@
   },
   "readyplayerone": {
     "name": "ReadyPlayerONE",
-    "desc": "A Fomo3D-fork gambling game on Ethereum, cloning Fomo3D's key-purchase and countdown-timer mechanic. Note: isHuman modifier \u2014 smart contract wallets cannot withdraw.",
+    "desc": "Deployed July 2018, a Fomo3D fork named after the Ernest Cline novel and Spielberg film. Same key-purchase countdown mechanic where the last buyer before the timer expires wins the pot. Note: isHuman modifier \u2014 smart contract wallets cannot withdraw.",
     "category": "gambling",
     "color": "#ef4444",
     "contract": "0x6db943251e4126f913e9733821031791e75df713",
@@ -388,7 +388,7 @@
   },
   "fomo3d_lightning": {
     "name": "FoMo3D Lightning",
-    "desc": "A Fomo3D-fork gambling game on Ethereum, cloning Fomo3D's key-purchase and countdown-timer mechanic. Note: isHuman modifier \u2014 smart contract wallets cannot withdraw.",
+    "desc": "One of the earliest Fomo3D clones, deployed July 2018 within weeks of the original. A speed-round variant of the countdown-timer game where rounds resolved faster than standard Fomo3D. Note: isHuman modifier \u2014 smart contract wallets cannot withdraw.",
     "category": "gambling",
     "color": "#f97316",
     "contract": "0x24da016c06941ec2c92be28e0a2b2e679f0d1dc7",
@@ -460,7 +460,7 @@
   },
   "powm": {
     "name": "POWM",
-    "desc": "was a PoWH3D clone (2018).",
+    "desc": "Proof of Weak Math, deployed April 2018 during the first wave of P3D clones. Named as a jab at PoWL, an earlier clone with a coding error that broke its dividend math. Featured a 20% fee and briefly held over 4,000 ETH.",
     "category": "gambling",
     "color": "#b91c1c",
     "contract": "0xa146240bf2c04005a743032dc0d241ec0bb2ba2b",
@@ -469,7 +469,7 @@
   },
   "pooh": {
     "name": "POOH",
-    "desc": "was a PoWH3D clone (2018).",
+    "desc": "Deployed April 2018, POOH branded itself as \"the most honest P3D clone\" and an \"honest proof of cloning.\" Same 10% buy/sell fee mechanics as PoWH3D, hosted at number2.io.",
     "category": "gambling",
     "color": "#92400e",
     "contract": "0x4c29d75cc423e8adaa3839892feb66977e295829",
@@ -478,7 +478,7 @@
   },
   "powtf": {
     "name": "PoWTF",
-    "desc": "was a PoWH3D clone (2018).",
+    "desc": "Short for \"Proof of World Trade Francs,\" deployed April 2018. Named after a fictional stablecoin jokingly proposed by Vitalik Buterin. Featured higher fees than standard P3D: 20% on buys and 25% on sells.",
     "category": "gambling",
     "color": "#9f1239",
     "contract": "0x702392282255f8c0993dbbbb148d80d2ef6795b1",
@@ -487,7 +487,7 @@
   },
   "powh_clone1": {
     "name": "Hourglass Clone A",
-    "desc": "was a PoWH3D clone (2018).",
+    "desc": "An unnamed PoWH3D fork deployed April 2018, using the same Hourglass dividend token contract with no meaningful modifications. One of dozens of near-identical clones launched during the P3D craze.",
     "category": "gambling",
     "color": "#881337",
     "contract": "0xe1c9a03cf690256ff7738cbd508c88cf5238a535",
@@ -496,7 +496,7 @@
   },
   "powh_clone2": {
     "name": "Hourglass Clone B",
-    "desc": "was a PoWH3D clone (2018).",
+    "desc": "Another unbranded Hourglass contract deployed April 2018. A direct copy of the PoWH3D source code with identical 10% buy/sell fees distributed to token holders.",
     "category": "gambling",
     "color": "#7f1d1d",
     "contract": "0x34ba9c7402e1df11709c7983008b5a49d59e963f",
@@ -505,7 +505,7 @@
   },
   "lockedin": {
     "name": "LOCKEDiN",
-    "desc": "was a PoWH3D clone (2018).",
+    "desc": "Deployed April 2018, LOCKEDiN was a PoWH3D fork that emphasized the \"lock in your ETH for dividends\" angle. Standard Hourglass mechanics where every transaction fee is split among all existing token holders.",
     "category": "gambling",
     "color": "#6b21a8",
     "contract": "0xdb4837c9d84315abcde80a865f15178f86db3966",
@@ -514,7 +514,7 @@
   },
   "stronghold": {
     "name": "StrongHold",
-    "desc": "was a PoWH3D clone (2018).",
+    "desc": "A PoWH3D clone from April 2018 that branded itself as a safer, more resilient version of the P3D dividend model. Used the same autonomous contract mechanics with no owner and no self-destruct.",
     "category": "gambling",
     "color": "#5b21b6",
     "contract": "0x7e7e645e9121dddaf87d0434feb9f113d1dbbb41",
@@ -523,7 +523,7 @@
   },
   "powh_clone3": {
     "name": "Hourglass Clone C",
-    "desc": "was a PoWH3D clone (2018).",
+    "desc": "Deployed April 2018 at the peak of the PoWH3D clone wave. An unmodified copy of the Hourglass dividend contract where holding tokens earns a share of all future buy and sell fees.",
     "category": "gambling",
     "color": "#4c1d95",
     "contract": "0x7b6c511a94d35b9cf9979b727335c9798edb5c64",
@@ -532,7 +532,7 @@
   },
   "powh_clone4": {
     "name": "Hourglass Clone D",
-    "desc": "was a PoWH3D clone (2018).",
+    "desc": "Yet another April 2018 Hourglass fork, part of the rapid proliferation of P3D clones that flooded Ethereum in spring 2018. Identical dividend token mechanics with 10% fees on every transaction.",
     "category": "gambling",
     "color": "#831843",
     "contract": "0xf5aa54d121dfe0d5eeb37c83aed42238f4f2c5c6",
@@ -541,7 +541,7 @@
   },
   "unkoin": {
     "name": "UnKoin",
-    "desc": "was a PoWH3D clone (2018).",
+    "desc": "A PoWH3D clone from April 2018 with a play on \"unknown coin.\" Standard Hourglass dividend mechanics where ETH deposits mint tokens and all trading activity generates passive income for holders.",
     "category": "gambling",
     "color": "#701a75",
     "contract": "0x5bedf488d29407bc08e77cd9ee292c2041a61c8c",
@@ -550,7 +550,7 @@
   },
   "acedapp": {
     "name": "AceDapp",
-    "desc": "was a PoWH3D clone (October 2019) with the standard Hourglass token mechanics where every buy and sell incurs a 10% fee distributed to all existing holders.",
+    "desc": "Deployed October 2019, a late-era PoWH3D clone that launched well after most P3D forks had already lost their user bases. Standard Hourglass dividend mechanics with 10% buy/sell fees.",
     "category": "gambling",
     "color": "#9f1239",
     "contract": "0xe65f525ec48c7e95654b9824ecc358454ea9185e",
@@ -577,7 +577,7 @@
   },
   "rev1": {
     "name": "REV1",
-    "desc": "was a PoWH3D clone (May 2018) with the standard Hourglass token mechanics where every buy and sell incurs a fee distributed to all existing holders.",
+    "desc": "Deployed May 2018, REV1 was an early PoWH3D fork from the second month of the P3D clone wars. Straightforward dividend token where 10% of every buy and sell is redistributed to holders.",
     "category": "gambling",
     "color": "#0e7490",
     "contract": "0x05215fce25902366480696f38c3093e31dbce69a",
@@ -595,7 +595,7 @@
   },
   "lynia": {
     "name": "LYNIA",
-    "desc": "was a decentralized gaming and gambling platform (August 2018) with PoWH3D-style token-holder rewards. Has an isHuman modifier \u2014 smart contract wallets cannot withdraw.",
+    "desc": "A gaming and gambling platform deployed August 2018 that combined PoWH3D-style dividend tokens with provably fair on-chain games. Has an isHuman modifier \u2014 smart contract wallets cannot withdraw.",
     "category": "gambling",
     "color": "#86198f",
     "contract": "0xecfae6f958f7ab15bdf171eeefa568e41eabf641",
@@ -613,7 +613,7 @@
   },
   "proofofcraiggrant": {
     "name": "ProofOfCraigGrant",
-    "desc": "was a PoWH3D-style token (April 2018) themed around a high-profile BitConnect promoter, part of the 2018 wave of meme-themed dividend tokens on Ethereum.",
+    "desc": "Deployed April 2018, a meme-themed PoWH3D fork named after Craig Grant, one of BitConnect's most prominent YouTube promoters. Part of a series of personality-themed P3D clones alongside Proof of Trevon James.",
     "category": "gambling",
     "color": "#78350f",
     "contract": "0xea61319f55b6543962fe1d7bd990ef74849fc54f",
@@ -640,7 +640,7 @@
   },
   "proofofcommunity": {
     "name": "ProofOfCommunity",
-    "desc": "was a PoWH3D clone (May 2018) with the standard Hourglass token mechanics where every buy and sell incurs a fee distributed to all existing holders.",
+    "desc": "A May 2018 PoWH3D fork that rebranded the dividend token concept around community ownership. Same underlying Hourglass mechanics where all transaction fees are split among existing holders.",
     "category": "gambling",
     "color": "#1e3a5f",
     "contract": "0x1739e311ddbf1efdfbc39b74526fd8b600755ada",
@@ -649,7 +649,7 @@
   },
   "bitconnect_powh": {
     "name": "BitConnect Token",
-    "desc": "was a PoWH3D clone (June 2019) with the standard Hourglass dividend token mechanics.",
+    "desc": "Deployed June 2019, a PoWH3D clone that borrowed the BitConnect name a year and a half after the original lending platform collapsed. Standard dividend token mechanics; unrelated to the actual BitConnect project.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0xfcd3a0f5f416e407647a7518b90354946d316059",
@@ -658,7 +658,7 @@
   },
   "eightherbank": {
     "name": "Eightherbank",
-    "desc": "was a PoWH3D clone (November 2019) with the standard Hourglass dividend token mechanics. Has an isHuman modifier \u2014 smart contract wallets cannot withdraw.",
+    "desc": "A November 2019 PoWH3D fork with a banking theme. Uses the Hourglass dividend model with an isHuman modifier \u2014 smart contract wallets cannot withdraw.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0xc6e5e9c6f4f3d1667df6086e91637cc7c64a13eb",
@@ -667,7 +667,7 @@
   },
   "nexgen": {
     "name": "Nexgen",
-    "desc": "was a PoWH3D clone (June 2019) with the standard Hourglass dividend token mechanics.",
+    "desc": "Deployed June 2019, a PoWH3D clone that positioned itself as a next-generation dividend token. Identical Hourglass mechanics to P3D with 10% fees on buys and sells.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0xffd31e68bf7af89df862435a138615bd60abf574",
@@ -676,7 +676,7 @@
   },
   "diamonddividend": {
     "name": "DiamondDividend",
-    "desc": "was a PoWH3D clone (November 2019) with the standard Hourglass dividend token mechanics.",
+    "desc": "A November 2019 PoWH3D fork using diamond-themed branding for the standard Hourglass dividend model. Holders earn ETH from all future transaction fees proportional to their token balance.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x84cc06eddb26575a7f0afd7ec2e3e98d31321397",
@@ -685,7 +685,7 @@
   },
   "e25": {
     "name": "E25 Booster",
-    "desc": "was a PoWH3D clone (February 2019) with the standard Hourglass dividend token mechanics. Has an isHuman modifier \u2014 smart contract wallets cannot withdraw.",
+    "desc": "Deployed February 2019, a PoWH3D clone with a modified fee structure hinted at by its \"25\" branding. Has an isHuman modifier \u2014 smart contract wallets cannot withdraw.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0xc3ad35d351b33783f27777e2ee1a4b6f96e4ee34",
@@ -694,7 +694,7 @@
   },
   "bitconnect2": {
     "name": "BitConnect v2",
-    "desc": "was a PoWH3D clone (June 2019) with the standard Hourglass dividend token mechanics.",
+    "desc": "The second in a series of BitConnect-themed PoWH3D clones, deployed June 2019. Reused the infamous brand name purely for attention; standard P3D dividend token under the hood.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x568a693e1094b1e51e8053b2fc642da7161603f5",
@@ -703,236 +703,236 @@
   },
   "ethplatinum": {
     "name": "ETHPlatinum",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "Deployed November 2021, one of the last PoWH3D clones ever created on Ethereum mainnet. By this point gas fees made the P3D dividend model largely impractical for small deposits.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x510f9a9642ac14ded91629a1aad552be4b24b5f0",
-    "deployed": "2018",
+    "deployed": "November 2021",
     "slug": "ethplatinum"
   },
   "divsnetwork": {
     "name": "DivsNetwork",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "A July 2020 PoWH3D fork that framed itself as a dividend distribution network. Fully autonomous contract with no owner, running the same Hourglass token model as every other P3D clone.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x26e6c899b5a5dc1d4874d828fda515a7eb7baf00",
-    "deployed": "2018",
+    "deployed": "July 2020",
     "slug": "divsnetwork"
   },
   "ethercenter": {
     "name": "EtherCenter",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "Deployed July 2019, EtherCenter was a PoWH3D fork that added no meaningful features over the original. Standard 10% fee on every transaction, distributed pro rata to all token holders.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x0e7c28fb8ed4f5f63aabd022deaeeba40ecc335c",
-    "deployed": "2018",
+    "deployed": "July 2019",
     "slug": "ethercenter"
   },
   "redchip": {
     "name": "RedChip",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "An October 2019 PoWH3D clone that borrowed stock market terminology \u2014 \"red chip\" refers to mainland China companies listed in Hong Kong. Standard Hourglass dividend mechanics beneath the branding.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0xcd2de0bd5347f617f832442ebcc1c23a4d618847",
-    "deployed": "2018",
+    "deployed": "October 2019",
     "slug": "redchip"
   },
   "cxxmain": {
     "name": "CxxMain",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "Deployed November 2019 with a cryptic name that may reference C++ programming. A PoWH3D fork with unmodified Hourglass contract code and the same fee-redistribution mechanics.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0xa4dce3845cb88a6fca0291d4eca9e5a96e75e2b4",
-    "deployed": "2018",
+    "deployed": "November 2019",
     "slug": "cxxmain"
   },
   "familyonly": {
     "name": "FamilyOnlyToken",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "An August 2020 PoWH3D fork with an invitation-only theme suggested by its name. Same Hourglass dividend model where ETH deposits mint tokens and every trade generates passive income for all holders.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0xbedde30d3532165843f07b1b0e3e90fddbb75918",
-    "deployed": "2018",
+    "deployed": "August 2020",
     "slug": "familyonly"
   },
   "spw": {
     "name": "SPW",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "Deployed June 2020, SPW was a minimal PoWH3D clone with no discernible branding or website. Pure Hourglass dividend contract mechanics.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x586f3d9e3524eb02448691b158fdcf5ffc2c57b0",
-    "deployed": "2018",
+    "deployed": "June 2020",
     "slug": "spw"
   },
   "ethdiamond": {
     "name": "ETHDIAMOND",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "A July 2020 PoWH3D clone using diamond-hands imagery. Identical dividend token contract to P3D \u2014 buy and sell fees are pooled and shared among all token holders automatically.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0xca1cc76be1f5e5ee492859d8463653cb231991bc",
-    "deployed": "2018",
+    "deployed": "July 2020",
     "slug": "ethdiamond"
   },
   "ethershares": {
     "name": "Ethershares",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "Deployed December 2018, Ethershares framed P3D-style token ownership as \"shares\" in an ETH revenue pool. Standard Hourglass mechanics with no technical differences from the original.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x2c984ec9bb20b33deb84fbeedf20effda481fdc4",
-    "deployed": "2018",
+    "deployed": "December 2018",
     "slug": "ethershares"
   },
   "twelvehour": {
     "name": "TwelveHourToken",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "An October 2018 PoWH3D fork, possibly named to suggest rapid dividend accumulation. Uses the same Hourglass contract where transaction fees are continuously redistributed to token holders.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x8f6015289a64c48ccf258c21a999809fc553c3c4",
-    "deployed": "2018",
+    "deployed": "October 2018",
     "slug": "twelvehour"
   },
   "neutrino81": {
     "name": "Neutrino81",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "Deployed March 2019 with a physics-inspired name. A PoWH3D fork using the same autonomous dividend token contract \u2014 no owner, no admin keys, just the Hourglass buy/sell fee loop.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x897d6c6772b85bf25b46c6f6da454133478ea6ab",
-    "deployed": "2018",
+    "deployed": "March 2019",
     "slug": "neutrino81"
   },
   "hourglassx": {
     "name": "HourglassX",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "A December 2018 PoWH3D fork that wore the \"Hourglass\" name openly \u2014 the original P3D contract was called Hourglass internally. Standard dividend mechanics with 10% transaction fees.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x058a144951e062fc14f310057d2fd9ef0cf5095b",
-    "deployed": "2018",
+    "deployed": "December 2018",
     "slug": "hourglassx"
   },
   "fairexchange": {
     "name": "FairExchange",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "Deployed October 2018, FairExchange pitched the PoWH3D dividend model as a \"fair\" alternative to centralized exchanges. Under the surface, identical Hourglass contract code.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0xde2b11b71ad892ac3e47ce99d107788d65fe764e",
-    "deployed": "2018",
+    "deployed": "October 2018",
     "slug": "fairexchange"
   },
   "pomda": {
     "name": "POMDA",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "A June 2018 PoWH3D fork whose name likely riffs on \"Proof of Mass Dividend Accumulation\" or similar. Vanilla Hourglass contract \u2014 ETH in, tokens out, dividends from all activity.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x0be5e8f107279cc2d9c3a537ed4ea669b45e443d",
-    "deployed": "2018",
+    "deployed": "June 2018",
     "slug": "pomda"
   },
   "decentether": {
     "name": "DecentEther",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "Deployed August 2020 during DeFi Summer, though it had nothing to do with DeFi \u2014 just another PoWH3D clone running the old Hourglass dividend model on a chain now dominated by Uniswap and Compound.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x7d2d58d7add0b2d6e06fa85590b60da7741c18c9",
-    "deployed": "2018",
+    "deployed": "August 2020",
     "slug": "decentether"
   },
   "bitconnect3": {
     "name": "BitConnect v3",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "The third BitConnect-branded PoWH3D fork, deployed October 2019. By this point the BitConnect name was the subject of SEC enforcement actions, but clone deployers kept reusing it.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x38e219ee67a5e1536c5a89fec2da0d69c254cac4",
-    "deployed": "2018",
+    "deployed": "October 2019",
     "slug": "bitconnect3"
   },
   "furious": {
     "name": "Furious",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "A July 2020 PoWH3D clone with an aggressive name but stock-standard mechanics. Same autonomous Hourglass contract where buy/sell fees are distributed to all token holders in perpetuity.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0xb0c4382d4355cdfe94a132fadf92a509b1e25939",
-    "deployed": "2018",
+    "deployed": "July 2020",
     "slug": "furious"
   },
   "etherdiamond": {
     "name": "EtherDiamond",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "Deployed July 2020, a sibling to ETHDIAMOND with nearly identical branding. Both are straight PoWH3D forks where token holders earn a cut of every future transaction.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x4af078e47490c0e761a3de260952d9eb4a6ad693",
-    "deployed": "2018",
+    "deployed": "July 2020",
     "slug": "etherdiamond"
   },
   "powh_clone5": {
     "name": "Hourglass Clone E",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "An October 2019 unnamed Hourglass fork \u2014 one of several unbranded P3D copies that were deployed with no website or community, just the raw contract on Ethereum.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x12528042299e0fca4d44ae4f42359319b8901fa2",
-    "deployed": "2018",
+    "deployed": "October 2019",
     "slug": "powh-clone5"
   },
   "cryptosurge": {
     "name": "CryptoSurge",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "Deployed October 2019 with a name evoking price surges. A PoWH3D fork using the proven Hourglass mechanics where buying tokens costs a 10% fee that goes straight to existing holders.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x11e165dd03c63771004f929d58b75e4aaf2d1a23",
-    "deployed": "2018",
+    "deployed": "October 2019",
     "slug": "cryptosurge"
   },
   "hourglass_clone6": {
     "name": "Hourglass Clone F",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "A November 2018 unbranded Hourglass contract. Deployed during the crypto winter bear market when ETH had fallen over 90% from its peak, yet P3D clones were still appearing.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x77b541f90ecfa09f854209eefeca24c295050e2e",
-    "deployed": "2018",
+    "deployed": "November 2018",
     "slug": "hourglass-clone6"
   },
   "upower": {
     "name": "UPower",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "Deployed July 2018, UPower was a PoWH3D fork from the summer of the P3D craze. Standard dividend token \u2014 deposit ETH, receive tokens, earn from every future transaction on the contract.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x5044ac8da9601edf970dcc91a10c5f41c5c548c0",
-    "deployed": "2018",
+    "deployed": "July 2018",
     "slug": "upower"
   },
   "hourglass_clone7": {
     "name": "Hourglass Clone G",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "A May 2018 unbranded Hourglass fork, one of the earliest nameless P3D copies. Deployed during the peak month of clone activity when dozens of identical contracts appeared on Ethereum.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0xaa4ec8484e89bed69570825688789589d38eea5e",
-    "deployed": "2018",
+    "deployed": "May 2018",
     "slug": "hourglass-clone7"
   },
   "redchip2": {
     "name": "RedChip v2",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "The second iteration of RedChip, deployed October 2019 alongside its predecessor. Another PoWH3D fork with the same dividend token mechanics repackaged under a stock-market-inspired name.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0xae384c6e68f5d697d65ed43fd53ef5ea3288f536",
-    "deployed": "2018",
+    "deployed": "October 2019",
     "slug": "redchip2"
   },
   "omnidex": {
     "name": "OmniDex",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "Deployed August 2018, OmniDex distinguished itself with 18% dividends, masternodes, and 0% transfer fees \u2014 tweaking the standard P3D formula. Despite the \"DEX\" name, it was a dividend token, not an exchange.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0x433e631ac0c03e49ca034dbf5543964c80c6b391",
-    "deployed": "2018",
+    "deployed": "August 2018",
     "slug": "omnidex"
   },
   "spw2": {
     "name": "SPW v2",
-    "desc": "was a PoWH3D clone with the standard Hourglass dividend token mechanics.",
+    "desc": "The second SPW contract, deployed September 2020. A relaunch of the original SPW using the same PoWH3D Hourglass mechanics with no apparent changes.",
     "category": "gambling",
     "color": "#581c87",
     "contract": "0xd446a13f9b9f8bcbc3ded73764d08735561b1638",
-    "deployed": "2018",
+    "deployed": "September 2020",
     "slug": "spw2"
   },
   "bounties": {
@@ -970,5 +970,31 @@
     "contract": "0x2956356cd2a2bf3202f771f50d3d14a367b48070",
     "deployed": "April 2017",
     "slug": "maker-weth"
+  },
+  "lastwinner": {
+    "name": "Last Winner",
+    "desc": "A Fomo3D-style gambling game deployed in 2018, also known as \"Last Winner\" \u2014 one of the largest Fomo3D clones by total ETH volume. Players purchase keys that extend a countdown timer; when the timer runs out, the last buyer wins the pot. Unclaimed dividends and affiliate earnings remain withdrawable. Note: isHuman modifier \u2014 smart contract wallets cannot withdraw.",
+    "category": "gambling",
+    "color": "#ef4444",
+    "contract": "0xDd9fd6b6F8f7ea932997992bbE67EabB3e316f3C",
+    "deployed": "August 2018",
+    "slug": "lastwinner"
+  },
+  "digixdao": {
+    "name": "DigixDAO",
+    "desc": "DigixDAO launched in March 2016 as one of Ethereum's first DAOs, raising 466,648 ETH in a crowdsale that filled its hard cap in just 12 hours. The DAO funded development of Digix's gold-backed DGX token, but after years of limited adoption, token holders voted 97% in favor of dissolution via Project Ragnarok in January 2020. The Acid refund contract was deployed in March 2020, allowing any DGD holder to permanently burn their tokens for a pro-rata share of the treasury at roughly 0.193 ETH per DGD.",
+    "contract": "0xe0b7927c4af23765cb51314a0e0521a9645f0e2a",
+    "deployed": "March 2016",
+    "color": "#d4a017",
+    "category": "ico",
+    "slug": "digixdao"
+  },
+  "p4d": {
+    "name": "P4D",
+    "desc": "A PoWH3D clone from 2018. Standard Hourglass dividend mechanics where ETH deposits mint tokens and trading fees generate passive income for holders.",
+    "contract": "0x96a4ed03206667017777f010dea4445823acb0fc",
+    "deployed": "2018",
+    "color": "#dc2626",
+    "category": "gambling"
   }
 }

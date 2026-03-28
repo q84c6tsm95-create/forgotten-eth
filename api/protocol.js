@@ -65,6 +65,17 @@ const SEO_OVERRIDES = {
       { q: 'How much ETH is stuck in the ENS old registrar?', a: 'Approximately 11,324 ETH remains in unclaimed deed deposits across 11,292 addresses. These funds have been recoverable since the May 2019 migration but most users have not called releaseDeed to withdraw.' },
     ],
   },
+  digixdao: {
+    title: 'DigixDAO DGD Refund — Burn DGD for ETH | Forgotten ETH',
+    metaDesc: 'Burn your DGD tokens to reclaim ETH from the DigixDAO dissolution. 12,491 ETH remains in the Acid refund contract. Free, no deadline, open source.',
+    faq: [
+      { q: 'How do I reclaim ETH from DigixDAO?', a: 'If you hold DGD tokens, approve them to the Acid refund contract, then call burn(). This permanently burns all your DGD and sends ETH to your wallet at a fixed rate of ~0.193 ETH per DGD. You can do this through Forgotten ETH or directly on Etherscan.' },
+      { q: 'Why was DigixDAO dissolved?', a: 'In January 2020, DGD holders voted 97% in favor of "Project Ragnarok" to dissolve the DAO and return the ETH treasury. The gold-backed DGX token had limited adoption after years of development, and holders preferred a direct ETH refund.' },
+      { q: 'Is there a deadline to claim?', a: 'No. The Acid refund contract has no expiration, no admin withdrawal function, and no pause mechanism. It will accept DGD burns as long as Ethereum exists and the contract holds ETH.' },
+      { q: 'How much ETH do I get per DGD?', a: 'The fixed rate is 0.193054 ETH per DGD token. This was set at deployment based on the treasury size divided by DGD supply. The rate never changes.' },
+      { q: 'Can I burn only some of my DGD?', a: 'No. The burn() function burns your entire DGD balance in one transaction. There is no partial burn option.' },
+    ],
+  },
 };
 
 function renderPage(slug, key, info, meta) {
@@ -95,50 +106,52 @@ function renderPage(slug, key, info, meta) {
 <meta name="twitter:image" content="https://forgotteneth.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC" crossorigin="anonymous"></script>
 <style>
   :root {
-    --bg: #ffffff; --bg2: #f8f9fa; --bg3: #f0f1f3;
-    --border: #e0e0e0; --border-strong: #ccc;
-    --text: #1a1a1a; --text2: #666;
-    --accent: #d946ef; --accent2: #c026d3; --accent-text: #c026d3; --accent-glow: transparent;
-    --green: #008a00; --green-glow: transparent;
+    --bg: #fdfcfa; --bg2: #f6f4f0; --bg3: #edeae4;
+    --border: #ddd8d0; --border-strong: #c5bfb6;
+    --text: #1c1917; --text2: #78716c;
+    --accent: #7c3aed; --accent2: #6d28d9; --accent-text: #6d28d9; --accent-glow: rgba(124, 58, 237, 0.15);
+    --green: #16a34a; --green-glow: transparent;
     --gold: #b45309; --gold-glow: rgba(180, 83, 9, 0.3);
-    --red: #cc0000; --yellow: #cc8800; --orange: #cc5500;
-    --glass: #f8f9fa; --glass-border: #e0e0e0;
+    --red: #dc2626; --yellow: #ca8a04; --orange: #c2410c;
+    --glass: #f6f4f0; --glass-border: #ddd8d0;
     --radius: 8px; --radius-sm: 4px;
-    --connect-bg: rgba(217, 70, 239, 0.06); --connect-border: rgba(217, 70, 239, 0.15);
+    --connect-bg: rgba(124, 58, 237, 0.05); --connect-border: rgba(124, 58, 237, 0.15);
+    --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
   }
   [data-theme="dark"] {
-    --bg: #0f1117; --bg2: #1a1d27; --bg3: #22262f;
-    --border: #2a2e3a; --border-strong: #3a3f4b;
-    --text: #e1e4ed; --text2: #8b8fa3;
-    --accent: #d946ef; --accent2: #e879f9; --accent-text: #d946ef; --accent-glow: transparent;
+    --bg: #0f0e13; --bg2: #1a1820; --bg3: #24222b;
+    --border: #2e2b38; --border-strong: #3e3a4b;
+    --text: #e8e4f0; --text2: #9590a6;
+    --accent: #a78bfa; --accent2: #c4b5fd; --accent-text: #a78bfa; --accent-glow: rgba(167, 139, 250, 0.15);
     --green: #34d399; --green-glow: transparent;
     --gold: #fbbf24; --gold-glow: rgba(251, 191, 36, 0.4);
     --red: #f87171; --yellow: #fbbf24; --orange: #fb923c;
-    --glass: #1a1d27; --glass-border: #2a2e3a;
-    --connect-bg: rgba(217, 70, 239, 0.04); --connect-border: rgba(217, 70, 239, 0.12);
+    --glass: #1a1820; --glass-border: #2e2b38;
+    --connect-bg: rgba(167, 139, 250, 0.04); --connect-border: rgba(167, 139, 250, 0.12);
   }
-  [data-theme="dark"] a:hover { color: #e879f9; }
+  [data-theme="dark"] a:hover { color: #c4b5fd; }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+  body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
   a { color: var(--accent-text); text-decoration: underline; }
-  a:hover { color: #a21caf; }
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px 32px; }
+  a:hover { color: #5b21b6; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 24px 32px; }
 
-  /* Header — matches main page */
+  /* Header */
   .header { padding: 36px 0 28px; border-bottom: 1px solid var(--border); text-align: center; }
-  .header h1, .header .site-name { font-size: 32px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .header h1, .header .site-name { font-family: var(--font-mono); font-size: 32px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 4px; }
   .header h1 a, .header .site-name a { color: inherit; text-decoration: none; }
   .header .subtitle { font-size: 14px; color: var(--text2); font-weight: 400; margin-bottom: 12px; }
-  .header-nav { display: flex; align-items: center; justify-content: center; gap: 0; margin-top: 16px; font-size: 13px; font-family: 'JetBrains Mono', monospace; }
+  .header-nav { display: flex; align-items: center; justify-content: center; gap: 0; margin-top: 16px; font-size: 13px; font-family: var(--font-mono); }
   .header-nav a { color: var(--text2); text-decoration: none; transition: color 150ms ease; }
   .header-nav a:hover { color: var(--accent); }
   .nav-sep { color: var(--border-strong); margin: 0 16px; user-select: none; }
-  #themeToggle { background: none; border: none; cursor: pointer; font-size: 12px; display: inline-flex; align-items: center; gap: 4px; color: var(--text2); transition: color 150ms ease; padding: 0; line-height: 1; font-family: 'JetBrains Mono', monospace; }
+  #themeToggle { background: none; border: none; cursor: pointer; font-size: 12px; display: inline-flex; align-items: center; gap: 4px; color: var(--text2); transition: color 150ms ease; padding: 0; line-height: 1; font-family: var(--font-mono); }
   #themeToggle:hover { color: var(--accent); }
 
   /* Protocol content */
@@ -161,7 +174,7 @@ function renderPage(slug, key, info, meta) {
   .chart-wrap { position: relative; height: 300px; }
 
   /* Contract info */
-  .contract-info { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text2); margin-bottom: 16px; text-align: center; }
+  .contract-info { font-family: var(--font-mono); font-size: 12px; color: var(--text2); margin-bottom: 16px; text-align: center; }
 
   /* Table — matches main page */
   .table-wrap { overflow-x: auto; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); }
@@ -173,9 +186,9 @@ function renderPage(slug, key, info, meta) {
   tbody td { padding: 8px 12px; }
 
   /* CTA / Check section */
-  .connect-section { background: var(--connect-bg); border: 1px solid var(--connect-border); border-radius: var(--radius); padding: 24px 20px; margin: 32px 0; font-size: 13px; text-align: center; }
+  .connect-section { background: var(--connect-bg); border: 1px solid var(--connect-border); border-radius: 12px; padding: 28px 24px; margin: 32px 0; font-size: 13px; text-align: center; }
   .btn { padding: 7px 14px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); cursor: pointer; font-size: 12px; font-weight: 600; white-space: nowrap; text-decoration: none; display: inline-block; font-family: inherit; }
-  .btn:hover { background: #a21caf; color: #fff; text-decoration: none; }
+  .btn:hover { background: #5b21b6; color: #fff; text-decoration: none; }
   .btn.ghost { background: var(--bg); border: 1px solid var(--border); color: var(--text2); }
   .btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
 
@@ -183,7 +196,7 @@ function renderPage(slug, key, info, meta) {
   .check-box { background: var(--connect-bg); border: 1px solid var(--connect-border); border-radius: var(--radius); padding: 20px; margin-bottom: 24px; text-align: center; }
   .check-box h3 { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
   .check-form { display: flex; gap: 8px; max-width: 520px; margin: 0 auto; }
-  .check-form input { flex: 1; padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); font-size: 13px; font-family: 'JetBrains Mono', monospace; outline: none; }
+  .check-form input { flex: 1; padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); font-size: 13px; font-family: var(--font-mono); outline: none; }
   .check-form input:focus { border-color: var(--accent); }
   .check-form input::placeholder { color: var(--text2); opacity: 0.6; }
   .check-result:empty { display: none; }
@@ -192,31 +205,31 @@ function renderPage(slug, key, info, meta) {
   .check-result .not-found { color: var(--text2); }
   .check-result .others { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--connect-border); font-size: 13px; color: var(--text2); }
   .check-result .others a.others-cta { display: inline-block; margin-top: 8px; padding: 8px 20px; background: var(--accent); color: #fff; border-radius: var(--radius); text-decoration: none; font-weight: 600; font-size: 13px; }
-  .check-result .others a.others-cta:hover { background: #a21caf; color: #fff; }
+  .check-result .others a.others-cta:hover { background: #5b21b6; color: #fff; }
 
   /* About / FAQ — matches main page */
-  .about-section { border-top: 1px solid var(--border); margin-top: 40px; padding: 32px 0 8px; }
-  .about-section h2 { font-size: 18px; font-weight: 700; margin-bottom: 8px; text-align: center; }
-  .about-section > p { font-size: 13px; color: var(--text2); line-height: 1.7; margin-bottom: 24px; text-align: center; max-width: 600px; margin-left: auto; margin-right: auto; }
-  .faq-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text2); font-weight: 700; margin-bottom: 12px; text-align: center; }
+  .about-section { border-top: 1px solid var(--border); margin-top: 48px; padding: 40px 0 8px; }
+  .about-section h2 { font-family: var(--font-mono); font-size: 20px; font-weight: 700; margin-bottom: 12px; text-align: center; letter-spacing: -0.3px; }
+  .about-section > p { font-size: 14px; color: var(--text2); line-height: 1.8; margin-bottom: 32px; text-align: center; max-width: 600px; margin-left: auto; margin-right: auto; }
+  .faq-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text2); font-weight: 700; margin-bottom: 16px; text-align: center; }
   .faq-list { max-width: 640px; margin: 0 auto; }
   .faq-item { margin-bottom: 8px; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color 0.2s; }
   .faq-item:hover { border-color: var(--border-strong); }
-  .faq-item.open { border-color: var(--accent); }
-  .faq-q { padding: 14px 18px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; background: var(--bg2); transition: background 0.15s; }
+  .faq-item.open { border-color: var(--border-strong); }
+  .faq-q { padding: 16px 20px; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; background: var(--bg2); transition: background 0.15s; }
   .faq-q:hover { background: var(--bg3); }
   .faq-q .faq-arrow { transition: transform 0.2s ease; font-size: 10px; color: var(--text2); }
   .faq-item.open .faq-q .faq-arrow { transform: rotate(180deg); color: var(--accent); }
-  .faq-a { max-height: 0; overflow: hidden; padding: 0 18px; font-size: 13px; color: var(--text2); line-height: 1.8; transition: max-height 0.3s ease, padding 0.3s ease; }
-  .faq-item.open .faq-a { max-height: 300px; padding: 14px 18px; }
+  .faq-a { max-height: 0; overflow: hidden; padding: 0 20px; font-size: 14px; color: var(--text2); line-height: 1.8; transition: max-height 0.3s ease, padding 0.3s ease; }
+  .faq-item.open .faq-a { max-height: 300px; padding: 16px 20px; }
 
   /* Wallet — matches main page */
   .wallet-area { display: flex; align-items: center; gap: 10px; }
-  .wallet-btn { padding: 8px 18px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); cursor: pointer; font-size: 13px; font-weight: 600; font-family: inherit; }
-  .wallet-btn:hover { background: #a21caf; }
+  .wallet-btn { padding: 8px 18px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); cursor: pointer; font-size: 13px; font-weight: 600; font-family: var(--font-body); }
+  .wallet-btn:hover { background: #5b21b6; }
   .wallet-btn.connected { background: var(--bg); border: 1px solid var(--green); color: var(--green); }
   .wallet-btn.connected:hover { border-color: var(--red); color: var(--red); }
-  .wallet-addr { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text2); background: var(--bg2); padding: 4px 10px; border-radius: var(--radius); border: 1px solid var(--border); display: none; }
+  .wallet-addr { font-family: var(--font-mono); font-size: 12px; color: var(--text2); background: var(--bg2); padding: 4px 10px; border-radius: var(--radius); border: 1px solid var(--border); display: none; }
   [data-theme="dark"] .wallet-btn.connected { background: var(--bg); }
   [data-theme="dark"] .wallet-btn.connected:hover { border-color: var(--red); color: var(--red); }
 
@@ -224,11 +237,16 @@ function renderPage(slug, key, info, meta) {
   .back-link { display: inline-block; font-size: 14px; color: var(--accent-text); text-decoration: none; margin: 16px 0 8px; padding: 10px 24px; background: var(--connect-bg); border: 1px solid var(--connect-border); border-radius: var(--radius); font-weight: 700; }
   .back-link:hover { background: var(--accent); color: #fff; text-decoration: none; }
 
+  /* Footer */
+  .site-footer { text-align: center; padding: 32px 0 28px; border-top: 1px solid var(--border); margin-top: 48px; }
+  .footer-credit { font-size: 12px; color: var(--text2); opacity: 0.6; }
+
   @media (max-width: 768px) {
     .charts { grid-template-columns: 1fr; }
     .cards { grid-template-columns: repeat(2, 1fr); }
     .check-form { flex-direction: column; }
     .chart-wrap { height: 250px; }
+    .connect-section { padding: 20px 16px; }
   }
 </style>
 </head>
@@ -238,12 +256,12 @@ function renderPage(slug, key, info, meta) {
   <!-- Header — same as main page -->
   <div class="header">
     <div class="header-left">
-      <div class="site-name"><a href="/">&#926; Forgotten ETH</a></div>
+      <div class="site-name"><a href="/">Forgotten &#926;TH</a></div>
       <p class="subtitle">Recover ETH stuck in old smart contracts</p>
       <nav class="header-nav">
         <a href="/">Home</a>
         <span class="nav-sep">&middot;</span>
-        <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
         <span class="nav-sep">&middot;</span>
         <button id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode"></button>
         <span class="nav-sep">&middot;</span>
@@ -252,19 +270,7 @@ function renderPage(slug, key, info, meta) {
     </div>
   </div>
 
-  <!-- Protocol content -->
-  <div class="protocol-hero">
-    <div class="color-bar" style="background:${esc(info.color)}"></div>
-    <h1 style="font-size:24px;font-weight:800;margin-bottom:8px;letter-spacing:-0.3px">${esc(info.name)} — ${fmtEth(meta.total_eth)} ETH Unclaimed</h1>
-    <p class="project-desc">${esc(info.desc)}</p>
-  </div>
-
-  <div class="cards">
-    <div class="card"><div class="label">Unclaimed ETH</div><div class="value eth">${fmtEth(meta.total_eth)} ETH</div></div>
-    <div class="card"><div class="label">Addresses</div><div class="value eth">${fmtNum(meta.addresses_with_balance)}</div></div>
-  </div>
-
-  <!-- Address check — identical to main page connect section -->
+  <!-- Address check (first — primary action) -->
   <div class="connect-section">
     <div style="display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap">
       <div class="wallet-area">
@@ -273,16 +279,27 @@ function renderPage(slug, key, info, meta) {
       </div>
       <span style="color:var(--text2);font-size:13px">or</span>
       <div style="position:relative;width:100%;max-width:420px">
-        <textarea id="checkAddr" placeholder="0x... or vitalik.eth (one per line for multiple)" rows="1" style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius);font-family:monospace;font-size:13px;outline:none;background:var(--bg2);color:var(--text);resize:vertical;min-height:36px;line-height:1.4;field-sizing:content"></textarea>
+        <textarea id="checkAddr" placeholder="0x... or vitalik.eth (one per line for multiple)" rows="1" style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius);font-family:var(--font-mono);font-size:13px;outline:none;background:var(--bg);color:var(--text);resize:vertical;min-height:36px;line-height:1.4;field-sizing:content"></textarea>
       </div>
       <button class="btn" id="checkBtn" onclick="checkAddress()" style="padding:8px 18px;font-size:14px">Check</button>
     </div>
     <div id="checkResult" class="check-result"></div>
   </div>
 
-  <div class="contract-info">
-    Contract: <a href="https://etherscan.io/address/${esc(info.contract)}" target="_blank">${esc(info.contract)}</a>
-    &middot; Deployed: ${esc(info.deployed)}
+  <!-- Protocol info -->
+  <div class="protocol-hero">
+    <div class="color-bar" style="background:${esc(info.color)}"></div>
+    <h1 style="font-family:var(--font-mono);font-size:24px;font-weight:800;margin-bottom:8px;letter-spacing:-0.3px">${esc(info.name)}</h1>
+    <p class="project-desc">${esc(info.desc)}</p>
+    <div class="contract-info">
+      Contract: <a href="https://etherscan.io/address/${esc(info.contract)}" target="_blank" rel="noopener noreferrer">${esc(info.contract)}</a>
+      &middot; Deployed: ${esc(info.deployed)}
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="label">Unclaimed ETH</div><div class="value eth">${fmtEth(meta.total_eth)} ETH</div></div>
+    <div class="card"><div class="label">Addresses</div><div class="value eth">${fmtNum(meta.addresses_with_balance)}</div></div>
   </div>
 
   <div class="charts">
@@ -312,39 +329,42 @@ function renderPage(slug, key, info, meta) {
   ${JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": seo.faq.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } })) })}
   </script>` : ''}
 
-  <!-- About Section — same as main page -->
-  <div class="about-section" id="about">
-    <h2>About</h2>
-    <p>Forgotten ETH finds and recovers ETH stuck in defunct smart contracts. Thousands of ETH remain locked in old DEXes, NFT marketplaces, ENS auctions, and ICO contracts that shut down years ago. Portfolio trackers don't index these — your ETH is still onchain, it just doesn't show up.</p>
-
+  <!-- FAQ Section -->
+  <div class="about-section" id="faq">
     <div class="faq-label">Frequently Asked Questions</div>
     <div class="faq-list">
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle>How does it work? <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">Paste any address or connect your wallet. We check 110 defunct contracts for unclaimed balances. If found, click Withdraw — the transaction goes directly from the original contract to your wallet. No custody of your funds.</div>
+      <div class="faq-a">Paste any address or connect your wallet. We check 110 defunct contracts for unclaimed balances. If found, click Withdraw — the transaction goes directly from the original contract to your wallet. We never have custody of your funds.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle>Is this safe? <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">Yes. Fully <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" style="color:var(--accent)">open source</a>. No proxy contracts, no intermediaries. Most withdrawals are simple ETH transfers with no approvals needed. Every withdrawal can be done manually on Etherscan — this site just makes it easier.</div>
+      <div class="faq-a">Yes. Fully <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a>. No proxy contracts, no intermediaries. Most withdrawals are simple ETH transfers with no approvals needed. A few contracts (e.g. wrapped ETH variants, dividend tokens) require a token burn or two-step process — the UI explains each case. Every withdrawal can be done manually on Etherscan — this site just makes it easier.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" data-faq-toggle>Why can't my portfolio tracker see these? <span class="faq-arrow">&#x25BC;</span></div>
+      <div class="faq-a">DeBank, Zerion, and Zapper only index active protocols. These contracts are defunct or too obscure to be tracked. Your ETH is still onchain, it just doesn't show up in standard wallet interfaces.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle>Do you charge fees? <span class="faq-arrow">&#x25BC;</span></div>
       <div class="faq-a">No. Completely free. After a successful claim, there's an optional donation prompt — entirely voluntary.</div>
     </div>
     <div class="faq-item">
+      <div class="faq-q" data-faq-toggle>What contracts are tracked? <span class="faq-arrow">&#x25BC;</span></div>
+      <div class="faq-a">110 contracts across defunct DEXes (EtherDelta, IDEX v1, Token.Store), dividend tokens (PoWH3D, Fomo3D), NFT auctions (MoonCatRescue, DADA), bounty platforms, ICO escrows, ENS old registrar deeds, and wrapped ETH variants.</div>
+    </div>
+    <div class="faq-item">
       <div class="faq-q" data-faq-toggle>Don't trust, verify <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">You don't need this site to claim. Every withdrawal can be done directly on Etherscan: go to the contract, click "Write Contract", connect your wallet, call the withdraw function. Our code is <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" style="color:var(--accent)">open source</a> for anyone to audit.</div>
+      <div class="faq-a">You don't need this site to claim. Every withdrawal can be done directly on Etherscan: go to the contract, click "Write Contract", connect your wallet, call the withdraw function. We simply facilitate the crafting of withdrawal transactions on your behalf — each contract's address and function is shown in the claim details. Our code is <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a> for anyone to audit.</div>
     </div>
     </div>
   </div>
 
 </div>
 
-<!-- Footer — same as main page -->
-<div style="text-align:center;padding:32px 0 24px;border-top:1px solid var(--border);margin-top:40px;font-size:12px;color:var(--text2)">
-  <p>made with <span style="font-size:18px;vertical-align:middle">&#10084;</span> by aaaaaaaaaaway</p>
-  <p style="margin-top:8px">donations: <span style="font-family:monospace;font-size:11px;color:var(--text);cursor:pointer;user-select:all" title="Click to copy">0x95a708aAAB1D336bB60EF2F40212672F4cf65736</span></p>
-</div>
+<footer class="site-footer">
+  <p class="footer-credit">made with <span style="color:#e11d48;font-size:16px;vertical-align:middle">&#10084;</span> by aaaaaaaaaaway</p>
+</footer>
 
 <script type="application/ld+json">
 ${JSON.stringify({

@@ -2,7 +2,7 @@
 // Loaded externally to avoid 'unsafe-inline' in CSP
 
 // Theme init (runs immediately)
-(function(){var s=localStorage.getItem('theme');var d=s?s==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.setAttribute('data-theme','dark')})();
+(function(){var s=localStorage.getItem('theme');var d=s?s==='dark':true;if(d)document.documentElement.setAttribute('data-theme','dark')})();
 
 // Load data from JSON data blocks
 var __TVL = null, __ACT = null;
@@ -14,7 +14,7 @@ try { __ACT = JSON.parse(document.getElementById('act-data').textContent); } cat
   var toggle = document.getElementById('themeToggle');
   var html = document.documentElement;
   var saved = localStorage.getItem('theme');
-  var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var dark = saved ? saved === 'dark' : true;
   if (dark) html.setAttribute('data-theme', 'dark');
   function setLabel(d) { toggle.innerHTML = d ? '<span style="font-size:18px">&#9728;</span> Light' : '<span style="font-size:18px">&#9789;</span> Dark'; }
   setLabel(dark);
@@ -28,8 +28,8 @@ try { __ACT = JSON.parse(document.getElementById('act-data').textContent); } cat
 
   function renderCharts() {
     var isDark = html.getAttribute('data-theme') === 'dark';
-    var gridColor = isDark ? '#2a2e3a' : '#eee';
-    var textColor = isDark ? '#8b8fa3' : '#666';
+    var gridColor = isDark ? '#2e2b38' : '#edeae4';
+    var textColor = isDark ? '#9590a6' : '#78716c';
 
     if (window._tvlChart) { window._tvlChart.destroy(); window._tvlChart = null; }
     if (window._actChart) { window._actChart.destroy(); window._actChart = null; }
@@ -51,8 +51,8 @@ try { __ACT = JSON.parse(document.getElementById('act-data').textContent); } cat
           labels: tvl.map(function(d){return d.month}),
           datasets: [{
             data: tvl.map(function(d){return d.balance_eth}),
-            backgroundColor: '#d946ef99',
-            borderColor: '#d946ef',
+            backgroundColor: '#7c3aed80',
+            borderColor: '#7c3aed',
             borderWidth: 1
           }]
         },
@@ -85,8 +85,8 @@ try { __ACT = JSON.parse(document.getElementById('act-data').textContent); } cat
           labels: activity.map(function(d){return d.month}),
           datasets: [{
             data: activity.map(function(d){return d.tx_count}),
-            backgroundColor: '#d946ef99',
-            borderColor: '#d946ef',
+            backgroundColor: '#7c3aed80',
+            borderColor: '#7c3aed',
             borderWidth: 1
           }]
         },

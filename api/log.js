@@ -1,18 +1,18 @@
 import { sql } from '@vercel/postgres';
 import { createHash } from 'crypto';
 
-// Telegram alert for claims — fire-and-forget
+// Telegram admin alerts — disabled, will use separate admin bot later
 async function notifyTelegram(msg) {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-  if (!token || !chatId) return;
-  try {
-    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: 'HTML' }),
-    });
-  } catch (_) {}
+  // const token = process.env.TELEGRAM_ADMIN_BOT_TOKEN;
+  // const chatId = process.env.TELEGRAM_CHAT_ID;
+  // if (!token || !chatId) return;
+  // try {
+  //   await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: 'HTML' }),
+  //   });
+  // } catch (_) {}
 }
 
 // Initialize tables on first call
@@ -90,7 +90,7 @@ export default async function handler(req, res) {
 
     await sql`
       INSERT INTO events (type, address, contract, amount_eth, tx_hash, block_num, contracts_found, total_eth, ip, ua, extra)
-      VALUES (${type}, ${cleanAddr}, ${cleanContract}, ${cleanAmountEth}, ${cleanTx}, ${cleanBlockNum}, ${cleanContractsFound}, ${cleanTotalEth}, ${ipHash}, ${ua}, ${extra ? JSON.stringify(extra).substring(0, 1024) : null})
+      VALUES (${type}, ${cleanAddr}, ${cleanContract}, ${cleanAmountEth}, ${cleanTx}, ${cleanBlockNum}, ${cleanContractsFound}, ${cleanTotalEth}, ${ipHash}, ${ua}, ${extra ? (() => { try { const s = JSON.stringify(extra); return s.length > 1024 ? null : s; } catch { return null; } })() : null})
     `;
 
     // Real-time Telegram alert on successful claims
