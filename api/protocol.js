@@ -186,7 +186,7 @@ function renderPage(slug, key, info, meta) {
   tbody td { padding: 8px 12px; }
 
   /* CTA / Check section */
-  .connect-section { background: var(--connect-bg); border: 1.5px solid var(--connect-border); border-radius: 14px; padding: 28px 32px; margin: 32px auto; font-size: 13px; display: flex; flex-direction: column; align-items: stretch; gap: 16px; max-width: 520px; }
+  .connect-section { background: var(--connect-bg); border: 1.5px solid var(--connect-border); border-radius: 14px; padding: 28px 32px; margin: 32px auto; font-size: 13px; display: flex; flex-direction: column; align-items: stretch; gap: 16px; max-width: 680px; }
   .connect-input-row { display: flex; gap: 8px; align-items: center; }
   .connect-input-wrap { flex: 1; }
   .connect-input { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-family: var(--font-mono); font-size: 13px; outline: none; background: var(--bg); color: var(--text); transition: border-color 0.15s, box-shadow 0.15s; }

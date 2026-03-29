@@ -996,5 +996,48 @@
     "deployed": "2018",
     "color": "#dc2626",
     "category": "gambling"
+  },
+  "nucypher_worklock": {
+    "name": "NuCypher WorkLock",
+    "desc": "NuCypher launched a WorkLock distribution in September 2020, where participants deposited ETH to receive NU tokens. ETH was refundable after completing staking work. NuCypher merged with Keep Network to form Threshold Network in 2022, and the staking requirement was removed \u2014 all participants now qualify for a full refund regardless of work completed.",
+    "contract": "0xe9778e69a961e64d3cdbb34cf6778281d34667c2",
+    "deployed": "September 2020",
+    "color": "#1e40af",
+    "category": "ico"
+  },
+  "tessera_dead": {
+    "name": "Fractional DEAD Vault",
+    "desc": "Fractional Art (later Tessera) fractionalized NFTs into ERC-20 tokens. When a buyout auction completed, fraction holders could burn tokens for proportional ETH via cash(). Tessera shut down in May 2023; the frontend is dead but contracts remain functional.",
+    "category": "nft",
+    "color": "#9333ea",
+    "contract": "0x0c7060bf06a78aaaab3fac76941318a52a3f4613",
+    "deployed": "August 2021",
+    "slug": "tessera-dead"
+  },
+  "tessera_sweep": {
+    "name": "Fractional SWEEP Vault",
+    "desc": "Fractional Art (later Tessera) fractionalized NFTs into ERC-20 tokens. When a buyout auction completed, fraction holders could burn tokens for proportional ETH via cash(). Tessera shut down in May 2023; the frontend is dead but contracts remain functional.",
+    "category": "nft",
+    "color": "#a855f7",
+    "contract": "0xfe2a5b942083d92135c7fe364bb75218e547cc62",
+    "deployed": "November 2021",
+    "slug": "tessera-sweep"
+  },
+  "tessera_zcat": {
+    "name": "Fractional ZCAT Vault",
+    "desc": "Fractional Art (later Tessera) fractionalized NFTs into ERC-20 tokens. When a buyout auction completed, fraction holders could burn tokens for proportional ETH via cash(). Tessera shut down in May 2023; the frontend is dead but contracts remain functional.",
+    "category": "nft",
+    "color": "#c084fc",
+    "contract": "0xdb846f1cd31acc9a6db72a1c58dc1760485505f4",
+    "deployed": "October 2021",
+    "slug": "tessera-zcat"
+  },
+  "kyber_feehandler": {
+    "name": "Kyber FeeHandler",
+    "desc": "Kyber Network v1 (Katalyst) distributed ETH trading fees to KNC stakers who voted in governance epochs. Kyber has since migrated to KyberSwap with a different architecture. The old staking UI is dead, but the FeeHandler contract still holds unclaimed epoch rewards with no expiration.",
+    "contract": "0xd3d2b5643e506c6d9b7099e9116d7aaa941114fe",
+    "deployed": "July 2020",
+    "color": "#31cb9e",
+    "category": "dex"
   }
 }

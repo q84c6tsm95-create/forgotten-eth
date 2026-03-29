@@ -872,6 +872,91 @@ const EXCHANGES = {
       rateEthPerDgd: 0.193054,
     },
   },
+  tessera_dead: {
+    name: 'Tessera: Party of Living Dead',
+    desc: 'Fractional Art (later Tessera) fractionalized NFTs into ERC-20 tokens. When a buyout auction completed, fraction holders could burn tokens for proportional ETH via cash(). Tessera shut down in May 2023; the frontend is dead but contracts remain functional.',
+    category: 'nft',
+    color: '#991b1b',
+    contract: '0x0c7060bf06a78aaaab3fac76941318a52a3f4613',
+    deployed: '2021',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    // balanceTransform computed dynamically in the check flow (needs vault ETH + totalSupply)
+    tesseraVault: true,
+    balanceTransform: (result) => result * 53440000000000000000n / 33976000000000000000000n,
+    withdrawAbi: 'function cash()',
+    withdrawArgs: () => [],
+    withdrawCall: 'cash',
+  },
+  tessera_sweep: {
+    name: 'Tessera: Dingaling BAYC Sweep',
+    desc: 'Fractional Art (later Tessera) fractionalized NFTs into ERC-20 tokens. When a buyout auction completed, fraction holders could burn tokens for proportional ETH via cash(). Tessera shut down in May 2023; the frontend is dead but contracts remain functional.',
+    category: 'nft',
+    color: '#991b1b',
+    contract: '0xfe2a5b942083d92135c7fe364bb75218e547cc62',
+    deployed: '2021',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    tesseraVault: true,
+    balanceTransform: (result) => result * 20580000000000000000n / 1487317000000000000000000n,
+    withdrawAbi: 'function cash()',
+    withdrawArgs: () => [],
+    withdrawCall: 'cash',
+  },
+  tessera_zcat: {
+    name: 'Tessera: ZombieCats',
+    desc: 'Fractional Art (later Tessera) fractionalized NFTs into ERC-20 tokens. When a buyout auction completed, fraction holders could burn tokens for proportional ETH via cash(). Tessera shut down in May 2023; the frontend is dead but contracts remain functional.',
+    category: 'nft',
+    color: '#991b1b',
+    contract: '0xdb846f1cd31acc9a6db72a1c58dc1760485505f4',
+    deployed: '2021',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    tesseraVault: true,
+    balanceTransform: (result) => result * 15630000000000000000n / 1460378000000000000000000n,
+    withdrawAbi: 'function cash()',
+    withdrawArgs: () => [],
+    withdrawCall: 'cash',
+  },
+  kyber_feehandler: {
+    name: 'Kyber FeeHandler',
+    desc: 'Kyber Network v1 (Katalyst) distributed ETH trading fees to KNC stakers who voted in governance epochs. Kyber has since migrated to KyberSwap with a different architecture. The old staking UI is dead, but the FeeHandler contract still holds unclaimed epoch rewards with no expiration.',
+    category: 'dex',
+    color: '#31cb9e',
+    contract: '0xd3d2b5643e506c6d9b7099e9116d7aaa941114fe',
+    deployed: 'July 2020',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    // Balance check uses pre-computed data (epoch iteration too complex for live RPC)
+    noWalletCheck: true,
+    withdrawAbi: null,
+    withdrawCall: null,
+    kyberFeeHandler: {
+      feeHandler: '0xd3d2b5643e506c6d9b7099e9116d7aaa941114fe',
+      maxEpoch: 21,
+    },
+  },
+  nucypher_worklock: {
+    name: 'NuCypher WorkLock',
+    desc: 'NuCypher launched a WorkLock distribution in September 2020, where participants deposited ETH to receive NU tokens. ETH was refundable after completing staking work. NuCypher merged with Keep Network to form Threshold Network in 2022, and the staking requirement was removed — all participants now qualify for a full refund regardless of work completed.',
+    category: 'ico',
+    color: '#1e40af',
+    contract: '0xe9778e69a961e64d3cdbb34cf6778281d34667c2',
+    deployed: 'September 2020',
+    balanceAbi: 'function workInfo(address) view returns (uint256 depositedETH, uint256 completedWork, bool claimed, uint128 index)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'workInfo',
+    balanceTransform: (result) => result[0],
+    withdrawAbi: null,
+    withdrawCall: null,
+    nucypherWorklock: {
+      contract: '0xe9778e69a961e64d3cdbb34cf6778281d34667c2',
+    },
+  },
   bancor_eth: {
     name: 'Bancor Old ETH Token',
     desc: 'Bancor launched June 2017 with a then-record $153M ICO and deployed the first-ever automated market maker contracts on Ethereum, inventing bonding curves and liquidity pool tokens before "DeFi" was coined. On July 9, 2018, attackers stole 25,000 ETH (~$12.5M) via a compromised upgrade wallet. This is the legacy ETH wrapper from Bancor\'s early architecture.',
@@ -1850,31 +1935,21 @@ async function checkUserBalances(overrideAddress) {
         return { key, balance: 0n };
       }
 
-      // High coverage + no API balance: safe to skip (address not in data = no balance)
-      if (covPct >= HIGH_COVERAGE_THRESHOLD && !apiEntry) {
+      // No API balance: skip RPC entirely (trust API as the source of truth)
+      // This reduces RPC calls from ~110 to only the contracts with balance
+      if (!apiEntry) {
         return { key, balance: 0n };
       }
 
       // HAS API balance: verify onchain to confirm it's still claimable
-      if (apiEntry) {
-        try {
-          const contract = new ethers.Contract(cfg.contract, [cfg.balanceAbi], walletProvider);
-          const result = await contract[cfg.balanceCall](...cfg.balanceArgs(checkAddr));
-          const balance = cfg.balanceTransform ? cfg.balanceTransform(result) : result;
-          return { key, balance };
-        } catch (rpcErr) {
-          return { key, balance: BigInt(apiEntry.balance_wei) };
-        }
-      }
-
-      // Low coverage + no API entry: check onchain (API might not know about this address)
       try {
         const contract = new ethers.Contract(cfg.contract, [cfg.balanceAbi], walletProvider);
         const result = await contract[cfg.balanceCall](...cfg.balanceArgs(checkAddr));
         const balance = cfg.balanceTransform ? cfg.balanceTransform(result) : result;
         return { key, balance };
       } catch (rpcErr) {
-        return { key, balance: 0n };
+        // RPC failed: trust API balance as fallback
+        return { key, balance: BigInt(apiEntry.balance_wei) };
       }
     } catch (e) {
       // RPC failed: fall back to API balance if available
@@ -1981,25 +2056,30 @@ async function checkUserBalances(overrideAddress) {
               </div>`;
               return;
             }
-            statusEl.textContent = `${deeds.length} deed${deeds.length > 1 ? 's' : ''}`;
+            statusEl.textContent = deeds.length + ' deed' + (deeds.length > 1 ? 's' : '');
             deeds.sort((a, b) => parseFloat(b.value_eth || ethers.formatEther(b.value)) - parseFloat(a.value_eth || ethers.formatEther(a.value)));
             window._ensDeeds = deeds;
-            let deedHtml = '';
-            deeds.forEach((d, i) => {
-              const ethVal = d.value_eth || ethers.formatEther(d.value);
-              const deedLabel = d.name ? `${d.name}.eth` : `Deed ${i+1}`;
-              deedHtml += `
-                <div class="claim-row" style="margin-left:16px;border-left:2px solid var(--green)">
-                  <span class="dex-name" style="font-size:12px;min-width:60px" title="${d.labelHash}">${esc(deedLabel)}</span>
-                  <span class="claim-amount">${fmtEth(ethVal)} ETH</span>
-                  <button class="claim-btn" id="claimBtn-ens-${i}" data-action="claim-ens-deed" data-deed-index="${i}">Release</button>
-                </div>
-                <div class="claim-status" id="claimStatus-ens-${i}"></div>`;
-            });
-            deedHtml += `<div style="margin-top:8px;margin-left:16px;display:flex;gap:6px;align-items:center">
-              <input type="text" id="ensManualHash" placeholder="Another label or hash..." style="flex:1;padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit;background:var(--bg)">
-              <button class="claim-btn" data-action="ens-manual-release">Release</button>
-            </div>`;
+            var SHOW_INITIAL = 10;
+            var renderDeed = function(d, i) {
+              var ethVal = d.value_eth || ethers.formatEther(d.value);
+              var deedLabel = d.name ? esc(d.name) + '.eth' : 'Deed ' + (i+1);
+              return '<div class="claim-row" style="margin-left:16px;border-left:2px solid var(--green)">' +
+                '<span class="dex-name" style="font-size:12px;min-width:60px" title="' + esc(d.labelHash) + '">' + deedLabel + '</span>' +
+                '<span class="claim-amount">' + fmtEth(ethVal) + ' ETH</span>' +
+                '<button class="claim-btn" id="claimBtn-ens-' + i + '" data-action="claim-ens-deed" data-deed-index="' + i + '">Release</button>' +
+              '</div><div class="claim-status" id="claimStatus-ens-' + i + '"></div>';
+            };
+            var deedHtml = '';
+            for (var i = 0; i < Math.min(deeds.length, SHOW_INITIAL); i++) { deedHtml += renderDeed(deeds[i], i); }
+            if (deeds.length > SHOW_INITIAL) {
+              deedHtml += '<div id="ensHiddenDeeds" style="display:none">';
+              for (var i = SHOW_INITIAL; i < deeds.length; i++) { deedHtml += renderDeed(deeds[i], i); }
+              deedHtml += '</div>';
+              deedHtml += '<div style="text-align:center;margin:12px 0 4px"><button id="ensShowAllBtn" data-action="ens-show-all" style="background:var(--accent);color:#fff;border:none;padding:8px 24px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">Show all ' + deeds.length + ' deeds &#x25BE;</button></div>';
+            }
+            deedHtml += '<div style="margin-top:8px;margin-left:16px;display:flex;gap:6px;align-items:center">' +
+              '<input type="text" id="ensManualHash" placeholder="Another label or hash..." style="flex:1;padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit;background:var(--bg)">' +
+              '<button class="claim-btn" data-action="ens-manual-release">Release</button></div>';
             rowsEl.innerHTML = deedHtml;
           };
 
@@ -2008,7 +2088,7 @@ async function checkUserBalances(overrideAddress) {
             window._pendingENSDeeds = preDeeds.map(d => ({
               labelHash: d.labelHash,
               deedAddress: d.deedAddress,
-              value: BigInt(d.value_wei),
+              value: d.value_wei ? BigInt(d.value_wei) : ethers.parseEther(String(d.value_eth || '0')),
               value_eth: d.value_eth,
               name: d.name || null,
             }));
@@ -2021,6 +2101,44 @@ async function checkUserBalances(overrideAddress) {
             });
             window._ensRenderDeeds = renderDeeds;
           }
+        } else if (cfg.nucypherWorklock) {
+          // NuCypher WorkLock: claim() then refund(), or just refund() if already claimed
+          const wiResult = await (async () => {
+            try {
+              const wc = new ethers.Contract(cfg.contract, [cfg.balanceAbi], walletProvider);
+              const info = await wc.workInfo(checkAddr);
+              return { deposited: info[0], claimed: info[2] };
+            } catch { return { deposited: balance, claimed: false }; }
+          })();
+          const alreadyClaimed = wiResult.claimed;
+          let actionBtn, stepInfo;
+
+          if (alreadyClaimed) {
+            actionBtn = `<button class="claim-btn" disabled style="opacity:0.35">Step 1: Claimed</button><button class="claim-btn" id="claimBtn-${key}" data-action="nucypher-refund" data-key="${key}">Step 2: Refund ETH</button>`;
+            stepInfo = `<div style="font-size:11px;color:var(--green);margin-top:4px">Already claimed. Click Step 2 to refund your ETH.</div>`;
+          } else {
+            actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="nucypher-claim" data-key="${key}">Step 1: Claim</button><button class="claim-btn" disabled style="opacity:0.35">Step 2: Refund ETH</button>`;
+            stepInfo = `<div style="font-size:11px;color:var(--text2);margin-top:4px">2-step: claim NU tokens into escrow, then refund ETH.</div>`;
+          }
+          const lastTx = apiBalances[key]?.last_tx_date ? apiBalances[key] : null;
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
+              </div>
+              <div class="claim-card-meta" id="claimDetails-${key}">
+                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${lastTx.last_tx_date} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value">claim() — stakes NU tokens into escrow</span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value">refund() — returns your deposited ETH</span></div>
+              </div>
+              ${stepInfo}
+              <div class="claim-card-actions">
+                ${actionBtn}
+              </div>
+              <div class="claim-card-status" id="claimStatus-${key}"></div>
+            </div>`;
         } else if (cfg.digixBurn) {
           // DigixDAO: 2-step (approve DGD to Acid, then burn)
           const dxState = window._digixState?.[key];
@@ -2398,6 +2516,90 @@ async function claimLockMe(key) {
   }
 }
 
+// ─── NuCypher WorkLock (2-step: claim + refund) ───
+
+async function nucypherClaim(key) {
+  const cfg = EXCHANGES[key];
+  const btn = document.getElementById('claimBtn-' + key);
+  const statusEl = document.getElementById('claimStatus-' + key);
+
+  if (TEST_MODE) {
+    btn.disabled = true; btn.textContent = 'Claiming...'; btn.classList.add('pending');
+    await new Promise(r => setTimeout(r, 1000));
+    btn.textContent = 'Step 1: Claimed'; btn.classList.remove('pending'); btn.style.opacity = '0.35';
+    const step2Btn = btn.nextElementSibling;
+    if (step2Btn) { step2Btn.disabled = false; step2Btn.style.opacity = '1'; step2Btn.id = 'claimBtn-' + key; step2Btn.dataset.action = 'nucypher-refund'; step2Btn.dataset.key = key; }
+    statusEl.innerHTML = '<span style="color:var(--green)">Claimed. Click Step 2 to refund ETH.</span>';
+    return;
+  }
+
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+  if (!walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+
+  btn.disabled = true; btn.textContent = 'Claiming...'; btn.classList.add('pending');
+  try {
+    const wc = new ethers.Contract(cfg.contract, ['function claim()'], walletSigner);
+    const tx = await wc.claim();
+    statusEl.textContent = 'Waiting for confirmation...';
+    await tx.wait();
+    btn.textContent = 'Step 1: Claimed'; btn.classList.remove('pending'); btn.style.opacity = '0.35';
+    const step2Btn = btn.nextElementSibling;
+    if (step2Btn) { step2Btn.disabled = false; step2Btn.style.opacity = '1'; step2Btn.id = 'claimBtn-' + key; step2Btn.dataset.action = 'nucypher-refund'; step2Btn.dataset.key = key; }
+    statusEl.innerHTML = '<span style="color:var(--green)">Claimed. Click Step 2 to refund ETH.</span>';
+    window.va?.track?.('nucypher_claim_confirmed', { exchange: cfg.name, tx_hash: tx.hash });
+  } catch (e) {
+    btn.disabled = false; btn.textContent = 'Step 1: Claim'; btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) { statusEl.textContent = 'Rejected'; }
+    else { statusEl.textContent = 'Claim failed: ' + (e.reason || e.message || 'Unknown error'); }
+  }
+}
+
+async function nucypherRefund(key) {
+  const cfg = EXCHANGES[key];
+  const btn = document.getElementById('claimBtn-' + key);
+  const statusEl = document.getElementById('claimStatus-' + key);
+
+  if (TEST_MODE) {
+    btn.disabled = true; btn.textContent = 'Refunding...'; btn.classList.add('pending');
+    await new Promise(r => setTimeout(r, 1500));
+    const ethAmount = ethers.formatEther(userBalances[key] || 0n);
+    const claimedEthNum = parseFloat(ethAmount);
+    const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
+    const fakeTxHash = '0x' + Array.from({length: 64}, () => '0123456789abcdef'[Math.floor(Math.random()*16)]).join('');
+    btn.textContent = 'Done'; btn.classList.remove('pending'); btn.style.background = 'var(--green)'; btn.style.opacity = '0.7';
+    statusEl.innerHTML = `<div class="claim-recovered"><div class="claim-recovered-label">Recovered</div><div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div><div class="claim-recovered-tx"><a href="${etherscanTx(fakeTxHash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div><div style="font-size:10px;color:var(--yellow);margin-top:2px">[TEST MODE]</div></div>${renderDonationCard(claimedEthNum)}`;
+    showDonationCardDelayed();
+    userBalances[key] = 0n;
+    return;
+  }
+
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+  if (!walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+
+  btn.disabled = true; btn.textContent = 'Refunding...'; btn.classList.add('pending');
+  try {
+    const wc = new ethers.Contract(cfg.contract, ['function refund()'], walletSigner);
+    const tx = await wc.refund();
+    btn.textContent = 'Pending...';
+    statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash.slice(0, 18)}...</a>`;
+    window.va?.track?.('claim_submitted', { exchange: cfg.name, tx_hash: tx.hash });
+    const receipt = await tx.wait();
+    const ethAmount = ethers.formatEther(userBalances[key] || 0n);
+    const claimedEthNum = parseFloat(ethAmount);
+    const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
+    window.va?.track?.('claim_confirmed', { exchange: cfg.name, amount_eth: ethAmount, tx_hash: tx.hash, block: receipt.blockNumber });
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: claimedEthNum, tx_hash: tx.hash, block_num: receipt.blockNumber });
+    btn.textContent = 'Done'; btn.classList.remove('pending'); btn.style.background = 'var(--green)'; btn.style.opacity = '0.7';
+    statusEl.innerHTML = `<div class="claim-recovered"><div class="claim-recovered-label">Recovered</div><div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div><div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div></div>${renderDonationCard(claimedEthNum)}`;
+    showDonationCardDelayed();
+    userBalances[key] = 0n;
+  } catch (e) {
+    btn.disabled = false; btn.textContent = 'Step 2: Refund ETH'; btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) { statusEl.textContent = 'Rejected'; }
+    else { statusEl.textContent = 'Refund failed: ' + (e.reason || e.message || 'Unknown error'); }
+  }
+}
+
 // ─── DigixDAO Acid (2-step: approve DGD + burn) ───
 
 async function digixApprove(key) {
@@ -2752,28 +2954,32 @@ async function claimENSDeed(index) {
     const tx = await registrar.releaseDeed(deed.labelHash);
     btn.textContent = 'Pending...';
     const claimedEthNum = parseFloat(ethAmount);
-    statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash.slice(0, 18)}...</a>
-      ${renderDonationCard(claimedEthNum)}`;
-    showDonationCardDelayed();
+    statusEl.innerHTML = 'Tx submitted: <a href="' + etherscanTx(tx.hash) + '" target="_blank" rel="noopener noreferrer">' + tx.hash.slice(0, 18) + '...</a>';
 
     window.va?.track?.('claim_submitted', { exchange: 'ENS Old Registrar', amount_eth: ethAmount, tx_hash: tx.hash });
 
     const receipt = await tx.wait();
     window.va?.track?.('claim_confirmed', { exchange: 'ENS Old Registrar', amount_eth: ethAmount, tx_hash: tx.hash, block: receipt.blockNumber });
-      logEvent('claim_confirmed', { address: walletAddress, contract: 'ens_old', amount_eth: parseFloat(ethAmount), tx_hash: tx.hash, block_num: receipt.blockNumber });
+    logEvent('claim_confirmed', { address: walletAddress, contract: 'ens_old', amount_eth: parseFloat(ethAmount), tx_hash: tx.hash, block_num: receipt.blockNumber });
 
     btn.textContent = 'Done';
     btn.classList.remove('pending');
     btn.style.background = 'var(--green)';
     btn.style.opacity = '0.7';
     const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
-    statusEl.innerHTML = `<div class="claim-recovered">
-      <div class="claim-recovered-label">Released</div>
-      <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div>
-      <div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
-    </div>
-    ${renderDonationCard(claimedEthNum)}`;
-    showDonationCardDelayed();
+    statusEl.innerHTML = '<div class="claim-recovered">' +
+      '<div class="claim-recovered-label">Released</div>' +
+      '<div class="claim-recovered-amount">' + fmtEth(ethAmount) + ' ETH' + claimUsd + '</div>' +
+      '<div class="claim-recovered-tx"><a href="' + etherscanTx(tx.hash) + '" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>' +
+    '</div>';
+    // Track cumulative ENS claims — show donation only after all deeds or a large amount
+    window._ensCumulativeEth = (window._ensCumulativeEth || 0) + claimedEthNum;
+    var remainingDeeds = document.querySelectorAll('[data-action="claim-ens-deed"]:not([disabled])').length;
+    if (remainingDeeds === 0 || window._ensCumulativeEth >= 10) {
+      statusEl.innerHTML += renderDonationCard(window._ensCumulativeEth);
+      showDonationCardDelayed();
+      window._ensCumulativeEth = 0;
+    }
   } catch (e) {
     btn.disabled = false;
     btn.textContent = 'Release';
@@ -3713,6 +3919,10 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     claimExit(btn.dataset.key);
   } else if (action === 'claim-lock') {
     claimLockMe(btn.dataset.key);
+  } else if (action === 'nucypher-claim') {
+    nucypherClaim(btn.dataset.key);
+  } else if (action === 'nucypher-refund') {
+    nucypherRefund(btn.dataset.key);
   } else if (action === 'digix-approve') {
     digixApprove(btn.dataset.key);
   } else if (action === 'digix-burn') {
@@ -3725,6 +3935,10 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     cancelMoonCatRequest(btn.dataset.key, btn.dataset.catId, parseInt(btn.dataset.index));
   } else if (action === 'claim-ens-deed') {
     claimENSDeed(parseInt(btn.dataset.deedIndex));
+  } else if (action === 'ens-show-all') {
+    var hidden = document.getElementById('ensHiddenDeeds');
+    if (hidden) hidden.style.display = '';
+    btn.style.display = 'none';
   } else if (action === 'ens-manual-release') {
     ensManualRelease();
   } else if (action === 'donate-confirm') {
