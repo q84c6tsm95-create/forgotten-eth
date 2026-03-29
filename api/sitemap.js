@@ -19,6 +19,7 @@ export default async function handler(req, res) {
   xml += `  <url><loc>${base}/</loc><priority>1.0</priority></url>\n`;
 
   for (const [key, p] of Object.entries(info)) {
+    if (!p.slug || p.slug === 'undefined') continue;
     xml += `  <url><loc>${base}/${p.slug}</loc><priority>0.7</priority></url>\n`;
   }
 

@@ -773,5 +773,40 @@
     "contract": "0x96a4ed03206667017777f010dea4445823acb0fc",
     "category": "gambling",
     "balance_file": "p4d_eth_balances.json"
+  },
+  {
+    "key": "nucypher_worklock",
+    "name": "NuCypher WorkLock",
+    "contract": "0xe9778e69a961e64d3cdbb34cf6778281d34667c2",
+    "category": "ico",
+    "balance_file": "nucypher_worklock_eth_balances.json"
+  },
+  {
+    "key": "tessera_dead",
+    "name": "Fractional DEAD Vault",
+    "contract": "0x0c7060bf06a78aaaab3fac76941318a52a3f4613",
+    "category": "nft",
+    "balance_file": "tessera_dead_eth_balances.json"
+  },
+  {
+    "key": "tessera_sweep",
+    "name": "Fractional SWEEP Vault",
+    "contract": "0xfe2a5b942083d92135c7fe364bb75218e547cc62",
+    "category": "nft",
+    "balance_file": "tessera_sweep_eth_balances.json"
+  },
+  {
+    "key": "tessera_zcat",
+    "name": "Fractional ZCAT Vault",
+    "contract": "0xdb846f1cd31acc9a6db72a1c58dc1760485505f4",
+    "category": "nft",
+    "balance_file": "tessera_zcat_eth_balances.json"
+  },
+  {
+    "key": "kyber_feehandler",
+    "name": "Kyber FeeHandler",
+    "contract": "0xd3d2b5643e506c6d9b7099e9116d7aaa941114fe",
+    "category": "dex",
+    "balance_file": "kyber_feehandler_eth_balances.json"
   }
 ]

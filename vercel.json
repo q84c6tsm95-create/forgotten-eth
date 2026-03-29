@@ -2,14 +2,20 @@
   "ignoreCommand": "git diff --quiet HEAD^ HEAD -- public/ api/ vercel.json data/index_shards/ data/table_meta/ data/tvl/ data/protocol_info.json",
   "outputDirectory": "public",
   "rewrites": [
+    { "source": "/outreach", "destination": "/outreach.html" },
     { "source": "/protocol/:slug", "destination": "/:slug" },
-    { "source": "/:slug((?!api|_vercel|protocol)[a-z0-9-]+)", "destination": "/api/protocol?slug=:slug" },
+    { "source": "/:slug((?!api|_vercel|protocol|outreach)[a-z0-9-]+)", "destination": "/api/protocol?slug=:slug" },
     { "source": "/sitemap.xml", "destination": "/api/sitemap" }
   ],
   "functions": {
     "api/check.js": {
       "memory": 256,
       "maxDuration": 10,
+      "includeFiles": "data/index_shards/**/*.json"
+    },
+    "api/notify-watches.js": {
+      "memory": 256,
+      "maxDuration": 30,
       "includeFiles": "data/index_shards/**/*.json"
     },
     "api/table.js": {

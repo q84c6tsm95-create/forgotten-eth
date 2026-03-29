@@ -48,9 +48,21 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Reject oversized payloads
+    const bodyStr = JSON.stringify(req.body || {});
+    if (bodyStr.length > 2048) {
+      return res.status(413).json({ error: 'Payload too large' });
+    }
+
+    // Strip prototype pollution keys
+    const body = req.body || {};
+    delete body.__proto__;
+    delete body.constructor;
+    delete body.prototype;
+
     await ensureTables();
 
-    const { type, address, contract, amount_eth, tx_hash, block_num, contracts_found, total_eth, extra } = req.body || {};
+    const { type, address, contract, amount_eth, tx_hash, block_num, contracts_found, total_eth, extra } = body;
 
     // Whitelist known event types — reject anything unexpected
     const ALLOWED_TYPES = ['check', 'found', 'claim_started', 'claim_confirmed', 'claim_failed', 'page_view'];
