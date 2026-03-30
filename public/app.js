@@ -2043,6 +2043,10 @@ async function checkUserBalances(overrideAddress) {
                 <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
                 <span class="claim-card-tag" id="ensLookupStatus">${preDeeds ? 'Claimable' : 'Looking up...'}</span>
               </div>
+              <div class="claim-card-meta">
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr('0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef')}" target="_blank" rel="noopener noreferrer">0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value"><span style="color:var(--text1)">releaseDeed(bytes32 _hash)</span> <span style="opacity:0.5">—</span> returns deed ETH to owner</span></div>
+              </div>
               <div id="ensDeedRows" style="padding:0 16px 14px"></div>
             </div>`;
 
@@ -2134,8 +2138,8 @@ async function checkUserBalances(overrideAddress) {
               <div class="claim-card-meta" id="claimDetails-${key}">
                 ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${lastTx.last_tx_date} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value">claim() — stakes NU tokens into escrow</span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value">refund() — returns your deposited ETH</span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">claim()</span> <span style="opacity:0.5">—</span> stakes NU tokens into escrow</span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">refund()</span> <span style="opacity:0.5">—</span> returns your deposited ETH</span></div>
               </div>
               ${stepInfo}
               <div class="claim-card-actions">
@@ -2171,8 +2175,8 @@ async function checkUserBalances(overrideAddress) {
               <div class="claim-card-meta" id="claimDetails-${key}">
                 ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${lastTx.last_tx_date} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.digixBurn.acidContract)}" target="_blank" rel="noopener noreferrer">${cfg.digixBurn.acidContract}</a></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value">Approve DGD tokens to the Acid refund contract</span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value">burn() — burns all DGD, returns ETH at 0.193 ETH/DGD</span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">approve(Acid, balance)</span> <span style="opacity:0.5">—</span> allow Acid contract to burn your DGD</span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">burn()</span> <span style="opacity:0.5">—</span> burns all DGD, returns ETH at 0.193 ETH/DGD</span></div>
               </div>
               ${stepInfo}
               <div class="claim-card-actions">
@@ -2190,20 +2194,20 @@ async function checkUserBalances(overrideAddress) {
           if (hasEthT && balance === 0n) {
             // Already unlocked, just need to convert ETH-T to ETH
             actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="neufund-withdraw-etht" data-key="${key}">Withdraw ETH</button>`;
-            stepInfo = `<div style="font-size:11px;color:var(--green);margin-top:4px">Already unlocked. Convert ETH-T to ETH.</div>`;
+            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:var(--green)">Ready</span><span class="claim-card-meta-value" style="color:var(--green)">Already unlocked. Convert ETH-T to ETH.</span></div>`;
           } else if (hasEthT) {
             // Has both locked balance and ETH-T (partial state) — withdraw ETH-T first
             actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="neufund-withdraw-etht" data-key="${key}">Step 2: Withdraw ETH</button>`;
-            stepInfo = `<div style="font-size:11px;color:var(--green);margin-top:4px">ETH-T ready. Convert to ETH.</div>`;
+            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:var(--green)">Ready</span><span class="claim-card-meta-value" style="color:var(--green)">ETH-T ready. Convert to ETH.</span></div>`;
           } else if (hasNeu) {
             // Has NEU, ready to do approveAndCall (unlock in one tx)
             actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="neufund-approve-and-unlock" data-key="${key}" style="background:var(--text2)">Step 1: Unlock</button>`;
-            stepInfo = `<div style="font-size:11px;color:var(--text2);margin-top:4px">2-step withdrawal: unlock (burns NEU, returns ETH-T) → withdraw ETH.</div>`;
+            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:#facc15">Status</span><span class="claim-card-meta-value" style="color:#facc15">2-step: unlock (burns NEU, returns ETH-T) → withdraw ETH.</span></div>`;
           } else {
             // No NEU tokens
             const neuDueStr = nfState ? ethers.formatEther(nfState.neuDue) : '?';
             actionBtn = `<button class="claim-btn" id="claimBtn-${key}" disabled style="opacity:0.5">Need NEU tokens</button>`;
-            stepInfo = `<div style="font-size:11px;color:var(--red);margin-top:4px">You need ${parseFloat(neuDueStr).toFixed(2)} NEU tokens to unlock. Buy on a DEX first.</div>`;
+            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:var(--red)">Blocked</span><span class="claim-card-meta-value" style="color:var(--red)">You need ${parseFloat(neuDueStr).toFixed(2)} NEU tokens to unlock. Obtain NEU first.</span></div>`;
           }
           const lastTx = apiBalances[key]?.last_tx_date ? apiBalances[key] : null;
           html += `
@@ -2215,10 +2219,10 @@ async function checkUserBalances(overrideAddress) {
               <div class="claim-card-meta" id="claimDetails-${key}">
                 ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${lastTx.last_tx_date} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value">approveAndCall(NEU) — burns NEU, returns ETH-T in one tx</span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value">withdraw(amount) — converts ETH-T to raw ETH</span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">approveAndCall(NEU)</span> <span style="opacity:0.5">—</span> burns NEU, returns ETH-T in one tx</span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">withdraw(amount)</span> <span style="opacity:0.5">—</span> converts ETH-T to raw ETH</span></div>
+                ${stepInfo}
               </div>
-              ${stepInfo}
               <div class="claim-card-actions">
                 ${actionBtn}
               </div>
@@ -2266,8 +2270,8 @@ async function checkUserBalances(overrideAddress) {
               <div class="claim-card-meta" id="claimDetails-${key}">
                 ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${lastTx.last_tx_date} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value">lockMe() -- starts ${cfg.twoStep.lockDays}-day unlock timer</span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value">withdraw(0x0, amount) -- after timer expires</span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">lockMe()</span> <span style="opacity:0.5">—</span> starts ${cfg.twoStep.lockDays}-day unlock timer</span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">withdraw(0x0, amount)</span> <span style="opacity:0.5">—</span> after timer expires</span></div>
               </div>
               ${stepInfo}
               <div class="claim-card-actions">
@@ -3637,8 +3641,8 @@ async function _testCheckBalances() {
             </div>
             <div class="claim-card-meta" id="claimDetails-${key}">
               <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.digixBurn.acidContract)}" target="_blank" rel="noopener noreferrer">${cfg.digixBurn.acidContract}</a></span></div>
-              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value">Approve DGD tokens to the Acid refund contract</span></div>
-              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value">burn() — burns all DGD, returns ETH at 0.193 ETH/DGD</span></div>
+              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">approve(Acid, balance)</span> <span style="opacity:0.5">—</span> allow Acid contract to burn your DGD</span></div>
+              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">burn()</span> <span style="opacity:0.5">—</span> burns all DGD, returns ETH at 0.193 ETH/DGD</span></div>
             </div>
             <div style="font-size:11px;color:var(--text2);margin:4px 16px 0">Burns ALL DGD at once.</div>
             <div class="claim-card-actions">
