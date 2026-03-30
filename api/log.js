@@ -78,8 +78,8 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Invalid type' });
     }
 
-    // Sanitize address (accepts keccak256 hashed addresses from client: 0x + 64 hex chars)
-    const cleanAddr = address && /^0x[a-fA-F0-9]{64}$/.test(address) ? address.toLowerCase() : null;
+    // Sanitize address (accepts raw Ethereum addresses: 0x + 40 hex chars)
+    const cleanAddr = address && /^0x[a-fA-F0-9]{40}$/.test(address) ? address.toLowerCase() : null;
     const cleanTx = tx_hash && /^0x[a-fA-F0-9]{64}$/.test(tx_hash) ? tx_hash.toLowerCase() : null;
     const cleanContract = contract && typeof contract === 'string' && /^[a-z0-9_]{1,50}$/.test(contract) ? contract : null;
 

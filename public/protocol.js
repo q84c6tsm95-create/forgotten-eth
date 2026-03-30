@@ -28,8 +28,8 @@ try { __ACT = JSON.parse(document.getElementById('act-data').textContent); } cat
 
   function renderCharts() {
     var isDark = html.getAttribute('data-theme') === 'dark';
-    var gridColor = isDark ? '#2e2b38' : '#edeae4';
-    var textColor = isDark ? '#9590a6' : '#78716c';
+    var gridColor = isDark ? '#2d2a3a' : '#e5e2db';
+    var textColor = isDark ? '#7d7890' : '#6b6560';
 
     if (window._tvlChart) { window._tvlChart.destroy(); window._tvlChart = null; }
     if (window._actChart) { window._actChart.destroy(); window._actChart = null; }
@@ -51,8 +51,8 @@ try { __ACT = JSON.parse(document.getElementById('act-data').textContent); } cat
           labels: tvl.map(function(d){return d.month}),
           datasets: [{
             data: tvl.map(function(d){return d.balance_eth}),
-            backgroundColor: '#7c3aed80',
-            borderColor: '#7c3aed',
+            backgroundColor: '#0f766e80',
+            borderColor: '#0f766e',
             borderWidth: 1
           }]
         },
@@ -85,8 +85,8 @@ try { __ACT = JSON.parse(document.getElementById('act-data').textContent); } cat
           labels: activity.map(function(d){return d.month}),
           datasets: [{
             data: activity.map(function(d){return d.tx_count}),
-            backgroundColor: '#7c3aed80',
-            borderColor: '#7c3aed',
+            backgroundColor: '#0f766e80',
+            borderColor: '#0f766e',
             borderWidth: 1
           }]
         },

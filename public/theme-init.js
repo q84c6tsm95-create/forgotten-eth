@@ -2,6 +2,6 @@
 // This runs before body renders, so no DOM elements are needed
 (function() {
   var saved = localStorage.getItem('theme');
-  var dark = saved ? saved === 'dark' : true;
+  var dark = saved ? saved === 'dark' : false;
   if (dark) document.documentElement.setAttribute('data-theme', 'dark');
 })();
