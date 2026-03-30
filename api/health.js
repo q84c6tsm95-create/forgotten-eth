@@ -123,6 +123,50 @@ export default async function handler(req, res) {
     // Non-critical
   }
 
+  // 7. Vercel usage — query real billing data to warn before limits
+  // Pro plan limits: 1M function invocations, 1TB bandwidth, 4000 build mins
+  try {
+    const vercelToken = process.env.VERCEL_API;
+    if (vercelToken) {
+      const now = new Date();
+      const monthStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1)).toISOString();
+      const monthEnd = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 1)).toISOString();
+      const url = `https://api.vercel.com/v1/billing/charges?from=${monthStart}&to=${monthEnd}`;
+      const resp = await fetchWithTimeout(url, {
+        headers: { 'Authorization': `Bearer ${vercelToken}` },
+      }, 5000);
+      if (resp.ok) {
+        const text = await resp.text();
+        const lines = text.trim().split('\n').filter(Boolean);
+        let invocations = 0, bandwidthGB = 0, buildMins = 0, totalBilled = 0;
+        for (const line of lines) {
+          try {
+            const c = JSON.parse(line);
+            totalBilled += c.BilledCost || 0;
+            if (c.ServiceName === 'Function Invocations') invocations += c.ConsumedQuantity || 0;
+            else if (c.ServiceName === 'Fast Data Transfer') bandwidthGB += c.ConsumedQuantity || 0;
+            else if (c.ServiceName === 'Build Minutes') buildMins += c.ConsumedQuantity || 0;
+          } catch {}
+        }
+        checks.vercel_invocations = Math.round(invocations);
+        checks.vercel_bandwidth_gb = Math.round(bandwidthGB * 100) / 100;
+        checks.vercel_build_mins = Math.round(buildMins);
+        checks.vercel_billed_usd = Math.round(totalBilled * 100) / 100;
+        const invPct = Math.round((invocations / 1000000) * 100);
+        const bwPct = Math.round((bandwidthGB / 1000) * 100);
+        const buildPct = Math.round((buildMins / 4000) * 100);
+        checks.vercel_inv_pct = invPct;
+        checks.vercel_bw_pct = bwPct;
+        checks.vercel_build_pct = buildPct;
+        if (invPct >= 80) failed.push('vercel: Function invocations at ' + invPct + '% (' + Math.round(invocations).toLocaleString() + '/1M)');
+        if (bwPct >= 80) failed.push('vercel: Bandwidth at ' + bwPct + '% (' + bandwidthGB.toFixed(1) + 'GB/1TB)');
+        if (buildPct >= 80) failed.push('vercel: Build minutes at ' + buildPct + '% (' + Math.round(buildMins) + '/4000)');
+      }
+    }
+  } catch {
+    // Non-critical — Vercel API unavailable
+  }
+
   const status = failed.length === 0 ? 'healthy' : 'degraded';
 
   res.setHeader('Cache-Control', 'no-store');
