@@ -13,11 +13,10 @@ function safeCompare(a, b) {
   if (!a || !b) return false;
   const bufA = Buffer.from(a);
   const bufB = Buffer.from(b);
-  if (bufA.length !== bufB.length) {
-    timingSafeEqual(bufA, bufA);
-    return false;
-  }
-  return timingSafeEqual(bufA, bufB);
+  const len = Math.max(bufA.length, bufB.length);
+  const pA = Buffer.concat([bufA, Buffer.alloc(len - bufA.length)]);
+  const pB = Buffer.concat([bufB, Buffer.alloc(len - bufB.length)]);
+  return bufA.length === bufB.length && timingSafeEqual(pA, pB);
 }
 
 export default async function handler(req, res) {
