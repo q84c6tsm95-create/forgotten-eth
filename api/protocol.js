@@ -104,7 +104,9 @@ function renderPage(slug, key, info, meta) {
 <meta property="og:image" content="https://forgotteneth.com/og-image-wide.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:url" content="https://forgotteneth.com/${slug}">
 <link rel="canonical" href="https://forgotteneth.com/${slug}">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(info.name)} - ${fmtEth(meta.total_eth)} ETH Unclaimed">
 <meta name="twitter:description" content="${esc(descShort)}">
@@ -427,10 +429,16 @@ export default async function handler(req, res) {
   if (SLUG_ALIASES[key]) key = SLUG_ALIASES[key];
   const info = loadProtocolInfo();
   const protocol = info[key];
-  if (!protocol) return res.status(404).send('Protocol not found');
+  if (!protocol) {
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    return res.status(404).send('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Not Found — Forgotten ETH</title><style>body{font-family:-apple-system,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;background:#12111a;color:#d4d0de;text-align:center}a{color:#7ec8be}</style></head><body><div><h1>Protocol not found</h1><p style="margin-top:12px"><a href="/">Back to Forgotten ETH</a></p></div></body></html>');
+  }
 
   const meta = loadMeta(key);
-  if (!meta) return res.status(404).send('Protocol data not found');
+  if (!meta) {
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    return res.status(404).send('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Not Found — Forgotten ETH</title><style>body{font-family:-apple-system,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;background:#12111a;color:#d4d0de;text-align:center}a{color:#7ec8be}</style></head><body><div><h1>Protocol data not found</h1><p style="margin-top:12px"><a href="/">Back to Forgotten ETH</a></p></div></body></html>');
+  }
 
   const html = htmlCache[key] || (htmlCache[key] = renderPage(slug, key, protocol, meta));
 

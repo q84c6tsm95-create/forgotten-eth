@@ -75,7 +75,7 @@ try { __ACT = JSON.parse(document.getElementById('act-data').textContent); } cat
       while (true) {
         var k = y + '-' + String(m).padStart(2, '0');
         activity.push({ month: k, tx_count: actMap[k] || 0 });
-        if (k === '2026-03') break;
+        var _now = new Date(); if (k === _now.getFullYear() + '-' + String(_now.getMonth() + 1).padStart(2, '0')) break;
         m++; if (m > 12) { m = 1; y++; }
       }
 
