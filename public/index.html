@@ -119,6 +119,72 @@
   [data-theme="dark"] .claim-banner { background: rgba(18, 17, 26, 0.95); backdrop-filter: blur(4px); }
   [data-theme="dark"] .connect-section { background: rgba(18, 17, 26, 0.9); backdrop-filter: blur(4px); }
 
+  /* ── Custom pixel cursor (Yume Nikki style) ── */
+  * { cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAUElEQVR4nGNgoAYQEZH7T7EBFBkC0lx3Yh/5hsAMINsQZAPIMgTdAJINwWYASYbgMoBoQ/C5gGwDyAoDsqMT2alkGYKukOKEhWwIxXmEkAEAaCednTE3BIIAAAAASUVORK5CYII=") 1 1, auto; }
+  a, button, [role="button"], select, input[type="submit"] { cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAUElEQVR4nGNgoAYQEZH7T7EBFBkC0lx3Yh/5hsAMINsQZAPIMgTdAJINwWYASYbgMoBoQ/C5gGwDyAoDsqMT2alkGYKukOKEhWwIxXmEkAEAaCednTE3BIIAAAAASUVORK5CYII=") 1 1, pointer; }
+
+  /* ── Madotsuki walking loader (4-frame sprite animation) ── */
+  @keyframes madoWalk {
+    0% { background-position: 0 0; }
+    25% { background-position: -16px 0; }
+    50% { background-position: -32px 0; }
+    75% { background-position: -48px 0; }
+  }
+  .spinner {
+    width: 16px !important; height: 24px !important;
+    border: none !important;
+    image-rendering: pixelated;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='24'%3E%3C!-- Frame 1: stand --%3E%3Crect x='5' y='0' width='6' height='3' fill='%235c3a1e'/%3E%3Crect x='4' y='3' width='8' height='5' fill='%23f0c8a0'/%3E%3Crect x='5' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='9' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='4' y='8' width='8' height='6' fill='%23c84b6b'/%3E%3Crect x='4' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='9' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='4' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3Crect x='9' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3C!-- Frame 2: step left --%3E%3Crect x='21' y='0' width='6' height='3' fill='%235c3a1e'/%3E%3Crect x='20' y='3' width='8' height='5' fill='%23f0c8a0'/%3E%3Crect x='21' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='25' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='20' y='8' width='8' height='6' fill='%23c84b6b'/%3E%3Crect x='19' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='25' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='18' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3Crect x='26' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3C!-- Frame 3: stand --%3E%3Crect x='37' y='0' width='6' height='3' fill='%235c3a1e'/%3E%3Crect x='36' y='3' width='8' height='5' fill='%23f0c8a0'/%3E%3Crect x='37' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='41' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='36' y='8' width='8' height='6' fill='%23c84b6b'/%3E%3Crect x='36' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='41' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='36' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3Crect x='41' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3C!-- Frame 4: step right --%3E%3Crect x='53' y='0' width='6' height='3' fill='%235c3a1e'/%3E%3Crect x='52' y='3' width='8' height='5' fill='%23f0c8a0'/%3E%3Crect x='53' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='57' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='52' y='8' width='8' height='6' fill='%23c84b6b'/%3E%3Crect x='53' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='56' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='54' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3Crect x='55' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3C/svg%3E");
+    background-size: 64px 24px;
+    animation: madoWalk 0.6s steps(1) infinite !important;
+  }
+
+  /* ── Neon Tile Path section divider ── */
+  .tab-nav::after {
+    content: '';
+    display: block;
+    height: 3px;
+    margin-top: 8px;
+    background: repeating-linear-gradient(90deg, var(--accent) 0px, var(--accent) 8px, transparent 8px, transparent 16px, rgba(200, 80, 180, 0.4) 16px, rgba(200, 80, 180, 0.4) 24px, transparent 24px, transparent 32px);
+    opacity: 0.3;
+  }
+  [data-theme="dark"] .tab-nav::after { opacity: 0.5; }
+
+  /* ── Dream fade on tab switch ── */
+  @keyframes dreamFade { 0% { opacity: 0; } 100% { opacity: 1; } }
+  .tab-panel { animation: dreamFade 0.4s ease-out; }
+
+  /* ── Pixel sparkle on card hover ── */
+  @keyframes pixelSparkle {
+    0% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.5) translateY(-8px); }
+  }
+  .claim-card:hover::after, .claim-row:hover::after {
+    content: '✦';
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 10px;
+    color: var(--accent);
+    animation: pixelSparkle 0.6s ease-out;
+    pointer-events: none;
+  }
+  .claim-row { position: relative; }
+
+  /* ── Madotsuki dream room — no balance empty state ── */
+  .no-balance-state .no-balance-check {
+    width: 32px;
+    height: 48px;
+    margin: 0 auto 12px;
+    image-rendering: pixelated;
+    font-size: 0 !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='24' viewBox='0 0 16 24'%3E%3Crect x='5' y='0' width='6' height='3' fill='%235c3a1e'/%3E%3Crect x='4' y='3' width='8' height='5' fill='%23f0c8a0'/%3E%3Crect x='5' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='9' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='4' y='8' width='8' height='6' fill='%23c84b6b'/%3E%3Crect x='4' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='9' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='4' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3Crect x='9' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
   /* Theme toggle */
   #themeToggle {
     background: none;
@@ -164,14 +230,24 @@
     line-height: 1.6;
     min-height: 100vh;
   }
-  /* ── Neon World background (Yume Nikki inspired) ── */
+  /* ── Yume Nikki background ── */
+  /* Light mode: dreamy pastel world — soft teal grid + warm glow pools */
+  body {
+    background-color: var(--bg);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='16' height='16' fill='%23f0eee9'/%3E%3Crect x='16' y='16' width='16' height='16' fill='%23f0eee9'/%3E%3Crect x='16' width='16' height='16' fill='%23ece9e3'/%3E%3Crect y='16' width='16' height='16' fill='%23ece9e3'/%3E%3C/svg%3E");
+    background-size: 32px 32px;
+  }
   body::before {
     content: '';
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: -2;
-    opacity: 0;
+    background:
+      radial-gradient(ellipse 700px 450px at 15% 25%, rgba(15, 118, 110, 0.06), transparent 70%),
+      radial-gradient(ellipse 500px 400px at 80% 20%, rgba(180, 130, 80, 0.05), transparent 70%),
+      radial-gradient(ellipse 600px 350px at 50% 75%, rgba(15, 118, 110, 0.04), transparent 70%);
   }
   body::after {
     content: '';
@@ -179,10 +255,12 @@
     inset: 0;
     pointer-events: none;
     z-index: -1;
-    opacity: 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128'%3E%3Cpolygon points='64,52 58,64 70,64' fill='%230f766e' opacity='0.06'/%3E%3C/svg%3E"),
+      linear-gradient(rgba(15, 118, 110, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 118, 110, 0.05) 1px, transparent 1px);
+    background-size: 128px 128px, 32px 32px, 32px 32px;
   }
-  /* Light mode: very faint teal checkerboard hint */
-  body { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='16' height='16' fill='%23f0eee9'/%3E%3Crect x='16' y='16' width='16' height='16' fill='%23f0eee9'/%3E%3Crect x='16' width='16' height='16' fill='%23ece9e3'/%3E%3Crect y='16' width='16' height='16' fill='%23ece9e3'/%3E%3C/svg%3E"); background-size: 32px 32px; }
   /* Dark mode: Neon World — glowing checkerboard on void */
   [data-theme="dark"] body {
     background-color: #0a0a12;
@@ -288,8 +366,9 @@
   /* ── Claim Banner ── */
   .claim-banner {
     display: none;
-    background: linear-gradient(135deg, #f0fdfa 0%, #e6f7f5 50%, #f0fdfa 100%);
-    border: 1px solid #99f6e4;
+    background: linear-gradient(135deg, rgba(240, 253, 250, 0.85) 0%, rgba(230, 247, 245, 0.85) 50%, rgba(240, 253, 250, 0.85) 100%);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(153, 246, 228, 0.6);
     border-radius: 12px;
     padding: 28px 24px;
     margin: 20px 0;
@@ -1017,5 +1096,28 @@
 <script src="/app.js"></script>
 <script src="/theme.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script>
+// Konami code easter egg — triggers Neon World flash
+(function() {
+  var seq = [38,38,40,40,37,39,37,39,66,65], pos = 0;
+  document.addEventListener('keydown', function(e) {
+    if (e.keyCode === seq[pos]) { pos++; } else { pos = 0; }
+    if (pos === seq.length) {
+      pos = 0;
+      var o = document.createElement('div');
+      o.style.cssText = 'position:fixed;inset:0;z-index:99999;pointer-events:none;background:#0a0a12;transition:opacity 1.5s;';
+      var grid = document.createElement('div');
+      grid.style.cssText = 'position:absolute;inset:0;background-image:linear-gradient(rgba(200,80,180,0.3) 1px,transparent 1px),linear-gradient(90deg,rgba(80,200,190,0.3) 1px,transparent 1px);background-size:16px 16px;';
+      var txt = document.createElement('div');
+      txt.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:14px;color:#7ec8be;letter-spacing:4px;text-transform:uppercase;opacity:0.8;';
+      txt.textContent = 'N E O N   W O R L D';
+      o.appendChild(grid); o.appendChild(txt);
+      document.body.appendChild(o);
+      setTimeout(function() { o.style.opacity = '0'; }, 2000);
+      setTimeout(function() { o.remove(); }, 3500);
+    }
+  });
+})();
+</script>
 </body>
 </html>
