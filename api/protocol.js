@@ -347,7 +347,7 @@ function renderPage(slug, key, info, meta) {
     <div class="faq-list">
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle>How does it work? <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">Paste any address or connect your wallet. We check 110 defunct contracts for unclaimed balances. If found, click Withdraw — the transaction goes directly from the original contract to your wallet. We never have custody of your funds.</div>
+      <div class="faq-a">Paste any address or connect your wallet. We check 116 defunct contracts for unclaimed balances. If found, click Withdraw — the transaction goes directly from the original contract to your wallet. We never have custody of your funds.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle>Is this safe? <span class="faq-arrow">&#x25BC;</span></div>
@@ -363,7 +363,7 @@ function renderPage(slug, key, info, meta) {
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle>What contracts are tracked? <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">110 contracts across defunct DEXes (EtherDelta, IDEX v1, Token.Store), dividend tokens (PoWH3D, Fomo3D), NFT auctions (MoonCatRescue, DADA), bounty platforms, ICO escrows, ENS old registrar deeds, and wrapped ETH variants.</div>
+      <div class="faq-a">116 contracts across defunct DEXes (EtherDelta, IDEX v1, Token.Store), dividend tokens (PoWH3D, Fomo3D), NFT auctions (MoonCatRescue, DADA), bounty platforms, ICO escrows, ENS old registrar deeds, DAO treasury refunds (DigixDAO), and wrapped ETH variants.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle>Don't trust, verify <span class="faq-arrow">&#x25BC;</span></div>
