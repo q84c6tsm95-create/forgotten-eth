@@ -18,6 +18,15 @@
       "maxDuration": 30,
       "includeFiles": "data/index_shards/**/*.json"
     },
+    "api/admin-alert.js": {
+      "memory": 128,
+      "maxDuration": 10
+    },
+    "api/health.js": {
+      "memory": 256,
+      "maxDuration": 10,
+      "includeFiles": "{data/health.json,data/total.json}"
+    },
     "api/table.js": {
       "memory": 256,
       "maxDuration": 10,
