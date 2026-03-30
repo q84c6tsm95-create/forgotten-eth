@@ -80,6 +80,8 @@ const SEO_OVERRIDES = {
 
 function renderPage(slug, key, info, meta) {
   const seo = SEO_OVERRIDES[key] || {};
+  const allProtocols = loadProtocolInfo();
+  const contractCount = Object.keys(allProtocols).length;
   const title = seo.title || `${info.name} - Forgotten ETH | ${fmtEth(meta.total_eth)} ETH Unclaimed`;
   const descShort = seo.metaDesc || (info.desc ? info.desc.slice(0, 155).replace(/["\n]/g, ' ') + '...' : `${fmtEth(meta.total_eth)} ETH stuck in ${info.name}`);
   const scanDate = meta.scan_date ? meta.scan_date.replace(/\s\d{2}:\d{2}:\d{2}\s*UTC$/, '') : '';
@@ -98,12 +100,14 @@ function renderPage(slug, key, info, meta) {
 <meta property="og:title" content="${esc(info.name)} - ${fmtEth(meta.total_eth)} ETH Unclaimed">
 <meta property="og:description" content="${esc(descShort)}">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://forgotteneth.com/og-image.png">
+<meta property="og:image" content="https://forgotteneth.com/og-image-wide.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <link rel="canonical" href="https://forgotteneth.com/${slug}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(info.name)} - ${fmtEth(meta.total_eth)} ETH Unclaimed">
 <meta name="twitter:description" content="${esc(descShort)}">
-<meta name="twitter:image" content="https://forgotteneth.com/og-image.png">
+<meta name="twitter:image" content="https://forgotteneth.com/og-image-wide.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -258,6 +262,13 @@ function renderPage(slug, key, info, meta) {
     .connect-section { padding: 20px 16px; gap: 14px; max-width: 100%; }
     .wallet-btn { width: 100%; padding: 12px 18px; font-size: 15px; }
   }
+  @media (max-width: 480px) {
+    h1 { font-size: 20px !important; }
+    .cards { grid-template-columns: 1fr; }
+    .container { padding: 0 12px 32px; }
+    .faq-q { font-size: 13px; }
+    .table-wrap { font-size: 12px; }
+  }
 </style>
 </head>
 <body data-protocol-key="${key}">
@@ -347,7 +358,7 @@ function renderPage(slug, key, info, meta) {
     <div class="faq-list">
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle>How does it work? <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">Paste any address or connect your wallet. We check 116 defunct contracts for unclaimed balances. If found, click Withdraw — the transaction goes directly from the original contract to your wallet. We never have custody of your funds.</div>
+      <div class="faq-a">Paste any address or connect your wallet. We check ${contractCount} defunct contracts for unclaimed balances. If found, click Withdraw — the transaction goes directly from the original contract to your wallet.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle>Is this safe? <span class="faq-arrow">&#x25BC;</span></div>
@@ -363,11 +374,11 @@ function renderPage(slug, key, info, meta) {
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle>What contracts are tracked? <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">116 contracts across defunct DEXes (EtherDelta, IDEX v1, Token.Store), dividend tokens (PoWH3D, Fomo3D), NFT auctions (MoonCatRescue, DADA), bounty platforms, ICO escrows, ENS old registrar deeds, DAO treasury refunds (DigixDAO), and wrapped ETH variants.</div>
+      <div class="faq-a">${contractCount} contracts across defunct DEXes (EtherDelta, IDEX v1, Token.Store), dividend tokens (PoWH3D, Fomo3D), NFT auctions (MoonCatRescue, DADA), bounty platforms, ICO escrows, ENS old registrar deeds, DAO treasury refunds (DigixDAO), and wrapped ETH variants.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle>Don't trust, verify <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">You don't need this site to claim. Every withdrawal can be done directly on Etherscan: go to the contract, click "Write Contract", connect your wallet, call the withdraw function. We simply facilitate the crafting of withdrawal transactions on your behalf — each contract's address and function is shown in the claim details. Our code is <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a> for anyone to audit.</div>
+      <div class="faq-a">You don't need this site to claim. Every withdrawal can be done directly on Etherscan: go to the contract, click "Write Contract", connect your wallet, call the withdraw function. We simply facilitate the crafting of withdrawal transactions on your behalf — each contract's address and function is shown in the claim details. Our code is <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a> for anyone to audit. Know a contract we're missing? <a href="https://github.com/q84c6tsm95-create/forgotten-eth/issues" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Open an issue</a>.</div>
     </div>
     </div>
   </div>
@@ -375,7 +386,7 @@ function renderPage(slug, key, info, meta) {
 </div>
 
 <footer class="site-footer">
-  <p class="footer-credit">made with <span style="color:#e11d48;font-size:16px;vertical-align:middle">&#10084;</span> by aaaaaaaaaaway</p>
+  <p class="footer-credit">made with <span style="color:#e11d48;font-size:16px;vertical-align:middle">&#10084;</span> by <a href="https://t.me/syLKf" target="_blank" rel="noopener noreferrer" style="color:var(--text);text-decoration:none;font-weight:700">aaaaaaaaaaway</a></p>
 </footer>
 
 <script type="application/ld+json">
@@ -422,5 +433,7 @@ export default async function handler(req, res) {
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=7200');
   res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   return res.status(200).send(html);
 }

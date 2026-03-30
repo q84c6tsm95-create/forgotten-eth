@@ -49,6 +49,11 @@ function showInlineError(elementId, message, duration) {
   }
 }
 
+// ─── Spinner helper (single source of truth) ───
+function spinnerHTML(msg) {
+  return '<div style="text-align:center;padding:20px;color:var(--text2)"><div class="spinner" style="display:inline-block;width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:8px"></div><div' + (msg && msg.indexOf('Checking') >= 0 ? ' id="scanProgress"' : '') + '>' + msg + '</div></div>';
+}
+
 // Keystore file wallet — decrypts UTC/JSON keystore files (MyEtherWallet style)
 var _keystoreWallet = null;
 
@@ -1802,7 +1807,7 @@ async function connectWallet() {
 
     const banner = document.getElementById('claimBanner');
     const rowsEl = document.getElementById('claimRows');
-    rowsEl.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2)"><div class="spinner" style="display:inline-block;width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:8px"></div><div id="scanProgress">Checking contracts... 0/' + Object.keys(EXCHANGES).length + '</div></div>';
+    rowsEl.innerHTML = spinnerHTML('Checking contracts... 0/' + Object.keys(EXCHANGES).length);
     banner.classList.add('visible');
 
     try { await checkUserBalances(); } catch(e) { console.error('Balance check failed:', e); }
@@ -1865,14 +1870,14 @@ async function connectWallet() {
       if (connectBtn) connectBtn.closest('div').remove();
       // Re-check with wallet connected to get full withdraw UI
       const banner = document.getElementById('claimBanner');
-      rowsEl.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2)"><div class="spinner" style="display:inline-block;width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:8px"></div><div id="scanProgress">Checking contracts... 0/' + Object.keys(EXCHANGES).length + '</div></div>';
+      rowsEl.innerHTML = spinnerHTML('Checking contracts... 0/' + Object.keys(EXCHANGES).length);
       banner.classList.add('visible');
       try { await checkUserBalances(walletAddress); } catch(e) { console.error('Balance check failed:', e); }
     } else {
       // Show loading state while checking balances
       const banner = document.getElementById('claimBanner');
       const rowsEl = document.getElementById('claimRows');
-      rowsEl.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2)"><div class="spinner" style="display:inline-block;width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:8px"></div><div id="scanProgress">Checking contracts... 0/' + Object.keys(EXCHANGES).length + '</div></div>';
+      rowsEl.innerHTML = spinnerHTML('Checking contracts... 0/' + Object.keys(EXCHANGES).length);
       banner.classList.add('visible');
 
       try { await checkUserBalances(); } catch(e) { console.error('Balance check failed:', e); }
@@ -3496,7 +3501,7 @@ async function checkManualAddress() {
   const rowsEl = document.getElementById('claimRows');
   const ensResolvedEl = document.getElementById('ensResolved');
 
-  rowsEl.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2)"><div class="spinner" style="display:inline-block;width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:8px"></div><div>Resolving address...</div></div>';
+  rowsEl.innerHTML = spinnerHTML('Resolving address...');
   banner.classList.add('visible');
 
   // Resolve address (ENS or raw)
@@ -3525,7 +3530,7 @@ async function checkManualAddress() {
 
   const resolvedAddrs = [addr];
 
-  rowsEl.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2)"><div class="spinner" style="display:inline-block;width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:8px"></div><div id="scanProgress">Checking contracts... 0/' + Object.keys(EXCHANGES).length + '</div></div>';
+  rowsEl.innerHTML = spinnerHTML('Checking contracts... 0/' + Object.keys(EXCHANGES).length);
 
   window.va?.track?.('address_checked', { method: 'manual' });
   logEvent('check', { address: addr });
@@ -3737,7 +3742,7 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
 async function _testCheckManualAddress(input) {
   const banner = document.getElementById('claimBanner');
   const rowsEl = document.getElementById('claimRows');
-  rowsEl.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2)"><div class="spinner" style="display:inline-block;width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:8px"></div><div>Scanning ' + Object.keys(EXCHANGES).length + ' contracts...</div></div>';
+  rowsEl.innerHTML = spinnerHTML('Scanning ' + Object.keys(EXCHANGES).length + ' contracts...');
   banner.classList.add('visible');
 
   // Simulate loading delay
@@ -3780,6 +3785,8 @@ async function _testCheckManualAddress(input) {
       animateCount('totalAllEth', totalEthVal, '.hero-eth-value');
       animateCount('totalContracts', contractCount);
       if (addressCount) animateCount('totalAddresses', addressCount);
+      // Update any hardcoded contract counts in FAQ etc.
+      document.querySelectorAll('.contract-count').forEach(function(el) { el.textContent = contractCount; });
       getEthPrice(); // preload price for claim flow
     }
   } catch(e) {}
@@ -4083,7 +4090,7 @@ recheckWatchlist();
 
           var banner = document.getElementById('claimBanner');
           var rowsEl = document.getElementById('claimRows');
-          rowsEl.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2)"><div class="spinner" style="display:inline-block;width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:8px"></div><div>Scanning ' + Object.keys(EXCHANGES).length + ' contracts...</div></div>';
+          rowsEl.innerHTML = spinnerHTML('Scanning ' + Object.keys(EXCHANGES).length + ' contracts...');
           banner.classList.add('visible');
 
           try { await checkUserBalances(); } catch(e) { console.error('Balance check failed:', e); }
