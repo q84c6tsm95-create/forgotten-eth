@@ -56,7 +56,8 @@ function spinnerHTML(msg) {
 // Minimum spinner display time so Madotsuki is visible
 var _scanStartTime = 0;
 function scanStart() { _scanStartTime = Date.now(); }
-async function scanMinDelay() { var elapsed = Date.now() - _scanStartTime; if (elapsed < 4000) await new Promise(function(r) { setTimeout(r, 4000 - elapsed); }); }
+async function scanMinDelay() { var elapsed = Date.now() - _scanStartTime; if (elapsed < 3500) await new Promise(function(r) { setTimeout(r, 3500 - elapsed); }); }
+async function scanProgressDelay() { var elapsed = Date.now() - _scanStartTime; if (elapsed < 2500) await new Promise(function(r) { setTimeout(r, 2500 - elapsed); }); }
 
 // Keystore file wallet — decrypts UTC/JSON keystore files (MyEtherWallet style)
 var _keystoreWallet = null;
@@ -1866,6 +1867,7 @@ async function connectWallet() {
       const banner = document.getElementById('claimBanner');
       rowsEl.innerHTML = spinnerHTML('Checking contracts... 0/' + Object.keys(EXCHANGES).length);
       banner.classList.add('visible');
+      scanStart();
       try { await checkUserBalances(walletAddress); } catch(e) { console.error('Balance check failed:', e); }
     } else {
       // Show loading state while checking balances
@@ -1873,7 +1875,7 @@ async function connectWallet() {
       const rowsEl = document.getElementById('claimRows');
       rowsEl.innerHTML = spinnerHTML('Checking contracts... 0/' + Object.keys(EXCHANGES).length);
       banner.classList.add('visible');
-
+      scanStart();
       try { await checkUserBalances(); } catch(e) { console.error('Balance check failed:', e); }
     }
   } catch (e) {
@@ -1928,6 +1930,13 @@ async function checkUserBalances(overrideAddress) {
   let _checkedCount = 0;
   const _totalContracts = Object.keys(EXCHANGES).length;
   const _scanProgressEl = document.getElementById('scanProgress');
+  // Animate progress counter: increments by 1 every ~22ms = reaches 116 in ~2.5s
+  let _displayedCount = 0;
+  const _progressInterval = setInterval(function() {
+    _displayedCount++;
+    if (_scanProgressEl) _scanProgressEl.textContent = 'Checking contracts... ' + Math.min(_displayedCount, _totalContracts) + '/' + _totalContracts;
+    if (_displayedCount >= _totalContracts) clearInterval(_progressInterval);
+  }, Math.round(2500 / _totalContracts));
   const rpcChecks = Object.entries(EXCHANGES).map(async ([key, cfg]) => {
     try {
       const covPct = apiCoverage[key]?.coverage_pct ?? 0;
@@ -1966,7 +1975,6 @@ async function checkUserBalances(overrideAddress) {
       return { key, balance: 0n };
     } finally {
       _checkedCount++;
-      if (_scanProgressEl) _scanProgressEl.textContent = 'Checking contracts... ' + _checkedCount + '/' + _totalContracts;
     }
   });
   const balanceResults = await Promise.all(rpcChecks);
@@ -2161,13 +2169,13 @@ async function checkUserBalances(overrideAddress) {
 
           if (dgdBal === 0n) {
             actionBtn = `<button class="claim-btn" disabled style="opacity:0.5">No DGD tokens</button>`;
-            stepInfo = `<div style="font-size:11px;color:var(--red);margin-top:4px">DGD tokens required to claim. Balance shows value from pre-computed data.</div>`;
+            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:var(--red)">Blocked</span><span class="claim-card-meta-value" style="color:var(--red)">DGD tokens required to claim.</span></div>`;
           } else if (needsApproval) {
             actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="digix-approve" data-key="${key}">Step 1: Approve DGD</button><button class="claim-btn" disabled style="opacity:0.35">Step 2: Claim ETH</button>`;
-            stepInfo = `<div style="font-size:11px;color:var(--text2);margin-top:4px">Burns ALL DGD at once.</div>`;
+            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:#facc15">Status</span><span class="claim-card-meta-value" style="color:#facc15">Burns ALL DGD at once.</span></div>`;
           } else {
             actionBtn = `<button class="claim-btn" disabled style="opacity:0.35">Step 1: Approved</button><button class="claim-btn" id="claimBtn-${key}" data-action="digix-burn" data-key="${key}">Step 2: Claim ETH</button>`;
-            stepInfo = `<div style="font-size:11px;color:var(--green);margin-top:4px">DGD approved. Burns ALL DGD at once.</div>`;
+            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:var(--green)">Ready</span><span class="claim-card-meta-value" style="color:var(--green)">DGD approved. Burns ALL DGD at once.</span></div>`;
           }
           const lastTx = apiBalances[key]?.last_tx_date ? apiBalances[key] : null;
           html += `
@@ -2179,10 +2187,10 @@ async function checkUserBalances(overrideAddress) {
               <div class="claim-card-meta" id="claimDetails-${key}">
                 ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${esc(lastTx.last_tx_date)} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.digixBurn.acidContract)}" target="_blank" rel="noopener noreferrer">${cfg.digixBurn.acidContract}</a></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">approve(Acid, balance)</span> <span style="opacity:0.5">—</span> allow Acid contract to burn your DGD</span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">burn()</span> <span style="opacity:0.5">—</span> burns all DGD, returns ETH at 0.193 ETH/DGD</span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">approve(Acid, balance)</span> <span style="opacity:0.5">.</span> Allow Acid contract to burn your DGD</span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">burn()</span> <span style="opacity:0.5">.</span> Burns all DGD, returns ETH at 0.193 ETH/DGD</span></div>
+                ${stepInfo}
               </div>
-              ${stepInfo}
               <div class="claim-card-actions">
                 ${actionBtn}
               </div>
@@ -3085,6 +3093,7 @@ if (window.ethereum) {
       walletSigner = await walletProvider.getSigner();
       walletAddress = await walletSigner.getAddress();
       document.getElementById('walletAddr').textContent = truncAddr(walletAddress);
+      scanStart();
       try { await checkUserBalances(); } catch(e) {}
     }
   });
@@ -3441,6 +3450,12 @@ async function checkSingleAddress(addr) {
   let _manualChecked = 0;
   const _manualTotal = Object.keys(EXCHANGES).length;
   const _manualProgressEl = document.getElementById('scanProgress');
+  let _manualDisplayed = 0;
+  const _manualProgressInterval = setInterval(function() {
+    _manualDisplayed++;
+    if (_manualProgressEl) _manualProgressEl.textContent = 'Checking contracts... ' + Math.min(_manualDisplayed, _manualTotal) + '/' + _manualTotal;
+    if (_manualDisplayed >= _manualTotal) clearInterval(_manualProgressInterval);
+  }, Math.round(2500 / _manualTotal));
 
   const checks = Object.entries(EXCHANGES).map(async ([key, cfg]) => {
     try {
@@ -3467,7 +3482,6 @@ async function checkSingleAddress(addr) {
       return { key, balance: 0n };
     } finally {
       _manualChecked++;
-      if (_manualProgressEl) _manualProgressEl.textContent = 'Checking contracts... ' + _manualChecked + '/' + _manualTotal;
     }
   });
 
@@ -3602,6 +3616,7 @@ async function connectWalletForManual() {
 
     // Now re-check the MANUAL address with full claim UI (withdraw buttons + calldata)
     pendingManualAddress = null;
+    scanStart();
     await checkUserBalances(addrToCheck);
   } catch (e) {
     console.error('Wallet connection failed:', e);
@@ -3649,10 +3664,10 @@ async function _testCheckBalances() {
             </div>
             <div class="claim-card-meta" id="claimDetails-${key}">
               <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.digixBurn.acidContract)}" target="_blank" rel="noopener noreferrer">${cfg.digixBurn.acidContract}</a></span></div>
-              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">approve(Acid, balance)</span> <span style="opacity:0.5">—</span> allow Acid contract to burn your DGD</span></div>
-              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">burn()</span> <span style="opacity:0.5">—</span> burns all DGD, returns ETH at 0.193 ETH/DGD</span></div>
+              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">approve(Acid, balance)</span> <span style="opacity:0.5">.</span> Allow Acid contract to burn your DGD</span></div>
+              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">burn()</span> <span style="opacity:0.5">.</span> Burns all DGD, returns ETH at 0.193 ETH/DGD</span></div>
+              <div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:#facc15">Note</span><span class="claim-card-meta-value">Burns ALL DGD at once.</span></div>
             </div>
-            <div style="font-size:11px;color:var(--text2);margin:4px 16px 0">Burns ALL DGD at once.</div>
             <div class="claim-card-actions">
               <button class="claim-btn" id="claimBtn-${key}" data-action="digix-approve" data-key="${key}">Step 1: Approve DGD</button><button class="claim-btn" disabled style="opacity:0.35">Step 2: Claim ETH</button>
             </div>
@@ -4096,7 +4111,7 @@ recheckWatchlist();
           var rowsEl = document.getElementById('claimRows');
           rowsEl.innerHTML = spinnerHTML('Scanning ' + Object.keys(EXCHANGES).length + ' contracts...');
           banner.classList.add('visible');
-
+          scanStart();
           try { await checkUserBalances(); } catch(e) { console.error('Balance check failed:', e); }
           return;
         }
