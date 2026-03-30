@@ -54,9 +54,9 @@ function spinnerHTML(msg) {
   return '<div style="text-align:center;padding:20px;color:var(--text2)"><div class="spinner" style="display:inline-block;margin-bottom:8px"></div><div' + (msg && msg.indexOf('Checking') >= 0 ? ' id="scanProgress"' : '') + '>' + msg + '</div></div>';
 }
 // Minimum spinner display time so Madotsuki is visible
-const _scanStartTimes = {};
-function scanStart(id) { _scanStartTimes[id] = Date.now(); }
-async function scanMinDelay(id) { const elapsed = Date.now() - (_scanStartTimes[id] || 0); if (elapsed < 2500) await new Promise(r => setTimeout(r, 2500 - elapsed)); }
+var _scanStartTime = 0;
+function scanStart() { _scanStartTime = Date.now(); }
+async function scanMinDelay() { var elapsed = Date.now() - _scanStartTime; if (elapsed < 4000) await new Promise(function(r) { setTimeout(r, 4000 - elapsed); }); }
 
 // Keystore file wallet — decrypts UTC/JSON keystore files (MyEtherWallet style)
 var _keystoreWallet = null;
@@ -91,7 +91,7 @@ function _showWalletPicker(providers) {
     if (providers.length === 0) {
       var label2 = document.createElement('div');
       label2.className = 'modal-label';
-      label2.textContent = 'No wallet detected — install one';
+      label2.textContent = 'No wallet detected. Install one to continue.';
       modal.appendChild(label2);
       modal.appendChild(_makeWalletBtn(
         '/metamask.svg',
@@ -313,7 +313,7 @@ async function sendDonation(amountWei) {
     if (sendBtn) { sendBtn.disabled = false; sendBtn.textContent = sendBtn.dataset.label || 'Donate'; sendBtn.classList.remove('pending'); }
     if (e.code === 'ACTION_REJECTED' || e.code === 4001) return; // User cancelled — silent
     console.error('Donation error:', e);
-    if (errorEl) errorEl.textContent = 'Transaction failed — try again or skip.';
+    if (errorEl) errorEl.textContent = 'Transaction failed. Try again or skip.';
   }
 }
 
@@ -555,7 +555,7 @@ const EXCHANGES = {
   },
   etherdelta: {
     name: 'EtherDelta v2',
-    desc: 'EtherDelta launched July 12, 2016 as the first widely-used DEX for ERC-20 tokens. It became the go-to venue for ICO token trading in 2017, peaking at ~$10M daily volume. On December 20, 2017, attackers hijacked its DNS to steal $1.4M from users. In November 2018, the SEC charged its creator with operating an unregistered exchange — the first such action against a DEX.',
+    desc: 'EtherDelta launched July 12, 2016 as the first widely-used DEX for ERC-20 tokens. It became the go-to venue for ICO token trading in 2017, peaking at ~$10M daily volume. On December 20, 2017, attackers hijacked its DNS to steal $1.4M from users. In November 2018, the SEC charged its creator with operating an unregistered exchange, the first such action against a DEX.',
     color: '#f97316',
     contract: '0x8d12A197cB00D4747a1fe03395095ce2A5CC6819',
     deployed: 'February 2017',
@@ -607,7 +607,7 @@ const EXCHANGES = {
   },
   enclaves: {
     name: 'Unknown DEX',
-    desc: 'An unverified EtherDelta-style DEX contract from September 2017. The protocol behind this contract has not been identified — the source code is not published on Etherscan but follows the standard deposit/withdraw pattern.',
+    desc: 'An unverified EtherDelta-style DEX contract from September 2017. The protocol behind this contract has not been identified. The source code is not published on Etherscan but follows the standard deposit/withdraw pattern.',
     color: '#14b8a6',
     contract: '0x4d55f76ce2dbbae7b48661bef9bd144ce0c9091b',
     deployed: 'September 2017',
@@ -620,7 +620,7 @@ const EXCHANGES = {
   },
   decentrex: {
     name: 'Decentrex',
-    desc: 'An EtherDelta-fork DEX that was notably served directly from GitHub Pages (circa 2017). Minimal presence online — one of many EtherDelta forks from the 2017-2018 era that attracted small trading communities.',
+    desc: 'An EtherDelta-fork DEX that was notably served directly from GitHub Pages (circa 2017). Minimal presence online, one of many EtherDelta forks from the 2017-2018 era that attracted small trading communities.',
     color: '#64748b',
     contract: '0xbf29685856fae1e228878dfb35b280c0adcc3b05',
     deployed: 'July 2017',
@@ -738,7 +738,7 @@ const EXCHANGES = {
   },
   dada: {
     name: 'DADA Collectible',
-    desc: 'A collaborative digital art platform. Deployed its "Creeps &amp; Weirdos" NFT collection on October 5, 2017 — after CryptoPunks but before CryptoKitties. Featured 108 unique pieces by 30 artists and was the first NFT project to implement artist royalties coded directly into the smart contract, using a modified CryptoPunks contract.',
+    desc: 'A collaborative digital art platform. Deployed its "Creeps &amp; Weirdos" NFT collection on October 5, 2017, after CryptoPunks but before CryptoKitties. Featured 108 unique pieces by 30 artists and was the first NFT project to implement artist royalties coded directly into the smart contract, using a modified CryptoPunks contract.',
     category: 'nft',
     color: '#ec4899',
     contract: '0x068696a3cf3c4676b65f1c9975dd094260109d02',
@@ -752,7 +752,7 @@ const EXCHANGES = {
   },
   mooncatrescue: {
     name: 'MoonCatRescue',
-    desc: 'Deployed August 9, 2017, one of the earliest NFTs on Ethereum — before the term "NFT" or ERC-721 existed. Features 25,440 generative pixel art cats with a proof-of-work minting mechanism. Only 3,365 cats were rescued in 2017; on March 12, 2021 crypto-archaeologists rediscovered it and all remaining 19,000+ cats were rescued within hours. Note: ~100 ETH from the genesis cat is permanently stuck at address(0) due to a contract bug. Users with pending adoption requests must cancel them to reclaim escrowed ETH.',
+    desc: 'Deployed August 9, 2017, one of the earliest NFTs on Ethereum, before the term "NFT" or ERC-721 existed. Features 25,440 generative pixel art cats with a proof-of-work minting mechanism. Only 3,365 cats were rescued in 2017; on March 12, 2021 crypto-archaeologists rediscovered it and all remaining 19,000+ cats were rescued within hours. Note: ~100 ETH from the genesis cat is permanently stuck at address(0) due to a contract bug. Users with pending adoption requests must cancel them to reclaim escrowed ETH.',
     category: 'nft',
     color: '#8b5cf6',
     contract: '0x60cd862c9c687a9de49aecdc3a99b74a4fc54ab6',
@@ -768,7 +768,7 @@ const EXCHANGES = {
   },
   fomo3d_long: {
     name: 'Fomo3D Long',
-    desc: 'Players buy keys that reset a countdown timer; the last buyer wins the jackpot. Round 1 ended August 2018 paying 10,469 ETH (~$2.8M), won via a block-stuffing attack that prevented competing transactions. At peak, the contract held over $43M. Note: the isHuman modifier means smart contract wallets cannot withdraw — only EOAs.',
+    desc: 'Players buy keys that reset a countdown timer; the last buyer wins the jackpot. Round 1 ended August 2018 paying 10,469 ETH (~$2.8M), won via a block-stuffing attack that prevented competing transactions. At peak, the contract held over $43M. Note: the isHuman modifier means smart contract wallets cannot withdraw, only EOAs.',
     category: 'gambling',
     color: '#ef4444',
     contract: '0xA62142888ABa8370742bE823c1782D17A0389Da1',
@@ -783,7 +783,7 @@ const EXCHANGES = {
   },
   fomo3d_quick: {
     name: 'Fomo3D Quick',
-    desc: 'A faster-round variant of Fomo3D (2018) with shorter countdown durations. Same key-purchase mechanic and dividend system as Fomo3D Long. Note: isHuman modifier — smart contract wallets cannot withdraw.',
+    desc: 'A faster-round variant of Fomo3D (2018) with shorter countdown durations. Same key-purchase mechanic and dividend system as Fomo3D Long. Note: isHuman modifier, so smart contract wallets cannot withdraw.',
     category: 'gambling',
     color: '#f97316',
     contract: '0x4e8ecf79ade5e2c49b9e30d795517a81e0bf00b8',
@@ -798,7 +798,7 @@ const EXCHANGES = {
   },
   fomo3d_short: {
     name: 'Fomo3D Short',
-    desc: 'Another variant of Fomo3D (2018). Same core mechanics — key purchases, countdown timer, dividend distribution. Note: isHuman modifier — smart contract wallets cannot withdraw.',
+    desc: 'Another variant of Fomo3D (2018). Same core mechanics: key purchases, countdown timer, dividend distribution. Note: isHuman modifier, so smart contract wallets cannot withdraw.',
     category: 'gambling',
     color: '#fb923c',
     contract: '0x52083b1a21a5abc422b1b0bce5c43ca86ef74cd1',
@@ -813,7 +813,7 @@ const EXCHANGES = {
   },
   etherdelta_m0: {
     name: 'EtherDelta v0',
-    desc: 'The earliest EtherDelta contract, deployed around August 2016 using Solidity v0.3.6 — one of the very first DEX contracts on Ethereum, deployed just months after the DAO hack. The team iterated through multiple versions (Oct 2016, Feb 2017) before the well-known v2; each upgrade required manual migration.',
+    desc: 'The earliest EtherDelta contract, deployed around August 2016 using Solidity v0.3.6, one of the very first DEX contracts on Ethereum, deployed just months after the DAO hack. The team iterated through multiple versions (Oct 2016, Feb 2017) before the well-known v2; each upgrade required manual migration.',
     color: '#d97706',
     contract: '0x4aea7cf559f67cedcad07e12ae6bc00f07e8cf65',
     deployed: 'August 2016',
@@ -949,7 +949,7 @@ const EXCHANGES = {
   },
   nucypher_worklock: {
     name: 'NuCypher WorkLock',
-    desc: 'NuCypher launched a WorkLock distribution in September 2020, where participants deposited ETH to receive NU tokens. ETH was refundable after completing staking work. NuCypher merged with Keep Network to form Threshold Network in 2022, and the staking requirement was removed — all participants now qualify for a full refund regardless of work completed.',
+    desc: 'NuCypher launched a WorkLock distribution in September 2020, where participants deposited ETH to receive NU tokens. ETH was refundable after completing staking work. NuCypher merged with Keep Network to form Threshold Network in 2022, and the staking requirement was removed, so all participants now qualify for a full refund regardless of work completed.',
     category: 'ico',
     color: '#1e40af',
     contract: '0xe9778e69a961e64d3cdbb34cf6778281d34667c2',
@@ -980,7 +980,7 @@ const EXCHANGES = {
   },
   switchdex: {
     name: 'SwitchDex',
-    desc: 'An EtherDelta-fork DEX by Switch.ag (2019), notable for being active from 2019-2024 with 8,000+ trades — unusually long-lived for an order-book DEX in the AMM era.',
+    desc: 'An EtherDelta-fork DEX by Switch.ag (2019), notable for being active from 2019-2024 with 8,000+ trades, unusually long-lived for an order-book DEX in the AMM era.',
     color: '#7c3aed',
     contract: '0xc3c12a9e63e466a3ba99e07f3ef1f38b8b81ae1b',
     deployed: 'March 2019',
@@ -1006,7 +1006,7 @@ const EXCHANGES = {
   },
   swisscryptoexchange: {
     name: 'SwissCryptoExchange',
-    desc: 'A whitelisted EtherDelta-fork DEX (2018). Unusual in that deposits required whitelist approval, but the withdraw function is permissionless — anyone with a balance can withdraw.',
+    desc: 'A whitelisted EtherDelta-fork DEX (2018). Unusual in that deposits required whitelist approval, but the withdraw function is permissionless. Anyone with a balance can withdraw.',
     color: '#b91c1c',
     contract: '0xbeeb655808e3bdb83b6998f09dfe1e0f2c66a9be',
     deployed: 'August 2018',
@@ -1071,7 +1071,7 @@ const EXCHANGES = {
   },
   ed_fork_6_9eth: {
     name: 'ED Fork (0xc513)',
-    desc: 'An unverified EtherDelta v2 fork — source code not published on Etherscan but bytecode matches the standard pattern.',
+    desc: 'An unverified EtherDelta v2 fork. Source code not published on Etherscan but bytecode matches the standard pattern.',
     color: '#a855f7',
     contract: '0xc5138d4bd0ec5c51b6b6bdfcb8528ad9c333af97',
     deployed: 'September 2018',
@@ -1227,7 +1227,7 @@ const EXCHANGES = {
   },
   readyplayerone: {
     name: 'ReadyPlayerONE',
-    desc: 'Deployed July 2018, a Fomo3D fork named after the Ernest Cline novel and Spielberg film. Same key-purchase countdown mechanic where the last buyer before the timer expires wins the pot. Note: isHuman modifier — smart contract wallets cannot withdraw.',
+    desc: 'Deployed July 2018, a Fomo3D fork named after the Ernest Cline novel and Spielberg film. Same key-purchase countdown mechanic where the last buyer before the timer expires wins the pot. Note: isHuman modifier, so smart contract wallets cannot withdraw.',
     category: 'gambling',
     color: '#ef4444',
     contract: '0x6db943251e4126f913e9733821031791e75df713',
@@ -1242,7 +1242,7 @@ const EXCHANGES = {
   },
   lastwinner: {
     name: 'Last Winner',
-    desc: 'A Fomo3D-style gambling game deployed in 2018, also known as "Last Winner" — one of the largest Fomo3D clones by total ETH volume. Players purchase keys that extend a countdown timer; when the timer runs out, the last buyer wins the pot. Unclaimed dividends and affiliate earnings remain withdrawable. Note: isHuman modifier — smart contract wallets cannot withdraw.',
+    desc: 'A Fomo3D-style gambling game deployed in 2018, also known as "Last Winner", one of the largest Fomo3D clones by total ETH volume. Players purchase keys that extend a countdown timer; when the timer runs out, the last buyer wins the pot. Unclaimed dividends and affiliate earnings remain withdrawable. Note: isHuman modifier, so smart contract wallets cannot withdraw.',
     category: 'gambling',
     color: '#ef4444',
     contract: '0xDd9fd6b6F8f7ea932997992bbE67EabB3e316f3C',
@@ -1257,7 +1257,7 @@ const EXCHANGES = {
   },
   fomo3d_lightning: {
     name: 'FoMo3D Lightning',
-    desc: 'One of the earliest Fomo3D clones, deployed July 2018 within weeks of the original. A speed-round variant of the countdown-timer game where rounds resolved faster than standard Fomo3D. Note: isHuman modifier — smart contract wallets cannot withdraw.',
+    desc: 'One of the earliest Fomo3D clones, deployed July 2018 within weeks of the original. A speed-round variant of the countdown-timer game where rounds resolved faster than standard Fomo3D. Note: isHuman modifier, so smart contract wallets cannot withdraw.',
     category: 'gambling',
     color: '#f97316',
     contract: '0x24da016c06941ec2c92be28e0a2b2e679f0d1dc7',
@@ -1591,43 +1591,43 @@ const EXCHANGES = {
   bluechip: { name: 'BlueChip', desc: 'was a PoWH3D clone (September 2019) implementing the standard 10% fee-sharing dividend mechanism where trading activity generates ETH rewards for token holders.', category: 'gambling', color: '#4338ca', contract: '0xabefec93451a2cd5d864ff7b0b1604dfc60e9688', deployed: 'September 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   rev1: { name: 'REV1', desc: 'Deployed May 2018, REV1 was an early PoWH3D fork from the second month of the P3D clone wars. Straightforward dividend token where 10% of every buy and sell is redistributed to holders.', category: 'gambling', color: '#0e7490', contract: '0x05215fce25902366480696f38c3093e31dbce69a', deployed: 'May 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   potj: { name: 'POTJ', desc: 'Proof of Trevon James, launched April 2018, was a PoWH3D fork with higher fees (20% buys, 25% sells) themed around a crypto YouTube personality involved in the BitConnect case.', category: 'gambling', color: '#b45309', contract: '0xc28e860c9132d55a184f9af53fc85e90aa3a0153', deployed: 'April 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  lynia: { name: 'LYNIA', desc: 'A gaming and gambling platform deployed August 2018 that combined PoWH3D-style dividend tokens with provably fair on-chain games. Has an isHuman modifier — smart contract wallets cannot withdraw.', category: 'gambling', color: '#86198f', contract: '0xecfae6f958f7ab15bdf171eeefa568e41eabf641', deployed: 'August 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  lynia: { name: 'LYNIA', desc: 'A gaming and gambling platform deployed August 2018 that combined PoWH3D-style dividend tokens with provably fair on-chain games. Has an isHuman modifier, so smart contract wallets cannot withdraw.', category: 'gambling', color: '#86198f', contract: '0xecfae6f958f7ab15bdf171eeefa568e41eabf641', deployed: 'August 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   blackgold: { name: 'BlackGoldEthereum', desc: 'was a dividend-based PoWH3D clone (July 2020) designed to provide passive income to token holders through a buy/sell/reinvestment mechanism. The project website blackgoldethereum.club is no longer accessible.', category: 'gambling', color: '#374151', contract: '0xf72b0b36723f60402cccad7f4358acf2ad474c17', deployed: 'July 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   proofofcraiggrant: { name: 'ProofOfCraigGrant', desc: 'Deployed April 2018, a meme-themed PoWH3D fork named after Craig Grant, one of BitConnect\'s most prominent YouTube promoters. Part of a series of personality-themed P3D clones alongside Proof of Trevon James.', category: 'gambling', color: '#78350f', contract: '0xea61319f55b6543962fe1d7bd990ef74849fc54f', deployed: 'April 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   sportcrypt: { name: 'SportCrypt', desc: 'was a peer-to-peer decentralized sports betting exchange (January 2018) with zero fees and no KYC requirements. Later rebranded to Degens and received a MakerDAO community grant to accept DAI alongside ETH.', category: 'gambling', color: '#166534', contract: '0x37304b0ab297f13f5520c523102797121182fb5b', deployed: 'January 2018', balanceAbi: 'function getBalance(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'getBalance', withdrawAbi: 'function withdraw(uint256 amount)', withdrawArgs: (amount) => [amount], withdrawCall: 'withdraw' },
-  dailydivs: { name: 'DailyDivs', desc: 'was a PoWH3D clone (October 2018) offering daily dividend distributions to token holders through a 10% buy/sell fee. Has an isHuman modifier — smart contract wallets cannot withdraw.', category: 'gambling', color: '#92400e', contract: '0xd2bfceeab8ffa24cdf94faa2683df63df4bcbdc8', deployed: 'October 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  dailydivs: { name: 'DailyDivs', desc: 'was a PoWH3D clone (October 2018) offering daily dividend distributions to token holders through a 10% buy/sell fee. Has an isHuman modifier, so smart contract wallets cannot withdraw.', category: 'gambling', color: '#92400e', contract: '0xd2bfceeab8ffa24cdf94faa2683df63df4bcbdc8', deployed: 'October 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   proofofcommunity: { name: 'ProofOfCommunity', desc: 'A May 2018 PoWH3D fork that rebranded the dividend token concept around community ownership. Same underlying Hourglass mechanics where all transaction fees are split among existing holders.', category: 'gambling', color: '#1e3a5f', contract: '0x1739e311ddbf1efdfbc39b74526fd8b600755ada', deployed: 'May 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   bitconnect_powh: { name: 'BitConnect Token', desc: 'Deployed June 2019, a PoWH3D clone that borrowed the BitConnect name a year and a half after the original lending platform collapsed. Standard dividend token mechanics; unrelated to the actual BitConnect project.', category: 'gambling', color: '#581c87', contract: '0xfcd3a0f5f416e407647a7518b90354946d316059', deployed: 'June 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  eightherbank: { name: 'Eightherbank', desc: 'A November 2019 PoWH3D fork with a banking theme. Uses the Hourglass dividend model with an isHuman modifier — smart contract wallets cannot withdraw.', category: 'gambling', color: '#581c87', contract: '0xc6e5e9c6f4f3d1667df6086e91637cc7c64a13eb', deployed: 'November 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  eightherbank: { name: 'Eightherbank', desc: 'A November 2019 PoWH3D fork with a banking theme. Uses the Hourglass dividend model with an isHuman modifier, so smart contract wallets cannot withdraw.', category: 'gambling', color: '#581c87', contract: '0xc6e5e9c6f4f3d1667df6086e91637cc7c64a13eb', deployed: 'November 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   nexgen: { name: 'Nexgen', desc: 'Deployed June 2019, a PoWH3D clone that positioned itself as a next-generation dividend token. Identical Hourglass mechanics to P3D with 10% fees on buys and sells.', category: 'gambling', color: '#581c87', contract: '0xffd31e68bf7af89df862435a138615bd60abf574', deployed: 'June 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   diamonddividend: { name: 'DiamondDividend', desc: 'A November 2019 PoWH3D fork using diamond-themed branding for the standard Hourglass dividend model. Holders earn ETH from all future transaction fees proportional to their token balance.', category: 'gambling', color: '#581c87', contract: '0x84cc06eddb26575a7f0afd7ec2e3e98d31321397', deployed: 'November 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  e25: { name: 'E25 Booster', desc: 'Deployed February 2019, a PoWH3D clone with a modified fee structure hinted at by its "25" branding. Has an isHuman modifier — smart contract wallets cannot withdraw.', category: 'gambling', color: '#581c87', contract: '0xc3ad35d351b33783f27777e2ee1a4b6f96e4ee34', deployed: 'February 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  e25: { name: 'E25 Booster', desc: 'Deployed February 2019, a PoWH3D clone with a modified fee structure hinted at by its "25" branding. Has an isHuman modifier, so smart contract wallets cannot withdraw.', category: 'gambling', color: '#581c87', contract: '0xc3ad35d351b33783f27777e2ee1a4b6f96e4ee34', deployed: 'February 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   bitconnect2: { name: 'BitConnect v2', desc: 'The second in a series of BitConnect-themed PoWH3D clones, deployed June 2019. Reused the infamous brand name purely for attention; standard P3D dividend token under the hood.', category: 'gambling', color: '#581c87', contract: '0x568a693e1094b1e51e8053b2fc642da7161603f5', deployed: 'June 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   ethplatinum: { name: 'ETHPlatinum', desc: 'Deployed November 2021, one of the last PoWH3D clones ever created on Ethereum mainnet. By this point gas fees made the P3D dividend model largely impractical for small deposits.', category: 'gambling', color: '#581c87', contract: '0x510f9a9642ac14ded91629a1aad552be4b24b5f0', deployed: 'November 2021', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   divsnetwork: { name: 'DivsNetwork', desc: 'A July 2020 PoWH3D fork that framed itself as a dividend distribution network. Fully autonomous contract with no owner, running the same Hourglass token model as every other P3D clone.', category: 'gambling', color: '#581c87', contract: '0x26e6c899b5a5dc1d4874d828fda515a7eb7baf00', deployed: 'July 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   ethercenter: { name: 'EtherCenter', desc: 'Deployed July 2019, EtherCenter was a PoWH3D fork that added no meaningful features over the original. Standard 10% fee on every transaction, distributed pro rata to all token holders.', category: 'gambling', color: '#581c87', contract: '0x0e7c28fb8ed4f5f63aabd022deaeeba40ecc335c', deployed: 'July 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  redchip: { name: 'RedChip', desc: 'An October 2019 PoWH3D clone that borrowed stock market terminology — "red chip" refers to mainland China companies listed in Hong Kong. Standard Hourglass dividend mechanics beneath the branding.', category: 'gambling', color: '#581c87', contract: '0xcd2de0bd5347f617f832442ebcc1c23a4d618847', deployed: 'October 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  redchip: { name: 'RedChip', desc: 'An October 2019 PoWH3D clone that borrowed stock market terminology. "Red chip" refers to mainland China companies listed in Hong Kong. Standard Hourglass dividend mechanics beneath the branding.', category: 'gambling', color: '#581c87', contract: '0xcd2de0bd5347f617f832442ebcc1c23a4d618847', deployed: 'October 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   cxxmain: { name: 'CxxMain', desc: 'Deployed November 2019 with a cryptic name that may reference C++ programming. A PoWH3D fork with unmodified Hourglass contract code and the same fee-redistribution mechanics.', category: 'gambling', color: '#581c87', contract: '0xa4dce3845cb88a6fca0291d4eca9e5a96e75e2b4', deployed: 'November 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   familyonly: { name: 'FamilyOnlyToken', desc: 'An August 2020 PoWH3D fork with an invitation-only theme suggested by its name. Same Hourglass dividend model where ETH deposits mint tokens and every trade generates passive income for all holders.', category: 'gambling', color: '#581c87', contract: '0xbedde30d3532165843f07b1b0e3e90fddbb75918', deployed: 'August 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   spw: { name: 'SPW', desc: 'Deployed June 2020, SPW was a minimal PoWH3D clone with no discernible branding or website. Pure Hourglass dividend contract mechanics.', category: 'gambling', color: '#581c87', contract: '0x586f3d9e3524eb02448691b158fdcf5ffc2c57b0', deployed: 'June 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  ethdiamond: { name: 'ETHDIAMOND', desc: 'A July 2020 PoWH3D clone using diamond-hands imagery. Identical dividend token contract to P3D — buy and sell fees are pooled and shared among all token holders automatically.', category: 'gambling', color: '#581c87', contract: '0xca1cc76be1f5e5ee492859d8463653cb231991bc', deployed: 'July 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  ethdiamond: { name: 'ETHDIAMOND', desc: 'A July 2020 PoWH3D clone using diamond-hands imagery. Identical dividend token contract to P3D. Buy and sell fees are pooled and shared among all token holders automatically.', category: 'gambling', color: '#581c87', contract: '0xca1cc76be1f5e5ee492859d8463653cb231991bc', deployed: 'July 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   ethershares: { name: 'Ethershares', desc: 'Deployed December 2018, Ethershares framed P3D-style token ownership as "shares" in an ETH revenue pool. Standard Hourglass mechanics with no technical differences from the original.', category: 'gambling', color: '#581c87', contract: '0x2c984ec9bb20b33deb84fbeedf20effda481fdc4', deployed: 'December 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   twelvehour: { name: 'TwelveHourToken', desc: 'An October 2018 PoWH3D fork, possibly named to suggest rapid dividend accumulation. Uses the same Hourglass contract where transaction fees are continuously redistributed to token holders.', category: 'gambling', color: '#581c87', contract: '0x8f6015289a64c48ccf258c21a999809fc553c3c4', deployed: 'October 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  neutrino81: { name: 'Neutrino81', desc: 'Deployed March 2019 with a physics-inspired name. A PoWH3D fork using the same autonomous dividend token contract — no owner, no admin keys, just the Hourglass buy/sell fee loop.', category: 'gambling', color: '#581c87', contract: '0x897d6c6772b85bf25b46c6f6da454133478ea6ab', deployed: 'March 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  hourglassx: { name: 'HourglassX', desc: 'A December 2018 PoWH3D fork that wore the "Hourglass" name openly — the original P3D contract was called Hourglass internally. Standard dividend mechanics with 10% transaction fees.', category: 'gambling', color: '#581c87', contract: '0x058a144951e062fc14f310057d2fd9ef0cf5095b', deployed: 'December 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  neutrino81: { name: 'Neutrino81', desc: 'Deployed March 2019 with a physics-inspired name. A PoWH3D fork using the same autonomous dividend token contract with no owner, no admin keys, just the Hourglass buy/sell fee loop.', category: 'gambling', color: '#581c87', contract: '0x897d6c6772b85bf25b46c6f6da454133478ea6ab', deployed: 'March 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  hourglassx: { name: 'HourglassX', desc: 'A December 2018 PoWH3D fork that wore the "Hourglass" name openly. The original P3D contract was called Hourglass internally. Standard dividend mechanics with 10% transaction fees.', category: 'gambling', color: '#581c87', contract: '0x058a144951e062fc14f310057d2fd9ef0cf5095b', deployed: 'December 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   fairexchange: { name: 'FairExchange', desc: 'Deployed October 2018, FairExchange pitched the PoWH3D dividend model as a "fair" alternative to centralized exchanges. Under the surface, identical Hourglass contract code.', category: 'gambling', color: '#581c87', contract: '0xde2b11b71ad892ac3e47ce99d107788d65fe764e', deployed: 'October 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  pomda: { name: 'POMDA', desc: 'A June 2018 PoWH3D fork whose name likely riffs on "Proof of Mass Dividend Accumulation" or similar. Vanilla Hourglass contract — ETH in, tokens out, dividends from all activity.', category: 'gambling', color: '#581c87', contract: '0x0be5e8f107279cc2d9c3a537ed4ea669b45e443d', deployed: 'June 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  decentether: { name: 'DecentEther', desc: 'Deployed August 2020 during DeFi Summer, though it had nothing to do with DeFi — just another PoWH3D clone running the old Hourglass dividend model on a chain now dominated by Uniswap and Compound.', category: 'gambling', color: '#581c87', contract: '0x7d2d58d7add0b2d6e06fa85590b60da7741c18c9', deployed: 'August 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  pomda: { name: 'POMDA', desc: 'A June 2018 PoWH3D fork whose name likely riffs on "Proof of Mass Dividend Accumulation" or similar. Vanilla Hourglass contract: ETH in, tokens out, dividends from all activity.', category: 'gambling', color: '#581c87', contract: '0x0be5e8f107279cc2d9c3a537ed4ea669b45e443d', deployed: 'June 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  decentether: { name: 'DecentEther', desc: 'Deployed August 2020 during DeFi Summer, though it had nothing to do with DeFi, just another PoWH3D clone running the old Hourglass dividend model on a chain now dominated by Uniswap and Compound.', category: 'gambling', color: '#581c87', contract: '0x7d2d58d7add0b2d6e06fa85590b60da7741c18c9', deployed: 'August 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   bitconnect3: { name: 'BitConnect v3', desc: 'The third BitConnect-branded PoWH3D fork, deployed October 2019. By this point the BitConnect name was the subject of SEC enforcement actions, but clone deployers kept reusing it.', category: 'gambling', color: '#581c87', contract: '0x38e219ee67a5e1536c5a89fec2da0d69c254cac4', deployed: 'October 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   furious: { name: 'Furious', desc: 'A July 2020 PoWH3D clone with an aggressive name but stock-standard mechanics. Same autonomous Hourglass contract where buy/sell fees are distributed to all token holders in perpetuity.', category: 'gambling', color: '#581c87', contract: '0xb0c4382d4355cdfe94a132fadf92a509b1e25939', deployed: 'July 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   etherdiamond: { name: 'EtherDiamond', desc: 'Deployed July 2020, a sibling to ETHDIAMOND with nearly identical branding. Both are straight PoWH3D forks where token holders earn a cut of every future transaction.', category: 'gambling', color: '#581c87', contract: '0x4af078e47490c0e761a3de260952d9eb4a6ad693', deployed: 'July 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  powh_clone5: { name: 'Hourglass Clone E', desc: 'An October 2019 unnamed Hourglass fork — one of several unbranded P3D copies that were deployed with no website or community, just the raw contract on Ethereum.', category: 'gambling', color: '#581c87', contract: '0x12528042299e0fca4d44ae4f42359319b8901fa2', deployed: 'October 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  powh_clone5: { name: 'Hourglass Clone E', desc: 'An October 2019 unnamed Hourglass fork, one of several unbranded P3D copies deployed with no website or community, just the raw contract on Ethereum.', category: 'gambling', color: '#581c87', contract: '0x12528042299e0fca4d44ae4f42359319b8901fa2', deployed: 'October 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   cryptosurge: { name: 'CryptoSurge', desc: 'Deployed October 2019 with a name evoking price surges. A PoWH3D fork using the proven Hourglass mechanics where buying tokens costs a 10% fee that goes straight to existing holders.', category: 'gambling', color: '#581c87', contract: '0x11e165dd03c63771004f929d58b75e4aaf2d1a23', deployed: 'October 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   hourglass_clone6: { name: 'Hourglass Clone F', desc: 'A November 2018 unbranded Hourglass contract. Deployed during the crypto winter bear market when ETH had fallen over 90% from its peak, yet P3D clones were still appearing.', category: 'gambling', color: '#581c87', contract: '0x77b541f90ecfa09f854209eefeca24c295050e2e', deployed: 'November 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  upower: { name: 'UPower', desc: 'Deployed July 2018, UPower was a PoWH3D fork from the summer of the P3D craze. Standard dividend token — deposit ETH, receive tokens, earn from every future transaction on the contract.', category: 'gambling', color: '#581c87', contract: '0x5044ac8da9601edf970dcc91a10c5f41c5c548c0', deployed: 'July 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  upower: { name: 'UPower', desc: 'Deployed July 2018, UPower was a PoWH3D fork from the summer of the P3D craze. Standard dividend token. Deposit ETH, receive tokens, earn from every future transaction on the contract.', category: 'gambling', color: '#581c87', contract: '0x5044ac8da9601edf970dcc91a10c5f41c5c548c0', deployed: 'July 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   hourglass_clone7: { name: 'Hourglass Clone G', desc: 'A May 2018 unbranded Hourglass fork, one of the earliest nameless P3D copies. Deployed during the peak month of clone activity when dozens of identical contracts appeared on Ethereum.', category: 'gambling', color: '#581c87', contract: '0xaa4ec8484e89bed69570825688789589d38eea5e', deployed: 'May 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   redchip2: { name: 'RedChip v2', desc: 'The second iteration of RedChip, deployed October 2019 alongside its predecessor. Another PoWH3D fork with the same dividend token mechanics repackaged under a stock-market-inspired name.', category: 'gambling', color: '#581c87', contract: '0xae384c6e68f5d697d65ed43fd53ef5ea3288f536', deployed: 'October 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  omnidex: { name: 'OmniDex', desc: 'Deployed August 2018, OmniDex distinguished itself with 18% dividends, masternodes, and 0% transfer fees — tweaking the standard P3D formula. Despite the "DEX" name, it was a dividend token, not an exchange.', category: 'gambling', color: '#581c87', contract: '0x433e631ac0c03e49ca034dbf5543964c80c6b391', deployed: 'August 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
+  omnidex: { name: 'OmniDex', desc: 'Deployed August 2018, OmniDex distinguished itself with 18% dividends, masternodes, and 0% transfer fees, tweaking the standard P3D formula. Despite the "DEX" name, it was a dividend token, not an exchange.', category: 'gambling', color: '#581c87', contract: '0x433e631ac0c03e49ca034dbf5543964c80c6b391', deployed: 'August 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   spw2: { name: 'SPW v2', desc: 'The second SPW contract, deployed September 2020. A relaunch of the original SPW using the same PoWH3D Hourglass mechanics with no apparent changes.', category: 'gambling', color: '#581c87', contract: '0xd446a13f9b9f8bcbc3ded73764d08735561b1638', deployed: 'September 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   bounties: { name: 'Bounties Network', desc: 'was a decentralized bounty platform (December 2017) built by ConsenSys for open-source work and freelance tasks on Ethereum. Bounty issuers who never killed or fulfilled their bounties still have ETH locked in the StandardBounties v1 contract.', category: 'other', color: '#0369a1', contract: '0x2af47a65da8cd66729b4209c22017d6a5c2d2400', deployed: 'December 2017', balanceAbi: 'function getBounty(uint256) view returns (address, uint256, uint256, bool, uint256, uint256)', balanceArgs: (user) => [0], balanceCall: 'getBounty', balanceTransform: () => 0n, withdrawAbi: 'function killBounty(uint256 _bountyId)', withdrawArgs: (amount) => [0], withdrawCall: 'killBounty', noLiveBalance: true },
   ageofdinos: {
@@ -1803,10 +1803,9 @@ async function connectWallet() {
     const rowsEl = document.getElementById('claimRows');
     rowsEl.innerHTML = spinnerHTML('Checking contracts... 0/' + Object.keys(EXCHANGES).length);
     banner.classList.add('visible');
-    scanStart('wallet');
+    scanStart();
 
     try { await checkUserBalances(); } catch(e) { console.error('Balance check failed:', e); }
-    await scanMinDelay('wallet');
     return;
   }
 
@@ -2335,7 +2334,7 @@ async function checkUserBalances(overrideAddress) {
       <div class="no-balance-check">&#10003;</div>
       <div class="no-balance-title">No unclaimed ETH found</div>
       <div class="no-balance-addr">${esc(checkAddr)}</div>
-      <p style="font-size:12px">Checked ${Object.keys(EXCHANGES).length} contracts. Try other wallets from 2015-2020.</p>
+      <p style="font-size:12px">Checked ${Object.keys(EXCHANGES).length} contracts. Try other wallets from 2015-2019.</p>
     </div>`;
     document.getElementById('claimBannerTitle').textContent = 'Scan Complete';
   } else {
@@ -2357,6 +2356,8 @@ async function checkUserBalances(overrideAddress) {
     banner.classList.add('celebrate');
   }
 
+  // Wait for minimum spinner display time before showing results
+  await scanMinDelay();
   rowsEl.innerHTML = html;
   banner.classList.add('visible');
 
@@ -3527,13 +3528,12 @@ async function checkManualAddress() {
   const resolvedAddrs = [addr];
 
   rowsEl.innerHTML = spinnerHTML('Checking contracts... 0/' + Object.keys(EXCHANGES).length);
-  scanStart('manual');
+  scanStart();
 
   window.va?.track?.('address_checked', { method: 'manual' });
   logEvent('check', { address: addr });
 
   const result = await checkSingleAddress(addr);
-  await scanMinDelay('manual');
   let grandTotalEth = result.totalEth;
   let grandFound = result.found;
   let allHtml = result.html;
@@ -3542,7 +3542,7 @@ async function checkManualAddress() {
   let finalHtml;
   if (grandFound === 0) {
     const addrDisplay = resolvedAddrs.length === 1 ? esc(resolvedAddrs[0]) : resolvedAddrs.length + ' addresses';
-    finalHtml = '<div class="no-balance-state"><div class="no-balance-check">&#10003;</div><div class="no-balance-title">No unclaimed ETH found</div><div class="no-balance-addr">' + addrDisplay + '</div><p>Checked ' + Object.keys(EXCHANGES).length + ' contracts.</p><div class="no-balance-hint">Try other wallets from 2015-2020.</div></div>';
+    finalHtml = '<div class="no-balance-state"><div class="no-balance-check">&#10003;</div><div class="no-balance-title">No unclaimed ETH found</div><div class="no-balance-addr">' + addrDisplay + '</div><p>Checked ' + Object.keys(EXCHANGES).length + ' contracts.</p><div class="no-balance-hint">Try other wallets from 2015-2019.</div></div>';
     document.getElementById('claimBannerTitle').textContent = 'Scan Complete';
   } else {
     const usdStr = ethPrice ? fmtUsd(grandTotalEth * ethPrice) : '';
@@ -3559,7 +3559,8 @@ async function checkManualAddress() {
     pendingManualAddress = resolvedAddrs[0];
   }
 
-  // (watch button removed)
+  // Wait for minimum spinner display time before showing results
+  await scanMinDelay();
 
   rowsEl.innerHTML = finalHtml;
 }
