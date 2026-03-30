@@ -82,7 +82,7 @@ export default async function handler(req, res) {
     const cleanBlockNum = safeNum(block_num, 1e10);
     const cleanContractsFound = safeNum(contracts_found, 1000);
 
-    const ip = req.headers['cf-connecting-ip'] || req.headers['x-real-ip'] || req.headers['x-forwarded-for']?.split(',')[0]?.trim() || null;
+    const ip = req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for']?.split(',')[0]?.trim() || null;
 
     // Store hashed IP (for dedup/abuse detection) — not raw IP (PII reduction)
     // Derive salt from any available secret env var (IP_HASH_SALT preferred, ANALYTICS_SECRET as fallback)
