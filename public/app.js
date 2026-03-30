@@ -1692,7 +1692,7 @@ for (const key of Object.keys(EXCHANGES)) {
     tab.setAttribute('tabindex', isFirst ? '0' : '-1');
     tab.setAttribute('aria-selected', isFirst ? 'true' : 'false');
     tab.setAttribute('aria-controls', 'panel-' + key);
-    tab.innerHTML = cfg.name + ' <span class="badge" id="badge-' + key + '">...</span>';
+    tab.innerHTML = esc(cfg.name) + ' <span class="badge" id="badge-' + key + '">...</span>';
     tab.addEventListener('click', function(e) { e.preventDefault(); });
     tabsEl.appendChild(tab);
 
@@ -1701,9 +1701,9 @@ for (const key of Object.keys(EXCHANGES)) {
     panel.className = 'tab-panel' + (isFirst ? ' active' : '');
     panel.setAttribute('role', 'tabpanel');
     panel.id = 'panel-' + key;
-    panel.innerHTML = '<div class="loading" id="loading-' + key + '"><div class="spinner"></div><div>Loading ' + cfg.name + ' data...</div></div>'
+    panel.innerHTML = '<div class="loading" id="loading-' + key + '"><div class="spinner"></div><div>Loading ' + esc(cfg.name) + ' data...</div></div>'
       + '<div id="app-' + key + '" style="display:none">'
-      + '<p class="project-desc"><b>' + cfg.name + '</b> ' + (cfg.desc || '') + '</p>'
+      + '<p class="project-desc"><b>' + esc(cfg.name) + '</b> ' + (cfg.desc || '') + '</p>'
       + '<div class="contract-info" id="contract-' + key + '"></div>'
       + '<div class="cards" id="cards-' + key + '"></div>'
       + '</div>';
@@ -2136,7 +2136,7 @@ async function checkUserBalances(overrideAddress) {
                 <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
               </div>
               <div class="claim-card-meta" id="claimDetails-${key}">
-                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${lastTx.last_tx_date} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
+                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${esc(lastTx.last_tx_date)} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">claim()</span> <span style="opacity:0.5">—</span> stakes NU tokens into escrow</span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">refund()</span> <span style="opacity:0.5">—</span> returns your deposited ETH</span></div>
@@ -2173,7 +2173,7 @@ async function checkUserBalances(overrideAddress) {
                 <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
               </div>
               <div class="claim-card-meta" id="claimDetails-${key}">
-                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${lastTx.last_tx_date} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
+                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${esc(lastTx.last_tx_date)} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.digixBurn.acidContract)}" target="_blank" rel="noopener noreferrer">${cfg.digixBurn.acidContract}</a></span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">approve(Acid, balance)</span> <span style="opacity:0.5">—</span> allow Acid contract to burn your DGD</span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">burn()</span> <span style="opacity:0.5">—</span> burns all DGD, returns ETH at 0.193 ETH/DGD</span></div>
@@ -2217,7 +2217,7 @@ async function checkUserBalances(overrideAddress) {
                 <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
               </div>
               <div class="claim-card-meta" id="claimDetails-${key}">
-                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${lastTx.last_tx_date} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
+                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${esc(lastTx.last_tx_date)} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">approveAndCall(NEU)</span> <span style="opacity:0.5">—</span> burns NEU, returns ETH-T in one tx</span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">withdraw(amount)</span> <span style="opacity:0.5">—</span> converts ETH-T to raw ETH</span></div>
@@ -2268,7 +2268,7 @@ async function checkUserBalances(overrideAddress) {
                 <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
               </div>
               <div class="claim-card-meta" id="claimDetails-${key}">
-                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${lastTx.last_tx_date} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
+                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${esc(lastTx.last_tx_date)} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">lockMe()</span> <span style="opacity:0.5">—</span> starts ${cfg.twoStep.lockDays}-day unlock timer</span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">withdraw(0x0, amount)</span> <span style="opacity:0.5">—</span> after timer expires</span></div>
@@ -2293,7 +2293,7 @@ async function checkUserBalances(overrideAddress) {
                 <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
               </div>
               <div class="claim-card-meta" id="claimDetails-${key}">
-                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${lastTx.last_tx_date} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
+                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${esc(lastTx.last_tx_date)} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">${esc(funcSig)}${cfg.exitAbi ? ' / ' + cfg.exitAbi.replace('function ', '') : ''}${adoptionReqs ? ' / cancelAdoptionRequest(bytes5)' : ''}</span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Args</span><span class="claim-card-meta-value">${esc(argsDisplay)}</span></div>
@@ -2306,7 +2306,7 @@ async function checkUserBalances(overrideAddress) {
             for (let ar = 0; ar < adoptionReqs.length; ar++) {
               const req = adoptionReqs[ar];
               html += `<div class="claim-row" style="margin:4px 16px;border-left:2px solid var(--accent)">
-                <span class="dex-name" style="font-size:12px">Cat ${req.catId}</span>
+                <span class="dex-name" style="font-size:12px">Cat ${esc(req.catId)}</span>
                 <span class="claim-amount">${parseFloat(req.price_eth).toFixed(4)} ETH</span>
                 <button class="claim-btn" id="cancelReqBtn-${key}-${ar}" data-action="cancel-mooncat" data-key="${key}" data-cat-id="${req.catId}" data-index="${ar}">Cancel & Claim</button>
               </div>`;
@@ -3474,7 +3474,7 @@ async function checkSingleAddress(addr) {
       totalEth += parseFloat(ethAmount);
       const mLastTx = apiBalances[key]?.last_tx_date || '';
       const mLastTxHtml = mLastTx ? '<span style="font-size:11px;color:var(--text2);margin-left:8px">last tx: ' + esc(mLastTx) + '</span>' : '';
-      html += '<div class="claim-card"><div class="claim-card-header"><span class="claim-card-name">' + cfg.name + mLastTxHtml + '</span><span class="claim-card-amount">' + fmtEth(ethAmount) + ' ETH</span><span class="claim-card-tag">Claimable</span></div></div>';
+      html += '<div class="claim-card"><div class="claim-card-header"><span class="claim-card-name">' + esc(cfg.name) + mLastTxHtml + '</span><span class="claim-card-amount">' + fmtEth(ethAmount) + ' ETH</span><span class="claim-card-tag">Claimable</span></div></div>';
     }
   }
 
@@ -3749,7 +3749,7 @@ async function _testCheckManualAddress(input) {
     const testData = TEST_BALANCES[key];
     if (testData) {
       found++;
-      html += '<div class="claim-card"><div class="claim-card-header"><span class="claim-card-name">' + cfg.name + '</span><span class="claim-card-amount">' + fmtEth(testData.eth) + ' ETH</span><span class="claim-card-tag">Claimable</span></div></div>';
+      html += '<div class="claim-card"><div class="claim-card-header"><span class="claim-card-name">' + esc(cfg.name) + '</span><span class="claim-card-amount">' + fmtEth(testData.eth) + ' ETH</span><span class="claim-card-tag">Claimable</span></div></div>';
     }
   }
 
