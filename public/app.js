@@ -51,8 +51,12 @@ function showInlineError(elementId, message, duration) {
 
 // ─── Spinner helper (single source of truth) ───
 function spinnerHTML(msg) {
-  return '<div style="text-align:center;padding:20px;color:var(--text2)"><div class="spinner" style="display:inline-block;width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:8px"></div><div' + (msg && msg.indexOf('Checking') >= 0 ? ' id="scanProgress"' : '') + '>' + msg + '</div></div>';
+  return '<div style="text-align:center;padding:20px;color:var(--text2)"><div class="spinner" style="display:inline-block;margin-bottom:8px"></div><div' + (msg && msg.indexOf('Checking') >= 0 ? ' id="scanProgress"' : '') + '>' + msg + '</div></div>';
 }
+// Minimum spinner display time so Madotsuki is visible
+const _scanStartTimes = {};
+function scanStart(id) { _scanStartTimes[id] = Date.now(); }
+async function scanMinDelay(id) { const elapsed = Date.now() - (_scanStartTimes[id] || 0); if (elapsed < 2500) await new Promise(r => setTimeout(r, 2500 - elapsed)); }
 
 // Keystore file wallet — decrypts UTC/JSON keystore files (MyEtherWallet style)
 var _keystoreWallet = null;
@@ -1799,8 +1803,10 @@ async function connectWallet() {
     const rowsEl = document.getElementById('claimRows');
     rowsEl.innerHTML = spinnerHTML('Checking contracts... 0/' + Object.keys(EXCHANGES).length);
     banner.classList.add('visible');
+    scanStart('wallet');
 
     try { await checkUserBalances(); } catch(e) { console.error('Balance check failed:', e); }
+    await scanMinDelay('wallet');
     return;
   }
 
@@ -3521,11 +3527,13 @@ async function checkManualAddress() {
   const resolvedAddrs = [addr];
 
   rowsEl.innerHTML = spinnerHTML('Checking contracts... 0/' + Object.keys(EXCHANGES).length);
+  scanStart('manual');
 
   window.va?.track?.('address_checked', { method: 'manual' });
   logEvent('check', { address: addr });
 
   const result = await checkSingleAddress(addr);
+  await scanMinDelay('manual');
   let grandTotalEth = result.totalEth;
   let grandFound = result.found;
   let allHtml = result.html;

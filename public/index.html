@@ -123,20 +123,13 @@
   * { cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAUElEQVR4nGNgoAYQEZH7T7EBFBkC0lx3Yh/5hsAMINsQZAPIMgTdAJINwWYASYbgMoBoQ/C5gGwDyAoDsqMT2alkGYKukOKEhWwIxXmEkAEAaCednTE3BIIAAAAASUVORK5CYII=") 1 1, auto; }
   a, button, [role="button"], select, input[type="submit"] { cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAUElEQVR4nGNgoAYQEZH7T7EBFBkC0lx3Yh/5hsAMINsQZAPIMgTdAJINwWYASYbgMoBoQ/C5gGwDyAoDsqMT2alkGYKukOKEhWwIxXmEkAEAaCednTE3BIIAAAAASUVORK5CYII=") 1 1, pointer; }
 
-  /* ── Madotsuki walking loader (4-frame sprite animation) ── */
-  @keyframes madoWalk {
-    0% { background-position: 0 0; }
-    25% { background-position: -16px 0; }
-    50% { background-position: -32px 0; }
-    75% { background-position: -48px 0; }
-  }
+  /* ── Madotsuki umbrella loader ── */
   .spinner {
-    width: 16px !important; height: 24px !important;
+    width: 115px !important; height: 115px !important;
     border: none !important;
+    background: url('/umbrella-madotsuki.gif') center/contain no-repeat;
     image-rendering: pixelated;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='24'%3E%3C!-- Frame 1: stand --%3E%3Crect x='5' y='0' width='6' height='3' fill='%235c3a1e'/%3E%3Crect x='4' y='3' width='8' height='5' fill='%23f0c8a0'/%3E%3Crect x='5' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='9' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='4' y='8' width='8' height='6' fill='%23c84b6b'/%3E%3Crect x='4' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='9' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='4' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3Crect x='9' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3C!-- Frame 2: step left --%3E%3Crect x='21' y='0' width='6' height='3' fill='%235c3a1e'/%3E%3Crect x='20' y='3' width='8' height='5' fill='%23f0c8a0'/%3E%3Crect x='21' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='25' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='20' y='8' width='8' height='6' fill='%23c84b6b'/%3E%3Crect x='19' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='25' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='18' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3Crect x='26' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3C!-- Frame 3: stand --%3E%3Crect x='37' y='0' width='6' height='3' fill='%235c3a1e'/%3E%3Crect x='36' y='3' width='8' height='5' fill='%23f0c8a0'/%3E%3Crect x='37' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='41' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='36' y='8' width='8' height='6' fill='%23c84b6b'/%3E%3Crect x='36' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='41' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='36' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3Crect x='41' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3C!-- Frame 4: step right --%3E%3Crect x='53' y='0' width='6' height='3' fill='%235c3a1e'/%3E%3Crect x='52' y='3' width='8' height='5' fill='%23f0c8a0'/%3E%3Crect x='53' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='57' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='52' y='8' width='8' height='6' fill='%23c84b6b'/%3E%3Crect x='53' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='56' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='54' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3Crect x='55' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3C/svg%3E");
-    background-size: 64px 24px;
-    animation: madoWalk 0.6s steps(1) infinite !important;
+    animation: none !important;
   }
 
   /* ── Neon Tile Path section divider ── */
@@ -172,17 +165,14 @@
   }
   .claim-row { position: relative; }
 
-  /* ── Madotsuki dream room — no balance empty state ── */
+  /* ── Madotsuki — no balance empty state ── */
   .no-balance-state .no-balance-check {
-    width: 32px;
-    height: 48px;
+    width: 80px;
+    height: 125px;
     margin: 0 auto 12px;
     image-rendering: pixelated;
     font-size: 0 !important;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='24' viewBox='0 0 16 24'%3E%3Crect x='5' y='0' width='6' height='3' fill='%235c3a1e'/%3E%3Crect x='4' y='3' width='8' height='5' fill='%23f0c8a0'/%3E%3Crect x='5' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='9' y='4' width='2' height='1' fill='%232a2018'/%3E%3Crect x='4' y='8' width='8' height='6' fill='%23c84b6b'/%3E%3Crect x='4' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='9' y='14' width='3' height='4' fill='%23c84b6b'/%3E%3Crect x='4' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3Crect x='9' y='18' width='3' height='3' fill='%235c3a1e'/%3E%3C/svg%3E");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    background: url('/no-balance.png') center/contain no-repeat;
   }
 
   /* Theme toggle */
@@ -265,7 +255,7 @@
   [data-theme="dark"] body {
     background-color: #0a0a12;
     background-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='16' height='16' fill='%23100f1a'/%3E%3Crect x='16' y='16' width='16' height='16' fill='%23100f1a'/%3E%3Crect x='16' width='16' height='16' fill='%230e0d18'/%3E%3Crect y='16' width='16' height='16' fill='%230e0d18'/%3E%3C/svg%3E");
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='16' height='16' fill='%23161425'/%3E%3Crect x='16' y='16' width='16' height='16' fill='%23161425'/%3E%3Crect x='16' width='16' height='16' fill='%230e0d18'/%3E%3Crect y='16' width='16' height='16' fill='%230e0d18'/%3E%3C/svg%3E");
     background-size: 32px 32px;
   }
   /* Neon glow overlay — colored light pools like Neon World's ambient lighting */
@@ -713,18 +703,7 @@
     padding: 28px 20px;
     color: var(--text2);
   }
-  .no-balance-state .no-balance-check {
-    display: inline-block;
-    width: 36px;
-    height: 36px;
-    border: 2px solid var(--border);
-    border-radius: 50%;
-    line-height: 36px;
-    font-size: 16px;
-    color: var(--text2);
-    margin-bottom: 14px;
-    opacity: 0.5;
-  }
+  /* no-balance-check styled via Madotsuki section above */
   .no-balance-state .no-balance-title {
     font-size: 15px;
     font-weight: 600;
@@ -1073,7 +1052,7 @@
     <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)" style="flex-shrink:0"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
     <span>Get alerts for new contracts — <a href="https://t.me/forgotteneth_bot" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:600;text-decoration:none">@forgotteneth_bot</a></span>
   </div>
-  <p class="footer-credit">made with <svg width="14" height="18" viewBox="0 0 14 18" style="vertical-align:middle;margin:0 3px" aria-label="Madotsuki"><rect x="4" y="0" width="6" height="2" fill="#5c3a1e"/><rect x="3" y="2" width="8" height="2" fill="#5c3a1e"/><rect x="2" y="2" width="1" height="6" fill="#5c3a1e"/><rect x="11" y="2" width="1" height="6" fill="#5c3a1e"/><rect x="3" y="4" width="8" height="2" fill="#f0c8a0"/><rect x="4" y="4" width="2" height="1" fill="#2a2018"/><rect x="8" y="4" width="2" height="1" fill="#2a2018"/><rect x="3" y="6" width="8" height="2" fill="#f0c8a0"/><rect x="3" y="8" width="8" height="5" fill="#c84b6b"/><rect x="5" y="9" width="1" height="2" fill="#f0c8a0"/><rect x="8" y="9" width="1" height="2" fill="#f0c8a0"/><rect x="6" y="9" width="2" height="3" fill="#87ceeb"/><rect x="3" y="13" width="3" height="3" fill="#c84b6b"/><rect x="8" y="13" width="3" height="3" fill="#c84b6b"/><rect x="3" y="16" width="3" height="2" fill="#5c3a1e"/><rect x="8" y="16" width="3" height="2" fill="#5c3a1e"/></svg> by <a href="https://t.me/syLKf" target="_blank" rel="noopener noreferrer" style="color:var(--text);text-decoration:none;font-weight:700">aaaaaaaaaaway</a></p>
+  <p class="footer-credit">made with <span style="color:#e11d48;font-size:16px;vertical-align:middle">&#10084;</span> by <a href="https://t.me/syLKf" target="_blank" rel="noopener noreferrer" style="color:var(--text);text-decoration:none;font-weight:700">aaaaaaaaaaway</a></p>
 </footer>
 
 <script type="application/ld+json">
@@ -1096,28 +1075,5 @@
 <script src="/app.js"></script>
 <script src="/theme.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
-<script>
-// Konami code easter egg — triggers Neon World flash
-(function() {
-  var seq = [38,38,40,40,37,39,37,39,66,65], pos = 0;
-  document.addEventListener('keydown', function(e) {
-    if (e.keyCode === seq[pos]) { pos++; } else { pos = 0; }
-    if (pos === seq.length) {
-      pos = 0;
-      var o = document.createElement('div');
-      o.style.cssText = 'position:fixed;inset:0;z-index:99999;pointer-events:none;background:#0a0a12;transition:opacity 1.5s;';
-      var grid = document.createElement('div');
-      grid.style.cssText = 'position:absolute;inset:0;background-image:linear-gradient(rgba(200,80,180,0.3) 1px,transparent 1px),linear-gradient(90deg,rgba(80,200,190,0.3) 1px,transparent 1px);background-size:16px 16px;';
-      var txt = document.createElement('div');
-      txt.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:14px;color:#7ec8be;letter-spacing:4px;text-transform:uppercase;opacity:0.8;';
-      txt.textContent = 'N E O N   W O R L D';
-      o.appendChild(grid); o.appendChild(txt);
-      document.body.appendChild(o);
-      setTimeout(function() { o.style.opacity = '0'; }, 2000);
-      setTimeout(function() { o.remove(); }, 3500);
-    }
-  });
-})();
-</script>
 </body>
 </html>
