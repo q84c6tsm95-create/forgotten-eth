@@ -16,7 +16,7 @@ function safeCompare(a, b) {
   const len = Math.max(bufA.length, bufB.length);
   const pA = Buffer.concat([bufA, Buffer.alloc(len - bufA.length)]);
   const pB = Buffer.concat([bufB, Buffer.alloc(len - bufB.length)]);
-  return bufA.length === bufB.length && timingSafeEqual(pA, pB);
+  return timingSafeEqual(pA, pB) && bufA.length === bufB.length;
 }
 
 export default async function handler(req, res) {
@@ -44,9 +44,9 @@ export default async function handler(req, res) {
     const health = JSON.parse(readFileSync(join(process.cwd(), 'data', 'health.json'), 'utf8'));
     const lastRefresh = new Date(health.last_refresh);
     const hoursAgo = (Date.now() - lastRefresh.getTime()) / 3600000;
-    checks.data_fresh = hoursAgo < 24;
+    checks.data_fresh = hoursAgo < 12;
     checks.last_refresh_hours = Math.round(hoursAgo);
-    if (!checks.data_fresh) failed.push('data: Last refresh ' + Math.round(hoursAgo) + 'h ago (>24h)');
+    if (!checks.data_fresh) failed.push('data: Last refresh ' + Math.round(hoursAgo) + 'h ago (>12h)');
   } catch {
     checks.data_fresh = false;
     failed.push('data: health.json not readable');
@@ -87,7 +87,7 @@ export default async function handler(req, res) {
     { addr: '0xe1bdff947510a8e9623cf7f3c6cf6fe5e37c16b8', label: 'NuCypher top', min: 50 },
   ];
   try {
-    const baseUrl = `https://${req.headers.host || 'forgotteneth.com'}`;
+    const baseUrl = 'https://forgotteneth.com';
     let passed = false;
     for (const sc of spotChecks) {
       try {

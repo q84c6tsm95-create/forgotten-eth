@@ -174,7 +174,6 @@ async function _handleKeystoreConnect() {
       '<button id="keystoreCancel" class="btn ghost" style="padding:10px 24px;font-size:13px">Cancel</button></div>';
     overlay.appendChild(modal);
 
-    document.getElementById('keystoreCancel')?.remove(); // prevent duplicate
     overlay.addEventListener('click', function(e) { if (e.target === overlay) { document.body.removeChild(overlay); resolve(null); } });
     document.body.appendChild(overlay);
 
@@ -1629,7 +1628,7 @@ const EXCHANGES = {
   redchip2: { name: 'RedChip v2', desc: 'The second iteration of RedChip, deployed October 2019 alongside its predecessor. Another PoWH3D fork with the same dividend token mechanics repackaged under a stock-market-inspired name.', category: 'gambling', color: '#581c87', contract: '0xae384c6e68f5d697d65ed43fd53ef5ea3288f536', deployed: 'October 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   omnidex: { name: 'OmniDex', desc: 'Deployed August 2018, OmniDex distinguished itself with 18% dividends, masternodes, and 0% transfer fees, tweaking the standard P3D formula. Despite the "DEX" name, it was a dividend token, not an exchange.', category: 'gambling', color: '#581c87', contract: '0x433e631ac0c03e49ca034dbf5543964c80c6b391', deployed: 'August 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   spw2: { name: 'SPW v2', desc: 'The second SPW contract, deployed September 2020. A relaunch of the original SPW using the same PoWH3D Hourglass mechanics with no apparent changes.', category: 'gambling', color: '#581c87', contract: '0xd446a13f9b9f8bcbc3ded73764d08735561b1638', deployed: 'September 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  bounties: { name: 'Bounties Network', desc: 'was a decentralized bounty platform (December 2017) built by ConsenSys for open-source work and freelance tasks on Ethereum. Bounty issuers who never killed or fulfilled their bounties still have ETH locked in the StandardBounties v1 contract.', category: 'other', color: '#0369a1', contract: '0x2af47a65da8cd66729b4209c22017d6a5c2d2400', deployed: 'December 2017', balanceAbi: 'function getBounty(uint256) view returns (address, uint256, uint256, bool, uint256, uint256)', balanceArgs: (user) => [0], balanceCall: 'getBounty', balanceTransform: () => 0n, withdrawAbi: 'function killBounty(uint256 _bountyId)', withdrawArgs: (amount) => [0], withdrawCall: 'killBounty', noLiveBalance: true },
+  bounties: { name: 'Bounties Network', desc: 'was a decentralized bounty platform (December 2017) built by ConsenSys for open-source work and freelance tasks on Ethereum. Bounty issuers who never killed or fulfilled their bounties still have ETH locked in the StandardBounties v1 contract.', category: 'other', color: '#0369a1', contract: '0x2af47a65da8cd66729b4209c22017d6a5c2d2400', deployed: 'December 2017', balanceAbi: 'function getBounty(uint256) view returns (address, uint256, uint256, bool, uint256, uint256)', balanceArgs: (user) => [0], balanceCall: 'getBounty', balanceTransform: () => 0n, withdrawAbi: 'function killBounty(uint256 _bountyId)', withdrawArgs: (amount) => [0], withdrawCall: 'killBounty', noWalletCheck: true },
   ageofdinos: {
     name: 'Age of Dinos',
     desc: 'was an NFT Dutch auction (2024). Bidders who overpaid above the clearing price have unclaimed ETH refunds available via claimAndRefund().',
@@ -1762,8 +1761,8 @@ function fmtEth(v) {
 }
 function fmtNum(n) { return Number(n).toLocaleString('en'); }
 function truncAddr(a) { return a.slice(0, 8) + '...' + a.slice(-6); }
-function etherscanAddr(a) { return `https://etherscan.io/address/${a}`; }
-function etherscanTx(h) { return `https://etherscan.io/tx/${h}`; }
+function etherscanAddr(a) { return `https://etherscan.io/address/${encodeURIComponent(a)}`; }
+function etherscanTx(h) { return `https://etherscan.io/tx/${encodeURIComponent(h)}`; }
 
 // ─── Web3 Wallet ───
 
@@ -3045,6 +3044,8 @@ async function ensManualRelease() {
     }
   } catch (e) {
     console.error('Deed verification failed:', e);
+    showInlineError('addrError', 'Deed verification failed — please try again.');
+    return;
   }
 
   try {
@@ -3079,6 +3080,8 @@ if (window.ethereum) {
       document.getElementById('connectCta').style.display = '';
     } else if (walletProvider && walletAddress) {
       // Already connected — just update address and re-scan
+      // Skip if connected via keystore (JsonRpcProvider doesn't support parameterless getSigner)
+      if (!(walletProvider instanceof ethers.BrowserProvider)) return;
       walletSigner = await walletProvider.getSigner();
       walletAddress = await walletSigner.getAddress();
       document.getElementById('walletAddr').textContent = truncAddr(walletAddress);
@@ -3270,7 +3273,7 @@ function renderCharts(key) {
     // Build full monthly timeline from first data point to 2026-03, fill gaps with 0
     const actMap = {};
     rawActivity.forEach(a => { actMap[a.month] = a.tx_count; });
-    const endMonth = '2026-03';
+    const now = new Date(); const endMonth = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
     const activity = [];
     let [y, m] = [2016, 1];
     while (true) {

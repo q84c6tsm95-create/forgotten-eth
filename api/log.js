@@ -62,18 +62,23 @@ export default async function handler(req, res) {
       return res.status(413).json({ error: 'Payload too large' });
     }
 
-    // Strip prototype pollution keys
+    // Strip prototype pollution keys (top-level + nested extra)
     const body = req.body || {};
     delete body.__proto__;
     delete body.constructor;
     delete body.prototype;
+    if (body.extra && typeof body.extra === 'object') {
+      delete body.extra.__proto__;
+      delete body.extra.constructor;
+      delete body.extra.prototype;
+    }
 
     await ensureTables();
 
     const { type, address, contract, amount_eth, tx_hash, block_num, contracts_found, total_eth, extra } = body;
 
     // Whitelist known event types — reject anything unexpected
-    const ALLOWED_TYPES = ['check', 'found', 'claim_started', 'claim_confirmed', 'claim_failed', 'page_view'];
+    const ALLOWED_TYPES = ['check', 'found', 'claim_started', 'claim_confirmed', 'claim_failed', 'page_view', 'frontend_error'];
     if (!type || typeof type !== 'string' || !ALLOWED_TYPES.includes(type)) {
       return res.status(400).json({ error: 'Invalid type' });
     }
