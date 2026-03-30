@@ -39,9 +39,9 @@ export default async function handler(req, res) {
     const health = JSON.parse(readFileSync(join(process.cwd(), 'data', 'health.json'), 'utf8'));
     const lastRefresh = new Date(health.last_refresh);
     const hoursAgo = (Date.now() - lastRefresh.getTime()) / 3600000;
-    checks.data_fresh = hoursAgo < 24;
+    checks.data_fresh = hoursAgo < 12;
     checks.last_refresh_hours = Math.round(hoursAgo);
-    if (!checks.data_fresh) failed.push('data: Last refresh ' + Math.round(hoursAgo) + 'h ago (>24h)');
+    if (!checks.data_fresh) failed.push('data: Last refresh ' + Math.round(hoursAgo) + 'h ago (>12h)');
   } catch {
     checks.data_fresh = false;
     failed.push('data: health.json not readable');

@@ -238,6 +238,14 @@ function logEvent(type, data) {
   } catch(e) {}
 }
 
+// Report uncaught JS errors (invisible without this)
+window.onerror = function(msg, src, line, col) {
+  logEvent('frontend_error', { error: String(msg).slice(0, 200), source: (src || '').split('/').pop(), line: line, col: col });
+};
+window.onunhandledrejection = function(e) {
+  logEvent('frontend_error', { error: String(e.reason?.message || e.reason || '').slice(0, 200), type: 'promise' });
+};
+
 async function fetchCheck(address) {
   return fetch(`/api/check?address=${encodeURIComponent(address)}`);
 }
