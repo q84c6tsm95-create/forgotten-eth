@@ -9,7 +9,7 @@
 <title>Forgotten ETH - Recover ETH Stuck in Old Smart Contracts</title>
 <meta name="description" content="70,000+ ETH stuck in defunct smart contracts. Check if you have unclaimed ETH in old DEXes, ICO contracts, ENS deeds, DAO treasuries, and more.">
 <link rel="canonical" href="https://forgotteneth.com/">
-<meta property="og:title" content="Forgotten ETH — 70,000+ ETH Stuck in Old Smart Contracts">
+<meta property="og:title" content="Forgotten ETH: 70,000+ ETH Stuck in Old Smart Contracts">
 <meta property="og:description" content="Thousands of ETH sit forgotten in defunct contracts. Portfolio trackers don't detect these balances. Check if you have unclaimed ETH.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://forgotteneth.com">
@@ -17,7 +17,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Forgotten ETH — 70,000+ ETH Stuck in Old Smart Contracts">
+<meta name="twitter:title" content="Forgotten ETH: 70,000+ ETH Stuck in Old Smart Contracts">
 <meta name="twitter:description" content="Thousands of ETH sit forgotten in defunct contracts. Portfolio trackers don't detect these balances. Check if you have unclaimed ETH.">
 <meta name="twitter:image" content="https://forgotteneth.com/og-image-wide.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,9 +48,9 @@
     --orange: #c2410c;
     --glass: #f0eee9;
     --glass-border: #d4d0c8;
-    --radius: 8px;
-    --radius-sm: 4px;
-    --radius-lg: 12px;
+    --radius: 3px;
+    --radius-sm: 2px;
+    --radius-lg: 6px;
     --connect-bg: rgba(15, 118, 110, 0.06);
     --connect-border: rgba(15, 118, 110, 0.20);
     --font-display: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
@@ -87,7 +87,7 @@
   [data-theme="dark"] .wallet-btn.connected:hover { border-color: var(--red); color: var(--red); }
   [data-theme="dark"] .claim-banner { background: linear-gradient(135deg, #12111a 0%, #161520 50%, #12111a 100%); border-color: rgba(126, 200, 190, 0.25); }
   [data-theme="dark"] .claim-card { background: var(--bg2); border-color: var(--border); }
-  [data-theme="dark"] .claim-card:hover { border-color: var(--accent); box-shadow: 0 2px 20px rgba(126, 200, 190, 0.08); }
+  [data-theme="dark"] .claim-card:hover { border-color: var(--accent); box-shadow: 2px 2px 0 var(--accent); }
   [data-theme="dark"] .claim-card-tag { background: rgba(126, 200, 190, 0.08); color: var(--accent); }
   [data-theme="dark"] .claim-row { background: var(--bg2); border-color: var(--border); }
   [data-theme="dark"] .claim-banner.celebrate { border-color: #7ec8be; }
@@ -107,13 +107,13 @@
   [data-theme="dark"] .pagination .pages button.active { background: var(--accent); border-color: var(--accent); color: #12111a; }
   [data-theme="dark"] .claim-btn:disabled { background: #2d2a3a; color: #555; }
   [data-theme="dark"] .hero-amount { text-shadow: 0 0 60px rgba(126, 200, 190, 0.15); }
-  [data-theme="dark"] .btn { box-shadow: 0 0 15px rgba(126, 200, 190, 0.1); }
-  [data-theme="dark"] .btn:hover { box-shadow: 0 0 25px rgba(126, 200, 190, 0.18); }
+  [data-theme="dark"] .btn { box-shadow: 2px 2px 0 rgba(126, 200, 190, 0.2); }
+  [data-theme="dark"] .btn:hover { box-shadow: 3px 3px 0 rgba(126, 200, 190, 0.3); }
   /* Dreamy dark mode — slower transitions, ambient glow */
   [data-theme="dark"] * { transition-duration: 0.35s; }
   [data-theme="dark"] .connect-section { box-shadow: 0 0 40px -10px rgba(126, 200, 190, 0.08), inset 0 0 30px -15px rgba(126, 200, 190, 0.03); }
   [data-theme="dark"] .hero-amount { letter-spacing: -1px; }
-  [data-theme="dark"] .claim-card:hover { box-shadow: 0 4px 30px rgba(126, 200, 190, 0.06); }
+  [data-theme="dark"] .claim-card:hover { box-shadow: 2px 2px 0 rgba(126, 200, 190, 0.3); }
   [data-theme="dark"] .header .subtitle { opacity: 0.65; }
   [data-theme="dark"] .claim-card { background: rgba(22, 21, 32, 0.95); backdrop-filter: blur(4px); }
   [data-theme="dark"] .claim-banner { background: rgba(18, 17, 26, 0.95); backdrop-filter: blur(4px); }
@@ -429,7 +429,7 @@
   }
   .claim-card:hover {
     border-color: var(--accent);
-    box-shadow: 0 2px 12px rgba(15, 118, 110, 0.08);
+    box-shadow: 2px 2px 0 var(--accent);
   }
   .claim-card-header {
     display: flex;
@@ -455,8 +455,8 @@
     white-space: nowrap;
   }
   @keyframes amountGlow {
-    0%, 100% { text-shadow: 0 0 0 transparent; }
-    50% { text-shadow: 0 0 12px var(--gold-glow); }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
   }
   .claim-card-tag {
     font-size: 10px;
@@ -535,7 +535,7 @@
     transition: all 0.15s ease;
     white-space: nowrap;
   }
-  .claim-btn:hover:not(:disabled) { background: #0d6560; transform: translateY(-1px); box-shadow: 0 3px 10px rgba(15, 118, 110, 0.25); }
+  .claim-btn:hover:not(:disabled) { background: #0d6560; transform: translate(-1px, -1px); box-shadow: 2px 2px 0 rgba(15, 118, 110, 0.4); }
   .claim-btn:disabled { background: #ccc; color: #888; cursor: not-allowed; transform: none; box-shadow: none; opacity: 0.5; }
   .claim-btn.pending { background: var(--yellow); color: #000; animation: pulse-pending 1.5s ease-in-out infinite; }
   .claim-btn.success { background: var(--green); color: #fff; }
@@ -554,7 +554,7 @@
     margin-bottom: 6px;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
   }
-  .claim-row:hover { border-color: var(--accent); box-shadow: 0 2px 8px rgba(15, 118, 110, 0.08); }
+  .claim-row:hover { border-color: var(--accent); box-shadow: 2px 2px 0 var(--accent); }
   .claim-row .dex-name { font-weight: 700; font-size: 13px; min-width: 100px; white-space: nowrap; }
   .claim-row .claim-amount { font-size: 16px; font-weight: 700; color: var(--gold); flex: 1; text-align: right; letter-spacing: -0.3px; animation: amountGlow 2s ease-in-out infinite; }
   .claim-row .claim-tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--accent); padding: 3px 8px; background: rgba(15, 118, 110, 0.08); border-radius: 4px; white-space: nowrap; }
@@ -955,7 +955,7 @@
       <nav class="header-nav">
         <a href="#faq">FAQ</a>
         <span class="nav-sep">&middot;</span>
-        <a href="https://github.com/q84c6tsm95-create/forgotten-eth/issues/new" target="_blank" rel="noopener noreferrer" title="Submit a contract">Submit contract</a>
+        <a href="https://github.com/q84c6tsm95-create/forgotten-eth/issues/new" target="_blank" rel="noopener noreferrer" title="Submit a protocol">Submit protocol</a>
         <span class="nav-sep">&middot;</span>
         <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" title="View on GitHub" aria-label="GitHub"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
         <span class="nav-sep">&middot;</span>
@@ -1024,11 +1024,11 @@
     <div class="faq-list">
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">How does it work? <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">Paste any address or connect your wallet. We check <span class="contract-count">116</span> defunct contracts for unclaimed balances. If found, click Withdraw — the transaction goes directly from the original contract to your wallet.</div>
+      <div class="faq-a">Paste any address or connect your wallet. We check <span class="contract-count">116</span> defunct contracts for unclaimed balances. If found, click Withdraw. The transaction goes directly from the original contract to your wallet.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">Is this safe? <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">Yes. Fully <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a>. No proxy contracts, no intermediaries. Most withdrawals are simple ETH transfers with no approvals needed. A few contracts (e.g. wrapped ETH variants, dividend tokens) require a token burn or two-step process — the UI explains each case. Every withdrawal can be done manually on <a href="https://etherscan.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Etherscan</a> — this site just makes it easier.</div>
+      <div class="faq-a">Yes. Fully <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a>. No proxy contracts, no intermediaries. Most withdrawals are simple ETH transfers with no approvals needed. A few contracts (e.g. wrapped ETH variants, dividend tokens) require a token burn or two-step process. The UI explains each case. Every withdrawal can be done manually on <a href="https://etherscan.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Etherscan</a>. This site just makes it easier.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">Why can't my portfolio tracker see these? <span class="faq-arrow">&#x25BC;</span></div>
@@ -1040,7 +1040,11 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">Don't trust, verify <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">You don't need this site to claim. Every withdrawal can be done directly on <a href="https://etherscan.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Etherscan</a>: go to the contract, click "Write Contract", connect your wallet, call the withdraw function. We simply facilitate the crafting of withdrawal transactions on your behalf — each contract's address and function is shown in the claim details. Our code is <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a> for anyone to audit. Know a contract we're missing? <a href="https://github.com/q84c6tsm95-create/forgotten-eth/issues" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Open an issue</a>.</div>
+      <div class="faq-a">You don't need this site to claim. Every withdrawal can be done directly on <a href="https://etherscan.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Etherscan</a>: go to the contract, click "Write Contract", connect your wallet, call the withdraw function. Each contract's address and function is shown in the claim details. Our code is <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a> for anyone to audit. Know a contract we're missing? <a href="https://github.com/q84c6tsm95-create/forgotten-eth/issues" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Open an issue</a>.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">I know a protocol or contract that could be added. How do I submit it? <span class="faq-arrow">&#x25BC;</span></div>
+      <div class="faq-a"><a href="https://github.com/q84c6tsm95-create/forgotten-eth/issues/new" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Open a GitHub issue</a> with the contract address or protocol name. If you don't know the exact contract, just mention the protocol. I'll investigate and verify it.</div>
     </div>
     </div><!-- /faq-list -->
   </div>
