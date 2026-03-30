@@ -1,13 +1,19 @@
 import { sql } from '@vercel/postgres';
 import { createHash } from 'crypto';
 
+function fetchWithTimeout(url, opts = {}, ms = 8000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), ms);
+  return fetch(url, { ...opts, signal: controller.signal }).finally(() => clearTimeout(timer));
+}
+
 // Telegram admin alerts via separate admin bot
 async function notifyTelegram(msg) {
   const token = process.env.TELEGRAM_ADMIN_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_ADMIN_CHAT_ID;
   if (!token || !chatId) return;
   try {
-    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    await fetchWithTimeout(`https://api.telegram.org/bot${token}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: 'HTML', disable_web_page_preview: true }),
@@ -15,10 +21,11 @@ async function notifyTelegram(msg) {
   } catch (_) {}
 }
 
-// Initialize tables on first call
-let initialized = false;
+// Initialize tables on first call (Promise-based lock prevents race condition)
+let initPromise = null;
 async function ensureTables() {
-  if (initialized) return;
+  if (initPromise) return initPromise;
+  initPromise = (async () => {
   await sql`
     CREATE TABLE IF NOT EXISTS events (
       id SERIAL PRIMARY KEY,
@@ -39,7 +46,8 @@ async function ensureTables() {
   await sql`CREATE INDEX IF NOT EXISTS idx_events_ts ON events(ts)`;
   await sql`CREATE INDEX IF NOT EXISTS idx_events_type ON events(type)`;
   await sql`CREATE INDEX IF NOT EXISTS idx_events_address ON events(address)`;
-  initialized = true;
+  })();
+  return initPromise;
 }
 
 export default async function handler(req, res) {

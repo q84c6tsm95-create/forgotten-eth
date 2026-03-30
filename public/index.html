@@ -7,9 +7,9 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; connect-src 'self' https://ethereum.publicnode.com https://1rpc.io https://eth.llamarpc.com https://vitals.vercel-insights.com https://api.coingecko.com https://cdn.jsdelivr.net; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com;">
 <meta http-equiv="X-Frame-Options" content="DENY">
 <title>Forgotten ETH - Recover ETH Stuck in Old Smart Contracts</title>
-<meta name="description" content="77,000+ ETH stuck in 116 defunct smart contracts. Check if you have unclaimed ETH in old DEXes, ICO contracts, ENS deeds, DAO treasuries, and more.">
+<meta name="description" content="70,000+ ETH stuck in defunct smart contracts. Check if you have unclaimed ETH in old DEXes, ICO contracts, ENS deeds, DAO treasuries, and more.">
 <link rel="canonical" href="https://forgotteneth.com/">
-<meta property="og:title" content="Forgotten ETH — 77,000+ ETH Stuck in Old Smart Contracts">
+<meta property="og:title" content="Forgotten ETH — 70,000+ ETH Stuck in Old Smart Contracts">
 <meta property="og:description" content="Thousands of ETH sit forgotten in defunct contracts. Portfolio trackers don't detect these balances. Check if you have unclaimed ETH.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://forgotteneth.com">
@@ -17,7 +17,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Forgotten ETH — 77,000+ ETH Stuck in Old Smart Contracts">
+<meta name="twitter:title" content="Forgotten ETH — 70,000+ ETH Stuck in Old Smart Contracts">
 <meta name="twitter:description" content="Thousands of ETH sit forgotten in defunct contracts. Portfolio trackers don't detect these balances. Check if you have unclaimed ETH.">
 <meta name="twitter:image" content="https://forgotteneth.com/og-image-wide.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,6 +50,7 @@
     --glass-border: #ddd8d0;
     --radius: 8px;
     --radius-sm: 4px;
+    --radius-lg: 12px;
     --connect-bg: rgba(124, 58, 237, 0.08);
     --connect-border: rgba(124, 58, 237, 0.30);
     --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -387,9 +388,11 @@
     transition: all 0.15s ease;
     white-space: nowrap;
   }
-  .claim-btn:hover { background: #5b21b6; transform: translateY(-1px); box-shadow: 0 3px 10px rgba(124, 58, 237, 0.3); }
-  .claim-btn:disabled { background: #ccc; color: #888; cursor: not-allowed; transform: none; box-shadow: none; }
+  .claim-btn:hover:not(:disabled) { background: #5b21b6; transform: translateY(-1px); box-shadow: 0 3px 10px rgba(124, 58, 237, 0.3); }
+  .claim-btn:disabled { background: #ccc; color: #888; cursor: not-allowed; transform: none; box-shadow: none; opacity: 0.5; }
   .claim-btn.pending { background: var(--yellow); color: #000; animation: pulse-pending 1.5s ease-in-out infinite; }
+  .claim-btn.success { background: var(--green); color: #fff; }
+  .claim-btn.waiting { background: var(--bg3); color: var(--text2); border: 1px solid var(--border); }
   @keyframes pulse-pending { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
 
   /* Legacy claim-row for summary-only rows (no withdraw) */
@@ -757,9 +760,25 @@
     .about-section .about-grid { grid-template-columns: 1fr; }
     .stats-row { gap: 12px; }
   }
+  @media (max-width: 480px) {
+    .header h1 { font-size: 24px; }
+    .hero-amount { font-size: 28px; }
+    .hero-amount .hero-eth-label { font-size: 18px; }
+    .hero-label { font-size: 12px; }
+    .claim-hero-amount { font-size: 26px; }
+    .claim-card-header { padding: 12px; }
+    .claim-card-name { font-size: 15px; }
+    .claim-card-amount { font-size: 15px; min-width: auto; }
+    .claim-card-actions { flex-wrap: wrap; }
+    .claim-btn { padding: 10px 20px; font-size: 12px; flex: 1; min-width: 0; }
+    .cards { grid-template-columns: 1fr; }
+    .container { padding: 0 12px 8px; }
+    .faq-q { font-size: 13px; }
+  }
 </style>
 </head>
 <body>
+<noscript><div style="text-align:center;padding:40px 20px;font-family:sans-serif;color:#1c1917"><h1>Forgotten ETH</h1><p style="margin-top:12px">This site requires JavaScript to check smart contracts and connect your wallet.</p></div></noscript>
 <div class="container">
   <div class="header">
     <div class="header-left">
@@ -767,12 +786,14 @@
       <p class="subtitle">Recover ETH stuck in old smart contracts</p>
       <nav class="header-nav">
         <a href="#faq">FAQ</a>
-        <span class="nav-sep">·</span>
-        <button id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode"></button>
-        <span class="nav-sep">·</span>
+        <span class="nav-sep">&middot;</span>
+        <a href="https://github.com/q84c6tsm95-create/forgotten-eth/issues/new" target="_blank" rel="noopener noreferrer" title="Submit a contract">Submit contract</a>
+        <span class="nav-sep">&middot;</span>
         <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" title="View on GitHub" aria-label="GitHub"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
         <span class="nav-sep">&middot;</span>
         <a href="https://t.me/forgottenETH_bot" target="_blank" rel="noopener noreferrer" title="Telegram Bot" aria-label="Telegram"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+        <span class="nav-sep">&middot;</span>
+        <button id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode"></button>
         <span class="nav-sep" id="testModeSep" style="display:none">&middot;</span>
         <button id="testModeBtn" style="display:none"></button>
       </nav>
@@ -835,7 +856,7 @@
     <div class="faq-list">
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">How does it work? <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">Paste any address or connect your wallet. We check 116 defunct contracts for unclaimed balances. If found, click Withdraw — the transaction goes directly from the original contract to your wallet. We never have custody of your funds.</div>
+      <div class="faq-a">Paste any address or connect your wallet. We check <span class="contract-count">116</span> defunct contracts for unclaimed balances. If found, click Withdraw — the transaction goes directly from the original contract to your wallet.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">Is this safe? <span class="faq-arrow">&#x25BC;</span></div>
@@ -847,11 +868,11 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">What contracts are tracked? <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">116 contracts across defunct DEXes (EtherDelta, IDEX v1, Token.Store), dividend tokens (PoWH3D, Fomo3D), NFT auctions (MoonCatRescue, DADA), bounty platforms, ICO escrows, ENS old registrar deeds, DAO treasury refunds (DigixDAO), and wrapped ETH variants.</div>
+      <div class="faq-a"><span class="contract-count">116</span> contracts across defunct DEXes (EtherDelta, IDEX v1, Token.Store), dividend tokens (PoWH3D, Fomo3D), NFT auctions (MoonCatRescue, DADA), bounty platforms, ICO escrows, ENS old registrar deeds, DAO treasury refunds (DigixDAO), and wrapped ETH variants.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">Don't trust, verify <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">You don't need this site to claim. Every withdrawal can be done directly on <a href="https://etherscan.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Etherscan</a>: go to the contract, click "Write Contract", connect your wallet, call the withdraw function. We simply facilitate the crafting of withdrawal transactions on your behalf — each contract's address and function is shown in the claim details. Our code is <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a> for anyone to audit.</div>
+      <div class="faq-a">You don't need this site to claim. Every withdrawal can be done directly on <a href="https://etherscan.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Etherscan</a>: go to the contract, click "Write Contract", connect your wallet, call the withdraw function. We simply facilitate the crafting of withdrawal transactions on your behalf — each contract's address and function is shown in the claim details. Our code is <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a> for anyone to audit. Know a contract we're missing? <a href="https://github.com/q84c6tsm95-create/forgotten-eth/issues" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Open an issue</a>.</div>
     </div>
     </div><!-- /faq-list -->
   </div>
@@ -863,7 +884,7 @@
     <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)" style="flex-shrink:0"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
     <span>Get alerts for new contracts — <a href="https://t.me/forgotteneth_bot" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:600;text-decoration:none">@forgotteneth_bot</a></span>
   </div>
-  <p class="footer-credit">made with <span style="color:#e11d48;font-size:16px;vertical-align:middle">&#10084;</span> by <strong>aaaaaaaaaaway</strong></p>
+  <p class="footer-credit">made with <span style="color:#e11d48;font-size:16px;vertical-align:middle">&#10084;</span> by <a href="https://t.me/syLKf" target="_blank" rel="noopener noreferrer" style="color:var(--text);text-decoration:none;font-weight:700">aaaaaaaaaaway</a></p>
 </footer>
 
 <script type="application/ld+json">
@@ -872,7 +893,7 @@
   "@type": "WebApplication",
   "name": "Forgotten ETH",
   "url": "https://forgotteneth.com",
-  "description": "Free tool to recover ETH stuck in 116 defunct smart contracts. Check any Ethereum address for unclaimed balances in old DEXes, ICO contracts, ENS deeds, and more.",
+  "description": "Free tool to recover ETH stuck in defunct smart contracts. Check any Ethereum address for unclaimed balances in old DEXes, ICO contracts, ENS deeds, and more.",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Ethereum",
   "offers": {

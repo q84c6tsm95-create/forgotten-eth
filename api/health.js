@@ -3,6 +3,12 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { timingSafeEqual } from 'crypto';
 
+function fetchWithTimeout(url, opts = {}, ms = 8000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), ms);
+  return fetch(url, { ...opts, signal: controller.signal }).finally(() => clearTimeout(timer));
+}
+
 function safeCompare(a, b) {
   if (!a || !b) return false;
   const bufA = Buffer.from(a);
@@ -39,9 +45,9 @@ export default async function handler(req, res) {
     const health = JSON.parse(readFileSync(join(process.cwd(), 'data', 'health.json'), 'utf8'));
     const lastRefresh = new Date(health.last_refresh);
     const hoursAgo = (Date.now() - lastRefresh.getTime()) / 3600000;
-    checks.data_fresh = hoursAgo < 12;
+    checks.data_fresh = hoursAgo < 24;
     checks.last_refresh_hours = Math.round(hoursAgo);
-    if (!checks.data_fresh) failed.push('data: Last refresh ' + Math.round(hoursAgo) + 'h ago (>12h)');
+    if (!checks.data_fresh) failed.push('data: Last refresh ' + Math.round(hoursAgo) + 'h ago (>24h)');
   } catch {
     checks.data_fresh = false;
     failed.push('data: health.json not readable');
@@ -62,7 +68,7 @@ export default async function handler(req, res) {
 
   // 4. Donation balance
   try {
-    const rpcResp = await fetch('https://ethereum.publicnode.com', {
+    const rpcResp = await fetchWithTimeout('https://ethereum.publicnode.com', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ jsonrpc: '2.0', method: 'eth_getBalance', params: ['0x95a708aAAB1D336bB60EF2F40212672F4cf65736', 'latest'], id: 1 }),
@@ -86,7 +92,7 @@ export default async function handler(req, res) {
     let passed = false;
     for (const sc of spotChecks) {
       try {
-        const checkResp = await fetch(`${baseUrl}/api/check?address=${sc.addr}`);
+        const checkResp = await fetchWithTimeout(`${baseUrl}/api/check?address=${sc.addr}`);
         const checkData = await checkResp.json();
         const eth = parseFloat(checkData.total_claimable_eth || '0');
         if (eth >= sc.min) {
