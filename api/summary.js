@@ -68,7 +68,7 @@ export default function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const ip = req.headers['x-real-ip'] || 'unknown';
+  const ip = req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for']?.split(',')[0]?.trim() || 'unknown';
   if (!checkRateLimit(ip)) {
     return res.status(429).json({ error: 'Rate limit exceeded. Try again in 1 minute.' });
   }
