@@ -2385,6 +2385,8 @@ async function claimETH(key) {
   const balance = userBalances[key];
 
   if (!balance || balance === 0n) return;
+  if (btn.disabled) return; // prevent double-submit
+  btn.disabled = true;
 
   // ── Test Mode: simulate successful claim ──
   if (TEST_MODE) {
@@ -2394,10 +2396,9 @@ async function claimETH(key) {
 
   if (!await checkNetwork()) {
     showInlineError('networkWarn', 'Please switch to Ethereum Mainnet to claim your ETH.', 0); document.getElementById('networkWarn').classList.add('visible');
+    btn.disabled = false;
     return;
   }
-
-  btn.disabled = true;
   btn.textContent = 'Confirming...';
   btn.classList.add('pending');
   statusEl.textContent = 'Confirm in wallet...';
@@ -2468,20 +2469,20 @@ async function claimLockMe(key) {
   if (!cfg.twoStep) return;
   const btn = document.getElementById('claimBtn-' + key);
   const statusEl = document.getElementById('claimStatus-' + key);
+  if (btn.disabled) return;
+  btn.disabled = true;
 
   if (TEST_MODE) {
     btn.textContent = 'Locked';
-    btn.disabled = true;
     statusEl.textContent = `Unlock started. Come back in ${cfg.twoStep.lockDays} days to withdraw.`;
     return;
   }
 
   if (!await checkNetwork()) {
     showInlineError('networkWarn', 'Please switch to Ethereum Mainnet to claim your ETH.', 0); document.getElementById('networkWarn').classList.add('visible');
+    btn.disabled = false;
     return;
   }
-
-  btn.disabled = true;
   btn.textContent = 'Confirming...';
   btn.classList.add('pending');
   statusEl.textContent = 'Confirm in wallet...';
@@ -2794,9 +2795,9 @@ async function neufundWithdrawEthT(key) {
   const cfg = EXCHANGES[key];
   const btn = document.getElementById('claimBtn-' + key);
   const statusEl = document.getElementById('claimStatus-' + key);
-  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet to claim your ETH.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
-
+  if (btn.disabled) return;
   btn.disabled = true;
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet to claim your ETH.', 0); document.getElementById('networkWarn').classList.add('visible'); btn.disabled = false; return; }
   btn.textContent = 'Confirming...';
   btn.classList.add('pending');
   statusEl.textContent = 'Confirm ETH-T withdrawal in wallet...';
@@ -2851,13 +2852,14 @@ async function claimExit(key) {
   if (!cfg.exitAbi) return;
   const btn = document.getElementById('exitBtn-' + key);
   const statusEl = document.getElementById('claimStatus-' + key);
+  if (btn.disabled) return;
+  btn.disabled = true;
 
   if (!await checkNetwork()) {
     showInlineError('networkWarn', 'Please switch to Ethereum Mainnet to claim your ETH.', 0); document.getElementById('networkWarn').classList.add('visible');
+    btn.disabled = false;
     return;
   }
-
-  btn.disabled = true;
   btn.textContent = 'Confirming...';
   statusEl.textContent = 'This will sell all your tokens (10% fee) and withdraw everything. Confirm in wallet...';
 
@@ -2902,13 +2904,14 @@ async function cancelMoonCatRequest(key, catIdHex, index) {
   if (!cfg.cancelAbi) return;
   const btn = document.getElementById(`cancelReqBtn-${key}-${index}`);
   const statusEl = document.getElementById('claimStatus-' + key);
+  if (btn.disabled) return;
+  btn.disabled = true;
 
   if (!await checkNetwork()) {
     showInlineError('networkWarn', 'Please switch to Ethereum Mainnet to claim your ETH.', 0); document.getElementById('networkWarn').classList.add('visible');
+    btn.disabled = false;
     return;
   }
-
-  btn.disabled = true;
   btn.textContent = 'Confirming...';
   statusEl.textContent = 'Cancelling adoption request — this sends escrowed ETH directly to your wallet. Confirm in wallet...';
 
@@ -2941,11 +2944,11 @@ async function cancelMoonCatRequest(key, catIdHex, index) {
 async function claimENSDeed(index) {
   const deed = window._ensDeeds[index];
   if (!deed) return;
-  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet to claim your ETH.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
-
   const btn = document.getElementById('claimBtn-ens-' + index);
   const statusEl = document.getElementById('claimStatus-ens-' + index);
+  if (btn.disabled) return;
   btn.disabled = true;
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet to claim your ETH.', 0); document.getElementById('networkWarn').classList.add('visible'); btn.disabled = false; return; }
   btn.textContent = 'Confirming...';
   btn.classList.add('pending');
   statusEl.textContent = 'Confirm in wallet...';
