@@ -60,18 +60,16 @@ var _keystoreWallet = null;
 function _showWalletPicker(providers) {
   return new Promise(function(resolve) {
     var overlay = document.createElement('div');
-    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:10000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)';
+    overlay.className = 'modal-overlay';
     var modal = document.createElement('div');
-    modal.style.cssText = 'background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:28px;max-width:400px;width:90%;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3)';
+    modal.className = 'modal-box';
 
-    var title = '<h3 style="font-size:18px;font-weight:800;margin-bottom:4px;text-align:center">Connect Wallet</h3>';
-    title += '<p style="font-size:12px;color:var(--text2);text-align:center;margin-bottom:20px">Choose how to connect</p>';
-    modal.innerHTML = title;
+    modal.innerHTML = '<h3 class="modal-title">Connect Wallet</h3><p class="modal-subtitle">Choose how to connect</p>';
 
     // Section: Browser wallets
     if (providers.length > 0) {
       var label = document.createElement('div');
-      label.style.cssText = 'font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text2);font-weight:700;margin-bottom:8px';
+      label.className = 'modal-label';
       label.textContent = 'Installed Wallets';
       modal.appendChild(label);
 
@@ -88,7 +86,7 @@ function _showWalletPicker(providers) {
     // If no providers detected, show MetaMask install link
     if (providers.length === 0) {
       var label2 = document.createElement('div');
-      label2.style.cssText = 'font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text2);font-weight:700;margin-bottom:8px';
+      label2.className = 'modal-label';
       label2.textContent = 'No wallet detected — install one';
       modal.appendChild(label2);
       modal.appendChild(_makeWalletBtn(
@@ -107,7 +105,7 @@ function _showWalletPicker(providers) {
 
     // Section: Keystore file
     var sep = document.createElement('div');
-    sep.style.cssText = 'font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text2);font-weight:700;margin:16px 0 8px';
+    sep.className = 'modal-label mt';
     sep.textContent = 'Keystore / JSON File';
     modal.appendChild(sep);
 
@@ -121,9 +119,7 @@ function _showWalletPicker(providers) {
     // Cancel
     var cancel = document.createElement('button');
     cancel.textContent = 'Cancel';
-    cancel.style.cssText = 'display:block;margin:16px auto 0;padding:8px 20px;background:none;border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:12px;color:var(--text2);font-family:inherit;transition:all 0.15s';
-    cancel.onmouseenter = function() { cancel.style.borderColor = 'var(--accent)'; cancel.style.color = 'var(--accent)'; };
-    cancel.onmouseleave = function() { cancel.style.borderColor = 'var(--border)'; cancel.style.color = 'var(--text2)'; };
+    cancel.className = 'modal-cancel';
     cancel.addEventListener('click', function() { document.body.removeChild(overlay); resolve(null); });
     modal.appendChild(cancel);
 
@@ -135,18 +131,15 @@ function _showWalletPicker(providers) {
 
 function _makeWalletBtn(icon, name, subtitle, onclick) {
   var btn = document.createElement('button');
-  btn.style.cssText = 'display:flex;align-items:center;gap:12px;width:100%;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:inherit;color:var(--text);margin-bottom:8px;transition:border-color 0.15s,box-shadow 0.15s;text-align:left';
-  btn.onmouseenter = function() { btn.style.borderColor = 'var(--accent)'; btn.style.boxShadow = '0 2px 8px rgba(124,58,237,0.1)'; };
-  btn.onmouseleave = function() { btn.style.borderColor = 'var(--border)'; btn.style.boxShadow = 'none'; };
+  btn.className = 'wallet-option';
   var img = document.createElement('img');
   img.src = icon;
-  img.style.cssText = 'width:36px;height:36px;border-radius:8px;flex-shrink:0';
   img.onerror = function() { this.style.display = 'none'; };
   btn.appendChild(img);
   var text = document.createElement('div');
   var _e = function(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
-  text.innerHTML = '<div style="font-size:14px;font-weight:700">' + _e(name) + '</div>' +
-    (subtitle ? '<div style="font-size:11px;color:var(--text2);font-weight:400">' + _e(subtitle) + '</div>' : '');
+  text.innerHTML = '<div class="wo-name">' + _e(name) + '</div>' +
+    (subtitle ? '<div class="wo-sub">' + _e(subtitle) + '</div>' : '');
   btn.appendChild(text);
   btn.addEventListener('click', onclick);
   return btn;
@@ -155,9 +148,9 @@ function _makeWalletBtn(icon, name, subtitle, onclick) {
 async function _handleKeystoreConnect() {
   return new Promise(function(resolve, reject) {
     var overlay = document.createElement('div');
-    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:10000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)';
+    overlay.className = 'modal-overlay';
     var modal = document.createElement('div');
-    modal.style.cssText = 'background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:28px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.3)';
+    modal.className = 'modal-box wide';
     modal.innerHTML = '<h3 style="font-size:16px;font-weight:700;margin-bottom:4px;text-align:center">Open Keystore File</h3>' +
       '<p style="font-size:12px;color:var(--text2);text-align:center;margin-bottom:16px">Select your UTC/JSON keystore file and enter the password to decrypt it locally.</p>' +
       '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:11px;color:var(--text2);line-height:1.6">' +
@@ -234,12 +227,9 @@ function getPublicProvider() { return new ethers.JsonRpcProvider(getPublicRPC())
 const PUBLIC_RPC = PUBLIC_RPCS[0]; // backward compat
 
 // Analytics helper — fire-and-forget, never blocks UI
-// Hashes wallet addresses with keccak256 before logging to preserve privacy
 function logEvent(type, data) {
   try {
-    const sanitized = { ...data };
-    if (sanitized.address) sanitized.address = ethers.keccak256(ethers.toUtf8Bytes(sanitized.address.toLowerCase()));
-    fetch('/api/log', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ type, ...sanitized }) }).catch(() => {});
+    fetch('/api/log', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ type, ...data }) }).catch(() => {});
   } catch(e) {}
 }
 
@@ -1552,8 +1542,8 @@ const EXCHANGES = {
     balanceAbi: 'function dividendsOf(address) view returns (uint256)',
     balanceArgs: (user) => [user],
     balanceCall: 'dividendsOf',
-    withdrawAbi: 'function withdraw()',
-    withdrawArgs: () => [],
+    withdrawAbi: 'function withdraw(bool)',
+    withdrawArgs: () => [true],
     withdrawCall: 'withdraw',
     exitAbi: 'function exit()',
     exitArgs: () => [],
@@ -3239,8 +3229,8 @@ function renderCharts(key) {
   if (chartInstances['activity-' + key]) { chartInstances['activity-' + key].destroy(); delete chartInstances['activity-' + key]; }
   if (chartInstances['tvl-' + key]) { chartInstances['tvl-' + key].destroy(); delete chartInstances['tvl-' + key]; }
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-  const gridColor = isDark ? '#2e2b38' : '#edeae4';
-  const textColor = isDark ? '#9590a6' : '#78716c';
+  const gridColor = isDark ? '#2d2a3a' : '#e5e2db';
+  const textColor = isDark ? '#7d7890' : '#6b6560';
 
   const cardsEl = document.getElementById('cards-' + key);
   let chartDiv = document.getElementById('charts-' + key);
@@ -3289,8 +3279,8 @@ function renderCharts(key) {
         labels: activity.map(a => a.month),
         datasets: [{
           data: activity.map(a => a.tx_count),
-          backgroundColor: '#7c3aed80',
-          borderColor: '#7c3aed',
+          backgroundColor: '#0f766e80',
+          borderColor: '#0f766e',
           borderWidth: 1,
         }]
       },
@@ -3341,8 +3331,8 @@ function renderCharts(key) {
         labels: tvl.map(t => t.month),
         datasets: [{
           data: tvl.map(t => t.balance_eth),
-          backgroundColor: '#7c3aed80',
-          borderColor: '#7c3aed',
+          backgroundColor: '#0f766e80',
+          borderColor: '#0f766e',
           borderWidth: 1,
         }]
       },
@@ -3787,6 +3777,8 @@ async function _testCheckManualAddress(input) {
       if (addressCount) animateCount('totalAddresses', addressCount);
       // Update any hardcoded contract counts in FAQ etc.
       document.querySelectorAll('.contract-count').forEach(function(el) { el.textContent = contractCount; });
+      // Hide terminal cursor after count animation finishes
+      setTimeout(function() { var c = document.querySelector('.hero-cursor'); if (c) c.style.display = 'none'; }, 1500);
       getEthPrice(); // preload price for claim flow
     }
   } catch(e) {}

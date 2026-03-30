@@ -3,6 +3,7 @@ import { join } from 'path';
 
 let protocolInfo = null;
 const metaCache = {};
+const htmlCache = {};
 
 function loadProtocolInfo() {
   if (protocolInfo) return protocolInfo;
@@ -110,51 +111,57 @@ function renderPage(slug, key, info, meta) {
 <meta name="twitter:image" content="https://forgotteneth.com/og-image-wide.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
 <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC" crossorigin="anonymous"></script>
 <style>
   :root {
-    --bg: #fdfcfa; --bg2: #f6f4f0; --bg3: #edeae4;
-    --border: #ddd8d0; --border-strong: #c5bfb6;
-    --text: #1c1917; --text2: #78716c;
-    --accent: #7c3aed; --accent2: #6d28d9; --accent-text: #6d28d9; --accent-glow: rgba(124, 58, 237, 0.15);
+    --bg: #faf9f7; --bg2: #f0eee9; --bg3: #e5e2db;
+    --border: #d4d0c8; --border-strong: #b8b3a8;
+    --text: #1a1a1a; --text2: #6b6560;
+    --accent: #0f766e; --accent2: #0d6560; --accent-text: #0f766e; --accent-glow: rgba(15, 118, 110, 0.15);
     --green: #16a34a; --green-glow: transparent;
     --gold: #b45309; --gold-glow: rgba(180, 83, 9, 0.3);
     --red: #dc2626; --yellow: #ca8a04; --orange: #c2410c;
-    --glass: #f6f4f0; --glass-border: #ddd8d0;
+    --glass: #f0eee9; --glass-border: #d4d0c8;
     --radius: 8px; --radius-sm: 4px;
-    --connect-bg: rgba(124, 58, 237, 0.05); --connect-border: rgba(124, 58, 237, 0.15);
+    --connect-bg: rgba(15, 118, 110, 0.06); --connect-border: rgba(15, 118, 110, 0.20);
+    --font-display: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
     --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
   }
   [data-theme="dark"] {
-    --bg: #0f0e13; --bg2: #1a1820; --bg3: #24222b;
-    --border: #2e2b38; --border-strong: #3e3a4b;
-    --text: #e8e4f0; --text2: #9590a6;
-    --accent: #a78bfa; --accent2: #c4b5fd; --accent-text: #a78bfa; --accent-glow: rgba(167, 139, 250, 0.15);
-    --green: #34d399; --green-glow: transparent;
-    --gold: #fbbf24; --gold-glow: rgba(251, 191, 36, 0.4);
-    --red: #f87171; --yellow: #fbbf24; --orange: #fb923c;
-    --glass: #1a1820; --glass-border: #2e2b38;
-    --connect-bg: rgba(167, 139, 250, 0.04); --connect-border: rgba(167, 139, 250, 0.12);
+    --bg: #12111a; --bg2: #1a1924; --bg3: #23212e;
+    --border: #2d2a3a; --border-strong: #3d3950;
+    --text: #d4d0de; --text2: #7d7890;
+    --accent: #7ec8be; --accent2: #a3ddd5; --accent-text: #7ec8be; --accent-glow: rgba(126, 200, 190, 0.12);
+    --green: #6bc9a0; --green-glow: transparent;
+    --gold: #d4a96a; --gold-glow: rgba(212, 169, 106, 0.3);
+    --red: #d47b7b; --yellow: #d4a96a; --orange: #d49a6a;
+    --glass: #1a1924; --glass-border: #2d2a3a;
+    --connect-bg: rgba(126, 200, 190, 0.04); --connect-border: rgba(126, 200, 190, 0.12);
   }
-  [data-theme="dark"] a:hover { color: #c4b5fd; }
+  [data-theme="dark"] a:hover { color: #a3ddd5; }
+  [data-theme="dark"] * { transition-duration: 0.35s; }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+  body { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='16' height='16' fill='%23f0eee9'/%3E%3Crect x='16' y='16' width='16' height='16' fill='%23f0eee9'/%3E%3Crect x='16' width='16' height='16' fill='%23ece9e3'/%3E%3Crect y='16' width='16' height='16' fill='%23ece9e3'/%3E%3C/svg%3E"); background-size: 32px 32px; }
+  [data-theme="dark"] body { background-color: #0a0a12; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='16' height='16' fill='%23100f1a'/%3E%3Crect x='16' y='16' width='16' height='16' fill='%23100f1a'/%3E%3Crect x='16' width='16' height='16' fill='%230e0d18'/%3E%3Crect y='16' width='16' height='16' fill='%230e0d18'/%3E%3C/svg%3E"); background-size: 32px 32px; }
+  [data-theme="dark"] body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: -2; background: radial-gradient(ellipse 800px 500px at 10% 20%, rgba(160,50,180,0.07), transparent 70%), radial-gradient(ellipse 600px 400px at 85% 15%, rgba(80,200,180,0.06), transparent 70%), radial-gradient(ellipse 700px 450px at 50% 80%, rgba(100,80,220,0.05), transparent 70%), radial-gradient(ellipse 500px 350px at 75% 50%, rgba(200,60,120,0.04), transparent 70%); }
+  [data-theme="dark"] body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: -1; background-image: linear-gradient(rgba(200,80,180,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(80,200,190,0.08) 1px, transparent 1px); background-size: 32px 32px; }
   a { color: var(--accent-text); text-decoration: underline; }
-  a:hover { color: #5b21b6; }
+  a:hover { color: #0d6560; }
   .container { max-width: 1400px; margin: 0 auto; padding: 0 24px 32px; }
 
   /* Header */
   .header { padding: 36px 0 28px; border-bottom: 1px solid var(--border); text-align: center; }
-  .header h1, .header .site-name { font-family: var(--font-mono); font-size: 32px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .header h1, .header .site-name { font-family: var(--font-display); font-size: 36px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 4px; }
   .header h1 a, .header .site-name a { color: inherit; text-decoration: none; }
-  .header .subtitle { font-size: 14px; color: var(--text2); font-weight: 400; margin-bottom: 12px; }
-  .header-nav { display: flex; align-items: center; justify-content: center; gap: 0; margin-top: 16px; font-size: 13px; font-family: var(--font-mono); }
+  .header .subtitle { font-family: var(--font-display); font-size: 16px; color: var(--text2); font-weight: 400; margin-bottom: 12px; font-style: italic; opacity: 0.6; }
+  .header-nav { display: inline-flex; align-items: center; justify-content: center; gap: 30px; margin-top: 16px; font-size: 12px; font-family: var(--font-mono); }
   .header-nav a { color: var(--text2); text-decoration: none; transition: color 150ms ease; }
   .header-nav a:hover { color: var(--accent); }
-  .nav-sep { color: var(--border-strong); margin: 0 16px; user-select: none; }
+  .nav-sep { display: none; }
   #themeToggle { background: none; border: none; cursor: pointer; font-size: 12px; display: inline-flex; align-items: center; gap: 4px; color: var(--text2); transition: color 150ms ease; padding: 0; line-height: 1; font-family: var(--font-mono); }
   #themeToggle:hover { color: var(--accent); }
 
@@ -162,7 +169,7 @@ function renderPage(slug, key, info, meta) {
   .project-desc { color: var(--text2); font-size: 13px; line-height: 1.6; margin-bottom: 16px; }
   .color-bar { height: 4px; width: 48px; border-radius: 2px; margin-bottom: 16px; }
   .protocol-hero { padding: 28px 0 0; }
-  .protocol-hero h2 { font-size: 24px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.3px; }
+  .protocol-hero h2 { font-family: var(--font-display); font-size: 28px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.2px; }
 
   /* Cards — matches main page */
   .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px; }
@@ -224,7 +231,7 @@ function renderPage(slug, key, info, meta) {
   .about-section { border-top: 1px solid var(--border); margin-top: 48px; padding: 40px 0 8px; }
   .about-section h2 { font-family: var(--font-mono); font-size: 20px; font-weight: 700; margin-bottom: 12px; text-align: center; letter-spacing: -0.3px; }
   .about-section > p { font-size: 14px; color: var(--text2); line-height: 1.8; margin-bottom: 32px; text-align: center; max-width: 600px; margin-left: auto; margin-right: auto; }
-  .faq-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text2); font-weight: 700; margin-bottom: 16px; text-align: center; }
+  .faq-label { font-family: var(--font-display); font-size: 18px; letter-spacing: 0.3px; color: var(--text2); font-weight: 600; margin-bottom: 16px; text-align: center; font-style: italic; }
   .faq-list { max-width: 640px; margin: 0 auto; }
   .faq-item { margin-bottom: 8px; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color 0.2s; }
   .faq-item:hover { border-color: var(--border-strong); }
@@ -281,14 +288,11 @@ function renderPage(slug, key, info, meta) {
       <p class="subtitle">Recover ETH stuck in old smart contracts</p>
       <nav class="header-nav">
         <a href="/">Home</a>
-        <span class="nav-sep">&middot;</span>
         <a href="#faq">FAQ</a>
-        <span class="nav-sep">&middot;</span>
-        <button id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode"></button>
-        <span class="nav-sep">&middot;</span>
+        <a href="https://github.com/q84c6tsm95-create/forgotten-eth/issues/new" target="_blank" rel="noopener noreferrer" title="Submit a contract">Submit contract</a>
         <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" title="View on GitHub" aria-label="GitHub"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
-        <span class="nav-sep">&middot;</span>
         <a href="https://t.me/forgottenETH_bot" target="_blank" rel="noopener noreferrer" title="Telegram Bot" aria-label="Telegram"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+        <button id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode"></button>
       </nav>
     </div>
   </div>
@@ -386,7 +390,7 @@ function renderPage(slug, key, info, meta) {
 </div>
 
 <footer class="site-footer">
-  <p class="footer-credit">made with <span style="color:#e11d48;font-size:16px;vertical-align:middle">&#10084;</span> by <a href="https://t.me/syLKf" target="_blank" rel="noopener noreferrer" style="color:var(--text);text-decoration:none;font-weight:700">aaaaaaaaaaway</a></p>
+  <p class="footer-credit">made with <svg width="14" height="18" viewBox="0 0 14 18" style="vertical-align:middle;margin:0 3px" aria-label="Madotsuki"><rect x="4" y="0" width="6" height="2" fill="#5c3a1e"/><rect x="3" y="2" width="8" height="2" fill="#5c3a1e"/><rect x="2" y="2" width="1" height="6" fill="#5c3a1e"/><rect x="11" y="2" width="1" height="6" fill="#5c3a1e"/><rect x="3" y="4" width="8" height="2" fill="#f0c8a0"/><rect x="4" y="4" width="2" height="1" fill="#2a2018"/><rect x="8" y="4" width="2" height="1" fill="#2a2018"/><rect x="3" y="6" width="8" height="2" fill="#f0c8a0"/><rect x="3" y="8" width="8" height="5" fill="#c84b6b"/><rect x="5" y="9" width="1" height="2" fill="#f0c8a0"/><rect x="8" y="9" width="1" height="2" fill="#f0c8a0"/><rect x="6" y="9" width="2" height="3" fill="#87ceeb"/><rect x="3" y="13" width="3" height="3" fill="#c84b6b"/><rect x="8" y="13" width="3" height="3" fill="#c84b6b"/><rect x="3" y="16" width="3" height="2" fill="#5c3a1e"/><rect x="8" y="16" width="3" height="2" fill="#5c3a1e"/></svg> by <a href="https://t.me/syLKf" target="_blank" rel="noopener noreferrer" style="color:var(--text);text-decoration:none;font-weight:700">aaaaaaaaaaway</a></p>
 </footer>
 
 <script type="application/ld+json">
@@ -428,7 +432,7 @@ export default async function handler(req, res) {
   const meta = loadMeta(key);
   if (!meta) return res.status(404).send('Protocol data not found');
 
-  const html = renderPage(slug, key, protocol, meta);
+  const html = htmlCache[key] || (htmlCache[key] = renderPage(slug, key, protocol, meta));
 
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=7200');
