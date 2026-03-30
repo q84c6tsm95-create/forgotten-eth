@@ -2,21 +2,21 @@
 
 Find and recover ETH stuck in defunct smart contracts on Ethereum.
 
-**[forgotten-eth.vercel.app](https://forgotten-eth.vercel.app)**
+**[forgotteneth.com](https://forgotteneth.com)**
 
 ## What is this?
 
 Thousands of ETH sit forgotten in old DEXes, NFT marketplaces, ENS auctions, and ICO contracts that shut down years ago. Portfolio trackers like DeBank, Zerion, and Zapper don't index these balances. The ETH is still onchain — it just doesn't show up.
 
-This tool checks 110 defunct contracts for unclaimed balances and facilitates withdrawals directly to the user's wallet.
+This tool checks 116 defunct contracts for unclaimed balances and facilitates withdrawals directly to the user's wallet.
 
 ## How it works
 
 1. Paste any Ethereum address or connect a wallet
-2. 110 defunct contracts are checked for unclaimed balances
+2. 116 defunct contracts are checked for unclaimed balances
 3. If found, click Withdraw — the transaction goes directly from the original contract to the wallet
 
-No custody of funds at any point. Every withdrawal can also be done manually on Etherscan.
+Every withdrawal can also be done manually on Etherscan.
 
 ## Contracts tracked
 
@@ -25,9 +25,11 @@ No custody of funds at any point. Every withdrawal can also be done manually on 
 - **Fomo3D family** — Fomo3D Long/Quick/Short, FoMoGame, ReadyPlayerONE, Lightning
 - **NFT auctions** — MoonCatRescue, DADA Collectible, Age of Dinos, PersonaBid
 - **ENS old registrar** — Unreleased deed deposits from the original .eth auction system
+- **DAO treasuries** — DigixDAO dissolution refund (DGD burn for ETH)
+- **ICO escrows** — NuCypher WorkLock, Neufund LockedAccount, Confideal
 - **Bounty platforms** — Bounties Network (StandardBounties v1)
 - **Token wrappers** — Neufund EtherToken, Bancor Old ETH Token, Maker W-ETH
-- **Other** — Confideal ICO refunds, SportCrypt
+- **Other** — Tessera vaults, Kyber FeeHandler, SportCrypt
 
 ## Security
 
@@ -36,11 +38,9 @@ No custody of funds at any point. Every withdrawal can also be done manually on 
 - Withdrawals go directly from the original contract to the wallet
 - Fully open source — audit the code yourself
 
-## Contact
+## Submit a contract
 
-Know a defunct contract with stuck ETH that should be added? Get in touch:
-
-**forgotten-eth@pm.me**
+Know a defunct contract with stuck ETH that should be added? [Open an issue](https://github.com/q84c6tsm95-create/forgotten-eth/issues/new).
 
 ## License
 
