@@ -1948,13 +1948,17 @@ async function checkUserBalances(overrideAddress) {
         const balance = cfg.balanceTransform ? cfg.balanceTransform(result) : result;
         return { key, balance };
       } catch (rpcErr) {
-        // RPC failed: trust API balance as fallback
-        return { key, balance: BigInt(apiEntry.balance_wei) };
+        // RPC failed: trust API balance as fallback (apply transform for DGD-style tokens)
+        const raw = BigInt(apiEntry.balance_wei);
+        return { key, balance: cfg.balanceTransform ? cfg.balanceTransform(raw) : raw };
       }
     } catch (e) {
       // RPC failed: fall back to API balance if available
       const apiEntry = apiBalances[key];
-      if (apiEntry) return { key, balance: BigInt(apiEntry.balance_wei) };
+      if (apiEntry) {
+        const raw = BigInt(apiEntry.balance_wei);
+        return { key, balance: cfg.balanceTransform ? cfg.balanceTransform(raw) : raw };
+      }
       return { key, balance: 0n };
     } finally {
       _checkedCount++;
@@ -3432,7 +3436,9 @@ async function checkSingleAddress(addr) {
         return { key, balance: 0n };
       }
       if (covPct >= HIGH_COVERAGE_THRESHOLD && apiEntry) {
-        return { key, balance: BigInt(apiEntry.balance_wei) };
+        const raw = BigInt(apiEntry.balance_wei);
+        const balance = cfg.balanceTransform ? cfg.balanceTransform(raw) : raw;
+        return { key, balance };
       }
       if (!provider) provider = new ethers.JsonRpcProvider(PUBLIC_RPC);
       const contract = new ethers.Contract(cfg.contract, [cfg.balanceAbi], provider);
@@ -3441,7 +3447,10 @@ async function checkSingleAddress(addr) {
       return { key, balance };
     } catch (e) {
       const apiEntry = apiBalances[key];
-      if (apiEntry) return { key, balance: BigInt(apiEntry.balance_wei) };
+      if (apiEntry) {
+        const raw = BigInt(apiEntry.balance_wei);
+        return { key, balance: cfg.balanceTransform ? cfg.balanceTransform(raw) : raw };
+      }
       return { key, balance: 0n };
     } finally {
       _manualChecked++;

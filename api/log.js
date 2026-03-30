@@ -1,18 +1,18 @@
 import { sql } from '@vercel/postgres';
 import { createHash } from 'crypto';
 
-// Telegram admin alerts — disabled, will use separate admin bot later
+// Telegram admin alerts via separate admin bot
 async function notifyTelegram(msg) {
-  // const token = process.env.TELEGRAM_ADMIN_BOT_TOKEN;
-  // const chatId = process.env.TELEGRAM_CHAT_ID;
-  // if (!token || !chatId) return;
-  // try {
-  //   await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: 'HTML' }),
-  //   });
-  // } catch (_) {}
+  const token = process.env.TELEGRAM_ADMIN_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_ADMIN_CHAT_ID;
+  if (!token || !chatId) return;
+  try {
+    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: 'HTML', disable_web_page_preview: true }),
+    });
+  } catch (_) {}
 }
 
 // Initialize tables on first call
