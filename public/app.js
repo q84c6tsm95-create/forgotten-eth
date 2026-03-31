@@ -57,7 +57,7 @@ var _botCTA = '<div style="text-align:center;margin-top:20px;padding:14px;backgr
 // Minimum spinner display time so Madotsuki is visible
 var _scanStartTime = 0;
 function scanStart() { _scanStartTime = Date.now(); }
-async function scanMinDelay() { var elapsed = Date.now() - _scanStartTime; if (elapsed < 3500) await new Promise(function(r) { setTimeout(r, 3500 - elapsed); }); }
+async function scanMinDelay() { var elapsed = Date.now() - _scanStartTime; if (elapsed < 3000) await new Promise(function(r) { setTimeout(r, 3000 - elapsed); }); }
 async function scanProgressDelay() { var elapsed = Date.now() - _scanStartTime; if (elapsed < 2500) await new Promise(function(r) { setTimeout(r, 2500 - elapsed); }); }
 
 // Keystore file wallet — decrypts UTC/JSON keystore files (MyEtherWallet style)
@@ -2306,7 +2306,7 @@ async function checkUserBalances(overrideAddress) {
             </div>`;
         } else if (cfg.bountiesMulti) {
           // Bounties Network: per-bounty killBounty buttons
-          const bountyIds = apiBalances[key]?.bounty_ids || [];
+          const bountyDetails = apiBalances[key]?.bounty_details || [];
           html += `
             <div class="claim-card">
               <div class="claim-card-header">
@@ -2317,31 +2317,14 @@ async function checkUserBalances(overrideAddress) {
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">killBounty(uint256 _bountyId) per bounty</span></div>
               </div>`;
-          if (bountyIds.length > 0) {
-            for (const bid of bountyIds) {
-              html += `<div class="claim-row" id="bountyRow-${bid}" style="margin:4px 16px;border-left:2px solid var(--accent);padding:6px 12px;display:flex;align-items:center;justify-content:space-between">
-                <span style="font-size:13px">Bounty #${esc(String(bid))} <span id="bountyEth-${bid}" style="color:var(--text2);font-size:12px">loading...</span></span>
-                <button class="claim-btn" data-action="kill-bounty" data-key="${key}" data-bounty-id="${bid}">Withdraw</button>
+          if (bountyDetails.length > 0) {
+            for (const bd of bountyDetails) {
+              const bdEth = bd.eth ? ' · ' + fmtEth(bd.eth) + ' ETH' : '';
+              html += `<div class="claim-row" style="margin:4px 16px;border-left:2px solid var(--accent);padding:6px 12px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:13px">Bounty #${esc(String(bd.id))}<span style="color:var(--text2);font-size:12px">${bdEth}</span></span>
+                <button class="claim-btn" data-action="kill-bounty" data-key="${key}" data-bounty-id="${bd.id}">Withdraw</button>
               </div>`;
             }
-            // Fetch per-bounty ETH amounts in background (doesn't block rendering)
-            (async () => {
-              try {
-                const provider = walletProvider || new ethers.JsonRpcProvider(PUBLIC_RPCS[0]);
-                const bc = new ethers.Contract(cfg.contract, ['function getBounty(uint256) view returns (address, uint256, uint256, bool, uint256, uint256)'], provider);
-                for (const bid of bountyIds) {
-                  try {
-                    const result = await bc.getBounty(bid);
-                    const bountyEth = parseFloat(ethers.formatEther(result[1]));
-                    const el = document.getElementById('bountyEth-' + bid);
-                    if (el) el.textContent = '· ' + fmtEth(bountyEth) + ' ETH';
-                  } catch (e) {
-                    const el = document.getElementById('bountyEth-' + bid);
-                    if (el) el.textContent = '';
-                  }
-                }
-              } catch (e) { console.warn('Bounty ETH lookup failed:', e); }
-            })();
           } else {
             html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">Bounty IDs not available. <a href="${etherscanAddr(cfg.contract)}#writeContract" target="_blank" rel="noopener noreferrer">Use Etherscan</a> to call killBounty with your bounty ID.</div>`;
           }
@@ -2452,6 +2435,7 @@ async function checkUserBalances(overrideAddress) {
     }
     window._ensRenderDeeds = null;
   }
+
 }
 
 async function claimETH(key) {
