@@ -2066,7 +2066,7 @@ async function checkUserBalances(overrideAddress) {
               <div class="claim-card-header">
                 <span class="claim-card-name">${esc(cfg.name)}</span>
                 <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
-                <span class="claim-card-tag" id="ensLookupStatus">${preDeeds ? 'Claimable' : 'Looking up...'}</span>
+                <span class="claim-card-tag" id="ensLookupStatus">${preDeeds ? '' : 'Looking up...'}</span>
               </div>
               <div class="claim-card-meta">
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr('0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef')}" target="_blank" rel="noopener noreferrer">0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef</a></span></div>
@@ -2089,7 +2089,7 @@ async function checkUserBalances(overrideAddress) {
               </div>`;
               return;
             }
-            statusEl.textContent = deeds.length + ' deed' + (deeds.length > 1 ? 's' : '');
+            statusEl.textContent = '';
             deeds.sort((a, b) => parseFloat(b.value_eth || ethers.formatEther(b.value)) - parseFloat(a.value_eth || ethers.formatEther(a.value)));
             window._ensDeeds = deeds;
             var SHOW_INITIAL = 10;
