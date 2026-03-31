@@ -111,8 +111,8 @@
   [data-theme="dark"] .hero-amount { text-shadow: 0 0 60px rgba(126, 200, 190, 0.15); }
   [data-theme="dark"] .btn { box-shadow: 2px 2px 0 rgba(126, 200, 190, 0.2); }
   [data-theme="dark"] .btn:hover { box-shadow: 3px 3px 0 rgba(126, 200, 190, 0.3); }
-  /* Dreamy dark mode — slower transitions, ambient glow */
-  [data-theme="dark"] * { transition-duration: 0.35s; }
+  /* Dreamy dark mode — smooth theme transitions on visible properties only */
+  body, .card, .section, .btn, .tab-btn, .connect-section, .site-footer, .hero-amount, input, table, th, td, .modal-overlay, .modal-box { transition: background-color 0.35s, color 0.35s, border-color 0.35s, box-shadow 0.35s; }
   [data-theme="dark"] .connect-section { box-shadow: 0 0 40px -10px rgba(126, 200, 190, 0.08), inset 0 0 30px -15px rgba(126, 200, 190, 0.03); }
   [data-theme="dark"] .hero-amount { letter-spacing: -1px; }
   [data-theme="dark"] .claim-card:hover { box-shadow: 2px 2px 0 rgba(126, 200, 190, 0.3); }
