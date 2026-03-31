@@ -330,7 +330,7 @@ function renderDonationCard(claimedEth) {
   _lastClaimEth = claimedEth;
   if (claimedEth < 0.01) return '';
 
-  var defaultPct = 5;
+  var defaultPct = 2;
   var defaultAmt = (claimedEth * defaultPct / 100).toFixed(2);
   var btnLabel = 'Donate ' + defaultAmt + ' ETH';
   if (_ethPrice) btnLabel += ' (' + fmtUsd(parseFloat(defaultAmt) * _ethPrice) + ')';
@@ -343,7 +343,7 @@ function renderDonationCard(claimedEth) {
 
   return '<div id="donationCardWrap" style="display:none"><div class="donation-card" id="donationCard" data-claim-eth="' + claimedEth + '">' +
     '<div class="donation-copy">If you found this useful, consider a donation.</div>' +
-    '<div class="donation-pct-row">' + pill(8, false) + pill(5, true) + pill(2, false) + '</div>' +
+    '<div class="donation-pct-row">' + pill(1, false) + pill(2, true) + pill(4, false) + '</div>' +
     '<div class="donation-custom"><input type="number" id="donationAmt" class="donation-custom-input" value="' + defaultAmt + '" step="0.001" min="0" data-claim-eth="' + claimedEth + '"><span class="donation-custom-label">ETH</span>' + usdHint + '</div>' +
     '<div><button data-action="donate-confirm" class="donation-confirm-btn">' + btnLabel + '</button></div>' +
     '<div><button data-action="donation-skip" class="donation-skip">skip</button></div>' +
