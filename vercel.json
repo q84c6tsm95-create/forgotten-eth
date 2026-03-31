@@ -4,10 +4,6 @@
   "rewrites": [
     { "source": "/outreach", "destination": "/outreach.html" },
     { "source": "/dashboard", "destination": "/dashboard.html" },
-    { "source": "/stats", "destination": "/stats.html" },
-    { "source": "/api-docs", "destination": "/api-docs.html" },
-    { "source": "/submit", "destination": "/submit.html" },
-    { "source": "/lost-forever", "destination": "/lost-forever.html" },
     { "source": "/protocol/:slug", "destination": "/:slug" },
     { "source": "/:slug((?!api|_vercel|protocol|outreach|dashboard)[a-z0-9-]+)", "destination": "/api/protocol?slug=:slug" },
     { "source": "/sitemap.xml", "destination": "/api/sitemap" }
