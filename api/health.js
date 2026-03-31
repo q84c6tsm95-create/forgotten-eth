@@ -175,7 +175,7 @@ export default async function handler(req, res) {
   // 7. Vercel usage — query real billing data to warn before limits
   // Pro plan limits: 1M function invocations, 1TB bandwidth, 4000 build mins
   try {
-    const vercelToken = process.env.VERCEL_API;
+    const vercelToken = process.env.VERCEL_TOKEN;
     if (vercelToken) {
       const now = new Date();
       const monthStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1)).toISOString();
