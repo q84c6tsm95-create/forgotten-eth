@@ -2325,7 +2325,8 @@ async function checkUserBalances(overrideAddress) {
               <div class="claim-card-status" id="claimStatus-${key}"></div>
             </div>`;
         } else if (cfg.kyberFeeHandler) {
-          // Kyber FeeHandler: claim all epochs with one button
+          // Kyber FeeHandler: per-epoch claim from pre-computed data
+          const epochDetails = apiBalances[key]?.epoch_details || [];
           html += `
             <div class="claim-card">
               <div class="claim-card-header">
@@ -2335,15 +2336,18 @@ async function checkUserBalances(overrideAddress) {
               <div class="claim-card-meta">
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value"><span style="color:var(--text1)">claimStakerReward(address, epoch)</span></span></div>
-              </div>
-              <div style="padding:8px 16px 4px;font-size:12px;color:var(--text2)">
-                Rewards split across 21 epochs. Each epoch requires a separate transaction.
-              </div>
-              <div class="claim-card-actions">
-                <button class="claim-btn" id="claimBtn-${key}" data-action="kyber-claim-all" data-key="${key}">Claim All Epochs</button>
-              </div>
-              <div class="claim-card-status" id="claimStatus-${key}"></div>
-            </div>`;
+              </div>`;
+          if (epochDetails.length > 0) {
+            for (const ep of epochDetails) {
+              html += `<div class="claim-row" style="margin:4px 16px;border-left:2px solid var(--accent);padding:6px 12px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:13px">Epoch ${ep.epoch}<span style="color:var(--text2);font-size:12px"> · ${fmtEth(ep.eth)} ETH</span></span>
+                <button class="claim-btn" data-action="kyber-claim-epoch" data-key="${key}" data-epoch="${ep.epoch}">Claim</button>
+              </div>`;
+            }
+          } else {
+            html += `<div style="padding:8px 16px;font-size:12px;color:var(--text2)">No claimable epochs found.</div>`;
+          }
+          html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
         } else if (!cfg.withdrawAbi) {
           // Contracts without direct withdraw
           html += `
@@ -3195,69 +3199,39 @@ async function claimExit(key) {
 
 // ─── Bounties Network: killBounty per bounty ID ───
 
-// ─── Kyber FeeHandler: claim all epochs sequentially ───
+// ─── Kyber FeeHandler: claim single epoch ───
 
-async function kyberClaimAll(key, btn) {
+async function kyberClaimEpoch(key, epoch, btn) {
   if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
   if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
 
   var cfg = EXCHANGES[key];
   var statusEl = document.getElementById('claimStatus-' + key);
   btn.disabled = true;
+  btn.textContent = 'Claiming...';
   btn.classList.add('pending');
 
-  var contract = new ethers.Contract(cfg.contract, [
-    'function claimStakerReward(address staker, uint256 epoch) returns (uint256)',
-    'function hasClaimedReward(address, uint256) view returns (bool)',
-  ], walletSigner);
-
-  logEvent('claim_started', { address: walletAddress, contract: key });
-
-  // First check which epochs are unclaimed
-  var unclaimed = [];
-  if (statusEl) statusEl.textContent = 'Checking epochs...';
-  for (var epoch = 1; epoch <= 21; epoch++) {
-    try {
-      var claimed = await contract.hasClaimedReward(walletAddress, epoch);
-      if (!claimed) unclaimed.push(epoch);
-    } catch (e) {}
-  }
-
-  if (unclaimed.length === 0) {
-    btn.textContent = 'Nothing to claim';
+  try {
+    var contract = new ethers.Contract(cfg.contract, ['function claimStakerReward(address staker, uint256 epoch) returns (uint256)'], walletSigner);
+    logEvent('claim_started', { address: walletAddress, contract: key });
+    var tx = await contract.claimStakerReward(walletAddress, epoch);
+    if (statusEl) statusEl.textContent = 'Tx submitted, waiting for confirmation...';
+    var receipt = await tx.wait();
+    btn.textContent = 'Done';
     btn.classList.remove('pending');
-    if (statusEl) statusEl.textContent = 'All epochs already claimed.';
-    return;
-  }
-
-  btn.textContent = 'Claiming 0/' + unclaimed.length + '...';
-  if (statusEl) statusEl.textContent = unclaimed.length + ' unclaimed epochs found. Approve each transaction in your wallet.';
-
-  var claimed = 0;
-  var totalClaimed = 0;
-  for (var i = 0; i < unclaimed.length; i++) {
-    var ep = unclaimed[i];
-    btn.textContent = 'Claiming ' + (i + 1) + '/' + unclaimed.length + ' (epoch ' + ep + ')...';
-    try {
-      var tx = await contract.claimStakerReward(walletAddress, ep);
-      var receipt = await tx.wait();
-      claimed++;
-      if (statusEl) statusEl.textContent = 'Claimed epoch ' + ep + ' (' + claimed + '/' + unclaimed.length + ')';
-    } catch (e) {
-      if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
-        if (statusEl) statusEl.textContent = 'Rejected at epoch ' + ep + '. Claimed ' + claimed + '/' + unclaimed.length + ' epochs.';
-        break;
-      }
-      if (statusEl) statusEl.textContent = 'Epoch ' + ep + ' failed: ' + (e.reason || e.message || 'unknown').slice(0, 80) + '. Claimed ' + claimed + '/' + unclaimed.length + '.';
-    }
-  }
-
-  btn.textContent = claimed === unclaimed.length ? 'Done' : 'Claimed ' + claimed + '/' + unclaimed.length;
-  btn.classList.remove('pending');
-  if (claimed > 0) {
     btn.style.background = 'var(--green)';
     btn.style.opacity = '0.7';
-    logEvent('claim_confirmed', { address: walletAddress, contract: key });
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, tx_hash: tx.hash, block_num: receipt.blockNumber });
+    if (statusEl) statusEl.textContent = 'Epoch ' + epoch + ' claimed!';
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Claim';
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      if (statusEl) statusEl.textContent = 'Rejected';
+    } else {
+      if (statusEl) statusEl.textContent = 'Failed: ' + (e.reason || e.message || 'unknown').slice(0, 80);
+    }
   }
 }
 
@@ -3877,9 +3851,12 @@ async function checkSingleAddress(addr) {
       const mLastTx = apiBalances[key]?.last_tx_date || '';
       const mLastTxHtml = mLastTx ? '<span style="font-size:11px;color:var(--text2);margin-left:8px">last tx: ' + esc(mLastTx) + '</span>' : '';
       html += '<div class="claim-card"><div class="claim-card-header"><span class="claim-card-name">' + esc(cfg.name) + mLastTxHtml + '</span><span class="claim-card-amount">' + fmtEth(ethAmount) + ' ETH</span><span class="claim-card-tag">Claimable</span></div>';
-      // Kyber: show claim instructions in manual check flow
-      if (cfg.kyberFeeHandler) {
-        html += '<div style="padding:8px 16px 14px;font-size:12px;color:var(--text2)">Rewards across epochs 1-21. Call <b>claimStakerReward</b> on <a href="' + etherscanAddr(cfg.contract) + '#writeContract" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Etherscan</a> with your address and each epoch number.</div>';
+      // Kyber: show per-epoch breakdown
+      if (cfg.kyberFeeHandler && apiBalances[key]?.epoch_details) {
+        var eps = apiBalances[key].epoch_details;
+        for (var ei = 0; ei < eps.length; ei++) {
+          html += '<div style="margin:4px 16px;border-left:2px solid var(--accent);padding:4px 12px;font-size:13px">Epoch ' + eps[ei].epoch + '<span style="color:var(--text2);font-size:12px"> · ' + fmtEth(eps[ei].eth) + ' ETH</span></div>';
+        }
       }
       // Show per-bounty breakdown in manual check flow
       if (cfg.bountiesMulti && apiBalances[key]?.bounty_details) {
@@ -4398,8 +4375,8 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     neufundApproveAndUnlock(btn.dataset.key);
   } else if (action === 'neufund-withdraw-etht') {
     neufundWithdrawEthT(btn.dataset.key);
-  } else if (action === 'kyber-claim-all') {
-    kyberClaimAll(btn.dataset.key, btn);
+  } else if (action === 'kyber-claim-epoch') {
+    kyberClaimEpoch(btn.dataset.key, parseInt(btn.dataset.epoch), btn);
   } else if (action === 'kill-bounty') {
     killBounty(btn.dataset.key, parseInt(btn.dataset.bountyId), btn);
   } else if (action === 'cancel-mooncat') {
