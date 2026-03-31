@@ -246,7 +246,7 @@ window.onerror = function(msg, src, line, col) {
 };
 window.onunhandledrejection = function(e) {
   var msg = String(e.reason?.message || e.reason || '');
-  if (msg.includes('StorageArea') || msg.includes('vercel') || msg.includes('sseError') || msg.includes('tronlink') || msg.includes('MetaMask') || msg.includes('Origin not allowed') || msg.includes('JSON-RPC error')) return;
+  if (msg.includes('StorageArea') || msg.includes('vercel') || msg.includes('sseError') || msg.includes('tronlink') || msg.includes('MetaMask') || msg.includes('Origin not allowed') || msg.includes('JSON-RPC error') || msg.includes('network changed') || msg.includes('rainbowkit') || msg.includes('Talisman') || msg.includes('__firefox__') || msg.includes('user rejected')) return;
   logEvent('frontend_error', { extra: { error: msg.slice(0, 200), type: 'promise' } });
 };
 
