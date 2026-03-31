@@ -2096,7 +2096,7 @@ async function checkUserBalances(overrideAddress) {
             var renderDeed = function(d, i) {
               var ethVal = d.value_eth || ethers.formatEther(d.value);
               var deedLabel = d.name ? esc(d.name) + '.eth' : 'Deed ' + (i+1);
-              return '<div class="claim-row" style="margin-left:16px;border-left:2px solid var(--green)">' +
+              return '<div class="claim-row" style="border-left:2px solid var(--green)">' +
                 '<span class="dex-name" style="font-size:12px;min-width:60px" title="' + esc(d.labelHash) + '">' + deedLabel + '</span>' +
                 '<span class="claim-amount">' + fmtEth(ethVal) + ' ETH</span>' +
                 '<button class="claim-btn" id="claimBtn-ens-' + i + '" data-action="claim-ens-deed" data-deed-index="' + i + '">Release</button>' +
