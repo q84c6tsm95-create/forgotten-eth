@@ -354,7 +354,7 @@ function renderDonationCard(claimedEth) {
 // Show donation card after a delay (called after claim success renders)
 function showDonationCardDelayed() {
   var wrap = document.getElementById('donationCardWrap');
-  if (wrap) setTimeout(function() { wrap.style.display = ''; }, 2500);
+  if (wrap) setTimeout(function() { wrap.style.display = ''; }, 1650);
 }
 
 // Share
