@@ -2072,7 +2072,7 @@ async function checkUserBalances(overrideAddress) {
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr('0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef')}" target="_blank" rel="noopener noreferrer">0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef</a></span></div>
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value"><span style="color:var(--text1)">releaseDeed(bytes32 _hash)</span> <span style="opacity:0.5">—</span> returns deed ETH to owner</span></div>
               </div>
-              <div id="ensDeedRows" style="padding:0 16px 14px"></div>
+              <div id="ensDeedRows" style="padding:12px 16px 14px;border-top:1px solid var(--border);margin-top:8px"></div>
             </div>`;
 
           const renderDeeds = (deeds) => {
@@ -2080,10 +2080,10 @@ async function checkUserBalances(overrideAddress) {
             const rowsEl = document.getElementById('ensDeedRows');
             if (!deeds || deeds.length === 0) {
               statusEl.textContent = '';
-              rowsEl.innerHTML = `<div class="claim-details visible" style="margin-top:6px">
-                No deeds found. Try <a href="https://reclaim.ens.domains" target="_blank" rel="noopener noreferrer">reclaim.ens.domains</a> or enter manually:
-                <div style="margin-top:8px;display:flex;gap:6px;align-items:center">
-                  <input type="text" id="ensManualHash" placeholder="Label or hash (e.g. vitalik)" style="flex:1;padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit;background:var(--bg)">
+              rowsEl.innerHTML = `<div class="claim-details visible" style="font-size:12px;color:var(--text2)">
+                No deeds found. Try <a href="https://reclaim.ens.domains" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">reclaim.ens.domains</a> or enter manually:
+                <div style="margin-top:10px;display:flex;gap:6px;align-items:center">
+                  <input type="text" id="ensManualHash" placeholder="Label or hash (e.g. vitalik)" style="flex:1;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit;background:var(--bg);color:var(--text)">
                   <button class="claim-btn" data-action="ens-manual-release">Release</button>
                 </div>
               </div>`;
@@ -2110,8 +2110,8 @@ async function checkUserBalances(overrideAddress) {
               deedHtml += '</div>';
               deedHtml += '<div style="text-align:center;margin:12px 0 4px"><button id="ensShowAllBtn" data-action="ens-show-all" style="background:var(--accent);color:#fff;border:none;padding:8px 24px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">Show all ' + deeds.length + ' deeds &#x25BE;</button></div>';
             }
-            deedHtml += '<div style="margin-top:8px;margin-left:16px;display:flex;gap:6px;align-items:center">' +
-              '<input type="text" id="ensManualHash" placeholder="Another label or hash..." style="flex:1;padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit;background:var(--bg)">' +
+            deedHtml += '<div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border);display:flex;gap:6px;align-items:center">' +
+              '<input type="text" id="ensManualHash" placeholder="Another label or hash..." style="flex:1;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit;background:var(--bg);color:var(--text)">' +
               '<button class="claim-btn" data-action="ens-manual-release">Release</button></div>';
             rowsEl.innerHTML = deedHtml;
           };
