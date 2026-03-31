@@ -745,7 +745,7 @@ const EXCHANGES = {
   },
   dada: {
     name: 'DADA Collectible',
-    desc: 'A collaborative digital art platform. Deployed its "Creeps &amp; Weirdos" NFT collection on October 5, 2017, after CryptoPunks but before CryptoKitties. Featured 108 unique pieces by 30 artists and was the first NFT project to implement artist royalties coded directly into the smart contract, using a modified CryptoPunks contract.',
+    desc: 'A collaborative digital art platform. Deployed its "Creeps & Weirdos" NFT collection on October 5, 2017, after CryptoPunks but before CryptoKitties. Featured 108 unique pieces by 30 artists and was the first NFT project to implement artist royalties coded directly into the smart contract, using a modified CryptoPunks contract.',
     category: 'nft',
     color: '#ec4899',
     contract: '0x068696a3cf3c4676b65f1c9975dd094260109d02',
@@ -1636,7 +1636,7 @@ const EXCHANGES = {
   redchip2: { name: 'RedChip v2', desc: 'The second iteration of RedChip, deployed October 2019 alongside its predecessor. Another PoWH3D fork with the same dividend token mechanics repackaged under a stock-market-inspired name.', category: 'gambling', color: '#581c87', contract: '0xae384c6e68f5d697d65ed43fd53ef5ea3288f536', deployed: 'October 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   omnidex: { name: 'OmniDex', desc: 'Deployed August 2018, OmniDex distinguished itself with 18% dividends, masternodes, and 0% transfer fees, tweaking the standard P3D formula. Despite the "DEX" name, it was a dividend token, not an exchange.', category: 'gambling', color: '#581c87', contract: '0x433e631ac0c03e49ca034dbf5543964c80c6b391', deployed: 'August 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   spw2: { name: 'SPW v2', desc: 'The second SPW contract, deployed September 2020. A relaunch of the original SPW using the same PoWH3D Hourglass mechanics with no apparent changes.', category: 'gambling', color: '#581c87', contract: '0xd446a13f9b9f8bcbc3ded73764d08735561b1638', deployed: 'September 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  bounties: { name: 'Bounties Network', desc: 'was a decentralized bounty platform (December 2017) built by ConsenSys for open-source work and freelance tasks on Ethereum. Bounty issuers who never killed or fulfilled their bounties still have ETH locked in the StandardBounties v1 contract.', category: 'other', color: '#0369a1', contract: '0x2af47a65da8cd66729b4209c22017d6a5c2d2400', deployed: 'December 2017', balanceAbi: 'function getBounty(uint256) view returns (address, uint256, uint256, bool, uint256, uint256)', balanceArgs: (user) => [0], balanceCall: 'getBounty', balanceTransform: () => 0n, withdrawAbi: 'function killBounty(uint256 _bountyId)', withdrawArgs: (amount) => [0], withdrawCall: 'killBounty', noWalletCheck: true },
+  bounties: { name: 'Bounties Network', desc: 'was a decentralized bounty platform (December 2017) built by ConsenSys for open-source work and freelance tasks on Ethereum. Bounty issuers who never killed or fulfilled their bounties still have ETH locked in the StandardBounties v1 contract. Withdrawal requires your specific bounty ID - use Etherscan directly.', category: 'other', color: '#0369a1', contract: '0x2af47a65da8cd66729b4209c22017d6a5c2d2400', deployed: 'December 2017', balanceAbi: 'function getBounty(uint256) view returns (address, uint256, uint256, bool, uint256, uint256)', balanceArgs: (user) => [0], balanceCall: 'getBounty', balanceTransform: () => 0n, withdrawAbi: null, withdrawCall: null, noWalletCheck: true, noWithdraw: true },
   ageofdinos: {
     name: 'Age of Dinos',
     desc: 'was an NFT Dutch auction (2024). Bidders who overpaid above the clearing price have unclaimed ETH refunds available via claimAndRefund().',
@@ -1717,7 +1717,7 @@ for (const key of Object.keys(EXCHANGES)) {
     panel.id = 'panel-' + key;
     panel.innerHTML = '<div class="loading" id="loading-' + key + '"><div class="spinner"></div><div>Loading ' + esc(cfg.name) + ' data...</div></div>'
       + '<div id="app-' + key + '" style="display:none">'
-      + '<p class="project-desc"><b>' + esc(cfg.name) + '</b> ' + (cfg.desc || '') + '</p>'
+      + '<p class="project-desc"><b>' + esc(cfg.name) + '</b> ' + esc(cfg.desc || '') + '</p>'
       + '<div class="contract-info" id="contract-' + key + '"></div>'
       + '<div class="cards" id="cards-' + key + '"></div>'
       + '</div>';
@@ -2419,6 +2419,7 @@ async function claimETH(key) {
   const balance = userBalances[key];
 
   if (!balance || balance === 0n) return;
+  if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Wallet disconnected. Please reconnect.'); return; }
   if (btn.disabled) return; // prevent double-submit
   btn.disabled = true;
 
