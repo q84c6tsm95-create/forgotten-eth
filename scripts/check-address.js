@@ -63,11 +63,13 @@ function getCheckableEntries(exchanges) {
   const skipped = [];
 
   for (const [key, cfg] of Object.entries(exchanges)) {
-    if (cfg.noWalletCheck || !cfg.balanceAbi || !cfg.balanceCall || typeof cfg.balanceArgs !== 'function') {
+    if (cfg.noWalletCheck || cfg.directViewCheckUnsupported || !cfg.balanceAbi || !cfg.balanceCall || typeof cfg.balanceArgs !== 'function') {
       skipped.push({
         key,
         name: cfg.name,
-        reason: cfg.noWalletCheck ? 'requires precomputed/offchain discovery' : 'missing direct balance view',
+        reason: cfg.noWalletCheck
+          ? 'requires precomputed/offchain discovery'
+          : cfg.directViewCheckUnsupported || 'missing direct balance view',
       });
       continue;
     }
