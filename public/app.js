@@ -2318,7 +2318,6 @@ async function checkUserBalances(overrideAddress) {
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">killBounty(uint256 _bountyId) per bounty</span></div>
               </div>`;
           if (bountyIds.length > 0) {
-            html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">${bountyIds.length} bounty${bountyIds.length > 1 ? 's' : ''} · ${fmtEth(ethAmount)} ETH total</div>`;
             for (const bid of bountyIds) {
               html += `<div class="claim-row" id="bountyRow-${bid}" style="margin:4px 16px;border-left:2px solid var(--accent);padding:6px 12px;display:flex;align-items:center;justify-content:space-between">
                 <span style="font-size:13px">Bounty #${esc(String(bid))} <span id="bountyEth-${bid}" style="color:var(--text2);font-size:12px">loading...</span></span>
