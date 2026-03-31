@@ -68,6 +68,7 @@ export default async function handler(req, res) {
         ...(typeof val === 'object' && val.d ? { deeds: val.d } : {}),
         ...(typeof val === 'object' && val.a ? { adoption_requests: val.a } : {}),
         ...(typeof val === 'object' && val.b ? { bounty_details: val.b } : {}),
+        ...(typeof val === 'object' && val.ep ? { epoch_details: val.ep } : {}),
       };
     }
   }
