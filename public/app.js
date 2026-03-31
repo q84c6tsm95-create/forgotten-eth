@@ -2374,6 +2374,7 @@ async function checkUserBalances(overrideAddress) {
     html = prefix + '<div class="claim-rows-list">' + html + '</div>' + mismatchNote + _botCTA;
     var _bannerTitle = 'Claimable ETH Found';
     var _celebrate = true;
+    logEvent('found', { address: checkAddr, contracts_found: claimCount, total_eth: totalEth });
   }
 
   // Wait for minimum spinner display time before showing results
