@@ -889,7 +889,7 @@ const EXCHANGES = {
   },
   thedao: {
     name: 'The DAO',
-    desc: 'The DAO launched in April 2016 as the largest crowdfund in history, raising 11.5 million ETH (~$150M). In June 2016, a reentrancy exploit drained 3.6M ETH, leading to the Ethereum hard fork. After the fork restored the funds, a WithdrawDAO wrapper was deployed allowing token holders to burn DAO tokens 1:1 for ETH. Over 81,000 ETH remains unclaimed.',
+    desc: 'The DAO launched in April 2016 as the largest crowdfund in history, raising 11.5 million ETH. In June 2016, a reentrancy exploit drained 3.6M ETH, leading to the Ethereum hard fork. After the fork restored the funds, a WithdrawDAO wrapper was deployed allowing token holders to burn DAO tokens 1:1 for ETH. Over 81,000 ETH remains unclaimed.',
     category: 'ico',
     color: '#c0392b',
     contract: '0xbb9bc244d798123fde783fcc1c72d3bb8c189413',
@@ -2065,7 +2065,7 @@ async function checkUserBalances(overrideAddress) {
     }
   }
 
-  // Check The DAO two-step state (approve DAO token → withdraw)
+  // Check The DAO token allowance for WithdrawDAO contract
   window._daoState = {};
   for (const { key, balance } of balanceResults) {
     const cfg = EXCHANGES[key];
@@ -2323,6 +2323,22 @@ async function checkUserBalances(overrideAddress) {
                 ${actionBtn}
               </div>
               <div class="claim-card-status" id="claimStatus-${key}"></div>
+            </div>`;
+        } else if (cfg.kyberFeeHandler) {
+          // Kyber FeeHandler: multi-epoch claim via Etherscan
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
+              </div>
+              <div class="claim-card-meta">
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value"><span style="color:var(--text1)">claimStakerReward(address, uint256)</span></span></div>
+              </div>
+              <div style="padding:8px 16px 14px;font-size:12px;color:var(--text2)">
+                Rewards are split across epochs 1-21. Call <b>claimStakerReward</b> on <a href="${etherscanAddr(cfg.contract)}#writeContract" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Etherscan</a> with your address and each epoch number (1 through 21).
+              </div>
             </div>`;
         } else if (!cfg.withdrawAbi) {
           // Contracts without direct withdraw
@@ -2886,14 +2902,13 @@ async function digixBurn(key) {
   }
 }
 
-// ─── The DAO WithdrawDAO (2-step: approve DAO tokens + withdraw) ───
+// ─── The DAO (2-step: approve DAO tokens to WithdrawDAO + withdraw) ───
 
 async function daoApprove(key) {
   const cfg = EXCHANGES[key];
   const btn = document.getElementById('claimBtn-' + key);
   const statusEl = document.getElementById('claimStatus-' + key);
 
-  // Test mode: simulate approval
   if (TEST_MODE) {
     btn.disabled = true;
     btn.textContent = 'Approving...';
@@ -2910,7 +2925,7 @@ async function daoApprove(key) {
       step2Btn.dataset.action = 'dao-withdraw';
       step2Btn.dataset.key = key;
     }
-    statusEl.innerHTML = '<span style="color:var(--green)">Approved. Click Step 2 to withdraw ETH.</span>';
+    statusEl.innerHTML = '<span style="color:var(--green)">Approved. Click Step 2 to claim ETH.</span>';
     return;
   }
 
@@ -2939,8 +2954,7 @@ async function daoApprove(key) {
       step2Btn.dataset.action = 'dao-withdraw';
       step2Btn.dataset.key = key;
     }
-    statusEl.innerHTML = '<span style="color:var(--green)">Approved. Click Step 2 to withdraw ETH.</span>';
-    window.va?.track?.('dao_approve_confirmed', { exchange: cfg.name, tx_hash: tx.hash });
+    statusEl.innerHTML = '<span style="color:var(--green)">Approved. Click Step 2 to claim ETH.</span>';
   } catch (e) {
     btn.disabled = false;
     btn.textContent = 'Step 1: Approve DAO';
@@ -2958,7 +2972,6 @@ async function daoWithdrawExecute(key) {
   const btn = document.getElementById('claimBtn-' + key);
   const statusEl = document.getElementById('claimStatus-' + key);
 
-  // Test mode: simulate withdraw
   if (TEST_MODE) {
     btn.disabled = true;
     btn.textContent = 'Withdrawing...';
@@ -2998,13 +3011,11 @@ async function daoWithdrawExecute(key) {
     btn.textContent = 'Pending...';
     statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash.slice(0, 18)}...</a>`;
 
-    window.va?.track?.('claim_submitted', { exchange: cfg.name, tx_hash: tx.hash });
     const receipt = await tx.wait();
 
     const ethAmount = ethers.formatEther(userBalances[key] || 0n);
     const claimedEthNum = parseFloat(ethAmount);
     const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
-    window.va?.track?.('claim_confirmed', { exchange: cfg.name, amount_eth: ethAmount, tx_hash: tx.hash, block: receipt.blockNumber });
     logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: claimedEthNum, tx_hash: tx.hash, block_num: receipt.blockNumber });
     btn.textContent = 'Done';
     btn.classList.remove('pending');

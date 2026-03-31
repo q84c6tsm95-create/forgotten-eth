@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETH Lost Forever — Forgotten ETH</title>
+<meta name="description" content="Some ETH is permanently stuck in smart contracts with no way out. These are the most notable cases.">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared.css">
+<script src="/theme-init.js"></script>
+<style>
+  .container { max-width: 720px; }
+  p { margin-bottom: 16px; font-size: 15px; }
+  .case { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; position: relative; }
+  .case:hover { box-shadow: 2px 2px 0 var(--accent-glow); }
+  .case-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; flex-wrap: wrap; gap: 8px; }
+  .case-name { font-family: var(--font-display); font-size: 22px; font-weight: 700; }
+  .case-eth { font-family: var(--font-mono); font-size: 18px; font-weight: 700; color: var(--red); }
+  .case-year { font-size: 12px; color: var(--text2); margin-bottom: 12px; font-family: var(--font-mono); }
+  .case p { margin-bottom: 8px; font-size: 14px; }
+  .cause { font-size: 13px; color: var(--text2); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+  .cause strong { color: var(--text); }
+  .total-banner { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; text-align: center; margin-bottom: 32px; }
+  .total-banner .amount { font-family: var(--font-mono); font-size: 36px; font-weight: 700; color: var(--red); }
+  .total-banner .label { font-size: 13px; color: var(--text2); margin-top: 4px; }
+  .contrast { background: var(--bg2); border-left: 3px solid var(--green); padding: 16px 20px; margin: 32px 0; border-radius: 0 var(--radius) var(--radius) 0; }
+  .contrast strong { color: var(--green); }
+  code { font-family: var(--font-mono); font-size: 12px; background: var(--bg3); padding: 1px 4px; border-radius: var(--radius-sm); }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="subpage-header fade-in fade-in-1">
+    <h1><a href="/">Forgotten &#926;TH</a></h1>
+    <nav class="subpage-nav">
+      <a href="/stats">Stats</a>
+      <a href="/api-docs">API</a>
+      <a href="/lost-forever" class="current">Lost Forever</a>
+      <a href="/submit">Submit</a>
+      <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+      <a href="https://t.me/forgottenETH_bot" target="_blank" rel="noopener noreferrer" title="Telegram Bot" aria-label="Telegram"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+      <button id="themeToggle"></button>
+    </nav>
+  </div>
+  <div class="tile-divider"></div>
+
+  <p class="subtitle fade-in fade-in-2">Not all stuck ETH can be recovered. These contracts have no way out.</p>
+
+  <div class="total-banner fade-in fade-in-2">
+    <div class="amount">513,774+ ETH</div>
+    <div class="label">permanently inaccessible across these contracts</div>
+  </div>
+
+  <div class="fade-in fade-in-3">
+  <div class="case">
+    <div class="case-header">
+      <span class="case-name">Parity Multisig</span>
+      <span class="case-eth">~513,000 ETH</span>
+    </div>
+    <div class="case-year">November 2017</div>
+    <p>A developer accidentally destroyed the Parity wallet library contract by calling <code>kill()</code> on it. This bricked 587 multisig wallets that depended on the library for all their logic, including withdrawals.</p>
+    <p>The affected wallets hold around 513,000 ETH. Multiple EIPs were proposed to recover the funds, but none gained enough community support. The ETH remains frozen.</p>
+    <div class="cause"><strong>Root cause:</strong> Delegatecall to a shared library. When the library self-destructed, every wallet that delegated to it became permanently non-functional.</div>
+  </div>
+
+  <div class="case">
+    <div class="case-header">
+      <span class="case-name">AkuDreams NFT</span>
+      <span class="case-eth">11,539 ETH</span>
+    </div>
+    <div class="case-year">April 2022</div>
+    <p>Two bugs in the Dutch auction contract for AkuDreams NFTs locked all proceeds permanently. A griefing attack exploited a refund loop, and a separate bug meant the contract owner could never withdraw either.</p>
+    <p>The 11,539 ETH sits in the contract with no function that can move it.</p>
+    <div class="cause"><strong>Root cause:</strong> Missing withdrawal function combined with a DoS vulnerability in the refund mechanism. The contract has no owner withdraw, no selfdestruct, and no fallback.</div>
+  </div>
+
+  <div class="case">
+    <div class="case-header">
+      <span class="case-name">The DAO</span>
+      <span class="case-eth">~0 ETH (recovered via hard fork)</span>
+    </div>
+    <div class="case-year">June 2016</div>
+    <p>The DAO raised 12.7M ETH in the largest crowdfund at the time. An attacker exploited a reentrancy bug to drain 3.6M ETH. The Ethereum community voted to hard fork the chain to reverse the hack.</p>
+    <p>The fork recovered the stolen funds, but it split Ethereum in two: ETH (the forked chain) and ETC (Ethereum Classic, the original chain where the hack stands).</p>
+    <div class="cause"><strong>Root cause:</strong> Reentrancy vulnerability. The withdrawal function sent ETH before updating the internal balance, letting the attacker call back in repeatedly.</div>
+  </div>
+
+  <div class="case">
+    <div class="case-header">
+      <span class="case-name">GovernMental</span>
+      <span class="case-eth">~0 ETH (drained)</span>
+    </div>
+    <div class="case-year">2016</div>
+    <p>A Ponzi scheme contract that collected 1,100 ETH. When the payout was triggered, the transaction ran out of gas because the recipient array was too large. A miner eventually extracted the ETH using a specially crafted transaction with extra gas.</p>
+    <div class="cause"><strong>Root cause:</strong> Unbounded array iteration. The contract tried to loop through all participants in a single transaction, exceeding the block gas limit.</div>
+  </div>
+
+  <div class="case">
+    <div class="case-header">
+      <span class="case-name">HonestDice</span>
+      <span class="case-eth">206 ETH</span>
+    </div>
+    <div class="case-year">2016</div>
+    <p>A gambling contract with 206 ETH stuck in it. The owner key still works, but the withdraw function references a variable that was shadowed by a local declaration. The owner can call it, but it always sends 0 ETH.</p>
+    <div class="cause"><strong>Root cause:</strong> Variable shadowing bug in Solidity. The withdraw function declared a local variable with the same name as the state variable, so it read 0 instead of the actual balance.</div>
+  </div>
+
+  <div class="case">
+    <div class="case-header">
+      <span class="case-name">MoonCatRescue Genesis</span>
+      <span class="case-eth">100.8 ETH</span>
+    </div>
+    <div class="case-year">2017</div>
+    <p>The original MoonCatRescue contract has a bug where adopted cats were sent to <code>address(0)</code> instead of the buyer. The 100.8 ETH in adoption fees is stuck because the owner withdrawal function also has a bug that prevents it from working.</p>
+    <div class="cause"><strong>Root cause:</strong> Two bugs. The adoption function used <code>msg.sender</code> in a context where it resolved to the zero address. The withdrawal function has a similar logic error.</div>
+  </div>
+  </div>
+
+  <div class="contrast fade-in fade-in-4">
+    <strong>The difference:</strong> Forgotten ETH tracks contracts where withdrawals still work. The ETH above is permanently stuck. If you have funds in a defunct contract, <a href="/">check if yours is recoverable</a>.
+  </div>
+
+  <div class="fade-in fade-in-5">
+  <h2>Why does this happen?</h2>
+  <p>Smart contracts on Ethereum are immutable. Once deployed, the code cannot be changed. If there's a bug in the withdrawal logic, or if a critical dependency is destroyed, the ETH stays locked forever. There is no admin, no support team, and no undo button.</p>
+  <p>This is by design. Immutability is what makes smart contracts trustworthy, but it also means mistakes are permanent. Modern contracts use upgradeable proxies and extensive auditing to mitigate this, but early Ethereum was more experimental.</p>
+  </div>
+
+  <footer class="site-footer">
+    <a href="/">forgotteneth.com</a>
+    <span class="footer-sep">&middot;</span>
+    <a href="/api/rss">RSS</a>
+    <span class="footer-sep">&middot;</span>
+    <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank">GitHub</a>
+    <span class="footer-sep">&middot;</span>
+    <a href="https://t.me/forgotteneth_bot" target="_blank">Telegram</a>
+  </footer>
+</div>
+<script src="/theme.js"></script>
+</body>
+</html>

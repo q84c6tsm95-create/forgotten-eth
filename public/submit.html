@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Submit a Protocol — Forgotten ETH</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared.css">
+<script src="/theme-init.js"></script>
+<style>
+  .container { max-width: 600px; }
+  label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; margin-top: 16px; }
+  .label-hint { font-weight: 400; color: var(--text2); font-size: 12px; }
+  input, textarea, select { width: 100%; font-family: var(--font-body); font-size: 14px; padding: 10px 12px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); outline: none; transition: border-color 0.15s; }
+  input:focus, textarea:focus, select:focus { border-color: var(--accent); }
+  textarea { min-height: 100px; resize: vertical; }
+  .submit-btn { margin-top: 24px; padding: 12px 24px; background: var(--accent); color: var(--bg); font-family: var(--font-body); font-size: 14px; font-weight: 600; border: none; border-radius: var(--radius); width: 100%; transition: opacity 0.15s; }
+  .submit-btn:hover { opacity: 0.9; }
+  .submit-btn:disabled { opacity: 0.5; }
+  .result { margin-top: 16px; padding: 16px; border-radius: var(--radius); font-size: 14px; display: none; }
+  .result.success { display: block; background: var(--bg2); border: 1px solid var(--green); color: var(--green); }
+  .result.error { display: block; background: var(--bg2); border: 1px solid var(--gold); color: var(--gold); }
+  .criteria { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 24px; font-size: 13px; }
+  .criteria ul { padding-left: 18px; }
+  .criteria li { margin-bottom: 4px; }
+  .criteria strong { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text2); }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="subpage-header fade-in fade-in-1">
+    <h1><a href="/">Forgotten &#926;TH</a></h1>
+    <nav class="subpage-nav">
+      <a href="/stats">Stats</a>
+      <a href="/api-docs">API</a>
+      <a href="/lost-forever">Lost Forever</a>
+      <a href="/submit" class="current">Submit</a>
+      <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+      <a href="https://t.me/forgottenETH_bot" target="_blank" rel="noopener noreferrer" title="Telegram Bot" aria-label="Telegram"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+      <button id="themeToggle"></button>
+    </nav>
+  </div>
+  <div class="tile-divider"></div>
+
+  <p class="subtitle fade-in fade-in-2">Know a defunct contract with stuck ETH? I'll investigate it.</p>
+
+  <div class="criteria fade-in fade-in-2">
+    <strong>What I'm looking for</strong>
+    <ul>
+      <li>Ethereum mainnet smart contracts from 2015-2019</li>
+      <li>Contract must still hold ETH</li>
+      <li>There must be a way for depositors to withdraw</li>
+      <li>The project should be defunct or abandoned</li>
+    </ul>
+  </div>
+
+  <form id="submitForm" class="fade-in fade-in-3">
+    <label>Contract address <span class="label-hint">(required)</span></label>
+    <input type="text" id="contractAddr" placeholder="0x..." required pattern="^0x[0-9a-fA-F]{40}$" maxlength="42">
+
+    <label>Protocol name <span class="label-hint">(if you know it)</span></label>
+    <input type="text" id="protocolName" placeholder="e.g. EtherDelta, Bancor..." maxlength="100">
+
+    <label>Category</label>
+    <select id="category">
+      <option value="">Not sure</option>
+      <option value="DEX">DEX</option>
+      <option value="Lending">Lending</option>
+      <option value="Gaming">Gaming / Gambling</option>
+      <option value="NFT">NFT</option>
+      <option value="ICO">ICO / Token Sale</option>
+      <option value="DAO">DAO</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <label>Any details <span class="label-hint">(optional)</span></label>
+    <textarea id="details" placeholder="How do you know about this contract? Any links to docs, Etherscan, or articles?" maxlength="2000"></textarea>
+
+    <label>Your address <span class="label-hint">(optional, for follow-up)</span></label>
+    <input type="text" id="submitterAddr" placeholder="0x... (so I can notify you if added)" maxlength="42">
+
+    <button type="submit" class="submit-btn" id="submitBtn">Submit for Review</button>
+  </form>
+
+  <div id="result" class="result"></div>
+
+  <footer class="site-footer">
+    <a href="/">forgotteneth.com</a>
+    <span class="footer-sep">&middot;</span>
+    <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank">GitHub</a>
+    <span class="footer-sep">&middot;</span>
+    <a href="https://t.me/forgotteneth_bot" target="_blank">Telegram</a>
+  </footer>
+</div>
+<script>
+document.getElementById('submitForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  var btn = document.getElementById('submitBtn');
+  var result = document.getElementById('result');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+  result.className = 'result';
+  result.style.display = 'none';
+
+  var data = {
+    contract: document.getElementById('contractAddr').value.trim(),
+    name: document.getElementById('protocolName').value.trim(),
+    category: document.getElementById('category').value,
+    details: document.getElementById('details').value.trim(),
+    submitter: document.getElementById('submitterAddr').value.trim(),
+  };
+
+  if (!/^0x[0-9a-fA-F]{40}$/.test(data.contract)) {
+    result.className = 'result error';
+    result.textContent = 'Please enter a valid Ethereum address.';
+    result.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Submit for Review';
+    return;
+  }
+
+  try {
+    var resp = await fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    var json = await resp.json();
+    if (resp.ok) {
+      result.className = 'result success';
+      result.textContent = 'Submitted. I\'ll review this contract and add it if it qualifies.';
+      document.getElementById('submitForm').reset();
+    } else {
+      result.className = 'result error';
+      result.textContent = json.error || 'Something went wrong. Try again later.';
+    }
+  } catch (err) {
+    result.className = 'result error';
+    result.textContent = 'Network error. Try again later.';
+  }
+
+  result.style.display = 'block';
+  btn.disabled = false;
+  btn.textContent = 'Submit for Review';
+});
+</script>
+<script src="/theme.js"></script>
+</body>
+</html>
