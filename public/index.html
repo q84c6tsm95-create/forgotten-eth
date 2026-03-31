@@ -117,9 +117,9 @@
   [data-theme="dark"] .hero-amount { letter-spacing: -1px; }
   [data-theme="dark"] .claim-card:hover { box-shadow: 2px 2px 0 rgba(126, 200, 190, 0.3); }
   [data-theme="dark"] .header .subtitle { opacity: 0.65; }
-  [data-theme="dark"] .claim-card { background: rgba(22, 21, 32, 0.95); backdrop-filter: blur(4px); }
-  [data-theme="dark"] .claim-banner { background: rgba(18, 17, 26, 0.95); backdrop-filter: blur(4px); }
-  [data-theme="dark"] .connect-section { background: rgba(18, 17, 26, 0.9); backdrop-filter: blur(4px); }
+  [data-theme="dark"] .claim-card { background: rgba(22, 21, 32, 0.95); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+  [data-theme="dark"] .claim-banner { background: rgba(18, 17, 26, 0.95); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+  [data-theme="dark"] .connect-section { background: rgba(18, 17, 26, 0.9); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
 
   /* ── Custom pixel cursor (Yume Nikki style) ── */
   * { cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAUElEQVR4nGNgoAYQEZH7T7EBFBkC0lx3Yh/5hsAMINsQZAPIMgTdAJINwWYASYbgMoBoQ/C5gGwDyAoDsqMT2alkGYKukOKEhWwIxXmEkAEAaCednTE3BIIAAAAASUVORK5CYII=") 1 1, auto; }
@@ -359,7 +359,7 @@
   .claim-banner {
     display: none;
     background: linear-gradient(135deg, rgba(240, 253, 250, 0.85) 0%, rgba(230, 247, 245, 0.85) 50%, rgba(240, 253, 250, 0.85) 100%);
-    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
     border: 1px solid rgba(153, 246, 228, 0.6);
     border-radius: 12px;
     padding: 28px 24px;
@@ -744,7 +744,7 @@
   /* ── Modal overlay & wallet picker ── */
   .modal-overlay {
     position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 10000;
-    display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
   }
   .modal-box {
     background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
@@ -894,7 +894,7 @@
   .footer-links a { color: var(--text2); text-decoration: none; transition: color 0.15s; }
   .footer-links a:hover { color: var(--accent); }
   .footer-sep { color: var(--border-strong); margin: 0 16px; user-select: none; }
-  .footer-credit { font-size: 13px; color: var(--text2); opacity: 0.5; }
+  .footer-credit { font-size: 13px; color: var(--text2); opacity: 0.7; }
   .footer-sep { color: var(--border-strong); margin: 0 12px; }
 
   @media (max-width: 768px) {
@@ -971,7 +971,7 @@
   </div>
 
   <div class="hero fade-in fade-in-2">
-    <p class="hero-tagline"><span style="font-weight:600">Thousands of ETH sit forgotten in defunct contracts from the 2015&ndash;2019 era.</span><br><span style="color:var(--text2)"><a href="https://debank.com" target="_blank" rel="noopener noreferrer">DeBank</a>, <a href="https://zerion.io" target="_blank" rel="noopener noreferrer">Zerion</a>, and <a href="https://zapper.xyz" target="_blank" rel="noopener noreferrer">Zapper</a> don't detect them.</span></p>
+    <p class="hero-tagline"><span style="font-weight:600">Thousands of ETH sit forgotten in defunct contracts from the 2015&ndash;2019 era.</span><br><span style="color:var(--text2)"><a href="https://debank.com" target="_blank" rel="noopener noreferrer">DeBank</a>, <a href="https://zapper.xyz" target="_blank" rel="noopener noreferrer">Zapper</a>, and other portfolio trackers don't detect them.</span></p>
     <div class="hero-stat fade-in fade-in-3">
       <div class="hero-amount" id="totalAllEth"><span class="hero-eth-value">&mdash;</span> <span class="hero-eth-label">ETH</span><span class="hero-cursor"></span></div>
       <div class="hero-label">unclaimed across <span id="totalContracts">&mdash;</span> contracts and <span id="totalAddresses">&mdash;</span> addresses</div>
@@ -1026,23 +1026,23 @@
     <div class="faq-list">
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">How does it work? <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">Paste any address or connect your wallet. We check <span class="contract-count">116</span> defunct contracts for unclaimed balances. If found, click Withdraw. The transaction goes directly from the original contract to your wallet.</div>
+      <div class="faq-a">Paste an address or connect your wallet. The site scans <span class="contract-count">116</span> old contracts for any ETH that's still sitting there. If something comes up, you can withdraw it right here. The ETH goes straight from the contract to you.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">Is this safe? <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">Yes. Fully <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a>. No proxy contracts, no intermediaries. Most withdrawals are simple ETH transfers with no approvals needed. A few contracts (e.g. wrapped ETH variants, dividend tokens) require a token burn or two-step process. The UI explains each case. Every withdrawal can be done manually on <a href="https://etherscan.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Etherscan</a>. This site just makes it easier.</div>
+      <div class="faq-a">Everything is <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a>. There's no middle contract, no approvals to worry about for most cases. A few protocols need a two-step process (the UI walks you through it). You can always do the same thing manually on <a href="https://etherscan.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Etherscan</a> if you prefer.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">Why can't my portfolio tracker see these? <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a"><a href="https://debank.com" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">DeBank</a>, <a href="https://zerion.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Zerion</a>, and <a href="https://zapper.xyz" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Zapper</a> only index active protocols. These contracts are defunct or too obscure to be tracked. Your ETH is still onchain, it just doesn't show up in standard wallet interfaces.</div>
+      <div class="faq-a">Most portfolio trackers started indexing around 2020. These contracts are older, from the 2015-2019 era, and the projects behind them are long gone. The ETH is still onchain though. It just doesn't show up in any wallet interface.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">What contracts are tracked? <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a"><span class="contract-count">116</span> contracts across defunct DEXes (EtherDelta, IDEX v1, Token.Store), dividend tokens (PoWH3D, Fomo3D), NFT auctions (MoonCatRescue, DADA), bounty platforms, ICO escrows, ENS old registrar deeds, DAO treasury refunds (DigixDAO), and wrapped ETH variants.</div>
+      <div class="faq-a">Old DEXes like EtherDelta and IDEX v1, Ponzi-era tokens like PoWH3D and Fomo3D, early NFT contracts like MoonCatRescue, ICO escrows, ENS deed deposits, DAO refunds like DigixDAO. <span class="contract-count">116</span> contracts total and counting.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">Don't trust, verify <span class="faq-arrow">&#x25BC;</span></div>
-      <div class="faq-a">You don't need this site to claim. Every withdrawal can be done directly on <a href="https://etherscan.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Etherscan</a>: go to the contract, click "Write Contract", connect your wallet, call the withdraw function. Each contract's address and function is shown in the claim details. Our code is <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a> for anyone to audit. Know a contract we're missing? <a href="https://github.com/q84c6tsm95-create/forgotten-eth/issues" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Open an issue</a>.</div>
+      <div class="faq-a">You don't need this site. Every contract address and function call is shown in the claim details. You can do the same thing on <a href="https://etherscan.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Etherscan</a> directly. Code is <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a>. Missing a contract? <a href="https://github.com/q84c6tsm95-create/forgotten-eth/issues" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Let me know</a>.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">I know a protocol or contract that could be added. How do I submit it? <span class="faq-arrow">&#x25BC;</span></div>
@@ -1054,11 +1054,8 @@
 </div>
 
 <footer class="site-footer" id="siteFooter">
-  <div style="display:inline-flex;align-items:center;gap:10px;padding:10px 20px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);font-size:12px;color:var(--text2);margin-bottom:16px">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)" style="flex-shrink:0"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-    <span>Get alerts for new contracts — <a href="https://t.me/forgotteneth_bot" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:600;text-decoration:none">@forgotteneth_bot</a></span>
-  </div>
   <p class="footer-credit">made with <span style="color:#e11d48;font-size:16px;vertical-align:middle">&#10084;</span> by <a href="https://t.me/syLKf" target="_blank" rel="noopener noreferrer" style="color:var(--text);text-decoration:none;font-weight:700">aaaaaaaaaaway</a></p>
+  <p class="footer-credit" style="margin-top:4px;font-size:11px"><a href="https://etherscan.io/address/0x95a708aAAB1D336bB60EF2F40212672F4cf65736" target="_blank" rel="noopener noreferrer" style="color:var(--text2);text-decoration:none;font-family:var(--font-mono)">0x95a708aAAB1D336bB60EF2F40212672F4cf65736</a> <span id="copyDonation" style="cursor:pointer;margin-left:4px;vertical-align:middle" title="Copy address"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text2)" stroke-width="2" style="opacity:0.6"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></span></p>
 </footer>
 
 <script type="application/ld+json">

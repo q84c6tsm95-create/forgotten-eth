@@ -53,6 +53,7 @@ function showInlineError(elementId, message, duration) {
 function spinnerHTML(msg) {
   return '<div style="text-align:center;padding:20px;color:var(--text2)"><div class="spinner" style="display:inline-block;margin-bottom:8px"></div><div' + (msg && msg.indexOf('Checking') >= 0 ? ' id="scanProgress"' : '') + '>' + msg + '</div></div>';
 }
+var _botCTA = '<div style="text-align:center;margin-top:20px;padding:14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);font-size:13px;color:var(--text2);display:inline-flex;align-items:center;gap:10px;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)" style="flex-shrink:0"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg><span>Subscribe via <a href="https://t.me/forgotteneth_bot" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:600;text-decoration:none">@forgotteneth_bot</a> to monitor your address for new contract additions.</span></div>';
 // Minimum spinner display time so Madotsuki is visible
 var _scanStartTime = 0;
 function scanStart() { _scanStartTime = Date.now(); }
@@ -239,10 +240,13 @@ function logEvent(type, data) {
 
 // Report uncaught JS errors (invisible without this)
 window.onerror = function(msg, src, line, col) {
-  logEvent('frontend_error', { error: String(msg).slice(0, 200), source: (src || '').split('/').pop(), line: line, col: col });
+  if (src && (src.includes('vercel') || src.includes('insights'))) return;
+  logEvent('frontend_error', { extra: { error: String(msg).slice(0, 200), source: (src || '').split('/').pop(), line: line, col: col } });
 };
 window.onunhandledrejection = function(e) {
-  logEvent('frontend_error', { error: String(e.reason?.message || e.reason || '').slice(0, 200), type: 'promise' });
+  var msg = String(e.reason?.message || e.reason || '');
+  if (msg.includes('StorageArea') || msg.includes('vercel')) return;
+  logEvent('frontend_error', { extra: { error: msg.slice(0, 200), type: 'promise' } });
 };
 
 async function fetchCheck(address) {
@@ -252,12 +256,13 @@ async function fetchCheck(address) {
 // ─── Test/Simulation Mode ───
 // Activate ONLY via localStorage developer flag on localhost (never via URL params).
 // This prevents phishing via preview deploy links with ?test=1.
-const TEST_MODE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && localStorage.getItem('FORGOTTEN_ETH_DEV') === '1';
+var TEST_MODE = false;
+try { TEST_MODE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && localStorage.getItem('FORGOTTEN_ETH_DEV') === '1'; } catch(e) {}
 const TEST_ADDRESS = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045';
-const TEST_BALANCES = {
+const TEST_BALANCES = typeof ethers !== 'undefined' ? {
   idex:       { wei: ethers.parseEther('0.5'),  eth: '0.5' },
   digixdao:   { wei: ethers.parseEther('12.5'), eth: '12.5' },
-};
+} : {};
 if (TEST_MODE) console.log('%c[TEST MODE] Simulation active — no real transactions will occur', 'color:#d946ef;font-weight:bold;font-size:14px');
 
 // ETH price from CoinGecko (cached 5 min)
@@ -381,13 +386,13 @@ function addToWatchlist(addr) {
   const lower = addr.toLowerCase();
   if (!list.find(a => a.toLowerCase() === lower)) {
     list.push(addr);
-    localStorage.setItem(WATCHLIST_KEY, JSON.stringify(list));
+    try { localStorage.setItem(WATCHLIST_KEY, JSON.stringify(list)); } catch(e) {}
   }
   renderWatchlistBar();
 }
 function removeFromWatchlist(addr) {
   const list = getWatchlist().filter(a => a.toLowerCase() !== addr.toLowerCase());
-  localStorage.setItem(WATCHLIST_KEY, JSON.stringify(list));
+  try { localStorage.setItem(WATCHLIST_KEY, JSON.stringify(list)); } catch(e) {}
   renderWatchlistBar();
 }
 function renderWatchlistBar() {
@@ -1801,6 +1806,8 @@ async function connectWallet() {
 
     const banner = document.getElementById('claimBanner');
     const rowsEl = document.getElementById('claimRows');
+    document.getElementById('claimBannerTitle').textContent = '';
+    banner.classList.remove('celebrate');
     rowsEl.innerHTML = spinnerHTML('Checking contracts... 0/' + Object.keys(EXCHANGES).length);
     banner.classList.add('visible');
     scanStart();
@@ -1865,6 +1872,8 @@ async function connectWallet() {
       if (connectBtn) connectBtn.closest('div').remove();
       // Re-check with wallet connected to get full withdraw UI
       const banner = document.getElementById('claimBanner');
+      document.getElementById('claimBannerTitle').textContent = '';
+      banner.classList.remove('celebrate');
       rowsEl.innerHTML = spinnerHTML('Checking contracts... 0/' + Object.keys(EXCHANGES).length);
       banner.classList.add('visible');
       scanStart();
@@ -1873,6 +1882,8 @@ async function connectWallet() {
       // Show loading state while checking balances
       const banner = document.getElementById('claimBanner');
       const rowsEl = document.getElementById('claimRows');
+      document.getElementById('claimBannerTitle').textContent = '';
+      banner.classList.remove('celebrate');
       rowsEl.innerHTML = spinnerHTML('Checking contracts... 0/' + Object.keys(EXCHANGES).length);
       banner.classList.add('visible');
       scanStart();
@@ -2342,8 +2353,8 @@ async function checkUserBalances(overrideAddress) {
       <div class="no-balance-title">No unclaimed ETH found</div>
       <div class="no-balance-addr">${esc(checkAddr)}</div>
       <p style="font-size:12px">Checked ${Object.keys(EXCHANGES).length} contracts. Try other wallets from 2015-2019.</p>
-    </div>`;
-    document.getElementById('claimBannerTitle').textContent = 'Scan Complete';
+    </div>` + _botCTA;
+    var _bannerTitle = 'Scan Complete';
   } else {
     let totalEth = 0;
     for (const b of Object.values(userBalances)) { if (b > 0n) totalEth += parseFloat(ethers.formatEther(b)); }
@@ -2358,13 +2369,15 @@ async function checkUserBalances(overrideAddress) {
       ? `<div style="text-align:center;margin-top:12px;padding:10px;background:var(--bg2);border:1px solid var(--yellow);border-radius:8px;font-size:12px;color:var(--text2)">
           Showing balances for <b>${esc(truncAddr(overrideAddress))}</b>. To withdraw, connect the wallet that owns this address.
         </div>` : '';
-    html = prefix + '<div class="claim-rows-list">' + html + '</div>' + mismatchNote;
-    document.getElementById('claimBannerTitle').textContent = 'Claimable ETH Found';
-    banner.classList.add('celebrate');
+    html = prefix + '<div class="claim-rows-list">' + html + '</div>' + mismatchNote + _botCTA;
+    var _bannerTitle = 'Claimable ETH Found';
+    var _celebrate = true;
   }
 
   // Wait for minimum spinner display time before showing results
   await scanMinDelay();
+  document.getElementById('claimBannerTitle').textContent = _bannerTitle;
+  if (_celebrate) banner.classList.add('celebrate');
   rowsEl.innerHTML = html;
   banner.classList.add('visible');
 
@@ -3242,6 +3255,7 @@ function renderCards(key) {
 
 const chartInstances = {};
 function renderCharts(key) {
+  if (typeof Chart === 'undefined') return; // Chart.js not loaded (ad blocker?)
   const d = tabState[key].meta;
   if (!d) return;
   // Destroy previous chart instances to prevent memory leaks
@@ -3544,6 +3558,8 @@ async function checkManualAddress() {
 
   const resolvedAddrs = [addr];
 
+  document.getElementById('claimBannerTitle').textContent = '';
+  banner.classList.remove('celebrate');
   rowsEl.innerHTML = spinnerHTML('Checking contracts... 0/' + Object.keys(EXCHANGES).length);
   scanStart();
 
@@ -3559,8 +3575,9 @@ async function checkManualAddress() {
   let finalHtml;
   if (grandFound === 0) {
     const addrDisplay = resolvedAddrs.length === 1 ? esc(resolvedAddrs[0]) : resolvedAddrs.length + ' addresses';
-    finalHtml = '<div class="no-balance-state"><div class="no-balance-check">&#10003;</div><div class="no-balance-title">No unclaimed ETH found</div><div class="no-balance-addr">' + addrDisplay + '</div><p>Checked ' + Object.keys(EXCHANGES).length + ' contracts.</p><div class="no-balance-hint">Try other wallets from 2015-2019.</div></div>';
-    document.getElementById('claimBannerTitle').textContent = 'Scan Complete';
+    finalHtml = '<div class="no-balance-state"><div class="no-balance-check">&#10003;</div><div class="no-balance-title">No unclaimed ETH found</div><div class="no-balance-addr">' + addrDisplay + '</div><p>Checked ' + Object.keys(EXCHANGES).length + ' contracts.</p><div class="no-balance-hint">Try other wallets from 2015-2019.</div></div>' + _botCTA;
+    var _manualTitle = 'Scan Complete';
+    var _manualCelebrate = false;
   } else {
     const usdStr = ethPrice ? fmtUsd(grandTotalEth * ethPrice) : '';
     finalHtml = '<div class="claim-hero"><div class="claim-hero-amount">' + fmtEth(grandTotalEth) + ' ETH</div>' +
@@ -3569,9 +3586,9 @@ async function checkManualAddress() {
       '<div class="claim-rows-list">' + allHtml + '</div>' +
       '<div style="text-align:center;margin-top:16px">' +
         '<button class="wallet-btn" data-action="connect-for-manual" style="padding:8px 18px;font-size:14px">Connect Wallet to Claim</button>' +
-      '</div>';
-    document.getElementById('claimBannerTitle').textContent = 'Claimable ETH Found';
-    banner.classList.add('celebrate');
+      '</div>' + _botCTA;
+    var _manualTitle = 'Claimable ETH Found';
+    var _manualCelebrate = true;
     logEvent('found', { address: resolvedAddrs[0], contracts_found: grandFound, total_eth: grandTotalEth });
     pendingManualAddress = resolvedAddrs[0];
   }
@@ -3579,6 +3596,8 @@ async function checkManualAddress() {
   // Wait for minimum spinner display time before showing results
   await scanMinDelay();
 
+  document.getElementById('claimBannerTitle').textContent = _manualTitle;
+  if (_manualCelebrate) banner.classList.add('celebrate');
   rowsEl.innerHTML = finalHtml;
 }
 
@@ -4123,18 +4142,43 @@ recheckWatchlist();
 })();
 
 // Copy donation address with checkmark animation
-document.getElementById('copyDonationBtn')?.addEventListener('click', function() {
-  const addr = document.getElementById('footerDonationAddr')?.textContent;
-  if (!addr) return;
-  navigator.clipboard.writeText(addr).then(() => {
-    const btn = this;
-    btn.textContent = '✓ Copied!';
-    btn.style.color = '#22c55e';
-    btn.style.borderColor = '#22c55e';
-    setTimeout(() => { btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>'; btn.style.color = ''; btn.style.borderColor = ''; }, 2000);
-  });
-});
-document.getElementById('footerDonationAddr')?.addEventListener('click', function() {
-  document.getElementById('copyDonationBtn')?.click();
-});
+(function() {
+  var copyBtn = document.getElementById('copyDonation');
+  if (!copyBtn) return;
+  var addr = '0x95a708aAAB1D336bB60EF2F40212672F4cf65736';
+  var svgHTML = copyBtn.innerHTML; // save original SVG
+  function doCopy() {
+    var ta = document.createElement('textarea');
+    ta.value = addr;
+    ta.style.cssText = 'position:fixed;left:-9999px;opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    // Show "copied!" feedback
+    copyBtn.textContent = 'copied!';
+    copyBtn.style.color = 'var(--green)';
+    copyBtn.style.opacity = '1';
+    copyBtn.style.fontSize = '11px';
+    setTimeout(function() {
+      copyBtn.textContent = '';
+      copyBtn.style.color = '';
+      copyBtn.style.opacity = '';
+      copyBtn.style.fontSize = '';
+      // Recreate SVG via DOM (no innerHTML needed)
+      var s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      s.setAttribute('width', '14'); s.setAttribute('height', '14');
+      s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('fill', 'none');
+      s.setAttribute('stroke', 'var(--text2)'); s.setAttribute('stroke-width', '2');
+      s.style.opacity = '0.6';
+      var r = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      r.setAttribute('x','9'); r.setAttribute('y','9'); r.setAttribute('width','13'); r.setAttribute('height','13'); r.setAttribute('rx','2');
+      var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      p.setAttribute('d', 'M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1');
+      s.appendChild(r); s.appendChild(p);
+      copyBtn.appendChild(s);
+    }, 1500);
+  }
+  copyBtn.addEventListener('click', function(e) { e.preventDefault(); doCopy(); });
+})();
 
