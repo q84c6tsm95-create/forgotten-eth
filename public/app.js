@@ -310,8 +310,10 @@ async function sendDonation(amountWei) {
   }
 
   try {
+    if (!await checkNetwork()) { if (errorEl) errorEl.textContent = 'Please switch to Ethereum Mainnet.'; if (sendBtn) { sendBtn.disabled = false; sendBtn.textContent = sendBtn.dataset.label || 'Donate'; sendBtn.classList.remove('pending'); } return; }
     var tx = await walletSigner.sendTransaction({ to: DONATION_ADDRESS, value: amountWei });
     window.va?.track?.('donation_sent', { amount_eth: ethers.formatEther(amountWei), tx_hash: tx.hash });
+    logEvent('claim_confirmed', { address: walletAddress, contract: 'donation', amount_eth: parseFloat(ethers.formatEther(amountWei)), tx_hash: tx.hash });
     if (card) card.innerHTML = '<div class="donation-success"><div class="donation-success-msg">Thank you for your donation.</div><div class="donation-success-tx"><a href="' + etherscanTx(tx.hash) + '" target="_blank" rel="noopener noreferrer">View donation on Etherscan</a></div></div>';
   } catch (e) {
     // Reset button on any error
