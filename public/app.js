@@ -546,6 +546,23 @@ async function lookupENSDeeds(ownerAddress, walletProv) {
 }
 
 const EXCHANGES = {
+  thedao: {
+    name: 'The DAO',
+    desc: 'The DAO launched in April 2016 as the largest crowdfund in history, raising 11.5 million ETH. In June 2016, a reentrancy exploit drained 3.6M ETH, leading to the Ethereum hard fork. After the fork restored the funds, a WithdrawDAO wrapper was deployed allowing token holders to burn DAO tokens 1:1 for ETH. Over 81,000 ETH remains unclaimed.',
+    category: 'ico',
+    color: '#c0392b',
+    contract: '0xbb9bc244d798123fde783fcc1c72d3bb8c189413',
+    deployed: 'April 2016',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: null,
+    withdrawCall: null,
+    daoWithdraw: {
+      daoToken: '0xbb9bc244d798123fde783fcc1c72d3bb8c189413',
+      withdrawContract: '0xbf4ed7b27f1d666546e30d74d50d173d20bca754',
+    },
+  },
   idex: {
 
     name: 'IDEX v1',
@@ -885,23 +902,6 @@ const EXCHANGES = {
       dgdToken: '0xe0b7927c4af23765cb51314a0e0521a9645f0e2a',
       acidContract: '0x23Ea10CC1e6EBdB499D24E45369A35f43627062f',
       rateEthPerDgd: 0.193054,
-    },
-  },
-  thedao: {
-    name: 'The DAO',
-    desc: 'The DAO launched in April 2016 as the largest crowdfund in history, raising 11.5 million ETH. In June 2016, a reentrancy exploit drained 3.6M ETH, leading to the Ethereum hard fork. After the fork restored the funds, a WithdrawDAO wrapper was deployed allowing token holders to burn DAO tokens 1:1 for ETH. Over 81,000 ETH remains unclaimed.',
-    category: 'ico',
-    color: '#c0392b',
-    contract: '0xbb9bc244d798123fde783fcc1c72d3bb8c189413',
-    deployed: 'April 2016',
-    balanceAbi: 'function balanceOf(address) view returns (uint256)',
-    balanceArgs: (user) => [user],
-    balanceCall: 'balanceOf',
-    withdrawAbi: null,
-    withdrawCall: null,
-    daoWithdraw: {
-      daoToken: '0xbb9bc244d798123fde783fcc1c72d3bb8c189413',
-      withdrawContract: '0xbf4ed7b27f1d666546e30d74d50d173d20bca754',
     },
   },
   tessera_dead: {
