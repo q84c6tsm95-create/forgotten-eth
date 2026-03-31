@@ -3579,7 +3579,16 @@ async function checkSingleAddress(addr) {
       totalEth += parseFloat(ethAmount);
       const mLastTx = apiBalances[key]?.last_tx_date || '';
       const mLastTxHtml = mLastTx ? '<span style="font-size:11px;color:var(--text2);margin-left:8px">last tx: ' + esc(mLastTx) + '</span>' : '';
-      html += '<div class="claim-card"><div class="claim-card-header"><span class="claim-card-name">' + esc(cfg.name) + mLastTxHtml + '</span><span class="claim-card-amount">' + fmtEth(ethAmount) + ' ETH</span><span class="claim-card-tag">Claimable</span></div></div>';
+      html += '<div class="claim-card"><div class="claim-card-header"><span class="claim-card-name">' + esc(cfg.name) + mLastTxHtml + '</span><span class="claim-card-amount">' + fmtEth(ethAmount) + ' ETH</span><span class="claim-card-tag">Claimable</span></div>';
+      // Show per-bounty breakdown in manual check flow
+      if (cfg.bountiesMulti && apiBalances[key]?.bounty_details) {
+        var bds = apiBalances[key].bounty_details;
+        for (var bi = 0; bi < bds.length; bi++) {
+          var bdEth = bds[bi].eth ? ' · ' + fmtEth(bds[bi].eth) + ' ETH' : '';
+          html += '<div style="margin:4px 16px;border-left:2px solid var(--accent);padding:4px 12px;font-size:13px">Bounty #' + esc(String(bds[bi].id)) + '<span style="color:var(--text2);font-size:12px">' + bdEth + '</span></div>';
+        }
+      }
+      html += '</div>';
     }
   }
 
