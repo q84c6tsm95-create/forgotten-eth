@@ -2320,11 +2320,29 @@ async function checkUserBalances(overrideAddress) {
           if (bountyIds.length > 0) {
             html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">${bountyIds.length} bounty${bountyIds.length > 1 ? 's' : ''} · ${fmtEth(ethAmount)} ETH total</div>`;
             for (const bid of bountyIds) {
-              html += `<div class="claim-row" style="margin:4px 16px;border-left:2px solid var(--accent);padding:6px 12px;display:flex;align-items:center;justify-content:space-between">
-                <span style="font-size:13px">Bounty #${esc(String(bid))}</span>
+              html += `<div class="claim-row" id="bountyRow-${bid}" style="margin:4px 16px;border-left:2px solid var(--accent);padding:6px 12px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:13px">Bounty #${esc(String(bid))} <span id="bountyEth-${bid}" style="color:var(--text2);font-size:12px">loading...</span></span>
                 <button class="claim-btn" data-action="kill-bounty" data-key="${key}" data-bounty-id="${bid}">Withdraw</button>
               </div>`;
             }
+            // Fetch per-bounty ETH amounts in background (doesn't block rendering)
+            (async () => {
+              try {
+                const provider = walletProvider || new ethers.JsonRpcProvider(PUBLIC_RPCS[0]);
+                const bc = new ethers.Contract(cfg.contract, ['function getBounty(uint256) view returns (address, uint256, uint256, bool, uint256, uint256)'], provider);
+                for (const bid of bountyIds) {
+                  try {
+                    const result = await bc.getBounty(bid);
+                    const bountyEth = parseFloat(ethers.formatEther(result[1]));
+                    const el = document.getElementById('bountyEth-' + bid);
+                    if (el) el.textContent = '· ' + fmtEth(bountyEth) + ' ETH';
+                  } catch (e) {
+                    const el = document.getElementById('bountyEth-' + bid);
+                    if (el) el.textContent = '';
+                  }
+                }
+              } catch (e) { console.warn('Bounty ETH lookup failed:', e); }
+            })();
           } else {
             html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">Bounty IDs not available. <a href="${etherscanAddr(cfg.contract)}#writeContract" target="_blank" rel="noopener noreferrer">Use Etherscan</a> to call killBounty with your bounty ID.</div>`;
           }
