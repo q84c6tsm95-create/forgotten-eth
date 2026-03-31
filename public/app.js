@@ -2441,6 +2441,7 @@ async function claimETH(key) {
     const ethAmount = ethers.formatEther(balance);
 
     window.va?.track?.('claim_initiated', { exchange: cfg.name, amount_eth: ethAmount });
+    logEvent('claim_started', { address: walletAddress, contract: key, amount_eth: parseFloat(ethAmount) });
 
     tx = await contract[cfg.withdrawCall](...args);
 
@@ -2575,6 +2576,7 @@ async function nucypherClaim(key) {
   btn.disabled = true; btn.textContent = 'Claiming...'; btn.classList.add('pending');
   try {
     const wc = new ethers.Contract(cfg.contract, ['function claim()'], walletSigner);
+    logEvent('claim_started', { address: walletAddress, contract: key });
     const tx = await wc.claim();
     statusEl.textContent = 'Waiting for confirmation...';
     await tx.wait();
@@ -2615,6 +2617,7 @@ async function nucypherRefund(key) {
   btn.disabled = true; btn.textContent = 'Refunding...'; btn.classList.add('pending');
   try {
     const wc = new ethers.Contract(cfg.contract, ['function refund()'], walletSigner);
+    logEvent('claim_started', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)) });
     const tx = await wc.refund();
     btn.textContent = 'Pending...';
     statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash.slice(0, 18)}...</a>`;
@@ -2744,6 +2747,7 @@ async function digixBurn(key) {
 
   try {
     const acidContract = new ethers.Contract(cfg.digixBurn.acidContract, ['function burn()'], walletSigner);
+    logEvent('claim_started', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)) });
     const tx = await acidContract.burn();
     btn.textContent = 'Pending...';
     statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash.slice(0, 18)}...</a>`;
@@ -3071,6 +3075,7 @@ async function ensManualRelease() {
 
   try {
     const sRegistrar = new ethers.Contract(ENS_REGISTRAR, ENS_REGISTRAR_ABI, walletSigner);
+    logEvent('claim_started', { address: walletAddress, contract: 'ens_old' });
     const tx = await sRegistrar.releaseDeed(labelHash);
     window.va?.track?.('claim_submitted', { exchange: 'ENS Old Registrar', tx_hash: tx.hash });
     showInlineError('addrError', 'Transaction submitted: ' + tx.hash.slice(0, 22) + '... Waiting for confirmation...');
