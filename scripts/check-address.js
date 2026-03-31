@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 
-import { formatEther, Interface, JsonRpcProvider, isAddress } from 'ethers';
+import { createPublicClient, formatEther, getAddress, http, isAddress, parseAbi } from 'viem';
+import { mainnet } from 'viem/chains';
+import { normalize } from 'viem/ens';
 import { loadExchanges } from './load-exchanges.js';
 
-const MULTICALL3 = '0xcA11bde05977b3631167028862bE2a173976CA11';
-const MULTICALL3_ABI = [
-  'function aggregate3(tuple(address target, bool allowFailure, bytes callData)[] calls) payable returns (tuple(bool success, bytes returnData)[] returnData)',
-];
+const MULTICALL3 = mainnet.contracts.multicall3.address;
 const DEFAULT_RPC = 'https://ethereum.publicnode.com';
 const FALLBACK_RPCS = [
   DEFAULT_RPC,
@@ -59,14 +58,6 @@ function toSerializable(value) {
   return value;
 }
 
-function normalizeDecoded(iface, functionName, decoded) {
-  const fragment = iface.getFunction(functionName);
-  if (!fragment) {
-    throw new Error(`Missing ABI fragment for ${functionName}`);
-  }
-  return fragment.outputs.length === 1 ? decoded[0] : decoded;
-}
-
 function getCheckableEntries(exchanges) {
   const supported = [];
   const skipped = [];
@@ -81,75 +72,84 @@ function getCheckableEntries(exchanges) {
       continue;
     }
 
-    const iface = new Interface([cfg.balanceAbi]);
-    supported.push({ key, cfg, iface });
+    supported.push({
+      key,
+      cfg,
+      abi: parseAbi([cfg.balanceAbi]),
+    });
   }
 
   return { supported, skipped };
 }
 
-async function runAggregate(provider, calls) {
-  const multicall = new Interface(MULTICALL3_ABI);
-  const data = multicall.encodeFunctionData('aggregate3', [calls]);
-  const raw = await provider.call({ to: MULTICALL3, data });
-  const [results] = multicall.decodeFunctionResult('aggregate3', raw);
-  return results;
+function createClient(rpc) {
+  return createPublicClient({
+    chain: mainnet,
+    transport: http(rpc),
+  });
 }
 
-async function executeWithFallback(provider, calls, depth = 0) {
+function formatError(error) {
+  return error?.shortMessage || error?.details || error?.message || 'call reverted';
+}
+
+async function executeWithFallback(client, contracts) {
   try {
-    const results = await runAggregate(provider, calls.map((call) => ({
-      target: call.target,
+    const results = await client.multicall({
       allowFailure: true,
-      callData: call.callData,
-    })));
-    return calls.map((call, index) => ({
-      ...call,
-      success: results[index][0],
-      returnData: results[index][1],
+      contracts: contracts.map((contract) => contract.request),
+    });
+    return contracts.map((contract, index) => ({
+      ...contract,
+      ...results[index],
     }));
   } catch (error) {
-    if (calls.length === 1) {
-      return [{ ...calls[0], success: false, returnData: '0x', aggregateError: error.message }];
+    if (contracts.length === 1) {
+      return [{
+        ...contracts[0],
+        status: 'failure',
+        error,
+      }];
     }
-    const midpoint = Math.ceil(calls.length / 2);
-    const left = await executeWithFallback(provider, calls.slice(0, midpoint), depth + 1);
-    const right = await executeWithFallback(provider, calls.slice(midpoint), depth + 1);
+    const midpoint = Math.ceil(contracts.length / 2);
+    const left = await executeWithFallback(client, contracts.slice(0, midpoint));
+    const right = await executeWithFallback(client, contracts.slice(midpoint));
     return left.concat(right);
   }
 }
 
-function buildCalls(entries, address) {
-  return entries.map(({ key, cfg, iface }) => ({
+function buildContracts(entries, address) {
+  return entries.map(({ key, cfg, abi }) => ({
     key,
     name: cfg.name,
     contract: cfg.contract,
-    iface,
     cfg,
-    callData: iface.encodeFunctionData(cfg.balanceCall, cfg.balanceArgs(address)),
-    target: cfg.contract,
+    request: {
+      address: getAddress(cfg.contract),
+      abi,
+      functionName: cfg.balanceCall,
+      args: cfg.balanceArgs(address),
+    },
   }));
 }
 
-function decodeBalances(callResults) {
+function decodeBalances(results) {
   const matches = [];
   const failures = [];
 
-  for (const result of callResults) {
-    if (!result.success) {
+  for (const result of results) {
+    if (result.status !== 'success') {
       failures.push({
         key: result.key,
         name: result.name,
         contract: result.contract,
-        error: result.aggregateError || 'call reverted',
+        error: formatError(result.error),
       });
       continue;
     }
 
     try {
-      const decoded = result.iface.decodeFunctionResult(result.cfg.balanceCall, result.returnData);
-      const normalized = normalizeDecoded(result.iface, result.cfg.balanceCall, decoded);
-      const wei = result.cfg.balanceTransform ? result.cfg.balanceTransform(normalized) : normalized;
+      const wei = result.cfg.balanceTransform ? result.cfg.balanceTransform(result.result) : result.result;
       if (typeof wei !== 'bigint') {
         throw new Error(`Expected bigint result, got ${typeof wei}`);
       }
@@ -176,9 +176,9 @@ function decodeBalances(callResults) {
   return { matches, failures };
 }
 
-async function resolveTarget(provider, target) {
+async function resolveTarget(client, target) {
   if (isAddress(target)) return target;
-  const resolved = await provider.resolveName(target);
+  const resolved = await client.getEnsAddress({ name: normalize(target) });
   if (!resolved) {
     throw new Error(`Could not resolve ENS name: ${target}`);
   }
@@ -186,20 +186,20 @@ async function resolveTarget(provider, target) {
 }
 
 async function runCheck(target, options) {
-  const provider = new JsonRpcProvider(options.rpc);
-  const address = await resolveTarget(provider, target);
+  const client = createClient(options.rpc);
+  const address = await resolveTarget(client, target);
   const exchanges = loadExchanges();
   const { supported, skipped } = getCheckableEntries(exchanges);
 
-  const allCalls = buildCalls(supported, address);
+  const allContracts = buildContracts(supported, address);
   const batches = options.maxBatchSize
-    ? Array.from({ length: Math.ceil(allCalls.length / options.maxBatchSize) }, (_, index) =>
-        allCalls.slice(index * options.maxBatchSize, (index + 1) * options.maxBatchSize))
-    : [allCalls];
+    ? Array.from({ length: Math.ceil(allContracts.length / options.maxBatchSize) }, (_, index) =>
+        allContracts.slice(index * options.maxBatchSize, (index + 1) * options.maxBatchSize))
+    : [allContracts];
 
   const callResults = [];
   for (const batch of batches) {
-    const batchResults = await executeWithFallback(provider, batch);
+    const batchResults = await executeWithFallback(client, batch);
     callResults.push(...batchResults);
   }
 
