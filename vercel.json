@@ -1,5 +1,5 @@
 {
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- public/ api/ vercel.json data/index_shards/ data/table_meta/ data/tvl/ data/protocol_info.json",
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- public/ api/ vercel.json package.json data/index_shards/ data/table_meta/ data/tvl/ data/protocol_info.json data/protocols.json",
   "outputDirectory": "public",
   "rewrites": [
     { "source": "/outreach", "destination": "/outreach.html" },
