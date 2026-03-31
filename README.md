@@ -18,6 +18,21 @@ This tool checks 116 defunct contracts for unclaimed balances and facilitates wi
 
 No custody of funds at any point. Every withdrawal can also be done manually on Etherscan.
 
+## CLI
+
+Check the direct-view contracts locally with a public mainnet RPC:
+
+```bash
+npm install
+npm run check:address -- 0xe1bdff947510a8e9623cf7f3c6cf6fe5e37c16b8
+```
+
+Notes:
+
+- The CLI uses `Multicall3` for contracts that expose a direct per-address `view` balance function.
+- It skips protocols that need precomputed or offchain discovery, such as ENS old registrar, Kyber FeeHandler, and Bounties Network.
+- Add `--json` for machine-readable output or `--rpc <url>` to override the public RPC.
+
 ## Contracts tracked
 
 - **Defunct DEXes** - EtherDelta (v0/v1/v2/v3), IDEX v1, Token.Store, SingularX, Joyso, ETHEN, Decentrex, Bitcratic, and 30+ forks
