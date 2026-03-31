@@ -1,11 +1,7 @@
 {
   "type": "module",
-  "scripts": {
-    "check:address": "node scripts/check-address.js"
-  },
   "dependencies": {
     "@vercel/postgres": "^0.10.0",
-    "pg": "^8.20.0",
-    "viem": "^2.39.0"
+    "pg": "^8.20.0"
   }
 }
