@@ -1,7 +1,8 @@
 (function() {
   var toggle = document.getElementById('themeToggle');
   var html = document.documentElement;
-  var saved = localStorage.getItem('theme');
+  var saved = null;
+  try { saved = localStorage.getItem('theme'); } catch(e) {}
   var dark = saved ? saved === 'dark' : false;
   if (dark) html.setAttribute('data-theme', 'dark');
   function setToggleLabel(isDark) { toggle.textContent = isDark ? '☀ Wake' : '☾ Dream'; }
@@ -89,10 +90,10 @@
       dark = goingDark;
       if (dark) {
         html.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
+        try { localStorage.setItem('theme', 'dark'); } catch(e) {}
       } else {
         html.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'light');
+        try { localStorage.setItem('theme', 'light'); } catch(e) {}
       }
       setToggleLabel(dark);
       var activeTab = document.querySelector('.tab.active');

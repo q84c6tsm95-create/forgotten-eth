@@ -55,6 +55,12 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'POST only' });
   }
 
+  // Skip logging in dev mode — keep only production stats
+  const host = req.headers.host || '';
+  if (host.startsWith('localhost') || host.startsWith('127.0.0.1') || host.startsWith('192.168.')) {
+    return res.status(200).json({ ok: true, dev: true });
+  }
+
   try {
     // Reject oversized payloads
     const bodyStr = JSON.stringify(req.body || {});

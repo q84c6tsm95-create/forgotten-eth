@@ -3,6 +3,10 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { timingSafeEqual } from 'crypto';
 
+// Track last known balances for change detection (persists across warm invocations)
+let _lastDonation = 0;
+let _lastOutreach = 0;
+
 function fetchWithTimeout(url, opts = {}, ms = 8000) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), ms);
@@ -77,6 +81,51 @@ export default async function handler(req, res) {
   } catch {
     checks.donation_eth = 'error';
   }
+
+  // 4b. Outreach address balance
+  try {
+    const outreachResp = await fetchWithTimeout('https://ethereum.publicnode.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ jsonrpc: '2.0', method: 'eth_getBalance', params: ['0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891', 'latest'], id: 2 }),
+    });
+    const outreachData = await outreachResp.json();
+    checks.outreach_eth = outreachData.result ? (parseInt(outreachData.result, 16) / 1e18).toFixed(4) : '0';
+  } catch {
+    checks.outreach_eth = 'error';
+  }
+
+  // 4c. Alert on balance increases (donation or outreach received ETH)
+  try {
+    const curDonation = parseFloat(checks.donation_eth || '0');
+    const curOutreach = parseFloat(checks.outreach_eth || '0');
+
+    const alerts = [];
+    if (curDonation > _lastDonation && _lastDonation > 0) {
+      const diff = (curDonation - _lastDonation).toFixed(4);
+      alerts.push(`💰 <b>Donation received!</b> +${diff} ETH\nBalance: ${curDonation} ETH\n<a href="https://etherscan.io/address/0x95a708aAAB1D336bB60EF2F40212672F4cf65736">view</a>`);
+    }
+    if (curOutreach > _lastOutreach && _lastOutreach > 0) {
+      const diff = (curOutreach - _lastOutreach).toFixed(4);
+      alerts.push(`📬 <b>Outreach address funded!</b> +${diff} ETH\nBalance: ${curOutreach} ETH\n<a href="https://etherscan.io/address/0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891">view</a>`);
+    }
+    _lastDonation = curDonation;
+    _lastOutreach = curOutreach;
+
+    if (alerts.length > 0) {
+      const adminToken = process.env.TELEGRAM_ADMIN_BOT_TOKEN;
+      const adminChat = process.env.TELEGRAM_ADMIN_CHAT_ID;
+      if (adminToken && adminChat) {
+        for (const msg of alerts) {
+          await fetchWithTimeout(`https://api.telegram.org/bot${adminToken}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: adminChat, text: msg, parse_mode: 'HTML', disable_web_page_preview: true }),
+          }).catch(() => {});
+        }
+      }
+    }
+  } catch {}
 
   // 5. Spot-check: known addresses return expected balance (tests shards + API pipeline)
   // Uses a cascade — if the first address has been claimed, falls back to the next
