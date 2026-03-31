@@ -253,14 +253,6 @@ function printOutput(output, asJson) {
     }
   }
 
-  if (output.skipped.length > 0) {
-    console.log('');
-    console.log('Skipped:');
-    for (const item of output.skipped) {
-      console.log(`- ${item.name}: ${item.reason}`);
-    }
-  }
-
   if (output.failures.length > 0) {
     console.log('');
     console.log('Failures:');
