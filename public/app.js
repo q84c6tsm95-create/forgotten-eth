@@ -3807,6 +3807,10 @@ async function checkSingleAddress(addr) {
       const mLastTx = apiBalances[key]?.last_tx_date || '';
       const mLastTxHtml = mLastTx ? '<span style="font-size:11px;color:var(--text2);margin-left:8px">last tx: ' + esc(mLastTx) + '</span>' : '';
       html += '<div class="claim-card"><div class="claim-card-header"><span class="claim-card-name">' + esc(cfg.name) + mLastTxHtml + '</span><span class="claim-card-amount">' + fmtEth(ethAmount) + ' ETH</span><span class="claim-card-tag">Claimable</span></div>';
+      // Kyber: show claim instructions in manual check flow
+      if (cfg.kyberFeeHandler) {
+        html += '<div style="padding:8px 16px 14px;font-size:12px;color:var(--text2)">Rewards across epochs 1-21. Call <b>claimStakerReward</b> on <a href="' + etherscanAddr(cfg.contract) + '#writeContract" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Etherscan</a> with your address and each epoch number.</div>';
+      }
       // Show per-bounty breakdown in manual check flow
       if (cfg.bountiesMulti && apiBalances[key]?.bounty_details) {
         var bds = apiBalances[key].bounty_details;
