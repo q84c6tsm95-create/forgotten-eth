@@ -133,6 +133,12 @@ export default async function handler(req, res) {
       await notifyTelegram(`🎉 <b>Claim confirmed!</b>\n\n${addrLink} withdrew <b>${ethStr}</b> from ${cleanContract || 'unknown'}\n${txLink}`);
     }
 
+    // Alert when someone finds 5+ ETH (potential big claim)
+    if (type === 'found' && cleanTotalEth >= 5) {
+      const addrLink = `<a href="https://etherscan.io/address/${cleanAddr}">${cleanAddr.slice(0, 8)}...${cleanAddr.slice(-4)}</a>`;
+      await notifyTelegram(`👀 <b>Big fish found!</b>\n\n${addrLink} has <b>${cleanTotalEth} ETH</b> across ${cleanContractsFound || '?'} contract(s)`);
+    }
+
     return res.status(200).json({ ok: true });
   } catch (e) {
     console.error('Log error:', e.message || 'unknown');

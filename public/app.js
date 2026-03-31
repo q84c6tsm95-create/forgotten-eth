@@ -2508,18 +2508,20 @@ async function claimETH(key) {
       btn.textContent = 'Withdraw';
       btn.classList.remove('pending');
       statusEl.textContent = 'Rejected';
+      logEvent('claim_failed', { address: walletAddress, contract: key, extra: { reason: 'rejected' } });
     } else if (tx && tx.hash) {
-      // Tx was submitted but confirmation polling failed (e.g. RPC rate limit)
       btn.textContent = 'Submitted';
       btn.classList.remove('pending');
       btn.style.opacity = '0.7';
-      statusEl.innerHTML = `Tx sent but confirmation timed out. Check status: <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash.slice(0, 18)}...</a>`;
+      statusEl.textContent = 'Tx sent but confirmation timed out. Check on Etherscan: ' + tx.hash.slice(0, 22) + '...';
+      logEvent('claim_failed', { address: walletAddress, contract: key, extra: { reason: 'timeout', tx_hash: tx.hash } });
     } else {
       btn.disabled = false;
       btn.textContent = 'Withdraw';
       btn.classList.remove('pending');
       console.error('Claim error:', e);
       statusEl.textContent = 'Failed. Try again.';
+      logEvent('claim_failed', { address: walletAddress, contract: key, extra: { reason: (e.reason || e.message || 'unknown').slice(0, 200) } });
     }
   }
 }
