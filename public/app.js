@@ -2318,10 +2318,11 @@ async function checkUserBalances(overrideAddress) {
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">killBounty(uint256 _bountyId) per bounty</span></div>
               </div>`;
           if (bountyIds.length > 0) {
+            html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">${bountyIds.length} bounty${bountyIds.length > 1 ? 's' : ''} · ${fmtEth(ethAmount)} ETH total</div>`;
             for (const bid of bountyIds) {
-              html += `<div class="claim-row" style="margin:4px 16px;border-left:2px solid var(--accent);padding:4px 12px;display:flex;align-items:center;justify-content:space-between">
-                <span style="font-size:12px;color:var(--text2)">Bounty #${esc(String(bid))}</span>
-                <button class="claim-btn" data-action="kill-bounty" data-key="${key}" data-bounty-id="${bid}">Kill & Withdraw</button>
+              html += `<div class="claim-row" style="margin:4px 16px;border-left:2px solid var(--accent);padding:6px 12px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:13px">Bounty #${esc(String(bid))}</span>
+                <button class="claim-btn" data-action="kill-bounty" data-key="${key}" data-bounty-id="${bid}">Withdraw</button>
               </div>`;
             }
           } else {
@@ -2967,7 +2968,7 @@ async function killBounty(key, bountyId, btn) {
   if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
 
   btn.disabled = true;
-  btn.textContent = 'Killing bounty...';
+  btn.textContent = 'Withdrawing...';
   btn.classList.add('pending');
   var statusEl = document.getElementById('claimStatus-' + key);
 
@@ -2983,10 +2984,10 @@ async function killBounty(key, bountyId, btn) {
     btn.style.background = 'var(--green)';
     btn.style.opacity = '0.7';
     logEvent('claim_confirmed', { address: walletAddress, contract: key, tx_hash: tx.hash, block_num: receipt.blockNumber });
-    if (statusEl) statusEl.textContent = 'Bounty #' + bountyId + ' killed. ETH returned to your wallet.';
+    if (statusEl) statusEl.textContent = 'Bounty #' + bountyId + ' withdrawn. ETH returned to your wallet.';
   } catch (e) {
     btn.disabled = false;
-    btn.textContent = 'Kill & Withdraw';
+    btn.textContent = 'Withdraw';
     btn.classList.remove('pending');
     if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
       if (statusEl) statusEl.textContent = 'Rejected';
