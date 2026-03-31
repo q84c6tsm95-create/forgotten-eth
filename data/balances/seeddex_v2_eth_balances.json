@@ -1,0 +1,63 @@
+{
+  "contract": "0xd4cc0cda97ec567235b7019c655ec75cd361f712",
+  "token_checked": "0x0000000000000000000000000000000000000000",
+  "description": "ETH balances in defunct SeedDex v2 contract",
+  "scan_date": "2026-03-17 21:58:36 UTC",
+  "contract_eth_balance": "1.267293728697068993",
+  "total_addresses_scanned": 38,
+  "addresses_with_balance": 6,
+  "total_eth_in_balances": 1.137612160045592,
+  "coverage_pct": 89.77,
+  "distribution": {
+    "1-10 ETH": {
+      "count": 1,
+      "total_eth": 1.0
+    },
+    "0.01-0.1 ETH": {
+      "count": 2,
+      "total_eth": 0.13761
+    },
+    "<0.01 ETH": {
+      "count": 3,
+      "total_eth": 2.1600455920490003e-06
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0xB1d799D3B2Af68e92baD865cCa8E1F303B7D4654",
+      "balance_wei": "1000000000000000000",
+      "balance_eth": "1.000000000000000000"
+    },
+    {
+      "rank": 2,
+      "address": "0x93e4e0895d1CE2eBE950Cab20fac32fC8d824cE9",
+      "balance_wei": "99600000000000000",
+      "balance_eth": "0.099599999999999994"
+    },
+    {
+      "rank": 3,
+      "address": "0x3900F982a33CBE4b27Bef4044A70e91F31fe4F53",
+      "balance_wei": "38010000000000000",
+      "balance_eth": "0.038010000000000002"
+    },
+    {
+      "rank": 4,
+      "address": "0x03cCFEA2034f1B7dF7eAd723d795F846d9d5a81E",
+      "balance_wei": "1458435999999",
+      "balance_eth": "0.000001458435999999"
+    },
+    {
+      "rank": 5,
+      "address": "0xaD3B9ae1B80F899F3EF1069B1c7A8BFba026D516",
+      "balance_wei": "699700000000",
+      "balance_eth": "0.000000699700000000"
+    },
+    {
+      "rank": 6,
+      "address": "0x39eB590e94f1fb7a356c1B9a94025aA976443B44",
+      "balance_wei": "1909592050",
+      "balance_eth": "0.000000001909592050"
+    }
+  ]
+}

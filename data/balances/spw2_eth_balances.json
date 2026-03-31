@@ -1,0 +1,65 @@
+{
+  "contract": "0xd446a13f9b9f8bcbc3ded73764d08735561b1638",
+  "token_checked": "0x0000000000000000000000000000000000000000",
+  "description": "ETH balances in defunct SPW v2 contract",
+  "scan_date": "2026-03-19 21:24:08 UTC",
+  "contract_eth_balance": "2.079314996307009213",
+  "total_addresses_scanned": 7,
+  "addresses_with_balance": 7,
+  "total_eth_in_balances": 0.13420354404372445,
+  "coverage_pct": 6.45,
+  "distribution": {
+    "0.01-0.1 ETH": {
+      "count": 3,
+      "total_eth": 0.12121037516044232
+    },
+    "<0.01 ETH": {
+      "count": 4,
+      "total_eth": 0.012993168883282124
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0xd777bc1bbec11feb1771e962c7e3664c7d7ea23e",
+      "balance_wei": "82700827658685251",
+      "balance_eth": "0.082700827658685250"
+    },
+    {
+      "rank": 2,
+      "address": "0x04d5846e5e7fc06eb176a093707ec0ef6ed0c742",
+      "balance_wei": "19317594079711247",
+      "balance_eth": "0.019317594079711248"
+    },
+    {
+      "rank": 3,
+      "address": "0xe52e8a551b1480a160788e3b745fdc62d26a0c4d",
+      "balance_wei": "19191953422045823",
+      "balance_eth": "0.019191953422045823"
+    },
+    {
+      "rank": 4,
+      "address": "0x3153cef35c7dbc03f2c01e3ae9f5a7815a68cc40",
+      "balance_wei": "9117942823866548",
+      "balance_eth": "0.009117942823866548"
+    },
+    {
+      "rank": 5,
+      "address": "0xfa6b03ab3ebc0d53b3849841c4ac3aab1e355647",
+      "balance_wei": "2265888166277153",
+      "balance_eth": "0.002265888166277153"
+    },
+    {
+      "rank": 6,
+      "address": "0x888fb4dbca6e449e61103ad754bc761856c9a70e",
+      "balance_wei": "1609336660624131",
+      "balance_eth": "0.001609336660624131"
+    },
+    {
+      "rank": 7,
+      "address": "0x4c88d03b8f01c6a279145875e24ae1108d058b1f",
+      "balance_wei": "1232514292",
+      "balance_eth": "0.000000001232514292"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "contract": "0xc6b330df38d6ef288c953f1f2835723531073ce2",
+  "token_checked": "0x0000000000000000000000000000000000000000",
+  "description": "ETH balances in defunct Etheropt Old contract",
+  "scan_date": "2026-03-17 22:31:35 UTC",
+  "contract_eth_balance": "16.848616675",
+  "total_addresses_scanned": 97,
+  "addresses_with_balance": 13,
+  "total_eth_in_balances": 16.827250000000003,
+  "coverage_pct": 99.87,
+  "distribution": {
+    "10-100 ETH": {
+      "count": 1,
+      "total_eth": 11.0
+    },
+    "1-10 ETH": {
+      "count": 1,
+      "total_eth": 4.98
+    },
+    "0.1-1 ETH": {
+      "count": 3,
+      "total_eth": 0.531
+    },
+    "0.01-0.1 ETH": {
+      "count": 5,
+      "total_eth": 0.3035
+    },
+    "<0.01 ETH": {
+      "count": 3,
+      "total_eth": 0.012750000000000001
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0xdb7534Bd87ABcA0ABf5ba539819A3Cb01BF498aA",
+      "balance_wei": "11000000000000000000",
+      "balance_eth": "11.000000000000000000"
+    },
+    {
+      "rank": 2,
+      "address": "0x888b04D17D94E1007aAE5B0c69C4b1182D0f2E78",
+      "balance_wei": "4980000000000000000",
+      "balance_eth": "4.980000000000000426"
+    },
+    {
+      "rank": 3,
+      "address": "0x1DF077fd2C1558673698Af896C1B3579Ba77E5Ce",
+      "balance_wei": "203000000000000000",
+      "balance_eth": "0.203000000000000014"
+    },
+    {
+      "rank": 4,
+      "address": "0x6eC8b6AE44Ba62416Fe17a160Efc7C502258c815",
+      "balance_wei": "178000000000000000",
+      "balance_eth": "0.177999999999999992"
+    },
+    {
+      "rank": 5,
+      "address": "0x65f3d3Bb2ac5043Ccd11fac4F937A6f8495BEAF8",
+      "balance_wei": "150000000000000000",
+      "balance_eth": "0.149999999999999994"
+    },
+    {
+      "rank": 6,
+      "address": "0x96261291917A8531d8afEa09fA9017962e6ae500",
+      "balance_wei": "99000000000000000",
+      "balance_eth": "0.099000000000000005"
+    },
+    {
+      "rank": 7,
+      "address": "0x82e8e0cA5A467953B4b66C6d47d76c4ba62A3ee4",
+      "balance_wei": "92500000000000000",
+      "balance_eth": "0.092499999999999999"
+    },
+    {
+      "rank": 8,
+      "address": "0x0918321A68AeC8005538247C32082698167ad40e",
+      "balance_wei": "50000000000000000",
+      "balance_eth": "0.050000000000000003"
+    },
+    {
+      "rank": 9,
+      "address": "0x1086e397946Caf13e36a7C92DC85e8447D20c26f",
+      "balance_wei": "50000000000000000",
+      "balance_eth": "0.050000000000000003"
+    },
+    {
+      "rank": 10,
+      "address": "0x3D48587aA16D91a2e37198B5B428674bDADdf038",
+      "balance_wei": "12000000000000000",
+      "balance_eth": "0.012000000000000000"
+    },
+    {
+      "rank": 11,
+      "address": "0xaeAEdbF663A8926310e01100A603D2e5aEBc05Ad",
+      "balance_wei": "9750000000000000",
+      "balance_eth": "0.009750000000000000"
+    },
+    {
+      "rank": 12,
+      "address": "0xC42721066f3Afb4d74b02827eAccAbBfCF973e3b",
+      "balance_wei": "2000000000000000",
+      "balance_eth": "0.002000000000000000"
+    },
+    {
+      "rank": 13,
+      "address": "0xEdb2D3B0a9Ba5b4b46AEd4c7a3F9429eC4B9b124",
+      "balance_wei": "1000000000000000",
+      "balance_eth": "0.001000000000000000"
+    }
+  ]
+}

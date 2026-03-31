@@ -1,0 +1,41 @@
+{
+  "contract": "0xb59a226a2b8a2f2b0512baa35cc348b6b213b671",
+  "token_checked": "0x0000000000000000000000000000000000000000",
+  "description": "ETH balances in defunct Neufund EtherToken contract",
+  "scan_date": "2026-03-29 22:38:27 UTC",
+  "contract_eth_balance": "2.070360659",
+  "total_addresses_scanned": 144,
+  "addresses_with_balance": 3,
+  "total_eth_in_balances": 2.070360659,
+  "coverage_pct": 100.0,
+  "distribution": {
+    "1-10 ETH": {
+      "count": 2,
+      "total_eth": 2.0694606589999998
+    },
+    "<0.01 ETH": {
+      "count": 1,
+      "total_eth": 0.0009
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0x38AeF1DE4a2458847f72a23ad217bb7Fe3A5102C",
+      "balance_wei": "1069460659000000000",
+      "balance_eth": "1.069460658999999980"
+    },
+    {
+      "rank": 2,
+      "address": "0x9bceA26BecC673AB2F60C27822b74c8773FcaD6a",
+      "balance_wei": "1000000000000000000",
+      "balance_eth": "1.000000000000000000"
+    },
+    {
+      "rank": 3,
+      "address": "0xA2069ACd9532d9ea32f395716679eFa90Ac0c65F",
+      "balance_wei": "900000000000000",
+      "balance_eth": "0.000900000000000000"
+    }
+  ]
+}

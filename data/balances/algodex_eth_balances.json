@@ -1,0 +1,41 @@
+{
+  "contract": "0x4bc78f6619991b029b867b6d88d39c196332aba3",
+  "token_checked": "0x0000000000000000000000000000000000000000",
+  "description": "ETH balances in defunct AlgoDEX contract",
+  "scan_date": "2026-03-17 21:59:54 UTC",
+  "contract_eth_balance": "0.867356162518197248",
+  "total_addresses_scanned": 5,
+  "addresses_with_balance": 3,
+  "total_eth_in_balances": 0.8449197062244579,
+  "coverage_pct": 97.41,
+  "distribution": {
+    "0.1-1 ETH": {
+      "count": 1,
+      "total_eth": 0.770082279126458
+    },
+    "0.01-0.1 ETH": {
+      "count": 2,
+      "total_eth": 0.07483742709799987
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0x9D08C0D9dFbEB7e4f0442Aa3761eD3F0b601E943",
+      "balance_wei": "770082279126457982",
+      "balance_eth": "0.770082279126457991"
+    },
+    {
+      "rank": 2,
+      "address": "0xb2168460a5518634Ba5512313B546FDe93444EC6",
+      "balance_wei": "50481264579802611",
+      "balance_eth": "0.050481264579802614"
+    },
+    {
+      "rank": 3,
+      "address": "0xE2Cf06fB8FfC2f2c0F41f696672231420b759D57",
+      "balance_wei": "24356162518197248",
+      "balance_eth": "0.024356162518197250"
+    }
+  ]
+}
