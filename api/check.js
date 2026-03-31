@@ -67,6 +67,7 @@ export default async function handler(req, res) {
         balance_eth: balanceEth,
         ...(typeof val === 'object' && val.d ? { deeds: val.d } : {}),
         ...(typeof val === 'object' && val.a ? { adoption_requests: val.a } : {}),
+        ...(typeof val === 'object' && val.b ? { bounty_ids: val.b } : {}),
       };
     }
   }

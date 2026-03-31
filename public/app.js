@@ -1636,7 +1636,7 @@ const EXCHANGES = {
   redchip2: { name: 'RedChip v2', desc: 'The second iteration of RedChip, deployed October 2019 alongside its predecessor. Another PoWH3D fork with the same dividend token mechanics repackaged under a stock-market-inspired name.', category: 'gambling', color: '#581c87', contract: '0xae384c6e68f5d697d65ed43fd53ef5ea3288f536', deployed: 'October 2019', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   omnidex: { name: 'OmniDex', desc: 'Deployed August 2018, OmniDex distinguished itself with 18% dividends, masternodes, and 0% transfer fees, tweaking the standard P3D formula. Despite the "DEX" name, it was a dividend token, not an exchange.', category: 'gambling', color: '#581c87', contract: '0x433e631ac0c03e49ca034dbf5543964c80c6b391', deployed: 'August 2018', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
   spw2: { name: 'SPW v2', desc: 'The second SPW contract, deployed September 2020. A relaunch of the original SPW using the same PoWH3D Hourglass mechanics with no apparent changes.', category: 'gambling', color: '#581c87', contract: '0xd446a13f9b9f8bcbc3ded73764d08735561b1638', deployed: 'September 2020', balanceAbi: 'function dividendsOf(address) view returns (uint256)', balanceArgs: (user) => [user], balanceCall: 'dividendsOf', withdrawAbi: 'function withdraw()', withdrawArgs: () => [], withdrawCall: 'withdraw', exitAbi: 'function exit()', exitArgs: () => [], exitCall: 'exit' },
-  bounties: { name: 'Bounties Network', desc: 'was a decentralized bounty platform (December 2017) built by ConsenSys for open-source work and freelance tasks on Ethereum. Bounty issuers who never killed or fulfilled their bounties still have ETH locked in the StandardBounties v1 contract. Withdrawal requires your specific bounty ID - use Etherscan directly.', category: 'other', color: '#0369a1', contract: '0x2af47a65da8cd66729b4209c22017d6a5c2d2400', deployed: 'December 2017', balanceAbi: 'function getBounty(uint256) view returns (address, uint256, uint256, bool, uint256, uint256)', balanceArgs: (user) => [0], balanceCall: 'getBounty', balanceTransform: () => 0n, withdrawAbi: null, withdrawCall: null, noWalletCheck: true, noWithdraw: true },
+  bounties: { name: 'Bounties Network', desc: 'was a decentralized bounty platform (December 2017) built by ConsenSys for open-source work and freelance tasks on Ethereum. Bounty issuers who never killed or fulfilled their bounties still have ETH locked in the StandardBounties v1 contract.', category: 'other', color: '#0369a1', contract: '0x2af47a65da8cd66729b4209c22017d6a5c2d2400', deployed: 'December 2017', balanceAbi: 'function getBounty(uint256) view returns (address, uint256, uint256, bool, uint256, uint256)', balanceArgs: (user) => [0], balanceCall: 'getBounty', balanceTransform: () => 0n, withdrawAbi: 'function killBounty(uint256 _bountyId)', withdrawCall: 'killBounty', noWalletCheck: true, bountiesMulti: true },
   ageofdinos: {
     name: 'Age of Dinos',
     desc: 'was an NFT Dutch auction (2024). Bidders who overpaid above the clearing price have unclaimed ETH refunds available via claimAndRefund().',
@@ -2304,6 +2304,30 @@ async function checkUserBalances(overrideAddress) {
               </div>
               <div class="claim-card-status" id="claimStatus-${key}"></div>
             </div>`;
+        } else if (cfg.bountiesMulti) {
+          // Bounties Network: per-bounty killBounty buttons
+          const bountyIds = apiBalances[key]?.bounty_ids || [];
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
+              </div>
+              <div class="claim-card-meta">
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">killBounty(uint256 _bountyId) per bounty</span></div>
+              </div>`;
+          if (bountyIds.length > 0) {
+            for (const bid of bountyIds) {
+              html += `<div class="claim-row" style="margin:4px 16px;border-left:2px solid var(--accent);padding:4px 12px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:12px;color:var(--text2)">Bounty #${esc(String(bid))}</span>
+                <button class="claim-btn" data-action="kill-bounty" data-key="${key}" data-bounty-id="${bid}">Kill & Withdraw</button>
+              </div>`;
+            }
+          } else {
+            html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">Bounty IDs not available. <a href="${etherscanAddr(cfg.contract)}#writeContract" target="_blank" rel="noopener noreferrer">Use Etherscan</a> to call killBounty with your bounty ID.</div>`;
+          }
+          html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
         } else {
           const wArgs = cfg.withdrawArgs(balance, walletAddress);
           const argsDisplay = wArgs.length > 0 ? wArgs.map(a => typeof a === 'bigint' ? a.toString() + ' wei (' + ethers.formatEther(a) + ' ETH)' : String(a)).join(', ') : 'none';
@@ -2932,6 +2956,42 @@ async function claimExit(key) {
     } else {
       console.error('Exit error:', e);
       statusEl.textContent = 'Failed. Try again.';
+    }
+  }
+}
+
+// ─── Bounties Network: killBounty per bounty ID ───
+
+async function killBounty(key, bountyId, btn) {
+  if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Killing bounty...';
+  btn.classList.add('pending');
+  var statusEl = document.getElementById('claimStatus-' + key);
+
+  try {
+    var contract = new ethers.Contract(EXCHANGES[key].contract, ['function killBounty(uint256 _bountyId)'], walletSigner);
+    logEvent('claim_started', { address: walletAddress, contract: key });
+    var tx = await contract.killBounty(bountyId);
+    btn.textContent = 'Pending...';
+    if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
+    var receipt = await tx.wait();
+    btn.textContent = 'Done';
+    btn.classList.remove('pending');
+    btn.style.background = 'var(--green)';
+    btn.style.opacity = '0.7';
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, tx_hash: tx.hash, block_num: receipt.blockNumber });
+    if (statusEl) statusEl.textContent = 'Bounty #' + bountyId + ' killed. ETH returned to your wallet.';
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Kill & Withdraw';
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      if (statusEl) statusEl.textContent = 'Rejected';
+    } else {
+      if (statusEl) statusEl.textContent = 'Failed: ' + (e.reason || e.message || 'Unknown error');
     }
   }
 }
@@ -4002,6 +4062,8 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     neufundApproveAndUnlock(btn.dataset.key);
   } else if (action === 'neufund-withdraw-etht') {
     neufundWithdrawEthT(btn.dataset.key);
+  } else if (action === 'kill-bounty') {
+    killBounty(btn.dataset.key, parseInt(btn.dataset.bountyId), btn);
   } else if (action === 'cancel-mooncat') {
     cancelMoonCatRequest(btn.dataset.key, btn.dataset.catId, parseInt(btn.dataset.index));
   } else if (action === 'claim-ens-deed') {
