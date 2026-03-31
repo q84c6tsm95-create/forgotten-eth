@@ -1,0 +1,87 @@
+{
+  "contract": "0xbeeb655808e3bdb83b6998f09dfe1e0f2c66a9be",
+  "token_checked": "0x0000000000000000000000000000000000000000",
+  "description": "ETH balances in defunct SwissCryptoExchange contract",
+  "scan_date": "2026-03-17 22:36:35 UTC",
+  "contract_eth_balance": "14.726",
+  "total_addresses_scanned": 15,
+  "addresses_with_balance": 10,
+  "total_eth_in_balances": 14.720198803312817,
+  "coverage_pct": 99.96,
+  "distribution": {
+    "1-10 ETH": {
+      "count": 2,
+      "total_eth": 12.064449874830911
+    },
+    "0.1-1 ETH": {
+      "count": 7,
+      "total_eth": 2.6546847284819064
+    },
+    "<0.01 ETH": {
+      "count": 1,
+      "total_eth": 0.0010642
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0xb54C1a7647127f61d16243E3659A2d5Fc9bba4f2",
+      "balance_wei": "6298873050865974088",
+      "balance_eth": "6.298873050865974044"
+    },
+    {
+      "rank": 2,
+      "address": "0x006288f01d6051cEd3F075E3CBfdd95AEC5aF126",
+      "balance_wei": "5765576823964937086",
+      "balance_eth": "5.765576823964937425"
+    },
+    {
+      "rank": 3,
+      "address": "0x0A9CDdd37c93c27a972e844C38d90C9c0b12C4ED",
+      "balance_wei": "980000000000000000",
+      "balance_eth": "0.979999999999999982"
+    },
+    {
+      "rank": 4,
+      "address": "0xd3D977d04704E9580e83a89700c17FF85F176E46",
+      "balance_wei": "552654744000000000",
+      "balance_eth": "0.552654744000000031"
+    },
+    {
+      "rank": 5,
+      "address": "0x481E4fBE665745463D7b99103E67124a4EA9C173",
+      "balance_wei": "450000000000000000",
+      "balance_eth": "0.450000000000000011"
+    },
+    {
+      "rank": 6,
+      "address": "0x2E71d00CFa90655780F5DfcF63eb6BB3972C9e33",
+      "balance_wei": "287724000000000000",
+      "balance_eth": "0.287723999999999980"
+    },
+    {
+      "rank": 7,
+      "address": "0xD2d88b970381dCDe2C1049A83Cca637a73CF53c9",
+      "balance_wei": "155826568000000000",
+      "balance_eth": "0.155826567999999999"
+    },
+    {
+      "rank": 8,
+      "address": "0x6a5Ddad456e3541BE1567136cCAe392c63e60740",
+      "balance_wei": "123877990728740904",
+      "balance_eth": "0.123877990728740908"
+    },
+    {
+      "rank": 9,
+      "address": "0xFC3Ee55BEb718C0DDF5257400430B912c21DEC8e",
+      "balance_wei": "104601425753165189",
+      "balance_eth": "0.104601425753165195"
+    },
+    {
+      "rank": 10,
+      "address": "0x43C90dD2b538341748D744D00c995E401F2F8f10",
+      "balance_wei": "1064200000000000",
+      "balance_eth": "0.001064200000000000"
+    }
+  ]
+}

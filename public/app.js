@@ -240,12 +240,13 @@ function logEvent(type, data) {
 
 // Report uncaught JS errors (invisible without this)
 window.onerror = function(msg, src, line, col) {
-  if (src && (src.includes('vercel') || src.includes('insights'))) return;
+  if (!src || src.includes('vercel') || src.includes('insights') || src.includes('inject') || src.includes('extension') || src === '') return;
+  if (String(msg).includes('Script error')) return;
   logEvent('frontend_error', { extra: { error: String(msg).slice(0, 200), source: (src || '').split('/').pop(), line: line, col: col } });
 };
 window.onunhandledrejection = function(e) {
   var msg = String(e.reason?.message || e.reason || '');
-  if (msg.includes('StorageArea') || msg.includes('vercel')) return;
+  if (msg.includes('StorageArea') || msg.includes('vercel') || msg.includes('sseError') || msg.includes('tronlink') || msg.includes('MetaMask') || msg.includes('Origin not allowed') || msg.includes('JSON-RPC error')) return;
   logEvent('frontend_error', { extra: { error: msg.slice(0, 200), type: 'promise' } });
 };
 
