@@ -329,7 +329,7 @@ let _lastClaimEth = 0;
 
 function renderDonationCard(claimedEth) {
   _lastClaimEth = claimedEth;
-  if (claimedEth < 0.01) return '';
+  if (claimedEth < 10) return '';
 
   var defaultPct = 2;
   var defaultAmt = (claimedEth * defaultPct / 100).toFixed(2);
