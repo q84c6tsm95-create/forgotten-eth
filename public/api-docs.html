@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API Docs — Forgotten ETH</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared.css">
+<script src="/theme-init.js"></script>
+<style>
+  .endpoint { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; }
+  .method { display: inline-block; font-family: var(--font-mono); font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-sm); background: var(--accent); color: var(--bg); margin-right: 8px; }
+  .path { font-family: var(--font-mono); font-size: 15px; font-weight: 700; }
+  .desc { color: var(--text2); font-size: 14px; margin-top: 8px; }
+  .params { margin-top: 12px; }
+  .params table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .params th { text-align: left; padding: 6px 10px; border-bottom: 2px solid var(--border); color: var(--text2); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; font-family: var(--font-mono); }
+  .params td { padding: 6px 10px; border-bottom: 1px solid var(--border); }
+  .param-name { font-family: var(--font-mono); font-weight: 600; }
+  .param-required { color: var(--gold); font-size: 11px; font-weight: 700; }
+  h3 { font-size: 14px; margin: 16px 0 6px; font-family: var(--font-mono); color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; }
+  pre { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; overflow-x: auto; font-family: var(--font-mono); font-size: 12px; line-height: 1.5; margin-top: 8px; }
+  [data-theme="dark"] pre { background: rgba(22, 21, 32, 0.95); }
+  code { font-family: var(--font-mono); font-size: 13px; }
+  .inline-code { background: var(--bg2); padding: 1px 5px; border-radius: var(--radius-sm); font-size: 12px; }
+  .note { background: var(--bg2); border-left: 3px solid var(--accent); padding: 12px 16px; margin: 0 0 24px; font-size: 13px; color: var(--text2); border-radius: 0 var(--radius) var(--radius) 0; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="subpage-header fade-in fade-in-1">
+    <h1><a href="/">Forgotten &#926;TH</a></h1>
+    <nav class="subpage-nav">
+      <a href="/stats">Stats</a>
+      <a href="/api-docs" class="current">API</a>
+      <a href="/lost-forever">Lost Forever</a>
+      <a href="/submit">Submit</a>
+      <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+      <a href="https://t.me/forgottenETH_bot" target="_blank" rel="noopener noreferrer" title="Telegram Bot" aria-label="Telegram"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+      <button id="themeToggle"></button>
+    </nav>
+  </div>
+  <div class="tile-divider"></div>
+
+  <p class="subtitle fade-in fade-in-2">Free, public API for checking claimable ETH in defunct smart contracts.</p>
+
+  <div class="note fade-in fade-in-2">
+    All endpoints are rate-limited to 30 requests per minute per IP. Responses are JSON. No authentication required.
+  </div>
+
+  <div class="fade-in fade-in-3">
+  <h2>Check Address</h2>
+  <div class="endpoint">
+    <span class="method">GET</span>
+    <span class="path">/api/check</span>
+    <p class="desc">Check if an Ethereum address has claimable ETH in any tracked contract.</p>
+    <div class="params">
+      <table>
+        <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">address</span> <span class="param-required">required</span></td><td>string</td><td>Ethereum address (0x + 40 hex chars)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Example</h3>
+    <pre>GET /api/check?address=0x1234567890abcdef1234567890abcdef12345678</pre>
+    <h3>Response</h3>
+    <pre>{
+  "address": "0x1234...5678",
+  "checked_at": "2026-03-31T12:00:00.000Z",
+  "contracts_checked": 116,
+  "contracts_with_balance": 2,
+  "total_claimable_eth": "1.234567",
+  "balances": {
+    "etherdelta": {
+      "contract": "0x8d12A197cB00D4747a1fe03395095ce2A5CC6819",
+      "balance_wei": "1234567000000000000",
+      "balance_eth": "1.234567"
+    }
+  },
+  "coverage": {
+    "etherdelta": { "coverage_pct": 99.8, "scan_date": "2026-03-30 UTC" }
+  }
+}</pre>
+  </div>
+
+  <h2>Protocol Table</h2>
+  <div class="endpoint">
+    <span class="method">GET</span>
+    <span class="path">/api/table</span>
+    <p class="desc">Get metadata for a specific protocol: total ETH, address count, coverage, TVL history.</p>
+    <div class="params">
+      <table>
+        <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">exchange</span> <span class="param-required">required</span></td><td>string</td><td>Protocol key (e.g. <code class="inline-code">etherdelta</code>, <code class="inline-code">ens_old</code>)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Example</h3>
+    <pre>GET /api/table?exchange=etherdelta</pre>
+    <h3>Response</h3>
+    <pre>{
+  "exchange": "etherdelta",
+  "meta": {
+    "contract": "0x8d12A197cB00D4747a1fe03395095ce2A5CC6819",
+    "total_eth": 1234.56,
+    "contract_eth_balance": 1500.00,
+    "addresses_with_balance": 45000,
+    "coverage_pct": 99.8,
+    "scan_date": "2026-03-30 UTC",
+    "tvl": [
+      { "date": "2018-01", "eth": 150000 },
+      { "date": "2026-03", "eth": 1500 }
+    ]
+  }
+}</pre>
+  </div>
+
+  <h2>Summary</h2>
+  <div class="endpoint">
+    <span class="method">GET</span>
+    <span class="path">/api/summary</span>
+    <p class="desc">Get an overview of all tracked contracts with their ETH balances and coverage.</p>
+    <h3>Example</h3>
+    <pre>GET /api/summary</pre>
+    <h3>Response</h3>
+    <pre>{
+  "total_eth": 28500.42,
+  "contract_count": 116,
+  "contracts": {
+    "etherdelta": {
+      "contract": "0x8d12...",
+      "total_eth": 1234.56,
+      "contract_eth_balance": 1500.00,
+      "addresses_with_balance": 45000,
+      "coverage_pct": 99.8,
+      "scan_date": "2026-03-30 UTC"
+    }
+  }
+}</pre>
+  </div>
+
+  <h2>Total</h2>
+  <div class="endpoint">
+    <span class="method">GET</span>
+    <span class="path">/api/total</span>
+    <p class="desc">Get the total tracked ETH and contract count. Lightweight endpoint for widgets.</p>
+    <h3>Example</h3>
+    <pre>GET /api/total</pre>
+    <h3>Response</h3>
+    <pre>{
+  "total_eth": 28500.42,
+  "contract_count": 116,
+  "address_count": 75000
+}</pre>
+  </div>
+
+  <h2>Site Stats</h2>
+  <div class="endpoint">
+    <span class="method">GET</span>
+    <span class="path">/api/stats</span>
+    <p class="desc">Aggregate usage stats: how many addresses checked, balances found, ETH claimed.</p>
+    <h3>Example</h3>
+    <pre>GET /api/stats</pre>
+    <h3>Response</h3>
+    <pre>{
+  "total_checks": 5000,
+  "unique_checked": 3200,
+  "total_found": 800,
+  "unique_found": 650,
+  "total_claims": 42,
+  "eth_claimed": 125.50
+}</pre>
+  </div>
+
+  <h2>Protocol List</h2>
+  <div class="endpoint">
+    <span class="method">GET</span>
+    <span class="path">/data/protocols.json</span>
+    <p class="desc">Static JSON file listing all tracked protocols with their keys, names, and categories.</p>
+    <h3>Example</h3>
+    <pre>GET /data/protocols.json</pre>
+    <h3>Response</h3>
+    <pre>[
+  {
+    "key": "etherdelta",
+    "name": "EtherDelta",
+    "category": "DEX",
+    "balance_file": "etherdelta.json"
+  },
+  ...
+]</pre>
+  </div>
+  </div>
+
+  <div class="fade-in fade-in-4">
+  <h2>Notes</h2>
+  <ul style="font-size:14px;margin-top:12px;padding-left:20px;">
+    <li style="margin-bottom:8px;">Rate limit: 30 requests/min per IP. Returns <code class="inline-code">429</code> when exceeded.</li>
+    <li style="margin-bottom:8px;">All ETH values are in ether (not wei), unless the field name says <code class="inline-code">_wei</code>.</li>
+    <li style="margin-bottom:8px;">Coverage percentage shows what fraction of known depositors are in our index.</li>
+    <li style="margin-bottom:8px;">Data refreshes every 6 hours. The <code class="inline-code">scan_date</code> field shows when each contract was last scanned.</li>
+    <li style="margin-bottom:8px;">Individual address balances are only returned via <code class="inline-code">/api/check</code>. The <code class="inline-code">/api/table</code> and <code class="inline-code">/api/summary</code> endpoints return aggregate data only.</li>
+  </ul>
+  </div>
+
+  <footer class="site-footer">
+    <a href="/">forgotteneth.com</a>
+    <span class="footer-sep">&middot;</span>
+    <a href="/api/rss">RSS</a>
+    <span class="footer-sep">&middot;</span>
+    <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank">GitHub</a>
+    <span class="footer-sep">&middot;</span>
+    <a href="https://t.me/forgotteneth_bot" target="_blank">Telegram</a>
+  </footer>
+</div>
+<script src="/theme.js"></script>
+</body>
+</html>

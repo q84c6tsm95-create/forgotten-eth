@@ -980,15 +980,6 @@
     "deployed": "August 2018",
     "slug": "lastwinner"
   },
-  "thedao": {
-    "name": "The DAO",
-    "desc": "The DAO launched in April 2016 as the largest crowdfund in history, raising 11.5 million ETH (~$150M) from 20,000+ investors. In June 2016, a reentrancy exploit drained 3.6M ETH, leading to the contentious Ethereum hard fork that split ETH and ETC. After the fork restored the funds, a WithdrawDAO wrapper contract was deployed, allowing any DAO token holder to burn their tokens 1:1 for ETH. Over 81,000 ETH remains unclaimed in the wrapper to this day.",
-    "contract": "0xbb9bc244d798123fde783fcc1c72d3bb8c189413",
-    "deployed": "April 2016",
-    "color": "#c0392b",
-    "category": "ico",
-    "slug": "thedao"
-  },
   "digixdao": {
     "name": "DigixDAO",
     "desc": "DigixDAO launched in March 2016 as one of Ethereum's first DAOs, raising 466,648 ETH in a crowdsale that filled its hard cap in just 12 hours. The DAO funded development of Digix's gold-backed DGX token, but after years of limited adoption, token holders voted 97% in favor of dissolution via Project Ragnarok in January 2020. The Acid refund contract was deployed in March 2020, allowing any DGD holder to permanently burn their tokens for a pro-rata share of the treasury at roughly 0.193 ETH per DGD.",
@@ -1048,5 +1039,14 @@
     "deployed": "July 2020",
     "color": "#31cb9e",
     "category": "dex"
+  },
+  "thedao": {
+    "name": "The DAO",
+    "desc": "The DAO launched in April 2016 as the largest crowdfund in history, raising 11.5 million ETH from over 20,000 investors. In June 2016, a reentrancy exploit drained 3.6M ETH, leading to the contentious Ethereum hard fork that split ETH and ETC. After the fork restored the funds, a WithdrawDAO wrapper contract was deployed, allowing any DAO token holder to burn their tokens 1:1 for ETH. Over 81,000 ETH remains unclaimed in the wrapper to this day.",
+    "contract": "0xbb9bc244d798123fde783fcc1c72d3bb8c189413",
+    "deployed": "April 2016",
+    "color": "#c0392b",
+    "category": "ico",
+    "slug": "thedao"
   }
 }
