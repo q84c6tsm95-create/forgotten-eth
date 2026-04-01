@@ -74,7 +74,7 @@ export default async function handler(req, res) {
     const rpcResp = await fetchWithTimeout('https://ethereum.publicnode.com', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ jsonrpc: '2.0', method: 'eth_getBalance', params: ['0x95a708aAAB1D336bB60EF2F40212672F4cf65736', 'latest'], id: 1 }),
+      body: JSON.stringify({ jsonrpc: '2.0', method: 'eth_getBalance', params: ['0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891', 'latest'], id: 1 }),
     });
     const rpcData = await rpcResp.json();
     checks.donation_eth = rpcData.result ? (parseInt(rpcData.result, 16) / 1e18).toFixed(4) : '0';
@@ -103,7 +103,7 @@ export default async function handler(req, res) {
     const alerts = [];
     if (curDonation > _lastDonation && _lastDonation > 0) {
       const diff = (curDonation - _lastDonation).toFixed(4);
-      alerts.push(`💰 <b>Donation received!</b> +${diff} ETH\nBalance: ${curDonation} ETH\n<a href="https://etherscan.io/address/0x95a708aAAB1D336bB60EF2F40212672F4cf65736">view</a>`);
+      alerts.push(`💰 <b>Donation received!</b> +${diff} ETH\nBalance: ${curDonation} ETH\n<a href="https://etherscan.io/address/0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891">view</a>`);
     }
     if (curOutreach > _lastOutreach && _lastOutreach > 0) {
       const diff = (curOutreach - _lastOutreach).toFixed(4);
@@ -163,7 +163,7 @@ export default async function handler(req, res) {
 
   // 6. Donation address integrity (verify app.js hasn't been tampered)
   try {
-    const EXPECTED_DONATION = '0x95a708aAAB1D336bB60EF2F40212672F4cf65736';
+    const EXPECTED_DONATION = '0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891';
     const shardMeta = JSON.parse(readFileSync(join(process.cwd(), 'data', 'index_shards', 'meta.json'), 'utf8'));
     // Donation address is hardcoded in app.js — we verify via the RPC call target above
     // If someone changes the donation address in code, it won't match this hardcoded check

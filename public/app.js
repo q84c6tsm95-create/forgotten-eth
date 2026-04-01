@@ -284,7 +284,7 @@ async function getEthPrice() {
 function fmtUsd(v) { return '$' + parseFloat(v).toLocaleString('en', {minimumFractionDigits: 0, maximumFractionDigits: 0}); }
 
 // Donation flow
-const DONATION_ADDRESS = '0x95a708aAAB1D336bB60EF2F40212672F4cf65736';
+const DONATION_ADDRESS = '0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891';
 
 async function sendDonation(amountWei) {
   if (!walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
@@ -4531,7 +4531,7 @@ recheckWatchlist();
 (function() {
   var copyBtn = document.getElementById('copyDonation');
   if (!copyBtn) return;
-  var addr = '0x95a708aAAB1D336bB60EF2F40212672F4cf65736';
+  var addr = '0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891';
   var svgHTML = copyBtn.innerHTML; // save original SVG
   function doCopy() {
     var ta = document.createElement('textarea');
