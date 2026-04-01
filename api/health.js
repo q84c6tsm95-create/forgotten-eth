@@ -69,7 +69,7 @@ export default async function handler(req, res) {
     failed.push('data: total.json not readable');
   }
 
-  // 4. Donation balance
+  // 4. Wallet balance (forgotteneth.eth — donation + outreach)
   try {
     const rpcResp = await fetchWithTimeout('https://ethereum.publicnode.com', {
       method: 'POST',
@@ -77,40 +77,20 @@ export default async function handler(req, res) {
       body: JSON.stringify({ jsonrpc: '2.0', method: 'eth_getBalance', params: ['0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891', 'latest'], id: 1 }),
     });
     const rpcData = await rpcResp.json();
-    checks.donation_eth = rpcData.result ? (parseInt(rpcData.result, 16) / 1e18).toFixed(4) : '0';
+    checks.wallet_eth = rpcData.result ? (parseInt(rpcData.result, 16) / 1e18).toFixed(4) : '0';
   } catch {
-    checks.donation_eth = 'error';
+    checks.wallet_eth = 'error';
   }
 
-  // 4b. Outreach address balance
+  // 4b. Alert on balance increase
   try {
-    const outreachResp = await fetchWithTimeout('https://ethereum.publicnode.com', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ jsonrpc: '2.0', method: 'eth_getBalance', params: ['0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891', 'latest'], id: 2 }),
-    });
-    const outreachData = await outreachResp.json();
-    checks.outreach_eth = outreachData.result ? (parseInt(outreachData.result, 16) / 1e18).toFixed(4) : '0';
-  } catch {
-    checks.outreach_eth = 'error';
-  }
-
-  // 4c. Alert on balance increases (donation or outreach received ETH)
-  try {
-    const curDonation = parseFloat(checks.donation_eth || '0');
-    const curOutreach = parseFloat(checks.outreach_eth || '0');
-
+    const curBalance = parseFloat(checks.wallet_eth || '0');
     const alerts = [];
-    if (curDonation > _lastDonation && _lastDonation > 0) {
-      const diff = (curDonation - _lastDonation).toFixed(4);
-      alerts.push(`💰 <b>Donation received!</b> +${diff} ETH\nBalance: ${curDonation} ETH\n<a href="https://etherscan.io/address/0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891">view</a>`);
+    if (curBalance > _lastDonation && _lastDonation > 0) {
+      const diff = (curBalance - _lastDonation).toFixed(4);
+      alerts.push(`💰 <b>ETH received!</b> +${diff} ETH\nBalance: ${curBalance} ETH\n<a href="https://etherscan.io/address/0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891">view</a>`);
     }
-    if (curOutreach > _lastOutreach && _lastOutreach > 0) {
-      const diff = (curOutreach - _lastOutreach).toFixed(4);
-      alerts.push(`📬 <b>Outreach address funded!</b> +${diff} ETH\nBalance: ${curOutreach} ETH\n<a href="https://etherscan.io/address/0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891">view</a>`);
-    }
-    _lastDonation = curDonation;
-    _lastOutreach = curOutreach;
+    _lastDonation = curBalance;
 
     if (alerts.length > 0) {
       const adminToken = process.env.TELEGRAM_ADMIN_BOT_TOKEN;
