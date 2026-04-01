@@ -3,7 +3,6 @@
   "outputDirectory": "public",
   "rewrites": [
     { "source": "/outreach", "destination": "/outreach.html" },
-    { "source": "/dashboard", "destination": "/dashboard.html" },
     { "source": "/protocol/:slug", "destination": "/:slug" },
     { "source": "/:slug((?!api|_vercel|protocol|outreach|dashboard)[a-z0-9-]+)", "destination": "/api/protocol?slug=:slug" },
     { "source": "/sitemap.xml", "destination": "/api/sitemap" }
