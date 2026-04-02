@@ -2181,6 +2181,41 @@ function truncAddr(a) { return a.slice(0, 8) + '...' + a.slice(-6); }
 function etherscanAddr(a) { return `https://etherscan.io/address/${encodeURIComponent(a)}`; }
 function etherscanTx(h) { return `https://etherscan.io/tx/${encodeURIComponent(h)}`; }
 
+function encodeDaoTransferToOwner(ownerAddress, amount) {
+  const iface = new ethers.Interface(['function transfer(address,uint256) returns (bool)']);
+  return iface.encodeFunctionData('transfer', [ownerAddress, amount]);
+}
+
+async function getParityDaoRecoveryState(holderAddress, ownerAddress, daoBal) {
+  if (!walletProvider || !holderAddress || !ownerAddress) return null;
+  if (holderAddress.toLowerCase() === ownerAddress.toLowerCase()) return null;
+
+  try {
+    const multisig = new ethers.Contract(
+      holderAddress,
+      [
+        'function isOwner(address) view returns (bool)',
+        'function m_dailyLimit() view returns (uint256)',
+      ],
+      walletProvider
+    );
+    const [isOwner, dailyLimit] = await Promise.all([
+      multisig.isOwner(ownerAddress),
+      multisig.m_dailyLimit(),
+    ]);
+    if (!isOwner) return null;
+
+    return {
+      holderAddress,
+      ownerAddress,
+      dailyLimit,
+      transferData: encodeDaoTransferToOwner(ownerAddress, daoBal),
+    };
+  } catch (e) {
+    return null;
+  }
+}
+
 // ─── Web3 Wallet ───
 
 async function connectWallet() {
@@ -2332,6 +2367,7 @@ async function checkUserBalances(overrideAddress) {
   const rowsEl = document.getElementById('claimRows');
   let html = '';
   let hasBalance = false;
+  let hasMismatchAction = false;
 
   // Fetch pre-computed balances from API (avoids loading full JSON)
   let apiBalances = {};
@@ -2465,7 +2501,8 @@ async function checkUserBalances(overrideAddress) {
         const daoContract = new ethers.Contract(cfg.daoWithdraw.daoToken, ['function balanceOf(address) view returns (uint256)', 'function allowance(address,address) view returns (uint256)'], walletProvider);
         const daoBal = await daoContract.balanceOf(checkAddr);
         const daoAllowance = await daoContract.allowance(checkAddr, cfg.daoWithdraw.withdrawContract);
-        window._daoState[key] = { daoBal, daoAllowance };
+        const parityRecovery = await getParityDaoRecoveryState(checkAddr, walletAddress, daoBal);
+        window._daoState[key] = { daoBal, daoAllowance, parityRecovery };
       } catch (e) {
         console.warn('Failed to check The DAO state:', e);
       }
@@ -2639,10 +2676,23 @@ async function checkUserBalances(overrideAddress) {
           const daoState = window._daoState?.[key];
           const daoBal = daoState?.daoBal || 0n;
           const daoAllowance = daoState?.daoAllowance || 0n;
+          const parityRecovery = daoState?.parityRecovery || null;
           const needsApproval = daoAllowance < daoBal;
           let actionBtn, stepInfo;
+          let contractLabel = 'Contract';
+          let contractValue = `<a href="${etherscanAddr(cfg.daoWithdraw.withdrawContract)}" target="_blank" rel="noopener noreferrer">${cfg.daoWithdraw.withdrawContract}</a>`;
+          let step1Value = 'approve(WithdrawDAO, balance)';
+          let step2Value = 'withdraw()';
 
-          if (daoBal === 0n) {
+          if (parityRecovery) {
+            hasMismatchAction = true;
+            actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="dao-multisig-transfer" data-key="${key}" data-allow-mismatch="true">Step 1: Move DAO to Wallet</button>`;
+            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:#facc15">Owner Path</span><span class="claim-card-meta-value" style="color:#facc15">Connected wallet is an owner of this Parity multisig. Move DAO tokens to ${esc(truncAddr(walletAddress))}, then claim from your wallet.</span></div>`;
+            contractLabel = 'Parity multisig';
+            contractValue = `<a href="${etherscanAddr(parityRecovery.holderAddress)}" target="_blank" rel="noopener noreferrer">${parityRecovery.holderAddress}</a>`;
+            step1Value = 'execute(DAO, 0, transfer(wallet, balance))';
+            step2Value = 'approve(WithdrawDAO, balance) -> withdraw()';
+          } else if (daoBal === 0n) {
             actionBtn = `<button class="claim-btn" disabled style="opacity:0.5">No DAO tokens</button>`;
             stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:var(--red)">Blocked</span><span class="claim-card-meta-value" style="color:var(--red)">DAO tokens required to claim.</span></div>`;
           } else if (needsApproval) {
@@ -2661,9 +2711,9 @@ async function checkUserBalances(overrideAddress) {
               </div>
               <div class="claim-card-meta" id="claimDetails-${key}">
                 ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${esc(lastTx.last_tx_date)} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.daoWithdraw.withdrawContract)}" target="_blank" rel="noopener noreferrer">${cfg.daoWithdraw.withdrawContract}</a></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">approve(WithdrawDAO, balance)</span></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">withdraw()</span></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">${contractLabel}</span><span class="claim-card-meta-value">${contractValue}</span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">${step1Value}</span></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">${step2Value}</span></span></div>
                 ${stepInfo}
               </div>
               <div class="claim-card-actions">
@@ -2879,7 +2929,7 @@ async function checkUserBalances(overrideAddress) {
     const isMismatch = overrideAddress && overrideAddress.toLowerCase() !== walletAddress.toLowerCase();
     const mismatchNote = isMismatch
       ? `<div style="text-align:center;margin-top:12px;padding:10px;background:var(--bg2);border:1px solid var(--yellow);border-radius:8px;font-size:12px;color:var(--text2)">
-          Showing balances for <b>${esc(truncAddr(overrideAddress))}</b>. To withdraw, connect the wallet that owns this address.
+          Showing balances for <b>${esc(truncAddr(overrideAddress))}</b>. ${hasMismatchAction ? 'The DAO owner-recovery button stays enabled when the connected wallet is an owner of a Parity multisig. Other actions still require the checked address itself.' : 'To withdraw, connect the wallet that owns this address.'}
         </div>` : '';
     html = prefix + '<div class="claim-rows-list">' + html + '</div>' + mismatchNote + _botCTA;
     var _bannerTitle = 'Claimable ETH Found';
@@ -2898,6 +2948,7 @@ async function checkUserBalances(overrideAddress) {
   const isMismatchFinal = overrideAddress && overrideAddress.toLowerCase() !== walletAddress.toLowerCase();
   if (isMismatchFinal) {
     rowsEl.querySelectorAll('.claim-btn').forEach(btn => {
+      if (btn.dataset.allowMismatch === 'true') return;
       btn.disabled = true;
       btn.title = 'Connect the wallet that owns this address to withdraw';
     });
@@ -3435,6 +3486,75 @@ async function daoWithdrawExecute(key) {
       statusEl.textContent = 'Rejected';
     } else {
       statusEl.textContent = 'Withdraw failed: ' + (e.reason || e.message || 'Unknown error');
+    }
+  }
+}
+
+async function daoMultisigTransfer(key) {
+  const cfg = EXCHANGES[key];
+  const btn = document.getElementById('claimBtn-' + key);
+  const statusEl = document.getElementById('claimStatus-' + key);
+  const daoState = window._daoState?.[key];
+  const parityRecovery = daoState?.parityRecovery || null;
+
+  if (!parityRecovery) {
+    statusEl.textContent = 'Parity multisig owner path unavailable.';
+    return;
+  }
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+  if (!walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Moving DAO...';
+  btn.classList.add('pending');
+
+  try {
+    const daoContract = new ethers.Contract(cfg.daoWithdraw.daoToken, ['function balanceOf(address) view returns (uint256)'], walletProvider);
+    const recipientBefore = await daoContract.balanceOf(walletAddress);
+    const multisig = new ethers.Contract(parityRecovery.holderAddress, ['function execute(address,uint256,bytes) returns (bytes32)'], walletSigner);
+    const amountEth = parseFloat(ethers.formatEther(daoState.daoBal || 0n));
+    logEvent('claim_started', {
+      address: walletAddress,
+      contract: key,
+      amount_eth: amountEth,
+      extra: { mode: 'dao_multisig_transfer', source_address: parityRecovery.holderAddress },
+    });
+    const tx = await multisig.execute(cfg.daoWithdraw.daoToken, 0n, parityRecovery.transferData);
+    btn.textContent = 'Pending...';
+    statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash.slice(0, 18)}...</a>`;
+
+    const receipt = await tx.wait();
+    const recipientAfter = await daoContract.balanceOf(walletAddress);
+    if (recipientAfter <= recipientBefore) {
+      btn.textContent = 'Submitted';
+      btn.classList.remove('pending');
+      btn.style.opacity = '0.7';
+      statusEl.innerHTML = `Tx confirmed, but DAO tokens are not in ${esc(truncAddr(walletAddress))} yet. This multisig may still need an additional confirmation. <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction</a>`;
+      return;
+    }
+
+    logEvent('claim_confirmed', {
+      address: walletAddress,
+      contract: key,
+      amount_eth: amountEth,
+      tx_hash: tx.hash,
+      block_num: receipt.blockNumber,
+      extra: { mode: 'dao_multisig_transfer', source_address: parityRecovery.holderAddress },
+    });
+    btn.textContent = 'Moved';
+    btn.classList.remove('pending');
+    btn.style.background = 'var(--green)';
+    btn.style.opacity = '0.7';
+    statusEl.innerHTML = `<div style="padding:10px 0;color:var(--green)">DAO tokens moved to ${esc(truncAddr(walletAddress))}. Rescanning your wallet for the standard claim flow...</div>`;
+    await checkUserBalances(walletAddress);
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Step 1: Move DAO to Wallet';
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      statusEl.textContent = 'Rejected';
+    } else {
+      statusEl.textContent = 'Move failed: ' + (e.reason || e.message || 'Unknown error');
     }
   }
 }
@@ -4803,6 +4923,8 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     daoApprove(btn.dataset.key);
   } else if (action === 'dao-withdraw') {
     daoWithdrawExecute(btn.dataset.key);
+  } else if (action === 'dao-multisig-transfer') {
+    daoMultisigTransfer(btn.dataset.key);
   } else if (action === 'neufund-approve-and-unlock') {
     neufundApproveAndUnlock(btn.dataset.key);
   } else if (action === 'neufund-withdraw-etht') {
@@ -4999,4 +5121,3 @@ recheckWatchlist();
   }
   copyBtn.addEventListener('click', function(e) { e.preventDefault(); doCopy(); });
 })();
-
