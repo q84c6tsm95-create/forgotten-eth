@@ -46,6 +46,10 @@
       "memory": 128,
       "maxDuration": 10
     },
+    "api/claims.js": {
+      "memory": 128,
+      "maxDuration": 10
+    },
     "api/log.js": {
       "memory": 128,
       "maxDuration": 10
@@ -101,7 +105,7 @@
       ]
     },
     {
-      "source": "/api/(check|summary|table|total|stats|sitemap)",
+      "source": "/api/(check|summary|table|total|stats|claims|sitemap)",
       "headers": [
         { "key": "Cache-Control", "value": "private, no-store" },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
