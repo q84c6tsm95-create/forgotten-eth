@@ -531,6 +531,7 @@
       <a href="#total">Total</a>
       <a href="#protocol-list">Protocol List</a>
       <a href="#protocol-info">Protocol Info</a>
+      <a href="#claims">Claims</a>
       <div class="sidebar-label">Reference</div>
       <a href="#errors">Errors</a>
       <a href="#headers">Headers</a>
@@ -841,6 +842,62 @@ print(<span class="json-string">f"{data['total_claimable_eth']} ETH claimable"</
   </div>
 
 
+  <!-- ── Claims ── -->
+  <h2 id="claims">Claims</h2>
+  <div class="endpoint endpoint-gold">
+    <span class="method">GET</span>
+    <span class="path">/api/claims</span>
+    <p class="desc">All verified ETH claims made through the site. Includes per-claim tx hashes, ENS deed names, and per-protocol aggregates.</p>
+    <div class="try-it">
+      <button id="tryClaimsBtn" onclick="tryClaims()">Try it</button>
+    </div>
+    <div class="try-result" id="tryClaimsResult"><div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre id="tryClaimsOutput"></pre></div></div>
+    <h3>Response</h3>
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <pre>{
+  <span class="json-key">"total_claims"</span>: <span class="json-number">251</span>,
+  <span class="json-key">"unique_addresses"</span>: <span class="json-number">43</span>,
+  <span class="json-key">"total_eth"</span>: <span class="json-number">1042.66</span>,
+  <span class="json-key">"by_protocol"</span>: {
+    <span class="json-key">"ens_old"</span>: { <span class="json-key">"claims"</span>: <span class="json-number">208</span>, <span class="json-key">"eth"</span>: <span class="json-number">763.45</span> },
+    <span class="json-key">"idex"</span>: { <span class="json-key">"claims"</span>: <span class="json-number">14</span>, <span class="json-key">"eth"</span>: <span class="json-number">273.88</span> },
+    ...
+  },
+  <span class="json-key">"claims"</span>: [
+    {
+      <span class="json-key">"timestamp"</span>: <span class="json-string">"2026-04-01T22:09:17.553Z"</span>,
+      <span class="json-key">"address"</span>: <span class="json-string">"0x5807a8b404c71cf22eb0bac2e5f2a6c202ebe0a1"</span>,
+      <span class="json-key">"protocol"</span>: <span class="json-string">"ens_old"</span>,
+      <span class="json-key">"eth"</span>: <span class="json-number">118.811</span>,
+      <span class="json-key">"tx_hash"</span>: <span class="json-string">"0xc70e253ef2445e..."</span>,
+      <span class="json-key">"deed_name"</span>: <span class="json-string">"wellsfargo"</span>
+    },
+    ...
+  ]
+}</pre>
+    </div>
+
+    <h3>Response Fields</h3>
+    <div class="params">
+      <table>
+        <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">total_claims</span></td><td>number</td><td>Total number of claim transactions</td></tr>
+          <tr><td><span class="param-name">unique_addresses</span></td><td>number</td><td>Unique wallets that have claimed</td></tr>
+          <tr><td><span class="param-name">total_eth</span></td><td>number</td><td>Total ETH claimed across all transactions</td></tr>
+          <tr><td><span class="param-name">by_protocol</span></td><td>object</td><td>Aggregate claims and ETH per protocol</td></tr>
+          <tr><td><span class="param-name">claims[].timestamp</span></td><td>string</td><td>ISO 8601 timestamp of the claim</td></tr>
+          <tr><td><span class="param-name">claims[].address</span></td><td>string</td><td>Wallet address that claimed</td></tr>
+          <tr><td><span class="param-name">claims[].protocol</span></td><td>string</td><td>Protocol key</td></tr>
+          <tr><td><span class="param-name">claims[].eth</span></td><td>number</td><td>ETH amount claimed</td></tr>
+          <tr><td><span class="param-name">claims[].tx_hash</span></td><td>string</td><td>Ethereum transaction hash (verifiable on Etherscan)</td></tr>
+          <tr><td><span class="param-name">claims[].deed_name</span></td><td>string?</td><td>ENS only. The domain name of the released deed</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <!-- ── Error Responses ── -->
   <h2 id="errors">Error Responses</h2>
   <p style="font-size:14px;color:var(--text2);margin-bottom:12px;">All error responses follow a consistent <code class="inline-code" style="color:var(--accent-text)">JSON</code> format with an <code class="inline-code" style="color:var(--gold)">error</code> field.</p>
@@ -967,6 +1024,21 @@ function tryTable() {
     .catch(function(e) { out.textContent = 'Error: ' + e.message; btn.disabled = false; btn.textContent = 'Try it'; });
 }
 document.getElementById('tryExchange').addEventListener('keydown', function(e) { if (e.key === 'Enter') tryTable(); });
+
+/* ── Try Claims ── */
+function tryClaims() {
+  var el = document.getElementById('tryClaimsResult');
+  var out = document.getElementById('tryClaimsOutput');
+  var btn = document.getElementById('tryClaimsBtn');
+  el.style.display = 'block';
+  btn.disabled = true;
+  btn.textContent = '...';
+  out.textContent = '';
+  fetch('/api/claims')
+    .then(function(r) { return r.json(); })
+    .then(function(d) { out.textContent = JSON.stringify(d, null, 2); btn.disabled = false; btn.textContent = 'Try it'; })
+    .catch(function(e) { out.textContent = 'Error: ' + e.message; btn.disabled = false; btn.textContent = 'Try it'; });
+}
 
 /* ── Code tabs ── */
 function switchTab(event, panelId) {
