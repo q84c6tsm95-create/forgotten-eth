@@ -563,11 +563,11 @@
     </div>
     <div class="try-it">
       <input type="text" id="tryAddress" placeholder="0x1234...5678" spellcheck="false" aria-label="Ethereum address">
-      <button id="tryBtn" onclick="tryCheck()">Try it</button>
+      <button id="tryBtn">Try it</button>
     </div>
     <div class="try-result" id="tryResult">
       <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <button class="copy-btn">Copy</button>
         <pre id="tryOutput"></pre>
       </div>
     </div>
@@ -576,19 +576,19 @@
     <h3>Examples</h3>
     <div class="code-tabs">
       <div class="tab-buttons">
-        <button class="tab-btn active" onclick="switchTab(event, 'tab-curl')">curl</button>
-        <button class="tab-btn" onclick="switchTab(event, 'tab-js')">JavaScript</button>
-        <button class="tab-btn" onclick="switchTab(event, 'tab-py')">Python</button>
+        <button class="tab-btn active" data-tab="tab-curl">curl</button>
+        <button class="tab-btn" data-tab="tab-js">JavaScript</button>
+        <button class="tab-btn" data-tab="tab-py">Python</button>
       </div>
       <div class="tab-panel active" id="tab-curl">
         <div class="code-block">
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <button class="copy-btn">Copy</button>
           <pre>curl "https://forgotteneth.com/api/check?address=0xab5801a7d398351b8be11c439e05c5b3259aec9b"</pre>
         </div>
       </div>
       <div class="tab-panel" id="tab-js">
         <div class="code-block">
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <button class="copy-btn">Copy</button>
           <pre><span class="json-key">const</span> res = <span class="json-key">await</span> fetch(<span class="json-string">'https://forgotteneth.com/api/check?address=0xab58...'</span>);
 <span class="json-key">const</span> data = <span class="json-key">await</span> res.json();
 console.log(<span class="json-string">`${data.total_claimable_eth} ETH claimable`</span>);</pre>
@@ -596,7 +596,7 @@ console.log(<span class="json-string">`${data.total_claimable_eth} ETH claimable
       </div>
       <div class="tab-panel" id="tab-py">
         <div class="code-block">
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <button class="copy-btn">Copy</button>
           <pre><span class="json-key">import</span> requests
 r = requests.get(<span class="json-string">'https://forgotteneth.com/api/check'</span>, params={<span class="json-string">'address'</span>: <span class="json-string">'0xab58...'</span>})
 data = r.json()
@@ -607,7 +607,7 @@ print(<span class="json-string">f"{data['total_claimable_eth']} ETH claimable"</
 
     <h3>Response</h3>
     <div class="code-block">
-      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <button class="copy-btn">Copy</button>
       <pre>{
   <span class="json-key">"address"</span>: <span class="json-string">"0xab5801a7d398351b8be11c439e05c5b3259aec9b"</span>,
   <span class="json-key">"checked_at"</span>: <span class="json-string">"2026-04-01T12:00:00.000Z"</span>,
@@ -659,12 +659,12 @@ print(<span class="json-string">f"{data['total_claimable_eth']} ETH claimable"</
     <span class="path">/api/summary</span>
     <p class="desc">Overview of all tracked contracts with ETH balances, address counts, and coverage percentages.</p>
     <div class="try-it">
-      <button id="trySummaryBtn" onclick="trySummary()">Try it</button>
+      <button id="trySummaryBtn">Try it</button>
     </div>
-    <div class="try-result" id="trySummaryResult"><div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre id="trySummaryOutput"></pre></div></div>
+    <div class="try-result" id="trySummaryResult"><div class="code-block"><button class="copy-btn">Copy</button><pre id="trySummaryOutput"></pre></div></div>
     <h3>Response</h3>
     <div class="code-block">
-      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <button class="copy-btn">Copy</button>
       <pre>{
   <span class="json-key">"total_eth"</span>: <span class="json-number">157825.97</span>,
   <span class="json-key">"contract_count"</span>: <span class="json-number">117</span>,
@@ -715,12 +715,12 @@ print(<span class="json-string">f"{data['total_claimable_eth']} ETH claimable"</
     </div>
     <div class="try-it">
       <input type="text" id="tryExchange" placeholder="etherdelta" spellcheck="false" style="max-width:180px;">
-      <button id="tryTableBtn" onclick="tryTable()">Try it</button>
+      <button id="tryTableBtn">Try it</button>
     </div>
-    <div class="try-result" id="tryTableResult"><div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre id="tryTableOutput"></pre></div></div>
+    <div class="try-result" id="tryTableResult"><div class="code-block"><button class="copy-btn">Copy</button><pre id="tryTableOutput"></pre></div></div>
     <h3>Response</h3>
     <div class="code-block">
-      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <button class="copy-btn">Copy</button>
       <pre>{
   <span class="json-key">"exchange"</span>: <span class="json-string">"etherdelta"</span>,
   <span class="json-key">"meta"</span>: {
@@ -767,7 +767,7 @@ print(<span class="json-string">f"{data['total_claimable_eth']} ETH claimable"</
     <p class="desc">Lightweight endpoint returning total tracked ETH and counts. Ideal for widgets and bots.</p>
     <h3>Response</h3>
     <div class="code-block">
-      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <button class="copy-btn">Copy</button>
       <pre>{
   <span class="json-key">"total_eth"</span>: <span class="json-number">157825.97</span>,
   <span class="json-key">"total_contract_eth"</span>: <span class="json-number">158786.81</span>,
@@ -798,7 +798,7 @@ print(<span class="json-string">f"{data['total_claimable_eth']} ETH claimable"</
     <p class="desc">Static JSON listing all tracked protocols with keys, names, and categories. No rate limit.</p>
     <h3>Response</h3>
     <div class="code-block">
-      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <button class="copy-btn">Copy</button>
       <pre>[
   { <span class="json-key">"key"</span>: <span class="json-string">"etherdelta"</span>, <span class="json-key">"name"</span>: <span class="json-string">"EtherDelta"</span>, <span class="json-key">"contract"</span>: <span class="json-string">"0x8d12..."</span>, <span class="json-key">"category"</span>: <span class="json-string">"dex"</span> },
   { <span class="json-key">"key"</span>: <span class="json-string">"ens_old"</span>, <span class="json-key">"name"</span>: <span class="json-string">"ENS Old Registrar"</span>, <span class="json-key">"contract"</span>: <span class="json-string">"0x6090..."</span>, <span class="json-key">"category"</span>: <span class="json-string">"other"</span> },
@@ -816,7 +816,7 @@ print(<span class="json-string">f"{data['total_claimable_eth']} ETH claimable"</
     <p class="desc">Descriptions, categories, deploy dates, theme colors, and slugs for all tracked protocols. Static file, no rate limit.</p>
     <h3>Response</h3>
     <div class="code-block">
-      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <button class="copy-btn">Copy</button>
       <pre>{
   <span class="json-key">"etherdelta"</span>: {
     <span class="json-key">"name"</span>: <span class="json-string">"EtherDelta"</span>,
@@ -849,12 +849,12 @@ print(<span class="json-string">f"{data['total_claimable_eth']} ETH claimable"</
     <span class="path">/api/claims</span>
     <p class="desc">All verified ETH claims made through the site. Includes per-claim tx hashes, ENS deed names, and per-protocol aggregates.</p>
     <div class="try-it">
-      <button id="tryClaimsBtn" onclick="tryClaims()">Try it</button>
+      <button id="tryClaimsBtn">Try it</button>
     </div>
-    <div class="try-result" id="tryClaimsResult"><div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre id="tryClaimsOutput"></pre></div></div>
+    <div class="try-result" id="tryClaimsResult"><div class="code-block"><button class="copy-btn">Copy</button><pre id="tryClaimsOutput"></pre></div></div>
     <h3>Response</h3>
     <div class="code-block">
-      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <button class="copy-btn">Copy</button>
       <pre>{
   <span class="json-key">"total_claims"</span>: <span class="json-number">251</span>,
   <span class="json-key">"unique_addresses"</span>: <span class="json-number">43</span>,
@@ -1088,7 +1088,23 @@ function showCopied(btn) {
   }, 1500);
 }
 
-/* ── Enter key for try-it ── */
+/* ── Wire up all buttons (no inline onclick — blocked by CSP) ── */
+document.getElementById('tryBtn').addEventListener('click', tryCheck);
+document.getElementById('trySummaryBtn').addEventListener('click', trySummary);
+document.getElementById('tryTableBtn').addEventListener('click', tryTable);
+document.getElementById('tryClaimsBtn').addEventListener('click', tryClaims);
+
+// Copy buttons
+document.querySelectorAll('.copy-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() { copyCode(btn); });
+});
+
+// Tab buttons
+document.querySelectorAll('.tab-btn[data-tab]').forEach(function(btn) {
+  btn.addEventListener('click', function(e) { switchTab(e, btn.dataset.tab); });
+});
+
+// Enter key for inputs
 document.getElementById('tryAddress').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') tryCheck();
 });
