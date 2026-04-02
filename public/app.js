@@ -3729,7 +3729,7 @@ async function claimENSDeed(index) {
 
     const receipt = await tx.wait();
     window.va?.track?.('claim_confirmed', { exchange: 'ENS Old Registrar', amount_eth: ethAmount, tx_hash: tx.hash, block: receipt.blockNumber });
-    logEvent('claim_confirmed', { address: walletAddress, contract: 'ens_old', amount_eth: parseFloat(ethAmount), tx_hash: tx.hash, block_num: receipt.blockNumber });
+    logEvent('claim_confirmed', { address: walletAddress, contract: 'ens_old', amount_eth: parseFloat(ethAmount), tx_hash: tx.hash, block_num: receipt.blockNumber, extra: { deed_name: deed.name || null, deed_hash: deed.labelHash } });
 
     btn.textContent = 'Released';
     btn.disabled = true;
@@ -3811,7 +3811,9 @@ async function ensManualRelease() {
     window.va?.track?.('claim_submitted', { exchange: 'ENS Old Registrar', tx_hash: tx.hash });
     showInlineError('addrError', 'Transaction submitted: ' + tx.hash.slice(0, 22) + '... Waiting for confirmation...');
     var _addrEl = document.getElementById('addrError'); if (_addrEl) _addrEl.style.color = 'var(--text2)';
-    await tx.wait();
+    var receipt = await tx.wait();
+    var deedName = /^0x/.test(input) ? null : input.toLowerCase().replace(/\.eth$/, '');
+    logEvent('claim_confirmed', { address: walletAddress, contract: 'ens_old', tx_hash: tx.hash, block_num: receipt.blockNumber, extra: { deed_name: deedName, deed_hash: labelHash } });
     if (_addrEl) { _addrEl.textContent = 'Deed released successfully! ETH has been returned to your wallet.'; _addrEl.style.color = 'var(--green)'; }
     setTimeout(function() { if (_addrEl) { _addrEl.style.display = 'none'; _addrEl.style.color = 'var(--red)'; } }, 10000);
   } catch (e) {
