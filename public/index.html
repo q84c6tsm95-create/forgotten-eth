@@ -368,12 +368,18 @@
     left: 50%; top: 50%;
     transform: translate(-50%, -50%);
     font-family: var(--font-mono);
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 700;
     color: var(--text2);
-    opacity: 0.5;
+    opacity: 0.7;
     pointer-events: none;
     letter-spacing: 0.5px;
+    text-shadow: 0 0 8px var(--bg);
+  }
+  [data-theme="dark"] .hero-progress-pct {
+    color: var(--accent);
+    opacity: 0.5;
+    text-shadow: 0 0 10px rgba(126, 200, 190, 0.3);
   }
 
   /* ── Project description ── */
