@@ -3,6 +3,7 @@
   "outputDirectory": "public",
   "rewrites": [
     { "source": "/outreach", "destination": "/outreach.html" },
+    { "source": "/api", "destination": "/api-docs.html" },
     { "source": "/protocol/:slug", "destination": "/:slug" },
     { "source": "/:slug((?!api|_vercel|protocol|outreach|dashboard)[a-z0-9-]+)", "destination": "/api/protocol?slug=:slug" },
     { "source": "/sitemap.xml", "destination": "/api/sitemap" }
@@ -96,7 +97,16 @@
       ]
     },
     {
-      "source": "/api/(.*)",
+      "source": "/api/(check|summary|table|total|sitemap)",
+      "headers": [
+        { "key": "Cache-Control", "value": "private, no-store" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Robots-Tag", "value": "noindex" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    },
+    {
+      "source": "/api/(health|dashboard|dashboard-vercel|analytics|admin-alert|recap|notify-watches|outreach|telegram-bot|log)",
       "headers": [
         { "key": "Cache-Control", "value": "private, no-store" },
         { "key": "X-Content-Type-Options", "value": "nosniff" },

@@ -1,25 +1,6 @@
 import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
-
-const rateMap = new Map();
-const RATE_LIMIT = 60;
-const RATE_WINDOW = 60000;
-
-function checkRateLimit(ip) {
-  const now = Date.now();
-  if (rateMap.size > 500) {
-    for (const [k, v] of rateMap) {
-      if (now - v.start > RATE_WINDOW) rateMap.delete(k);
-    }
-  }
-  const entry = rateMap.get(ip);
-  if (!entry || now - entry.start > RATE_WINDOW) {
-    rateMap.set(ip, { start: now, count: 1 });
-    return true;
-  }
-  entry.count++;
-  return entry.count <= RATE_LIMIT;
-}
+import { rateLimit } from './_ratelimit.js';
 
 // Cache the entire summary since it changes only on deploy
 let cachedSummary = null;
@@ -63,13 +44,14 @@ function buildSummary() {
   return cachedSummary;
 }
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const ip = req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for']?.split(',')[0]?.trim() || 'unknown';
-  if (!checkRateLimit(ip)) {
+  const ip = req.headers['cf-connecting-ip'] || req.headers['x-real-ip'] || req.headers['x-forwarded-for']?.split(',')[0]?.trim() || 'unknown';
+  const allowed = await rateLimit(ip, 'summary', 30, 60);
+  if (!allowed) {
     return res.status(429).json({ error: 'Rate limit exceeded. Try again in 1 minute.' });
   }
 
