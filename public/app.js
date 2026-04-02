@@ -2495,7 +2495,7 @@ async function checkUserBalances(overrideAddress) {
               </div>
               <div class="claim-card-meta">
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr('0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef')}" target="_blank" rel="noopener noreferrer">0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef</a></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value"><span style="color:var(--text1)">releaseDeed(bytes32 _hash)</span></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value"><span style="color:var(--text)">releaseDeed(bytes32 _hash)</span></span></div>
               </div>
               <div id="ensDeedRows" style="padding:12px 16px 14px;border-top:1px solid var(--border);margin-top:8px"></div>
             </div>`;
@@ -2588,8 +2588,8 @@ async function checkUserBalances(overrideAddress) {
               <div class="claim-card-meta" id="claimDetails-${key}">
                 ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${esc(lastTx.last_tx_date)} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">claim()</span></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">refund()</span></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text)">claim()</span></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text)">refund()</span></span></div>
               </div>
               ${stepInfo}
               <div class="claim-card-actions">
@@ -2625,8 +2625,8 @@ async function checkUserBalances(overrideAddress) {
               <div class="claim-card-meta" id="claimDetails-${key}">
                 ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${esc(lastTx.last_tx_date)} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.digixBurn.acidContract)}" target="_blank" rel="noopener noreferrer">${cfg.digixBurn.acidContract}</a></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">approve(Acid, balance)</span></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">burn()</span></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text)">approve(Acid, balance)</span></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text)">burn()</span></span></div>
                 ${stepInfo}
               </div>
               <div class="claim-card-actions">
@@ -2662,8 +2662,8 @@ async function checkUserBalances(overrideAddress) {
               <div class="claim-card-meta" id="claimDetails-${key}">
                 ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${esc(lastTx.last_tx_date)} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.daoWithdraw.withdrawContract)}" target="_blank" rel="noopener noreferrer">${cfg.daoWithdraw.withdrawContract}</a></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">approve(WithdrawDAO, balance)</span></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">withdraw()</span></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text)">approve(WithdrawDAO, balance)</span></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text)">withdraw()</span></span></div>
                 ${stepInfo}
               </div>
               <div class="claim-card-actions">
@@ -2706,8 +2706,8 @@ async function checkUserBalances(overrideAddress) {
               <div class="claim-card-meta" id="claimDetails-${key}">
                 ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${esc(lastTx.last_tx_date)} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">approveAndCall(NEU)</span></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">withdraw(amount)</span></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text)">approveAndCall(NEU)</span></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text)">withdraw(amount)</span></span></div>
                 ${stepInfo}
               </div>
               <div class="claim-card-actions">
@@ -2726,7 +2726,7 @@ async function checkUserBalances(overrideAddress) {
               </div>
               <div class="claim-card-meta">
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value"><span style="color:var(--text1)">claimStakerReward(address, epoch)</span></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value"><span style="color:var(--text)">claimStakerReward(address, epoch)</span></span></div>
               </div>`;
           if (epochDetails.length > 0) {
             for (const ep of epochDetails) {
@@ -2781,8 +2781,8 @@ async function checkUserBalances(overrideAddress) {
               <div class="claim-card-meta" id="claimDetails-${key}">
                 ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${esc(lastTx.last_tx_date)} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">lockMe()</span></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">withdraw(0x0, amount)</span></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text)">lockMe()</span></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text)">withdraw(0x0, amount)</span></span></div>
               </div>
               ${stepInfo}
               <div class="claim-card-actions">
@@ -4438,8 +4438,8 @@ async function _testCheckBalances() {
             </div>
             <div class="claim-card-meta" id="claimDetails-${key}">
               <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.digixBurn.acidContract)}" target="_blank" rel="noopener noreferrer">${cfg.digixBurn.acidContract}</a></span></div>
-              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">approve(Acid, balance)</span></span></div>
-              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">burn()</span></span></div>
+              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text)">approve(Acid, balance)</span></span></div>
+              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text)">burn()</span></span></div>
               <div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:#facc15">Note</span><span class="claim-card-meta-value">Burns ALL DGD at once.</span></div>
             </div>
             <div class="claim-card-actions">
@@ -4459,8 +4459,8 @@ async function _testCheckBalances() {
             </div>
             <div class="claim-card-meta" id="claimDetails-${key}">
               <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.daoWithdraw.withdrawContract)}" target="_blank" rel="noopener noreferrer">${cfg.daoWithdraw.withdrawContract}</a></span></div>
-              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text1)">approve(WithdrawDAO, balance)</span></span></div>
-              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text1)">withdraw()</span></span></div>
+              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text)">approve(WithdrawDAO, balance)</span></span></div>
+              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text)">withdraw()</span></span></div>
               <div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:#facc15">Note</span><span class="claim-card-meta-value">Withdraws ALL DAO tokens at once.</span></div>
             </div>
             <div class="claim-card-actions">
