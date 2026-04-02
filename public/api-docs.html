@@ -963,6 +963,20 @@ print(<span class="json-string">f"{data['total_claimable_eth']} ETH claimable"</
 </div>
 <script src="/theme.js"></script>
 <script>
+/* ── JSON syntax colorizer (matches static example styling) ── */
+function colorizeJson(json) {
+  var str = typeof json === 'string' ? json : JSON.stringify(json, null, 2);
+  // Escape HTML first
+  str = str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  // Colorize: keys, strings, numbers, booleans, null
+  str = str.replace(/"([^"]+)"(\s*:)/g, '<span class="json-key">"$1"</span>$2');
+  str = str.replace(/:\s*"([^"]*?)"/g, function(m, v) { return ': <span class="json-string">"' + v + '"</span>'; });
+  str = str.replace(/:\s*(-?\d+\.?\d*)/g, ': <span class="json-number">$1</span>');
+  str = str.replace(/:\s*(true|false)/g, ': <span class="json-bool">$1</span>');
+  str = str.replace(/:\s*(null)/g, ': <span class="json-null">$1</span>');
+  return str;
+}
+
 /* ── Try it widget ── */
 function tryCheck() {
   var addr = document.getElementById('tryAddress').value.trim();
@@ -981,7 +995,7 @@ function tryCheck() {
   fetch('/api/check?address=' + encodeURIComponent(addr))
     .then(function(r) { return r.json(); })
     .then(function(d) {
-      out.textContent = JSON.stringify(d, null, 2);
+      out.innerHTML = colorizeJson(d);
       btn.disabled = false;
       btn.textContent = 'Try it';
     })
@@ -1003,7 +1017,7 @@ function trySummary() {
   out.textContent = '';
   fetch('/api/summary')
     .then(function(r) { return r.json(); })
-    .then(function(d) { out.textContent = JSON.stringify(d, null, 2); btn.disabled = false; btn.textContent = 'Try it'; })
+    .then(function(d) { out.innerHTML = colorizeJson(d); btn.disabled = false; btn.textContent = 'Try it'; })
     .catch(function(e) { out.textContent = 'Error: ' + e.message; btn.disabled = false; btn.textContent = 'Try it'; });
 }
 
@@ -1020,7 +1034,7 @@ function tryTable() {
   out.textContent = '';
   fetch('/api/table?exchange=' + encodeURIComponent(key))
     .then(function(r) { return r.json(); })
-    .then(function(d) { out.textContent = JSON.stringify(d, null, 2); btn.disabled = false; btn.textContent = 'Try it'; })
+    .then(function(d) { out.innerHTML = colorizeJson(d); btn.disabled = false; btn.textContent = 'Try it'; })
     .catch(function(e) { out.textContent = 'Error: ' + e.message; btn.disabled = false; btn.textContent = 'Try it'; });
 }
 document.getElementById('tryExchange').addEventListener('keydown', function(e) { if (e.key === 'Enter') tryTable(); });
@@ -1036,7 +1050,7 @@ function tryClaims() {
   out.textContent = '';
   fetch('/api/claims')
     .then(function(r) { return r.json(); })
-    .then(function(d) { out.textContent = JSON.stringify(d, null, 2); btn.disabled = false; btn.textContent = 'Try it'; })
+    .then(function(d) { out.innerHTML = colorizeJson(d); btn.disabled = false; btn.textContent = 'Try it'; })
     .catch(function(e) { out.textContent = 'Error: ' + e.message; btn.disabled = false; btn.textContent = 'Try it'; });
 }
 
