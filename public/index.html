@@ -339,6 +339,43 @@
   .hero-label { font-size: 15px; color: var(--text2); margin-top: 8px; }
   .hero-cta { font-size: 14px; font-weight: 600; color: var(--text); margin: 8px auto 0; max-width: 600px; }
 
+  /* ── Recovery progress bar (pixel block style) ── */
+  .hero-progress { max-width: 480px; margin: 18px auto 0; text-align: center; }
+  .hero-progress-blocks { display: flex; gap: 2px; justify-content: center; margin-bottom: 10px; }
+  .hero-progress-block {
+    width: 4px; height: 20px;
+    border: 1px solid var(--accent);
+    opacity: 0.25;
+    border-radius: 1px;
+    transition: opacity 0.3s, background 0.3s;
+  }
+  .hero-progress-block.filled {
+    background: var(--gold);
+    border-color: var(--gold);
+    opacity: 1;
+  }
+  [data-theme="dark"] .hero-progress-block { opacity: 0.3; }
+  [data-theme="dark"] .hero-progress-block.filled { opacity: 1; }
+  .hero-progress-counter {
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--text2);
+  }
+  .hero-progress-counter .recovered-val { color: var(--gold); font-weight: 700; font-family: var(--font-mono); }
+  .hero-progress-counter .total-val { color: var(--accent); font-family: var(--font-mono); }
+  .hero-progress-pct {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--text2);
+    opacity: 0.5;
+    pointer-events: none;
+    letter-spacing: 0.5px;
+  }
+
   /* ── Project description ── */
   .project-desc { color: var(--text2); font-size: 13px; line-height: 1.6; margin-bottom: 16px; }
 
@@ -981,7 +1018,13 @@
     <p class="hero-tagline"><span style="font-weight:600">Thousands of ETH sit forgotten in defunct contracts from the 2015&ndash;2019 era.</span><br><span style="color:var(--text2)"><a href="https://debank.com" target="_blank" rel="noopener noreferrer">DeBank</a>, <a href="https://zapper.xyz" target="_blank" rel="noopener noreferrer">Zapper</a>, and other portfolio trackers don't detect them.</span></p>
     <div class="hero-stat fade-in fade-in-3">
       <div class="hero-amount" id="totalAllEth"><span class="hero-eth-value">&mdash;</span> <span class="hero-eth-label">ETH</span><span class="hero-cursor"></span></div>
-      <div class="hero-label">unclaimed across <span id="totalContracts">&mdash;</span> contracts and <span id="totalAddresses">&mdash;</span> addresses</div>
+      <div class="hero-label">forgotten across <span id="totalContracts">&mdash;</span> contracts</div>
+      <div class="hero-progress" id="heroProgress" style="display:none">
+        <div class="hero-progress-blocks" id="heroBlocks" style="position:relative">
+          <span class="hero-progress-pct" id="heroPct"></span>
+        </div>
+        <div class="hero-progress-counter" id="heroCounter"></div>
+      </div>
     </div>
   </div>
 
