@@ -4593,18 +4593,17 @@ async function _testCheckManualAddress(input) {
       document.querySelectorAll('.contract-count').forEach(function(el) { el.textContent = contractCount; });
       getEthPrice();
 
-      // Calculate peak (current + claimed) and show hero counter
+      // Peak = fixed total (claimable + claimed stays constant as claims happen)
       var ethClaimed = totalData.eth_claimed || 0;
-      var heroVal = ethClaimed > 0 ? totalEthVal + Math.round(ethClaimed) : totalEthVal;
-      animateCount('totalAllEth', heroVal, '.hero-eth-value');
+      var PEAK_ETH = 158080;
+      animateCount('totalAllEth', PEAK_ETH, '.hero-eth-value');
       animateCount('totalContracts', contractCount);
       setTimeout(function() { var c = document.querySelector('.hero-cursor'); if (c) c.style.display = 'none'; }, 1500);
 
       // Show progress bar if claims exist
       if (ethClaimed > 0) {
-        var totalPeak = heroVal;
         var totalBlocks = 77;
-        var filledBlocks = Math.max(1, Math.round(ethClaimed / totalPeak * totalBlocks));
+        var filledBlocks = Math.max(1, Math.round(ethClaimed / PEAK_ETH * totalBlocks));
         var blocksEl = document.getElementById('heroBlocks');
         for (var bi = 0; bi < totalBlocks; bi++) {
           var block = document.createElement('div');
@@ -4612,7 +4611,7 @@ async function _testCheckManualAddress(input) {
           blocksEl.appendChild(block);
         }
 
-        var pct = (ethClaimed / totalPeak * 100).toFixed(1);
+        var pct = (ethClaimed / PEAK_ETH * 100).toFixed(1);
         document.getElementById('heroPct').textContent = pct + '%';
 
         var counterEl = document.getElementById('heroCounter');
@@ -4621,7 +4620,7 @@ async function _testCheckManualAddress(input) {
         recoveredSpan.textContent = Math.round(ethClaimed).toLocaleString();
         var totalSpan = document.createElement('span');
         totalSpan.className = 'total-val';
-        totalSpan.textContent = totalPeak.toLocaleString();
+        totalSpan.textContent = PEAK_ETH.toLocaleString();
         counterEl.appendChild(recoveredSpan);
         counterEl.appendChild(document.createTextNode(' / '));
         counterEl.appendChild(totalSpan);
