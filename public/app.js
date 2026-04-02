@@ -4588,16 +4588,57 @@ async function _testCheckManualAddress(input) {
       const totalData = await totalResp.json();
       const totalEthVal = Math.round(totalData.total_eth);
       const contractCount = totalData.contract_count || Object.keys(EXCHANGES).length;
-      // Counting animation for hero numbers
-      const addressCount = totalData.address_count || 0;
-      animateCount('totalAllEth', totalEthVal, '.hero-eth-value');
-      animateCount('totalContracts', contractCount);
-      if (addressCount) animateCount('totalAddresses', addressCount);
       // Update any hardcoded contract counts in FAQ etc.
       document.querySelectorAll('.contract-count').forEach(function(el) { el.textContent = contractCount; });
-      // Hide terminal cursor after count animation finishes
-      setTimeout(function() { var c = document.querySelector('.hero-cursor'); if (c) c.style.display = 'none'; }, 1500);
       getEthPrice(); // preload price for claim flow
+
+      // Fetch recovery stats, then animate hero with peak value
+      var heroVal = totalEthVal; // default to current if stats fail
+      try {
+        var statsResp = await fetch('/api/stats');
+        if (statsResp.ok) {
+          var stats = await statsResp.json();
+          if (stats.eth_claimed > 0) {
+            var totalPeak = totalEthVal + Math.round(stats.eth_claimed);
+            heroVal = totalPeak;
+            var totalBlocks = 77;
+            var filledBlocks = Math.max(1, Math.round(stats.eth_claimed / totalPeak * totalBlocks));
+
+            var blocksEl = document.getElementById('heroBlocks');
+            for (var bi = 0; bi < totalBlocks; bi++) {
+              var block = document.createElement('div');
+              block.className = 'hero-progress-block' + (bi < filledBlocks ? ' filled' : '');
+              blocksEl.appendChild(block);
+            }
+
+            var counterEl = document.getElementById('heroCounter');
+            var recoveredSpan = document.createElement('span');
+            recoveredSpan.className = 'recovered-val';
+            recoveredSpan.textContent = Math.round(stats.eth_claimed).toLocaleString();
+            var totalSpan = document.createElement('span');
+            totalSpan.className = 'total-val';
+            totalSpan.textContent = Math.round(totalPeak).toLocaleString();
+            counterEl.appendChild(recoveredSpan);
+            counterEl.appendChild(document.createTextNode(' / '));
+            counterEl.appendChild(totalSpan);
+            counterEl.appendChild(document.createTextNode(' '));
+            var unforgottenSpan = document.createElement('span');
+            unforgottenSpan.textContent = 'unforgotten';
+            unforgottenSpan.style.cssText = 'font-style:italic;font-weight:600;color:var(--text);letter-spacing:0.5px;';
+            counterEl.appendChild(unforgottenSpan);
+
+            var pct = (stats.eth_claimed / totalPeak * 100).toFixed(1);
+            document.getElementById('heroPct').textContent = pct + '%';
+
+            document.getElementById('heroProgress').style.display = '';
+          }
+        }
+      } catch(e) {}
+
+      // Animate hero counter with peak value (current + claimed)
+      animateCount('totalAllEth', heroVal, '.hero-eth-value');
+      animateCount('totalContracts', contractCount);
+      setTimeout(function() { var c = document.querySelector('.hero-cursor'); if (c) c.style.display = 'none'; }, 1500);
     }
   } catch(e) {}
 
