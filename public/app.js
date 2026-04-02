@@ -369,8 +369,13 @@ var _donationModalSuppressed = false;
 var _lastClaimTxHash = null; // Track last claim tx for donation modal link
 
 function showDonationModal(totalEth) {
-  if (_donationModalShown || _donationModalSuppressed || totalEth < (TEST_MODE ? 0.01 : 1)) return;
+  console.log('[Donation] showDonationModal called:', totalEth, 'ETH | shown:', _donationModalShown, '| suppressed:', _donationModalSuppressed);
+  if (_donationModalShown) { logEvent('found', { extra: { donation_modal: 'skipped_already_shown', eth: totalEth } }); return; }
+  if (_donationModalSuppressed) { logEvent('found', { extra: { donation_modal: 'skipped_suppressed', eth: totalEth } }); return; }
+  if (totalEth < (TEST_MODE ? 0.01 : 1)) { console.log('[Donation] Below threshold:', totalEth); return; }
   _donationModalShown = true;
+  console.log('[Donation] Showing modal for', totalEth, 'ETH');
+  logEvent('found', { extra: { donation_modal: 'shown', eth: totalEth } });
 
   // Try to find the last claim tx hash from the most recently rendered Etherscan link
   if (!_lastClaimTxHash) {
@@ -604,7 +609,7 @@ function showDonationModal(totalEth) {
   closeX.addEventListener('mouseleave', function() { closeX.style.color = 'var(--text2)'; });
   closeX.addEventListener('click', function() {
     var suppress = dontShowCheck.checked;
-    dismissModal(!suppress);
+    dismissModal(!suppress, 'close_x');
     if (suppress) _donationModalSuppressed = true;
   });
   box.style.position = 'relative';
@@ -634,7 +639,7 @@ function showDonationModal(totalEth) {
   overlay.addEventListener('click', function(e) {
     if (e.target === overlay && modalRevealed) {
       var suppress = dontShowCheck.checked;
-      dismissModal(!suppress);
+      dismissModal(!suppress, 'click_outside');
       if (suppress) _donationModalSuppressed = true;
     }
   });
@@ -711,7 +716,7 @@ function showDonationModal(totalEth) {
       successText.textContent = 'Thank you for your donation.';
       msg.appendChild(successText);
       box.appendChild(msg);
-      setTimeout(function() { dismissModal(false); }, 2500);
+      setTimeout(function() { dismissModal(false, 'donation_success'); }, 2500);
     }).catch(function(e) {
       confirmBtn.disabled = false;
       confirmBtn.style.opacity = '1';
@@ -720,7 +725,8 @@ function showDonationModal(totalEth) {
     });
   });
 
-  function dismissModal(resetFlag) {
+  function dismissModal(resetFlag, reason) {
+    logEvent('found', { extra: { donation_modal: 'dismissed', reason: reason || 'unknown', reset: resetFlag } });
     overlay.style.opacity = '0';
     overlay.style.transition = 'opacity 0.25s ease';
     setTimeout(function() {
@@ -732,7 +738,7 @@ function showDonationModal(totalEth) {
 
   skipBtn.addEventListener('click', function() {
     var suppress = dontShowCheck.checked;
-    dismissModal(!suppress);
+    dismissModal(!suppress, 'skip');
     if (suppress) _donationModalSuppressed = true;
   });
 }
@@ -2514,10 +2520,9 @@ async function checkUserBalances(overrideAddress) {
         }
         window._daoState[key] = { daoBal, daoAllowance, isParityMultisig };
       }
-      // Auto-detect: if connected wallet has no direct DAO balance, check if it owns any known multisig
+      // Auto-detect: check if connected wallet owns any known Parity multisig with DAO tokens
       if (walletAddress && checkAddr.toLowerCase() === walletAddress.toLowerCase() && !window._daoMultisigMatch) {
-        const walletBal = await daoContract.balanceOf(walletAddress);
-        if (walletBal === 0n && cfg.parityMultisigs && cfg.parityMultisigs.length > 0) {
+        if (cfg.parityMultisigs && cfg.parityMultisigs.length > 0) {
           // Batch isOwner checks via Multicall3
           const MULTICALL3 = '0xcA11bde05977b3631167028862bE2a173976CA11';
           const isOwnerSel = '0x2f54bf6e000000000000000000000000' + walletAddress.slice(2).toLowerCase();
@@ -2945,24 +2950,24 @@ async function checkUserBalances(overrideAddress) {
 
   const claimCount = Object.values(userBalances).filter(b => b > 0n).length;
   const ethPrice = await getEthPrice();
-  if (!hasBalance && window._daoMultisigMatch) {
-    // Connected wallet owns a Parity multisig with DAO tokens
+  // Append Parity multisig card if connected wallet owns one (works alongside personal balances)
+  if (window._daoMultisigMatch) {
     const mm = window._daoMultisigMatch;
     const mmEth = ethers.formatEther(mm.daoBal);
     const mmEthNum = parseFloat(mmEth);
     const needsApproval = mm.daoAllowance < mm.daoBal;
     const cfg = EXCHANGES[mm.key];
     const mmActionBtn = needsApproval
-      ? `<button class="claim-btn" id="claimBtn-${mm.key}" data-action="dao-msig-approve" data-key="${mm.key}" data-msig="${esc(mm.multisigAddr)}" data-allow-mismatch="true">Step 1: Approve (via multisig)</button><button class="claim-btn" disabled style="opacity:0.35">Step 2: Withdraw (via multisig)</button>`
-      : `<button class="claim-btn" disabled style="opacity:0.35">Step 1: Approved</button><button class="claim-btn" id="claimBtn-${mm.key}" data-action="dao-msig-withdraw" data-key="${mm.key}" data-msig="${esc(mm.multisigAddr)}" data-allow-mismatch="true">Step 2: Withdraw (via multisig)</button>`;
+      ? `<button class="claim-btn" id="claimBtn-msig-${mm.key}" data-action="dao-msig-approve" data-key="${mm.key}" data-msig="${esc(mm.multisigAddr)}" data-allow-mismatch="true">Step 1: Approve (via multisig)</button><button class="claim-btn" disabled style="opacity:0.35">Step 2: Withdraw (via multisig)</button>`
+      : `<button class="claim-btn" disabled style="opacity:0.35">Step 1: Approved</button><button class="claim-btn" id="claimBtn-msig-${mm.key}" data-action="dao-msig-withdraw" data-key="${mm.key}" data-msig="${esc(mm.multisigAddr)}" data-allow-mismatch="true">Step 2: Withdraw (via multisig)</button>`;
     hasBalance = true;
-    userBalances[mm.key] = mm.daoBal;
-    html = `<div class="claim-card">
+    userBalances[mm.key] = (userBalances[mm.key] || 0n) + mm.daoBal;
+    html += `<div class="claim-card">
         <div class="claim-card-header">
-          <span class="claim-card-name">${esc(cfg.name)}</span>
+          <span class="claim-card-name">${esc(cfg.name)} (Parity Multisig)</span>
           <span class="claim-card-amount">${fmtEth(mmEthNum)} ETH</span>
         </div>
-        <div class="claim-card-meta" id="claimDetails-${mm.key}">
+        <div class="claim-card-meta" id="claimDetails-msig-${mm.key}">
           <div class="claim-card-meta-row"><span class="claim-card-meta-label">Parity Multisig</span><span class="claim-card-meta-value"><a href="${etherscanAddr(mm.multisigAddr)}" target="_blank" rel="noopener noreferrer">${mm.multisigAddr}</a></span></div>
           <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text)">execute(DAO, 0, approve(WithdrawDAO, balance))</span></span></div>
           <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text)">execute(WithdrawDAO, 0, withdraw())</span></span></div>
@@ -2971,7 +2976,7 @@ async function checkUserBalances(overrideAddress) {
         <div class="claim-card-actions">
           ${mmActionBtn}
         </div>
-        <div class="claim-card-status" id="claimStatus-${mm.key}"></div>
+        <div class="claim-card-status" id="claimStatus-msig-${mm.key}"></div>
       </div>`;
   }
   if (!hasBalance) {
@@ -3559,8 +3564,8 @@ async function daoWithdrawExecute(key) {
 
 async function daoMsigApprove(key, msigAddr) {
   const cfg = EXCHANGES[key];
-  const btn = document.getElementById('claimBtn-' + key);
-  const statusEl = document.getElementById('claimStatus-' + key);
+  const btn = document.getElementById('claimBtn-msig-' + key) || document.getElementById('claimBtn-' + key);
+  const statusEl = document.getElementById('claimStatus-msig-' + key) || document.getElementById('claimStatus-' + key);
 
   if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
   if (!walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
@@ -3592,7 +3597,7 @@ async function daoMsigApprove(key, msigAddr) {
       if (step2Btn) {
         step2Btn.disabled = false;
         step2Btn.style.opacity = '1';
-        step2Btn.id = 'claimBtn-' + key;
+        step2Btn.id = 'claimBtn-msig-' + key;
         step2Btn.dataset.action = 'dao-msig-withdraw';
         step2Btn.dataset.key = key;
         step2Btn.dataset.msig = msigAddr;
@@ -3619,8 +3624,8 @@ async function daoMsigApprove(key, msigAddr) {
 
 async function daoMsigWithdraw(key, msigAddr) {
   const cfg = EXCHANGES[key];
-  const btn = document.getElementById('claimBtn-' + key);
-  const statusEl = document.getElementById('claimStatus-' + key);
+  const btn = document.getElementById('claimBtn-msig-' + key) || document.getElementById('claimBtn-' + key);
+  const statusEl = document.getElementById('claimStatus-msig-' + key) || document.getElementById('claimStatus-' + key);
 
   if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
   if (!walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
