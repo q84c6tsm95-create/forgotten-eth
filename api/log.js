@@ -1,5 +1,7 @@
 import { sql } from '@vercel/postgres';
 import { createHash } from 'crypto';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 function fetchWithTimeout(url, opts = {}, ms = 8000) {
   const controller = new AbortController();
@@ -61,6 +63,16 @@ export default async function handler(req, res) {
     return res.status(200).json({ ok: true, dev: true });
   }
 
+  // Origin check — only accept events from our own site (defense-in-depth, CORS is the primary gate)
+  const origin = req.headers.origin || '';
+  const referer = req.headers.referer || '';
+  if (origin && !origin.startsWith('https://forgotteneth.com')) {
+    return res.status(403).json({ error: 'Forbidden' });
+  }
+  if (!origin && referer && !referer.startsWith('https://forgotteneth.com')) {
+    return res.status(403).json({ error: 'Forbidden' });
+  }
+
   try {
     // Reject oversized payloads
     const bodyStr = JSON.stringify(req.body || {});
@@ -101,7 +113,7 @@ export default async function handler(req, res) {
     const cleanBlockNum = safeNum(block_num, 1e10);
     const cleanContractsFound = safeNum(contracts_found, 1000);
 
-    const ip = req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for']?.split(',')[0]?.trim() || null;
+    const ip = req.headers['cf-connecting-ip'] || req.headers['x-real-ip'] || req.headers['x-forwarded-for']?.split(',')[0]?.trim() || null;
 
     // Store hashed IP (for dedup/abuse detection) — not raw IP (PII reduction)
     // Derive salt from any available secret env var (IP_HASH_SALT preferred, ANALYTICS_SECRET as fallback)
@@ -125,18 +137,42 @@ export default async function handler(req, res) {
       VALUES (${type}, ${cleanAddr}, ${cleanContract}, ${cleanAmountEth}, ${cleanTx}, ${cleanBlockNum}, ${cleanContractsFound}, ${cleanTotalEth}, ${ipHash}, ${ua}, ${extra ? (() => { try { const s = JSON.stringify(extra); return s.length > 1024 ? null : s; } catch { return null; } })() : null})
     `;
 
-    // Real-time Telegram alert on successful claims
-    if (type === 'claim_confirmed' && cleanAddr) {
-      const ethStr = cleanAmountEth ? `${cleanAmountEth} ETH` : 'unknown amount';
-      const txLink = cleanTx ? `<a href="https://etherscan.io/tx/${cleanTx}">tx</a>` : '';
-      const addrLink = `<a href="https://etherscan.io/address/${cleanAddr}">${cleanAddr.slice(0, 8)}...${cleanAddr.slice(-4)}</a>`;
-      await notifyTelegram(`🎉 <b>Claim confirmed!</b>\n\n${addrLink} withdrew <b>${ethStr}</b> from ${cleanContract || 'unknown'}\n${txLink}`);
+    // Real-time Telegram alert on successful claims — verify tx exists onchain first
+    if (type === 'claim_confirmed' && cleanAddr && cleanTx) {
+      let txVerified = false;
+      try {
+        const rpcResp = await fetch('https://ethereum.publicnode.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'eth_getTransactionReceipt', params: [cleanTx] }),
+          signal: AbortSignal.timeout(5000),
+        });
+        const rpcData = await rpcResp.json();
+        txVerified = !!(rpcData.result && rpcData.result.blockNumber);
+      } catch { /* RPC timeout/error — skip alert rather than send unverified */ }
+
+      if (txVerified) {
+        const ethStr = cleanAmountEth ? `${cleanAmountEth} ETH` : 'unknown amount';
+        const txLink = `<a href="https://etherscan.io/tx/${cleanTx}">tx</a>`;
+        const addrLink = `<a href="https://etherscan.io/address/${cleanAddr}">${cleanAddr.slice(0, 8)}...${cleanAddr.slice(-4)}</a>`;
+        await notifyTelegram(`🎉 <b>Claim confirmed!</b>\n\n${addrLink} withdrew <b>${ethStr}</b> from ${cleanContract || 'unknown'}\n${txLink}`);
+      }
     }
 
-    // Alert when someone finds 5+ ETH (potential big claim)
-    if (type === 'found' && cleanTotalEth >= 5) {
-      const addrLink = `<a href="https://etherscan.io/address/${cleanAddr}">${cleanAddr.slice(0, 8)}...${cleanAddr.slice(-4)}</a>`;
-      await notifyTelegram(`👀 <b>Big fish found!</b>\n\n${addrLink} has <b>${cleanTotalEth} ETH</b> across ${cleanContractsFound || '?'} contract(s)`);
+    // Alert when someone finds 5+ ETH — verify address exists in our index first
+    if (type === 'found' && cleanTotalEth >= 5 && cleanAddr) {
+      let addrVerified = false;
+      try {
+        const prefix = cleanAddr.slice(2, 4);
+        const shardPath = join(process.cwd(), 'data', 'index_shards', prefix + '.json');
+        const shard = JSON.parse(readFileSync(shardPath, 'utf8'));
+        addrVerified = !!(shard[cleanAddr]);
+      } catch { /* shard read failed — skip alert */ }
+
+      if (addrVerified) {
+        const addrLink = `<a href="https://etherscan.io/address/${cleanAddr}">${cleanAddr.slice(0, 8)}...${cleanAddr.slice(-4)}</a>`;
+        await notifyTelegram(`👀 <b>Big fish found!</b>\n\n${addrLink} has <b>${cleanTotalEth} ETH</b> across ${cleanContractsFound || '?'} contract(s)`);
+      }
     }
 
     return res.status(200).json({ ok: true });

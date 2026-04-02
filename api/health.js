@@ -196,6 +196,22 @@ export default async function handler(req, res) {
     // Non-critical — Vercel API unavailable
   }
 
+  // ── DB cleanup: prune old rate_limits and events (runs every health check = every 15 min) ──
+  try {
+    const rlDel = await sql`DELETE FROM rate_limits WHERE ts < NOW() - INTERVAL '5 minutes'`;
+    const rlCount = await sql`SELECT COUNT(*) AS cnt FROM rate_limits`;
+    const rlRows = parseInt(rlCount.rows[0].cnt, 10);
+    checks.rate_limits = rlRows + ' rows (pruned ' + (rlDel.rowCount || 0) + ')';
+    if (rlRows > 50000) failed.push('rate_limits table has ' + rlRows + ' rows (possible flood)');
+
+    const evDel = await sql`DELETE FROM events WHERE ts < NOW() - INTERVAL '90 days'`;
+    const evCount = await sql`SELECT COUNT(*) AS cnt FROM events`;
+    const evRows = parseInt(evCount.rows[0].cnt, 10);
+    checks.events = evRows + ' rows (pruned ' + (evDel.rowCount || 0) + ' old)';
+  } catch {
+    // Non-critical — DB cleanup failed
+  }
+
   const status = failed.length === 0 ? 'healthy' : 'degraded';
 
   res.setHeader('Cache-Control', 'no-store');

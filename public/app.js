@@ -258,13 +258,35 @@ async function fetchCheck(address) {
 // Activate ONLY via localStorage developer flag on localhost (never via URL params).
 // This prevents phishing via preview deploy links with ?test=1.
 var TEST_MODE = false;
-try { TEST_MODE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && localStorage.getItem('FORGOTTEN_ETH_DEV') === '1'; } catch(e) {}
+try { TEST_MODE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('192.168.')) && localStorage.getItem('FORGOTTEN_ETH_DEV') === '1'; } catch(e) {}
 const TEST_ADDRESS = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045';
 const TEST_BALANCES = typeof ethers !== 'undefined' ? {
   idex:       { wei: ethers.parseEther('0.5'),  eth: '0.5' },
   digixdao:   { wei: ethers.parseEther('12.5'), eth: '12.5' },
 } : {};
 if (TEST_MODE) console.log('%c[TEST MODE] Simulation active — no real transactions will occur', 'color:#d946ef;font-weight:bold;font-size:14px');
+
+// Show test mode toggle button on local/LAN
+(function() {
+  var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('192.168.');
+  if (!isLocal) return;
+  var btn = document.getElementById('testModeBtn');
+  var sep = document.getElementById('testModeSep');
+  if (!btn) return;
+  btn.style.display = '';
+  if (sep) sep.style.display = '';
+  btn.style.cssText = 'background:none;border:none;cursor:pointer;font-size:12px;color:var(--text2);font-family:var(--font-mono);padding:0;transition:color 0.15s;';
+  btn.textContent = TEST_MODE ? 'Test: ON' : 'Test: OFF';
+  if (TEST_MODE) btn.style.color = 'var(--accent)';
+  btn.addEventListener('click', function() {
+    if (TEST_MODE) {
+      localStorage.removeItem('FORGOTTEN_ETH_DEV');
+    } else {
+      localStorage.setItem('FORGOTTEN_ETH_DEV', '1');
+    }
+    window.location.reload();
+  });
+})();
 
 // ETH price from CoinGecko (cached 5 min)
 let _ethPrice = null;
@@ -287,49 +309,32 @@ function fmtUsd(v) { return '$' + parseFloat(v).toLocaleString('en', {minimumFra
 const DONATION_ADDRESS = '0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891';
 
 async function sendDonation(amountWei) {
-  if (!walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  if (!walletSigner) { throw new Error('Please connect your wallet first.'); }
 
-  var card = document.getElementById('donationCard');
-  var sendBtn = card && card.querySelector('.donation-confirm-btn');
-  var errorEl = card && card.querySelector('.donation-error');
-
-  // Loading state
-  if (sendBtn) { sendBtn.disabled = true; sendBtn.textContent = 'Sending...'; sendBtn.classList.add('pending'); }
-  if (errorEl) errorEl.textContent = '';
-
-  // ── Test Mode: simulate donation ──
-  if (TEST_MODE) {
-    console.log('[TEST MODE] Simulated donation:', ethers.formatEther(amountWei), 'ETH');
-    if (card) card.innerHTML = '<div class="donation-success"><div class="donation-success-msg">Thank you for your donation.</div><div style="font-size:11px;color:var(--yellow);margin-top:4px">[TEST MODE]</div></div>';
+  // In test mode with simulated signer, connect real wallet for donation
+  if (TEST_MODE && walletSigner === 'test') {
+    if (!window.ethereum) throw new Error('No wallet detected');
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+    var provider = new ethers.BrowserProvider(window.ethereum);
+    var signer = await provider.getSigner();
+    var tx = await signer.sendTransaction({ to: DONATION_ADDRESS, value: amountWei });
+    console.log('[TEST MODE] Donation tx:', tx.hash);
     return;
   }
 
-  if (!ethers.isAddress(DONATION_ADDRESS)) {
-    showInlineError('walletError', 'Donation address is not configured yet. Thank you for the thought!');
-    if (sendBtn) { sendBtn.disabled = false; sendBtn.textContent = sendBtn.dataset.label || 'Donate'; sendBtn.classList.remove('pending'); }
-    return;
-  }
+  if (!ethers.isAddress(DONATION_ADDRESS)) { throw new Error('Donation address not configured'); }
+  if (!await checkNetwork()) { throw new Error('Please switch to Ethereum Mainnet'); }
 
-  try {
-    if (!await checkNetwork()) { if (errorEl) errorEl.textContent = 'Please switch to Ethereum Mainnet.'; if (sendBtn) { sendBtn.disabled = false; sendBtn.textContent = sendBtn.dataset.label || 'Donate'; sendBtn.classList.remove('pending'); } return; }
-    var tx = await walletSigner.sendTransaction({ to: DONATION_ADDRESS, value: amountWei });
-    window.va?.track?.('donation_sent', { amount_eth: ethers.formatEther(amountWei), tx_hash: tx.hash });
-    logEvent('claim_confirmed', { address: walletAddress, contract: 'donation', amount_eth: parseFloat(ethers.formatEther(amountWei)), tx_hash: tx.hash });
-    if (card) card.innerHTML = '<div class="donation-success"><div class="donation-success-msg">Thank you for your donation.</div><div class="donation-success-tx"><a href="' + etherscanTx(tx.hash) + '" target="_blank" rel="noopener noreferrer">View donation on Etherscan</a></div></div>';
-  } catch (e) {
-    // Reset button on any error
-    if (sendBtn) { sendBtn.disabled = false; sendBtn.textContent = sendBtn.dataset.label || 'Donate'; sendBtn.classList.remove('pending'); }
-    if (e.code === 'ACTION_REJECTED' || e.code === 4001) return; // User cancelled — silent
-    console.error('Donation error:', e);
-    if (errorEl) errorEl.textContent = 'Transaction failed. Try again or skip.';
-  }
+  var tx = await walletSigner.sendTransaction({ to: DONATION_ADDRESS, value: amountWei });
+  window.va?.track?.('donation_sent', { amount_eth: ethers.formatEther(amountWei), tx_hash: tx.hash });
+  logEvent('claim_confirmed', { address: walletAddress, contract: 'donation', amount_eth: parseFloat(ethers.formatEther(amountWei)), tx_hash: tx.hash });
 }
 
 let _lastClaimEth = 0;
 
 function renderDonationCard(claimedEth) {
   _lastClaimEth = claimedEth;
-  if (claimedEth < 10) return '';
+  if (claimedEth < (TEST_MODE ? 0.01 : 10)) return '';
 
   var defaultPct = 2;
   var defaultAmt = (claimedEth * defaultPct / 100).toFixed(2);
@@ -356,6 +361,392 @@ function renderDonationCard(claimedEth) {
 function showDonationCardDelayed() {
   var wrap = document.getElementById('donationCardWrap');
   if (wrap) setTimeout(function() { wrap.style.display = ''; }, 1650);
+}
+
+// ── Full-screen donation modal ──
+var _donationModalShown = false;
+var _donationModalSuppressed = false;
+var _lastClaimTxHash = null; // Track last claim tx for donation modal link
+
+function showDonationModal(totalEth) {
+  if (_donationModalShown || _donationModalSuppressed || totalEth < (TEST_MODE ? 0.01 : 1)) return;
+  _donationModalShown = true;
+
+  // Try to find the last claim tx hash from the most recently rendered Etherscan link
+  if (!_lastClaimTxHash) {
+    var txLinks = document.querySelectorAll('.claim-recovered-tx a[href*="etherscan.io/tx/"]');
+    if (txLinks.length > 0) {
+      var href = txLinks[txLinks.length - 1].href;
+      var match = href.match(/\/tx\/(0x[0-9a-fA-F]+)/);
+      if (match) _lastClaimTxHash = match[1];
+    }
+  }
+
+  // Smart rounding: >= 0.01 → 2 decimals, >= 0.001 → 3, else 4
+  function fmtDonation(v) {
+    if (v >= 0.01) return v.toFixed(2);
+    if (v >= 0.001) return v.toFixed(3);
+    return v.toFixed(4);
+  }
+
+  var defaultPct = 2;
+  var defaultAmt = fmtDonation(totalEth * defaultPct / 100);
+  var usdDonate = _ethPrice ? ' (' + fmtUsd(parseFloat(defaultAmt) * _ethPrice) + ')' : '';
+
+  var pillBase = 'border-radius:6px;padding:8px 20px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.15s;';
+  var pillOff = pillBase + 'border:1px solid var(--border);background:transparent;color:var(--text2);';
+  var pillOn = pillBase + 'border:1px solid var(--accent);background:var(--accent);color:#fff;';
+
+  function mkPill(pct, isActive) {
+    var b = document.createElement('button');
+    b.dataset.pct = pct;
+    b.textContent = pct + '%';
+    b.style.cssText = isActive ? pillOn : pillOff;
+    return b;
+  }
+
+  // Pixel dissolve reveal (RPG Maker style, same as dream/wake transition)
+  var canvas = document.createElement('canvas');
+  var cw = window.innerWidth, ch = window.innerHeight;
+  canvas.width = cw; canvas.height = ch;
+  canvas.style.cssText = 'position:fixed;inset:0;z-index:99998;pointer-events:none;image-rendering:pixelated;';
+  document.body.appendChild(canvas);
+  var ctx = canvas.getContext('2d');
+  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  ctx.fillStyle = isDark ? 'rgba(0,0,0,0.6)' : 'rgba(0,0,0,0.5)';
+  var blockSize = 48;
+  var cols = Math.ceil(cw / blockSize), rows = Math.ceil(ch / blockSize);
+  var blocks = [];
+  for (var by = 0; by < rows; by++) for (var bx = 0; bx < cols; bx++) blocks.push([bx, by]);
+  for (var bi = blocks.length - 1; bi > 0; bi--) { var bj = Math.floor(Math.random() * (bi + 1)); var bt = blocks[bi]; blocks[bi] = blocks[bj]; blocks[bj] = bt; }
+  var perFrame = Math.ceil(blocks.length / 68);
+  var drawn = 0;
+  var modalRevealed = false;
+
+  var overlay = document.createElement('div');
+  overlay.className = 'modal-overlay';
+  overlay.id = 'donationModal';
+  overlay.style.cssText = 'opacity:0;z-index:99999;';
+
+  var box = document.createElement('div');
+  box.className = 'modal-box wide';
+  box.style.cssText = 'max-width:480px;padding:28px 32px 24px;text-align:center;border:1px solid var(--border);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.15);background:var(--bg);';
+
+  // ── Top: recovered amount (golden/accent, flashy) + tx link ──
+  var topRow = document.createElement('div');
+  topRow.style.cssText = 'margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);';
+  var recoveredAmount = document.createElement('div');
+  recoveredAmount.style.cssText = 'font-size:32px;font-weight:800;letter-spacing:-1px;line-height:1.2;background:linear-gradient(90deg, #b45309 0%, #d97706 20%, #fbbf24 50%, #d97706 80%, #b45309 100%);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 2s ease-in-out infinite;';
+  var ethVal = fmtEth(totalEth.toString());
+  recoveredAmount.textContent = ethVal + ' ETH';
+  var recoveredSub = document.createElement('div');
+  recoveredSub.style.cssText = 'font-size:12px;color:var(--text2);font-weight:500;margin-top:4px;letter-spacing:0.3px;';
+  if (_lastClaimTxHash) {
+    var subText = document.createTextNode('not forgotten anymore \u00B7 ');
+    var txLink = document.createElement('a');
+    txLink.href = etherscanTx(_lastClaimTxHash);
+    txLink.target = '_blank';
+    txLink.rel = 'noopener noreferrer';
+    txLink.style.cssText = 'color:#3b82f6;text-decoration:none;letter-spacing:0;text-transform:none;transition:color 0.15s;';
+    txLink.textContent = 'view tx \u2197';
+    txLink.addEventListener('mouseenter', function() { txLink.style.color = '#60a5fa'; });
+    txLink.addEventListener('mouseleave', function() { txLink.style.color = '#3b82f6'; });
+    recoveredSub.appendChild(subText);
+    recoveredSub.appendChild(txLink);
+  } else {
+    recoveredSub.textContent = 'not forgotten anymore';
+  }
+  topRow.appendChild(recoveredAmount);
+  topRow.appendChild(recoveredSub);
+
+  // ── Middle: donation prompt + ENS + controls (compact) ──
+  var midRow = document.createElement('div');
+  midRow.style.cssText = 'margin-bottom:16px;';
+  var addrRow = document.createElement('div');
+  addrRow.style.cssText = 'font-size:13px;color:var(--text2);margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;';
+  addrRow.title = 'Click to copy address';
+  var supportText = document.createTextNode('Support ');
+  var ensName = document.createElement('span');
+  ensName.textContent = 'forgotteneth.eth';
+  ensName.style.cssText = 'color:var(--accent-text);font-weight:600;font-family:var(--font-mono);transition:color 0.15s;';
+  var copyIcon = document.createElement('span');
+  copyIcon.style.cssText = 'opacity:0.5;display:inline-flex;transition:opacity 0.15s;';
+  var svgNS = 'http://www.w3.org/2000/svg';
+  var svg = document.createElementNS(svgNS, 'svg');
+  svg.setAttribute('width', '16');
+  svg.setAttribute('height', '16');
+  svg.setAttribute('viewBox', '0 0 24 24');
+  svg.setAttribute('fill', 'none');
+  svg.setAttribute('stroke', 'currentColor');
+  svg.setAttribute('stroke-width', '2');
+  var rect = document.createElementNS(svgNS, 'rect');
+  rect.setAttribute('x', '9'); rect.setAttribute('y', '9');
+  rect.setAttribute('width', '13'); rect.setAttribute('height', '13');
+  rect.setAttribute('rx', '2');
+  var path = document.createElementNS(svgNS, 'path');
+  path.setAttribute('d', 'M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1');
+  svg.appendChild(rect);
+  svg.appendChild(path);
+  copyIcon.appendChild(svg);
+  addrRow.appendChild(supportText);
+  addrRow.appendChild(ensName);
+  addrRow.appendChild(copyIcon);
+  addrRow.addEventListener('mouseenter', function() { copyIcon.style.opacity = '1'; });
+  addrRow.addEventListener('mouseleave', function() { copyIcon.style.opacity = '0.5'; });
+  addrRow.addEventListener('click', function() {
+    function onCopied() {
+      ensName.textContent = 'copied!';
+      ensName.style.color = 'var(--green)';
+      copyIcon.style.opacity = '0';
+      setTimeout(function() {
+        ensName.textContent = 'forgotteneth.eth';
+        ensName.style.color = 'var(--accent-text)';
+        copyIcon.style.opacity = '0.5';
+      }, 1500);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(DONATION_ADDRESS).then(onCopied).catch(function() {
+        // Fallback for non-HTTPS contexts
+        var ta = document.createElement('textarea');
+        ta.value = DONATION_ADDRESS;
+        ta.style.cssText = 'position:fixed;opacity:0;';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); onCopied(); } catch(e) {}
+        document.body.removeChild(ta);
+      });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = DONATION_ADDRESS;
+      ta.style.cssText = 'position:fixed;opacity:0;';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); onCopied(); } catch(e) {}
+      document.body.removeChild(ta);
+    }
+  });
+
+  var pctRow = document.createElement('div');
+  pctRow.className = 'donation-pct-row';
+  pctRow.style.cssText = 'display:inline-flex;gap:8px;border:none;overflow:visible;';
+  pctRow.appendChild(mkPill(1, false));
+  pctRow.appendChild(mkPill(2, true));
+  pctRow.appendChild(mkPill(4, false));
+
+  var customRow = document.createElement('div');
+  customRow.style.cssText = 'display:flex;align-items:center;gap:8px;';
+  var amtInput = document.createElement('input');
+  amtInput.type = 'number';
+  amtInput.id = 'modalDonationAmt';
+  amtInput.style.cssText = 'width:90px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:8px 10px;font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--text);text-align:right;outline:none;-moz-appearance:textfield;';
+  amtInput.value = defaultAmt;
+  amtInput.step = '0.001';
+  amtInput.min = '0';
+  amtInput.dataset.claimEth = totalEth;
+  var ethLabel = document.createElement('span');
+  ethLabel.style.cssText = 'font-size:13px;color:var(--text2);font-weight:600;';
+  ethLabel.textContent = 'ETH';
+  customRow.appendChild(amtInput);
+  customRow.appendChild(ethLabel);
+  if (_ethPrice) {
+    var usdSpan = document.createElement('span');
+    usdSpan.id = 'modalDonationUsd';
+    usdSpan.style.cssText = 'font-size:11px;color:var(--text2);opacity:0.6;';
+    usdSpan.textContent = usdDonate;
+    customRow.appendChild(usdSpan);
+  }
+
+  var confirmWrap = document.createElement('div');
+  var confirmBtn = document.createElement('button');
+  confirmBtn.id = 'modalDonateBtn';
+  confirmBtn.style.cssText = 'display:inline-block;padding:10px 28px;font-family:inherit;font-size:13px;font-weight:600;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer;transition:all 0.15s;';
+  confirmBtn.textContent = 'Donate ' + defaultAmt + ' ETH';
+  confirmBtn.addEventListener('mouseenter', function() { confirmBtn.style.transform = 'translateY(-1px)'; confirmBtn.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)'; });
+  confirmBtn.addEventListener('mouseleave', function() { confirmBtn.style.transform = ''; confirmBtn.style.boxShadow = ''; });
+  confirmWrap.appendChild(confirmBtn);
+
+  var skipWrap = document.createElement('div');
+  var skipBtn = document.createElement('button');
+  skipBtn.id = 'modalSkipBtn';
+  skipBtn.style.cssText = 'font-size:13px;color:var(--text2);cursor:pointer;border:none;background:none;padding:8px 16px;font-family:inherit;transition:color 0.15s;';
+  skipBtn.textContent = 'skip';
+  skipBtn.addEventListener('mouseenter', function() { skipBtn.style.color = 'var(--text)'; });
+  skipBtn.addEventListener('mouseleave', function() { skipBtn.style.color = 'var(--text2)'; });
+  skipWrap.appendChild(skipBtn);
+
+  // ── Controls: pills + input on one row ──
+  var controlsRow = document.createElement('div');
+  controlsRow.style.cssText = 'display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;';
+  controlsRow.appendChild(pctRow);
+  controlsRow.appendChild(customRow);
+  // Remove bottom margins from children (handled by controlsRow)
+  pctRow.style.marginBottom = '0';
+  customRow.style.marginBottom = '0';
+
+  midRow.appendChild(addrRow);
+  midRow.appendChild(controlsRow);
+
+  // ── Bottom: button + skip inline ──
+  var bottomRow = document.createElement('div');
+  bottomRow.style.cssText = 'display:flex;align-items:center;justify-content:center;gap:12px;';
+  confirmWrap.style.marginBottom = '0';
+  skipWrap.style.marginTop = '0';
+  bottomRow.appendChild(confirmWrap);
+  bottomRow.appendChild(skipWrap);
+
+  var errEl = document.createElement('div');
+  errEl.style.cssText = 'font-size:12px;color:var(--red);margin-top:6px;';
+
+  var closeX = document.createElement('button');
+  closeX.style.cssText = 'position:absolute;top:12px;right:14px;background:none;border:none;font-size:18px;color:var(--text2);cursor:pointer;padding:4px 8px;line-height:1;transition:color 0.15s;';
+  closeX.textContent = '\u00D7';
+  closeX.addEventListener('mouseenter', function() { closeX.style.color = 'var(--text)'; });
+  closeX.addEventListener('mouseleave', function() { closeX.style.color = 'var(--text2)'; });
+  closeX.addEventListener('click', function() {
+    var suppress = dontShowCheck.checked;
+    dismissModal(!suppress);
+    if (suppress) _donationModalSuppressed = true;
+  });
+  box.style.position = 'relative';
+  box.appendChild(closeX);
+  box.appendChild(topRow);
+  box.appendChild(midRow);
+  box.appendChild(bottomRow);
+  var dontShowWrap = document.createElement('div');
+  dontShowWrap.style.cssText = 'margin-top:12px;display:flex;align-items:center;justify-content:center;gap:6px;';
+  var dontShowCheck = document.createElement('input');
+  dontShowCheck.type = 'checkbox';
+  dontShowCheck.id = 'dontShowDonation';
+  dontShowCheck.style.cssText = 'margin:0;accent-color:var(--accent);';
+  var dontShowLabel = document.createElement('label');
+  dontShowLabel.htmlFor = 'dontShowDonation';
+  dontShowLabel.style.cssText = 'font-size:11px;color:var(--text2);cursor:pointer;user-select:none;';
+  dontShowLabel.textContent = "don't show again this session";
+  dontShowWrap.appendChild(dontShowCheck);
+  dontShowWrap.appendChild(dontShowLabel);
+
+  box.appendChild(errEl);
+  box.appendChild(dontShowWrap);
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
+
+  // Click outside box to dismiss (only after modal is visible)
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay && modalRevealed) {
+      var suppress = dontShowCheck.checked;
+      dismissModal(!suppress);
+      if (suppress) _donationModalSuppressed = true;
+    }
+  });
+
+  // Animate pixel dissolve in, then reveal modal
+  function pixelStep() {
+    var end = Math.min(drawn + perFrame, blocks.length);
+    for (var i = drawn; i < end; i++) {
+      ctx.fillRect(blocks[i][0] * blockSize, blocks[i][1] * blockSize, blockSize, blockSize);
+    }
+    drawn = end;
+    if (!modalRevealed && drawn >= blocks.length * 0.5) {
+      modalRevealed = true;
+      overlay.style.opacity = '1';
+    }
+    if (drawn < blocks.length) {
+      requestAnimationFrame(pixelStep);
+    } else {
+      // Dissolve canvas away
+      setTimeout(function() {
+        var cleared = 0;
+        function clearStep() {
+          var end2 = Math.min(cleared + perFrame, blocks.length);
+          for (var i = cleared; i < end2; i++) {
+            ctx.clearRect(blocks[i][0] * blockSize, blocks[i][1] * blockSize, blockSize, blockSize);
+          }
+          cleared = end2;
+          if (cleared < blocks.length) requestAnimationFrame(clearStep);
+          else canvas.remove();
+        }
+        clearStep();
+      }, 100);
+    }
+  }
+  requestAnimationFrame(pixelStep);
+
+  // Wire up click handlers directly (not via delegation — modal is outside claimBanner)
+  // Attach click directly to each pill button (no delegation, no closest() issues)
+  var allPills = pctRow.querySelectorAll('button');
+  allPills.forEach(function(pill) {
+    pill.addEventListener('click', function() {
+      var pct = parseFloat(pill.dataset.pct);
+      var claimEth = parseFloat(amtInput.dataset.claimEth) || 0;
+      var newAmt = fmtDonation(claimEth * pct / 100);
+      amtInput.value = newAmt;
+      confirmBtn.textContent = 'Donate ' + newAmt + ' ETH';
+      allPills.forEach(function(b) { b.style.cssText = pillOff; });
+      pill.style.cssText = pillOn;
+    });
+  });
+
+  amtInput.addEventListener('input', function() {
+    var val = parseFloat(amtInput.value) || 0;
+    var usdEl = document.getElementById('modalDonationUsd');
+    if (usdEl && _ethPrice) usdEl.textContent = val > 0 ? '(' + fmtUsd(val * _ethPrice) + ')' : '';
+    confirmBtn.textContent = 'Donate ' + fmtDonation(val) + ' ETH';
+    pctRow.querySelectorAll('.donation-pct-btn').forEach(function(p) { p.classList.remove('active'); });
+  });
+
+  confirmBtn.addEventListener('click', function() {
+    var amt = parseFloat(amtInput.value);
+    if (!amt || amt <= 0) return;
+    confirmBtn.disabled = true;
+    confirmBtn.style.opacity = '0.6';
+    confirmBtn.style.background = 'var(--gold)';
+    confirmBtn.textContent = 'Sending...';
+    var amountWei = ethers.parseEther(amt.toFixed(18));
+    sendDonation(amountWei).then(function() {
+      while (box.firstChild) box.removeChild(box.firstChild);
+      var msg = document.createElement('div');
+      msg.style.cssText = 'padding:20px 0;text-align:center;';
+      var successText = document.createElement('div');
+      successText.style.cssText = 'font-size:14px;font-weight:600;color:var(--green);';
+      successText.textContent = 'Thank you for your donation.';
+      msg.appendChild(successText);
+      box.appendChild(msg);
+      setTimeout(function() { dismissModal(false); }, 2500);
+    }).catch(function(e) {
+      confirmBtn.disabled = false;
+      confirmBtn.style.opacity = '1';
+      confirmBtn.style.background = 'var(--accent)';
+      confirmBtn.textContent = 'Donate ' + fmtDonation(amt) + ' ETH';
+    });
+  });
+
+  function dismissModal(resetFlag) {
+    overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity 0.25s ease';
+    setTimeout(function() {
+      overlay.remove();
+      _lastClaimTxHash = null;
+      if (resetFlag) _donationModalShown = false;
+    }, 250);
+  }
+
+  skipBtn.addEventListener('click', function() {
+    var suppress = dontShowCheck.checked;
+    dismissModal(!suppress);
+    if (suppress) _donationModalSuppressed = true;
+  });
+}
+
+// Timer for idle detection during batch claims
+var _donationIdleTimer = null;
+
+function resetDonationIdleTimer(totalEth) {
+  if (_donationIdleTimer) clearTimeout(_donationIdleTimer);
+  if (totalEth >= 1) {
+    _donationIdleTimer = setTimeout(function() {
+      showDonationModal(totalEth);
+    }, 30000);
+  }
 }
 
 // Share
@@ -2592,9 +2983,8 @@ async function claimETH(key) {
         <div class="claim-recovered-label">Recovered</div>
         <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div>
         <div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
-      </div>
-      ${renderDonationCard(claimedEthNum)}`;
-    showDonationCardDelayed();
+      </div>`;
+    showDonationModal(claimedEthNum);
     userBalances[key] = 0n;
   } catch (e) {
     if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
@@ -2731,8 +3121,8 @@ async function nucypherRefund(key) {
     const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
     const fakeTxHash = '0x' + Array.from({length: 64}, () => '0123456789abcdef'[Math.floor(Math.random()*16)]).join('');
     btn.textContent = 'Done'; btn.classList.remove('pending'); btn.style.background = 'var(--green)'; btn.style.opacity = '0.7';
-    statusEl.innerHTML = `<div class="claim-recovered"><div class="claim-recovered-label">Recovered</div><div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div><div class="claim-recovered-tx"><a href="${etherscanTx(fakeTxHash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div><div style="font-size:10px;color:var(--yellow);margin-top:2px">[TEST MODE]</div></div>${renderDonationCard(claimedEthNum)}`;
-    showDonationCardDelayed();
+    statusEl.innerHTML = `<div class="claim-recovered"><div class="claim-recovered-label">Recovered</div><div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div><div class="claim-recovered-tx"><a href="${etherscanTx(fakeTxHash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div><div style="font-size:10px;color:var(--yellow);margin-top:2px">[TEST MODE]</div></div>`;
+    showDonationModal(claimedEthNum);
     userBalances[key] = 0n;
     return;
   }
@@ -2755,8 +3145,8 @@ async function nucypherRefund(key) {
     window.va?.track?.('claim_confirmed', { exchange: cfg.name, amount_eth: ethAmount, tx_hash: tx.hash, block: receipt.blockNumber });
     logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: claimedEthNum, tx_hash: tx.hash, block_num: receipt.blockNumber });
     btn.textContent = 'Done'; btn.classList.remove('pending'); btn.style.background = 'var(--green)'; btn.style.opacity = '0.7';
-    statusEl.innerHTML = `<div class="claim-recovered"><div class="claim-recovered-label">Recovered</div><div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div><div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div></div>${renderDonationCard(claimedEthNum)}`;
-    showDonationCardDelayed();
+    statusEl.innerHTML = `<div class="claim-recovered"><div class="claim-recovered-label">Recovered</div><div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div><div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div></div>`;
+    showDonationModal(claimedEthNum);
     userBalances[key] = 0n;
   } catch (e) {
     btn.disabled = false; btn.textContent = 'Step 2: Refund ETH'; btn.classList.remove('pending');
@@ -2858,8 +3248,8 @@ async function digixBurn(key) {
       <div class="claim-recovered-tx"><a href="${etherscanTx(fakeTxHash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
       <div style="font-size:10px;color:var(--yellow);margin-top:2px">[TEST MODE]</div>
     </div>
-    ${renderDonationCard(claimedEthNum)}`;
-    showDonationCardDelayed();
+    `;
+    showDonationModal(claimedEthNum);
     userBalances[key] = 0n;
     return;
   }
@@ -2895,8 +3285,8 @@ async function digixBurn(key) {
         <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div>
         <div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
       </div>
-      ${renderDonationCard(claimedEthNum)}`;
-    showDonationCardDelayed();
+      `;
+    showDonationModal(claimedEthNum);
     userBalances[key] = 0n;
   } catch (e) {
     btn.disabled = false;
@@ -2999,8 +3389,8 @@ async function daoWithdrawExecute(key) {
       <div class="claim-recovered-tx"><a href="${etherscanTx(fakeTxHash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
       <div style="font-size:10px;color:var(--yellow);margin-top:2px">[TEST MODE]</div>
     </div>
-    ${renderDonationCard(claimedEthNum)}`;
-    showDonationCardDelayed();
+    `;
+    showDonationModal(claimedEthNum);
     userBalances[key] = 0n;
     return;
   }
@@ -3034,8 +3424,8 @@ async function daoWithdrawExecute(key) {
         <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div>
         <div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
       </div>
-      ${renderDonationCard(claimedEthNum)}`;
-    showDonationCardDelayed();
+      `;
+    showDonationModal(claimedEthNum);
     userBalances[key] = 0n;
   } catch (e) {
     btn.disabled = false;
@@ -3128,8 +3518,8 @@ async function neufundWithdrawEthT(key) {
         <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div>
         <div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
       </div>
-      ${renderDonationCard(claimedEthNum)}`;
-    showDonationCardDelayed();
+      `;
+    showDonationModal(claimedEthNum);
     userBalances[key] = 0n;
     window.va?.track?.('claim_confirmed', { exchange: cfg.name, amount_eth: ethAmount, tx_hash: tx.hash });
   } catch (e) {
@@ -3341,23 +3731,27 @@ async function claimENSDeed(index) {
     window.va?.track?.('claim_confirmed', { exchange: 'ENS Old Registrar', amount_eth: ethAmount, tx_hash: tx.hash, block: receipt.blockNumber });
     logEvent('claim_confirmed', { address: walletAddress, contract: 'ens_old', amount_eth: parseFloat(ethAmount), tx_hash: tx.hash, block_num: receipt.blockNumber });
 
-    btn.textContent = 'Done';
+    btn.textContent = 'Released';
+    btn.disabled = true;
     btn.classList.remove('pending');
     btn.style.background = 'var(--green)';
-    btn.style.opacity = '0.7';
+    btn.style.opacity = '0.5';
+    btn.style.cursor = 'default';
     const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
     statusEl.innerHTML = '<div class="claim-recovered">' +
       '<div class="claim-recovered-label">Released</div>' +
       '<div class="claim-recovered-amount">' + fmtEth(ethAmount) + ' ETH' + claimUsd + '</div>' +
       '<div class="claim-recovered-tx"><a href="' + etherscanTx(tx.hash) + '" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>' +
     '</div>';
-    // Track cumulative ENS claims — show donation only after all deeds or a large amount
+    // Track cumulative ENS claims — show donation modal after last deed or on idle
     window._ensCumulativeEth = (window._ensCumulativeEth || 0) + claimedEthNum;
     var remainingDeeds = document.querySelectorAll('[data-action="claim-ens-deed"]:not([disabled])').length;
-    if (remainingDeeds === 0 || window._ensCumulativeEth >= 10) {
-      statusEl.innerHTML += renderDonationCard(window._ensCumulativeEth);
-      showDonationCardDelayed();
-      window._ensCumulativeEth = 0;
+    if (remainingDeeds === 0) {
+      // All deeds claimed — show full-screen donation modal
+      showDonationModal(window._ensCumulativeEth);
+    } else {
+      // More deeds to go — reset idle timer (shows modal if they stop for 30s)
+      resetDonationIdleTimer(window._ensCumulativeEth);
     }
   } catch (e) {
     btn.disabled = false;
@@ -3876,6 +4270,7 @@ async function checkSingleAddress(addr) {
 async function checkManualAddress() {
   const rawInput = document.getElementById('manualAddrInput').value.trim();
   if (!rawInput) { showInlineError('addrError', 'Please enter an Ethereum address or ENS name.'); return; }
+  if (rawInput.toLowerCase() === ZERO_ADDR) { showInlineError('addrError', 'The zero address has no claimable ETH.'); return; }
 
   // ── Test Mode: show fake results for any address ──
   if (TEST_MODE) {
@@ -4145,9 +4540,8 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
       <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div>
       <div class="claim-recovered-tx"><a href="${etherscanTx(fakeTxHash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
       <div style="font-size:10px;color:var(--yellow);margin-top:2px">[TEST MODE]</div>
-    </div>
-    ${renderDonationCard(claimedEthNum)}`;
-  showDonationCardDelayed();
+    </div>`;
+  showDonationModal(claimedEthNum);
   userBalances[key] = 0n;
 
   console.log('[TEST MODE] Simulated claim:', cfg.name, ethAmount, 'ETH, fake tx:', fakeTxHash);

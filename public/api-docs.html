@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior:smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API — Forgotten ETH</title>
+<meta name="description" content="Free public API for checking claimable ETH stuck in defunct Ethereum smart contracts.">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="/theme-init.js"></script>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --bg2: #f0eee9;
+    --bg3: #e5e2db;
+    --border: #d4d0c8;
+    --border-strong: #b8b3a8;
+    --text: #1a1a1a;
+    --text2: #6b6560;
+    --accent: #0f766e;
+    --accent2: #0d6560;
+    --accent-text: #0f766e;
+    --accent-glow: rgba(15, 118, 110, 0.15);
+    --green: #16a34a;
+    --gold: #b45309;
+    --gold-glow: rgba(180, 83, 9, 0.3);
+    --red: #dc2626;
+    --glass: #f0eee9;
+    --glass-border: #d4d0c8;
+    --radius: 3px;
+    --radius-sm: 2px;
+    --radius-lg: 6px;
+    --font-display: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+    --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  }
+
+  [data-theme="dark"] {
+    --bg: #12111a;
+    --bg2: #1a1924;
+    --bg3: #23212e;
+    --border: #2d2a3a;
+    --border-strong: #3d3950;
+    --text: #d4d0de;
+    --text2: #7d7890;
+    --accent: #7ec8be;
+    --accent2: #a3ddd5;
+    --accent-text: #7ec8be;
+    --accent-glow: rgba(126, 200, 190, 0.12);
+    --green: #6bc9a0;
+    --gold: #d4a96a;
+    --gold-glow: rgba(212, 169, 106, 0.3);
+    --red: #d47b7b;
+    --glass: #1a1924;
+    --glass-border: #2d2a3a;
+  }
+  [data-theme="dark"] a:hover { color: #a3ddd5; }
+
+  /* Dreamy dark mode — smooth theme transitions */
+  body, .endpoint, .note, .site-footer, input, pre { transition: background-color 0.35s, color 0.35s, border-color 0.35s, box-shadow 0.35s; }
+
+  /* ── Custom pixel cursor (Yume Nikki style) ── */
+  * { cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAUElEQVR4nGNgoAYQEZH7T7EBFBkC0lx3Yh/5hsAMINsQZAPIMgTdAJINwWYASYbgMoBoQ/C5gGwDyAoDsqMT2alkGYKukOKEhWwIxXmEkAEAaCednTE3BIIAAAAASUVORK5CYII=") 1 1, auto; }
+  a, button, [role="button"], select, input[type="submit"] { cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAUElEQVR4nGNgoAYQEZH7T7EBFBkC0lx3Yh/5hsAMINsQZAPIMgTdAJINwWYASYbgMoBoQ/C5gGwDyAoDsqMT2alkGYKukOKEhWwIxXmEkAEAaCednTE3BIIAAAAASUVORK5CYII=") 1 1, pointer; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── Yume Nikki background ── */
+  /* Light mode: dreamy pastel world — soft teal grid + warm glow pools */
+  body {
+    background-color: var(--bg);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='16' height='16' fill='%23f0eee9'/%3E%3Crect x='16' y='16' width='16' height='16' fill='%23f0eee9'/%3E%3Crect x='16' width='16' height='16' fill='%23ece9e3'/%3E%3Crect y='16' width='16' height='16' fill='%23ece9e3'/%3E%3C/svg%3E");
+    background-size: 32px 32px;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -2;
+    background:
+      radial-gradient(ellipse 700px 450px at 15% 25%, rgba(15, 118, 110, 0.06), transparent 70%),
+      radial-gradient(ellipse 500px 400px at 80% 20%, rgba(180, 130, 80, 0.05), transparent 70%),
+      radial-gradient(ellipse 600px 350px at 50% 75%, rgba(15, 118, 110, 0.04), transparent 70%);
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128'%3E%3Cpolygon points='64,52 58,64 70,64' fill='%230f766e' opacity='0.06'/%3E%3C/svg%3E"),
+      linear-gradient(rgba(15, 118, 110, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 118, 110, 0.05) 1px, transparent 1px);
+    background-size: 128px 128px, 32px 32px, 32px 32px;
+  }
+  /* Dark mode: Neon World — glowing checkerboard on void */
+  [data-theme="dark"] body {
+    background-color: #0a0a12;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='16' height='16' fill='%23161425'/%3E%3Crect x='16' y='16' width='16' height='16' fill='%23161425'/%3E%3Crect x='16' width='16' height='16' fill='%230e0d18'/%3E%3Crect y='16' width='16' height='16' fill='%230e0d18'/%3E%3C/svg%3E");
+    background-size: 32px 32px;
+  }
+  /* Neon glow overlay */
+  @keyframes neonPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+  [data-theme="dark"] body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -2;
+    opacity: 1;
+    animation: neonPulse 8s ease-in-out infinite;
+    background:
+      radial-gradient(ellipse 800px 500px at 10% 20%, rgba(160, 50, 180, 0.08), transparent 70%),
+      radial-gradient(ellipse 600px 400px at 85% 15%, rgba(80, 200, 180, 0.07), transparent 70%),
+      radial-gradient(ellipse 700px 450px at 50% 80%, rgba(100, 80, 220, 0.06), transparent 70%),
+      radial-gradient(ellipse 500px 350px at 75% 50%, rgba(200, 60, 120, 0.05), transparent 70%);
+  }
+  /* Neon tile grid + small pyramids */
+  [data-theme="dark"] body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 1;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128'%3E%3Cpolygon points='64,52 58,64 70,64' fill='%236030a0' opacity='0.15'/%3E%3C/svg%3E"),
+      linear-gradient(rgba(200, 80, 180, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(80, 200, 190, 0.08) 1px, transparent 1px);
+    background-size: 128px 128px, 32px 32px, 32px 32px;
+  }
+
+  a { color: var(--accent-text); text-decoration: underline; }
+  a:hover { color: #0d6560; }
+  [data-theme="dark"] a:hover { color: #a3ddd5; }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  input:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12); }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px 60px; }
+  .api-layout { display: flex; gap: 0; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .api-sidebar {
+    width: 180px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 24px;
+    align-self: flex-start;
+    padding-right: 20px;
+    margin-right: 28px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+  }
+  .api-sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    border-left: 2px solid var(--border);
+    padding-left: 0;
+  }
+  .api-sidebar a {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 5px 12px;
+    margin-left: -2px;
+    border-left: 2px solid transparent;
+    color: var(--text2);
+    text-decoration: none;
+    transition: color 0.15s, border-color 0.2s;
+    line-height: 1.4;
+  }
+  .api-sidebar a:hover { color: var(--accent); border-left-color: var(--accent); }
+  .api-sidebar a.active { color: var(--accent); font-weight: 700; border-left-color: var(--accent); }
+  .api-sidebar .sidebar-label {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text);
+    padding: 16px 12px 6px;
+    margin-left: -2px;
+    border-left: 2px solid transparent;
+  }
+  .api-sidebar .sidebar-label:first-child { padding-top: 0; }
+  .api-content { flex: 1; min-width: 0; }
+  @media (max-width: 768px) {
+    .api-layout { flex-direction: column; }
+    .api-sidebar { width: 100%; position: static; padding-right: 0; margin-right: 0; margin-bottom: 20px; max-height: none; }
+    .api-sidebar nav { flex-direction: row; flex-wrap: wrap; gap: 4px; border-left: none; padding-left: 0; }
+    .api-sidebar a { padding: 4px 10px; font-size: 11px; margin-left: 0; border-left: none; border: 1px solid var(--border); border-radius: 20px; background: var(--bg2); }
+    .api-sidebar a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .api-sidebar a.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .api-sidebar .sidebar-label { display: none; }
+  }
+
+  /* ── Header ── */
+  .header { padding: 24px 0 12px; text-align: center; }
+  .header h1 { font-family: var(--font-display); font-size: 38px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .header h1 a { color: inherit; text-decoration: none; }
+  .header .subtitle { font-family: var(--font-display); font-size: 16px; color: var(--text2); font-weight: 400; margin-bottom: 20px; font-style: italic; letter-spacing: 0.3px; opacity: 0.8; }
+  [data-theme="dark"] .header .subtitle { opacity: 0.65; }
+
+  /* ── Version badge ── */
+  .version-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: var(--radius-sm);
+    background: var(--accent);
+    color: #fff;
+    vertical-align: super;
+    margin-left: 6px;
+    letter-spacing: 0.5px;
+  }
+  [data-theme="dark"] .version-badge { color: #12111a; }
+
+  /* ── Navigation ── */
+  .header-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 0;
+    font-size: 13px;
+    font-family: var(--font-mono);
+  }
+  .header-nav a { color: var(--text2); text-decoration: none; transition: color 150ms ease; }
+  .header-nav a:hover { color: var(--accent); }
+  .header-nav a.current { color: var(--accent); font-weight: 700; }
+
+  /* ── Theme toggle ── */
+  #themeToggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--text2);
+    transition: color 150ms ease;
+    padding: 0;
+    line-height: 1;
+    font-family: var(--font-mono);
+    opacity: 1;
+  }
+  #themeToggle:hover { color: var(--accent); }
+
+  /* ── Neon Tile Path divider ── */
+  .tile-divider {
+    height: 3px;
+    margin-bottom: 24px;
+    background: repeating-linear-gradient(90deg, var(--accent) 0px, var(--accent) 8px, transparent 8px, transparent 16px, rgba(200, 80, 180, 0.4) 16px, rgba(200, 80, 180, 0.4) 24px, transparent 24px, transparent 32px);
+    opacity: 0.3;
+  }
+  [data-theme="dark"] .tile-divider { opacity: 0.5; }
+
+  /* ── Quick Nav (hidden — replaced by sidebar) ── */
+  .quick-nav { display: none; }
+  .quick-nav a {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 4px 12px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text2);
+    text-decoration: none;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+  .quick-nav a:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  [data-theme="dark"] .quick-nav a:hover { color: #12111a; }
+
+  /* ── Content ── */
+  h2 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    margin: 32px 0 12px;
+    scroll-margin-top: 28px;
+  }
+  .endpoint {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.35s, border-color 0.35s;
+  }
+  .endpoint:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+  [data-theme="dark"] .endpoint:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  .endpoint-green { border-left-color: var(--green); }
+  .endpoint-gold { border-left-color: var(--gold); }
+  .endpoint-purple { border-left-color: #7c3aed; }
+  [data-theme="dark"] .endpoint-purple { border-left-color: #a78bfa; }
+
+  .method { display: inline-block; font-family: var(--font-mono); font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-sm); background: var(--accent); color: #fff; margin-right: 8px; }
+  [data-theme="dark"] .method { color: #12111a; }
+  .method-static { background: var(--gold); }
+  .path { font-family: var(--font-mono); font-size: 15px; font-weight: 700; }
+  .desc { color: var(--text2); font-size: 14px; margin-top: 8px; }
+  .params { margin-top: 12px; }
+  .params table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .params th { text-align: left; padding: 6px 10px; border-bottom: 2px solid var(--border); color: var(--text2); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; font-family: var(--font-mono); }
+  .params td { padding: 6px 10px; border-bottom: 1px solid var(--border); }
+  .param-name { font-family: var(--font-mono); font-weight: 600; }
+  .param-required { color: var(--gold); font-size: 11px; font-weight: 700; }
+  h3 { font-size: 14px; margin: 16px 0 6px; font-family: var(--font-mono); color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ── Code blocks with copy button ── */
+  .code-block {
+    position: relative;
+    margin-top: 8px;
+  }
+  .code-block pre {
+    margin-top: 0;
+  }
+  pre {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.5;
+    margin-top: 8px;
+    position: relative;
+  }
+  [data-theme="dark"] pre { background: rgba(22, 21, 32, 0.95); }
+
+  .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text2);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s ease, background-color 0.15s ease;
+    z-index: 2;
+  }
+  .code-block:hover .copy-btn { opacity: 1; }
+  .copy-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+  [data-theme="dark"] .copy-btn:hover { color: #12111a; }
+  .copy-btn.copied { background: var(--green); color: #fff; border-color: var(--green); opacity: 1; }
+
+  code { font-family: var(--font-mono); font-size: 13px; }
+  .inline-code { background: var(--bg2); padding: 1px 5px; border-radius: var(--radius-sm); font-size: 12px; border: 1px solid var(--border); }
+  .note { background: var(--bg2); border-left: 3px solid var(--accent); padding: 12px 16px; margin: 0 0 24px; font-size: 13px; color: var(--text2); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
+
+  /* ── Syntax coloring for static JSON examples ── */
+  .json-key { color: #0f766e; }
+  [data-theme="dark"] .json-key { color: #7ec8be; }
+  .json-string { color: #b45309; }
+  [data-theme="dark"] .json-string { color: #d4a96a; }
+  .json-number { color: #7c3aed; }
+  [data-theme="dark"] .json-number { color: #a78bfa; }
+  .json-bool, .json-null { color: #dc2626; }
+  [data-theme="dark"] .json-bool, [data-theme="dark"] .json-null { color: #d47b7b; }
+
+  /* ── Code tabs ── */
+  .code-tabs { margin-top: 12px; }
+  .tab-buttons {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+  .tab-btn {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 6px 14px;
+    background: none;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    position: relative;
+    bottom: -1px;
+  }
+  .tab-btn:hover { color: var(--accent); }
+  .tab-btn.active {
+    background: var(--bg2);
+    border-color: var(--border);
+    color: var(--accent-text);
+    font-weight: 700;
+  }
+  [data-theme="dark"] .tab-btn.active { background: rgba(22, 21, 32, 0.95); }
+  .tab-panel {
+    display: none;
+  }
+  .tab-panel.active {
+    display: block;
+  }
+  .tab-panel pre {
+    border-top-left-radius: 0;
+    margin-top: 0;
+  }
+
+  /* ── Error table ── */
+  .error-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  .error-table th {
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 2px solid var(--border);
+    color: var(--text2);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: var(--font-mono);
+  }
+  .error-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  .error-code {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .error-code-400 { color: var(--gold); }
+  .error-code-404 { color: var(--text2); }
+  .error-code-405 { color: var(--text2); }
+  .error-code-429 { color: var(--red); }
+  .error-code-500 { color: var(--red); }
+
+  /* ── Try-it widget ── */
+  .try-it { margin-top: 12px; display: flex; gap: 8px; align-items: center; }
+  .try-it input { flex: 1; font-family: var(--font-mono); font-size: 12px; padding: 6px 10px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); transition: border-color 0.15s, box-shadow 0.15s; }
+  .try-it input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1); }
+  .try-it button { font-family: var(--font-mono); font-size: 12px; padding: 7px 18px; background: transparent; color: var(--accent); border: 1.5px solid var(--accent); border-radius: var(--radius); cursor: pointer; font-weight: 700; transition: all 0.15s; min-width: 70px; letter-spacing: 0.3px; }
+  .try-it button:hover { background: var(--accent); color: #fff; }
+  [data-theme="dark"] .try-it button:hover { color: #12111a; }
+  .try-it button:disabled { opacity: 0.5; }
+  .try-result { margin-top: 8px; display: none; }
+  .try-result pre { max-height: 300px; overflow-y: auto; }
+
+  /* ── Spinner ── */
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .try-spinner {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    vertical-align: middle;
+  }
+  [data-theme="dark"] .try-spinner { border-color: rgba(18,17,26,0.3); border-top-color: #12111a; }
+
+  /* ── Footer ── */
+  .site-footer { text-align: center; padding: 16px 0 20px; margin-top: 48px; }
+  .site-footer a { color: var(--text2); text-decoration: none; transition: color 0.15s; font-size: 13px; font-family: var(--font-mono); }
+  .site-footer a:hover { color: var(--accent); }
+  .footer-sep { color: var(--border-strong); margin: 0 12px; user-select: none; font-size: 13px; }
+
+  /* ── Staggered entrance ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { opacity: 0; animation: fadeUp 0.5s ease forwards; }
+  .fade-in-1 { animation-delay: 0s; }
+  .fade-in-2 { animation-delay: 0.1s; }
+  .fade-in-3 { animation-delay: 0.2s; }
+  .fade-in-4 { animation-delay: 0.35s; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .quick-nav { gap: 4px; }
+    .quick-nav a { font-size: 10px; padding: 3px 8px; }
+    .tab-btn { padding: 5px 10px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header fade-in fade-in-1">
+    <h1><a href="/">Forgotten &#926;TH</a></h1>
+    <p class="subtitle">Recover ETH stuck in old smart contracts</p>
+    <nav class="header-nav">
+      <a href="/">Home</a>
+      <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" title="View on GitHub" aria-label="GitHub"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+      <a href="https://t.me/forgottenETH_bot" target="_blank" rel="noopener noreferrer" title="Telegram Bot" aria-label="Telegram"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+      <button id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode"></button>
+    </nav>
+  </div>
+
+  <div class="api-layout fade-in fade-in-2">
+  <aside class="api-sidebar">
+    <nav>
+      <div class="sidebar-label">Endpoints</div>
+      <a href="#check-address">Check Address</a>
+      <a href="#summary">Summary</a>
+      <a href="#protocol-detail">Protocol Detail</a>
+      <a href="#total">Total</a>
+      <a href="#protocol-list">Protocol List</a>
+      <a href="#protocol-info">Protocol Info</a>
+      <div class="sidebar-label">Reference</div>
+      <a href="#errors">Errors</a>
+      <a href="#headers">Headers</a>
+      <a href="#notes">Notes</a>
+    </nav>
+  </aside>
+  <div class="api-content">
+
+  <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.8;">All endpoints are read-only <code class="inline-code" style="color:var(--accent-text);font-weight:700">GET</code> requests. Responses are <code class="inline-code" style="color:var(--accent-text);font-weight:700">JSON</code> with <code class="inline-code" style="color:var(--gold)">snake_case</code> keys. No authentication required. Data refreshes every 6 hours from onchain <code class="inline-code" style="color:var(--accent-text)">Multicall3</code> scans. Rate limited to <code class="inline-code" style="color:var(--accent-text)">30 req/min</code> per IP. <code class="inline-code" style="color:var(--accent-text)">CORS *</code> enabled.</p>
+
+  <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;margin-bottom:12px;background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 var(--radius-lg) var(--radius-lg) 0;font-family:var(--font-mono);font-size:13px;">
+    <span style="color:var(--text2);font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Base URL</span>
+    <span style="font-weight:700;color:var(--accent-text);">https://forgotteneth.com</span>
+  </div>
+
+  <!-- ── Check Address ── -->
+  <h2 id="check-address">Check Address</h2>
+  <div class="endpoint">
+    <span class="method">GET</span>
+    <span class="path">/api/check?address=0x...</span>
+    <p class="desc">Check if an Ethereum address has claimable ETH in any tracked contract. Returns per-protocol balances and coverage metadata.</p>
+    <div class="params">
+      <table>
+        <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">address</span></td><td>string</td><td>Ethereum address (0x + 40 hex chars)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="try-it">
+      <input type="text" id="tryAddress" placeholder="0x1234...5678" spellcheck="false" aria-label="Ethereum address">
+      <button id="tryBtn" onclick="tryCheck()">Try it</button>
+    </div>
+    <div class="try-result" id="tryResult">
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre id="tryOutput"></pre>
+      </div>
+    </div>
+
+    <!-- Code Examples -->
+    <h3>Examples</h3>
+    <div class="code-tabs">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-curl')">curl</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-js')">JavaScript</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-py')">Python</button>
+      </div>
+      <div class="tab-panel active" id="tab-curl">
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>curl "https://forgotteneth.com/api/check?address=0xab5801a7d398351b8be11c439e05c5b3259aec9b"</pre>
+        </div>
+      </div>
+      <div class="tab-panel" id="tab-js">
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><span class="json-key">const</span> res = <span class="json-key">await</span> fetch(<span class="json-string">'https://forgotteneth.com/api/check?address=0xab58...'</span>);
+<span class="json-key">const</span> data = <span class="json-key">await</span> res.json();
+console.log(<span class="json-string">`${data.total_claimable_eth} ETH claimable`</span>);</pre>
+        </div>
+      </div>
+      <div class="tab-panel" id="tab-py">
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre><span class="json-key">import</span> requests
+r = requests.get(<span class="json-string">'https://forgotteneth.com/api/check'</span>, params={<span class="json-string">'address'</span>: <span class="json-string">'0xab58...'</span>})
+data = r.json()
+print(<span class="json-string">f"{data['total_claimable_eth']} ETH claimable"</span>)</pre>
+        </div>
+      </div>
+    </div>
+
+    <h3>Response</h3>
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <pre>{
+  <span class="json-key">"address"</span>: <span class="json-string">"0xab5801a7d398351b8be11c439e05c5b3259aec9b"</span>,
+  <span class="json-key">"checked_at"</span>: <span class="json-string">"2026-04-01T12:00:00.000Z"</span>,
+  <span class="json-key">"contracts_checked"</span>: <span class="json-number">117</span>,
+  <span class="json-key">"contracts_with_balance"</span>: <span class="json-number">1</span>,
+  <span class="json-key">"total_claimable_eth"</span>: <span class="json-string">"0.035096"</span>,
+  <span class="json-key">"balances"</span>: {
+    <span class="json-key">"ens_old"</span>: {
+      <span class="json-key">"contract"</span>: <span class="json-string">"0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef"</span>,
+      <span class="json-key">"balance_wei"</span>: <span class="json-string">"35095985789402980"</span>,
+      <span class="json-key">"balance_eth"</span>: <span class="json-number">0.03509598578940298</span>,
+      <span class="json-key">"deeds"</span>: [{ <span class="json-key">"hash"</span>: <span class="json-string">"0x4271..."</span>, <span class="json-key">"eth"</span>: <span class="json-number">0.01</span> }, ...]
+    }
+  },
+  <span class="json-key">"coverage"</span>: {
+    <span class="json-key">"etherdelta"</span>: { <span class="json-key">"coverage_pct"</span>: <span class="json-number">99.8</span>, <span class="json-key">"scan_date"</span>: <span class="json-string">"2026-03-30 UTC"</span> },
+    ...
+  }
+}</pre>
+    </div>
+
+    <h3>Response Fields</h3>
+    <div class="params">
+      <table>
+        <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">address</span></td><td>string</td><td>The queried address (echoed back)</td></tr>
+          <tr><td><span class="param-name">checked_at</span></td><td>string</td><td>ISO 8601 timestamp of the check</td></tr>
+          <tr><td><span class="param-name">contracts_checked</span></td><td>number</td><td>Number of contracts scanned</td></tr>
+          <tr><td><span class="param-name">contracts_with_balance</span></td><td>number</td><td>How many contracts have claimable ETH for this address</td></tr>
+          <tr><td><span class="param-name">total_claimable_eth</span></td><td>string</td><td>Sum of all claimable ETH across contracts</td></tr>
+          <tr><td><span class="param-name">balances</span></td><td>object</td><td>Per-protocol balance details, keyed by protocol key</td></tr>
+          <tr><td><span class="param-name">balances.*.contract</span></td><td>string</td><td>Contract address for this protocol</td></tr>
+          <tr><td><span class="param-name">balances.*.balance_wei</span></td><td>string</td><td>Balance in wei (raw integer as string)</td></tr>
+          <tr><td><span class="param-name">balances.*.balance_eth</span></td><td>number</td><td>Balance in ETH</td></tr>
+          <tr><td><span class="param-name">balances.*.deeds</span></td><td>array?</td><td>ENS only. List of deed hashes and their ETH values</td></tr>
+          <tr><td><span class="param-name">balances.*.bounty_details</span></td><td>array?</td><td>Bounties Network only. Per-bounty IDs and ETH amounts</td></tr>
+          <tr><td><span class="param-name">balances.*.epoch_details</span></td><td>array?</td><td>Kyber FeeHandler only. Per-epoch reward amounts</td></tr>
+          <tr><td><span class="param-name">coverage</span></td><td>object</td><td>Coverage metadata for every tracked protocol. <code class="inline-code">coverage_pct</code> = fraction of known depositors indexed. <code class="inline-code">scan_date</code> = last refresh date (UTC)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── Summary ── -->
+  <h2 id="summary">Summary</h2>
+  <div class="endpoint endpoint-green">
+    <span class="method">GET</span>
+    <span class="path">/api/summary</span>
+    <p class="desc">Overview of all tracked contracts with ETH balances, address counts, and coverage percentages.</p>
+    <div class="try-it">
+      <button id="trySummaryBtn" onclick="trySummary()">Try it</button>
+    </div>
+    <div class="try-result" id="trySummaryResult"><div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre id="trySummaryOutput"></pre></div></div>
+    <h3>Response</h3>
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <pre>{
+  <span class="json-key">"total_eth"</span>: <span class="json-number">157825.97</span>,
+  <span class="json-key">"contract_count"</span>: <span class="json-number">117</span>,
+  <span class="json-key">"contracts"</span>: {
+    <span class="json-key">"etherdelta"</span>: {
+      <span class="json-key">"contract"</span>: <span class="json-string">"0x8d12A197cB00D4747a1fe03395095ce2A5CC6819"</span>,
+      <span class="json-key">"total_eth"</span>: <span class="json-number">1234.56</span>,
+      <span class="json-key">"contract_eth_balance"</span>: <span class="json-number">1500.00</span>,
+      <span class="json-key">"addresses_with_balance"</span>: <span class="json-number">245119</span>,
+      <span class="json-key">"coverage_pct"</span>: <span class="json-number">99.8</span>,
+      <span class="json-key">"scan_date"</span>: <span class="json-string">"2026-03-30 UTC"</span>
+    },
+    ...
+  }
+}</pre>
+    </div>
+
+    <h3>Response Fields</h3>
+    <div class="params">
+      <table>
+        <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">total_eth</span></td><td>number</td><td>Sum of all mapped depositor balances across all protocols</td></tr>
+          <tr><td><span class="param-name">contract_count</span></td><td>number</td><td>Number of tracked contracts</td></tr>
+          <tr><td><span class="param-name">contracts.*.total_eth</span></td><td>number</td><td>Total ETH mapped to known depositors in this contract</td></tr>
+          <tr><td><span class="param-name">contracts.*.contract_eth_balance</span></td><td>number</td><td>Actual ETH balance of the contract onchain</td></tr>
+          <tr><td><span class="param-name">contracts.*.addresses_with_balance</span></td><td>number</td><td>Number of depositors with non-zero balances</td></tr>
+          <tr><td><span class="param-name">contracts.*.coverage_pct</span></td><td>number</td><td>Percentage of contract ETH mapped to known depositors (total_eth / contract_eth_balance * 100)</td></tr>
+          <tr><td><span class="param-name">contracts.*.scan_date</span></td><td>string</td><td>When this contract was last scanned (UTC date)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── Protocol Detail ── -->
+  <h2 id="protocol-detail">Protocol Detail</h2>
+  <div class="endpoint endpoint-gold">
+    <span class="method">GET</span>
+    <span class="path">/api/table?exchange=...</span>
+    <p class="desc">Detailed metadata for a single protocol: balances, coverage, balance distribution, and monthly TVL history.</p>
+    <div class="params">
+      <table>
+        <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">exchange</span></td><td>string</td><td>Protocol key (e.g. <code class="inline-code">etherdelta</code>, <code class="inline-code">ens_old</code>, <code class="inline-code">thedao</code>). See <a href="https://github.com/q84c6tsm95-create/forgotten-eth/blob/main/data/protocols.json" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">full key list</a>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="try-it">
+      <input type="text" id="tryExchange" placeholder="etherdelta" spellcheck="false" style="max-width:180px;">
+      <button id="tryTableBtn" onclick="tryTable()">Try it</button>
+    </div>
+    <div class="try-result" id="tryTableResult"><div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre id="tryTableOutput"></pre></div></div>
+    <h3>Response</h3>
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <pre>{
+  <span class="json-key">"exchange"</span>: <span class="json-string">"etherdelta"</span>,
+  <span class="json-key">"meta"</span>: {
+    <span class="json-key">"contract"</span>: <span class="json-string">"0x8d12A197cB00D4747a1fe03395095ce2A5CC6819"</span>,
+    <span class="json-key">"total_eth"</span>: <span class="json-number">1234.56</span>,
+    <span class="json-key">"contract_eth_balance"</span>: <span class="json-number">1500.00</span>,
+    <span class="json-key">"addresses_with_balance"</span>: <span class="json-number">245119</span>,
+    <span class="json-key">"coverage_pct"</span>: <span class="json-number">99.8</span>,
+    <span class="json-key">"scan_date"</span>: <span class="json-string">"2026-03-30 UTC"</span>,
+    <span class="json-key">"distribution"</span>: {
+      <span class="json-key">"&gt;=100 ETH"</span>: { <span class="json-key">"count"</span>: <span class="json-number">10</span>, <span class="json-key">"total_eth"</span>: <span class="json-number">2460.18</span> },
+      <span class="json-key">"10-100 ETH"</span>: { <span class="json-key">"count"</span>: <span class="json-number">150</span>, <span class="json-key">"total_eth"</span>: <span class="json-number">3560.60</span> },
+      <span class="json-key">"1-10 ETH"</span>: { <span class="json-key">"count"</span>: <span class="json-number">1882</span>, <span class="json-key">"total_eth"</span>: <span class="json-number">4567.89</span> },
+      <span class="json-key">"0.1-1 ETH"</span>: { <span class="json-key">"count"</span>: <span class="json-number">8500</span>, <span class="json-key">"total_eth"</span>: <span class="json-number">3200.00</span> },
+      <span class="json-key">"0.01-0.1 ETH"</span>: { <span class="json-key">"count"</span>: <span class="json-number">45000</span>, <span class="json-key">"total_eth"</span>: <span class="json-number">1200.00</span> },
+      <span class="json-key">"&lt;0.01 ETH"</span>: { <span class="json-key">"count"</span>: <span class="json-number">189577</span>, <span class="json-key">"total_eth"</span>: <span class="json-number">257.89</span> }
+    },
+    <span class="json-key">"tvl"</span>: [
+      { <span class="json-key">"date"</span>: <span class="json-string">"2018-01"</span>, <span class="json-key">"eth"</span>: <span class="json-number">150000</span> },
+      { <span class="json-key">"date"</span>: <span class="json-string">"2026-03"</span>, <span class="json-key">"eth"</span>: <span class="json-number">1500</span> }
+    ]
+  }
+}</pre>
+    </div>
+
+    <h3>Response Fields</h3>
+    <div class="params">
+      <table>
+        <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">meta.distribution</span></td><td>object</td><td>Balance distribution across 6 tiers. Each tier has <code class="inline-code">count</code> (addresses) and <code class="inline-code">total_eth</code></td></tr>
+          <tr><td><span class="param-name">meta.tvl</span></td><td>array</td><td>Monthly historical ETH balance from deployment to present. Each entry has <code class="inline-code">date</code> (YYYY-MM) and <code class="inline-code">eth</code></td></tr>
+          <tr><td><span class="param-name">meta.activity</span></td><td>object?</td><td>Transaction activity metadata (when available): total transactions, last activity date</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── Total ── -->
+  <h2 id="total">Total</h2>
+  <div class="endpoint">
+    <span class="method">GET</span>
+    <span class="path">/api/total</span>
+    <p class="desc">Lightweight endpoint returning total tracked ETH and counts. Ideal for widgets and bots.</p>
+    <h3>Response</h3>
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <pre>{
+  <span class="json-key">"total_eth"</span>: <span class="json-number">157825.97</span>,
+  <span class="json-key">"total_contract_eth"</span>: <span class="json-number">158786.81</span>,
+  <span class="json-key">"contract_count"</span>: <span class="json-number">117</span>,
+  <span class="json-key">"address_count"</span>: <span class="json-number">521145</span>
+}</pre>
+    </div>
+
+    <h3>Response Fields</h3>
+    <div class="params">
+      <table>
+        <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">total_eth</span></td><td>number</td><td>Total ETH mapped to known depositors</td></tr>
+          <tr><td><span class="param-name">total_contract_eth</span></td><td>number</td><td>Total ETH actually held in contracts onchain (may differ from total_eth due to unmapped depositors)</td></tr>
+          <tr><td><span class="param-name">contract_count</span></td><td>number</td><td>Number of tracked contracts</td></tr>
+          <tr><td><span class="param-name">address_count</span></td><td>number</td><td>Total unique addresses with claimable balances across all contracts</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── Protocol List ── -->
+  <h2 id="protocol-list">Protocol List</h2>
+  <div class="endpoint endpoint-purple">
+    <span class="method method-static">STATIC</span>
+    <span class="path">/data/protocols.json</span>
+    <p class="desc">Static JSON listing all tracked protocols with keys, names, and categories. No rate limit.</p>
+    <h3>Response</h3>
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <pre>[
+  { <span class="json-key">"key"</span>: <span class="json-string">"etherdelta"</span>, <span class="json-key">"name"</span>: <span class="json-string">"EtherDelta"</span>, <span class="json-key">"contract"</span>: <span class="json-string">"0x8d12..."</span>, <span class="json-key">"category"</span>: <span class="json-string">"dex"</span> },
+  { <span class="json-key">"key"</span>: <span class="json-string">"ens_old"</span>, <span class="json-key">"name"</span>: <span class="json-string">"ENS Old Registrar"</span>, <span class="json-key">"contract"</span>: <span class="json-string">"0x6090..."</span>, <span class="json-key">"category"</span>: <span class="json-string">"other"</span> },
+  { <span class="json-key">"key"</span>: <span class="json-string">"thedao"</span>, <span class="json-key">"name"</span>: <span class="json-string">"The DAO"</span>, <span class="json-key">"contract"</span>: <span class="json-string">"0xbb9b..."</span>, <span class="json-key">"category"</span>: <span class="json-string">"ico"</span> },
+  ...
+]</pre>
+    </div>
+  </div>
+
+  <!-- ── Protocol Info ── -->
+  <h2 id="protocol-info">Protocol Info</h2>
+  <div class="endpoint endpoint-purple">
+    <span class="method method-static">STATIC</span>
+    <span class="path">/data/protocol_info.json</span>
+    <p class="desc">Descriptions, categories, deploy dates, theme colors, and slugs for all tracked protocols. Static file, no rate limit.</p>
+    <h3>Response</h3>
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <pre>{
+  <span class="json-key">"etherdelta"</span>: {
+    <span class="json-key">"name"</span>: <span class="json-string">"EtherDelta"</span>,
+    <span class="json-key">"desc"</span>: <span class="json-string">"The first popular decentralized exchange on Ethereum..."</span>,
+    <span class="json-key">"category"</span>: <span class="json-string">"dex"</span>,
+    <span class="json-key">"color"</span>: <span class="json-string">"#6441a5"</span>,
+    <span class="json-key">"contract"</span>: <span class="json-string">"0x8d12A197cB00D4747a1fe03395095ce2A5CC6819"</span>,
+    <span class="json-key">"deployed"</span>: <span class="json-string">"February 2016"</span>,
+    <span class="json-key">"slug"</span>: <span class="json-string">"etherdelta"</span>
+  },
+  <span class="json-key">"ens_old"</span>: {
+    <span class="json-key">"name"</span>: <span class="json-string">"ENS Old Registrar"</span>,
+    <span class="json-key">"desc"</span>: <span class="json-string">"The original ENS name registration system..."</span>,
+    <span class="json-key">"category"</span>: <span class="json-string">"other"</span>,
+    <span class="json-key">"color"</span>: <span class="json-string">"#5284ff"</span>,
+    <span class="json-key">"contract"</span>: <span class="json-string">"0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef"</span>,
+    <span class="json-key">"deployed"</span>: <span class="json-string">"May 2017"</span>,
+    <span class="json-key">"slug"</span>: <span class="json-string">"ens"</span>
+  },
+  ...
+}</pre>
+    </div>
+  </div>
+
+
+  <!-- ── Error Responses ── -->
+  <h2 id="errors">Error Responses</h2>
+  <p style="font-size:14px;color:var(--text2);margin-bottom:12px;">All error responses follow a consistent <code class="inline-code" style="color:var(--accent-text)">JSON</code> format with an <code class="inline-code" style="color:var(--gold)">error</code> field.</p>
+  <table class="error-table">
+    <thead>
+      <tr><th>Status</th><th>Meaning</th><th>Response</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="error-code error-code-400">400</span></td>
+        <td>Invalid or missing parameters</td>
+        <td><code class="inline-code" style="color:var(--gold)">{"error": "Invalid address format"}</code></td>
+      </tr>
+      <tr>
+        <td><span class="error-code error-code-404">404</span></td>
+        <td>Protocol not found</td>
+        <td><code class="inline-code" style="color:var(--gold)">{"error": "Unknown exchange"}</code></td>
+      </tr>
+      <tr>
+        <td><span class="error-code error-code-405">405</span></td>
+        <td>Method not allowed</td>
+        <td><code class="inline-code" style="color:var(--gold)">{"error": "Method not allowed"}</code></td>
+      </tr>
+      <tr>
+        <td><span class="error-code error-code-429">429</span></td>
+        <td>Rate limit exceeded (<code class="inline-code" style="color:var(--accent-text)">30 req/min</code>)</td>
+        <td><code class="inline-code" style="color:var(--gold)">{"error": "Rate limit exceeded. Try again in 1 minute."}</code></td>
+      </tr>
+      <tr>
+        <td><span class="error-code error-code-500">500</span></td>
+        <td>Server error (data unavailable)</td>
+        <td><code class="inline-code" style="color:var(--gold)">{"error": "Summary data not available"}</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="headers">Response Headers</h2>
+  <p style="font-size:14px;color:var(--text2);margin-bottom:12px;">All API responses include these headers:</p>
+  <div class="params">
+    <table>
+      <thead><tr><th>Header</th><th>Value</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><span class="param-name">Cache-Control</span></td><td><code class="inline-code" style="color:var(--accent-text)">private, max-age=300</code></td><td>Address checks cached for <code class="inline-code" style="color:var(--accent-text)">5 min</code>. <code class="inline-code" style="color:var(--accent-text)">/api/summary</code> and <code class="inline-code" style="color:var(--accent-text)">/api/table</code> use <code class="inline-code" style="color:var(--accent-text)">s-maxage=3600</code> (1h CDN cache)</td></tr>
+        <tr><td><span class="param-name">X-Content-Type-Options</span></td><td><code class="inline-code" style="color:var(--accent-text)">nosniff</code></td><td>Prevents MIME type sniffing</td></tr>
+        <tr><td><span class="param-name">Access-Control-Allow-Origin</span></td><td><code class="inline-code" style="color:var(--accent-text)">*</code></td><td><code class="inline-code" style="color:var(--accent-text)">CORS</code> enabled for all origins — call from any domain</td></tr>
+        <tr><td><span class="param-name">Content-Type</span></td><td><code class="inline-code" style="color:var(--accent-text)">application/json</code></td><td>All responses are <code class="inline-code" style="color:var(--accent-text)">JSON</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="notes">Notes</h2>
+  <ul style="font-size:14px;margin-top:12px;padding-left:20px;">
+    <li style="margin-bottom:8px;">All <code class="inline-code" style="color:var(--accent-text)">ETH</code> values are in ether (not wei) unless the field name ends in <code class="inline-code" style="color:var(--gold)">_wei</code>.</li>
+    <li style="margin-bottom:8px;"><code class="inline-code" style="color:var(--accent-text)">coverage_pct</code> shows what fraction of depositors we've mapped. <code class="inline-code" style="color:var(--accent-text)">100%</code> means all known depositors are indexed.</li>
+    <li style="margin-bottom:8px;">Data refreshes every <code class="inline-code" style="color:var(--accent-text)">6 hours</code>. The <code class="inline-code" style="color:var(--gold)">scan_date</code> field shows when each contract was last scanned.</li>
+    <li style="margin-bottom:8px;"><code class="inline-code" style="color:var(--accent-text)">/api/check</code> returns per-address balances. All other endpoints return aggregate data only.</li>
+    <li style="margin-bottom:8px;">For protocol keys, see <code class="inline-code" style="color:var(--accent-text)">/data/protocols.json</code> or the <a href="/api/summary" style="color:var(--accent)">/api/summary</a> response.</li>
+    <li style="margin-bottom:8px;">Static files under <code class="inline-code" style="color:var(--accent-text)">/data/</code> are not rate-limited and can be cached freely.</li>
+  </ul>
+  </div><!-- .api-content -->
+  </div><!-- .api-layout -->
+
+</div>
+<script src="/theme.js"></script>
+<script>
+/* ── Try it widget ── */
+function tryCheck() {
+  var addr = document.getElementById('tryAddress').value.trim();
+  if (!/^0x[0-9a-fA-F]{40}$/.test(addr)) { alert('Enter a valid Ethereum address'); return; }
+  var el = document.getElementById('tryResult');
+  var out = document.getElementById('tryOutput');
+  var btn = document.getElementById('tryBtn');
+  el.style.display = 'block';
+  btn.disabled = true;
+  // Show spinner via DOM (no innerHTML with user content)
+  btn.textContent = '';
+  var spinner = document.createElement('span');
+  spinner.className = 'try-spinner';
+  btn.appendChild(spinner);
+  out.textContent = '';
+  fetch('/api/check?address=' + encodeURIComponent(addr))
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      out.textContent = JSON.stringify(d, null, 2);
+      btn.disabled = false;
+      btn.textContent = 'Try it';
+    })
+    .catch(function(e) {
+      out.textContent = 'Error: ' + e.message;
+      btn.disabled = false;
+      btn.textContent = 'Try it';
+    });
+}
+
+/* ── Try Summary ── */
+function trySummary() {
+  var el = document.getElementById('trySummaryResult');
+  var out = document.getElementById('trySummaryOutput');
+  var btn = document.getElementById('trySummaryBtn');
+  el.style.display = 'block';
+  btn.disabled = true;
+  btn.textContent = '...';
+  out.textContent = '';
+  fetch('/api/summary')
+    .then(function(r) { return r.json(); })
+    .then(function(d) { out.textContent = JSON.stringify(d, null, 2); btn.disabled = false; btn.textContent = 'Try it'; })
+    .catch(function(e) { out.textContent = 'Error: ' + e.message; btn.disabled = false; btn.textContent = 'Try it'; });
+}
+
+/* ── Try Table ── */
+function tryTable() {
+  var key = document.getElementById('tryExchange').value.trim().toLowerCase();
+  if (!key) { alert('Enter a protocol key (e.g. etherdelta)'); return; }
+  var el = document.getElementById('tryTableResult');
+  var out = document.getElementById('tryTableOutput');
+  var btn = document.getElementById('tryTableBtn');
+  el.style.display = 'block';
+  btn.disabled = true;
+  btn.textContent = '...';
+  out.textContent = '';
+  fetch('/api/table?exchange=' + encodeURIComponent(key))
+    .then(function(r) { return r.json(); })
+    .then(function(d) { out.textContent = JSON.stringify(d, null, 2); btn.disabled = false; btn.textContent = 'Try it'; })
+    .catch(function(e) { out.textContent = 'Error: ' + e.message; btn.disabled = false; btn.textContent = 'Try it'; });
+}
+document.getElementById('tryExchange').addEventListener('keydown', function(e) { if (e.key === 'Enter') tryTable(); });
+
+/* ── Code tabs ── */
+function switchTab(event, panelId) {
+  var container = event.target.closest('.code-tabs');
+  var buttons = container.querySelectorAll('.tab-btn');
+  var panels = container.querySelectorAll('.tab-panel');
+  for (var i = 0; i < buttons.length; i++) buttons[i].classList.remove('active');
+  for (var i = 0; i < panels.length; i++) panels[i].classList.remove('active');
+  event.target.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+
+/* ── Copy buttons ── */
+function copyCode(btn) {
+  var block = btn.closest('.code-block');
+  var pre = block ? block.querySelector('pre') : btn.parentElement;
+  var text = pre.textContent || pre.innerText;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() {
+      showCopied(btn);
+    }).catch(function() {
+      fallbackCopy(text, btn);
+    });
+  } else {
+    fallbackCopy(text, btn);
+  }
+}
+
+function fallbackCopy(text, btn) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); } catch(e) { /* ignore */ }
+  document.body.removeChild(ta);
+  showCopied(btn);
+}
+
+function showCopied(btn) {
+  btn.textContent = 'Copied';
+  btn.classList.add('copied');
+  setTimeout(function() {
+    btn.textContent = 'Copy';
+    btn.classList.remove('copied');
+  }, 1500);
+}
+
+/* ── Enter key for try-it ── */
+document.getElementById('tryAddress').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') tryCheck();
+});
+
+/* ── Sidebar scroll spy ── */
+(function() {
+  var links = document.querySelectorAll('.api-sidebar a[href^="#"]');
+  if (!links.length) return;
+  var sections = [];
+  for (var i = 0; i < links.length; i++) {
+    var id = links[i].getAttribute('href').slice(1);
+    var el = document.getElementById(id);
+    if (el) sections.push({ el: el, link: links[i] });
+  }
+  function onScroll() {
+    var scrollY = window.scrollY + 80;
+    var active = null;
+    for (var i = sections.length - 1; i >= 0; i--) {
+      if (sections[i].el.offsetTop <= scrollY) { active = sections[i]; break; }
+    }
+    for (var i = 0; i < sections.length; i++) sections[i].link.classList.remove('active');
+    if (active) active.link.classList.add('active');
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+</body>
+</html>
