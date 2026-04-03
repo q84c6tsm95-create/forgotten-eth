@@ -987,6 +987,17 @@
     font-family: var(--font-mono);
     font-size: 11px;
   }
+  .recent-box-row { line-height: 1.4; }
+  .recent-box-list {
+    max-height: calc(3 * (11px * 1.4 + 4px));
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+    padding-right: 6px;
+  }
+  .recent-box-list::-webkit-scrollbar { width: 3px; }
+  .recent-box-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  .recent-box-list::-webkit-scrollbar-track { background: transparent; }
   .recent-box-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text2); opacity: 0.5; margin-bottom: 6px; text-align: center; }
   .recent-box-row { display: flex; align-items: baseline; gap: 6px; padding: 2px 0; }
   .recent-box-row .rb-date { opacity: 0.35; font-size: 10px; min-width: 38px; }
@@ -1082,9 +1093,16 @@
 
   <div class="recent-box fade-in fade-in-4">
     <div class="recent-box-label">Recently indexed</div>
-    <div class="recent-box-row"><span class="rb-date">Apr 3</span> <a href="/augur-v1">Augur v1</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">437 ETH</span></span></div>
-    <div class="recent-box-row"><span class="rb-date">Apr 3</span> <a href="/old-weth">Old WETH</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">3,258 ETH</span></span></div>
-    <div class="recent-box-row"><span class="rb-date">Apr 1</span> <a href="/thedao">The DAO</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">81,914 ETH</span></span></div>
+    <div class="recent-box-list">
+      <div class="recent-box-row"><span class="rb-date">Apr 3</span> <a href="/augur-v1">Augur v1</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">437 ETH</span></span></div>
+      <div class="recent-box-row"><span class="rb-date">Apr 3</span> <a href="/old-weth">Old WETH</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">3,258 ETH</span></span></div>
+      <div class="recent-box-row"><span class="rb-date">Apr 1</span> <a href="/thedao">The DAO</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">81,914 ETH</span></span></div>
+      <div class="recent-box-row"><span class="rb-date">Mar 28</span> <a href="/kyber-feehandler">Kyber FeeHandler</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">23 ETH</span></span></div>
+      <div class="recent-box-row"><span class="rb-date">Mar 28</span> <a href="/tessera-dead">Tessera Vaults</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">89 ETH</span></span></div>
+      <div class="recent-box-row"><span class="rb-date">Mar 27</span> <a href="/nucypher-worklock">NuCypher WorkLock</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">291 ETH</span></span></div>
+      <div class="recent-box-row"><span class="rb-date">Mar 26</span> <a href="/bounties">Bounties Network</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">90 ETH</span></span></div>
+      <div class="recent-box-row"><span class="rb-date">Mar 19</span> <a href="/digixdao">DigixDAO</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">11,092 ETH</span></span></div>
+    </div>
   </div>
 
   <div class="explorer-toggle-wrap">
