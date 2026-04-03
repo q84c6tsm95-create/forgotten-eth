@@ -266,6 +266,49 @@ const TEST_BALANCES = typeof ethers !== 'undefined' ? {
 } : {};
 if (TEST_MODE) console.log('%c[TEST MODE] Simulation active — no real transactions will occur', 'color:#d946ef;font-weight:bold;font-size:14px');
 
+// Test mode impersonation: stores the address being previewed
+var _testImpersonateAddr = null;
+
+// Simulate a transaction via Tenderly (local-only API). Returns { success, error?, ethReceived?, balanceVerified? }
+// expectedEth: if provided, verifies ETH arrives at recipient (5% tolerance for fees)
+// recipient: address that should receive ETH (defaults to from)
+async function testSimulateTx(fromAddr, toAddr, calldata, expectedEth, recipient) {
+  try {
+    const body = { from: fromAddr, to: toAddr, data: calldata };
+    if (expectedEth !== undefined) body.expectedEth = expectedEth;
+    if (recipient) body.recipient = recipient;
+    const resp = await fetch('/api/simulate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    return await resp.json();
+  } catch (e) {
+    return { success: false, error: e.message };
+  }
+}
+
+// Format simulation result with balance verification details
+function _fmtSimResult(result, label) {
+  if (!result.success) return '<span style="color:#ef4444">Simulation reverted</span>: ' + esc((result.error || '').slice(0, 150));
+  var parts = ['<span style="color:var(--green)">Simulation passed</span> — ' + label];
+  if (result.ethReceived > 0) {
+    parts.push('<br><span style="font-size:11px;color:var(--text)">ETH received: ' + fmtEth(result.ethReceived) + ' ETH</span>');
+  }
+  if (result.balanceVerified === true) {
+    parts.push('<span style="font-size:11px;color:var(--green)"> · balance verified</span>');
+  } else if (result.balanceVerified === false) {
+    parts.push('<span style="font-size:11px;color:#ef4444"> · balance mismatch! Expected ~' + fmtEth(result.expectedEth) + ' ETH, got ' + fmtEth(result.ethReceived) + '</span>');
+  }
+  if (result.assetChanges && result.assetChanges.length > 0) {
+    var transfers = result.assetChanges.filter(function(ac) { return ac.symbol === 'ETH' || !ac.symbol; });
+    if (transfers.length > 0) {
+      parts.push('<br><span style="font-size:10px;color:var(--text2)">Transfers: ' + transfers.map(function(t) { return (t.from || '?').slice(0,8) + '→' + (t.to || '?').slice(0,8) + ' ' + fmtEth(t.amount || 0) + ' ' + (t.symbol || 'ETH'); }).join(', ') + '</span>');
+    }
+  }
+  return parts.join('');
+}
+
 // Show test mode toggle button on local/LAN
 (function() {
   var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('192.168.');
@@ -2133,6 +2176,39 @@ const EXCHANGES = {
     withdrawArgs: (amount) => [amount],
     withdrawCall: 'withdraw',
   },
+  old_weth: {
+    name: 'Old WETH',
+    desc: 'An early Wrapped Ether contract deployed in June 2016, one of the first attempts at wrapping native ETH into an ERC-20 token. Users deposited ETH and received WETH tokens 1:1. Predates both Maker W-ETH and the canonical WETH9. Over 3,200 ETH remains wrapped.',
+    category: 'ico',
+    color: '#627eea',
+    contract: '0xECF8F87f810EcF450940c9f60066b4a7a501d6A7',
+    deployed: 'June 2016',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: 'function withdraw(uint256 amount)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'withdraw',
+  },
+  augur_v1: {
+    name: 'Augur v1',
+    desc: 'Augur launched in July 2018 as Ethereum\'s first decentralized prediction market protocol. Users could create markets on real-world events, trade outcome shares, and earn fees as market creators. The protocol migrated to v2 in August 2020, but 771 ETH remains locked in the original Cash contract backing unfilled orders, unclaimed market creator fees, and unredeemed winning shares.',
+    category: 'prediction',
+    color: '#553C9A',
+    contract: '0xd5524179cB7AE012f5B642C1D6D700Bbaa76B96b',
+    deployed: 'July 2018',
+    balanceAbi: null,
+    balanceArgs: null,
+    balanceCall: null,
+    withdrawAbi: null,
+    withdrawCall: null,
+    noWalletCheck: true,
+    augurMulti: true,
+    augurContracts: {
+      cancelOrder: '0x3448209268e97652bb67ea12777d4dfba81e3aaf',
+      claimTradingProceeds: '0x4334477348222a986fc88a05410aa6b07507872a',
+    },
+  },
 };
 
 // Per-tab state
@@ -2830,6 +2906,64 @@ async function checkUserBalances(overrideAddress) {
             html += `<div style="padding:8px 16px;font-size:12px;color:var(--text2)">No claimable epochs found.</div>`;
           }
           html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
+        } else if (cfg.augurMulti) {
+          // Augur v1: per-item claim buttons for mailboxes, orders, and shares
+          const augurClaims = apiBalances[key]?.augur_claims || [];
+          const mailboxes = augurClaims.filter(c => c.t === 'm');
+          const orders = augurClaims.filter(c => c.t === 'o');
+          const shares = augurClaims.filter(c => c.t === 's');
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
+              </div>
+              <div class="claim-card-meta">
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Cash Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract.slice(0,10)}...${cfg.contract.slice(-8)}</a></span></div>
+              </div>`;
+          // Mailbox section
+          if (mailboxes.length > 0) {
+            const mbTotal = mailboxes.reduce((s, m) => s + m.e, 0);
+            html += `<div style="margin:10px 16px 2px;font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Creator Fees · ${fmtEth(mbTotal)} ETH</div>`;
+            html += `<div style="margin:0 16px 2px;font-size:11px;color:var(--text2)">Mailbox.withdrawEther() — owner-only</div>`;
+            for (let mi = 0; mi < mailboxes.length; mi++) {
+              const mb = mailboxes[mi];
+              html += `<div class="claim-row" style="margin:3px 16px;border-left:2px solid #553C9A;padding:5px 12px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:12px">Mailbox ${mb.a.slice(0,8)}..${mb.a.slice(-4)}<span style="color:var(--text2);font-size:11px"> · ${fmtEth(mb.e)} ETH</span></span>
+                <button class="claim-btn" data-action="augur-mailbox" data-key="${key}" data-mailbox="${mb.a}" data-index="${mi}">Withdraw</button>
+              </div>`;
+            }
+          }
+          // Orders section
+          if (orders.length > 0) {
+            const ordTotal = orders.reduce((s, o) => s + o.e, 0);
+            html += `<div style="margin:10px 16px 2px;font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Open Orders · ${fmtEth(ordTotal)} ETH</div>`;
+            html += `<div style="margin:0 16px 2px;font-size:11px;color:var(--text2)">CancelOrder.cancelOrder(orderId) — creator-only</div>`;
+            for (let oi = 0; oi < orders.length; oi++) {
+              const ord = orders[oi];
+              html += `<div class="claim-row" style="margin:3px 16px;border-left:2px solid #553C9A;padding:5px 12px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:12px">Order ${ord.id.slice(0,10)}..${ord.id.slice(-4)}<span style="color:var(--text2);font-size:11px"> · ${fmtEth(ord.e)} ETH</span></span>
+                <button class="claim-btn" data-action="augur-cancel-order" data-key="${key}" data-order-id="${ord.id}" data-index="${oi}">Cancel Order</button>
+              </div>`;
+            }
+          }
+          // Shares section
+          if (shares.length > 0) {
+            const shareEth = ethAmount - mailboxes.reduce((s, m) => s + m.e, 0) - orders.reduce((s, o) => s + o.e, 0);
+            html += `<div style="margin:10px 16px 2px;font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Winning Shares · ${fmtEth(Math.max(0, shareEth))} ETH</div>`;
+            html += `<div style="margin:0 16px 2px;font-size:11px;color:var(--text2)">claimTradingProceeds(market, holder) — permissionless</div>`;
+            for (let si = 0; si < shares.length; si++) {
+              const sh = shares[si];
+              html += `<div class="claim-row" style="margin:3px 16px;border-left:2px solid #553C9A;padding:5px 12px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:12px">Market ${sh.m.slice(0,8)}..${sh.m.slice(-4)}<span style="color:var(--text2);font-size:11px"> · outcome ${sh.o}</span></span>
+                <button class="claim-btn" data-action="augur-claim-shares" data-key="${key}" data-market="${sh.m}" data-index="${si}">Claim</button>
+              </div>`;
+            }
+          }
+          if (augurClaims.length === 0) {
+            html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">Claim details not available. <a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">View on Etherscan</a>.</div>`;
+          }
+          html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
         } else if (!cfg.withdrawAbi) {
           // Contracts without direct withdraw
           html += `
@@ -3283,24 +3417,28 @@ async function digixApprove(key) {
   const btn = document.getElementById('claimBtn-' + key);
   const statusEl = document.getElementById('claimStatus-' + key);
 
-  // Test mode: simulate approval
-  if (TEST_MODE) {
+  // Test mode: simulate approval via Tenderly
+  if (TEST_MODE && _testImpersonateAddr) {
     btn.disabled = true;
-    btn.textContent = 'Approving...';
+    btn.textContent = 'Simulating approve...';
     btn.classList.add('pending');
-    await new Promise(r => setTimeout(r, 1000));
-    btn.textContent = 'Step 1: Approved';
-    btn.classList.remove('pending');
-    btn.style.opacity = '0.35';
-    const step2Btn = btn.nextElementSibling;
-    if (step2Btn) {
-      step2Btn.disabled = false;
-      step2Btn.style.opacity = '1';
-      step2Btn.id = 'claimBtn-' + key;
-      step2Btn.dataset.action = 'digix-burn';
-      step2Btn.dataset.key = key;
+    statusEl.textContent = 'Simulating as ' + _testImpersonateAddr.slice(0, 10) + '...';
+    var iface = new ethers.Interface(['function approve(address spender, uint256 amount) returns (bool)']);
+    var balance = userBalances[key] || 0n;
+    var calldata = iface.encodeFunctionData('approve', [cfg.digixBurn.acidContract, balance]);
+    var result = await testSimulateTx(_testImpersonateAddr, cfg.digixBurn.dgdToken, calldata);
+    if (result.success) {
+      btn.textContent = 'Step 1: SIM OK';
+      btn.classList.remove('pending');
+      btn.style.background = 'var(--green)';
+      btn.style.opacity = '0.35';
+      var step2Btn = btn.nextElementSibling;
+      if (step2Btn) { step2Btn.disabled = false; step2Btn.style.opacity = '1'; step2Btn.id = 'claimBtn-' + key; step2Btn.dataset.action = 'digix-burn'; step2Btn.dataset.key = key; }
+      statusEl.innerHTML = '<span style="color:var(--green)">[TEST] approve() passed. Click Step 2 to simulate burn.</span>';
+    } else {
+      btn.textContent = 'SIM FAIL'; btn.classList.remove('pending'); btn.style.background = '#ef4444';
+      statusEl.innerHTML = '<span style="color:#ef4444">[TEST] approve() reverted: ' + esc((result.error || '').slice(0, 150)) + '</span>';
     }
-    statusEl.innerHTML = '<span style="color:var(--green)">Approved. Click Step 2 to burn DGD and claim ETH.</span>';
     return;
   }
 
@@ -3349,29 +3487,29 @@ async function digixBurn(key) {
   const btn = document.getElementById('claimBtn-' + key);
   const statusEl = document.getElementById('claimStatus-' + key);
 
-  // Test mode: simulate burn
-  if (TEST_MODE) {
+  // Test mode: simulate burn via Tenderly
+  if (TEST_MODE && _testImpersonateAddr) {
     btn.disabled = true;
-    btn.textContent = 'Burning DGD...';
+    btn.textContent = 'Simulating burn...';
     btn.classList.add('pending');
-    await new Promise(r => setTimeout(r, 1500));
-    const ethAmount = ethers.formatEther(userBalances[key] || 0n);
-    const claimedEthNum = parseFloat(ethAmount);
-    const fakeTxHash = '0x' + Array.from({length: 64}, () => '0123456789abcdef'[Math.floor(Math.random()*16)]).join('');
-    btn.textContent = 'Done';
-    btn.classList.remove('pending');
-    btn.style.background = 'var(--green)';
-    btn.style.opacity = '0.7';
-    const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
-    statusEl.innerHTML = `<div class="claim-recovered">
-      <div class="claim-recovered-label">Recovered</div>
-      <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div>
-      <div class="claim-recovered-tx"><a href="${etherscanTx(fakeTxHash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
-      <div style="font-size:10px;color:var(--yellow);margin-top:2px">[TEST MODE]</div>
-    </div>
-    `;
-    showDonationModal(claimedEthNum);
-    userBalances[key] = 0n;
+    statusEl.textContent = 'Simulating burn() as ' + _testImpersonateAddr.slice(0, 10) + '...';
+    var iface = new ethers.Interface(['function burn()']);
+    var calldata = iface.encodeFunctionData('burn', []);
+    var result = await testSimulateTx(_testImpersonateAddr, cfg.digixBurn.acidContract, calldata);
+    var ethAmount = ethers.formatEther(userBalances[key] || 0n);
+    var claimedEthNum = parseFloat(ethAmount);
+    if (result.success) {
+      btn.textContent = 'SIM OK';
+      btn.classList.remove('pending');
+      btn.style.background = 'var(--green)';
+      btn.style.opacity = '0.7';
+      var claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
+      statusEl.innerHTML = '<div class="claim-recovered"><div class="claim-recovered-label" style="color:var(--green)">Simulation Passed</div><div class="claim-recovered-amount">' + fmtEth(ethAmount) + ' ETH' + claimUsd + '</div><div style="font-size:10px;color:#d946ef;margin-top:2px">[TEST] burn() would succeed</div></div>';
+      showDonationModal(claimedEthNum);
+    } else {
+      btn.textContent = 'SIM FAIL'; btn.classList.remove('pending'); btn.style.background = '#ef4444';
+      statusEl.innerHTML = '<span style="color:#ef4444">[TEST] burn() reverted: ' + esc((result.error || '').slice(0, 200)) + '</span>';
+    }
     return;
   }
 
@@ -3864,6 +4002,176 @@ async function kyberClaimEpoch(key, epoch, btn) {
       if (statusEl) statusEl.textContent = 'Rejected';
     } else {
       if (statusEl) statusEl.textContent = 'Failed: ' + (e.reason || e.message || 'unknown').slice(0, 80);
+    }
+  }
+}
+
+// ─── Test Mode Simulation Helper ───
+// Encodes calldata, calls /api/simulate, updates button state
+
+async function _testSimulateBtn(btn, statusKey, fromAddr, toAddr, iface, funcName, args, successMsg, originalLabel, expectedEth, recipient) {
+  var statusEl = document.getElementById('claimStatus-' + statusKey);
+  btn.disabled = true;
+  btn.textContent = 'Simulating...';
+  btn.classList.add('pending');
+  if (statusEl) statusEl.textContent = 'Simulating as ' + fromAddr.slice(0, 10) + '...';
+
+  try {
+    var calldata = iface.encodeFunctionData(funcName, args);
+    var result = await testSimulateTx(fromAddr, toAddr, calldata, expectedEth, recipient);
+    if (result.success) {
+      btn.textContent = result.balanceVerified === false ? 'SIM WARN' : 'SIM OK';
+      btn.classList.remove('pending');
+      btn.style.background = result.balanceVerified === false ? '#f59e0b' : 'var(--green)';
+      btn.style.opacity = '0.7';
+      if (statusEl) statusEl.innerHTML = _fmtSimResult(result, successMsg) + '<div style="font-size:10px;color:#d946ef;margin-top:2px">[TEST MODE]</div>';
+    } else {
+      btn.textContent = 'SIM FAIL';
+      btn.classList.remove('pending');
+      btn.style.background = '#ef4444';
+      btn.style.opacity = '0.7';
+      if (statusEl) statusEl.innerHTML = _fmtSimResult(result, '') + '<div style="font-size:10px;color:#d946ef;margin-top:2px">[TEST MODE]</div>';
+    }
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = originalLabel;
+    btn.classList.remove('pending');
+    if (statusEl) statusEl.textContent = 'Error: ' + (e.message || 'Unknown');
+  }
+}
+
+// ─── Augur v1 Withdrawal Functions ───
+
+async function augurWithdrawMailbox(key, mailboxAddr, btn) {
+  // Test mode: simulate via Tenderly
+  if (TEST_MODE && _testImpersonateAddr) {
+    var iface = new ethers.Interface(['function withdrawEther() returns (bool)']);
+    // Get expected ETH from the button's parent row
+    var expectedEth = parseFloat(btn.closest('div')?.querySelector('span span')?.textContent?.match(/([\d.]+)\s*ETH/)?.[1] || '0');
+    await _testSimulateBtn(btn, key, _testImpersonateAddr, mailboxAddr, iface, 'withdrawEther', [], 'withdrawEther() would succeed.', 'Withdraw', expectedEth, _testImpersonateAddr);
+    return;
+  }
+
+  if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Withdrawing...';
+  btn.classList.add('pending');
+  var statusEl = document.getElementById('claimStatus-' + key);
+
+  try {
+    var contract = new ethers.Contract(mailboxAddr, ['function withdrawEther() returns (bool)'], walletSigner);
+    logEvent('claim_started', { address: walletAddress, contract: key, extra: JSON.stringify({ type: 'mailbox', mailbox: mailboxAddr }) });
+    var tx = await contract.withdrawEther();
+    btn.textContent = 'Pending...';
+    if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
+    var receipt = await tx.wait();
+    btn.textContent = 'Done';
+    btn.classList.remove('pending');
+    btn.style.background = 'var(--green)';
+    btn.style.opacity = '0.7';
+    btn.disabled = true;
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, tx_hash: tx.hash, block_num: receipt.blockNumber });
+    if (statusEl) statusEl.textContent = 'Mailbox fees withdrawn to your wallet.';
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Withdraw';
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      if (statusEl) statusEl.textContent = 'Rejected';
+    } else {
+      if (statusEl) statusEl.textContent = 'Failed: ' + (e.reason || e.message || 'Unknown error');
+    }
+  }
+}
+
+async function augurCancelOrder(key, orderId, btn) {
+  // Test mode: simulate via Tenderly
+  if (TEST_MODE && _testImpersonateAddr) {
+    var cfg = EXCHANGES[key];
+    var iface = new ethers.Interface(['function cancelOrder(bytes32 _orderId) returns (bool)']);
+    var expectedEth = parseFloat(btn.closest('div')?.querySelector('span span')?.textContent?.match(/([\d.]+)\s*ETH/)?.[1] || '0');
+    await _testSimulateBtn(btn, key, _testImpersonateAddr, cfg.augurContracts.cancelOrder, iface, 'cancelOrder', [orderId], 'cancelOrder() would succeed.', 'Cancel Order', expectedEth, _testImpersonateAddr);
+    return;
+  }
+
+  if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Cancelling...';
+  btn.classList.add('pending');
+  var statusEl = document.getElementById('claimStatus-' + key);
+
+  try {
+    var cfg = EXCHANGES[key];
+    var contract = new ethers.Contract(cfg.augurContracts.cancelOrder, ['function cancelOrder(bytes32 _orderId) returns (bool)'], walletSigner);
+    logEvent('claim_started', { address: walletAddress, contract: key, extra: JSON.stringify({ type: 'order', order_id: orderId }) });
+    var tx = await contract.cancelOrder(orderId);
+    btn.textContent = 'Pending...';
+    if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
+    var receipt = await tx.wait();
+    btn.textContent = 'Done';
+    btn.classList.remove('pending');
+    btn.style.background = 'var(--green)';
+    btn.style.opacity = '0.7';
+    btn.disabled = true;
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, tx_hash: tx.hash, block_num: receipt.blockNumber });
+    if (statusEl) statusEl.textContent = 'Order cancelled. Escrowed ETH returned to your wallet.';
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Cancel Order';
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      if (statusEl) statusEl.textContent = 'Rejected';
+    } else {
+      if (statusEl) statusEl.textContent = 'Failed: ' + (e.reason || e.message || 'Unknown error');
+    }
+  }
+}
+
+async function augurClaimShares(key, marketAddr, btn) {
+  // Test mode: simulate via Tenderly
+  if (TEST_MODE && _testImpersonateAddr) {
+    var cfg = EXCHANGES[key];
+    var iface = new ethers.Interface(['function claimTradingProceeds(address _market, address _shareHolder) returns (bool)']);
+    // Share claims don't have per-market ETH in the data, skip balance verification
+    await _testSimulateBtn(btn, key, _testImpersonateAddr, cfg.augurContracts.claimTradingProceeds, iface, 'claimTradingProceeds', [marketAddr, _testImpersonateAddr], 'claimTradingProceeds() would succeed.', 'Claim', undefined, _testImpersonateAddr);
+    return;
+  }
+
+  if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Claiming...';
+  btn.classList.add('pending');
+  var statusEl = document.getElementById('claimStatus-' + key);
+
+  try {
+    var cfg = EXCHANGES[key];
+    var contract = new ethers.Contract(cfg.augurContracts.claimTradingProceeds, ['function claimTradingProceeds(address _market, address _shareHolder) returns (bool)'], walletSigner);
+    logEvent('claim_started', { address: walletAddress, contract: key, extra: JSON.stringify({ type: 'shares', market: marketAddr }) });
+    var tx = await contract.claimTradingProceeds(marketAddr, walletAddress);
+    btn.textContent = 'Pending...';
+    if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
+    var receipt = await tx.wait();
+    btn.textContent = 'Done';
+    btn.classList.remove('pending');
+    btn.style.background = 'var(--green)';
+    btn.style.opacity = '0.7';
+    btn.disabled = true;
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, tx_hash: tx.hash, block_num: receipt.blockNumber });
+    if (statusEl) statusEl.textContent = 'Shares claimed. Proceeds sent to your wallet.';
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Claim';
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      if (statusEl) statusEl.textContent = 'Rejected';
+    } else {
+      if (statusEl) statusEl.textContent = 'Failed: ' + (e.reason || e.message || 'Unknown error');
     }
   }
 }
@@ -4497,6 +4805,45 @@ async function checkSingleAddress(addr) {
           html += '<div style="margin:4px 16px;border-left:2px solid var(--accent);padding:4px 12px;font-size:13px">Epoch ' + eps[ei].epoch + '<span style="color:var(--text2);font-size:12px"> · ' + fmtEth(eps[ei].eth) + ' ETH</span></div>';
         }
       }
+      // Show Augur v1 per-item breakdown (with simulate buttons in test mode)
+      if (cfg.augurMulti && apiBalances[key]?.augur_claims) {
+        var acs = apiBalances[key].augur_claims;
+        var acMailboxes = acs.filter(function(c) { return c.t === 'm'; });
+        var acOrders = acs.filter(function(c) { return c.t === 'o'; });
+        var acShares = acs.filter(function(c) { return c.t === 's'; });
+        if (acMailboxes.length) {
+          var mbTotal = acMailboxes.reduce(function(s, m) { return s + m.e; }, 0);
+          html += '<div style="margin:8px 16px 2px;font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Creator Fees · ' + fmtEth(mbTotal) + ' ETH</div>';
+          if (TEST_MODE) html += '<div style="margin:0 16px 2px;font-size:10px;color:var(--text2)">Mailbox.withdrawEther() — owner-only</div>';
+          for (var mi = 0; mi < acMailboxes.length; mi++) {
+            var mbBtn = TEST_MODE ? '<button class="claim-btn" data-action="augur-mailbox" data-key="' + key + '" data-mailbox="' + acMailboxes[mi].a + '" data-index="' + mi + '">Simulate</button>' : '';
+            html += '<div style="margin:3px 16px;border-left:2px solid #553C9A;padding:4px 12px;font-size:12px;display:flex;align-items:center;justify-content:space-between"><span>' + acMailboxes[mi].a.slice(0,10) + '.. <span style="color:var(--text2)">· ' + fmtEth(acMailboxes[mi].e) + ' ETH</span></span>' + mbBtn + '</div>';
+          }
+        }
+        if (acOrders.length) {
+          var ordTotal = acOrders.reduce(function(s, o) { return s + o.e; }, 0);
+          html += '<div style="margin:8px 16px 2px;font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Open Orders · ' + fmtEth(ordTotal) + ' ETH</div>';
+          if (TEST_MODE) html += '<div style="margin:0 16px 2px;font-size:10px;color:var(--text2)">CancelOrder.cancelOrder(orderId) — creator-only</div>';
+          for (var oi = 0; oi < acOrders.length; oi++) {
+            var ordBtn = TEST_MODE ? '<button class="claim-btn" data-action="augur-cancel-order" data-key="' + key + '" data-order-id="' + acOrders[oi].id + '" data-index="' + oi + '">Simulate</button>' : '';
+            html += '<div style="margin:3px 16px;border-left:2px solid #553C9A;padding:4px 12px;font-size:12px;display:flex;align-items:center;justify-content:space-between"><span>Order ' + acOrders[oi].id.slice(0,10) + '.. <span style="color:var(--text2)">· ' + fmtEth(acOrders[oi].e) + ' ETH</span></span>' + ordBtn + '</div>';
+          }
+        }
+        if (acShares.length) {
+          var shareEthVal = parseFloat(ethAmount) - acMailboxes.reduce(function(s, m) { return s + m.e; }, 0) - acOrders.reduce(function(s, o) { return s + o.e; }, 0);
+          html += '<div style="margin:8px 16px 2px;font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">Winning Shares · ' + fmtEth(Math.max(0, shareEthVal)) + ' ETH</div>';
+          if (TEST_MODE) html += '<div style="margin:0 16px 2px;font-size:10px;color:var(--text2)">claimTradingProceeds(market, holder) — permissionless</div>';
+          for (var si = 0; si < acShares.length; si++) {
+            var shBtn = TEST_MODE ? '<button class="claim-btn" data-action="augur-claim-shares" data-key="' + key + '" data-market="' + acShares[si].m + '" data-index="' + si + '">Simulate</button>' : '';
+            html += '<div style="margin:3px 16px;border-left:2px solid #553C9A;padding:4px 12px;font-size:12px;display:flex;align-items:center;justify-content:space-between"><span>Market ' + acShares[si].m.slice(0,10) + '.. <span style="color:var(--text2)">· outcome ' + acShares[si].o + '</span></span>' + shBtn + '</div>';
+          }
+        }
+        if (TEST_MODE) {
+          html += '<div class="claim-card-status" id="claimStatus-' + key + '"></div>';
+        } else {
+          html += '<div style="margin:8px 16px 4px;font-size:12px;color:var(--text2)">Connect this wallet to withdraw.</div>';
+        }
+      }
       // Show per-bounty breakdown in manual check flow
       if (cfg.bountiesMulti && apiBalances[key]?.bounty_details) {
         var bds = apiBalances[key].bounty_details;
@@ -4517,10 +4864,9 @@ async function checkManualAddress() {
   if (!rawInput) { showInlineError('addrError', 'Please enter an Ethereum address or ENS name.'); return; }
   if (rawInput.toLowerCase() === ZERO_ADDR) { showInlineError('addrError', 'The zero address has no claimable ETH.'); return; }
 
-  // ── Test Mode: show fake results for any address ──
+  // ── Test Mode: set impersonation address, then run normal check flow ──
   if (TEST_MODE) {
-    await _testCheckManualAddress(rawInput);
-    return;
+    _testImpersonateAddr = null; // will be set after address resolution
   }
 
   const banner = document.getElementById('claimBanner');
@@ -4552,6 +4898,12 @@ async function checkManualAddress() {
     ensResolvedEl.innerHTML = esc(ensName) + ' = ' + esc(truncAddr(addr));
   } else {
     ensResolvedEl.style.display = 'none';
+  }
+
+  // Test mode: store impersonation address for simulation buttons
+  if (TEST_MODE) {
+    _testImpersonateAddr = addr.toLowerCase();
+    walletAddress = addr; // needed for claim card rendering
   }
 
   const resolvedAddrs = [addr];
@@ -4756,73 +5108,49 @@ async function _testCheckBalances() {
 }
 
 async function _testClaimETH(key, cfg, btn, statusEl, balance) {
-  const ethAmount = ethers.formatEther(balance);
-  const fakeTxHash = _testFakeTxHash();
+  // Test mode: simulate the real withdrawal call via Tenderly
+  var fromAddr = _testImpersonateAddr || walletAddress;
+  if (!fromAddr) { statusEl.textContent = 'No address to simulate (enter an address first)'; return; }
 
+  var ethAmount = ethers.formatEther(balance);
   btn.disabled = true;
-  btn.textContent = 'Confirming...';
+  btn.textContent = 'Simulating...';
   btn.classList.add('pending');
-  statusEl.textContent = 'Confirm in wallet...';
+  statusEl.textContent = 'Simulating as ' + fromAddr.slice(0, 10) + '...';
 
-  // Simulate wallet confirmation delay
-  await new Promise(r => setTimeout(r, 1200));
+  try {
+    var iface = new ethers.Interface([cfg.withdrawAbi]);
+    var args = cfg.withdrawArgs(balance, fromAddr);
+    var calldata = iface.encodeFunctionData(cfg.withdrawCall, args);
+    var result = await testSimulateTx(fromAddr, cfg.contract, calldata);
 
-  btn.textContent = 'Pending...';
-  statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(fakeTxHash)}" target="_blank" rel="noopener noreferrer">${fakeTxHash.slice(0, 18)}...</a>`;
-
-  // Simulate block confirmation delay
-  await new Promise(r => setTimeout(r, 2000));
-
-  const fakeBlock = 19000000 + Math.floor(Math.random() * 500000);
-  btn.textContent = 'Done';
-  btn.classList.remove('pending');
-  btn.style.background = 'var(--green)';
-  btn.style.opacity = '0.7';
-  const claimedEthNum = parseFloat(ethAmount);
-  const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
-  statusEl.innerHTML = `<div class="claim-recovered">
-      <div class="claim-recovered-label">Recovered</div>
-      <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div>
-      <div class="claim-recovered-tx"><a href="${etherscanTx(fakeTxHash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div>
-      <div style="font-size:10px;color:var(--yellow);margin-top:2px">[TEST MODE]</div>
-    </div>`;
-  showDonationModal(claimedEthNum);
-  userBalances[key] = 0n;
-
-  console.log('[TEST MODE] Simulated claim:', cfg.name, ethAmount, 'ETH, fake tx:', fakeTxHash);
-}
-
-async function _testCheckManualAddress(input) {
-  const banner = document.getElementById('claimBanner');
-  const rowsEl = document.getElementById('claimRows');
-  rowsEl.innerHTML = spinnerHTML('Scanning ' + Object.keys(EXCHANGES).length + ' contracts...');
-  banner.classList.add('visible');
-
-  // Simulate loading delay
-  await new Promise(r => setTimeout(r, 800));
-
-  let html = '';
-  let found = 0;
-
-  for (const [key, cfg] of Object.entries(EXCHANGES)) {
-    const testData = TEST_BALANCES[key];
-    if (testData) {
-      found++;
-      html += '<div class="claim-card"><div class="claim-card-header"><span class="claim-card-name">' + esc(cfg.name) + '</span><span class="claim-card-amount">' + fmtEth(testData.eth) + ' ETH</span><span class="claim-card-tag">Claimable</span></div></div>';
+    if (result.success) {
+      btn.textContent = 'SIM OK';
+      btn.classList.remove('pending');
+      btn.style.background = 'var(--green)';
+      btn.style.opacity = '0.7';
+      var claimedEthNum = parseFloat(ethAmount);
+      var claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
+      statusEl.innerHTML = '<div class="claim-recovered"><div class="claim-recovered-label" style="color:var(--green)">Simulation Passed</div><div class="claim-recovered-amount">' + fmtEth(ethAmount) + ' ETH' + claimUsd + '</div><div style="font-size:10px;color:#d946ef;margin-top:2px">[TEST MODE] ' + esc(cfg.withdrawCall) + '() would succeed</div></div>';
+      showDonationModal(claimedEthNum);
+    } else {
+      btn.textContent = 'SIM FAIL';
+      btn.classList.remove('pending');
+      btn.style.background = '#ef4444';
+      btn.style.opacity = '0.7';
+      statusEl.innerHTML = '<span style="color:#ef4444">Simulation reverted</span>: ' + esc((result.error || '').slice(0, 200)) + '<div style="font-size:10px;color:#d946ef;margin-top:4px">[TEST MODE]</div>';
     }
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Withdraw';
+    btn.classList.remove('pending');
+    statusEl.textContent = 'Simulation error: ' + (e.message || 'Unknown');
   }
 
-  const ethPrice = await getEthPrice();
-  let totalEth = Object.values(TEST_BALANCES).reduce((s, v) => s + parseFloat(v.eth), 0);
-  const usdStr = ethPrice ? fmtUsd(totalEth * ethPrice) : '';
-  html = '<div class="claim-hero"><div class="claim-hero-amount">' + fmtEth(totalEth) + ' ETH</div>' +
-    (usdStr ? '<div class="claim-hero-usd">' + usdStr + '</div>' : '') +
-    '<div class="claim-hero-contracts">' + found + ' contract' + (found > 1 ? 's' : '') + ' · Connect wallet to withdraw</div></div>' +
-    '<div class="claim-rows-list">' + html + '</div>';
-  document.getElementById('claimBannerTitle').textContent = 'Claimable ETH Found';
-  banner.classList.add('celebrate');
-  rowsEl.innerHTML = html;
+  console.log('[TEST MODE] Simulated claim:', cfg.name, ethAmount, 'ETH');
 }
+
+// _testCheckManualAddress removed — test mode now uses normal check flow with impersonation
 
 // Lightweight init: fetch total first, then badge data for all tabs
 (async () => {
@@ -4836,9 +5164,9 @@ async function _testCheckManualAddress(input) {
       document.querySelectorAll('.contract-count').forEach(function(el) { el.textContent = contractCount; });
       getEthPrice();
 
-      // Peak = fixed total (claimable + claimed stays constant as claims happen)
+      // Peak = current tracked + already claimed (stays ~constant as claims happen)
       var ethClaimed = totalData.eth_claimed || 0;
-      var PEAK_ETH = 158080;
+      var PEAK_ETH = Math.round((totalData.total_eth || 0) + ethClaimed);
       animateCount('totalAllEth', PEAK_ETH, '.hero-eth-value');
       animateCount('totalContracts', contractCount);
       setTimeout(function() { var c = document.querySelector('.hero-cursor'); if (c) c.style.display = 'none'; }, 1500);
@@ -5056,6 +5384,12 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     neufundWithdrawEthT(btn.dataset.key);
   } else if (action === 'kyber-claim-epoch') {
     kyberClaimEpoch(btn.dataset.key, parseInt(btn.dataset.epoch), btn);
+  } else if (action === 'augur-mailbox') {
+    augurWithdrawMailbox(btn.dataset.key, btn.dataset.mailbox, btn);
+  } else if (action === 'augur-cancel-order') {
+    augurCancelOrder(btn.dataset.key, btn.dataset.orderId, btn);
+  } else if (action === 'augur-claim-shares') {
+    augurClaimShares(btn.dataset.key, btn.dataset.market, btn);
   } else if (action === 'kill-bounty') {
     killBounty(btn.dataset.key, parseInt(btn.dataset.bountyId), btn);
   } else if (action === 'cancel-mooncat') {

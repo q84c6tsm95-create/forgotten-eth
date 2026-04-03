@@ -3,7 +3,6 @@
   "outputDirectory": "public",
   "rewrites": [
     { "source": "/outreach", "destination": "/outreach.html" },
-    { "source": "/dashboard.html", "destination": "/api/dashboard" },
     { "source": "/api", "destination": "/api-docs.html" },
     { "source": "/protocol/:slug", "destination": "/:slug" },
     { "source": "/:slug((?!api|_vercel|protocol|outreach|dashboard)[a-z0-9-]+)", "destination": "/api/protocol?slug=:slug" },
@@ -41,7 +40,8 @@
     },
     "api/total.js": {
       "memory": 128,
-      "maxDuration": 5
+      "maxDuration": 5,
+      "includeFiles": "data/total.json"
     },
     "api/stats.js": {
       "memory": 128,
@@ -108,6 +108,7 @@
     {
       "source": "/api/(check|summary|table|total|stats|claims|sitemap)",
       "headers": [
+        { "key": "Cache-Control", "value": "public, s-maxage=60, stale-while-revalidate=120" },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "X-Robots-Tag", "value": "noindex" },
         { "key": "Access-Control-Allow-Origin", "value": "*" }

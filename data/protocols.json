@@ -756,6 +756,13 @@
     "balance_file": "maker_weth_eth_balances.json"
   },
   {
+    "key": "old_weth",
+    "name": "Old WETH",
+    "contract": "0xECF8F87f810EcF450940c9f60066b4a7a501d6A7",
+    "category": "ico",
+    "balance_file": "old_weth_eth_balances.json"
+  },
+  {
     "key": "lastwinner",
     "balance_file": "lastwinner_eth_balances.json",
     "contract": "0xDd9fd6b6F8f7ea932997992bbE67EabB3e316f3C"
@@ -815,5 +822,12 @@
     "contract": "0xbb9bc244d798123fde783fcc1c72d3bb8c189413",
     "category": "ico",
     "balance_file": "thedao_eth_balances.json"
+  },
+  {
+    "key": "augur_v1",
+    "name": "Augur v1",
+    "contract": "0xd5524179cB7AE012f5B642C1D6D700Bbaa76B96b",
+    "category": "prediction",
+    "balance_file": "augur_v1_eth_balances.json"
   }
 ]

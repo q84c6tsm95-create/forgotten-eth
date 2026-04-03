@@ -203,8 +203,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    margin-top: 0;
+    gap: 36px;
+    margin-top: 2px;
     font-size: 13px;
     font-family: var(--font-mono);
   }
@@ -332,7 +332,7 @@
 
   /* ── Hero ── */
   .hero { text-align: center; padding: 20px 0 4px; margin-top: 0; }
-  .hero-tagline { font-family: var(--font-display); color: var(--text); font-size: 20px; line-height: 1.5; max-width: 700px; margin: 0 auto 18px; font-weight: 400; }
+  .hero-tagline { font-family: var(--font-display); color: var(--text); font-size: 17px; line-height: 1.5; max-width: 700px; margin: 0 auto 18px; font-weight: 400; }
   .hero-stat { margin: 0 auto 4px; }
   .hero-amount { font-family: var(--font-mono); font-size: 48px; font-weight: 800; color: var(--accent); letter-spacing: -2px; line-height: 1.1; transition: color 0.3s; }
   .hero-amount .hero-eth-label { font-size: 28px; font-weight: 600; letter-spacing: -0.5px; opacity: 0.7; }
@@ -979,6 +979,23 @@
     .about-section .about-grid { grid-template-columns: 1fr; }
     .stats-row { gap: 12px; }
   }
+  /* ── Recently indexed box ── */
+  .recent-box {
+    max-width: 480px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+  .recent-box-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text2); opacity: 0.4; margin-bottom: 6px; }
+  .recent-box-row { display: flex; align-items: baseline; gap: 8px; padding: 2px 0; }
+  .recent-box-row .rb-date { opacity: 0.35; font-size: 10px; min-width: 42px; }
+  .recent-box-row .rb-plus { color: var(--green); font-weight: 700; }
+  .recent-box-row a { color: var(--text2); text-decoration: none; font-weight: 600; flex: 1; }
+  .recent-box-row a:hover { color: var(--accent); }
+  .recent-box-row .rb-eth { color: var(--accent); font-size: 10px; text-align: right; }
+  [data-theme="dark"] .recent-box { background: rgba(22, 21, 32, 0.6); }
+
   @media (max-width: 480px) {
     .header h1 { font-size: 28px; }
     .hero-amount { font-size: 28px; }
@@ -1007,8 +1024,6 @@
         <a href="#faq">FAQ</a>
         <span class="nav-sep">&middot;</span>
         <a href="/api">API</a>
-        <span class="nav-sep">&middot;</span>
-        <a href="https://github.com/q84c6tsm95-create/forgotten-eth/issues/new?title=Protocol+submission&labels=protocol" target="_blank" rel="noopener noreferrer" title="Submit a protocol">Submit Protocol</a>
         <span class="nav-sep">&middot;</span>
         <button id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode"></button>
         <span class="nav-sep">&middot;</span>
@@ -1055,6 +1070,7 @@
     </div>
   </div>
 
+
   <div class="watchlist-bar" id="watchlistBar"></div>
 
   <div class="network-warn" id="networkWarn">Please switch to Ethereum Mainnet to claim your ETH.</div>
@@ -1062,6 +1078,13 @@
   <div class="claim-banner" id="claimBanner" aria-live="polite">
     <h2 id="claimBannerTitle">Your Claimable ETH</h2>
     <div id="claimRows"></div>
+  </div>
+
+  <div class="recent-box fade-in fade-in-4">
+    <div class="recent-box-label">Recently indexed</div>
+    <div class="recent-box-row"><span class="rb-date">Apr 3</span> <span class="rb-plus">+</span> <a href="/old-weth">Old WETH</a> <span class="rb-eth">3,258 ETH</span></div>
+    <div class="recent-box-row"><span class="rb-date">Apr 1</span> <span class="rb-plus">+</span> <a href="/thedao">The DAO</a> <span class="rb-eth">81,914 ETH</span></div>
+    <div class="recent-box-row"><span class="rb-date">Mar 28</span> <span class="rb-plus">+</span> <a href="/kyber-feehandler">Kyber FeeHandler</a> <span class="rb-eth">23 ETH</span></div>
   </div>
 
   <div class="explorer-toggle-wrap">
@@ -1107,6 +1130,10 @@
       <div class="faq-a"><a href="https://github.com/q84c6tsm95-create/forgotten-eth/issues/new" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Open a GitHub issue</a> with the contract address or protocol name. If you don't know the exact contract, just mention the protocol. I'll investigate and verify it.</div>
     </div>
     <div class="faq-item">
+      <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">Are new protocols being added? <span class="faq-arrow">&#x25BC;</span></div>
+      <div class="faq-a">New contracts are added regularly. Check back periodically or use the <a href="https://t.me/forgottenETH_bot" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Telegram bot</a> to watch your address and get notified when a balance appears.</div>
+    </div>
+    <div class="faq-item">
       <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">What data do you collect? <span class="faq-arrow">&#x25BC;</span></div>
       <div class="faq-a">No IP addresses, no browser fingerprints, no device identifiers. The site logs aggregate actions (address checked, balance found, claim confirmed) to track usage stats. Ethereum addresses you check are stored for aggregate counts only. Nothing is shared or sold.</div>
     </div>
@@ -1140,5 +1167,6 @@
 <script src="/app.js"></script>
 <script src="/theme.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
+
 </body>
 </html>

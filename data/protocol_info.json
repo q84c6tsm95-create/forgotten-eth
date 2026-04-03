@@ -971,6 +971,15 @@
     "deployed": "April 2017",
     "slug": "maker-weth"
   },
+  "old_weth": {
+    "name": "Old WETH",
+    "desc": "An early Wrapped Ether contract deployed in June 2016, one of the first attempts at wrapping native ETH into an ERC-20 token. Users deposited ETH and received WETH tokens 1:1. Predates both Maker W-ETH and the canonical WETH9. Over 3,200 ETH remains wrapped by depositors who never unwrapped.",
+    "category": "ico",
+    "color": "#627eea",
+    "contract": "0xECF8F87f810EcF450940c9f60066b4a7a501d6A7",
+    "deployed": "June 2016",
+    "slug": "old-weth"
+  },
   "lastwinner": {
     "name": "Last Winner",
     "desc": "A Fomo3D-style gambling game deployed in 2018, also known as \"Last Winner\" \u2014 one of the largest Fomo3D clones by total ETH volume. Players purchase keys that extend a countdown timer; when the timer runs out, the last buyer wins the pot. Unclaimed dividends and affiliate earnings remain withdrawable. Note: isHuman modifier \u2014 smart contract wallets cannot withdraw.",
@@ -1048,5 +1057,14 @@
     "color": "#c0392b",
     "category": "ico",
     "slug": "thedao"
+  },
+  "augur_v1": {
+    "name": "Augur v1",
+    "desc": "Augur launched in July 2018 as Ethereum's first decentralized prediction market protocol. Users could create markets on real-world events, trade outcome shares, and earn fees as market creators. The protocol migrated to v2 in August 2020, but 771 ETH remains locked in the original Cash contract backing unfilled orders, unclaimed market creator fees in mailbox contracts, and unredeemed winning shares from resolved markets.",
+    "contract": "0xd5524179cB7AE012f5B642C1D6D700Bbaa76B96b",
+    "deployed": "July 2018",
+    "color": "#553C9A",
+    "category": "prediction",
+    "slug": "augur-v1"
   }
 }
