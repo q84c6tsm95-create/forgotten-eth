@@ -1,0 +1,66 @@
+name: Notify Telegram
+
+on:
+  issues:
+    types: [opened]
+  pull_request_target:
+    types: [opened]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+
+    steps:
+      - name: Send Telegram notification
+        env:
+          BOT_TOKEN: ${{ secrets.TELEGRAM_ADMIN_BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          EVENT: ${{ github.event_name }}
+          TITLE: ${{ github.event_name == 'issues' && github.event.issue.title || github.event.pull_request.title }}
+          USER: ${{ github.event_name == 'issues' && github.event.issue.user.login || github.event.pull_request.user.login }}
+          URL: ${{ github.event_name == 'issues' && github.event.issue.html_url || github.event.pull_request.html_url }}
+          BODY: ${{ github.event_name == 'issues' && github.event.issue.body || github.event.pull_request.body }}
+        run: |
+          python3 << 'PYEOF'
+          import json, os, urllib.request
+
+          event = os.environ.get('EVENT', '')
+          title = os.environ.get('TITLE', '')[:200]
+          user = os.environ.get('USER', '')
+          url = os.environ.get('URL', '')
+          body = os.environ.get('BODY', '')[:300]
+
+          for old, new in [('&','&amp;'),('<','&lt;'),('>','&gt;')]:
+              title = title.replace(old, new)
+              body = body.replace(old, new)
+              user = user.replace(old, new)
+
+          emoji = '📬' if event == 'issues' else '🔀'
+          label = 'New issue' if event == 'issues' else 'New PR'
+
+          msg = emoji + ' <b>' + label + '</b>\n\n'
+          msg += '<b>' + title + '</b>\n'
+          msg += 'by ' + user + '\n\n'
+          if body:
+              msg += body + '\n\n'
+          msg += '<a href="' + url + '">View on GitHub</a>'
+
+          token = os.environ.get('BOT_TOKEN', '')
+          chat_id = os.environ.get('CHAT_ID', '')
+          if not token or not chat_id:
+              print('Missing bot token or chat ID')
+              exit(0)
+
+          payload = json.dumps({
+              'chat_id': chat_id,
+              'text': msg,
+              'parse_mode': 'HTML',
+              'disable_web_page_preview': True
+          }).encode()
+
+          api_url = 'https://api.telegram.org/bot' + token + '/sendMessage'
+          req = urllib.request.Request(api_url, data=payload, headers={'Content-Type': 'application/json'})
+          urllib.request.urlopen(req, timeout=10)
+          print('Notification sent')
+          PYEOF
