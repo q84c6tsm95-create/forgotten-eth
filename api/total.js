@@ -37,9 +37,14 @@ export default async function handler(req, res) {
         WHERE type = 'claim_confirmed' AND contract != 'donation'
         AND amount_eth > 0 AND tx_hash IS NOT NULL
       `;
+      const siteEth = parseFloat(parseFloat(result.rows[0].eth).toFixed(2));
+      const siteWallets = parseInt(result.rows[0].wallets, 10);
+      // Add detected onchain withdrawals (not done through the site)
+      const detectedEth = parseFloat(fileData.detected_eth || 0);
+      const detectedWallets = parseInt(fileData.detected_wallets || 0, 10);
       claimsCache = {
-        eth_claimed: parseFloat(parseFloat(result.rows[0].eth).toFixed(2)),
-        unique_claimers: parseInt(result.rows[0].wallets, 10),
+        eth_claimed: parseFloat((siteEth + detectedEth).toFixed(2)),
+        unique_claimers: siteWallets + detectedWallets,
       };
       claimsCacheExpiry = now + 300000; // 5 min
     } catch {

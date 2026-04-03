@@ -6,7 +6,7 @@
   "contract_eth_balance": "5.032248488839178197",
   "total_addresses_scanned": 166,
   "addresses_with_balance": 111,
-  "total_eth_in_balances": 4.997954030377836,
+  "total_eth_in_balances": 4.99795403,
   "coverage_pct": 99.32,
   "distribution": {
     "1-10 ETH": {
@@ -692,6 +692,22 @@
       "address": "0xced271a5c2ed93ba59dce555fdc73e1de3dcad22",
       "balance_wei": "2566090",
       "balance_eth": "0.000000000002566090"
+    },
+    {
+      "address": "0x3a25473a5098f8b5ce1bd383416801bff28575b9",
+      "balance_wei": "0",
+      "balance_eth": "0",
+      "claimed": true,
+      "original_balance_eth": "0.000093110108826287",
+      "original_balance_wei": "93110108826287"
+    },
+    {
+      "address": "0x3fd1ddf28f604cfe5fefa3adc38e38be2f7208d6",
+      "balance_wei": "0",
+      "balance_eth": "0",
+      "claimed": true,
+      "original_balance_eth": "7.361620202283964076",
+      "original_balance_wei": "7361620202283963875"
     }
   ]
 }

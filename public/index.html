@@ -987,10 +987,9 @@
     font-family: var(--font-mono);
     font-size: 11px;
   }
-  .recent-box-row { line-height: 1.4; }
   .recent-box-list {
-    max-height: 51px;
-    overflow-y: auto;
+    max-height: 48px;
+    overflow-y: scroll;
     scrollbar-width: thin;
     scrollbar-color: var(--border) transparent;
     padding-right: 6px;
@@ -999,7 +998,7 @@
   .recent-box-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   .recent-box-list::-webkit-scrollbar-track { background: transparent; }
   .recent-box-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text2); opacity: 0.5; margin-bottom: 6px; text-align: center; }
-  .recent-box-row { display: flex; align-items: baseline; gap: 6px; padding: 2px 0; }
+  .recent-box-row { display: flex; align-items: baseline; gap: 6px; padding: 1px 0; line-height: 1.4; }
   .recent-box-row .rb-date { opacity: 0.35; font-size: 10px; min-width: 38px; }
   .recent-box-row a { color: var(--text); text-decoration: none; font-weight: 600; }
   .recent-box-row a:hover { color: var(--accent); }
@@ -1102,6 +1101,10 @@
       <div class="recent-box-row"><span class="rb-date">Mar 27</span> <a href="/nucypher-worklock">NuCypher WorkLock</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">291 ETH</span></span></div>
       <div class="recent-box-row"><span class="rb-date">Mar 26</span> <a href="/bounties">Bounties Network</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">90 ETH</span></span></div>
       <div class="recent-box-row"><span class="rb-date">Mar 19</span> <a href="/digixdao">DigixDAO</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">11,092 ETH</span></span></div>
+      <div class="recent-box-row"><span class="rb-date">Mar 18</span> <a href="/mooncatrescue">MoonCatRescue</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">247 ETH</span></span></div>
+      <div class="recent-box-row"><span class="rb-date">Mar 17</span> <a href="/sportcrypt">SportCrypt</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">16 ETH</span></span></div>
+      <div class="recent-box-row"><span class="rb-date">Mar 16</span> <a href="/dada">DADA Collectible</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">11 ETH</span></span></div>
+      <div class="recent-box-row"><span class="rb-date">Mar 15</span> <a href="/neufund-locked">Neufund</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">3,418 ETH</span></span></div>
     </div>
   </div>
 
@@ -1184,6 +1187,7 @@
 <script src="/testmode.js"></script>
 <script src="/app.js"></script>
 <script src="/theme.js"></script>
+<script src="/recent-scroll.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 
 </body>

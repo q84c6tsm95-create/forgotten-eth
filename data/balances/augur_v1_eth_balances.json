@@ -1,10 +1,10 @@
 {
   "contract": "0xd5524179cB7AE012f5B642C1D6D700Bbaa76B96b",
-  "contract_eth_balance": 771.881748,
-  "total_eth_in_balances": 436.68960924,
-  "addresses_with_balance": 960,
-  "coverage_pct": 56.57,
-  "scan_date": "2026-04-03 11:33:42 UTC",
+  "contract_eth_balance": 771.146691,
+  "total_eth_in_balances": 436.07830222,
+  "addresses_with_balance": 959,
+  "coverage_pct": 56.55,
+  "scan_date": "2026-04-03 19:58:17 UTC",
   "note": "Merged from 3 claim paths: mailbox Cash withdrawals, open order cancellations, and winning share redemptions. EOA share holders only (53 contract-held shares excluded as stuck).",
   "claim_path_summary": {
     "mailbox": {
@@ -1490,12 +1490,12 @@
     },
     {
       "address": "0x36Df1a9cf97af4Ab6dd9669Ff6FC715F02E82eF4",
-      "balance_eth": 8.978613596491227,
+      "balance_eth": 8.980806578947368,
       "augur_claims": [
         {
           "t": "m",
           "a": "0xf13a683e8406FaaC9e6896Df76d51BBC43054a2C",
-          "e": 0.2036136
+          "e": 0.20580658
         },
         {
           "t": "s",
@@ -1541,11 +1541,11 @@
       "claim_paths": [
         {
           "type": "mailbox",
-          "eth": 0.2036136,
+          "eth": 0.20580658,
           "mailboxes": [
             {
               "address": "0xf13a683e8406FaaC9e6896Df76d51BBC43054a2C",
-              "eth": 0.2036136
+              "eth": 0.20580658
             }
           ]
         },
@@ -6993,44 +6993,6 @@
             {
               "market": "0xf51a4b13469a9d58864126d242bf22fe76d1aff9",
               "outcome": 1
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "address": "0x314bFdaefF6d6326C1d3B304C6728f8714919371",
-      "balance_eth": 0.6134999999999999,
-      "augur_claims": [
-        {
-          "t": "m",
-          "a": "0xF716ce88FeB043beFa59A98FC0111B8d2948ffb1",
-          "e": 0.4135
-        },
-        {
-          "t": "o",
-          "id": "0xf45e01f9f1b69b8edea308a74d9f51ca140de7389c23b6675dd643f168a01383",
-          "e": 0.2
-        }
-      ],
-      "claim_paths": [
-        {
-          "type": "mailbox",
-          "eth": 0.4135,
-          "mailboxes": [
-            {
-              "address": "0xF716ce88FeB043beFa59A98FC0111B8d2948ffb1",
-              "eth": 0.4135
-            }
-          ]
-        },
-        {
-          "type": "order",
-          "eth": 0.2,
-          "orders": [
-            {
-              "order_id": "0xf45e01f9f1b69b8edea308a74d9f51ca140de7389c23b6675dd643f168a01383",
-              "eth": 0.2
             }
           ]
         }

@@ -3944,7 +3944,7 @@ async function claimExit(key) {
     window.va?.track?.('exit_submitted', { exchange: cfg.name, tx_hash: tx.hash });
 
     const receipt = await tx.wait();
-    logEvent('claim_confirmed', { address: walletAddress, contract: key, tx_hash: tx.hash });
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)), tx_hash: tx.hash, block_num: receipt.blockNumber });
     btn.textContent = 'Exited';
     btn.style.background = 'var(--green)';
     btn.style.opacity = '0.7';
@@ -3992,7 +3992,7 @@ async function kyberClaimEpoch(key, epoch, btn) {
     btn.classList.remove('pending');
     btn.style.background = 'var(--green)';
     btn.style.opacity = '0.7';
-    logEvent('claim_confirmed', { address: walletAddress, contract: key, tx_hash: tx.hash, block_num: receipt.blockNumber });
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)), tx_hash: tx.hash, block_num: receipt.blockNumber });
     if (statusEl) statusEl.textContent = 'Epoch ' + epoch + ' claimed!';
   } catch (e) {
     btn.disabled = false;
@@ -4072,7 +4072,7 @@ async function augurWithdrawMailbox(key, mailboxAddr, btn) {
     btn.style.background = 'var(--green)';
     btn.style.opacity = '0.7';
     btn.disabled = true;
-    logEvent('claim_confirmed', { address: walletAddress, contract: key, tx_hash: tx.hash, block_num: receipt.blockNumber });
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)), tx_hash: tx.hash, block_num: receipt.blockNumber });
     if (statusEl) statusEl.textContent = 'Mailbox fees withdrawn to your wallet.';
   } catch (e) {
     btn.disabled = false;
@@ -4117,7 +4117,7 @@ async function augurCancelOrder(key, orderId, btn) {
     btn.style.background = 'var(--green)';
     btn.style.opacity = '0.7';
     btn.disabled = true;
-    logEvent('claim_confirmed', { address: walletAddress, contract: key, tx_hash: tx.hash, block_num: receipt.blockNumber });
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)), tx_hash: tx.hash, block_num: receipt.blockNumber });
     if (statusEl) statusEl.textContent = 'Order cancelled. Escrowed ETH returned to your wallet.';
   } catch (e) {
     btn.disabled = false;
@@ -4162,7 +4162,7 @@ async function augurClaimShares(key, marketAddr, btn) {
     btn.style.background = 'var(--green)';
     btn.style.opacity = '0.7';
     btn.disabled = true;
-    logEvent('claim_confirmed', { address: walletAddress, contract: key, tx_hash: tx.hash, block_num: receipt.blockNumber });
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)), tx_hash: tx.hash, block_num: receipt.blockNumber });
     if (statusEl) statusEl.textContent = 'Shares claimed. Proceeds sent to your wallet.';
   } catch (e) {
     btn.disabled = false;
@@ -4196,7 +4196,7 @@ async function killBounty(key, bountyId, btn) {
     btn.classList.remove('pending');
     btn.style.background = 'var(--green)';
     btn.style.opacity = '0.7';
-    logEvent('claim_confirmed', { address: walletAddress, contract: key, tx_hash: tx.hash, block_num: receipt.blockNumber });
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)), tx_hash: tx.hash, block_num: receipt.blockNumber });
     if (statusEl) statusEl.textContent = 'Bounty #' + bountyId + ' withdrawn. ETH returned to your wallet.';
   } catch (e) {
     btn.disabled = false;
@@ -4364,7 +4364,8 @@ async function ensManualRelease() {
     var _addrEl = document.getElementById('addrError'); if (_addrEl) _addrEl.style.color = 'var(--text2)';
     var receipt = await tx.wait();
     var deedName = /^0x/.test(input) ? null : input.toLowerCase().replace(/\.eth$/, '');
-    logEvent('claim_confirmed', { address: walletAddress, contract: 'ens_old', tx_hash: tx.hash, block_num: receipt.blockNumber, extra: { deed_name: deedName, deed_hash: labelHash } });
+    var deedEth = 0; try { deedEth = parseFloat(btn.dataset.eth || '0'); } catch(_){}
+    logEvent('claim_confirmed', { address: walletAddress, contract: 'ens_old', amount_eth: deedEth, tx_hash: tx.hash, block_num: receipt.blockNumber, extra: { deed_name: deedName, deed_hash: labelHash } });
     if (_addrEl) { _addrEl.textContent = 'Deed released successfully! ETH has been returned to your wallet.'; _addrEl.style.color = 'var(--green)'; }
     setTimeout(function() { if (_addrEl) { _addrEl.style.display = 'none'; _addrEl.style.color = 'var(--red)'; } }, 10000);
   } catch (e) {
@@ -5182,7 +5183,8 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
           blocksEl.appendChild(block);
         }
 
-        var pct = (ethClaimed / PEAK_ETH * 100).toFixed(1);
+        var pctRaw = ethClaimed / PEAK_ETH * 100;
+        var pct = (Math.floor(pctRaw * 100) / 100).toFixed(2);
         document.getElementById('heroPct').textContent = pct + '%';
 
         var counterEl = document.getElementById('heroCounter');
