@@ -981,20 +981,20 @@
   }
   /* ── Recently indexed box ── */
   .recent-box {
-    max-width: 480px;
+    max-width: 340px;
     margin: 24px auto 0;
-    padding: 0 16px;
+    padding: 0;
     font-family: var(--font-mono);
     font-size: 11px;
   }
-  .recent-box-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text2); opacity: 0.4; margin-bottom: 6px; }
-  .recent-box-row { display: flex; align-items: baseline; gap: 8px; padding: 2px 0; }
-  .recent-box-row .rb-date { opacity: 0.35; font-size: 10px; min-width: 42px; }
-  .recent-box-row .rb-plus { color: var(--green); font-weight: 700; }
-  .recent-box-row a { color: var(--text2); text-decoration: none; font-weight: 600; flex: 1; }
+  .recent-box-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text2); opacity: 0.5; margin-bottom: 6px; text-align: center; }
+  .recent-box-row { display: flex; align-items: baseline; gap: 6px; padding: 2px 0; }
+  .recent-box-row .rb-date { opacity: 0.35; font-size: 10px; min-width: 38px; }
+  .recent-box-row a { color: var(--text); text-decoration: none; font-weight: 600; }
   .recent-box-row a:hover { color: var(--accent); }
-  .recent-box-row .rb-eth { color: var(--accent); font-size: 10px; text-align: right; }
-  [data-theme="dark"] .recent-box { background: rgba(22, 21, 32, 0.6); }
+  .recent-box-row .rb-amt { margin-left: auto; white-space: nowrap; }
+  .recent-box-row .rb-plus { color: var(--green); font-weight: 700; }
+  .recent-box-row .rb-eth { color: var(--accent); }
 
   @media (max-width: 480px) {
     .header h1 { font-size: 28px; }
@@ -1082,9 +1082,9 @@
 
   <div class="recent-box fade-in fade-in-4">
     <div class="recent-box-label">Recently indexed</div>
-    <div class="recent-box-row"><span class="rb-date">Apr 3</span> <span class="rb-plus">+</span> <a href="/old-weth">Old WETH</a> <span class="rb-eth">3,258 ETH</span></div>
-    <div class="recent-box-row"><span class="rb-date">Apr 1</span> <span class="rb-plus">+</span> <a href="/thedao">The DAO</a> <span class="rb-eth">81,914 ETH</span></div>
-    <div class="recent-box-row"><span class="rb-date">Mar 28</span> <span class="rb-plus">+</span> <a href="/kyber-feehandler">Kyber FeeHandler</a> <span class="rb-eth">23 ETH</span></div>
+    <div class="recent-box-row"><span class="rb-date">Apr 3</span> <a href="/augur-v1">Augur v1</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">437 ETH</span></span></div>
+    <div class="recent-box-row"><span class="rb-date">Apr 3</span> <a href="/old-weth">Old WETH</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">3,258 ETH</span></span></div>
+    <div class="recent-box-row"><span class="rb-date">Apr 1</span> <a href="/thedao">The DAO</a> <span class="rb-amt"><span class="rb-plus">+</span><span class="rb-eth">81,914 ETH</span></span></div>
   </div>
 
   <div class="explorer-toggle-wrap">
