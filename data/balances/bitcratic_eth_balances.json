@@ -3,10 +3,10 @@
   "token_checked": "0x0000000000000000000000000000000000000000",
   "description": "ETH balances in defunct Bitcratic contract",
   "scan_date": "2026-04-02 16:28:11 UTC",
-  "contract_eth_balance": 30.071577,
+  "contract_eth_balance": 30.06924,
   "total_addresses_scanned": 4037,
-  "addresses_with_balance": 1198,
-  "total_eth_in_balances": 30.07157732,
+  "addresses_with_balance": 1196,
+  "total_eth_in_balances": 30.06924038,
   "coverage_pct": 100,
   "distribution": {
     "1-10 ETH": {
@@ -3062,7 +3062,8 @@
       "rank": 506,
       "address": "0xA73fA2565C18218AC6510c8CD3B220F5794f3B84",
       "balance_wei": "1336937507216093",
-      "balance_eth": "0.001336937507216093"
+      "balance_eth": "0.001336937507216093",
+      "claimed": true
     },
     {
       "rank": 507,
@@ -3290,7 +3291,8 @@
       "rank": 544,
       "address": "0x58D089cB9D224433e94060a33b3FECccc30E4eA6",
       "balance_wei": "1000000000000000",
-      "balance_eth": "0.001000000000000000"
+      "balance_eth": "0.001000000000000000",
+      "claimed": true
     },
     {
       "rank": 545,
@@ -7236,5 +7238,5 @@
       "original_balance_eth": "0.001258199581297976"
     }
   ],
-  "last_event_refresh": "2026-04-03T19:57:14Z"
+  "last_event_refresh": "2026-04-04T14:07:34Z"
 }

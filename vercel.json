@@ -21,6 +21,11 @@
       "maxDuration": 10,
       "includeFiles": "data/index_shards/**/*.json"
     },
+    "api/check-batch.js": {
+      "memory": 512,
+      "maxDuration": 15,
+      "includeFiles": "data/index_shards/**/*.json"
+    },
     "api/health.js": {
       "memory": 256,
       "maxDuration": 10,
@@ -116,7 +121,7 @@
       ]
     },
     {
-      "source": "/api/(check|summary|table|total|stats|claims|sitemap)",
+      "source": "/api/(check|check-batch|summary|table|total|stats|claims|sitemap)",
       "headers": [
         {
           "key": "Cache-Control",

@@ -526,6 +526,7 @@
     <nav>
       <div class="sidebar-label">Endpoints</div>
       <a href="#check-address">Check Address</a>
+      <a href="#check-batch">Batch Check</a>
       <a href="#summary">Summary</a>
       <a href="#protocol-detail">Protocol Detail</a>
       <a href="#total">Total</a>
@@ -540,7 +541,7 @@
   </aside>
   <div class="api-content">
 
-  <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.8;">All endpoints are read-only <code class="inline-code" style="color:var(--accent-text);font-weight:700">GET</code> requests. Responses are <code class="inline-code" style="color:var(--accent-text);font-weight:700">JSON</code> with <code class="inline-code" style="color:var(--gold)">snake_case</code> keys. No authentication required. Data refreshes every 6 hours from onchain <code class="inline-code" style="color:var(--accent-text)">Multicall3</code> scans. Rate limited to <code class="inline-code" style="color:var(--accent-text)">30 req/min</code> per IP. <code class="inline-code" style="color:var(--accent-text)">CORS *</code> enabled.</p>
+  <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.8;">All endpoints are read-only <code class="inline-code" style="color:var(--accent-text);font-weight:700">GET</code> requests. Responses are <code class="inline-code" style="color:var(--accent-text);font-weight:700">JSON</code> with <code class="inline-code" style="color:var(--gold)">snake_case</code> keys. No authentication required. Data refreshes every 6 hours from onchain <code class="inline-code" style="color:var(--accent-text)">Multicall3</code> scans. Rate limits vary per endpoint (see each section). <code class="inline-code" style="color:var(--accent-text)">CORS *</code> enabled.</p>
 
   <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;margin-bottom:12px;background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 var(--radius-lg) var(--radius-lg) 0;font-family:var(--font-mono);font-size:13px;">
     <span style="color:var(--text2);font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Base URL</span>
@@ -552,7 +553,7 @@
   <div class="endpoint">
     <span class="method">GET</span>
     <span class="path">/api/check?address=0x...</span>
-    <p class="desc">Check if an Ethereum address has claimable ETH in any tracked contract. Returns per-protocol balances and coverage metadata.</p>
+    <p class="desc">Check if an Ethereum address has claimable ETH in any tracked contract. Returns per-protocol balances and coverage metadata. <strong>Rate limit:</strong> 30 req/min per IP.</p>
     <div class="params">
       <table>
         <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
@@ -652,12 +653,90 @@ print(<span class="json-string">f"{data['total_claimable_eth']} ETH claimable"</
     </div>
   </div>
 
+  <!-- ── Batch Check ── -->
+  <h2 id="check-batch">Batch Check</h2>
+  <div class="endpoint">
+    <span class="method" style="background:#c2410c">POST</span>
+    <span class="path">/api/check-batch</span>
+    <p class="desc">Check up to 200 addresses in a single request. Returns only addresses with claimable ETH. Ideal for scanning wallets in bulk. <strong>Rate limit:</strong> 10 req/min per IP.</p>
+    <div class="params">
+      <table>
+        <thead><tr><th>Body Field</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">addresses</span></td><td>string[]</td><td>Array of Ethereum addresses (max 200)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Examples</h3>
+    <div class="code-tabs">
+      <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="tab-batch-curl">curl</button>
+        <button class="tab-btn" data-tab="tab-batch-js">JavaScript</button>
+        <button class="tab-btn" data-tab="tab-batch-py">Python</button>
+      </div>
+      <div class="tab-panel active" id="tab-batch-curl">
+        <div class="code-block">
+          <button class="copy-btn">Copy</button>
+          <pre>curl -X POST "https://forgotteneth.com/api/check-batch" \
+  -H "Content-Type: application/json" \
+  -d '{"addresses":["0xab5801a7d398351b8be11c439e05c5b3259aec9b","0xd8da6bf26964af9d7eed9e03e53415d37aa96045"]}'</pre>
+        </div>
+      </div>
+      <div class="tab-panel" id="tab-batch-js">
+        <div class="code-block">
+          <button class="copy-btn">Copy</button>
+          <pre><span class="json-key">const</span> res = <span class="json-key">await</span> fetch(<span class="json-string">'https://forgotteneth.com/api/check-batch'</span>, {
+  method: <span class="json-string">'POST'</span>,
+  headers: { <span class="json-string">'Content-Type'</span>: <span class="json-string">'application/json'</span> },
+  body: JSON.stringify({ addresses: [<span class="json-string">'0xab58...'</span>, <span class="json-string">'0xd8da...'</span>] })
+});
+<span class="json-key">const</span> data = <span class="json-key">await</span> res.json();
+console.log(<span class="json-string">`Found ${data.found} addresses with ETH`</span>);</pre>
+        </div>
+      </div>
+      <div class="tab-panel" id="tab-batch-py">
+        <div class="code-block">
+          <button class="copy-btn">Copy</button>
+          <pre><span class="json-key">import</span> requests
+r = requests.post(<span class="json-string">'https://forgotteneth.com/api/check-batch'</span>,
+    json={<span class="json-string">'addresses'</span>: [<span class="json-string">'0xab58...'</span>, <span class="json-string">'0xd8da...'</span>]})
+data = r.json()
+<span class="json-key">for</span> addr, info <span class="json-key">in</span> data[<span class="json-string">'results'</span>].items():
+    print(<span class="json-string">f"{addr}: {info['total_claimable_eth']} ETH"</span>)</pre>
+        </div>
+      </div>
+    </div>
+
+    <h3>Response</h3>
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre>{
+  <span class="json-key">"checked"</span>: <span class="json-number">2</span>,
+  <span class="json-key">"found"</span>: <span class="json-number">1</span>,
+  <span class="json-key">"contracts_checked"</span>: <span class="json-number">120</span>,
+  <span class="json-key">"results"</span>: {
+    <span class="json-key">"0xab5801a7d398351b8be11c439e05c5b3259aec9b"</span>: {
+      <span class="json-key">"contracts_with_balance"</span>: <span class="json-number">1</span>,
+      <span class="json-key">"total_claimable_eth"</span>: <span class="json-string">"0.035096"</span>,
+      <span class="json-key">"balances"</span>: {
+        <span class="json-key">"ens_old"</span>: { <span class="json-key">"contract"</span>: <span class="json-string">"0x6090..."</span>, <span class="json-key">"balance_eth"</span>: <span class="json-number">0.035</span> }
+      }
+    }
+  }
+}</pre>
+    </div>
+
+    <h3>Rate Limits</h3>
+    <p class="desc">10 requests per minute. Each request can check up to 200 addresses (2,000 addresses/min). Only addresses with claimable ETH are included in the response.</p>
+  </div>
+
   <!-- ── Summary ── -->
   <h2 id="summary">Summary</h2>
   <div class="endpoint endpoint-green">
     <span class="method">GET</span>
     <span class="path">/api/summary</span>
-    <p class="desc">Overview of all tracked contracts with ETH balances, address counts, and coverage percentages.</p>
+    <p class="desc">Overview of all tracked contracts with ETH balances, address counts, and coverage percentages. <strong>Rate limit:</strong> 30 req/min per IP.</p>
     <div class="try-it">
       <button id="trySummaryBtn">Try it</button>
     </div>
@@ -704,7 +783,7 @@ print(<span class="json-string">f"{data['total_claimable_eth']} ETH claimable"</
   <div class="endpoint endpoint-gold">
     <span class="method">GET</span>
     <span class="path">/api/table?exchange=...</span>
-    <p class="desc">Detailed metadata for a single protocol: balances, coverage, balance distribution, and monthly TVL history.</p>
+    <p class="desc">Detailed metadata for a single protocol: balances, coverage, balance distribution, and monthly TVL history. <strong>Rate limit:</strong> 60 req/min per IP.</p>
     <div class="params">
       <table>
         <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
@@ -764,7 +843,7 @@ print(<span class="json-string">f"{data['total_claimable_eth']} ETH claimable"</
   <div class="endpoint">
     <span class="method">GET</span>
     <span class="path">/api/total</span>
-    <p class="desc">Lightweight endpoint returning total tracked ETH and counts. Ideal for widgets and bots.</p>
+    <p class="desc">Lightweight endpoint returning total tracked ETH and counts. Ideal for widgets and bots. <strong>Rate limit:</strong> 60 req/min per IP.</p>
     <h3>Response</h3>
     <div class="code-block">
       <button class="copy-btn">Copy</button>
@@ -847,7 +926,7 @@ print(<span class="json-string">f"{data['total_claimable_eth']} ETH claimable"</
   <div class="endpoint endpoint-gold">
     <span class="method">GET</span>
     <span class="path">/api/claims</span>
-    <p class="desc">All verified ETH claims made through the site. Includes per-claim tx hashes, ENS deed names, and per-protocol aggregates.</p>
+    <p class="desc">All verified ETH claims made through the site. Includes per-claim tx hashes, ENS deed names, and per-protocol aggregates. <strong>Rate limit:</strong> 30 req/min per IP.</p>
     <div class="try-it">
       <button id="tryClaimsBtn">Try it</button>
     </div>
@@ -923,7 +1002,7 @@ print(<span class="json-string">f"{data['total_claimable_eth']} ETH claimable"</
       </tr>
       <tr>
         <td><span class="error-code error-code-429">429</span></td>
-        <td>Rate limit exceeded (<code class="inline-code" style="color:var(--accent-text)">30 req/min</code>)</td>
+        <td>Rate limit exceeded (see per-endpoint limits)</td>
         <td><code class="inline-code" style="color:var(--gold)">{"error": "Rate limit exceeded. Try again in 1 minute."}</code></td>
       </tr>
       <tr>

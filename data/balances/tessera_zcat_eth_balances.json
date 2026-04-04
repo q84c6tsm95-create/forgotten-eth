@@ -3,10 +3,10 @@
   "token_checked": "0x0000000000000000000000000000000000000000",
   "description": "ETH balances in Fractional Art / Tessera ZCAT vault",
   "scan_date": "2026-03-28",
-  "contract_eth_balance": 15.62561,
+  "contract_eth_balance": 15.598167,
   "total_addresses_scanned": 192,
-  "addresses_with_balance": 186,
-  "total_eth_in_balances": 15.63,
+  "addresses_with_balance": 191,
+  "total_eth_in_balances": 15.60255237,
   "coverage_pct": 100.03,
   "distribution": {
     "1-10 ETH": {
@@ -493,7 +493,8 @@
       "address": "0x4dde7d4daaffa88de922b99fa0890ff6872cdf59",
       "balance_wei": "27451455699586162",
       "balance_eth": "0.027451455699586163",
-      "rank": 78
+      "rank": 78,
+      "claimed": true
     },
     {
       "address": "0x3f166fbf7e51eee07420bc72ea00867a130e3770",
@@ -1179,5 +1180,6 @@
       "balance_eth": "0.000000000000000000",
       "rank": 192
     }
-  ]
+  ],
+  "last_event_refresh": "2026-04-04T05:21:16Z"
 }

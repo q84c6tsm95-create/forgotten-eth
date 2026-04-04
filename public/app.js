@@ -53,12 +53,12 @@ function showInlineError(elementId, message, duration) {
 function spinnerHTML(msg) {
   return '<div style="text-align:center;padding:20px;color:var(--text2)"><div class="spinner" style="display:inline-block;margin-bottom:8px"></div><div' + (msg && msg.indexOf('Checking') >= 0 ? ' id="scanProgress"' : '') + '>' + msg + '</div></div>';
 }
-var _botCTA = '<div style="text-align:center;margin-top:20px;padding:14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);font-size:13px;color:var(--text2);display:inline-flex;align-items:center;gap:10px;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)" style="flex-shrink:0"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg><span>Subscribe via <a href="https://t.me/forgotteneth_bot" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:600;text-decoration:none">@forgotteneth_bot</a> to monitor your address for new contract additions.</span></div>';
+var _botCTA = '<div style="text-align:center;margin-top:24px;padding:18px 20px;background:var(--bg2);border:1px solid var(--accent);border-radius:var(--radius);font-size:15px;color:var(--text);display:inline-flex;align-items:center;gap:12px;justify-content:center;font-weight:500"><svg width="20" height="20" viewBox="0 0 24 24" fill="var(--accent)" style="flex-shrink:0"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg><span>Get alerts when new contracts are added — <a href="https://t.me/forgotteneth_bot" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700;text-decoration:none">@forgotteneth_bot</a></span></div>';
 // Minimum spinner display time so Madotsuki is visible
 var _scanStartTime = 0;
 function scanStart() { _scanStartTime = Date.now(); }
-async function scanMinDelay() { var elapsed = Date.now() - _scanStartTime; if (elapsed < 3000) await new Promise(function(r) { setTimeout(r, 3000 - elapsed); }); }
-async function scanProgressDelay() { var elapsed = Date.now() - _scanStartTime; if (elapsed < 2500) await new Promise(function(r) { setTimeout(r, 2500 - elapsed); }); }
+async function scanMinDelay() { var elapsed = Date.now() - _scanStartTime; if (elapsed < 2000) await new Promise(function(r) { setTimeout(r, 2000 - elapsed); }); }
+async function scanProgressDelay() { var elapsed = Date.now() - _scanStartTime; if (elapsed < 1500) await new Promise(function(r) { setTimeout(r, 1500 - elapsed); }); }
 
 // Keystore file wallet — decrypts UTC/JSON keystore files (MyEtherWallet style)
 var _keystoreWallet = null;
@@ -255,18 +255,12 @@ async function fetchCheck(address) {
 }
 
 // ─── Test/Simulation Mode ───
-// Activate ONLY via localStorage developer flag on localhost (never via URL params).
-// This prevents phishing via preview deploy links with ?test=1.
+// When ON: claim buttons simulate via Tenderly instead of sending real txs.
+// Everything else (wallet connect, balance check, UI) works normally.
+// Activate ONLY via localStorage developer flag on localhost.
 var TEST_MODE = false;
 try { TEST_MODE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('192.168.')) && localStorage.getItem('FORGOTTEN_ETH_DEV') === '1'; } catch(e) {}
-const TEST_ADDRESS = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045';
-const TEST_BALANCES = typeof ethers !== 'undefined' ? {
-  idex:       { wei: ethers.parseEther('0.5'),  eth: '0.5' },
-  digixdao:   { wei: ethers.parseEther('12.5'), eth: '12.5' },
-} : {};
-if (TEST_MODE) console.log('%c[TEST MODE] Simulation active — no real transactions will occur', 'color:#d946ef;font-weight:bold;font-size:14px');
-
-// Test mode impersonation: stores the address being previewed
+if (TEST_MODE) console.log('%c[TEST MODE] Claim buttons simulate via Tenderly', 'color:#d946ef;font-weight:bold;font-size:14px');
 var _testImpersonateAddr = null;
 
 // Simulate a transaction via Tenderly (local-only API). Returns { success, error?, ethReceived?, balanceVerified? }
@@ -354,17 +348,6 @@ const DONATION_ADDRESS = '0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891';
 async function sendDonation(amountWei) {
   if (!walletSigner) { throw new Error('Please connect your wallet first.'); }
 
-  // In test mode with simulated signer, connect real wallet for donation
-  if (TEST_MODE && walletSigner === 'test') {
-    if (!window.ethereum) throw new Error('No wallet detected');
-    await window.ethereum.request({ method: 'eth_requestAccounts' });
-    var provider = new ethers.BrowserProvider(window.ethereum);
-    var signer = await provider.getSigner();
-    var tx = await signer.sendTransaction({ to: DONATION_ADDRESS, value: amountWei });
-    console.log('[TEST MODE] Donation tx:', tx.hash);
-    return;
-  }
-
   if (!ethers.isAddress(DONATION_ADDRESS)) { throw new Error('Donation address not configured'); }
   if (!await checkNetwork()) { throw new Error('Please switch to Ethereum Mainnet'); }
 
@@ -377,7 +360,7 @@ let _lastClaimEth = 0;
 
 function renderDonationCard(claimedEth) {
   _lastClaimEth = claimedEth;
-  if (claimedEth < (TEST_MODE ? 0.01 : 10)) return '';
+  if (claimedEth < 0.1) return '';
 
   var defaultPct = 2;
   var defaultAmt = (claimedEth * defaultPct / 100).toFixed(2);
@@ -415,7 +398,7 @@ function showDonationModal(totalEth) {
   console.log('[Donation] showDonationModal called:', totalEth, 'ETH | shown:', _donationModalShown, '| suppressed:', _donationModalSuppressed);
   if (_donationModalShown) { logEvent('found', { extra: { donation_modal: 'skipped_already_shown', eth: totalEth } }); return; }
   if (_donationModalSuppressed) { logEvent('found', { extra: { donation_modal: 'skipped_suppressed', eth: totalEth } }); return; }
-  if (totalEth < (TEST_MODE ? 0.01 : 1)) { console.log('[Donation] Below threshold:', totalEth); return; }
+  if (totalEth < 0.1) { console.log('[Donation] Below threshold:', totalEth); return; }
   _donationModalShown = true;
   console.log('[Donation] Showing modal for', totalEth, 'ETH');
   logEvent('found', { extra: { donation_modal: 'shown', eth: totalEth } });
@@ -791,7 +774,7 @@ var _donationIdleTimer = null;
 
 function resetDonationIdleTimer(totalEth) {
   if (_donationIdleTimer) clearTimeout(_donationIdleTimer);
-  if (totalEth >= 1) {
+  if (totalEth >= 0.1) {
     _donationIdleTimer = setTimeout(function() {
       showDonationModal(totalEth);
     }, 30000);
@@ -2190,6 +2173,44 @@ const EXCHANGES = {
     withdrawArgs: (amount) => [amount],
     withdrawCall: 'withdraw',
   },
+  aave_v1: {
+    name: 'Aave v1',
+    desc: 'Aave v1 launched in January 2020 as the first version of the Aave lending protocol. Users deposited ETH and received aETH interest-bearing tokens that automatically accrued yield. The protocol migrated to v2 in December 2020 and v3 in March 2022, but the original UI dropped v1 support. Users can still redeem aETH tokens for ETH by calling redeem() on the aETH contract.',
+    category: 'defi',
+    color: '#B6509E',
+    contract: '0x3a3A65aAb0dd2A17E3F1947bA16138cd37d08c04',
+    deployed: 'January 2020',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: 'function redeem(uint256 _amount)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'redeem',
+    aaveV1Repay: {
+      lendingPool: '0x398eC7346DcD622eDc5ae82352F02bE94C62d119',
+      lendingPoolCore: '0x3dfd23A6c5E8BbcFc9581d2E864a68feb6a076d3',
+      ethSentinel: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
+      tokens: {
+        DAI:  { addr: '0x6B175474E89094C44Da98b954EedeAC495271d0F', decimals: 18 },
+        USDC: { addr: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', decimals: 6 },
+        USDT: { addr: '0xdAC17F958D2ee523a2206206994597C13D831ec7', decimals: 6 },
+        SUSD: { addr: '0x57Ab1ec28D129707052df4dF418D58a2D46d5f51', decimals: 18 },
+        TUSD: { addr: '0x0000000000085d4780B73119b644AE5ecd22b376', decimals: 18 },
+        BUSD: { addr: '0x4Fabb145d64652a948d72533023f6E7A623C7C53', decimals: 18 },
+        WBTC: { addr: '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', decimals: 8 },
+        LINK: { addr: '0x514910771AF9Ca656af840dff83E8264EcF986CA', decimals: 18 },
+        MKR:  { addr: '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2', decimals: 18 },
+        KNC:  { addr: '0xdd974D5C2e2928deA5F71b9825b8b646686BD200', decimals: 18 },
+        LEND: { addr: '0x80fB784B7eD66730e8b1DBd9820aFD29931aab03', decimals: 18 },
+        BAT:  { addr: '0x0D8775F648430679A709E98d2b0Cb6250d2887EF', decimals: 18 },
+        ZRX:  { addr: '0xE41d2489571d322189246DaFA5ebDe1F4699F498', decimals: 18 },
+        SNX:  { addr: '0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F', decimals: 18 },
+        MANA: { addr: '0x0F5D2fB29fb7d3CFeE444a200298f468908cC942', decimals: 18 },
+        REP:  { addr: '0x1985365e9f78359a9B6AD760e32412f4a445E862', decimals: 18 },
+        ETH:  { addr: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', decimals: 18 },
+      },
+    },
+  },
   augur_v1: {
     name: 'Augur v1',
     desc: 'Augur launched in July 2018 as Ethereum\'s first decentralized prediction market protocol. Users could create markets on real-world events, trade outcome shares, and earn fees as market creators. The protocol migrated to v2 in August 2020, but 771 ETH remains locked in the original Cash contract backing unfilled orders, unclaimed market creator fees, and unredeemed winning shares.',
@@ -2323,29 +2344,6 @@ async function connectWallet() {
     return;
   }
 
-  // ── Test Mode: simulate wallet connection without MetaMask ──
-  if (TEST_MODE) {
-    walletAddress = TEST_ADDRESS;
-    walletProvider = 'test';
-    walletSigner = 'test';
-
-    document.getElementById('walletBtn').textContent = 'Disconnect';
-    document.getElementById('walletBtn').classList.add('connected');
-    document.getElementById('walletAddr').textContent = truncAddr(walletAddress) + ' [TEST]';
-    document.getElementById('connectCta').style.display = 'none';
-
-    const banner = document.getElementById('claimBanner');
-    const rowsEl = document.getElementById('claimRows');
-    document.getElementById('claimBannerTitle').textContent = '';
-    banner.classList.remove('celebrate');
-    rowsEl.innerHTML = spinnerHTML('Checking contracts... 0/' + Object.keys(EXCHANGES).length);
-    banner.classList.add('visible');
-    scanStart();
-
-    try { await checkUserBalances(); } catch(e) { console.error('Balance check failed:', e); }
-    return;
-  }
-
   try {
     // Show wallet picker (skip if only one browser wallet — connect directly)
     const providers = window._eip6963Providers || [];
@@ -2438,11 +2436,9 @@ async function checkUserBalances(overrideAddress) {
   if (!walletAddress || !walletProvider) return;
   const checkAddr = overrideAddress || walletAddress;
 
-  // ── Test Mode: return fake balances instantly ──
-  if (TEST_MODE) {
-    await _testCheckBalances();
-    return;
-  }
+  // ── Test Mode: use real API with impersonated address ──
+  // Set impersonation address for test mode simulation buttons
+  if (TEST_MODE) _testImpersonateAddr = (checkAddr || walletAddress || '').toLowerCase();
 
   window.va?.track?.('address_checked', { method: 'wallet' });
   logEvent('check', { address: walletAddress });
@@ -2536,6 +2532,44 @@ async function checkUserBalances(overrideAddress) {
         window._neufundLockedState[key] = { neuDue, neuBal, neuAllowance, ethTBal, unlockDate };
       } catch (e) {
         console.warn('Failed to check Neufund locked state:', e);
+      }
+    }
+  }
+
+  // Check Aave v1 debt state (borrows that block redeem)
+  window._aaveV1DebtState = {};
+  for (const { key, balance } of balanceResults) {
+    const cfg = EXCHANGES[key];
+    if (cfg.aaveV1Repay && balance > 0n && walletProvider) {
+      try {
+        const lp = new ethers.Contract(cfg.aaveV1Repay.lendingPool, [
+          'function getUserAccountData(address) view returns (uint256,uint256,uint256,uint256,uint256,uint256)',
+          'function getUserReserveData(address,address) view returns (uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,bool)'
+        ], walletProvider);
+        const acctData = await lp.getUserAccountData(checkAddr);
+        const totalBorrowsETH = acctData[2];
+        if (totalBorrowsETH > 0n) {
+          // Has debt — check each reserve to find which tokens are borrowed
+          const debts = {};
+          for (const [sym, info] of Object.entries(cfg.aaveV1Repay.tokens)) {
+            try {
+              const reserveAddr = info.addr;
+              const rd = await lp.getUserReserveData(reserveAddr, checkAddr);
+              const currentBorrow = rd[1];
+              const originationFee = rd[6];
+              const totalOwed = currentBorrow + originationFee;
+              if (totalOwed > 0n) {
+                debts[sym] = { amount: totalOwed, decimals: info.decimals, addr: info.addr };
+              }
+            } catch {}
+          }
+          window._aaveV1DebtState[key] = { hasDebt: Object.keys(debts).length > 0, debts };
+        } else {
+          window._aaveV1DebtState[key] = { hasDebt: false };
+        }
+      } catch (e) {
+        console.warn('Failed to check Aave v1 debt:', e);
+        window._aaveV1DebtState[key] = { hasDebt: false };
       }
     }
   }
@@ -2750,6 +2784,46 @@ async function checkUserBalances(overrideAddress) {
                 <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text)">refund()</span></span></div>
               </div>
               ${stepInfo}
+              <div class="claim-card-actions">
+                ${actionBtn}
+              </div>
+              <div class="claim-card-status" id="claimStatus-${key}"></div>
+            </div>`;
+        } else if (cfg.aaveV1Repay) {
+          // Aave v1: conditional 2-step (repay debt if any, then redeem aETH)
+          const aaveDebt = window._aaveV1DebtState?.[key];
+          let actionBtn, stepInfo;
+
+          if (!aaveDebt || !aaveDebt.hasDebt) {
+            // No debt: normal single-step redeem
+            actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="claim-eth" data-key="${key}">Redeem aETH</button>`;
+            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:var(--green)">Ready</span><span class="claim-card-meta-value" style="color:var(--green)">No outstanding borrows. Redeem directly.</span></div>`;
+          } else {
+            // Has debt: show repay step first
+            const debtEntries = Object.entries(aaveDebt.debts);
+            const debtSummary = debtEntries.map(([sym, d]) => {
+              const fmt = ethers.formatUnits(d.amount, d.decimals);
+              return parseFloat(fmt).toFixed(sym === 'WBTC' ? 6 : sym === 'USDC' || sym === 'USDT' ? 2 : 4) + ' ' + sym;
+            }).join(', ');
+            const [firstSym] = debtEntries[0];
+
+            actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="aave-repay" data-key="${key}" data-token="${firstSym}">Step 1: Repay ${esc(debtSummary)}</button><button class="claim-btn" disabled style="opacity:0.35">Step 2: Redeem aETH</button>`;
+            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:#facc15">Debt</span><span class="claim-card-meta-value" style="color:#facc15">Repay ${esc(debtSummary)} to unlock aETH redemption.</span></div>`;
+          }
+          const lastTx = apiBalances[key]?.last_tx_date ? apiBalances[key] : null;
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
+              </div>
+              <div class="claim-card-meta" id="claimDetails-${key}">
+                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${esc(lastTx.last_tx_date)} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">aETH Token</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text)">repay(reserve, amount)</span></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text)">redeem(balance)</span></span></div>
+                ${stepInfo}
+              </div>
               <div class="claim-card-actions">
                 ${actionBtn}
               </div>
@@ -3916,6 +3990,240 @@ async function neufundWithdrawEthT(key) {
   }
 }
 
+// ─── Aave v1 (2-step: repay debt + redeem aETH) ───
+
+async function aaveV1Repay(key, tokenSymbol) {
+  const cfg = EXCHANGES[key];
+  const btn = document.getElementById('claimBtn-' + key);
+  const statusEl = document.getElementById('claimStatus-' + key);
+  const debtState = window._aaveV1DebtState?.[key];
+  if (!debtState?.hasDebt) return;
+
+  const debtInfo = debtState.debts[tokenSymbol];
+  if (!debtInfo) return;
+
+  const isEthDebt = tokenSymbol === 'ETH';
+
+  // Test mode: simulate full approve → repay → redeem bundle via Tenderly
+  if (TEST_MODE && _testImpersonateAddr) {
+    btn.disabled = true;
+    btn.textContent = 'Simulating bundle...';
+    btn.classList.add('pending');
+    statusEl.textContent = 'Simulating approve → repay → redeem as ' + _testImpersonateAddr.slice(0, 10) + '...';
+
+    var repayIface = new ethers.Interface(['function repay(address reserve, uint256 amount, address onBehalfOf) payable']);
+    var redeemIface = new ethers.Interface([cfg.withdrawAbi]);
+    var balance = userBalances[key] || 0n;
+    var txs = [];
+    // Known balanceOf storage slots for common ERC20s (slot used in keccak256(addr, slot))
+    // Known balanceOf storage slots: keccak256(abi.encode(address, slot)) → balance
+    // DAI=2, USDC=9, USDT=2, LINK=1, BAT=1, MKR=3, ZRX=0, KNC=0, LEND=0, MANA=0, REP=0
+    // Proxy tokens (sUSD, SNX, TUSD, BUSD) may not work — balanceOf is on external state contract
+    var TOKEN_BALANCE_SLOTS = { DAI: 2, USDC: 9, USDT: 2, WBTC: 0, LINK: 1, MKR: 3, KNC: 0, LEND: 0, BAT: 1, ZRX: 0, MANA: 0, REP: 0 };
+
+    if (isEthDebt) {
+      // ETH debt: repay (with ETH value) → redeem
+      txs.push({
+        label: 'repay ETH',
+        from: _testImpersonateAddr,
+        to: cfg.aaveV1Repay.lendingPool,
+        data: repayIface.encodeFunctionData('repay', [cfg.aaveV1Repay.ethSentinel, ethers.MaxUint256, _testImpersonateAddr]),
+        value: (debtInfo.amount * 101n / 100n).toString(),
+      });
+    } else {
+      // ERC20 debt: approve → repay with token balance override
+      var approveIface = new ethers.Interface(['function approve(address spender, uint256 amount) returns (bool)']);
+      txs.push({
+        label: 'approve ' + tokenSymbol,
+        from: _testImpersonateAddr,
+        to: debtInfo.addr,
+        data: approveIface.encodeFunctionData('approve', [cfg.aaveV1Repay.lendingPoolCore, ethers.MaxUint256]),
+      });
+      txs.push({
+        label: 'repay ' + tokenSymbol,
+        from: _testImpersonateAddr,
+        to: cfg.aaveV1Repay.lendingPool,
+        data: repayIface.encodeFunctionData('repay', [debtInfo.addr, ethers.MaxUint256, _testImpersonateAddr]),
+      });
+    }
+
+    // Final step: redeem aETH
+    txs.push({
+      label: 'redeem aETH',
+      from: _testImpersonateAddr,
+      to: cfg.contract,
+      data: redeemIface.encodeFunctionData(cfg.withdrawCall, cfg.withdrawArgs(balance, _testImpersonateAddr)),
+      recipient: _testImpersonateAddr,
+    });
+
+    try {
+      var resp = await fetch('/api/simulate-bundle', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          transactions: txs,
+          stateOverrides: (function() {
+            var ov = { [_testImpersonateAddr]: { balance: '0x' + (10n ** 20n).toString(16) } };
+            // Override ERC20 token balance if we know the storage slot
+            if (!isEthDebt && TOKEN_BALANCE_SLOTS[tokenSymbol] !== undefined) {
+              var slot = TOKEN_BALANCE_SLOTS[tokenSymbol];
+              var paddedAddr = _testImpersonateAddr.toLowerCase().replace('0x', '').padStart(64, '0');
+              var paddedSlot = slot.toString(16).padStart(64, '0');
+              var storageKey = ethers.keccak256('0x' + paddedAddr + paddedSlot);
+              var hugeVal = '0x' + (10n ** 24n).toString(16).padStart(64, '0');
+              ov[debtInfo.addr] = { stateDiff: { [storageKey]: hugeVal } };
+            }
+            return ov;
+          })(),
+        }),
+      });
+      var result = await resp.json();
+    } catch (e) {
+      var result = { success: false, error: e.message };
+    }
+
+    var steps = (result.results || []).map(function(r) { return r.label + ': ' + (r.success ? '✓' : '✗'); }).join(' → ');
+    btn.classList.remove('pending');
+    btn.removeAttribute('id');
+
+    if (result.success) {
+      var lastResult = result.results[result.results.length - 1];
+      var ethReceived = lastResult.ethReceived || 0;
+      btn.textContent = 'ALL STEPS OK';
+      btn.style.background = 'var(--green)';
+      btn.style.opacity = '0.35';
+      var step2Btn = btn.nextElementSibling;
+      if (step2Btn) { step2Btn.textContent = 'Redeem: SIM OK'; step2Btn.style.background = 'var(--green)'; step2Btn.style.opacity = '0.35'; step2Btn.disabled = true; }
+      statusEl.innerHTML = '<div class="claim-recovered"><div class="claim-recovered-label" style="color:var(--green)">Bundle Simulation Passed</div><div style="font-size:11px;color:var(--text2);margin-top:4px">' + esc(steps) + '</div>' + (ethReceived > 0 ? '<div class="claim-recovered-amount">' + fmtEth(ethReceived) + ' ETH</div>' : '') + '</div>';
+    } else {
+      var failedStep = (result.results || []).find(function(r) { return !r.success; });
+      var isRepayFail = failedStep && failedStep.label.startsWith('repay ');
+      btn.textContent = isRepayFail ? 'REPAY NEEDS TOKEN' : 'SIM FAIL';
+      btn.style.background = isRepayFail ? '#facc15' : '#ef4444';
+      btn.style.opacity = '0.5';
+      if (isRepayFail && !isEthDebt) {
+        statusEl.innerHTML = '<div style="font-size:11px"><span style="color:#facc15">[TEST] ' + esc(steps) + '</span><br><span style="color:var(--text2)">Address doesn\'t hold ' + esc(tokenSymbol) + '. User must hold the repay token. Redeem untestable until debt is cleared.</span></div>';
+      } else {
+        statusEl.innerHTML = '<span style="color:#ef4444">[TEST] ' + esc(steps || result.error || 'Unknown error') + '</span>';
+      }
+    }
+    return;
+  }
+
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+  if (!walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+
+  btn.disabled = true;
+  btn.classList.add('pending');
+
+  try {
+    const lp = new ethers.Contract(
+      cfg.aaveV1Repay.lendingPool,
+      ['function repay(address reserve, uint256 amount, address onBehalfOf) payable'],
+      walletSigner
+    );
+
+    if (isEthDebt) {
+      // ETH debt: send ETH with the repay call (add 1% buffer for accrued interest)
+      btn.textContent = 'Repaying ETH debt...';
+      const repayValue = debtInfo.amount * 101n / 100n;
+      const tx = await lp.repay(cfg.aaveV1Repay.ethSentinel, ethers.MaxUint256, walletAddress, { value: repayValue });
+      statusEl.textContent = 'Waiting for confirmation...';
+      await tx.wait();
+    } else {
+      // ERC20 debt: check balance, approve to LendingPoolCore, then repay
+      const tokenContract = new ethers.Contract(
+        debtInfo.addr,
+        ['function approve(address,uint256) returns (bool)', 'function balanceOf(address) view returns (uint256)', 'function allowance(address,address) view returns (uint256)'],
+        walletSigner
+      );
+
+      // Check user has enough tokens
+      btn.textContent = 'Checking ' + tokenSymbol + ' balance...';
+      const tokenBal = await tokenContract.balanceOf(walletAddress);
+      if (tokenBal < debtInfo.amount) {
+        const needed = parseFloat(ethers.formatUnits(debtInfo.amount, debtInfo.decimals)).toFixed(4);
+        const has = parseFloat(ethers.formatUnits(tokenBal, debtInfo.decimals)).toFixed(4);
+        statusEl.innerHTML = `<span style="color:var(--red)">Insufficient ${esc(tokenSymbol)}. Need ~${needed}, have ${has}.</span>`;
+        btn.disabled = false; btn.textContent = 'Step 1: Repay'; btn.classList.remove('pending');
+        return;
+      }
+
+      // Approve LendingPoolCore to spend the token
+      const currentAllowance = await tokenContract.allowance(walletAddress, cfg.aaveV1Repay.lendingPoolCore);
+      if (currentAllowance < debtInfo.amount) {
+        btn.textContent = 'Approving ' + tokenSymbol + '...';
+        const approveTx = await tokenContract.approve(cfg.aaveV1Repay.lendingPoolCore, ethers.MaxUint256);
+        statusEl.textContent = 'Approving ' + tokenSymbol + '...';
+        await approveTx.wait();
+      }
+
+      // Repay
+      btn.textContent = 'Repaying ' + tokenSymbol + '...';
+      const tx = await lp.repay(debtInfo.addr, ethers.MaxUint256, walletAddress);
+      statusEl.textContent = 'Waiting for confirmation...';
+      await tx.wait();
+    }
+
+    // Check if more debts remain
+    delete debtState.debts[tokenSymbol];
+    const remaining = Object.entries(debtState.debts);
+
+    if (remaining.length > 0) {
+      // More debts to repay before redeem
+      const [nextSym, nextDebt] = remaining[0];
+      const fmtAmt = parseFloat(ethers.formatUnits(nextDebt.amount, nextDebt.decimals)).toFixed(4);
+      btn.textContent = 'Repaid ' + tokenSymbol;
+      btn.classList.remove('pending');
+      btn.disabled = true;
+      btn.style.opacity = '0.35';
+      btn.removeAttribute('id');
+      const step2Btn = btn.nextElementSibling;
+      if (step2Btn) {
+        step2Btn.disabled = false;
+        step2Btn.style.opacity = '1';
+        step2Btn.id = 'claimBtn-' + key;
+        step2Btn.dataset.action = 'aave-repay';
+        step2Btn.dataset.key = key;
+        step2Btn.dataset.token = nextSym;
+        step2Btn.textContent = 'Next: Repay ' + fmtAmt + ' ' + nextSym;
+      }
+      statusEl.innerHTML = `<span style="color:#facc15">${esc(tokenSymbol)} repaid. ${remaining.length} debt(s) remaining.</span>`;
+    } else {
+      // All debt cleared — enable redeem
+      btn.textContent = 'Step 1: Repaid';
+      btn.classList.remove('pending');
+      btn.disabled = true;
+      btn.style.opacity = '0.35';
+      btn.removeAttribute('id');
+      const step2Btn = btn.nextElementSibling;
+      if (step2Btn) {
+        step2Btn.disabled = false;
+        step2Btn.style.opacity = '1';
+        step2Btn.id = 'claimBtn-' + key;
+        step2Btn.dataset.action = 'claim-eth';
+        step2Btn.dataset.key = key;
+        step2Btn.textContent = 'Step 2: Redeem aETH';
+      }
+      statusEl.innerHTML = '<span style="color:var(--green)">Debt repaid. Click Step 2 to redeem aETH for ETH.</span>';
+      window._aaveV1DebtState[key] = { hasDebt: false };
+    }
+
+    window.va?.track?.('aave_repay_confirmed', { exchange: cfg.name, token: tokenSymbol });
+
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Step 1: Repay';
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      statusEl.textContent = 'Rejected';
+    } else {
+      console.error('Aave repay error:', e.message);
+      statusEl.textContent = 'Repay failed: ' + (e.reason || 'Unknown error');
+    }
+  }
+}
+
 // ─── PoWH3D Exit (sell tokens + withdraw) ───
 
 async function claimExit(key) {
@@ -4025,6 +4333,8 @@ async function _testSimulateBtn(btn, statusKey, fromAddr, toAddr, iface, funcNam
       btn.style.background = result.balanceVerified === false ? '#f59e0b' : 'var(--green)';
       btn.style.opacity = '0.7';
       if (statusEl) statusEl.innerHTML = _fmtSimResult(result, successMsg) + '<div style="font-size:10px;color:#d946ef;margin-top:2px">[TEST MODE]</div>';
+      var simEth = result.ethReceived || expectedEth || 0;
+      if (simEth >= 0.1) showDonationModal(simEth);
     } else {
       btn.textContent = 'SIM FAIL';
       btn.classList.remove('pending');
@@ -4364,7 +4674,6 @@ async function ensManualRelease() {
     var _addrEl = document.getElementById('addrError'); if (_addrEl) _addrEl.style.color = 'var(--text2)';
     var receipt = await tx.wait();
     var deedName = /^0x/.test(input) ? null : input.toLowerCase().replace(/\.eth$/, '');
-    var deedEth = 0; try { deedEth = parseFloat(btn.dataset.eth || '0'); } catch(_){}
     logEvent('claim_confirmed', { address: walletAddress, contract: 'ens_old', amount_eth: deedEth, tx_hash: tx.hash, block_num: receipt.blockNumber, extra: { deed_name: deedName, deed_hash: labelHash } });
     if (_addrEl) { _addrEl.textContent = 'Deed released successfully! ETH has been returned to your wallet.'; _addrEl.style.color = 'var(--green)'; }
     setTimeout(function() { if (_addrEl) { _addrEl.style.display = 'none'; _addrEl.style.color = 'var(--red)'; } }, 10000);
@@ -4479,15 +4788,24 @@ async function fetchTable(key) {
 
 async function loadExchange(key) {
   const cfg = EXCHANGES[key];
-  try {
-    const result = await fetchTable(key);
-    tabState[key].meta = result.meta;
-    tabState[key].rows = result.rows;
-    tabState[key].pagination = result.pagination;
-  } catch(e) {
-    document.getElementById('loading-' + key).innerHTML =
-      `<p style="color:var(--text2)">Data not available yet for ${esc(cfg.name)}.<br>Run the scanner first, then reload.</p>`;
-    return;
+  var retries = 3;
+  while (retries > 0) {
+    try {
+      const result = await fetchTable(key);
+      tabState[key].meta = result.meta;
+      tabState[key].rows = result.rows;
+      tabState[key].pagination = result.pagination;
+      break;
+    } catch(e) {
+      retries--;
+      if (retries > 0) {
+        await new Promise(r => setTimeout(r, 1500));
+      } else {
+        document.getElementById('loading-' + key).innerHTML =
+          `<p style="color:var(--text2)">Could not load data for ${esc(cfg.name)}. <a href="javascript:void(0)" onclick="loadExchange('${key}')" style="color:var(--accent)">Retry</a></p>`;
+        return;
+      }
+    }
   }
   document.getElementById('loading-' + key).style.display = 'none';
   document.getElementById('app-' + key).style.display = '';
@@ -4996,117 +5314,7 @@ async function connectWalletForManual() {
 
 // ─── Test Mode Helper Functions ───
 
-function _testFakeTxHash() {
-  const hex = '0123456789abcdef';
-  let hash = '0x';
-  for (let i = 0; i < 64; i++) hash += hex[Math.floor(Math.random() * 16)];
-  return hash;
-}
-
-async function _testCheckBalances() {
-  const banner = document.getElementById('claimBanner');
-  const rowsEl = document.getElementById('claimRows');
-
-  // Simulate a brief loading delay (feels realistic)
-  await new Promise(r => setTimeout(r, 800));
-
-  let html = '';
-  let hasBalance = false;
-
-  for (const [key, cfg] of Object.entries(EXCHANGES)) {
-    const testData = TEST_BALANCES[key];
-    const balance = testData ? testData.wei : 0n;
-    userBalances[key] = balance;
-
-    if (balance > 0n) {
-      hasBalance = true;
-      const ethAmount = ethers.formatEther(balance);
-
-      if (cfg.digixBurn) {
-        // 2-step: approve DGD → burn
-        window._digixState = window._digixState || {};
-        window._digixState[key] = { dgdBal: balance, dgdAllowance: 0n };
-        html += `
-          <div class="claim-card">
-            <div class="claim-card-header">
-              <span class="claim-card-name">${esc(cfg.name)}</span>
-              <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
-            </div>
-            <div class="claim-card-meta" id="claimDetails-${key}">
-              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.digixBurn.acidContract)}" target="_blank" rel="noopener noreferrer">${cfg.digixBurn.acidContract}</a></span></div>
-              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text)">approve(Acid, balance)</span></span></div>
-              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text)">burn()</span></span></div>
-              <div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:#facc15">Note</span><span class="claim-card-meta-value">Burns ALL DGD at once.</span></div>
-            </div>
-            <div class="claim-card-actions">
-              <button class="claim-btn" id="claimBtn-${key}" data-action="digix-approve" data-key="${key}">Step 1: Approve DGD</button><button class="claim-btn" disabled style="opacity:0.35">Step 2: Claim ETH</button>
-            </div>
-            <div class="claim-card-status" id="claimStatus-${key}"></div>
-          </div>`;
-      } else if (cfg.daoWithdraw) {
-        // 2-step: approve DAO → withdraw
-        window._daoState = window._daoState || {};
-        window._daoState[key] = { daoBal: balance, daoAllowance: 0n };
-        html += `
-          <div class="claim-card">
-            <div class="claim-card-header">
-              <span class="claim-card-name">${esc(cfg.name)}</span>
-              <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
-            </div>
-            <div class="claim-card-meta" id="claimDetails-${key}">
-              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.daoWithdraw.withdrawContract)}" target="_blank" rel="noopener noreferrer">${cfg.daoWithdraw.withdrawContract}</a></span></div>
-              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text)">approve(WithdrawDAO, balance)</span></span></div>
-              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text)">withdraw()</span></span></div>
-              <div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:#facc15">Note</span><span class="claim-card-meta-value">Withdraws ALL DAO tokens at once.</span></div>
-            </div>
-            <div class="claim-card-actions">
-              <button class="claim-btn" id="claimBtn-${key}" data-action="dao-approve" data-key="${key}">Step 1: Approve DAO</button><button class="claim-btn" disabled style="opacity:0.35">Step 2: Claim ETH</button>
-            </div>
-            <div class="claim-card-status" id="claimStatus-${key}"></div>
-          </div>`;
-      } else {
-        const wArgs = cfg.withdrawArgs ? cfg.withdrawArgs(balance, walletAddress) : [];
-        const argsDisplay = wArgs.length > 0 ? wArgs.map(a => typeof a === 'bigint' ? a.toString() + ' wei (' + ethers.formatEther(a) + ' ETH)' : String(a)).join(', ') : 'none';
-        const funcSig = cfg.withdrawAbi ? cfg.withdrawAbi.replace('function ', '') : '';
-        const exitBtn2 = cfg.exitAbi ? `<button class="claim-btn" id="exitBtn-${key}" data-action="claim-exit" data-key="${key}" style="background:var(--text2)">Exit (sell + withdraw)</button>` : '';
-        html += `
-          <div class="claim-card">
-            <div class="claim-card-header">
-              <span class="claim-card-name">${esc(cfg.name)}</span>
-              <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
-            </div>
-            <div class="claim-card-meta" id="claimDetails-${key}">
-              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
-              <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">${esc(funcSig)}${cfg.exitAbi ? ' / ' + cfg.exitAbi.replace('function ', '') : ''}</span></div>
-            </div>
-            <div class="claim-card-actions">
-              <button class="claim-btn" id="claimBtn-${key}" data-action="claim-eth" data-key="${key}">Withdraw</button>${exitBtn2}
-            </div>
-            <div class="claim-card-status" id="claimStatus-${key}"></div>
-          </div>`;
-      }
-    }
-  }
-
-  const ethPrice = await getEthPrice();
-  if (hasBalance) {
-    let totalEth = 0;
-    for (const b of Object.values(userBalances)) { if (b > 0n) totalEth += parseFloat(ethers.formatEther(b)); }
-    const usdStr = ethPrice ? fmtUsd(totalEth * ethPrice) : '';
-    const claimCount = Object.values(userBalances).filter(b => b > 0n).length;
-    const prefix = `<div class="claim-hero">
-      <div class="claim-hero-amount">${fmtEth(totalEth)} ETH</div>
-      ${usdStr ? '<div class="claim-hero-usd">' + usdStr + '</div>' : ''}
-      <div class="claim-hero-contracts">${claimCount} contract${claimCount > 1 ? 's' : ''}</div>
-    </div>`;
-    html = prefix + '<div class="claim-rows-list">' + html + '</div>';
-    document.getElementById('claimBannerTitle').textContent = 'Claimable ETH Found';
-    banner.classList.add('celebrate');
-  }
-
-  rowsEl.innerHTML = html;
-  banner.classList.add('visible');
-}
+// _testCheckBalances and _testFakeTxHash removed �� test mode uses real API flow
 
 async function _testClaimETH(key, cfg, btn, statusEl, balance) {
   // Test mode: simulate the real withdrawal call via Tenderly
@@ -5155,19 +5363,33 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
 
 // Lightweight init: fetch total first, then badge data for all tabs
 (async () => {
-  // Fetch pre-computed total immediately (single fast request)
+  // Fetch pre-computed total immediately (single fast request, retry once on failure)
+  var totalData = null;
+  for (var _attempt = 0; _attempt < 2 && !totalData; _attempt++) {
+    try {
+      var totalResp = await fetch('/api/total');
+      if (totalResp.ok) totalData = await totalResp.json();
+      else if (_attempt === 0) await new Promise(r => setTimeout(r, 1500));
+    } catch { if (_attempt === 0) await new Promise(r => setTimeout(r, 1500)); }
+  }
+  // Fallback: use values baked into the page if API is unreachable
+  // Fallback: try static total.json file directly (served from CDN, no serverless)
+  if (!totalData) {
+    try {
+      var _fallbackResp = await fetch('/data/total.json');
+      if (_fallbackResp.ok) totalData = await _fallbackResp.json();
+    } catch(e) {}
+  }
+  if (!totalData) totalData = { total_eth: 160658, contract_count: 119, eth_claimed: 1142 };
   try {
-    const totalResp = await fetch('/api/total');
-    if (totalResp.ok) {
-      const totalData = await totalResp.json();
-      const totalEthVal = Math.round(totalData.total_eth);
+      var totalEthVal = Math.round(totalData.total_eth);
       const contractCount = totalData.contract_count || Object.keys(EXCHANGES).length;
       document.querySelectorAll('.contract-count').forEach(function(el) { el.textContent = contractCount; });
       getEthPrice();
 
-      // Peak = current tracked + already claimed (stays ~constant as claims happen)
+      // Peak is a stable high-water mark — only increases when new protocols are added
       var ethClaimed = totalData.eth_claimed || 0;
-      var PEAK_ETH = Math.round((totalData.total_eth || 0) + ethClaimed);
+      var PEAK_ETH = Math.round(totalData.peak_eth || ((totalData.total_eth || 0) + ethClaimed));
       animateCount('totalAllEth', PEAK_ETH, '.hero-eth-value');
       animateCount('totalContracts', contractCount);
       setTimeout(function() { var c = document.querySelector('.hero-cursor'); if (c) c.style.display = 'none'; }, 1500);
@@ -5209,7 +5431,6 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
 
         document.getElementById('heroProgress').style.display = '';
       }
-    }
   } catch(e) {}
 
   // Fetch all badge data in a single request instead of ~76 parallel calls
@@ -5384,6 +5605,8 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     neufundApproveAndUnlock(btn.dataset.key);
   } else if (action === 'neufund-withdraw-etht') {
     neufundWithdrawEthT(btn.dataset.key);
+  } else if (action === 'aave-repay') {
+    aaveV1Repay(btn.dataset.key, btn.dataset.token);
   } else if (action === 'kyber-claim-epoch') {
     kyberClaimEpoch(btn.dataset.key, parseInt(btn.dataset.epoch), btn);
   } else if (action === 'augur-mailbox') {
@@ -5408,7 +5631,26 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     var input = document.getElementById('donationAmt');
     var val = input ? parseFloat(input.value) : parseFloat(btn.dataset.amt || '0');
     if (!val || val <= 0) return;
-    sendDonation(ethers.parseEther(val.toFixed(6)));
+    // In test mode without wallet, connect one for the donation
+    if (!walletSigner && window.ethereum) {
+      (async function() {
+        try {
+          var provider = new ethers.BrowserProvider(window.ethereum);
+          await provider.send('eth_requestAccounts', []);
+          walletSigner = await provider.getSigner();
+          walletAddress = await walletSigner.getAddress();
+          await sendDonation(ethers.parseEther(val.toFixed(6)));
+        } catch(e) {
+          var errEl = btn.closest('.donation-card')?.querySelector('.donation-error');
+          if (errEl) errEl.textContent = e.message || 'Wallet connection failed';
+        }
+      })();
+      return;
+    }
+    sendDonation(ethers.parseEther(val.toFixed(6))).catch(function(e) {
+      var errEl = btn.closest('.donation-card')?.querySelector('.donation-error');
+      if (errEl) errEl.textContent = e.reason || e.message || 'Transaction failed';
+    });
   } else if (action === 'donation-pct') {
     var pct = parseInt(btn.dataset.pct);
     var card = btn.closest('.donation-card');

@@ -3,10 +3,10 @@
   "token_checked": "0x0000000000000000000000000000000000000000",
   "description": "ETH balances in Fractional Art / Tessera SWEEP vault",
   "scan_date": "2026-03-28",
-  "contract_eth_balance": 20.575408,
+  "contract_eth_balance": 20.568303,
   "total_addresses_scanned": 101,
-  "addresses_with_balance": 94,
-  "total_eth_in_balances": 20.58,
+  "addresses_with_balance": 100,
+  "total_eth_in_balances": 20.5729042,
   "coverage_pct": 100.02,
   "distribution": {
     "1-10 ETH": {
@@ -487,7 +487,8 @@
       "address": "0xbe51437cab7360182ac04f64189ce28f6d69f355",
       "balance_wei": "7106338617233400",
       "balance_eth": "0.007106338617233400",
-      "rank": 77
+      "rank": 77,
+      "claimed": true
     },
     {
       "address": "0x186ed723cf010d7de9a4a2489197dfb7ee00f4de",
@@ -633,5 +634,6 @@
       "balance_eth": "0.000000000000000000",
       "rank": 101
     }
-  ]
+  ],
+  "last_event_refresh": "2026-04-04T05:21:16Z"
 }
