@@ -7,6 +7,10 @@
       "destination": "/api-docs.html"
     },
     {
+      "source": "/changelog",
+      "destination": "/changelog.html"
+    },
+    {
       "source": "/protocol/:slug",
       "destination": "/:slug"
     },
@@ -63,6 +67,12 @@
       "memory": 128,
       "maxDuration": 5,
       "includeFiles": "data/protocol_info.json"
+    },
+    "api/dune-webhook.js": {
+      "includeFiles": "data/protocols.json"
+    },
+    "api/quick-scan.js": {
+      "includeFiles": "{data/protocols.json,data/balances/**/*.json}"
     }
   },
   "headers": [

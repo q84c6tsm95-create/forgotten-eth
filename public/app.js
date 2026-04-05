@@ -2230,6 +2230,34 @@ const EXCHANGES = {
       claimTradingProceeds: '0x4334477348222a986fc88a05410aa6b07507872a',
     },
   },
+  ethfinex: {
+    name: 'Ethfinex Trustless',
+    desc: 'Ethfinex Trustless launched in September 2018 as a non-custodial DEX backed by Bitfinex. Users deposited ETH into WrapperLockEth contracts, receiving ETHW tokens for off-chain order matching via the 0x protocol. The platform rebranded to DeversiFi in 2019, then migrated to StarkEx L2 in 2020, and rebranded again to rhino.fi in 2022. The original wrapper contracts are abandoned but fully functional \u2014 all time locks expired years ago, so depositors can withdraw directly without any third-party signature.',
+    category: 'dex',
+    color: '#f59e0b',
+    contract: '0xaA7427D8f17D87a28F5e1ba3aDBB270bAdbe1011',
+    deployed: '2018',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: 'function withdraw(uint256 _value, uint8 v, bytes32 r, bytes32 s, uint256 signatureValidUntilBlock)',
+    withdrawArgs: (amount) => [amount, 0, '0x' + '00'.repeat(32), '0x' + '00'.repeat(32), 99999999],
+    withdrawCall: 'withdraw',
+  },
+  ethfinex_v2: {
+    name: 'Ethfinex Trustless v2',
+    desc: 'Ethfinex Trustless launched in September 2018 as a non-custodial DEX backed by Bitfinex. Users deposited ETH into WrapperLockEth contracts, receiving ETHW tokens for off-chain order matching via the 0x protocol. The platform rebranded to DeversiFi in 2019, then migrated to StarkEx L2 in 2020, and rebranded again to rhino.fi in 2022. The original wrapper contracts are abandoned but fully functional \u2014 all time locks expired years ago, so depositors can withdraw directly without any third-party signature.',
+    category: 'dex',
+    color: '#d97706',
+    contract: '0x50cb61afa3f023d17276dcfb35abf85c710d1cff',
+    deployed: '2019',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: 'function withdraw(uint256 _value, uint8 v, bytes32 r, bytes32 s, uint256 signatureValidUntilBlock)',
+    withdrawArgs: (amount) => [amount, 0, '0x' + '00'.repeat(32), '0x' + '00'.repeat(32), 99999999],
+    withdrawCall: 'withdraw',
+  },
 };
 
 // Per-tab state
@@ -5380,7 +5408,7 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
       if (_fallbackResp.ok) totalData = await _fallbackResp.json();
     } catch(e) {}
   }
-  if (!totalData) totalData = { total_eth: 160658, contract_count: 119, eth_claimed: 1142 };
+  if (!totalData) totalData = { total_eth: 162626, total_contract_eth: 163948, contract_count: 122, eth_claimed: 1145, peak_eth: 163772 };
   try {
       var totalEthVal = Math.round(totalData.total_eth);
       const contractCount = totalData.contract_count || Object.keys(EXCHANGES).length;

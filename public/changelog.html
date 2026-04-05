@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior:smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Changelog — Forgotten ETH</title>
+<meta name="description" content="Protocol additions and notable changes to Forgotten ETH — tracking claimable ETH in defunct smart contracts.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="/theme-init.js"></script>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --bg2: #f0eee9;
+    --bg3: #e5e2db;
+    --border: #d4d0c8;
+    --border-strong: #b8b3a8;
+    --text: #1a1a1a;
+    --text2: #6b6560;
+    --accent: #0f766e;
+    --accent2: #0d6560;
+    --accent-text: #0f766e;
+    --accent-glow: rgba(15, 118, 110, 0.15);
+    --green: #16a34a;
+    --green-glow: transparent;
+    --gold: #b45309;
+    --gold-glow: rgba(180, 83, 9, 0.3);
+    --red: #dc2626;
+    --yellow: #ca8a04;
+    --orange: #c2410c;
+    --glass: #f0eee9;
+    --glass-border: #d4d0c8;
+    --radius: 3px;
+    --radius-sm: 2px;
+    --radius-lg: 6px;
+    --connect-bg: rgba(15, 118, 110, 0.06);
+    --connect-border: rgba(15, 118, 110, 0.20);
+    --font-display: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+    --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  }
+
+  [data-theme="dark"] {
+    --bg: #12111a;
+    --bg2: #1a1924;
+    --bg3: #23212e;
+    --border: #2d2a3a;
+    --border-strong: #3d3950;
+    --text: #d4d0de;
+    --text2: #7d7890;
+    --accent: #7ec8be;
+    --accent2: #a3ddd5;
+    --accent-text: #7ec8be;
+    --accent-glow: rgba(126, 200, 190, 0.12);
+    --green: #6bc9a0;
+    --green-glow: transparent;
+    --gold: #d4a96a;
+    --gold-glow: rgba(212, 169, 106, 0.3);
+    --red: #d47b7b;
+    --yellow: #d4a96a;
+    --orange: #d49a6a;
+    --glass: #1a1924;
+    --glass-border: #2d2a3a;
+    --connect-bg: rgba(126, 200, 190, 0.04);
+    --connect-border: rgba(126, 200, 190, 0.12);
+  }
+  /* ── Corrupt Light theme ── */
+  [data-theme="corrupt-light"] {
+    --bg: #faf9f7; --bg2: #f0eee9; --bg3: #e5e2db;
+    --border: #d4d0c8; --border-strong: #b8b3a8;
+    --text: #1a1a1a; --text2: #6b6560;
+    --accent: #ff0066; --accent2: #ff3388; --accent-text: #ff0066;
+    --accent-glow: rgba(255,0,102,0.15);
+    --green: #16a34a; --green-glow: transparent;
+    --gold: #b45309; --gold-glow: rgba(180,83,9,0.3);
+    --red: #dc2626; --yellow: #ca8a04; --orange: #c2410c;
+    --glass: #f0eee9; --glass-border: #d4d0c8;
+    --connect-bg: rgba(255,0,102,0.04); --connect-border: rgba(255,0,102,0.15);
+  }
+  /* ── Corrupt Dark theme ── */
+  [data-theme="corrupt-dark"] {
+    --bg: #030805; --bg2: #071209; --bg3: #0c1c12;
+    --border: #163020; --border-strong: #20442e;
+    --text: #00ff41; --text2: #00aa2a;
+    --accent: #ff0066; --accent2: #ff3388; --accent-text: #ff0066;
+    --accent-glow: rgba(255,0,102,0.2);
+    --green: #00ff41; --green-glow: rgba(0,255,65,0.15);
+    --gold: #ffcc00; --gold-glow: rgba(255,204,0,0.3);
+    --red: #ff3333; --yellow: #ffcc00; --orange: #ff8833;
+    --glass: #071209; --glass-border: #163020;
+    --connect-bg: rgba(0,255,65,0.03); --connect-border: rgba(0,255,65,0.12);
+  }
+  /* Corrupt overrides (shared by both corrupt themes) */
+  [data-theme^="corrupt"] body { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+  [data-theme^="corrupt"] a:hover { color: #ff0066; text-shadow: 0 0 8px rgba(255,0,102,0.5); }
+  [data-theme^="corrupt"] .header h1 { text-shadow: 3px 0 #ff0066, -3px 0 #00ffff, 0 0 10px rgba(0,255,65,0.4); animation: glitchTitle 3s infinite; }
+  [data-theme^="corrupt"] .subtitle { text-shadow: 1px 0 #ff006640, -1px 0 #00ffff40; animation: glitchSubtle 5s infinite; }
+  [data-theme^="corrupt"] .endpoint { border-left-color: #ff0066; }
+  [data-theme^="corrupt"] .endpoint:hover { box-shadow: 3px 3px 0 #ff0066, -2px -2px 0 #00ffff; }
+  [data-theme^="corrupt"] .method { background: #ff0066; }
+  [data-theme^="corrupt"] .try-it button { border-color: #ff0066; color: #ff0066; }
+  [data-theme^="corrupt"] .try-it button:hover { background: #ff0066; color: #fff; }
+  [data-theme^="corrupt"] .note { border-left-color: #ff0066; }
+  .corrupt-btn { background: none; border: none; cursor: pointer; font-family: var(--font-mono); font-size: 14px; color: #ff0066; padding: 0; letter-spacing: 0.5px; text-shadow: 1px 0 #ff006640, -1px 0 #00ffff40; animation: corruptBtnGlitch 4s infinite; }
+  .corrupt-btn:hover { text-shadow: 2px 0 #ff0066, -2px 0 #00ffff; }
+  @keyframes corruptBtnGlitch { 0%,88%,100%{transform:none;text-shadow:1px 0 #ff006640,-1px 0 #00ffff40}89%{transform:translateX(-1px);text-shadow:2px 0 #ff0066,-2px 0 #00ffff}90%{transform:translateX(1px) skewX(-2deg);text-shadow:-1px 0 #ff0066,1px 0 #00ffff}91%{transform:none;text-shadow:1px 0 #ff006640,-1px 0 #00ffff40} }
+  [data-theme^="corrupt"] #corruptToggle { color: #ff0066 !important; text-shadow: 0 0 8px rgba(255,0,102,0.5); }
+  /* Corrupt-light: darken neon accents */
+  [data-theme="corrupt-light"] .header h1 { text-shadow: 3px 0 #ff0066, -3px 0 #0088aa, 0 0 10px rgba(255,0,102,0.3); }
+  /* CRT scanlines */
+  [data-theme="corrupt-light"] body::after { content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 1px, transparent 1px, transparent 2px); animation: scanlineFlicker 0.1s infinite; }
+  [data-theme="corrupt-dark"] body::after { content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 1px, transparent 1px, transparent 2px); animation: scanlineFlicker 0.15s infinite; }
+  /* Noise grain */
+  [data-theme="corrupt-light"] body::before { content: ''; position: fixed; inset: -10%; width: 120%; height: 120%; z-index: 9997; pointer-events: none; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 256px 256px; animation: grainShift 0.3s steps(6) infinite; }
+  [data-theme="corrupt-dark"] body::before { content: ''; position: fixed; inset: -10%; width: 120%; height: 120%; z-index: 9997; pointer-events: none; opacity: 0.06; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 256px 256px; animation: grainShift 0.3s steps(6) infinite; }
+  /* Tear line */
+  [data-theme^="corrupt"] .container::after { content: ''; position: fixed; left: 0; right: 0; height: 2px; z-index: 9999; pointer-events: none; background: linear-gradient(90deg, transparent 5%, #00ffff 20%, #ff0066 50%, #00ff41 80%, transparent 95%); opacity: 0.8; animation: tearLine 3s linear infinite; }
+  [data-theme^="corrupt"] .container::before { content: ''; position: fixed; left: 0; right: 0; height: 1px; z-index: 9999; pointer-events: none; background: linear-gradient(90deg, transparent 15%, #ff0066 40%, #00ffff 60%, transparent 85%); opacity: 0.4; animation: tearLine 7s linear infinite reverse; }
+  /* Tile jitter */
+  [data-theme^="corrupt"] .header { animation: tileShift 7s infinite; opacity: 1; }
+  [data-theme^="corrupt"] .site-footer { animation: tileShift 13s infinite reverse; }
+  [data-theme^="corrupt"] .endpoint { animation: paletteBleed 12s infinite; }
+  /* Glitched VRAM tile grid background */
+  [data-theme="corrupt-light"] body {
+    background-image:
+      repeating-linear-gradient(90deg, rgba(255,0,102,0.03) 0px, rgba(255,0,102,0.03) 32px, transparent 32px, transparent 64px),
+      repeating-linear-gradient(0deg, rgba(0,136,170,0.03) 0px, rgba(0,136,170,0.03) 32px, transparent 32px, transparent 64px),
+      repeating-linear-gradient(90deg, rgba(255,0,102,0.05) 0px, transparent 1px, transparent 32px),
+      repeating-linear-gradient(0deg, rgba(0,136,170,0.05) 0px, transparent 1px, transparent 32px);
+    background-size: 64px 64px, 64px 64px, 32px 32px, 32px 32px;
+    background-position: 0 0, 3px 5px, 0 0, -2px 3px;
+    animation: bgGlitch 4s steps(1) infinite;
+  }
+  [data-theme="corrupt-dark"] body {
+    background-image:
+      repeating-linear-gradient(90deg, rgba(255,0,102,0.06) 0px, rgba(255,0,102,0.06) 32px, transparent 32px, transparent 64px),
+      repeating-linear-gradient(0deg, rgba(0,255,65,0.04) 0px, rgba(0,255,65,0.04) 32px, transparent 32px, transparent 64px),
+      repeating-linear-gradient(90deg, rgba(255,0,102,0.08) 0px, transparent 1px, transparent 32px),
+      repeating-linear-gradient(0deg, rgba(0,255,65,0.08) 0px, transparent 1px, transparent 32px);
+    background-size: 64px 64px, 64px 64px, 32px 32px, 32px 32px;
+    background-position: 0 0, 3px 5px, 0 0, -2px 3px;
+    animation: bgGlitch 4s steps(1) infinite;
+  }
+  [data-theme^="corrupt"] .neon-world { display: none !important; }
+  /* Full page horizontal glitch */
+  [data-theme^="corrupt"] .container { animation: pageGlitch 6s infinite; }
+  /* Keyframes */
+  @keyframes scanlineFlicker { 0%,100%{opacity:1}50%{opacity:0.97} }
+  @keyframes glitchTitle { 0%,82%,100%{text-shadow:3px 0 #ff0066,-3px 0 #00ffff,0 0 10px rgba(0,255,65,0.4);transform:none}83%{text-shadow:-6px 0 #ff0066,6px 0 #00ffff;transform:translateX(-4px) skewX(-3deg)}84%{text-shadow:5px 4px #ff0066,-5px -3px #00ffff;transform:translateX(4px) skewX(2deg)}85%{text-shadow:-4px -3px #ff0066,4px 3px #00ffff,0 0 25px #ff0066;transform:translateX(-3px) skewX(-4deg)}86%{text-shadow:6px 2px #ff0066,-6px -1px #00ffff;transform:translateX(3px)}87%{text-shadow:3px 0 #ff0066,-3px 0 #00ffff,0 0 10px rgba(0,255,65,0.4);transform:none} }
+  @keyframes glitchSubtle { 0%,95%,100%{transform:none;opacity:1}96%{transform:translateX(-1px);opacity:0.8}97%{transform:translateX(2px) skewX(-1deg);opacity:0.9}98%{transform:translateX(-1px);opacity:1} }
+  @keyframes tileShift { 0%,87%,100%{transform:none}88%{transform:translateX(-4px)}89%{transform:translateX(3px) skewX(-0.5deg)}90%{transform:translateX(-2px) translateY(2px)}91%{transform:translateX(1px) skewX(0.3deg)}92%{transform:none} }
+  @keyframes pageGlitch { 0%,96%,100%{transform:none;filter:none}97%{transform:translateX(-5px);filter:hue-rotate(90deg)}98%{transform:translateX(3px) skewX(-0.5deg);filter:hue-rotate(-60deg) saturate(2)}99%{transform:translateX(-2px);filter:hue-rotate(30deg)} }
+  @keyframes tearLine { 0%{top:-2px}100%{top:100vh} }
+  @keyframes paletteBleed { 0%,96%,100%{border-color:var(--border)}97%{border-color:#00ffff}98%{border-color:#ff0066}99%{border-color:#00ff41} }
+  @keyframes grainShift { 0%{transform:translate(0,0)}16%{transform:translate(-3px,2px)}33%{transform:translate(2px,-1px)}50%{transform:translate(-1px,3px)}66%{transform:translate(3px,-2px)}83%{transform:translate(-2px,1px)}100%{transform:translate(1px,-3px)} }
+  @keyframes bgGlitch {
+    0%,85%,100% { background-position: 0 0, 3px 5px, 0 0, -2px 3px; }
+    86% { background-position: -4px 2px, 6px -3px, 3px -1px, -5px 4px; }
+    88% { background-position: 2px -3px, -5px 7px, -2px 4px, 3px -6px; }
+    90% { background-position: 0 0, 3px 5px, 0 0, -2px 3px; }
+  }
+
+  [data-theme="dark"] a:hover { color: #a3ddd5; }
+
+  /* Dreamy dark mode — smooth theme transitions */
+  body, .endpoint, .note, .site-footer, input, pre { transition: background-color 0.35s, color 0.35s, border-color 0.35s, box-shadow 0.35s; }
+
+  /* ── Custom pixel cursor (Yume Nikki style) ── */
+  * { cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAUElEQVR4nGNgoAYQEZH7T7EBFBkC0lx3Yh/5hsAMINsQZAPIMgTdAJINwWYASYbgMoBoQ/C5gGwDyAoDsqMT2alkGYKukOKEhWwIxXmEkAEAaCednTE3BIIAAAAASUVORK5CYII=") 1 1, auto; }
+  a, button, [role="button"], select, input[type="submit"] { cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAUElEQVR4nGNgoAYQEZH7T7EBFBkC0lx3Yh/5hsAMINsQZAPIMgTdAJINwWYASYbgMoBoQ/C5gGwDyAoDsqMT2alkGYKukOKEhWwIxXmEkAEAaCednTE3BIIAAAAASUVORK5CYII=") 1 1, pointer; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  /* ── Yume Nikki background ── */
+  /* Light mode: dreamy pastel world — soft teal grid + warm glow pools */
+  body {
+    background-color: var(--bg);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='16' height='16' fill='%23f0eee9'/%3E%3Crect x='16' y='16' width='16' height='16' fill='%23f0eee9'/%3E%3Crect x='16' width='16' height='16' fill='%23ece9e3'/%3E%3Crect y='16' width='16' height='16' fill='%23ece9e3'/%3E%3C/svg%3E");
+    background-size: 32px 32px;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -2;
+    background:
+      radial-gradient(ellipse 700px 450px at 15% 25%, rgba(15, 118, 110, 0.06), transparent 70%),
+      radial-gradient(ellipse 500px 400px at 80% 20%, rgba(180, 130, 80, 0.05), transparent 70%),
+      radial-gradient(ellipse 600px 350px at 50% 75%, rgba(15, 118, 110, 0.04), transparent 70%);
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128'%3E%3Cpolygon points='64,52 58,64 70,64' fill='%230f766e' opacity='0.06'/%3E%3C/svg%3E"),
+      linear-gradient(rgba(15, 118, 110, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 118, 110, 0.05) 1px, transparent 1px);
+    background-size: 128px 128px, 32px 32px, 32px 32px;
+  }
+  /* Dark mode: Neon World — glowing checkerboard on void */
+  [data-theme="dark"] body {
+    background-color: #0a0a12;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='16' height='16' fill='%23161425'/%3E%3Crect x='16' y='16' width='16' height='16' fill='%23161425'/%3E%3Crect x='16' width='16' height='16' fill='%230e0d18'/%3E%3Crect y='16' width='16' height='16' fill='%230e0d18'/%3E%3C/svg%3E");
+    background-size: 32px 32px;
+  }
+  /* Neon glow overlay — colored light pools like Neon World's ambient lighting */
+  @keyframes neonPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+  [data-theme="dark"] body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -2;
+    opacity: 1;
+    animation: neonPulse 8s ease-in-out infinite;
+    background:
+      radial-gradient(ellipse 800px 500px at 10% 20%, rgba(160, 50, 180, 0.08), transparent 70%),
+      radial-gradient(ellipse 600px 400px at 85% 15%, rgba(80, 200, 180, 0.07), transparent 70%),
+      radial-gradient(ellipse 700px 450px at 50% 80%, rgba(100, 80, 220, 0.06), transparent 70%),
+      radial-gradient(ellipse 500px 350px at 75% 50%, rgba(200, 60, 120, 0.05), transparent 70%);
+  }
+  /* Neon tile grid + small pyramids */
+  [data-theme="dark"] body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 1;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128'%3E%3Cpolygon points='64,52 58,64 70,64' fill='%236030a0' opacity='0.15'/%3E%3C/svg%3E"),
+      linear-gradient(rgba(200, 80, 180, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(80, 200, 190, 0.08) 1px, transparent 1px);
+    background-size: 128px 128px, 32px 32px, 32px 32px;
+  }
+
+  a { color: var(--accent-text); text-decoration: underline; }
+  a:hover { color: #0d6560; }
+  [data-theme="dark"] a:hover { color: #a3ddd5; }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  input:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12); }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px 60px; }
+  .api-layout { display: flex; gap: 0; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .api-sidebar {
+    width: 180px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 24px;
+    align-self: flex-start;
+    padding-right: 20px;
+    margin-right: 28px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+  }
+  .api-sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    border-left: 2px solid var(--border);
+    padding-left: 0;
+  }
+  .api-sidebar a {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 5px 12px;
+    margin-left: -2px;
+    border-left: 2px solid transparent;
+    color: var(--text2);
+    text-decoration: none;
+    transition: color 0.15s, border-color 0.2s;
+    line-height: 1.4;
+  }
+  .api-sidebar a:hover { color: var(--accent); border-left-color: var(--accent); }
+  .api-sidebar a.active { color: var(--accent); font-weight: 700; border-left-color: var(--accent); }
+  .api-sidebar .sidebar-label {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text);
+    padding: 16px 12px 6px;
+    margin-left: -2px;
+    border-left: 2px solid transparent;
+  }
+  .api-sidebar .sidebar-label:first-child { padding-top: 0; }
+  .api-content { flex: 1; min-width: 0; }
+  @media (max-width: 768px) {
+    .api-layout { flex-direction: column; }
+    .api-sidebar { width: 100%; position: static; padding-right: 0; margin-right: 0; margin-bottom: 20px; max-height: none; }
+    .api-sidebar nav { flex-direction: row; flex-wrap: wrap; gap: 4px; border-left: none; padding-left: 0; }
+    .api-sidebar a { padding: 4px 10px; font-size: 11px; margin-left: 0; border-left: none; border: 1px solid var(--border); border-radius: 20px; background: var(--bg2); }
+    .api-sidebar a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .api-sidebar a.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .api-sidebar .sidebar-label { display: none; }
+  }
+
+  /* ── Header ── */
+  .header { padding: 24px 0 12px; text-align: center; }
+  .header h1 { font-family: var(--font-display); font-size: 38px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .header h1 a { color: inherit; text-decoration: none; }
+  .header .subtitle { font-family: var(--font-display); font-size: 16px; color: var(--text2); font-weight: 400; margin-bottom: 6px; font-style: italic; letter-spacing: 0.3px; opacity: 0.8; }
+  [data-theme="dark"] .header .subtitle { opacity: 0.65; }
+  .hero-tagline { font-family: var(--font-display); color: var(--text); font-size: 15px; line-height: 1.5; max-width: 700px; margin: 12px auto 0; font-weight: 400; }
+
+  /* ── Version badge ── */
+  .version-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: var(--radius-sm);
+    background: var(--accent);
+    color: #fff;
+    vertical-align: super;
+    margin-left: 6px;
+    letter-spacing: 0.5px;
+  }
+  [data-theme="dark"] .version-badge { color: #12111a; }
+
+  /* ── Navigation ── */
+  .header-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 2px;
+    font-size: 13px;
+    font-family: var(--font-mono);
+  }
+  .header-nav a {
+    color: var(--text2);
+    text-decoration: none;
+    transition: color 150ms ease;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 3px;
+  }
+  .header-nav a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+  .header-nav a.current { color: var(--accent); font-weight: 700; }
+  .header-nav .nav-sep { display: none; }
+
+  /* ── Theme toggle ── */
+  #themeToggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--text2);
+    transition: color 150ms ease;
+    padding: 0;
+    line-height: 1;
+    font-family: var(--font-mono);
+    opacity: 1;
+  }
+  #themeToggle:hover { color: var(--accent); }
+
+  /* ── Neon Tile Path divider ── */
+  .tile-divider {
+    height: 3px;
+    margin-bottom: 24px;
+    background: repeating-linear-gradient(90deg, var(--accent) 0px, var(--accent) 8px, transparent 8px, transparent 16px, rgba(200, 80, 180, 0.4) 16px, rgba(200, 80, 180, 0.4) 24px, transparent 24px, transparent 32px);
+    opacity: 0.3;
+  }
+  [data-theme="dark"] .tile-divider { opacity: 0.5; }
+
+  /* ── Quick Nav (hidden — replaced by sidebar) ── */
+  .quick-nav { display: none; }
+  .quick-nav a {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 4px 12px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text2);
+    text-decoration: none;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+  .quick-nav a:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  [data-theme="dark"] .quick-nav a:hover { color: #12111a; }
+
+  /* ── Content ── */
+  h2 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    margin: 32px 0 12px;
+    scroll-margin-top: 28px;
+  }
+  .endpoint {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.35s, border-color 0.35s;
+  }
+  .endpoint:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+  [data-theme="dark"] .endpoint:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  .endpoint-green { border-left-color: var(--green); }
+  .endpoint-gold { border-left-color: var(--gold); }
+  .endpoint-purple { border-left-color: #7c3aed; }
+  [data-theme="dark"] .endpoint-purple { border-left-color: #a78bfa; }
+
+  .method { display: inline-block; font-family: var(--font-mono); font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-sm); background: var(--accent); color: #fff; margin-right: 8px; }
+  [data-theme="dark"] .method { color: #12111a; }
+  .method-static { background: var(--gold); }
+  .path { font-family: var(--font-mono); font-size: 15px; font-weight: 700; }
+  .desc { color: var(--text2); font-size: 14px; margin-top: 8px; }
+  .params { margin-top: 12px; }
+  .params table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .params th { text-align: left; padding: 6px 10px; border-bottom: 2px solid var(--border); color: var(--text2); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; font-family: var(--font-mono); }
+  .params td { padding: 6px 10px; border-bottom: 1px solid var(--border); }
+  .param-name { font-family: var(--font-mono); font-weight: 600; }
+  .param-required { color: var(--gold); font-size: 11px; font-weight: 700; }
+  h3 { font-size: 14px; margin: 16px 0 6px; font-family: var(--font-mono); color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ── Code blocks with copy button ── */
+  .code-block {
+    position: relative;
+    margin-top: 8px;
+  }
+  .code-block pre {
+    margin-top: 0;
+  }
+  pre {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.5;
+    margin-top: 8px;
+    position: relative;
+  }
+  [data-theme="dark"] pre { background: rgba(22, 21, 32, 0.95); }
+
+  .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text2);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s ease, background-color 0.15s ease;
+    z-index: 2;
+  }
+  .code-block:hover .copy-btn { opacity: 1; }
+  .copy-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+  [data-theme="dark"] .copy-btn:hover { color: #12111a; }
+  .copy-btn.copied { background: var(--green); color: #fff; border-color: var(--green); opacity: 1; }
+
+  code { font-family: var(--font-mono); font-size: 13px; }
+  .inline-code { background: var(--bg2); padding: 1px 5px; border-radius: var(--radius-sm); font-size: 12px; border: 1px solid var(--border); }
+  .note { background: var(--bg2); border-left: 3px solid var(--accent); padding: 12px 16px; margin: 0 0 24px; font-size: 13px; color: var(--text2); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
+
+  /* ── Syntax coloring for static JSON examples ── */
+  .json-key { color: #0f766e; }
+  [data-theme="dark"] .json-key { color: #7ec8be; }
+  .json-string { color: #b45309; }
+  [data-theme="dark"] .json-string { color: #d4a96a; }
+  .json-number { color: #7c3aed; }
+  [data-theme="dark"] .json-number { color: #a78bfa; }
+  .json-bool, .json-null { color: #dc2626; }
+  [data-theme="dark"] .json-bool, [data-theme="dark"] .json-null { color: #d47b7b; }
+
+  /* ── Code tabs ── */
+  .code-tabs { margin-top: 12px; }
+  .tab-buttons {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+  .tab-btn {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 6px 14px;
+    background: none;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    position: relative;
+    bottom: -1px;
+  }
+  .tab-btn:hover { color: var(--accent); }
+  .tab-btn.active {
+    background: var(--bg2);
+    border-color: var(--border);
+    color: var(--accent-text);
+    font-weight: 700;
+  }
+  [data-theme="dark"] .tab-btn.active { background: rgba(22, 21, 32, 0.95); }
+  .tab-panel {
+    display: none;
+  }
+  .tab-panel.active {
+    display: block;
+  }
+  .tab-panel pre {
+    border-top-left-radius: 0;
+    margin-top: 0;
+  }
+
+  /* ── Error table ── */
+  .error-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  .error-table th {
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 2px solid var(--border);
+    color: var(--text2);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: var(--font-mono);
+  }
+  .error-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  .error-code {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .error-code-400 { color: var(--gold); }
+  .error-code-404 { color: var(--text2); }
+  .error-code-405 { color: var(--text2); }
+  .error-code-429 { color: var(--red); }
+  .error-code-500 { color: var(--red); }
+
+  /* ── Try-it widget ── */
+  .try-it { margin-top: 12px; display: flex; gap: 8px; align-items: center; }
+  .try-it input { flex: 1; font-family: var(--font-mono); font-size: 12px; padding: 6px 10px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); transition: border-color 0.15s, box-shadow 0.15s; }
+  .try-it input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1); }
+  .try-it button { font-family: var(--font-mono); font-size: 12px; padding: 7px 18px; background: transparent; color: var(--accent); border: 1.5px solid var(--accent); border-radius: var(--radius); cursor: pointer; font-weight: 700; transition: all 0.15s; min-width: 70px; letter-spacing: 0.3px; }
+  .try-it button:hover { background: var(--accent); color: #fff; }
+  [data-theme="dark"] .try-it button:hover { color: #12111a; }
+  .try-it button:disabled { opacity: 0.5; }
+  .try-result { margin-top: 8px; display: none; }
+  .try-result pre { max-height: 300px; overflow-y: auto; }
+
+  /* ── Spinner ── */
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .try-spinner {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    vertical-align: middle;
+  }
+  [data-theme="dark"] .try-spinner { border-color: rgba(18,17,26,0.3); border-top-color: #12111a; }
+
+  /* ── Footer ── */
+  .site-footer { text-align: center; padding: 16px 0 20px; margin-top: 48px; }
+  .site-footer a { color: var(--text2); text-decoration: none; transition: color 0.15s; font-size: 13px; font-family: var(--font-mono); }
+  .site-footer a:hover { color: var(--accent); }
+  .footer-sep { color: var(--border-strong); margin: 0 12px; user-select: none; font-size: 13px; }
+  .footer-credit { font-size: 13px; color: var(--text2); opacity: 0.7; }
+  .site-footer a svg { transition: color 150ms ease; }
+  .site-footer a:hover { color: var(--accent) !important; }
+
+  /* ── Staggered entrance ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { opacity: 0; animation: fadeUp 0.5s ease forwards; }
+  .fade-in-1 { animation-delay: 0s; }
+  .fade-in-2 { animation-delay: 0.1s; }
+  .fade-in-3 { animation-delay: 0.2s; }
+  .fade-in-4 { animation-delay: 0.35s; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .quick-nav { gap: 4px; }
+    .quick-nav a { font-size: 10px; padding: 3px 8px; }
+    .tab-btn { padding: 5px 10px; font-size: 10px; }
+  }
+  /* ── Changelog page (matches main page style) ── */
+  .changelog { max-width: 520px; margin: 28px auto 0; font-family: var(--font-mono); font-size: 12px; }
+  .changelog-title { font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text2); opacity: 0.7; margin-bottom: 12px; }
+  .changelog-month { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text); margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .changelog-month:first-of-type { margin-top: 0; }
+  .changelog-entry { display: flex; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+  .changelog-entry:last-child { border-bottom: none; }
+  .changelog-date { color: var(--text2); opacity: 0.75; font-size: 11px; min-width: 52px; flex-shrink: 0; padding-top: 1px; }
+  .changelog-body { flex: 1; }
+  .changelog-name { font-weight: 700; color: var(--text); }
+  .changelog-name a { color: var(--text); text-decoration: none; }
+  .changelog-name a:hover { color: var(--accent); }
+  .changelog-desc { color: var(--text2); font-size: 11px; margin-top: 2px; }
+  .changelog-tag { display: inline-block; font-size: 9px; padding: 1px 6px; border-radius: 3px; background: var(--accent-glow); color: var(--accent); font-weight: 600; margin-left: 6px; vertical-align: middle; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header fade-in fade-in-1">
+    <h1><a href="/">Forgotten &#926;TH</a></h1>
+    <p class="subtitle">Recover ETH stuck in old smart contracts</p>
+    <nav class="header-nav">
+      <a href="/">Home</a>
+      <span class="nav-sep">&middot;</span>
+      <a href="/api">API</a>
+      <span class="nav-sep">&middot;</span>
+      <a href="/changelog" class="current">Changelog</a>
+      <span class="nav-sep">&middot;</span>
+      <button id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode"></button>
+      <span class="nav-sep">&middot;</span>
+      <button id="corruptToggle" class="corrupt-btn" title="Corrupt mode" aria-label="Toggle corrupt mode">C&#x0338;O&#x2591;R&#x2593;RUPT</button>
+    </nav>
+  </div>
+
+  <div class="changelog fade-in fade-in-2">
+    <div class="changelog-title">Changelog</div>
+
+    <div class="changelog-month">April 2026</div>
+
+    <div class="changelog-entry">
+      <span class="changelog-date">Apr 5</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/ethfinex">Ethfinex Trustless</a> <span class="changelog-tag">+1,032 ETH</span></div>
+        <div class="changelog-desc">Bitfinex-backed DEX (now rhino.fi). 2 WrapperLockEth contracts, 517 addresses. All time locks expired.</div>
+      </div>
+    </div>
+
+    <div class="changelog-entry">
+      <span class="changelog-date">Apr 4</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/aave-v1">Aave v1</a> <span class="changelog-tag">+941 ETH</span></div>
+        <div class="changelog-desc">Lending protocol. Redeem aETH for ETH. 3,509 addresses. Official UI dropped v1 support.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Apr 3</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/augur-v1">Augur v1</a> <span class="changelog-tag">+437 ETH</span></div>
+        <div class="changelog-desc">Prediction market. Mailbox claims, order cancellations, share redemptions. 973 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Apr 3</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/old-weth">Old WETH</a> <span class="changelog-tag">+3,258 ETH</span></div>
+        <div class="changelog-desc">June 2016 ETH wrapper. Simple withdraw(). 987 addresses. Community submission.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Apr 1</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/thedao">The DAO</a> <span class="changelog-tag">+81,914 ETH</span></div>
+        <div class="changelog-desc">2016 DAO hack recovery. Approve DAO tokens + withdraw(). 4,854 addresses. 67 Parity multisigs detected.</div>
+      </div>
+    </div>
+
+    <div class="changelog-month">March 2026</div>
+
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 28</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/kyber-feehandler">Kyber FeeHandler</a> <span class="changelog-tag">+23 ETH</span></div>
+        <div class="changelog-desc">Epoch-based KNC staking rewards. claimStakerReward() for epochs 1-21. 1,605 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 28</span>
+      <div class="changelog-body">
+        <div class="changelog-name">Tessera Vaults <span class="changelog-tag">+89 ETH</span></div>
+        <div class="changelog-desc">3 fractional NFT vaults. Burn fraction tokens via cash(). 505 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 27</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/nucypher-worklock">NuCypher WorkLock</a> <span class="changelog-tag">+291 ETH</span></div>
+        <div class="changelog-desc">Staking refund. claim() + refund(). Staking requirement removed. 54 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 26</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/bounties">Bounties Network</a> <span class="changelog-tag">+90 ETH</span></div>
+        <div class="changelog-desc">ConsenSys bounty platform. Per-bounty killBounty(). 192 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 19</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/digixdao">DigixDAO</a> <span class="changelog-tag">+11,092 ETH</span></div>
+        <div class="changelog-desc">DAO dissolution. Approve DGD + burn(). 0.193 ETH per DGD. 7,954 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 18</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/mooncatrescue">MoonCatRescue</a> <span class="changelog-tag">+247 ETH</span></div>
+        <div class="changelog-desc">2017 NFT contract. Escrow deposits + pending withdrawals. 629 addresses.</div>
+      </div>
+    </div>
+
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 28</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/digixdao">DigixDAO</a> <span class="changelog-tag">+11,092 ETH</span></div>
+        <div class="changelog-desc">DAO dissolution. Approve DGD + burn(). 0.193 ETH per DGD. 7,954 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 28</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/nucypher-worklock">NuCypher WorkLock</a> <span class="changelog-tag">+291 ETH</span></div>
+        <div class="changelog-desc">Staking refund. claim() + refund(). Staking requirement removed. 54 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 28</span>
+      <div class="changelog-body">
+        <div class="changelog-name">Tessera Vaults <span class="changelog-tag">+89 ETH</span></div>
+        <div class="changelog-desc">3 fractional NFT vaults. Burn fraction tokens via cash(). 505 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 28</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/kyber-feehandler">Kyber FeeHandler</a> <span class="changelog-tag">+23 ETH</span></div>
+        <div class="changelog-desc">Epoch-based KNC staking rewards. claimStakerReward() for epochs 1-21. 1,605 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 28</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/p4d">P4D</a> <span class="changelog-tag">+4 ETH</span></div>
+        <div class="changelog-desc">PoWH3D-style dividend token. 106 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 26</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/bounties">Bounties Network</a> <span class="changelog-tag">+90 ETH</span></div>
+        <div class="changelog-desc">ConsenSys bounty platform. Per-bounty killBounty(). 192 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 26</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/lastwinner">Last Winner</a> <span class="changelog-tag">+388 ETH</span></div>
+        <div class="changelog-desc">Fomo3D fork. getPlayerInfoByAddress() withdrawals. 72,422 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 25</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/neufund-locked">Neufund LockedAccount</a> <span class="changelog-tag">+1,501 ETH</span></div>
+        <div class="changelog-desc">2-step: approveAndCall() on NEU + withdraw(). 44% blocked (no NEU). 497 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 19</span>
+      <div class="changelog-body">
+        <div class="changelog-name">8 PoWH3D clones + SportCrypt <span class="changelog-tag">+311 ETH</span></div>
+        <div class="changelog-desc">9 new contracts. DailyDivs, AceDapp, CryptoMinerToken, and more.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 18</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/ageofdinos">Age of Dinos</a> + <a href="/personabid">PersonaBid</a> <span class="changelog-tag">+51 ETH</span></div>
+        <div class="changelog-desc">NFT auction refunds. 166 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 18</span>
+      <div class="changelog-body">
+        <div class="changelog-name">10 PoWH clones <span class="changelog-tag">+63 ETH</span></div>
+        <div class="changelog-desc">GandhiJi, Zethr, EthPyramid, FoMoGame, and 6 more dividend tokens.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 18</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/powh3d">PoWH3D</a> + <a href="/maker-weth">Maker W-ETH</a> <span class="changelog-tag">+2,334 ETH</span></div>
+        <div class="changelog-desc">Pyramid dividend token (2,159 ETH) and original Wrapped ETH (175 ETH).</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 17</span>
+      <div class="changelog-body">
+        <div class="changelog-name">22 new DEX contracts <span class="changelog-tag">+253 ETH</span></div>
+        <div class="changelog-desc">Bytecode similarity + DeltaBalances discovery. SwitchDex, Coinchangex, and 20 more ED forks.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 17</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/ens">ENS Old Registrar</a> <span class="changelog-tag">+14,867 ETH</span></div>
+        <div class="changelog-desc">Deed-based name registrar. releaseDeed(). 11,205 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 17</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/etherdelta-m0">EtherDelta v0</a> + <a href="/neufund">Neufund</a> + <a href="/bancor-eth">Bancor ETH</a> <span class="changelog-tag">+3,490 ETH</span></div>
+        <div class="changelog-desc">EtherDelta 2016 contract, Neufund EtherToken, Bancor Old ETH Token.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 17</span>
+      <div class="changelog-body">
+        <div class="changelog-name">Fomo3D Long/Quick/Short <span class="changelog-tag">+1,282 ETH</span></div>
+        <div class="changelog-desc">3 Fomo3D gambling contracts. 16,515 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 16</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/confideal">Confideal</a> <span class="changelog-tag">+45 ETH</span></div>
+        <div class="changelog-desc">ICO refund. withdrawRefund(). 68 contributors.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 16</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/joyso">Joyso</a> <span class="changelog-tag">+85 ETH</span></div>
+        <div class="changelog-desc">Hybrid DEX. 2-step lockMe + 30d wait. 529 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 16</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/ethen">ETHEN</a> <span class="changelog-tag">+43 ETH</span></div>
+        <div class="changelog-desc">DEX with custom balances()/withdrawEther(). 142 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 16</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/decentrex">Decentrex</a> + <a href="/bitcratic">Bitcratic</a> + <a href="/etherc">EtherC</a> + <a href="/enclavesdex">EnclavesDex</a> <span class="changelog-tag">+77 ETH</span></div>
+        <div class="changelog-desc">4 smaller EtherDelta forks.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 16</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/singularx">SingularX</a> <span class="changelog-tag">+858 ETH</span></div>
+        <div class="changelog-desc">EtherDelta fork. 4,843 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 16</span>
+      <div class="changelog-body">
+        <div class="changelog-name">Unknown DEX (EnclavesDEX) <span class="changelog-tag">+2,568 ETH</span></div>
+        <div class="changelog-desc">Unverified contract, ED-style withdraw(). 2,604 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 16</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/dada">DADA Collectible</a> <span class="changelog-tag">+11 ETH</span></div>
+        <div class="changelog-desc">Early NFT art marketplace. Pending auction withdrawals. 476 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 16</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/mooncatrescue">MoonCatRescue</a> <span class="changelog-tag">+247 ETH</span></div>
+        <div class="changelog-desc">2017 NFT. Escrow deposits + pending withdrawals. 100.8 ETH stuck at address(0). 629 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 16</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/tokenstore">Token.Store</a> <span class="changelog-tag">+635 ETH</span></div>
+        <div class="changelog-desc">Fully onchain DEX. 15,164 addresses.</div>
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Mar 16</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/idex">IDEX v1</a> + <a href="/etherdelta">EtherDelta v2</a> <span class="changelog-tag">Launch</span></div>
+        <div class="changelog-desc">Initial release. Two flagship defunct DEXes. 364,863 addresses combined.</div>
+      </div>
+    </div>
+  </div>
+
+<footer class="site-footer">
+  <p class="footer-credit" style="margin-bottom:8px;display:flex;justify-content:center;gap:24px;align-items:center">
+    <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" title="GitHub" style="color:var(--text2)"><svg width="29" height="29" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+    <a href="https://x.com/3pa15" target="_blank" rel="noopener noreferrer" title="X/Twitter" style="color:var(--text2)"><svg width="23" height="23" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="https://t.me/forgottenETH_bot" target="_blank" rel="noopener noreferrer" title="Telegram" style="color:var(--text2)"><svg width="29" height="29" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+  </p>
+  <p class="footer-credit">made with <span style="color:#e11d48;font-size:16px;vertical-align:middle">&#10084;</span> by <a href="https://t.me/syLKf" target="_blank" rel="noopener noreferrer" style="color:var(--text);text-decoration:none;font-weight:700">aaaaaaaaaaway</a></p>
+  <p class="footer-credit" style="margin-top:4px;font-size:11px"><a href="https://etherscan.io/address/0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891" target="_blank" rel="noopener noreferrer" style="color:var(--text2);text-decoration:none;font-family:var(--font-mono)">forgotteneth.eth</a></p>
+</footer>
+
+<script>
+(function() {
+  var toggle = document.getElementById('themeToggle');
+  var corruptBtn = document.getElementById('corruptToggle');
+  var html = document.documentElement;
+  var saved = null;
+  try { saved = localStorage.getItem('theme'); } catch(e) {}
+  var current = saved || 'light';
+  var validThemes = ['light', 'dark', 'corrupt-light', 'corrupt-dark'];
+  if (validThemes.indexOf(current) === -1) current = 'light';
+  function applyTheme(t) { if (t === 'light') html.removeAttribute('data-theme'); else html.setAttribute('data-theme', t); }
+  applyTheme(current);
+  function isCorrupt() { return current === 'corrupt-light' || current === 'corrupt-dark'; }
+  function isDark() { return current === 'dark' || current === 'corrupt-dark'; }
+  function setToggleLabel() { toggle.textContent = isDark() ? '\u2600 Wake' : '\u263E Dream'; }
+  setToggleLabel();
+  toggle.addEventListener('click', function() {
+    var goingDark = !isDark();
+    current = isCorrupt() ? (goingDark ? 'corrupt-dark' : 'corrupt-light') : (goingDark ? 'dark' : 'light');
+    applyTheme(current);
+    try { localStorage.setItem('theme', current); } catch(e) {}
+    setToggleLabel();
+  });
+  if (corruptBtn) {
+    corruptBtn.addEventListener('click', function() {
+      current = isCorrupt() ? (isDark() ? 'dark' : 'light') : (isDark() ? 'corrupt-dark' : 'corrupt-light');
+      applyTheme(current);
+      try { localStorage.setItem('theme', current); } catch(e) {}
+      setToggleLabel();
+    });
+  }
+})();
+</script>
+</body>
+</html>

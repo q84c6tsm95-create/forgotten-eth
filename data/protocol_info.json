@@ -1066,5 +1066,23 @@
     "color": "#553C9A",
     "category": "prediction",
     "slug": "augur-v1"
+  },
+  "ethfinex": {
+    "name": "Ethfinex Trustless",
+    "desc": "Ethfinex Trustless launched in September 2018 as a non-custodial DEX backed by Bitfinex. Users deposited ETH into WrapperLockEth contracts, receiving ETHW tokens for off-chain order matching via the 0x protocol. The platform rebranded to DeversiFi in 2019, then migrated to StarkEx L2 in 2020, and rebranded again to rhino.fi in 2022. The original wrapper contracts are abandoned but fully functional \u2014 all time locks expired years ago, so depositors can withdraw directly without any third-party signature.",
+    "contract": "0xaA7427D8f17D87a28F5e1ba3aDBB270bAdbe1011",
+    "deployed": "September 2018",
+    "color": "#f59e0b",
+    "category": "dex",
+    "slug": "ethfinex"
+  },
+  "ethfinex_v2": {
+    "name": "Ethfinex Trustless v2",
+    "desc": "Ethfinex Trustless launched in September 2018 as a non-custodial DEX backed by Bitfinex. Users deposited ETH into WrapperLockEth contracts, receiving ETHW tokens for off-chain order matching via the 0x protocol. The platform rebranded to DeversiFi in 2019, then migrated to StarkEx L2 in 2020, and rebranded again to rhino.fi in 2022. The original wrapper contracts are abandoned but fully functional \u2014 all time locks expired years ago, so depositors can withdraw directly without any third-party signature.",
+    "contract": "0x50cb61afa3f023d17276dcfb35abf85c710d1cff",
+    "deployed": "2019",
+    "color": "#d97706",
+    "category": "dex",
+    "slug": "ethfinex-v2"
   }
 }

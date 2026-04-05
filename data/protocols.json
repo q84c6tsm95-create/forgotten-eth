@@ -829,5 +829,19 @@
     "contract": "0xd5524179cB7AE012f5B642C1D6D700Bbaa76B96b",
     "category": "prediction",
     "balance_file": "augur_v1_eth_balances.json"
+  },
+  {
+    "key": "ethfinex",
+    "name": "Ethfinex Trustless",
+    "contract": "0xaA7427D8f17D87a28F5e1ba3aDBB270bAdbe1011",
+    "category": "dex",
+    "balance_file": "ethfinex_eth_balances.json"
+  },
+  {
+    "key": "ethfinex_v2",
+    "name": "Ethfinex Trustless v2",
+    "contract": "0x50cb61afa3f023d17276dcfb35abf85c710d1cff",
+    "category": "dex",
+    "balance_file": "ethfinex_v2_eth_balances.json"
   }
 ]

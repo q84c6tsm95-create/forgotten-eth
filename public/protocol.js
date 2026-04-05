@@ -1,35 +1,247 @@
 // Protocol subpage — theme, charts, wallet, address check
 // Loaded externally to avoid 'unsafe-inline' in CSP
 
-// Theme init (runs immediately)
-(function(){var s=localStorage.getItem('theme');var d=s?s==='dark':true;if(d)document.documentElement.setAttribute('data-theme','dark')})();
-
 // Load data from JSON data blocks
 var __TVL = null, __ACT = null;
 try { __TVL = JSON.parse(document.getElementById('tvl-data').textContent); } catch(e) {}
 try { __ACT = JSON.parse(document.getElementById('act-data').textContent); } catch(e) {}
 
-// Theme toggle + charts
+// Theme toggle + charts (mirrors theme.js from main page)
 (function() {
   var toggle = document.getElementById('themeToggle');
+  var corruptBtn = document.getElementById('corruptToggle');
   var html = document.documentElement;
-  var saved = localStorage.getItem('theme');
-  var dark = saved ? saved === 'dark' : true;
-  if (dark) html.setAttribute('data-theme', 'dark');
-  function setLabel(d) { toggle.innerHTML = d ? '<span style="font-size:18px">&#9728;</span> Light' : '<span style="font-size:18px">&#9789;</span> Dark'; }
-  setLabel(dark);
+  var saved = null;
+  try { saved = localStorage.getItem('theme'); } catch(e) {}
+
+  // Possible themes: light, dark, corrupt-light, corrupt-dark
+  var current = saved || 'light';
+  var validThemes = ['light', 'dark', 'corrupt-light', 'corrupt-dark'];
+  if (validThemes.indexOf(current) === -1) current = 'light';
+
+  function applyTheme(t) {
+    if (t === 'light') html.removeAttribute('data-theme');
+    else html.setAttribute('data-theme', t);
+  }
+  applyTheme(current);
+
+  function isCorrupt() { return current === 'corrupt-light' || current === 'corrupt-dark'; }
+  function isDark() { return current === 'dark' || current === 'corrupt-dark'; }
+
+  function setToggleLabel() { toggle.textContent = isDark() ? '\u2600 Wake' : '\u263E Dream'; }
+  setToggleLabel();
+
+  var transitioning = false;
+
+  // Dream/wake pixelated dissolve transition (RPG Maker 2003 style)
+  function dreamTransition(toDark, callback) {
+    var canvas = document.createElement('canvas');
+    var w = window.innerWidth, h = window.innerHeight;
+    canvas.width = w; canvas.height = h;
+    canvas.style.cssText = 'position:fixed;inset:0;z-index:99999;pointer-events:none;image-rendering:pixelated;';
+    document.body.appendChild(canvas);
+    var ctx = canvas.getContext('2d');
+
+    var timeout = setTimeout(function() {
+      try { canvas.remove(); } catch(_) {}
+      transitioning = false;
+    }, 3000);
+
+    var r = toDark ? 10 : 250, g = toDark ? 10 : 249, b = toDark ? 18 : 247;
+    var blockSize = 72;
+    var cols = Math.ceil(w / blockSize), rows = Math.ceil(h / blockSize);
+    var blocks = [];
+    for (var y = 0; y < rows; y++) {
+      for (var x = 0; x < cols; x++) {
+        blocks.push([x, y]);
+      }
+    }
+    for (var i = blocks.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = blocks[i]; blocks[i] = blocks[j]; blocks[j] = tmp;
+    }
+
+    var total = blocks.length;
+    var perFrame = Math.ceil(total / 40);
+    var drawn = 0;
+    var switched = false;
+
+    ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+
+    function drawStep() {
+      try {
+        var end = Math.min(drawn + perFrame, total);
+        for (var i = drawn; i < end; i++) {
+          ctx.fillRect(blocks[i][0] * blockSize, blocks[i][1] * blockSize, blockSize, blockSize);
+        }
+        drawn = end;
+        if (!switched && drawn >= total * 0.6) {
+          switched = true;
+          callback();
+        }
+        if (drawn < total) {
+          requestAnimationFrame(drawStep);
+        } else {
+          setTimeout(function() {
+            var cleared = 0;
+            function clearStep() {
+              try {
+                var end2 = Math.min(cleared + perFrame, total);
+                for (var i = cleared; i < end2; i++) {
+                  ctx.clearRect(blocks[i][0] * blockSize, blocks[i][1] * blockSize, blockSize, blockSize);
+                }
+                cleared = end2;
+                if (cleared < total) requestAnimationFrame(clearStep);
+                else { clearTimeout(timeout); canvas.remove(); transitioning = false; }
+              } catch(_) { clearTimeout(timeout); try { canvas.remove(); } catch(_) {} transitioning = false; }
+            }
+            clearStep();
+          }, 80);
+        }
+      } catch(_) { clearTimeout(timeout); if (!switched) callback(); try { canvas.remove(); } catch(_) {} transitioning = false; }
+    }
+    requestAnimationFrame(drawStep);
+  }
+
+  // Corruption transition — signal breakup with RGB tears and noise
+  function corruptTransition(callback) {
+    var canvas = document.createElement('canvas');
+    var w = window.innerWidth, h = window.innerHeight;
+    canvas.width = w; canvas.height = h;
+    canvas.style.cssText = 'position:fixed;inset:0;z-index:99999;pointer-events:none;image-rendering:pixelated;';
+    document.body.appendChild(canvas);
+    var ctx = canvas.getContext('2d');
+
+    var timeout = setTimeout(function() {
+      try { canvas.remove(); } catch(_) {}
+      transitioning = false;
+    }, 2000);
+
+    var frame = 0;
+    var totalFrames = 35;
+    var switched = false;
+
+    function glitchFrame() {
+      try {
+        ctx.clearRect(0, 0, w, h);
+        var intensity = frame / totalFrames;
+
+        var strips = Math.floor(3 + intensity * 20);
+        for (var i = 0; i < strips; i++) {
+          var y = Math.random() * h;
+          var stripH = 1 + Math.random() * (4 + intensity * 30);
+          var offset = (Math.random() - 0.5) * intensity * 60;
+          ctx.globalAlpha = 0.3 + intensity * 0.5;
+          ctx.fillStyle = '#ff0066';
+          ctx.fillRect(offset - 2, y, w, stripH);
+          ctx.fillStyle = '#00ffff';
+          ctx.fillRect(offset + 2, y + 1, w, stripH);
+          ctx.fillStyle = '#00ff41';
+          ctx.fillRect(offset, y - 1, w, stripH * 0.5);
+        }
+
+        var noiseBlocks = Math.floor(intensity * 40);
+        for (var j = 0; j < noiseBlocks; j++) {
+          var bx = Math.random() * w;
+          var by = Math.random() * h;
+          var bw = 4 + Math.random() * (20 + intensity * 80);
+          var bh = 2 + Math.random() * (8 + intensity * 20);
+          ctx.globalAlpha = 0.2 + Math.random() * 0.6;
+          var colors = ['#ff0066', '#00ffff', '#00ff41', '#000', '#fff'];
+          ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+          ctx.fillRect(bx, by, bw, bh);
+        }
+
+        if (frame > totalFrames * 0.4 && frame < totalFrames * 0.6 && Math.random() > 0.5) {
+          ctx.globalAlpha = 0.15;
+          ctx.fillStyle = Math.random() > 0.5 ? '#ff0066' : '#00ffff';
+          ctx.fillRect(0, 0, w, h);
+        }
+
+        ctx.globalAlpha = 1;
+
+        if (!switched && frame >= totalFrames * 0.5) {
+          switched = true;
+          callback();
+        }
+
+        frame++;
+        if (frame < totalFrames) {
+          requestAnimationFrame(glitchFrame);
+        } else {
+          var fadeFrame = 0;
+          function fadeOut() {
+            ctx.clearRect(0, 0, w, h);
+            fadeFrame++;
+            if (fadeFrame < 8) {
+              var remaining = Math.floor((8 - fadeFrame) * 3);
+              for (var k = 0; k < remaining; k++) {
+                ctx.globalAlpha = (8 - fadeFrame) / 16;
+                ctx.fillStyle = ['#ff0066', '#00ffff', '#00ff41'][Math.floor(Math.random() * 3)];
+                ctx.fillRect(Math.random() * w, Math.random() * h, Math.random() * 40, 1 + Math.random() * 4);
+              }
+              ctx.globalAlpha = 1;
+              requestAnimationFrame(fadeOut);
+            } else {
+              clearTimeout(timeout);
+              canvas.remove();
+              transitioning = false;
+            }
+          }
+          fadeOut();
+        }
+      } catch(_) {
+        clearTimeout(timeout);
+        if (!switched) callback();
+        try { canvas.remove(); } catch(_) {}
+        transitioning = false;
+      }
+    }
+    requestAnimationFrame(glitchFrame);
+  }
+
+  // Dream/Wake toggle — switches base theme, preserves corrupt state
   toggle.addEventListener('click', function() {
-    dark = !dark;
-    if (dark) { html.setAttribute('data-theme', 'dark'); localStorage.setItem('theme', 'dark'); }
-    else { html.removeAttribute('data-theme'); localStorage.setItem('theme', 'light'); }
-    setLabel(dark);
-    renderCharts();
+    if (transitioning) return;
+    transitioning = true;
+    var goingDark = !isDark();
+    dreamTransition(goingDark, function() {
+      if (isCorrupt()) {
+        current = goingDark ? 'corrupt-dark' : 'corrupt-light';
+      } else {
+        current = goingDark ? 'dark' : 'light';
+      }
+      applyTheme(current);
+      try { localStorage.setItem('theme', current); } catch(e) {}
+      setToggleLabel();
+      renderCharts();
+    });
   });
 
+  // Corrupt toggle — switches between clean and corrupt variant
+  if (corruptBtn) {
+    corruptBtn.addEventListener('click', function() {
+      if (transitioning) return;
+      transitioning = true;
+      corruptTransition(function() {
+        if (isCorrupt()) {
+          current = isDark() ? 'dark' : 'light';
+        } else {
+          current = isDark() ? 'corrupt-dark' : 'corrupt-light';
+        }
+        applyTheme(current);
+        try { localStorage.setItem('theme', current); } catch(e) {}
+        setToggleLabel();
+        renderCharts();
+      });
+    });
+  }
+
   function renderCharts() {
-    var isDark = html.getAttribute('data-theme') === 'dark';
-    var gridColor = isDark ? '#2d2a3a' : '#e5e2db';
-    var textColor = isDark ? '#7d7890' : '#6b6560';
+    var theme = html.getAttribute('data-theme') || 'light';
+    var isDarkMode = theme === 'dark' || theme === 'corrupt-dark';
+    var gridColor = isDarkMode ? '#2d2a3a' : '#e5e2db';
+    var textColor = isDarkMode ? '#7d7890' : '#6b6560';
 
     if (window._tvlChart) { window._tvlChart.destroy(); window._tvlChart = null; }
     if (window._actChart) { window._actChart.destroy(); window._actChart = null; }
@@ -71,12 +283,12 @@ try { __ACT = JSON.parse(document.getElementById('act-data').textContent); } cat
       var actMap = {};
       __ACT.forEach(function(a){ actMap[a.month] = a.tx_count; });
       var activity = [];
-      var y = 2016, m = 1;
+      var yr = 2016, mo = 1;
       while (true) {
-        var k = y + '-' + String(m).padStart(2, '0');
+        var k = yr + '-' + String(mo).padStart(2, '0');
         activity.push({ month: k, tx_count: actMap[k] || 0 });
         var _now = new Date(); if (k === _now.getFullYear() + '-' + String(_now.getMonth() + 1).padStart(2, '0')) break;
-        m++; if (m > 12) { m = 1; y++; }
+        mo++; if (mo > 12) { mo = 1; yr++; }
       }
 
       window._actChart = new Chart(document.getElementById('actChart'), {
@@ -107,43 +319,6 @@ try { __ACT = JSON.parse(document.getElementById('act-data').textContent); } cat
   else window.addEventListener('load', renderCharts);
 })();
 
-// Wallet connection
-var walletAddress = null;
-async function connectWallet() {
-  if (!window.ethereum) { alert('No wallet detected. Install MetaMask or another Ethereum wallet.'); return; }
-  var btn = document.getElementById('walletBtn');
-  var addrEl = document.getElementById('walletAddr');
-  try {
-    var accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    if (!accounts || !accounts.length) return;
-    walletAddress = accounts[0].toLowerCase();
-    addrEl.textContent = walletAddress.slice(0, 6) + '...' + walletAddress.slice(-4);
-    addrEl.style.display = '';
-    btn.textContent = 'Disconnect';
-    btn.classList.add('connected');
-    btn.onclick = disconnectWallet;
-    document.getElementById('checkAddr').value = walletAddress;
-    checkAddress();
-  } catch (e) {
-    if (e.code !== 4001) console.error('Wallet connect error:', e);
-  }
-}
-
-function disconnectWallet() {
-  walletAddress = null;
-  var btn = document.getElementById('walletBtn');
-  var addrEl = document.getElementById('walletAddr');
-  addrEl.style.display = 'none';
-  btn.textContent = 'Connect Wallet';
-  btn.classList.remove('connected');
-  btn.onclick = connectWallet;
-  document.getElementById('checkResult').innerHTML = '';
-}
-
-document.getElementById('walletBtn').addEventListener('click', function() {
-  if (walletAddress) disconnectWallet(); else connectWallet();
-});
-
 // FAQ toggle
 document.querySelectorAll('[data-faq-toggle]').forEach(function(el) {
   el.addEventListener('click', function() {
@@ -151,21 +326,23 @@ document.querySelectorAll('[data-faq-toggle]').forEach(function(el) {
   });
 });
 
-// Address check
+// Address check — builds result HTML from validated, API-returned data only
 function checkAddress() {
   var input = document.getElementById('checkAddr');
   var addr = (input.value || '').trim().toLowerCase();
   var result = document.getElementById('checkResult');
   var btn = document.getElementById('checkBtn');
 
+  // Strict hex address validation — only 0x + 40 hex chars allowed
   if (!/^0x[0-9a-f]{40}$/.test(addr)) {
-    result.innerHTML = '<span class="not-found">Please enter a valid Ethereum address.</span>';
+    result.textContent = 'Please enter a valid Ethereum address.';
+    result.className = 'check-result';
     return;
   }
 
   btn.disabled = true;
   btn.textContent = 'Checking...';
-  result.innerHTML = '';
+  result.textContent = '';
 
   var thisKey = document.body.dataset.protocolKey;
 
@@ -191,34 +368,74 @@ function checkAddress() {
         }
       }
 
-      var html = '';
+      // Build result DOM safely
+      while (result.firstChild) result.removeChild(result.firstChild);
+
       if (thisBalance && thisBalance > 0.0001) {
-        html += '<div class="found">';
-        html += '<strong style="color:var(--gold)">' + thisBalance.toFixed(4) + ' ETH</strong> found in this contract!';
-        html += '<br><a href="/?address=' + encodeURIComponent(addr) + '" class="claim-cta">Go to claim page &rarr;</a>';
-        html += '</div>';
+        var foundDiv = document.createElement('div');
+        foundDiv.className = 'found';
+        var strong = document.createElement('strong');
+        strong.style.color = 'var(--gold)';
+        strong.textContent = thisBalance.toFixed(4) + ' ETH';
+        foundDiv.appendChild(strong);
+        var protoName = document.body.dataset.protocolName || 'this contract';
+        foundDiv.appendChild(document.createTextNode(' found in ' + protoName + '!'));
+        foundDiv.appendChild(document.createElement('br'));
+        var claimLink = document.createElement('a');
+        claimLink.href = '/?address=' + encodeURIComponent(addr);
+        claimLink.className = 'claim-cta';
+        claimLink.textContent = 'Go to claim page \u2192';
+        foundDiv.appendChild(claimLink);
+        result.appendChild(foundDiv);
       } else {
-        html += '<span class="not-found">No balance found in this contract for this address.</span>';
+        var notFound = document.createElement('span');
+        notFound.className = 'not-found';
+        var protoName2 = document.body.dataset.protocolName || 'this contract';
+        notFound.textContent = 'No balance found in ' + protoName2 + ' for this address.';
+        result.appendChild(notFound);
       }
 
       if (otherCount > 0) {
-        html += '<div class="others">';
-        html += 'You also have <strong style="color:var(--accent-text)">' + otherEth.toFixed(4) + ' ETH</strong> stuck in <strong>' + otherCount + '</strong> other contract' + (otherCount > 1 ? 's' : '') + '.';
-        html += '<br><a href="/?address=' + encodeURIComponent(addr) + '" class="others-cta">Check all contracts &rarr;</a>';
-        html += '</div>';
+        var othersDiv = document.createElement('div');
+        othersDiv.className = 'others';
+        var otherStrong = document.createElement('strong');
+        otherStrong.style.color = 'var(--accent-text)';
+        otherStrong.textContent = otherEth.toFixed(4) + ' ETH';
+        othersDiv.appendChild(document.createTextNode('You also have '));
+        othersDiv.appendChild(otherStrong);
+        var countStrong = document.createElement('strong');
+        countStrong.textContent = String(otherCount);
+        othersDiv.appendChild(document.createTextNode(' stuck in '));
+        othersDiv.appendChild(countStrong);
+        othersDiv.appendChild(document.createTextNode(' other contract' + (otherCount > 1 ? 's' : '') + '.'));
+        othersDiv.appendChild(document.createElement('br'));
+        var otherLink = document.createElement('a');
+        otherLink.href = '/?address=' + encodeURIComponent(addr);
+        otherLink.className = 'others-cta';
+        otherLink.textContent = 'Check all contracts \u2192';
+        othersDiv.appendChild(otherLink);
+        result.appendChild(othersDiv);
       } else if (!thisBalance || thisBalance <= 0.0001) {
-        html += '<div class="others">No balance here, but you might have ETH elsewhere.<br><a href="/?address=' + encodeURIComponent(addr) + '" class="others-cta">Check all contracts &rarr;</a></div>';
+        var elseDiv = document.createElement('div');
+        elseDiv.className = 'others';
+        elseDiv.appendChild(document.createTextNode('No balance here, but you might have ETH elsewhere.'));
+        elseDiv.appendChild(document.createElement('br'));
+        var elseLink = document.createElement('a');
+        elseLink.href = '/?address=' + encodeURIComponent(addr);
+        elseLink.className = 'others-cta';
+        elseLink.textContent = 'Check all contracts \u2192';
+        elseDiv.appendChild(elseLink);
+        result.appendChild(elseDiv);
       }
-
-      result.innerHTML = html;
     })
     .catch(function() {
       btn.disabled = false;
       btn.textContent = 'Check';
-      result.innerHTML = '<span class="not-found">Error checking address. Try again.</span>';
+      result.textContent = 'Error checking address. Try again.';
     });
 }
 
 document.getElementById('checkAddr').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') checkAddress();
 });
+document.getElementById('checkBtn').addEventListener('click', checkAddress);

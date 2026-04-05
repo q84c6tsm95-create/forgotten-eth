@@ -4,6 +4,7 @@ import { sql } from '@vercel/postgres';
 import { rateLimit } from './_ratelimit.js';
 
 let fileData = null;
+let fileDataExpiry = 0;
 let claimsCache = null;
 let claimsCacheExpiry = 0;
 
@@ -18,12 +19,14 @@ export default async function handler(req, res) {
     return res.status(429).json({ error: 'Rate limit exceeded. Try again in 1 minute.' });
   }
 
-  if (!fileData) {
+  const ts = Date.now();
+  if (!fileData || ts > fileDataExpiry) {
     try {
       const raw = readFileSync(join(process.cwd(), 'data', 'total.json'), 'utf8');
       fileData = JSON.parse(raw);
+      fileDataExpiry = ts + 300000; // re-read every 5 min
     } catch (e) {
-      return res.status(500).json({ error: 'Total data not available' });
+      if (!fileData) return res.status(500).json({ error: 'Total data not available' });
     }
   }
 

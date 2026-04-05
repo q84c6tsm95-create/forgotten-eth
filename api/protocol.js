@@ -95,7 +95,7 @@ function renderPage(slug, key, info, meta) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 784 1277'><polygon fill='%23343434' points='392.07,0 383.5,29.11 383.5,873.74 392.07,882.29 784.13,650.54'/><polygon fill='%238C8C8C' points='392.07,0 0,650.54 392.07,882.29 392.07,472.33'/><polygon fill='%233C3C3B' points='392.07,956.52 387.24,962.41 387.24,1263.28 392.07,1277.38 784.37,724.89'/><polygon fill='%238C8C8C' points='392.07,1277.38 392.07,956.52 0,724.89'/><polygon fill='%23141414' points='392.07,882.29 784.13,650.54 392.07,472.33'/><polygon fill='%23393939' points='0,650.54 392.07,882.29 392.07,472.33'/></svg>">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(descShort)}">
 <meta property="og:title" content="${esc(info.name)} - ${fmtEth(meta.total_eth)} ETH Unclaimed">
@@ -114,6 +114,7 @@ function renderPage(slug, key, info, meta) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="/theme-init.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC" crossorigin="anonymous"></script>
 <style>
   :root {
@@ -125,7 +126,7 @@ function renderPage(slug, key, info, meta) {
     --gold: #b45309; --gold-glow: rgba(180, 83, 9, 0.3);
     --red: #dc2626; --yellow: #ca8a04; --orange: #c2410c;
     --glass: #f0eee9; --glass-border: #d4d0c8;
-    --radius: 8px; --radius-sm: 4px;
+    --radius: 3px; --radius-sm: 2px; --radius-lg: 6px;
     --connect-bg: rgba(15, 118, 110, 0.06); --connect-border: rgba(15, 118, 110, 0.20);
     --font-display: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
     --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -142,27 +143,136 @@ function renderPage(slug, key, info, meta) {
     --glass: #1a1924; --glass-border: #2d2a3a;
     --connect-bg: rgba(126, 200, 190, 0.04); --connect-border: rgba(126, 200, 190, 0.12);
   }
+  /* Corrupt Light theme */
+  [data-theme="corrupt-light"] {
+    --bg: #faf9f7; --bg2: #f0eee9; --bg3: #e5e2db;
+    --border: #d4d0c8; --border-strong: #b8b3a8;
+    --text: #1a1a1a; --text2: #6b6560;
+    --accent: #ff0066; --accent2: #ff3388; --accent-text: #ff0066;
+    --accent-glow: rgba(255,0,102,0.15);
+    --green: #16a34a; --green-glow: transparent;
+    --gold: #b45309; --gold-glow: rgba(180,83,9,0.3);
+    --red: #dc2626; --yellow: #ca8a04; --orange: #c2410c;
+    --glass: #f0eee9; --glass-border: #d4d0c8;
+    --connect-bg: rgba(255,0,102,0.04); --connect-border: rgba(255,0,102,0.15);
+  }
+  /* Corrupt Dark theme */
+  [data-theme="corrupt-dark"] {
+    --bg: #030805; --bg2: #071209; --bg3: #0c1c12;
+    --border: #163020; --border-strong: #20442e;
+    --text: #00ff41; --text2: #00aa2a;
+    --accent: #ff0066; --accent2: #ff3388; --accent-text: #ff0066;
+    --accent-glow: rgba(255,0,102,0.2);
+    --green: #00ff41; --green-glow: rgba(0,255,65,0.15);
+    --gold: #ffcc00; --gold-glow: rgba(255,204,0,0.3);
+    --red: #ff3333; --yellow: #ffcc00; --orange: #ff8833;
+    --glass: #071209; --glass-border: #163020;
+    --connect-bg: rgba(0,255,65,0.03); --connect-border: rgba(0,255,65,0.12);
+  }
+  /* Corrupt overrides (shared by both corrupt themes) */
+  [data-theme^="corrupt"] body { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+  [data-theme^="corrupt"] a:hover { color: #ff0066; text-shadow: 0 0 8px rgba(255,0,102,0.5); }
+  [data-theme^="corrupt"] .header .site-name { text-shadow: 3px 0 #ff0066, -3px 0 #00ffff, 0 0 10px rgba(0,255,65,0.4); animation: glitchTitle 3s infinite; }
+  [data-theme^="corrupt"] .subtitle { text-shadow: 1px 0 #ff006640, -1px 0 #00ffff40; animation: glitchSubtle 5s infinite; }
+  [data-theme^="corrupt"] .connect-section { border-left-color: #ff0066; animation: glitchBorder 8s infinite; opacity: 1; }
+  [data-theme^="corrupt"] .btn { border-color: #ff0066; color: #ff0066; background: transparent; }
+  [data-theme^="corrupt"] .btn:hover { background: rgba(255,0,102,0.1); }
+  [data-theme^="corrupt"] .wallet-btn { border-color: var(--accent); color: var(--accent); background: transparent; }
+  [data-theme^="corrupt"] .wallet-btn:hover { background: rgba(255,0,102,0.08); }
+  [data-theme^="corrupt"] .wallet-btn.connected { background: var(--bg); }
+  [data-theme^="corrupt"] .faq-q:hover { color: #ff0066; }
+  [data-theme^="corrupt"] #corruptToggle { color: #ff0066 !important; text-shadow: 0 0 8px rgba(255,0,102,0.5); }
+  [data-theme="corrupt-light"] .header .site-name { text-shadow: 3px 0 #ff0066, -3px 0 #0088aa, 0 0 10px rgba(255,0,102,0.3); }
+  /* CRT scanlines */
+  [data-theme="corrupt-light"] body::after { content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 1px, transparent 1px, transparent 2px); animation: scanlineFlicker 0.1s infinite; }
+  [data-theme="corrupt-dark"] body::after { content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 1px, transparent 1px, transparent 2px); animation: scanlineFlicker 0.15s infinite; }
+  /* Noise grain */
+  [data-theme="corrupt-light"] body::before { content: ''; position: fixed; inset: -10%; width: 120%; height: 120%; z-index: 9997; pointer-events: none; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 256px 256px; animation: grainShift 0.3s steps(6) infinite; }
+  [data-theme="corrupt-dark"] body::before { content: ''; position: fixed; inset: -10%; width: 120%; height: 120%; z-index: 9997; pointer-events: none; opacity: 0.06; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 256px 256px; animation: grainShift 0.3s steps(6) infinite; }
+  /* Tear line */
+  [data-theme^="corrupt"] .container::after { content: ''; position: fixed; left: 0; right: 0; height: 2px; z-index: 9999; pointer-events: none; background: linear-gradient(90deg, transparent 5%, #00ffff 20%, #ff0066 50%, #00ff41 80%, transparent 95%); opacity: 0.8; animation: tearLine 3s linear infinite; }
+  [data-theme^="corrupt"] .container::before { content: ''; position: fixed; left: 0; right: 0; height: 1px; z-index: 9999; pointer-events: none; background: linear-gradient(90deg, transparent 15%, #ff0066 40%, #00ffff 60%, transparent 85%); opacity: 0.4; animation: tearLine 7s linear infinite reverse; }
+  /* Tile jitter */
+  [data-theme^="corrupt"] .header { animation: tileShift 7s infinite; opacity: 1; }
+  [data-theme^="corrupt"] .about-section { animation: tileShift 11s infinite; opacity: 1; }
+  [data-theme^="corrupt"] .site-footer { animation: tileShift 13s infinite reverse; }
+  [data-theme^="corrupt"] .faq-q { animation: paletteBleed 10s infinite; }
+  [data-theme^="corrupt"] .faq-item:hover .faq-q { text-shadow: 1px 0 #ff006630, -1px 0 #00ffff30; }
+  [data-theme^="corrupt"] .container { animation: pageGlitch 6s infinite; }
+  /* Glitched VRAM tile grid background */
+  [data-theme="corrupt-light"] body {
+    background-image:
+      repeating-linear-gradient(90deg, rgba(255,0,102,0.03) 0px, rgba(255,0,102,0.03) 32px, transparent 32px, transparent 64px),
+      repeating-linear-gradient(0deg, rgba(0,136,170,0.03) 0px, rgba(0,136,170,0.03) 32px, transparent 32px, transparent 64px),
+      repeating-linear-gradient(90deg, rgba(255,0,102,0.05) 0px, transparent 1px, transparent 32px),
+      repeating-linear-gradient(0deg, rgba(0,136,170,0.05) 0px, transparent 1px, transparent 32px);
+    background-size: 64px 64px, 64px 64px, 32px 32px, 32px 32px;
+    background-position: 0 0, 3px 5px, 0 0, -2px 3px;
+    animation: bgGlitch 4s steps(1) infinite;
+  }
+  [data-theme="corrupt-dark"] body {
+    background-image:
+      repeating-linear-gradient(90deg, rgba(255,0,102,0.06) 0px, rgba(255,0,102,0.06) 32px, transparent 32px, transparent 64px),
+      repeating-linear-gradient(0deg, rgba(0,255,65,0.04) 0px, rgba(0,255,65,0.04) 32px, transparent 32px, transparent 64px),
+      repeating-linear-gradient(90deg, rgba(255,0,102,0.08) 0px, transparent 1px, transparent 32px),
+      repeating-linear-gradient(0deg, rgba(0,255,65,0.08) 0px, transparent 1px, transparent 32px);
+    background-size: 64px 64px, 64px 64px, 32px 32px, 32px 32px;
+    background-position: 0 0, 3px 5px, 0 0, -2px 3px;
+    animation: bgGlitch 4s steps(1) infinite;
+  }
+  [data-theme^="corrupt"] .neon-world { display: none !important; }
+  .corrupt-btn { background: none; border: none; cursor: pointer; font-family: var(--font-mono); font-size: 14px; color: #ff0066; padding: 0; letter-spacing: 0.5px; text-shadow: 1px 0 #ff006640, -1px 0 #00ffff40; animation: corruptBtnGlitch 4s infinite; }
+  .corrupt-btn:hover { text-shadow: 2px 0 #ff0066, -2px 0 #00ffff; }
+  /* Keyframes */
+  @keyframes scanlineFlicker { 0%,100%{opacity:1}50%{opacity:0.97} }
+  @keyframes glitchTitle { 0%,82%,100%{text-shadow:3px 0 #ff0066,-3px 0 #00ffff,0 0 10px rgba(0,255,65,0.4);transform:none}83%{text-shadow:-6px 0 #ff0066,6px 0 #00ffff;transform:translateX(-4px) skewX(-3deg)}84%{text-shadow:5px 4px #ff0066,-5px -3px #00ffff;transform:translateX(4px) skewX(2deg)}85%{text-shadow:-4px -3px #ff0066,4px 3px #00ffff,0 0 25px #ff0066;transform:translateX(-3px) skewX(-4deg)}86%{text-shadow:6px 2px #ff0066,-6px -1px #00ffff;transform:translateX(3px)}87%{text-shadow:3px 0 #ff0066,-3px 0 #00ffff,0 0 10px rgba(0,255,65,0.4);transform:none} }
+  @keyframes glitchSubtle { 0%,95%,100%{transform:none;opacity:1}96%{transform:translateX(-1px);opacity:0.8}97%{transform:translateX(2px) skewX(-1deg);opacity:0.9}98%{transform:translateX(-1px);opacity:1} }
+  @keyframes glitchBorder { 0%,94%,100%{border-left-color:#ff0066}95%{border-left-color:#00ffff}96%{border-left-color:#00ff41}97%{border-left-color:#ff0066} }
+  @keyframes tileShift { 0%,87%,100%{transform:none}88%{transform:translateX(-4px)}89%{transform:translateX(3px) skewX(-0.5deg)}90%{transform:translateX(-2px) translateY(2px)}91%{transform:translateX(1px) skewX(0.3deg)}92%{transform:none} }
+  @keyframes pageGlitch { 0%,96%,100%{transform:none;filter:none}97%{transform:translateX(-5px);filter:hue-rotate(90deg)}98%{transform:translateX(3px) skewX(-0.5deg);filter:hue-rotate(-60deg) saturate(2)}99%{transform:translateX(-2px);filter:hue-rotate(30deg)} }
+  @keyframes tearLine { 0%{top:-2px}100%{top:100vh} }
+  @keyframes paletteBleed { 0%,96%,100%{border-color:var(--border)}97%{border-color:#00ffff}98%{border-color:#ff0066}99%{border-color:#00ff41} }
+  @keyframes grainShift { 0%{transform:translate(0,0)}16%{transform:translate(-3px,2px)}33%{transform:translate(2px,-1px)}50%{transform:translate(-1px,3px)}66%{transform:translate(3px,-2px)}83%{transform:translate(-2px,1px)}100%{transform:translate(1px,-3px)} }
+  @keyframes bgGlitch { 0%,85%,100%{background-position:0 0,3px 5px,0 0,-2px 3px}86%{background-position:-4px 2px,6px -3px,3px -1px,-5px 4px}88%{background-position:2px -3px,-5px 7px,-2px 4px,3px -6px}90%{background-position:0 0,3px 5px,0 0,-2px 3px} }
+  @keyframes corruptBtnGlitch { 0%,88%,100%{transform:none;text-shadow:1px 0 #ff006640,-1px 0 #00ffff40}89%{transform:translateX(-1px);text-shadow:2px 0 #ff0066,-2px 0 #00ffff}90%{transform:translateX(1px) skewX(-2deg);text-shadow:-1px 0 #ff0066,1px 0 #00ffff}91%{transform:none;text-shadow:1px 0 #ff006640,-1px 0 #00ffff40} }
+
   [data-theme="dark"] a:hover { color: #a3ddd5; }
-  [data-theme="dark"] * { transition-duration: 0.35s; }
+  [data-theme="dark"] .wallet-btn.connected { background: var(--bg); }
+  [data-theme="dark"] .wallet-btn.connected:hover { border-color: var(--red); color: var(--red); }
+  [data-theme="dark"] .btn { box-shadow: 2px 2px 0 rgba(126, 200, 190, 0.2); }
+  [data-theme="dark"] .btn:hover { box-shadow: 3px 3px 0 rgba(126, 200, 190, 0.3); }
+  [data-theme="dark"] .connect-section { box-shadow: 0 0 40px -10px rgba(126, 200, 190, 0.08), inset 0 0 30px -15px rgba(126, 200, 190, 0.03); background: rgba(18, 17, 26, 0.9); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+  body, .card, .btn, .connect-section, .site-footer, input, table, th, td { transition: background-color 0.35s, color 0.35s, border-color 0.35s, box-shadow 0.35s; }
+
+  /* Pixel cursor (Yume Nikki) */
+  * { cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAUElEQVR4nGNgoAYQEZH7T7EBFBkC0lx3Yh/5hsAMINsQZAPIMgTdAJINwWYASYbgMoBoQ/C5gGwDyAoDsqMT2alkGYKukOKEhWwIxXmEkAEAaCednTE3BIIAAAAASUVORK5CYII=") 1 1, auto; }
+  a, button, [role="button"], select, input[type="submit"] { cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAUElEQVR4nGNgoAYQEZH7T7EBFBkC0lx3Yh/5hsAMINsQZAPIMgTdAJINwWYASYbgMoBoQ/C5gGwDyAoDsqMT2alkGYKukOKEhWwIxXmEkAEAaCednTE3BIIAAAAASUVORK5CYII=") 1 1, pointer; }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
-  body { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='16' height='16' fill='%23f0eee9'/%3E%3Crect x='16' y='16' width='16' height='16' fill='%23f0eee9'/%3E%3Crect x='16' width='16' height='16' fill='%23ece9e3'/%3E%3Crect y='16' width='16' height='16' fill='%23ece9e3'/%3E%3C/svg%3E"); background-size: 32px 32px; }
-  [data-theme="dark"] body { background-color: #0a0a12; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='16' height='16' fill='%23100f1a'/%3E%3Crect x='16' y='16' width='16' height='16' fill='%23100f1a'/%3E%3Crect x='16' width='16' height='16' fill='%230e0d18'/%3E%3Crect y='16' width='16' height='16' fill='%230e0d18'/%3E%3C/svg%3E"); background-size: 32px 32px; }
-  [data-theme="dark"] body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: -2; background: radial-gradient(ellipse 800px 500px at 10% 20%, rgba(160,50,180,0.07), transparent 70%), radial-gradient(ellipse 600px 400px at 85% 15%, rgba(80,200,180,0.06), transparent 70%), radial-gradient(ellipse 700px 450px at 50% 80%, rgba(100,80,220,0.05), transparent 70%), radial-gradient(ellipse 500px 350px at 75% 50%, rgba(200,60,120,0.04), transparent 70%); }
-  [data-theme="dark"] body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: -1; background-image: linear-gradient(rgba(200,80,180,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(80,200,190,0.08) 1px, transparent 1px); background-size: 32px 32px; }
+  /* Light mode: Yume Nikki checkerboard */
+  body { background-color: var(--bg); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='16' height='16' fill='%23f0eee9'/%3E%3Crect x='16' y='16' width='16' height='16' fill='%23f0eee9'/%3E%3Crect x='16' width='16' height='16' fill='%23ece9e3'/%3E%3Crect y='16' width='16' height='16' fill='%23ece9e3'/%3E%3C/svg%3E"); background-size: 32px 32px; }
+  body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: -2; background: radial-gradient(ellipse 700px 450px at 15% 25%, rgba(15, 118, 110, 0.06), transparent 70%), radial-gradient(ellipse 500px 400px at 80% 20%, rgba(180, 130, 80, 0.05), transparent 70%), radial-gradient(ellipse 600px 350px at 50% 75%, rgba(15, 118, 110, 0.04), transparent 70%); }
+  body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: -1; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128'%3E%3Cpolygon points='64,52 58,64 70,64' fill='%230f766e' opacity='0.06'/%3E%3C/svg%3E"), linear-gradient(rgba(15, 118, 110, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(15, 118, 110, 0.05) 1px, transparent 1px); background-size: 128px 128px, 32px 32px, 32px 32px; }
+  /* Dark mode: Neon World */
+  @keyframes neonPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+  [data-theme="dark"] body { background-color: #0a0a12; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='16' height='16' fill='%23161425'/%3E%3Crect x='16' y='16' width='16' height='16' fill='%23161425'/%3E%3Crect x='16' width='16' height='16' fill='%230e0d18'/%3E%3Crect y='16' width='16' height='16' fill='%230e0d18'/%3E%3C/svg%3E"); background-size: 32px 32px; }
+  [data-theme="dark"] body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: -2; opacity: 1; animation: neonPulse 8s ease-in-out infinite; background: radial-gradient(ellipse 800px 500px at 10% 20%, rgba(160,50,180,0.08), transparent 70%), radial-gradient(ellipse 600px 400px at 85% 15%, rgba(80,200,180,0.07), transparent 70%), radial-gradient(ellipse 700px 450px at 50% 80%, rgba(100,80,220,0.06), transparent 70%), radial-gradient(ellipse 500px 350px at 75% 50%, rgba(200,60,120,0.05), transparent 70%); }
+  [data-theme="dark"] body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: -1; opacity: 1; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128'%3E%3Cpolygon points='64,52 58,64 70,64' fill='%236030a0' opacity='0.15'/%3E%3C/svg%3E"), linear-gradient(rgba(200,80,180,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(80,200,190,0.08) 1px, transparent 1px); background-size: 128px 128px, 32px 32px, 32px 32px; }
   a { color: var(--accent-text); text-decoration: underline; }
   a:hover { color: #0d6560; }
   .container { max-width: 1400px; margin: 0 auto; padding: 0 24px 32px; }
 
   /* Header */
-  .header { padding: 36px 0 28px; border-bottom: 1px solid var(--border); text-align: center; }
-  .header h1, .header .site-name { font-family: var(--font-display); font-size: 36px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 4px; }
+  .header { padding: 24px 0 12px; text-align: center; }
+  .header h1, .header .site-name { font-family: var(--font-display); font-size: 38px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
   .header h1 a, .header .site-name a { color: inherit; text-decoration: none; }
-  .header .subtitle { font-family: var(--font-display); font-size: 16px; color: var(--text2); font-weight: 400; margin-bottom: 12px; font-style: italic; opacity: 0.6; }
-  .header-nav { display: inline-flex; align-items: center; justify-content: center; gap: 30px; margin-top: 16px; font-size: 12px; font-family: var(--font-mono); }
-  .header-nav a { color: var(--text2); text-decoration: none; transition: color 150ms ease; }
-  .header-nav a:hover { color: var(--accent); }
+  .header .subtitle { font-family: var(--font-display); font-size: 16px; color: var(--text2); font-weight: 400; margin-bottom: 20px; font-style: italic; letter-spacing: 0.3px; opacity: 0.8; }
+  .hero-tagline { font-family: var(--font-display); color: var(--text); font-size: 17px; line-height: 1.5; max-width: 700px; margin: 0 auto 18px; font-weight: 400; text-align: center; }
+  .hero-tagline a { color: var(--text2); }
+  .header-nav { display: inline-flex; align-items: center; justify-content: center; gap: 24px; margin-top: 2px; font-size: 13px; font-family: var(--font-mono); }
+  .header-nav a { color: var(--text2); text-decoration: none; transition: color 150ms ease; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; }
+  .header-nav a:hover { color: var(--accent); text-decoration-color: var(--accent); }
   .nav-sep { display: none; }
   #themeToggle { background: none; border: none; cursor: pointer; font-size: 12px; display: inline-flex; align-items: center; gap: 4px; color: var(--text2); transition: color 150ms ease; padding: 0; line-height: 1; font-family: var(--font-mono); }
   #themeToggle:hover { color: var(--accent); }
@@ -199,7 +309,7 @@ function renderPage(slug, key, info, meta) {
   tbody td { padding: 8px 12px; }
 
   /* CTA / Check section */
-  .connect-section { background: var(--connect-bg); border: 1.5px solid var(--connect-border); border-radius: 14px; padding: 28px 32px; margin: 32px auto; font-size: 13px; display: flex; flex-direction: column; align-items: stretch; gap: 16px; max-width: 680px; }
+  .connect-section { background: var(--connect-bg); border: 1px solid var(--connect-border); border-left: 3px solid var(--accent); border-radius: 4px 14px 14px 4px; padding: 28px 32px; margin: 32px auto; font-size: 13px; display: flex; flex-direction: column; align-items: stretch; gap: 16px; max-width: 680px; }
   .connect-input-row { display: flex; gap: 8px; align-items: center; }
   .connect-input-wrap { flex: 1; }
   .connect-input { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-family: var(--font-mono); font-size: 13px; outline: none; background: var(--bg); color: var(--text); transition: border-color 0.15s, box-shadow 0.15s; }
@@ -209,8 +319,8 @@ function renderPage(slug, key, info, meta) {
   .connect-feedback { display: none; font-size: 11px; margin-top: 4px; }
   .connect-feedback.error { color: var(--red); }
   .connect-feedback.info { color: var(--text2); }
-  .btn { padding: 7px 14px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); cursor: pointer; font-size: 12px; font-weight: 600; white-space: nowrap; text-decoration: none; display: inline-block; font-family: inherit; }
-  .btn:hover { background: #5b21b6; color: #fff; text-decoration: none; }
+  .btn { padding: 7px 14px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); cursor: pointer; font-size: 12px; font-weight: 600; white-space: nowrap; text-decoration: none; display: inline-block; font-family: inherit; transition: background 0.15s, color 0.15s; }
+  .btn:hover { background: var(--accent2); color: #fff; text-decoration: none; }
   .btn.ghost { background: var(--bg); border: 1px solid var(--border); color: var(--text2); }
   .btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
 
@@ -247,8 +357,8 @@ function renderPage(slug, key, info, meta) {
 
   /* Wallet — matches main page */
   .wallet-area { display: flex; align-items: center; gap: 10px; }
-  .wallet-btn { padding: 8px 18px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); cursor: pointer; font-size: 13px; font-weight: 600; font-family: var(--font-body); }
-  .wallet-btn:hover { background: #5b21b6; }
+  .wallet-btn { padding: 10px 20px; background: transparent; border: 1.5px solid var(--accent); color: var(--accent); border-radius: var(--radius); cursor: pointer; font-size: 13px; font-weight: 600; font-family: var(--font-body); width: 100%; transition: background 0.15s, color 0.15s; }
+  .wallet-btn:hover { background: var(--accent); color: #fff; }
   .wallet-btn.connected { background: var(--bg); border: 1px solid var(--green); color: var(--green); }
   .wallet-btn.connected:hover { border-color: var(--red); color: var(--red); }
   .wallet-addr { font-family: var(--font-mono); font-size: 12px; color: var(--text2); background: var(--bg2); padding: 4px 10px; border-radius: var(--radius); border: 1px solid var(--border); display: none; }
@@ -262,6 +372,8 @@ function renderPage(slug, key, info, meta) {
   /* Footer */
   .site-footer { text-align: center; padding: 32px 0 28px; border-top: 1px solid var(--border); margin-top: 48px; }
   .footer-credit { font-size: 12px; color: var(--text2); opacity: 0.6; }
+  .site-footer a svg { transition: color 150ms ease; }
+  .site-footer a:hover { color: var(--accent) !important; }
 
   @media (max-width: 768px) {
     .charts { grid-template-columns: 1fr; }
@@ -280,7 +392,7 @@ function renderPage(slug, key, info, meta) {
   }
 </style>
 </head>
-<body data-protocol-key="${key}">
+<body data-protocol-key="${key}" data-protocol-name="${esc(info.name)}">
 <div class="container">
 
   <!-- Header — same as main page -->
@@ -290,27 +402,29 @@ function renderPage(slug, key, info, meta) {
       <p class="subtitle">Recover ETH stuck in old smart contracts</p>
       <nav class="header-nav">
         <a href="/">Home</a>
-        <a href="#faq">FAQ</a>
-        <a href="https://github.com/q84c6tsm95-create/forgotten-eth/issues/new" target="_blank" rel="noopener noreferrer" title="Submit a contract">Submit contract</a>
-        <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" title="View on GitHub" aria-label="GitHub"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
-        <a href="https://t.me/forgottenETH_bot" target="_blank" rel="noopener noreferrer" title="Telegram Bot" aria-label="Telegram"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+        <span class="nav-sep">&middot;</span>
+        <a href="/#faq">FAQ</a>
+        <span class="nav-sep">&middot;</span>
+        <a href="/api">API</a>
+        <span class="nav-sep">&middot;</span>
+        <a href="/changelog">Changelog</a>
+        <span class="nav-sep">&middot;</span>
         <button id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode"></button>
+        <span class="nav-sep">&middot;</span>
+        <button id="corruptToggle" class="corrupt-btn" title="Corrupt mode" aria-label="Toggle corrupt mode">C&#x338;O&#x2591;R&#x2593;RUPT</button>
       </nav>
     </div>
   </div>
 
-  <!-- Address check — matches main page -->
+  <p class="hero-tagline"><span style="font-weight:600">Thousands of ETH sit forgotten in defunct contracts from the 2015&ndash;2019 era.</span><br><span style="color:var(--text2)"><a href="https://debank.com" target="_blank" rel="noopener noreferrer">DeBank</a>, <a href="https://zapper.xyz" target="_blank" rel="noopener noreferrer">Zapper</a>, and other portfolio trackers don't detect them.</span></p>
+
+  <!-- Address check -->
   <div class="connect-section">
     <div class="connect-input-row">
       <div class="connect-input-wrap">
         <input type="text" id="checkAddr" class="connect-input" placeholder="0x... or ENS name" spellcheck="false" autocomplete="off">
       </div>
-      <button class="btn" id="checkBtn" onclick="checkAddress()" style="padding:10px 24px;font-size:13px;font-weight:700;flex-shrink:0">Check</button>
-    </div>
-    <span class="connect-divider">or</span>
-    <div class="wallet-area" style="justify-content:center">
-      <span class="wallet-addr" id="walletAddr"></span>
-      <button class="wallet-btn" id="walletBtn">Connect Wallet</button>
+      <button class="btn" id="checkBtn" style="padding:10px 24px;font-size:13px;font-weight:700;flex-shrink:0">Check</button>
     </div>
     <div id="checkResult" class="check-result"></div>
   </div>
@@ -392,6 +506,11 @@ function renderPage(slug, key, info, meta) {
 </div>
 
 <footer class="site-footer" style="text-align:center;padding:16px 0 20px;margin-top:12px">
+  <p style="margin-bottom:8px;display:flex;justify-content:center;gap:24px;align-items:center">
+    <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" title="GitHub" style="color:var(--text2)"><svg width="29" height="29" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+    <a href="https://x.com/3pa15" target="_blank" rel="noopener noreferrer" title="X/Twitter" style="color:var(--text2)"><svg width="23" height="23" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="https://t.me/forgottenETH_bot" target="_blank" rel="noopener noreferrer" title="Telegram" style="color:var(--text2)"><svg width="29" height="29" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+  </p>
   <p style="font-size:13px;color:var(--text2);opacity:0.7">made with <svg width="14" height="18" viewBox="0 0 14 18" style="vertical-align:middle;margin:0 3px" aria-label="Madotsuki"><rect x="4" y="0" width="6" height="2" fill="#5c3a1e"/><rect x="3" y="2" width="8" height="2" fill="#5c3a1e"/><rect x="2" y="2" width="1" height="6" fill="#5c3a1e"/><rect x="11" y="2" width="1" height="6" fill="#5c3a1e"/><rect x="3" y="4" width="8" height="2" fill="#f0c8a0"/><rect x="4" y="4" width="2" height="1" fill="#2a2018"/><rect x="8" y="4" width="2" height="1" fill="#2a2018"/><rect x="3" y="6" width="8" height="2" fill="#f0c8a0"/><rect x="3" y="8" width="8" height="5" fill="#c84b6b"/><rect x="5" y="9" width="1" height="2" fill="#f0c8a0"/><rect x="8" y="9" width="1" height="2" fill="#f0c8a0"/><rect x="6" y="9" width="2" height="3" fill="#87ceeb"/><rect x="3" y="13" width="3" height="3" fill="#c84b6b"/><rect x="8" y="13" width="3" height="3" fill="#c84b6b"/><rect x="3" y="16" width="3" height="2" fill="#5c3a1e"/><rect x="8" y="16" width="3" height="2" fill="#5c3a1e"/></svg> by <a href="https://t.me/syLKf" target="_blank" rel="noopener noreferrer" style="color:var(--text);text-decoration:none;font-weight:700">aaaaaaaaaaway</a></p>
   <p style="margin-top:4px;font-size:11px;color:var(--text2);opacity:0.7"><a href="https://etherscan.io/address/0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891" target="_blank" rel="noopener noreferrer" style="color:var(--text2);text-decoration:none;font-family:var(--font-mono)">forgotteneth.eth</a></p>
 </footer>

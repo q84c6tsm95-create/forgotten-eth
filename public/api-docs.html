@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>API — Forgotten ETH</title>
 <meta name="description" content="Free public API for checking claimable ETH stuck in defunct Ethereum smart contracts.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -27,14 +29,19 @@
     --accent-text: #0f766e;
     --accent-glow: rgba(15, 118, 110, 0.15);
     --green: #16a34a;
+    --green-glow: transparent;
     --gold: #b45309;
     --gold-glow: rgba(180, 83, 9, 0.3);
     --red: #dc2626;
+    --yellow: #ca8a04;
+    --orange: #c2410c;
     --glass: #f0eee9;
     --glass-border: #d4d0c8;
     --radius: 3px;
     --radius-sm: 2px;
     --radius-lg: 6px;
+    --connect-bg: rgba(15, 118, 110, 0.06);
+    --connect-border: rgba(15, 118, 110, 0.20);
     --font-display: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
     --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
@@ -53,12 +60,113 @@
     --accent-text: #7ec8be;
     --accent-glow: rgba(126, 200, 190, 0.12);
     --green: #6bc9a0;
+    --green-glow: transparent;
     --gold: #d4a96a;
     --gold-glow: rgba(212, 169, 106, 0.3);
     --red: #d47b7b;
+    --yellow: #d4a96a;
+    --orange: #d49a6a;
     --glass: #1a1924;
     --glass-border: #2d2a3a;
+    --connect-bg: rgba(126, 200, 190, 0.04);
+    --connect-border: rgba(126, 200, 190, 0.12);
   }
+  /* ── Corrupt Light theme ── */
+  [data-theme="corrupt-light"] {
+    --bg: #faf9f7; --bg2: #f0eee9; --bg3: #e5e2db;
+    --border: #d4d0c8; --border-strong: #b8b3a8;
+    --text: #1a1a1a; --text2: #6b6560;
+    --accent: #ff0066; --accent2: #ff3388; --accent-text: #ff0066;
+    --accent-glow: rgba(255,0,102,0.15);
+    --green: #16a34a; --green-glow: transparent;
+    --gold: #b45309; --gold-glow: rgba(180,83,9,0.3);
+    --red: #dc2626; --yellow: #ca8a04; --orange: #c2410c;
+    --glass: #f0eee9; --glass-border: #d4d0c8;
+    --connect-bg: rgba(255,0,102,0.04); --connect-border: rgba(255,0,102,0.15);
+  }
+  /* ── Corrupt Dark theme ── */
+  [data-theme="corrupt-dark"] {
+    --bg: #030805; --bg2: #071209; --bg3: #0c1c12;
+    --border: #163020; --border-strong: #20442e;
+    --text: #00ff41; --text2: #00aa2a;
+    --accent: #ff0066; --accent2: #ff3388; --accent-text: #ff0066;
+    --accent-glow: rgba(255,0,102,0.2);
+    --green: #00ff41; --green-glow: rgba(0,255,65,0.15);
+    --gold: #ffcc00; --gold-glow: rgba(255,204,0,0.3);
+    --red: #ff3333; --yellow: #ffcc00; --orange: #ff8833;
+    --glass: #071209; --glass-border: #163020;
+    --connect-bg: rgba(0,255,65,0.03); --connect-border: rgba(0,255,65,0.12);
+  }
+  /* Corrupt overrides (shared by both corrupt themes) */
+  [data-theme^="corrupt"] body { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+  [data-theme^="corrupt"] a:hover { color: #ff0066; text-shadow: 0 0 8px rgba(255,0,102,0.5); }
+  [data-theme^="corrupt"] .header h1 { text-shadow: 3px 0 #ff0066, -3px 0 #00ffff, 0 0 10px rgba(0,255,65,0.4); animation: glitchTitle 3s infinite; }
+  [data-theme^="corrupt"] .subtitle { text-shadow: 1px 0 #ff006640, -1px 0 #00ffff40; animation: glitchSubtle 5s infinite; }
+  [data-theme^="corrupt"] .endpoint { border-left-color: #ff0066; }
+  [data-theme^="corrupt"] .endpoint:hover { box-shadow: 3px 3px 0 #ff0066, -2px -2px 0 #00ffff; }
+  [data-theme^="corrupt"] .method { background: #ff0066; }
+  [data-theme^="corrupt"] .try-it button { border-color: #ff0066; color: #ff0066; }
+  [data-theme^="corrupt"] .try-it button:hover { background: #ff0066; color: #fff; }
+  [data-theme^="corrupt"] .note { border-left-color: #ff0066; }
+  .corrupt-btn { background: none; border: none; cursor: pointer; font-family: var(--font-mono); font-size: 14px; color: #ff0066; padding: 0; letter-spacing: 0.5px; text-shadow: 1px 0 #ff006640, -1px 0 #00ffff40; animation: corruptBtnGlitch 4s infinite; }
+  .corrupt-btn:hover { text-shadow: 2px 0 #ff0066, -2px 0 #00ffff; }
+  @keyframes corruptBtnGlitch { 0%,88%,100%{transform:none;text-shadow:1px 0 #ff006640,-1px 0 #00ffff40}89%{transform:translateX(-1px);text-shadow:2px 0 #ff0066,-2px 0 #00ffff}90%{transform:translateX(1px) skewX(-2deg);text-shadow:-1px 0 #ff0066,1px 0 #00ffff}91%{transform:none;text-shadow:1px 0 #ff006640,-1px 0 #00ffff40} }
+  [data-theme^="corrupt"] #corruptToggle { color: #ff0066 !important; text-shadow: 0 0 8px rgba(255,0,102,0.5); }
+  /* Corrupt-light: darken neon accents */
+  [data-theme="corrupt-light"] .header h1 { text-shadow: 3px 0 #ff0066, -3px 0 #0088aa, 0 0 10px rgba(255,0,102,0.3); }
+  /* CRT scanlines */
+  [data-theme="corrupt-light"] body::after { content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 1px, transparent 1px, transparent 2px); animation: scanlineFlicker 0.1s infinite; }
+  [data-theme="corrupt-dark"] body::after { content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 1px, transparent 1px, transparent 2px); animation: scanlineFlicker 0.15s infinite; }
+  /* Noise grain */
+  [data-theme="corrupt-light"] body::before { content: ''; position: fixed; inset: -10%; width: 120%; height: 120%; z-index: 9997; pointer-events: none; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 256px 256px; animation: grainShift 0.3s steps(6) infinite; }
+  [data-theme="corrupt-dark"] body::before { content: ''; position: fixed; inset: -10%; width: 120%; height: 120%; z-index: 9997; pointer-events: none; opacity: 0.06; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 256px 256px; animation: grainShift 0.3s steps(6) infinite; }
+  /* Tear line */
+  [data-theme^="corrupt"] .container::after { content: ''; position: fixed; left: 0; right: 0; height: 2px; z-index: 9999; pointer-events: none; background: linear-gradient(90deg, transparent 5%, #00ffff 20%, #ff0066 50%, #00ff41 80%, transparent 95%); opacity: 0.8; animation: tearLine 3s linear infinite; }
+  [data-theme^="corrupt"] .container::before { content: ''; position: fixed; left: 0; right: 0; height: 1px; z-index: 9999; pointer-events: none; background: linear-gradient(90deg, transparent 15%, #ff0066 40%, #00ffff 60%, transparent 85%); opacity: 0.4; animation: tearLine 7s linear infinite reverse; }
+  /* Tile jitter */
+  [data-theme^="corrupt"] .header { animation: tileShift 7s infinite; opacity: 1; }
+  [data-theme^="corrupt"] .site-footer { animation: tileShift 13s infinite reverse; }
+  [data-theme^="corrupt"] .endpoint { animation: paletteBleed 12s infinite; }
+  /* Glitched VRAM tile grid background */
+  [data-theme="corrupt-light"] body {
+    background-image:
+      repeating-linear-gradient(90deg, rgba(255,0,102,0.03) 0px, rgba(255,0,102,0.03) 32px, transparent 32px, transparent 64px),
+      repeating-linear-gradient(0deg, rgba(0,136,170,0.03) 0px, rgba(0,136,170,0.03) 32px, transparent 32px, transparent 64px),
+      repeating-linear-gradient(90deg, rgba(255,0,102,0.05) 0px, transparent 1px, transparent 32px),
+      repeating-linear-gradient(0deg, rgba(0,136,170,0.05) 0px, transparent 1px, transparent 32px);
+    background-size: 64px 64px, 64px 64px, 32px 32px, 32px 32px;
+    background-position: 0 0, 3px 5px, 0 0, -2px 3px;
+    animation: bgGlitch 4s steps(1) infinite;
+  }
+  [data-theme="corrupt-dark"] body {
+    background-image:
+      repeating-linear-gradient(90deg, rgba(255,0,102,0.06) 0px, rgba(255,0,102,0.06) 32px, transparent 32px, transparent 64px),
+      repeating-linear-gradient(0deg, rgba(0,255,65,0.04) 0px, rgba(0,255,65,0.04) 32px, transparent 32px, transparent 64px),
+      repeating-linear-gradient(90deg, rgba(255,0,102,0.08) 0px, transparent 1px, transparent 32px),
+      repeating-linear-gradient(0deg, rgba(0,255,65,0.08) 0px, transparent 1px, transparent 32px);
+    background-size: 64px 64px, 64px 64px, 32px 32px, 32px 32px;
+    background-position: 0 0, 3px 5px, 0 0, -2px 3px;
+    animation: bgGlitch 4s steps(1) infinite;
+  }
+  [data-theme^="corrupt"] .neon-world { display: none !important; }
+  /* Full page horizontal glitch */
+  [data-theme^="corrupt"] .container { animation: pageGlitch 6s infinite; }
+  /* Keyframes */
+  @keyframes scanlineFlicker { 0%,100%{opacity:1}50%{opacity:0.97} }
+  @keyframes glitchTitle { 0%,82%,100%{text-shadow:3px 0 #ff0066,-3px 0 #00ffff,0 0 10px rgba(0,255,65,0.4);transform:none}83%{text-shadow:-6px 0 #ff0066,6px 0 #00ffff;transform:translateX(-4px) skewX(-3deg)}84%{text-shadow:5px 4px #ff0066,-5px -3px #00ffff;transform:translateX(4px) skewX(2deg)}85%{text-shadow:-4px -3px #ff0066,4px 3px #00ffff,0 0 25px #ff0066;transform:translateX(-3px) skewX(-4deg)}86%{text-shadow:6px 2px #ff0066,-6px -1px #00ffff;transform:translateX(3px)}87%{text-shadow:3px 0 #ff0066,-3px 0 #00ffff,0 0 10px rgba(0,255,65,0.4);transform:none} }
+  @keyframes glitchSubtle { 0%,95%,100%{transform:none;opacity:1}96%{transform:translateX(-1px);opacity:0.8}97%{transform:translateX(2px) skewX(-1deg);opacity:0.9}98%{transform:translateX(-1px);opacity:1} }
+  @keyframes tileShift { 0%,87%,100%{transform:none}88%{transform:translateX(-4px)}89%{transform:translateX(3px) skewX(-0.5deg)}90%{transform:translateX(-2px) translateY(2px)}91%{transform:translateX(1px) skewX(0.3deg)}92%{transform:none} }
+  @keyframes pageGlitch { 0%,96%,100%{transform:none;filter:none}97%{transform:translateX(-5px);filter:hue-rotate(90deg)}98%{transform:translateX(3px) skewX(-0.5deg);filter:hue-rotate(-60deg) saturate(2)}99%{transform:translateX(-2px);filter:hue-rotate(30deg)} }
+  @keyframes tearLine { 0%{top:-2px}100%{top:100vh} }
+  @keyframes paletteBleed { 0%,96%,100%{border-color:var(--border)}97%{border-color:#00ffff}98%{border-color:#ff0066}99%{border-color:#00ff41} }
+  @keyframes grainShift { 0%{transform:translate(0,0)}16%{transform:translate(-3px,2px)}33%{transform:translate(2px,-1px)}50%{transform:translate(-1px,3px)}66%{transform:translate(3px,-2px)}83%{transform:translate(-2px,1px)}100%{transform:translate(1px,-3px)} }
+  @keyframes bgGlitch {
+    0%,85%,100% { background-position: 0 0, 3px 5px, 0 0, -2px 3px; }
+    86% { background-position: -4px 2px, 6px -3px, 3px -1px, -5px 4px; }
+    88% { background-position: 2px -3px, -5px 7px, -2px 4px, 3px -6px; }
+    90% { background-position: 0 0, 3px 5px, 0 0, -2px 3px; }
+  }
+
   [data-theme="dark"] a:hover { color: #a3ddd5; }
 
   /* Dreamy dark mode — smooth theme transitions */
@@ -77,7 +185,6 @@
     line-height: 1.6;
     min-height: 100vh;
   }
-
   /* ── Yume Nikki background ── */
   /* Light mode: dreamy pastel world — soft teal grid + warm glow pools */
   body {
@@ -116,7 +223,7 @@
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='16' height='16' fill='%23161425'/%3E%3Crect x='16' y='16' width='16' height='16' fill='%23161425'/%3E%3Crect x='16' width='16' height='16' fill='%230e0d18'/%3E%3Crect y='16' width='16' height='16' fill='%230e0d18'/%3E%3C/svg%3E");
     background-size: 32px 32px;
   }
-  /* Neon glow overlay */
+  /* Neon glow overlay — colored light pools like Neon World's ambient lighting */
   @keyframes neonPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
   [data-theme="dark"] body::before {
     content: '';
@@ -215,8 +322,9 @@
   .header { padding: 24px 0 12px; text-align: center; }
   .header h1 { font-family: var(--font-display); font-size: 38px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
   .header h1 a { color: inherit; text-decoration: none; }
-  .header .subtitle { font-family: var(--font-display); font-size: 16px; color: var(--text2); font-weight: 400; margin-bottom: 20px; font-style: italic; letter-spacing: 0.3px; opacity: 0.8; }
+  .header .subtitle { font-family: var(--font-display); font-size: 16px; color: var(--text2); font-weight: 400; margin-bottom: 6px; font-style: italic; letter-spacing: 0.3px; opacity: 0.8; }
   [data-theme="dark"] .header .subtitle { opacity: 0.65; }
+  .hero-tagline { font-family: var(--font-display); color: var(--text); font-size: 15px; line-height: 1.5; max-width: 700px; margin: 12px auto 0; font-weight: 400; }
 
   /* ── Version badge ── */
   .version-badge {
@@ -239,14 +347,22 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    margin-top: 0;
+    gap: 24px;
+    margin-top: 2px;
     font-size: 13px;
     font-family: var(--font-mono);
   }
-  .header-nav a { color: var(--text2); text-decoration: none; transition: color 150ms ease; }
-  .header-nav a:hover { color: var(--accent); }
+  .header-nav a {
+    color: var(--text2);
+    text-decoration: none;
+    transition: color 150ms ease;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 3px;
+  }
+  .header-nav a:hover { color: var(--accent); text-decoration-color: var(--accent); }
   .header-nav a.current { color: var(--accent); font-weight: 700; }
+  .header-nav .nav-sep { display: none; }
 
   /* ── Theme toggle ── */
   #themeToggle {
@@ -491,6 +607,9 @@
   .site-footer a { color: var(--text2); text-decoration: none; transition: color 0.15s; font-size: 13px; font-family: var(--font-mono); }
   .site-footer a:hover { color: var(--accent); }
   .footer-sep { color: var(--border-strong); margin: 0 12px; user-select: none; font-size: 13px; }
+  .footer-credit { font-size: 13px; color: var(--text2); opacity: 0.7; }
+  .site-footer a svg { transition: color 150ms ease; }
+  .site-footer a:hover { color: var(--accent) !important; }
 
   /* ── Staggered entrance ── */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
@@ -511,13 +630,16 @@
 <body>
 <div class="container">
   <div class="header fade-in fade-in-1">
-    <h1><a href="/">Forgotten &#926;TH</a></h1>
+    <h1><a href="/" style="color:inherit;text-decoration:none">Forgotten &#926;TH</a></h1>
     <p class="subtitle">Recover ETH stuck in old smart contracts</p>
     <nav class="header-nav">
       <a href="/">Home</a>
-      <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" title="View on GitHub" aria-label="GitHub"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
-      <a href="https://t.me/forgottenETH_bot" target="_blank" rel="noopener noreferrer" title="Telegram Bot" aria-label="Telegram"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+      <span class="nav-sep">&middot;</span>
+      <a href="/changelog">Changelog</a>
+      <span class="nav-sep">&middot;</span>
       <button id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode"></button>
+      <span class="nav-sep">&middot;</span>
+      <button id="corruptToggle" class="corrupt-btn" title="Corrupt mode" aria-label="Toggle corrupt mode">C&#x0338;O&#x2591;R&#x2593;RUPT</button>
     </nav>
   </div>
 
@@ -1040,7 +1162,68 @@ data = r.json()
   </div><!-- .api-layout -->
 
 </div>
-<script src="/theme.js"></script>
+
+<footer class="site-footer">
+  <p class="footer-credit" style="margin-bottom:8px;display:flex;justify-content:center;gap:24px;align-items:center">
+    <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" title="GitHub" style="color:var(--text2)"><svg width="29" height="29" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+    <a href="https://x.com/3pa15" target="_blank" rel="noopener noreferrer" title="X/Twitter" style="color:var(--text2)"><svg width="23" height="23" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="https://t.me/forgottenETH_bot" target="_blank" rel="noopener noreferrer" title="Telegram" style="color:var(--text2)"><svg width="29" height="29" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+  </p>
+  <p class="footer-credit">made with <span style="color:#e11d48;font-size:16px;vertical-align:middle">&#10084;</span> by <a href="https://t.me/syLKf" target="_blank" rel="noopener noreferrer" style="color:var(--text);text-decoration:none;font-weight:700">aaaaaaaaaaway</a></p>
+  <p class="footer-credit" style="margin-top:4px;font-size:11px"><a href="https://etherscan.io/address/0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891" target="_blank" rel="noopener noreferrer" style="color:var(--text2);text-decoration:none;font-family:var(--font-mono)">forgotteneth.eth</a></p>
+</footer>
+
+<script>
+/* ── Theme toggle (simplified — no pixel dissolve on docs page) ── */
+(function() {
+  var toggle = document.getElementById('themeToggle');
+  var corruptBtn = document.getElementById('corruptToggle');
+  var html = document.documentElement;
+  var saved = null;
+  try { saved = localStorage.getItem('theme'); } catch(e) {}
+
+  var current = saved || 'light';
+  var validThemes = ['light', 'dark', 'corrupt-light', 'corrupt-dark'];
+  if (validThemes.indexOf(current) === -1) current = 'light';
+
+  function applyTheme(t) {
+    if (t === 'light') html.removeAttribute('data-theme');
+    else html.setAttribute('data-theme', t);
+  }
+  applyTheme(current);
+
+  function isCorrupt() { return current === 'corrupt-light' || current === 'corrupt-dark'; }
+  function isDark() { return current === 'dark' || current === 'corrupt-dark'; }
+
+  function setToggleLabel() { toggle.textContent = isDark() ? '\u2600 Wake' : '\u263E Dream'; }
+  setToggleLabel();
+
+  toggle.addEventListener('click', function() {
+    var goingDark = !isDark();
+    if (isCorrupt()) {
+      current = goingDark ? 'corrupt-dark' : 'corrupt-light';
+    } else {
+      current = goingDark ? 'dark' : 'light';
+    }
+    applyTheme(current);
+    try { localStorage.setItem('theme', current); } catch(e) {}
+    setToggleLabel();
+  });
+
+  if (corruptBtn) {
+    corruptBtn.addEventListener('click', function() {
+      if (isCorrupt()) {
+        current = isDark() ? 'dark' : 'light';
+      } else {
+        current = isDark() ? 'corrupt-dark' : 'corrupt-light';
+      }
+      applyTheme(current);
+      try { localStorage.setItem('theme', current); } catch(e) {}
+      setToggleLabel();
+    });
+  }
+})();
+</script>
 <script>
 /* ── JSON syntax colorizer (matches static example styling) ── */
 function colorizeJson(json) {
