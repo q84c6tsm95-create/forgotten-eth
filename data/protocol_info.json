@@ -1084,5 +1084,41 @@
     "color": "#d97706",
     "category": "dex",
     "slug": "ethfinex-v2"
+  },
+  "switcheo_v2": {
+    "name": "Switcheo BrokerV2",
+    "desc": "Switcheo Network launched in 2019 as a cross-chain DEX supporting Ethereum, NEO, and EOS. The BrokerV2 contract combined off-chain order matching with onchain settlement, similar to IDEX. The project pivoted to Switcheo TradeHub (a Cosmos-based DEX) in 2020, then rebranded to Carbon in 2021. The Ethereum broker contract is abandoned but fully functional \u2014 users can withdraw via a 2-step announceWithdraw + slowWithdraw flow with zero delay.",
+    "contract": "0x7ee7ca6e75de79e618e88bdf80d0b1db136b22d0",
+    "deployed": "October 2019",
+    "color": "#00c9a7",
+    "category": "dex",
+    "slug": "switcheo-v2"
+  },
+  "unknown_dex_5995": {
+    "name": "Unknown DEX (0x5995)",
+    "desc": "An anonymous EtherDelta-style order-book DEX deployed in July 2019. Featured deposit/withdraw for ETH and ERC-20 tokens, off-chain order matching, and onchain settlement. The contract is unverified with no known website or team. Activity ceased in March 2020 after ~30,000 transactions across 1,400 users. Standard withdraw function remains fully operational.",
+    "contract": "0x5995ca61d845e045cd1327a32707a66f7daccf6d",
+    "deployed": "July 2019",
+    "color": "#64748b",
+    "category": "dex",
+    "slug": "unknown-dex-5995"
+  },
+  "avastars": {
+    "name": "Avastars",
+    "desc": "Avastars was an NFT project (2020) that allowed users to mint generative avatar NFTs. Users deposited ETH into the minting contract as a prepayment balance, which was drawn down as they minted. The project is defunct since September 2021, but the minting contract still holds unspent deposit balances. Users can withdraw their remaining deposits via withdrawDepositorBalance() with no restrictions.",
+    "contract": "0xe31763aad9294f073ddf18b36503ed037ae5e737",
+    "deployed": "April 2020",
+    "color": "#8b5cf6",
+    "category": "nft",
+    "slug": "avastars"
+  },
+  "alpha_homora_v1": {
+    "name": "Alpha Homora v1",
+    "desc": "Alpha Homora v1 launched in October 2020 as the first leveraged yield farming protocol. Users deposited ETH into the Bank contract and received ibETH (Interest Bearing ETH) tokens representing their share of the lending pool. The protocol migrated to v2 in February 2021. The original Bank contract is still functional \u2014 ibETH holders can call withdraw() to burn their tokens and receive proportional ETH back.",
+    "contract": "0x67b66c99d3eb37fa76aa3ed1ff33e8e39f0b9c7a",
+    "deployed": "October 2020",
+    "color": "#f472b6",
+    "category": "defi",
+    "slug": "alpha-homora-v1"
   }
 }

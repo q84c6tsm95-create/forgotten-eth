@@ -5,9 +5,9 @@
   "scan_date": "2026-03-20 19:03:16 UTC",
   "contract_eth_balance": 5.894487,
   "total_addresses_scanned": 2823,
-  "addresses_with_balance": 874,
-  "total_eth_in_balances": 5.89498269,
-  "coverage_pct": 100.01,
+  "addresses_with_balance": 873,
+  "total_eth_in_balances": 5.89419469,
+  "coverage_pct": 100,
   "distribution": {
     "1-10 ETH": {
       "count": 1,
@@ -2183,7 +2183,8 @@
       "rank": 359,
       "address": "0x7755B69903BcbCc419260dBb65772412E0C4ad2b",
       "balance_wei": "788000000000000",
-      "balance_eth": "0.000788000000000000"
+      "balance_eth": "0.000788000000000000",
+      "claimed": true
     },
     {
       "rank": 360,
@@ -5300,5 +5301,5 @@
       "balance_eth": "0.000000000000000001"
     }
   ],
-  "last_event_refresh": "2026-04-04T14:07:44Z"
+  "last_event_refresh": "2026-04-05T11:28:54Z"
 }

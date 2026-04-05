@@ -843,5 +843,33 @@
     "contract": "0x50cb61afa3f023d17276dcfb35abf85c710d1cff",
     "category": "dex",
     "balance_file": "ethfinex_v2_eth_balances.json"
+  },
+  {
+    "key": "switcheo_v2",
+    "name": "Switcheo BrokerV2",
+    "contract": "0x7ee7ca6e75de79e618e88bdf80d0b1db136b22d0",
+    "category": "dex",
+    "balance_file": "switcheo_v2_eth_balances.json"
+  },
+  {
+    "key": "unknown_dex_5995",
+    "name": "Unknown DEX (0x5995)",
+    "contract": "0x5995ca61d845e045cd1327a32707a66f7daccf6d",
+    "category": "dex",
+    "balance_file": "unknown_dex_5995_eth_balances.json"
+  },
+  {
+    "key": "avastars",
+    "name": "Avastars",
+    "contract": "0xe31763aad9294f073ddf18b36503ed037ae5e737",
+    "category": "nft",
+    "balance_file": "avastars_eth_balances.json"
+  },
+  {
+    "key": "alpha_homora_v1",
+    "name": "Alpha Homora v1",
+    "contract": "0x67b66c99d3eb37fa76aa3ed1ff33e8e39f0b9c7a",
+    "category": "defi",
+    "balance_file": "alpha_homora_v1_eth_balances.json"
   }
 ]
