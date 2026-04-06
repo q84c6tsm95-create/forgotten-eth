@@ -1,5 +1,5 @@
 {
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- public/ api/ vercel.json package.json data/index_shards/ data/table_meta/ data/tvl/ data/protocol_info.json data/protocols.json",
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- public/ api/ vercel.json package.json data/index_shards/ data/table_meta/ data/tvl/ data/protocol_info.json data/protocols.json data/total.json",
   "outputDirectory": "public",
   "rewrites": [
     {
@@ -69,13 +69,22 @@
       "includeFiles": "data/protocol_info.json"
     },
     "api/dune-webhook.js": {
-      "includeFiles": "data/protocols.json"
+      "includeFiles": "{data/protocols.json,data/withdrawal_events.json}"
     },
     "api/quick-scan.js": {
       "includeFiles": "{data/protocols.json,data/balances/**/*.json}"
     }
   },
   "headers": [
+    {
+      "source": "/(.*).js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=60, s-maxage=60, must-revalidate"
+        }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [
@@ -135,7 +144,11 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, s-maxage=60, stale-while-revalidate=120"
+          "value": "public, max-age=0, s-maxage=60, stale-while-revalidate=120"
+        },
+        {
+          "key": "CDN-Cache-Control",
+          "value": "max-age=60"
         },
         {
           "key": "X-Content-Type-Options",

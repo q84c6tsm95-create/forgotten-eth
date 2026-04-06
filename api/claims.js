@@ -29,8 +29,8 @@ export default async function handler(req, res) {
       WHERE type = 'claim_confirmed'
         AND contract != 'donation'
         AND amount_eth > 0
-        AND tx_hash IS NOT NULL
       ORDER BY ts DESC
+      LIMIT 1000
     `;
 
     const claims = result.rows.map(row => {

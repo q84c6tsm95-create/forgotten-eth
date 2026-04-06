@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   }
 
   const ip = req.headers['cf-connecting-ip'] || req.headers['x-real-ip'] || req.headers['x-forwarded-for']?.split(',')[0]?.trim() || 'unknown';
-  const allowed = await rateLimit(ip, 'total', 60, 60);
+  const allowed = await rateLimit(ip, 'total', 300, 60);
   if (!allowed) {
     return res.status(429).json({ error: 'Rate limit exceeded. Try again in 1 minute.' });
   }
@@ -38,7 +38,7 @@ export default async function handler(req, res) {
         SELECT COALESCE(SUM(amount_eth), 0) AS eth, COUNT(DISTINCT address) AS wallets
         FROM events
         WHERE type = 'claim_confirmed' AND contract != 'donation'
-        AND amount_eth > 0 AND tx_hash IS NOT NULL
+        AND amount_eth > 0
       `;
       const siteEth = parseFloat(parseFloat(result.rows[0].eth).toFixed(2));
       const siteWallets = parseInt(result.rows[0].wallets, 10);

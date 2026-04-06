@@ -1112,13 +1112,13 @@
     "category": "nft",
     "slug": "avastars"
   },
-  "alpha_homora_v1": {
-    "name": "Alpha Homora v1",
-    "desc": "Alpha Homora v1 launched in October 2020 as the first leveraged yield farming protocol. Users deposited ETH into the Bank contract and received ibETH (Interest Bearing ETH) tokens representing their share of the lending pool. The protocol migrated to v2 in February 2021. The original Bank contract is still functional \u2014 ibETH holders can call withdraw() to burn their tokens and receive proportional ETH back.",
-    "contract": "0x67b66c99d3eb37fa76aa3ed1ff33e8e39f0b9c7a",
-    "deployed": "October 2020",
-    "color": "#f472b6",
+  "aave_v1": {
+    "name": "Aave v1",
+    "desc": "Aave v1 launched in January 2020 as the first version of the Aave lending protocol. Users deposited ETH and received aETH interest-bearing tokens that automatically accrued yield. The protocol migrated to v2 in December 2020 and v3 in March 2022, but the original UI dropped v1 support. aETH token holders can still redeem for ETH by calling redeem() on the aETH contract.",
     "category": "defi",
-    "slug": "alpha-homora-v1"
+    "color": "#B6509E",
+    "contract": "0x3a3A65aAb0dd2A17E3F1947bA16138cd37d08c04",
+    "deployed": "January 2020",
+    "slug": "aave-v1"
   }
 }

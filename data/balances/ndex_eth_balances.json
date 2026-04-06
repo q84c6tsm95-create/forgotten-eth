@@ -3,11 +3,11 @@
   "token_checked": "0x0000000000000000000000000000000000000000",
   "description": "ETH balances in defunct nDEx contract",
   "scan_date": "2026-03-17 21:59:54 UTC",
-  "contract_eth_balance": "0.641867210538234996",
+  "contract_eth_balance": 0.639209,
   "total_addresses_scanned": 132,
-  "addresses_with_balance": 90,
-  "total_eth_in_balances": 0.6418672105382349,
-  "coverage_pct": 100.0,
+  "addresses_with_balance": 89,
+  "total_eth_in_balances": 0.63986721,
+  "coverage_pct": 100.1,
   "distribution": {
     "0.1-1 ETH": {
       "count": 1,
@@ -183,7 +183,8 @@
       "rank": 27,
       "address": "0x992b232a9F69723702377A3f6063A8507D8004Bf",
       "balance_wei": "2000000000000000",
-      "balance_eth": "0.002000000000000000"
+      "balance_eth": "0.002000000000000000",
+      "claimed": true
     },
     {
       "rank": 28,
@@ -563,5 +564,6 @@
       "balance_wei": "1",
       "balance_eth": "0.000000000000000001"
     }
-  ]
+  ],
+  "last_event_refresh": "2026-04-06T06:21:56Z"
 }

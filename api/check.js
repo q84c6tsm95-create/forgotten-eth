@@ -32,7 +32,7 @@ export default async function handler(req, res) {
   }
 
   const ip = req.headers['cf-connecting-ip'] || req.headers['x-real-ip'] || req.headers['x-forwarded-for']?.split(',')[0]?.trim() || 'unknown';
-  const allowed = await rateLimit(ip, 'check', 30, 60);
+  const allowed = await rateLimit(ip, 'check', 200, 60);
   if (!allowed) {
     return res.status(429).json({ error: 'Rate limit exceeded. Try again in 1 minute.' });
   }
