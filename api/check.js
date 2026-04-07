@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { rateLimit } from './_ratelimit.js';
+import { requirePrivate } from './_private.js';
 import { sql } from '@vercel/postgres';
 
 // Sharded index: 256 prefix files (~200KB avg) + tiny meta.json
@@ -31,6 +32,9 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Gate before rate limiter: blocked requests don't hit Neon at all
+  if (!requirePrivate(req, res)) return;
+
   const ip = req.headers['cf-connecting-ip'] || req.headers['x-real-ip'] || req.headers['x-forwarded-for']?.split(',')[0]?.trim() || 'unknown';
   const allowed = await rateLimit(ip, 'check', 200, 60);
   if (!allowed) {
@@ -55,20 +59,25 @@ export default async function handler(req, res) {
   const entry = shard[normalized];
 
   // Filter out addresses/items recently marked as claimed (instant, before shard catches up)
+  // Skip the DB query entirely when the shard has no entry for this address —
+  // there's nothing to filter, so the claimed_addresses lookup would be a no-op.
+  // This cuts Neon egress on the hot path since most checks find no balance.
   let claimedProtocols = new Set();   // protocols fully claimed (item_id IS NULL)
   let claimedItems = {};              // protocol → Set of claimed item_ids
-  try {
-    const { rows } = await sql`SELECT protocol, item_id FROM claimed_addresses WHERE address = ${normalized}`;
-    for (const r of rows) {
-      if (!r.item_id) {
-        claimedProtocols.add(r.protocol);
-      } else {
-        if (!claimedItems[r.protocol]) claimedItems[r.protocol] = new Set();
-        claimedItems[r.protocol].add(r.item_id);
+  if (entry) {
+    try {
+      const { rows } = await sql`SELECT protocol, item_id FROM claimed_addresses WHERE address = ${normalized}`;
+      for (const r of rows) {
+        if (!r.item_id) {
+          claimedProtocols.add(r.protocol);
+        } else {
+          if (!claimedItems[r.protocol]) claimedItems[r.protocol] = new Set();
+          claimedItems[r.protocol].add(r.item_id);
+        }
       }
+    } catch {
+      // DB down — fall back to shard data only (no regression)
     }
-  } catch {
-    // DB down — fall back to shard data only (no regression)
   }
 
   const results = {};
