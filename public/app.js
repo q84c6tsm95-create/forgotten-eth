@@ -6211,7 +6211,7 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
       if (_fallbackResp.ok) totalData = await _fallbackResp.json();
     } catch(e) {}
   }
-  if (!totalData) totalData = { total_eth: 163410, total_contract_eth: 164901, contract_count: 163, eth_claimed: 1226, peak_eth: 164905 };
+  if (!totalData) totalData = { total_eth: 163410, total_contract_eth: 164553, contract_count: 163, eth_claimed: 1273, peak_eth: 164905 };
   try {
       var totalEthVal = Math.round(totalData.total_eth);
       const contractCount = totalData.contract_count || Object.keys(EXCHANGES).length;
