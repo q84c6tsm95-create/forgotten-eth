@@ -27,22 +27,34 @@ function loadShard(prefix) {
 }
 
 export default async function handler(req, res) {
+  // Helper: error responses must NOT inherit the s-maxage=60 from vercel.json
+  // because Cloudflare keys its cache only on the URL — without no-store, a 429
+  // (or 400) for ?address=0xABC gets cached for 60s and served to every
+  // subsequent caller of the same URL, even from a different IP, even after
+  // the rate-limit window has elapsed. Confirmed during the 2026-04-07 incident
+  // post-mortem: users reported "the same error keeps coming back for the same
+  // address". This sets private+no-store before each error return.
+  function errResp(code, body) {
+    res.setHeader('Cache-Control', 'private, no-store');
+    return res.status(code).json(body);
+  }
+
   if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return errResp(405, { error: 'Method not allowed' });
   }
 
   const ip = req.headers['cf-connecting-ip'] || req.headers['x-real-ip'] || req.headers['x-forwarded-for']?.split(',')[0]?.trim() || 'unknown';
   const allowed = await rateLimit(ip, 'check', 200, 60);
   if (!allowed) {
-    return res.status(429).json({ error: 'Rate limit exceeded. Try again in 1 minute.' });
+    return errResp(429, { error: 'Rate limit exceeded. Try again in 1 minute.' });
   }
 
   const address = req.query.address;
   if (!address || !/^0x[0-9a-fA-F]{40}$/.test(address)) {
-    return res.status(400).json({ error: 'Invalid address' });
+    return errResp(400, { error: 'Invalid address' });
   }
   if (address.toLowerCase() === '0x0000000000000000000000000000000000000000') {
-    return res.status(400).json({ error: 'Zero address is not a valid depositor' });
+    return errResp(400, { error: 'Zero address is not a valid depositor' });
   }
 
   res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
