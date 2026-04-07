@@ -1,0 +1,155 @@
+{
+  "contract": "0x4dac3e07316d2a31baabb252d89663dee8f76f09",
+  "balance_source": "weth",
+  "weth_pid": 2,
+  "name": "GovTreasurer",
+  "description": "Abandoned MasterChef-style farm \u2014 GovTreasurer. WETH staked in pool 2, claim via emergencyWithdraw(2).",
+  "scan_date": "2026-04-07 15:30:51 UTC",
+  "contract_eth_balance": "18.99736196605838103",
+  "total_addresses_scanned": 87,
+  "addresses_with_balance": 21,
+  "total_eth_in_balances": 18.99736196605838,
+  "coverage_pct": 100.0,
+  "distribution": {
+    "10-100 ETH": {
+      "count": 1,
+      "total_eth": 18.958235307890707
+    },
+    "0.01-0.1 ETH": {
+      "count": 2,
+      "total_eth": 0.03087
+    },
+    "<0.01 ETH": {
+      "count": 18,
+      "total_eth": 0.00825665816767563
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0xbd7867409a0ad489ca0f68630fe1c11f6622de79",
+      "balance_wei": "18958235307890705401",
+      "balance_eth": "18.958235307890706878"
+    },
+    {
+      "rank": 2,
+      "address": "0x225c4cfc17d5ee7bf3e682396b12c0f6a7709d7d",
+      "balance_wei": "20090000000000000",
+      "balance_eth": "0.020090000000000000"
+    },
+    {
+      "rank": 3,
+      "address": "0x26e76280f0c4477726b8a1dd9ac4996c5c7badf8",
+      "balance_wei": "10780000000000000",
+      "balance_eth": "0.010780000000000000"
+    },
+    {
+      "rank": 4,
+      "address": "0x61bdbb7b7338d7220d0f8c9f8968d91acd3a80b9",
+      "balance_wei": "3920000000000000",
+      "balance_eth": "0.003920000000000000"
+    },
+    {
+      "rank": 5,
+      "address": "0x83c99bae963285b1f0a82a1c326fd84bea6438d7",
+      "balance_wei": "949271718036898",
+      "balance_eth": "0.000949271718036898"
+    },
+    {
+      "rank": 6,
+      "address": "0xab4382aadae5bf4b37b90b9dc07fc72d52e2a28a",
+      "balance_wei": "843420000000000",
+      "balance_eth": "0.000843420000000000"
+    },
+    {
+      "rank": 7,
+      "address": "0x0b988d78d6c3c30d1b4e017bde04502a40d58948",
+      "balance_wei": "800000000000000",
+      "balance_eth": "0.000800000000000000"
+    },
+    {
+      "rank": 8,
+      "address": "0x0f6d08168981163447a29cffa0634c6d04c5fee0",
+      "balance_wei": "796340000000000",
+      "balance_eth": "0.000796340000000000"
+    },
+    {
+      "rank": 9,
+      "address": "0x96d61d7b6980bda520b50feaaeb686d4949a8759",
+      "balance_wei": "400000000000000",
+      "balance_eth": "0.000400000000000000"
+    },
+    {
+      "rank": 10,
+      "address": "0x1d3bf13f8f7a83390d03db5e23a950778e1d1309",
+      "balance_wei": "352527101082191",
+      "balance_eth": "0.000352527101082191"
+    },
+    {
+      "rank": 11,
+      "address": "0xfa3f80365269e90442d603972069b153a5b93a84",
+      "balance_wei": "91264936005619",
+      "balance_eth": "0.000091264936005619"
+    },
+    {
+      "rank": 12,
+      "address": "0x3e366fdcab411b5fbf8ba1c61050099e8a8ecc78",
+      "balance_wei": "76726370197785",
+      "balance_eth": "0.000076726370197785"
+    },
+    {
+      "rank": 13,
+      "address": "0x2ccc1a9bcdeff4b7a0de1cd26d8c4cab23414fdf",
+      "balance_wei": "14288042353136",
+      "balance_eth": "0.000014288042353136"
+    },
+    {
+      "rank": 14,
+      "address": "0x3d4ef4e91e3b951cb3b2546846d1290b3e29bada",
+      "balance_wei": "10000000000000",
+      "balance_eth": "0.000010000000000000"
+    },
+    {
+      "rank": 15,
+      "address": "0x6d5b6f46265e63691a2e0a3ad0881b08dec96ae5",
+      "balance_wei": "1000000000000",
+      "balance_eth": "0.000001000000000000"
+    },
+    {
+      "rank": 16,
+      "address": "0x9334f5b92da1bed85fd33a60146b453d58bbcbaf",
+      "balance_wei": "740000000000",
+      "balance_eth": "0.000000740000000000"
+    },
+    {
+      "rank": 17,
+      "address": "0xf6ced510c4d0fc388bf77a0fde92b5ba9d2668fe",
+      "balance_wei": "260000000000",
+      "balance_eth": "0.000000260000000000"
+    },
+    {
+      "rank": 18,
+      "address": "0x705f24f33452d982313cff84f571de71c7d0ca68",
+      "balance_wei": "240000000000",
+      "balance_eth": "0.000000240000000000"
+    },
+    {
+      "rank": 19,
+      "address": "0x7e2d0e0c5ec185ee7ea1196a6d25fbc9be5afb47",
+      "balance_wei": "200000000000",
+      "balance_eth": "0.000000200000000000"
+    },
+    {
+      "rank": 20,
+      "address": "0xf68813fef24ae1ce7000f0f1771cd3042d5702be",
+      "balance_wei": "200000000000",
+      "balance_eth": "0.000000200000000000"
+    },
+    {
+      "rank": 21,
+      "address": "0xf78dedf28bed6c07ad42a05c322be1014e1b29c9",
+      "balance_wei": "180000000000",
+      "balance_eth": "0.000000180000000000"
+    }
+  ]
+}

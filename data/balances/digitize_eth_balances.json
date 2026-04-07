@@ -1,0 +1,57 @@
+{
+  "contract": "0x9527551ca444f6e5d9a0b281116586427366862a",
+  "vault": "0x0547d2aa5a072f7e8281ff7c422b43c9168ea2f3",
+  "balance_source": "vault",
+  "name": "DigitizeCoin Presale (DTZ)",
+  "description": "OZ RefundableCrowdsale \u2014 DigitizeCoin Presale (DTZ). ETH stored in sibling RefundVault.",
+  "scan_date": "2026-04-07 15:11:17 UTC",
+  "contract_eth_balance": "1.1",
+  "total_addresses_scanned": 18,
+  "addresses_with_balance": 6,
+  "total_eth_in_balances": 1.1,
+  "coverage_pct": 100.0,
+  "distribution": {
+    "0.1-1 ETH": {
+      "count": 6,
+      "total_eth": 1.1
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0x7ffaef4399b593bfbe7776dc7932b968661f9c4e",
+      "balance_wei": "500000000000000000",
+      "balance_eth": "0.500000000000000000"
+    },
+    {
+      "rank": 2,
+      "address": "0x3f5ce5fbfe3e9af3971dd833d26ba9b5c936f0be",
+      "balance_wei": "150000000000000000",
+      "balance_eth": "0.149999999999999994"
+    },
+    {
+      "rank": 3,
+      "address": "0xd3b399444650a05811dac6e114707cff0982f921",
+      "balance_wei": "140000000000000000",
+      "balance_eth": "0.140000000000000013"
+    },
+    {
+      "rank": 4,
+      "address": "0x677155f519d75d40a70efb99c1585661084c2270",
+      "balance_wei": "110000000000000000",
+      "balance_eth": "0.110000000000000001"
+    },
+    {
+      "rank": 5,
+      "address": "0x5acea39d181cea5d021a32cd60ee00fa598303d7",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006"
+    },
+    {
+      "rank": 6,
+      "address": "0xb8f1fa18ac1b72b0fde46a6b2ec93f6f3313ddab",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006"
+    }
+  ]
+}

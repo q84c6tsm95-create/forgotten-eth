@@ -1,0 +1,85 @@
+{
+  "contract": "0x77b275827eb3cf1792852b128a6dbc7a699bbd91",
+  "vault": "0xad256f5183b2479a63fe06974485104ddad1b8ce",
+  "balance_source": "vault",
+  "name": "PallyCoin Fork (PAL2)",
+  "description": "OZ RefundableCrowdsale \u2014 PallyCoin Fork (PAL2). ETH stored in sibling RefundVault.",
+  "scan_date": "2026-04-07 15:21:56 UTC",
+  "contract_eth_balance": "3.77",
+  "total_addresses_scanned": 9,
+  "addresses_with_balance": 5,
+  "total_eth_in_balances": 3.77,
+  "coverage_pct": 100.0,
+  "distribution": {
+    "1-10 ETH": {
+      "count": 1,
+      "total_eth": 3.0
+    },
+    "0.1-1 ETH": {
+      "count": 2,
+      "total_eth": 0.7
+    },
+    "0.01-0.1 ETH": {
+      "count": 2,
+      "total_eth": 0.07
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0x3e2ee1b447815a295be9966b8387fb59299214db",
+      "balance_wei": "3000000000000000000",
+      "balance_eth": "3.000000000000000000",
+      "tokens_needed": 12798.0,
+      "tokens_balance": 12798.0,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 2,
+      "address": "0xc3727fb04af847e207d9cc5b68fb3e21eee73f91",
+      "balance_wei": "400000000000000000",
+      "balance_eth": "0.400000000000000022",
+      "tokens_needed": 1706.4,
+      "tokens_balance": 1706.4,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 3,
+      "address": "0x22a2678cdc4b83bbc0f021d53c032aa1ef524f61",
+      "balance_wei": "300000000000000000",
+      "balance_eth": "0.299999999999999989",
+      "tokens_needed": 1279.8,
+      "tokens_balance": 1279.8,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 4,
+      "address": "0xe6a618e9269d36af746dce64dcd8956d72160e24",
+      "balance_wei": "50000000000000000",
+      "balance_eth": "0.050000000000000003",
+      "tokens_needed": 213.3,
+      "tokens_balance": 213.3,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 5,
+      "address": "0x00a17ee45c970da08b8205f254bf2f9327d1eb74",
+      "balance_wei": "20000000000000000",
+      "balance_eth": "0.020000000000000000",
+      "tokens_needed": 85.32,
+      "tokens_balance": 40000170.64,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    }
+  ],
+  "token_gated": true,
+  "token": "0xca16d1013f8e9be2f964905964fcd0512aa93120",
+  "addresses_eligible": 5,
+  "eth_eligible": 3.7699999999999996,
+  "addresses_blocked": 0,
+  "eth_blocked": 4.440892098500626e-16
+}

@@ -1,0 +1,475 @@
+{
+  "contract": "0xb4f10530e531c32490c68062662eb5684057afb4",
+  "vault": "0x75922986ffc00648d35a73d4476fa38579551d18",
+  "balance_source": "vault",
+  "name": "PallyCoin (PAL)",
+  "description": "OZ RefundableCrowdsale \u2014 PallyCoin (PAL). ETH stored in sibling RefundVault.",
+  "scan_date": "2026-04-07 15:21:55 UTC",
+  "contract_eth_balance": "43.262955374268074828",
+  "total_addresses_scanned": 103,
+  "addresses_with_balance": 44,
+  "total_eth_in_balances": 43.262955374268074,
+  "coverage_pct": 100.0,
+  "distribution": {
+    "10-100 ETH": {
+      "count": 1,
+      "total_eth": 14.921809717082487
+    },
+    "1-10 ETH": {
+      "count": 11,
+      "total_eth": 20.674716397185588
+    },
+    "0.1-1 ETH": {
+      "count": 32,
+      "total_eth": 7.666429259999994
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0xae631a37ad50bf03e8028d0ae8ba041c70ac4c70",
+      "balance_wei": "14921809717082487764",
+      "balance_eth": "14.921809717082487268",
+      "tokens_needed": 63656.440253073895,
+      "tokens_balance": 63656.440253073895,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 2,
+      "address": "0x1c992de6f0c8a589e08347c4da0cd036ea9c820b",
+      "balance_wei": "4958175103000000000",
+      "balance_eth": "4.958175103000000306",
+      "tokens_needed": 21151.574989398,
+      "tokens_balance": 21151.574989398,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 3,
+      "address": "0xe46438e36b8268a8fa046d90bfa0dda95004df9e",
+      "balance_wei": "3039421294185587064",
+      "balance_eth": "3.039421294185586930",
+      "tokens_needed": 12966.171240995714,
+      "tokens_balance": 12966.171240995714,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 4,
+      "address": "0xa49b7c571e40e73be0122d9256016ebc704a38c4",
+      "balance_wei": "3000000000000000000",
+      "balance_eth": "3.000000000000000000",
+      "tokens_needed": 12798.0,
+      "tokens_balance": 12798.0,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 5,
+      "address": "0x0edd2edb158bc49ee48aa7271dc8329bbd8b3aa5",
+      "balance_wei": "1500000000000000000",
+      "balance_eth": "1.500000000000000000",
+      "tokens_needed": 6399.0,
+      "tokens_balance": 6399.0,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 6,
+      "address": "0x2d1de3168bf264f677f3f226df7947bb41e9c80d",
+      "balance_wei": "1500000000000000000",
+      "balance_eth": "1.500000000000000000",
+      "tokens_needed": 6399.0,
+      "tokens_balance": 6399.0,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 7,
+      "address": "0x230f37615b2acb0f5dbe6c21005cafe034cc0fc5",
+      "balance_wei": "1477120000000000000",
+      "balance_eth": "1.477119999999999989",
+      "tokens_needed": 6301.39392,
+      "tokens_balance": 6301.39392,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 8,
+      "address": "0x999855e6603725e6fe14d9f0941ab82233ba097e",
+      "balance_wei": "1200000000000000000",
+      "balance_eth": "1.199999999999999956",
+      "tokens_needed": 5119.2,
+      "tokens_balance": 5119.2,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 9,
+      "address": "0x04f02a7d848e9aa13dac86525cb5af7d1cbcba28",
+      "balance_wei": "1000000000000000000",
+      "balance_eth": "1.000000000000000000",
+      "tokens_needed": 4266.0,
+      "tokens_balance": 4266.0,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 10,
+      "address": "0x71ce7e56c986c3508fd0c0cb5c09aa7c2d3d0b91",
+      "balance_wei": "1000000000000000000",
+      "balance_eth": "1.000000000000000000",
+      "tokens_needed": 4266.0,
+      "tokens_balance": 0.0,
+      "tokens_deficit": 4266.0,
+      "claimable": false
+    },
+    {
+      "rank": 11,
+      "address": "0xcebdde7b44cdb71c55c80c3f44adfa034a9f32fd",
+      "balance_wei": "1000000000000000000",
+      "balance_eth": "1.000000000000000000",
+      "tokens_needed": 4266.0,
+      "tokens_balance": 4266.0,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 12,
+      "address": "0xfa36d28a2f98b54d10a7e8420fc56db1ae3caf44",
+      "balance_wei": "1000000000000000000",
+      "balance_eth": "1.000000000000000000",
+      "tokens_needed": 4266.0,
+      "tokens_balance": 4266.0,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 13,
+      "address": "0x635bd9ba72b3ea958849a39f3f26833046c5eb22",
+      "balance_wei": "970000000000000000",
+      "balance_eth": "0.969999999999999973",
+      "tokens_needed": 4138.02,
+      "tokens_balance": 4138.02,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 14,
+      "address": "0xf7226d0a3608fdc46c4f6aee0277707ae761fe80",
+      "balance_wei": "870000000000000000",
+      "balance_eth": "0.869999999999999996",
+      "tokens_needed": 3711.42,
+      "tokens_balance": 3711.42,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 15,
+      "address": "0x2c34973c4c46f13534c81a893645f347b65c89d6",
+      "balance_wei": "800000000000000000",
+      "balance_eth": "0.800000000000000044",
+      "tokens_needed": 3412.8,
+      "tokens_balance": 1705.8,
+      "tokens_deficit": 1707.0000000000002,
+      "claimable": false
+    },
+    {
+      "rank": 16,
+      "address": "0x5eb1ca2d9d250ffad144c7b6f0191fafc97ae1ee",
+      "balance_wei": "500000000000000000",
+      "balance_eth": "0.500000000000000000",
+      "tokens_needed": 2133.0,
+      "tokens_balance": 2133.0,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 17,
+      "address": "0x6735b63979e636570a010b1078db01c68b2a25c4",
+      "balance_wei": "500000000000000000",
+      "balance_eth": "0.500000000000000000",
+      "tokens_needed": 2133.0,
+      "tokens_balance": 2133.0,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 18,
+      "address": "0x1274d65958fb8d2c8ce4f3655123d1fcba4c397b",
+      "balance_wei": "350000000000000000",
+      "balance_eth": "0.349999999999999978",
+      "tokens_needed": 1493.1,
+      "tokens_balance": 1493.1,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 19,
+      "address": "0xd7fd3ae792755585e487e36cf5c5fcbbc3d6cefc",
+      "balance_wei": "310000000000000000",
+      "balance_eth": "0.309999999999999998",
+      "tokens_needed": 1322.46,
+      "tokens_balance": 1322.46,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 20,
+      "address": "0x8a7ea0449e8387fad58621a4c3168bd04c4add4e",
+      "balance_wei": "300000000000000000",
+      "balance_eth": "0.299999999999999989",
+      "tokens_needed": 1279.8,
+      "tokens_balance": 1279.8,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 21,
+      "address": "0x4d955701d1e24cb1df0a32e4460766ae0dee4a91",
+      "balance_wei": "250000000000000000",
+      "balance_eth": "0.250000000000000000",
+      "tokens_needed": 1066.5,
+      "tokens_balance": 1066.5,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 22,
+      "address": "0x6bea6ba27781f84a12c17afde65a6836fcb7c411",
+      "balance_wei": "230000000000000000",
+      "balance_eth": "0.230000000000000010",
+      "tokens_needed": 981.18,
+      "tokens_balance": 981.18,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 23,
+      "address": "0x249a8a5a26526edee23c7b4b5f8dccb3636e8c8d",
+      "balance_wei": "200000000000000000",
+      "balance_eth": "0.200000000000000011",
+      "tokens_needed": 853.2,
+      "tokens_balance": 0.0,
+      "tokens_deficit": 853.2,
+      "claimable": false
+    },
+    {
+      "rank": 24,
+      "address": "0xb5b8bc0baf29c76976320f057062d14c07e02c5b",
+      "balance_wei": "200000000000000000",
+      "balance_eth": "0.200000000000000011",
+      "tokens_needed": 853.2,
+      "tokens_balance": 853.2,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 25,
+      "address": "0xdfa18a565ef04673b10d2949258bd4a6dcf1f540",
+      "balance_wei": "200000000000000000",
+      "balance_eth": "0.200000000000000011",
+      "tokens_needed": 853.2,
+      "tokens_balance": 853.2,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 26,
+      "address": "0x66d6e103bb380fec9eed2e7d77919da1aa59274a",
+      "balance_wei": "178356780000000000",
+      "balance_eth": "0.178356779999999993",
+      "tokens_needed": 760.87002348,
+      "tokens_balance": 0.0,
+      "tokens_deficit": 760.87002348,
+      "claimable": false
+    },
+    {
+      "rank": 27,
+      "address": "0xd45429946b1b76afc7e6689f948b36250f31fa1c",
+      "balance_wei": "108072480000000000",
+      "balance_eth": "0.108072479999999999",
+      "tokens_needed": 461.03719968,
+      "tokens_balance": 461.03719968,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 28,
+      "address": "0x12886ae8e9ac1d8592ecc1f78c97102106c8b3a8",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006",
+      "tokens_needed": 426.6,
+      "tokens_balance": 426.6,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 29,
+      "address": "0x295bda92e2ebe891f86de4b5d3298f59202909fb",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006",
+      "tokens_needed": 426.6,
+      "tokens_balance": 425.6,
+      "tokens_deficit": 1.0,
+      "claimable": false
+    },
+    {
+      "rank": 30,
+      "address": "0x33821c83a501842a04dde952025b45eb86fad4c3",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006",
+      "tokens_needed": 426.6,
+      "tokens_balance": 426.6,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 31,
+      "address": "0x33f9c7f14b7a65cee6d9b7b2f0b274ae0245c0e2",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006",
+      "tokens_needed": 426.6,
+      "tokens_balance": 0.6,
+      "tokens_deficit": 426.0,
+      "claimable": false
+    },
+    {
+      "rank": 32,
+      "address": "0x4700d6daea9634d9571710ccdf41506fd1bdb4f6",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006",
+      "tokens_needed": 426.6,
+      "tokens_balance": 0.6,
+      "tokens_deficit": 426.0,
+      "claimable": false
+    },
+    {
+      "rank": 33,
+      "address": "0x4babc9ab82a3bcd106f6869ed4a73f47576a2ac6",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006",
+      "tokens_needed": 426.6,
+      "tokens_balance": 426.6,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 34,
+      "address": "0x58e58721f9d06e2b99f90958db6f347a333a89e9",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006",
+      "tokens_needed": 426.6,
+      "tokens_balance": 426.6,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 35,
+      "address": "0x6001bc88f21e8ce5554dad91044d781b64e79180",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006",
+      "tokens_needed": 426.6,
+      "tokens_balance": 426.6,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 36,
+      "address": "0x79208f5c03fafe5a8a1870c30f8548050e52e026",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006",
+      "tokens_needed": 426.6,
+      "tokens_balance": 426.6,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 37,
+      "address": "0x90b0f57f47b987bcabfbfcaca65401e29cf1c962",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006",
+      "tokens_needed": 426.6,
+      "tokens_balance": 0.0,
+      "tokens_deficit": 426.6,
+      "claimable": false
+    },
+    {
+      "rank": 38,
+      "address": "0xc0cccde11859186549cbb089834212d649c61c59",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006",
+      "tokens_needed": 426.6,
+      "tokens_balance": 426.6,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 39,
+      "address": "0xc8ca65c107e6f0d858d842115840b9e29ba51f17",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006",
+      "tokens_needed": 426.6,
+      "tokens_balance": 426.6,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 40,
+      "address": "0xe3c4a3c85a0f8819f7223db124ab63d14ed02243",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006",
+      "tokens_needed": 426.6,
+      "tokens_balance": 426.6,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 41,
+      "address": "0xe5c02432ffe1b0ec1c184d6f6ae59717567bf216",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006",
+      "tokens_needed": 426.6,
+      "tokens_balance": 426.6,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 42,
+      "address": "0xe9d58dd496eb7417de34a6a2f91c79ec023a4f33",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006",
+      "tokens_needed": 426.6,
+      "tokens_balance": 426.6,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 43,
+      "address": "0xeefcd01087281d035ece6a3bc369eb3afafc4cec",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006",
+      "tokens_needed": 426.6,
+      "tokens_balance": 426.6,
+      "tokens_deficit": 0.0,
+      "claimable": true
+    },
+    {
+      "rank": 44,
+      "address": "0xff37b6c697f07d398717f2ba22a8a48d12208154",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006",
+      "tokens_needed": 426.6,
+      "tokens_balance": 0.0,
+      "tokens_deficit": 426.6,
+      "claimable": false
+    }
+  ],
+  "token_gated": true,
+  "token": "0xf923ba61b43161a83afe2cab7d77ea1e41f27918",
+  "addresses_eligible": 35,
+  "eth_eligible": 40.58459859426809,
+  "addresses_blocked": 9,
+  "eth_blocked": 2.6783567799999872
+}

@@ -1,0 +1,47 @@
+{
+  "contract": "0xcba6f10d1147b2c5a3d8d8cbd93c373b31c6c2c8",
+  "name": "VuePayTokenSale (VUP)",
+  "description": "Direct-refund ICO crowdsale \u2014 VuePayTokenSale (VUP). ETH stored in the crowdsale itself, not a vault.",
+  "scan_date": "2026-04-07 15:23:03 UTC",
+  "contract_eth_balance": "1.208",
+  "total_addresses_scanned": 10,
+  "addresses_with_balance": 4,
+  "total_eth_in_balances": 1.208,
+  "coverage_pct": 100.0,
+  "distribution": {
+    "0.1-1 ETH": {
+      "count": 2,
+      "total_eth": 1.0899999999999999
+    },
+    "0.01-0.1 ETH": {
+      "count": 2,
+      "total_eth": 0.118
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0x17bcefc1f6afeb3e849558fa8917e464ddb0eaf0",
+      "balance_wei": "580000000000000000",
+      "balance_eth": "0.579999999999999960"
+    },
+    {
+      "rank": 2,
+      "address": "0x06745f3c3eec89fb182e41bb94c9e8b0f357d054",
+      "balance_wei": "510000000000000000",
+      "balance_eth": "0.510000000000000009"
+    },
+    {
+      "rank": 3,
+      "address": "0xbd86ad530162a3db908339680e1ca46b413fd51d",
+      "balance_wei": "60000000000000000",
+      "balance_eth": "0.059999999999999998"
+    },
+    {
+      "rank": 4,
+      "address": "0x68b3bdf2b8d9a1b5f1e55a8d3b54a530424eab4f",
+      "balance_wei": "58000000000000000",
+      "balance_eth": "0.058000000000000003"
+    }
+  ]
+}

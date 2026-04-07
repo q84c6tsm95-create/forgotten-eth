@@ -1,0 +1,81 @@
+{
+  "contract": "0x8519f68a987048b879bed6afab25a0414828c236",
+  "vault": "0xd782ae82c167de179dec25278d855375d8174b60",
+  "balance_source": "vault",
+  "name": "LINDA Token (Presale)",
+  "description": "OZ RefundableCrowdsale \u2014 LINDA Token (Presale). ETH stored in sibling RefundVault.",
+  "scan_date": "2026-04-07 15:10:28 UTC",
+  "contract_eth_balance": "2.92692333",
+  "total_addresses_scanned": 10,
+  "addresses_with_balance": 8,
+  "total_eth_in_balances": 2.92692333,
+  "coverage_pct": 100.0,
+  "distribution": {
+    "1-10 ETH": {
+      "count": 1,
+      "total_eth": 1.0
+    },
+    "0.1-1 ETH": {
+      "count": 4,
+      "total_eth": 1.8255899999999998
+    },
+    "0.01-0.1 ETH": {
+      "count": 2,
+      "total_eth": 0.09833333
+    },
+    "<0.01 ETH": {
+      "count": 1,
+      "total_eth": 0.003
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0x1b50d9e1aa8ad559a3150a0467216effe61d8d3c",
+      "balance_wei": "1000000000000000000",
+      "balance_eth": "1.000000000000000000"
+    },
+    {
+      "rank": 2,
+      "address": "0x71ee84ab13a0b5f15fbbf5866e206f87cc4859a7",
+      "balance_wei": "995590000000000000",
+      "balance_eth": "0.995589999999999975"
+    },
+    {
+      "rank": 3,
+      "address": "0xce95b55185ba3d86080588914261ddb96ed0e0ec",
+      "balance_wei": "430000000000000000",
+      "balance_eth": "0.429999999999999993"
+    },
+    {
+      "rank": 4,
+      "address": "0x7d1a2bac244587c9dec8f2d9802d6f722165ad7e",
+      "balance_wei": "200000000000000000",
+      "balance_eth": "0.200000000000000011"
+    },
+    {
+      "rank": 5,
+      "address": "0xcb5b951a6bef3ded18a4bad476cd62f35a149eff",
+      "balance_wei": "200000000000000000",
+      "balance_eth": "0.200000000000000011"
+    },
+    {
+      "rank": 6,
+      "address": "0xf59b3bd1ce3bdbea173eaee9a0e03ed9359c63b5",
+      "balance_wei": "63333330000000000",
+      "balance_eth": "0.063333329999999993"
+    },
+    {
+      "rank": 7,
+      "address": "0x7f3443b56f1f7f4527d853258999cf1c836eb378",
+      "balance_wei": "35000000000000000",
+      "balance_eth": "0.035000000000000003"
+    },
+    {
+      "rank": 8,
+      "address": "0x8ffc9f43c4ac1fbf44a141c5bff1878c9be7d384",
+      "balance_wei": "3000000000000000",
+      "balance_eth": "0.003000000000000000"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "contract": "0xf563549daf64f684858e863e2731f19633d1acb1",
+  "vault": "0xc2a1bfc612addee098c723f5dedb298d44f49ebb",
+  "balance_source": "vault",
+  "name": "FURT COIN (FRT)",
+  "description": "OZ RefundableCrowdsale \u2014 FURT COIN (FRT). ETH stored in sibling RefundVault.",
+  "scan_date": "2026-04-07 15:10:33 UTC",
+  "contract_eth_balance": "0.694374789862119013",
+  "total_addresses_scanned": 2,
+  "addresses_with_balance": 2,
+  "total_eth_in_balances": 0.694374789862119,
+  "coverage_pct": 100.0,
+  "distribution": {
+    "0.1-1 ETH": {
+      "count": 2,
+      "total_eth": 0.694374789862119
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0x4545f4756eb954d02bfc5c3bb23c9c15920726f9",
+      "balance_wei": "420899854862119013",
+      "balance_eth": "0.420899854862119005"
+    },
+    {
+      "rank": 2,
+      "address": "0x6d51f6b8a6a3d441bb9eefa609a0c7b481f91421",
+      "balance_wei": "273474935000000000",
+      "balance_eth": "0.273474934999999975"
+    }
+  ]
+}

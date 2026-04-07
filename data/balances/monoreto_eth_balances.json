@@ -1,0 +1,63 @@
+{
+  "contract": "0x65320b9aeac77e45369e4892da896b7a987a97f3",
+  "vault": "0xf671ab8f66212917d122e7cf52094440d6aedc82",
+  "balance_source": "vault",
+  "name": "Monoreto (MNR)",
+  "description": "OZ RefundableCrowdsale \u2014 Monoreto (MNR). ETH stored in sibling RefundVault.",
+  "scan_date": "2026-04-07 15:10:30 UTC",
+  "contract_eth_balance": "2.55533774299999947",
+  "total_addresses_scanned": 15,
+  "addresses_with_balance": 7,
+  "total_eth_in_balances": 2.5553377429999995,
+  "coverage_pct": 100.0,
+  "distribution": {
+    "0.1-1 ETH": {
+      "count": 7,
+      "total_eth": 2.5553377429999995
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0xfec2c1a24ab3d32144ed013398ef6670ff6357df",
+      "balance_wei": "515020010000000000",
+      "balance_eth": "0.515020009999999973"
+    },
+    {
+      "rank": 2,
+      "address": "0xc04c7982a307464fea006a6c65657b4613f82cd8",
+      "balance_wei": "468337010999999990",
+      "balance_eth": "0.468337010999999970"
+    },
+    {
+      "rank": 3,
+      "address": "0x382ef24ee325faa932f9e3825e88f9cc7f883693",
+      "balance_wei": "430000000000000000",
+      "balance_eth": "0.429999999999999993"
+    },
+    {
+      "rank": 4,
+      "address": "0x7d58ab6f13b5bf25adda02d0af40399873f9574a",
+      "balance_wei": "426470910999999980",
+      "balance_eth": "0.426470910999999953"
+    },
+    {
+      "rank": 5,
+      "address": "0xf1842abb48740bfc87b76f4e53c7c8aaa2962794",
+      "balance_wei": "290000000000000000",
+      "balance_eth": "0.289999999999999980"
+    },
+    {
+      "rank": 6,
+      "address": "0x1b535e4d1d529812d2a147fa2811dbac3071f23d",
+      "balance_wei": "235509810999999500",
+      "balance_eth": "0.235509810999999514"
+    },
+    {
+      "rank": 7,
+      "address": "0x15d9a525af549d9417efc93d01aa5fa74c3f9265",
+      "balance_wei": "190000000000000000",
+      "balance_eth": "0.190000000000000002"
+    }
+  ]
+}

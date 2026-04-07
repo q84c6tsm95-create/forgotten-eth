@@ -1,0 +1,33 @@
+{
+  "contract": "0x3adf5ee8777f471407e04a7453133477a2dc0c2c",
+  "vault": "0x4539d820c582c8a196891cd03ed0967dc3823656",
+  "balance_source": "vault",
+  "name": "Lendsbay Token (LBT)",
+  "description": "OZ RefundableCrowdsale \u2014 Lendsbay Token (LBT). ETH stored in sibling RefundVault.",
+  "scan_date": "2026-04-07 15:10:32 UTC",
+  "contract_eth_balance": "0.845",
+  "total_addresses_scanned": 6,
+  "addresses_with_balance": 2,
+  "total_eth_in_balances": 0.845,
+  "coverage_pct": 100.0,
+  "distribution": {
+    "0.1-1 ETH": {
+      "count": 2,
+      "total_eth": 0.845
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0x5bc96982af343a3256d3c4682e95add83051c0bc",
+      "balance_wei": "730000000000000000",
+      "balance_eth": "0.729999999999999982"
+    },
+    {
+      "rank": 2,
+      "address": "0x5ecb8ea98ddcd825ccae5de4cb1b4a641345d2a3",
+      "balance_wei": "115000000000000000",
+      "balance_eth": "0.115000000000000005"
+    }
+  ]
+}

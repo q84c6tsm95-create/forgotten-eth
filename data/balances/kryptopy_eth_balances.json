@@ -1,0 +1,39 @@
+{
+  "contract": "0x09b8aaa7a883e60c23c6a0635940000c6e2e7560",
+  "vault": "0x1bd8c0ed1cd007b7c7fbe092569905b6cc854baf",
+  "balance_source": "vault",
+  "name": "Kryptopy Token (KPY)",
+  "description": "OZ RefundableCrowdsale \u2014 Kryptopy Token (KPY). ETH stored in sibling RefundVault.",
+  "scan_date": "2026-04-07 15:10:33 UTC",
+  "contract_eth_balance": "0.59",
+  "total_addresses_scanned": 5,
+  "addresses_with_balance": 3,
+  "total_eth_in_balances": 0.59,
+  "coverage_pct": 100.0,
+  "distribution": {
+    "0.1-1 ETH": {
+      "count": 3,
+      "total_eth": 0.59
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0x33da5001972da4bda32f7bb60da63500fdcdf3d7",
+      "balance_wei": "290000000000000000",
+      "balance_eth": "0.289999999999999980"
+    },
+    {
+      "rank": 2,
+      "address": "0x55dbe7e10535452692f4e5b2aabdfd279b00269c",
+      "balance_wei": "150000000000000000",
+      "balance_eth": "0.149999999999999994"
+    },
+    {
+      "rank": 3,
+      "address": "0xe6aa33b127ef8fe01a31ba076ed52483dc6e2fec",
+      "balance_wei": "150000000000000000",
+      "balance_eth": "0.149999999999999994"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "contract": "0x07261a6e37adbfab11e6474bca54634c7782b195",
+  "balance_source": "weth",
+  "weth_pid": 0,
+  "name": "MysteryMan",
+  "description": "Abandoned MasterChef-style farm \u2014 MysteryMan. WETH staked in pool 0, claim via emergencyWithdraw(0).",
+  "scan_date": "2026-04-07 15:30:52 UTC",
+  "contract_eth_balance": "4",
+  "total_addresses_scanned": 5,
+  "addresses_with_balance": 2,
+  "total_eth_in_balances": 4.0,
+  "coverage_pct": 100.0,
+  "distribution": {
+    "1-10 ETH": {
+      "count": 2,
+      "total_eth": 4.0
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0x8a0e28f0c7fa1de4cbe1f7c70ef83fd015479c48",
+      "balance_wei": "2000000000000000000",
+      "balance_eth": "2.000000000000000000"
+    },
+    {
+      "rank": 2,
+      "address": "0xdc7b66f89b4dadc0f8e3606993284e5bcec7284f",
+      "balance_wei": "2000000000000000000",
+      "balance_eth": "2.000000000000000000"
+    }
+  ]
+}

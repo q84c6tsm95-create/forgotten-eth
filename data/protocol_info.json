@@ -1273,5 +1273,185 @@
     "contract": "0xea864a114c648eff4f92e55b870fe1e71fd60083",
     "deployed": "July 2018",
     "slug": "grapevine"
+  },
+  "irb": {
+    "name": "IRB Tokens (IRB)",
+    "desc": "IRB Tokens ran a 2018 pre-crowdsale via the OpenZeppelin RefundableCrowdsale template. Soft cap missed, the contract finalized into refund mode, and ~5 ETH still sits in the sibling RefundVault for the long tail of contributors. Standard single-tx claim: claimRefund() on the crowdsale returns your deposit through the vault.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0x269b4c23ddab676e2869ae72cd6ae4f24bdfea45",
+    "deployed": "2018",
+    "slug": "irb"
+  },
+  "cam": {
+    "name": "CamToken (CAM)",
+    "desc": "CamToken ran a 2018 ICO via the OpenZeppelin RefundableCrowdsale template. Soft cap missed and the contract finalized into refund mode; ~3 ETH still sits in the sibling RefundVault. Single-tx claim: call claimRefund() on the crowdsale and the vault returns your original deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0xa785ecdc8f166d0644b853f29732ae128c5d775b",
+    "deployed": "2018",
+    "slug": "cam"
+  },
+  "linda_pre": {
+    "name": "LINDA Token (Presale)",
+    "desc": "LINDA (LNDA) ran a two-stage 2018 token sale: a presale and a main sale, both using the OpenZeppelin RefundableCrowdsale template against the same LINDA token. The presale missed its soft cap and ~3 ETH still sits in this presale RefundVault. Standard claimRefund() returns your deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0x8519f68a987048b879bed6afab25a0414828c236",
+    "deployed": "2018",
+    "slug": "linda-pre"
+  },
+  "linda_main": {
+    "name": "LINDA Token (Main Sale)",
+    "desc": "The main sale stage of LINDA (LNDA), deployed alongside a separate presale contract. The main sale also missed its soft cap and finalized into refund mode; ~2.7 ETH still sits in the sibling RefundVault. Standard claimRefund() returns your deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0xfcbc3a54c5663295d075b086441ee51c32ad152c",
+    "deployed": "2018",
+    "slug": "linda-main"
+  },
+  "monoreto": {
+    "name": "Monoreto (MNR)",
+    "desc": "Monoreto ran its 2018 ICO via the OpenZeppelin RefundableCrowdsale template. Soft cap was missed and the contract finalized into refund mode; ~2.5 ETH still sits in the sibling RefundVault. Standard single-tx claim: claimRefund() on the crowdsale returns your original ETH through the vault.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0x65320b9aeac77e45369e4892da896b7a987a97f3",
+    "deployed": "2018",
+    "slug": "monoreto"
+  },
+  "ico_refund_79c5": {
+    "name": "Unverified ICO Refund (79c5)",
+    "desc": "An unverified 2018 ICO crowdsale built on the OpenZeppelin RefundableCrowdsale template. Source is not published, but bytecode-level selectors match the canonical pattern, and Tenderly simulation confirms claimRefund() works for current depositors. ~1.5 ETH still sits in the sibling RefundVault.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0x79c59c24465fc3cc92e6419d4b59fdd285d874cf",
+    "deployed": "2018",
+    "slug": "ico-refund-79c5"
+  },
+  "treecoin": {
+    "name": "TREECHAIN NETWORK (TREECOIN)",
+    "desc": "TREECHAIN NETWORK ran a 2018 ICO via the OpenZeppelin RefundableCrowdsale template. Soft cap missed and the contract finalized into refund mode; 1 ETH remains in the sibling RefundVault for a single straggler. Standard claimRefund() returns the deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0xf36358e9c7f6bf26d9cff44f95bf9521fc3feed4",
+    "deployed": "2018",
+    "slug": "treecoin"
+  },
+  "lendsbay": {
+    "name": "Lendsbay Token (LBT)",
+    "desc": "Lendsbay (LBT) ran a 2018 ICO via the OpenZeppelin RefundableCrowdsale template. Soft cap missed; ~0.85 ETH still in the sibling RefundVault. Standard claimRefund() returns your deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0x3adf5ee8777f471407e04a7453133477a2dc0c2c",
+    "deployed": "2018",
+    "slug": "lendsbay"
+  },
+  "furt": {
+    "name": "FURT COIN (FRT)",
+    "desc": "FURT COIN ran a 2018 ICO via the OpenZeppelin RefundableCrowdsale template. Soft cap missed; ~0.7 ETH still in the sibling RefundVault for two contributors. Standard claimRefund() returns your deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0xf563549daf64f684858e863e2731f19633d1acb1",
+    "deployed": "2018",
+    "slug": "furt"
+  },
+  "kryptopy": {
+    "name": "Kryptopy Token (KPY)",
+    "desc": "Kryptopy (KPY) ran a 2018 ICO via the OpenZeppelin RefundableCrowdsale template. Soft cap missed; ~0.6 ETH still in the sibling RefundVault. Standard claimRefund() returns your deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0x09b8aaa7a883e60c23c6a0635940000c6e2e7560",
+    "deployed": "2018",
+    "slug": "kryptopy"
+  },
+  "digitize": {
+    "name": "DigitizeCoin Presale (DTZ)",
+    "desc": "DigitizeCoin (DTZ) ran a 2018 presale built on the OpenZeppelin RefundableCrowdsale template. The contract uses a 3-arg TokenPurchase event variant (PallyCoin family) but the refund flow is canonical. Soft cap missed and the contract finalized into refund mode; ~1.1 ETH still sits in the sibling RefundVault. Standard claimRefund() returns your deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0x9527551ca444f6e5d9a0b281116586427366862a",
+    "deployed": "2018",
+    "slug": "digitize"
+  },
+  "pallycoin": {
+    "name": "PallyCoin (PAL)",
+    "desc": "Merunas Grincalaitis's December 2017 PallyCoin ICO. The contract is a custom OpenZeppelin RefundableCrowdsale variant where claimRefund() additionally calls token.refundTokens(msg.sender, tokensBought[msg.sender]) — meaning you must still hold your full PAL allocation to claim. Soft cap missed and the contract finalized into refund mode. ~43 ETH remains in the RefundVault, of which ~40.6 ETH is claimable by 35 stragglers who never sold their PAL. The remaining ~2.7 ETH is locked for 9 holders who sold some PAL.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0xb4f10530e531c32490c68062662eb5684057afb4",
+    "deployed": "December 2017",
+    "slug": "pallycoin"
+  },
+  "pallycoin_v2": {
+    "name": "PallyCoin Fork (PAL2)",
+    "desc": "A 2018 PallyCoin fork by Manoj Patidar reusing the same RefundableCrowdsale + token-gated refund pattern, but against a separate PAL2 token. Soft cap missed. ~3.77 ETH still in the RefundVault, all claimable by 5 stragglers who still hold their full PAL2 allocation. Standard claimRefund() returns your deposit; you must hold PAL2 ≥ tokensBought.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0x77b275827eb3cf1792852b128a6dbc7a699bbd91",
+    "deployed": "2018",
+    "slug": "pallycoin-v2"
+  },
+  "foreground": {
+    "name": "ForegroundTokenSale (DEAL)",
+    "desc": "Foreground's DEAL token sale used a custom finite-state crowdsale (Prepared → Configured → Started → Ended → Finalized → Refunding) and held ETH directly in the crowdsale contract — no separate vault. The sale ended in the Refunding state and ~12.15 ETH still sits in the contract for 18 buyers. Single-tx claim: claimRefund() reads purchases[msg.sender].weiBalance and transfers it back. No token gating.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0x943e99d9efd4b44d808f6c83373a9a2c1e15e0f8",
+    "deployed": "November 2017",
+    "slug": "foreground"
+  },
+  "vuepay": {
+    "name": "VuePayTokenSale (VUP)",
+    "desc": "VuePay's 2017 VUP token sale used a custom crowdsale that holds ETH directly in the contract. Soft cap missed and the owner enabled refunds (allowRefund flag). ~1.2 ETH remains for 4 contributors. Single-tx claim: claimRefund() reads ETHContributed[msg.sender] and transfers it back.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0xcba6f10d1147b2c5a3d8d8cbd93c373b31c6c2c8",
+    "deployed": "October 2017",
+    "slug": "vuepay"
+  },
+  "chickenchef": {
+    "name": "ChickenChef",
+    "desc": "ChickenChef is an abandoned SushiSwap-MasterChef-style yield farm from the 2020 DeFi summer. Pool 0 accepted direct WETH stakes (not LP tokens). The farm went silent in late 2024 and ~48 WETH still sits in the contract for 7 stakers (top staker holds 40.7 WETH). Single-tx claim: emergencyWithdraw(0) returns your full stake. The standard withdraw() also works but emergencyWithdraw is safer because it skips reward minting.",
+    "category": "masterchef",
+    "color": "#a855f7",
+    "contract": "0x87ae4928f6582376a0489e9f70750334bbc2eb35",
+    "deployed": "September 2020",
+    "slug": "chickenchef"
+  },
+  "gov_treasurer": {
+    "name": "GovTreasurer",
+    "desc": "GovTreasurer is an abandoned MasterChef-style yield farm. Pool 2 is its WETH staking pool, holding ~19 WETH for 21 stakers. The contract has been dormant since late 2023. Single-tx claim: emergencyWithdraw(2) returns your full stake.",
+    "category": "masterchef",
+    "color": "#a855f7",
+    "contract": "0x4dac3e07316d2a31baabb252d89663dee8f76f09",
+    "deployed": "January 2020",
+    "slug": "gov-treasurer"
+  },
+  "mysteryman": {
+    "name": "MysteryMan",
+    "desc": "MysteryMan is an abandoned MasterChef-style farm. Pool 0 accepted direct WETH stakes; ~4 WETH sits in the contract for 2 stakers. Single-tx claim: emergencyWithdraw(0) returns your full stake.",
+    "category": "masterchef",
+    "color": "#a855f7",
+    "contract": "0x07261a6e37adbfab11e6474bca54634c7782b195",
+    "deployed": "September 2020",
+    "slug": "mysteryman"
+  },
+  "masterstar": {
+    "name": "MasterStar",
+    "desc": "MasterStar is an abandoned MasterChef-style farm. Pool 0 accepted direct WETH stakes; one staker holds the full claimable 3 WETH (the contract also holds an additional 0.1 WETH that was sent directly to the contract address and is not user-claimable). Single-tx claim: emergencyWithdraw(0) returns your full stake.",
+    "category": "masterchef",
+    "color": "#a855f7",
+    "contract": "0xb60c12d2a4069d339f49943fc45df6785b436096",
+    "deployed": "September 2020",
+    "slug": "masterstar"
+  },
+  "bdpmaster": {
+    "name": "BDPMaster",
+    "desc": "BDPMaster is an abandoned MasterChef-style farm. Pool 1 accepted direct WETH stakes; ~1.74 WETH sits in the contract for 8 stakers. The standard withdraw() flow is BROKEN — the contract tries to mint BDPToken rewards, but BDPToken's minter role was revoked, so withdraw() reverts with `BDPToken: cannot mint for pool`. Use emergencyWithdraw(1) instead — it skips reward minting and returns your stake cleanly.",
+    "category": "masterchef",
+    "color": "#a855f7",
+    "contract": "0x0de845955e2bf089012f682fe9bc81dd5f11b372",
+    "deployed": "September 2020",
+    "slug": "bdpmaster"
   }
 }

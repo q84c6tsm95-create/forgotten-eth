@@ -1,0 +1,79 @@
+{
+  "contract": "0x87ae4928f6582376a0489e9f70750334bbc2eb35",
+  "balance_source": "weth",
+  "weth_pid": 0,
+  "name": "ChickenChef",
+  "description": "Abandoned MasterChef-style farm \u2014 ChickenChef. WETH staked in pool 0, claim via emergencyWithdraw(0).",
+  "scan_date": "2026-04-07 15:30:49 UTC",
+  "contract_eth_balance": "48.204818814769265174",
+  "total_addresses_scanned": 107,
+  "addresses_with_balance": 7,
+  "total_eth_in_balances": 48.20481881476927,
+  "coverage_pct": 100.0,
+  "distribution": {
+    "10-100 ETH": {
+      "count": 1,
+      "total_eth": 40.681817214774384
+    },
+    "1-10 ETH": {
+      "count": 2,
+      "total_eth": 7.0
+    },
+    "0.1-1 ETH": {
+      "count": 1,
+      "total_eth": 0.5
+    },
+    "0.01-0.1 ETH": {
+      "count": 1,
+      "total_eth": 0.015
+    },
+    "<0.01 ETH": {
+      "count": 2,
+      "total_eth": 0.008001599994882123
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0x126082815922fb9f8275021c5519c20ce7df1abf",
+      "balance_wei": "40681817214774383051",
+      "balance_eth": "40.681817214774383729"
+    },
+    {
+      "rank": 2,
+      "address": "0xb99291d31084966f86dc060c02da970aba13fd8c",
+      "balance_wei": "5000000000000000000",
+      "balance_eth": "5.000000000000000000"
+    },
+    {
+      "rank": 3,
+      "address": "0x843a4d5f0d9c9abf383c1048efd50563464d441f",
+      "balance_wei": "2000000000000000000",
+      "balance_eth": "2.000000000000000000"
+    },
+    {
+      "rank": 4,
+      "address": "0x3be98ba8dd6397d645d3b6000209cd46238a158e",
+      "balance_wei": "500000000000000000",
+      "balance_eth": "0.500000000000000000"
+    },
+    {
+      "rank": 5,
+      "address": "0xbbfcbec0d46378625238330a9d2d70f7e53c87c9",
+      "balance_wei": "15000000000000000",
+      "balance_eth": "0.014999999999999999"
+    },
+    {
+      "rank": 6,
+      "address": "0x2ef7817d196a57cf3c8fac83d08811bda7fa6ede",
+      "balance_wei": "8000000000000000",
+      "balance_eth": "0.008000000000000000"
+    },
+    {
+      "rank": 7,
+      "address": "0x0cca423ef93b398ea1a0dea5d51c52b409db099c",
+      "balance_wei": "1599994882123",
+      "balance_eth": "0.000001599994882123"
+    }
+  ]
+}

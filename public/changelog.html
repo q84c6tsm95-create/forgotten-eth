@@ -667,6 +667,30 @@
     <div class="changelog-entry">
       <span class="changelog-date">Apr 7</span>
       <div class="changelog-body">
+        <div class="changelog-name">5 abandoned MasterChef WETH farms <span class="changelog-tag">+76 WETH</span></div>
+        <div class="changelog-desc">Phase 4 hunt for stuck WETH in DeFi-summer-2020 SushiSwap-MasterChef forks. Each contract has a dedicated WETH staking pool that's been dormant for ≥5 months. Single-tx claim via emergencyWithdraw(pid) — preferred over standard withdraw() because reward tokens often break first in abandoned chains. Contracts: <a href="/chickenchef">ChickenChef</a> (48 WETH, 7 stakers), <a href="/gov-treasurer">GovTreasurer</a> (19 WETH, 21 stakers), <a href="/mysteryman">MysteryMan</a> (4 WETH), <a href="/masterstar">MasterStar</a> (3 WETH), <a href="/bdpmaster">BDPMaster</a> (1.74 WETH — withdraw() reverts on broken reward mint, must use emergencyWithdraw). New 'masterchef' category in EXCHANGES, new refresh_masterchef_farms.py refresh path, smart_refresh extended to call WETH.balanceOf for balance_source: weth contracts.</div>
+      </div>
+    </div>
+
+    <div class="changelog-entry">
+      <span class="changelog-date">Apr 7</span>
+      <div class="changelog-body">
+        <div class="changelog-name">4 custom-flow ICO refunds <span class="changelog-tag">+60.38 ETH</span></div>
+        <div class="changelog-desc">Phase 4 deep-dive batch — four ICO crowdsales that didn't fit the standard OZ template. <a href="/pallycoin">PallyCoin</a> (43.3 ETH, ~40.6 claimable, token-gated like Neufund — must hold full PAL allocation) and its <a href="/pallycoin-v2">2018 fork</a> (3.77 ETH, all 5 stragglers eligible). <a href="/foreground">ForegroundTokenSale</a> (12.15 ETH) holds ETH directly in the crowdsale via a custom finite-state pattern. <a href="/vuepay">VuePayTokenSale</a> (1.21 ETH) does the same with an allowRefund flag. All four use single-tx claimRefund() flows; 100% verified depositor coverage on each.</div>
+      </div>
+    </div>
+
+    <div class="changelog-entry">
+      <span class="changelog-date">Apr 7</span>
+      <div class="changelog-body">
+        <div class="changelog-name">11 more refund-vault ICOs <span class="changelog-tag">+22.75 ETH</span></div>
+        <div class="changelog-desc">Phase 4 sweep extending the OZ RefundableCrowdsale family. Same one-tx claimRefund() flow as the earlier 17. Protocols: <a href="/irb">IRB Tokens</a> (5.3), <a href="/cam">CamToken</a> (3.5), <a href="/linda-pre">LINDA Presale</a> (2.9), <a href="/linda-main">LINDA Main Sale</a> (2.7), <a href="/monoreto">Monoreto</a> (2.6), <a href="/ico-refund-79c5">Unverified ICO 79c5</a> (1.5), <a href="/digitize">DigitizeCoin</a> (1.1), <a href="/treecoin">TREECHAIN</a> (1.0), <a href="/lendsbay">Lendsbay</a> (0.85), <a href="/furt">FURT COIN</a> (0.7), <a href="/kryptopy">Kryptopy</a> (0.6). 100% verified depositor coverage on all 11.</div>
+      </div>
+    </div>
+
+    <div class="changelog-entry">
+      <span class="changelog-date">Apr 7</span>
+      <div class="changelog-body">
         <div class="changelog-name">17 OZ refund-vault ICOs <span class="changelog-tag">+201 ETH</span></div>
         <div class="changelog-desc">Bulk integration of 2017–2018 OpenZeppelin RefundableCrowdsale + RefundVault contracts. All 17 share one withdraw flow: claimRefund() on the crowdsale delegates to the sibling vault, which sends your original ETH back in one tx. Protocols: <a href="/vlb">VLB</a> (81), <a href="/trend">Trend</a> (28), <a href="/vlb-lino">VLB / Lino</a> (17), <a href="/global-ico">Global ICO Token</a> (16), <a href="/fnt">Friend Network Token</a> (16), <a href="/crypto-hunt">CryptoHunt</a> (10), <a href="/bigtoken">BigToken</a> (6), <a href="/alttradex">Alttradex</a> (5), <a href="/winiota">WINiota</a> (5), <a href="/etcetera-ico">Etcetera</a> (5), <a href="/deskbell">DeskBell</a> (4), <a href="/quintessence">Quintessence</a> (1.5), <a href="/deck-coin">Deck Coin</a> (1.2), <a href="/tokpie">Tokpie</a> (1.2), <a href="/enkronos">Enkronos</a> (1.1), <a href="/grapevine">Grapevine</a> (1), <a href="/globalspy">GlobalSpy</a> (1).</div>
       </div>

@@ -1,0 +1,73 @@
+{
+  "contract": "0xa785ecdc8f166d0644b853f29732ae128c5d775b",
+  "vault": "0x59450e7a13bb0ff6d6d58f60e3e6b3e07b7a32e1",
+  "balance_source": "vault",
+  "name": "CamToken (CAM)",
+  "description": "OZ RefundableCrowdsale \u2014 CamToken (CAM). ETH stored in sibling RefundVault.",
+  "scan_date": "2026-04-07 15:10:27 UTC",
+  "contract_eth_balance": "3.453017621",
+  "total_addresses_scanned": 20,
+  "addresses_with_balance": 8,
+  "total_eth_in_balances": 3.453017621,
+  "coverage_pct": 100.0,
+  "distribution": {
+    "1-10 ETH": {
+      "count": 2,
+      "total_eth": 2.204684291
+    },
+    "0.1-1 ETH": {
+      "count": 6,
+      "total_eth": 1.2483333300000001
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0x4a11e4eac41510c5632f30e05dac41eb9b791530",
+      "balance_wei": "1204684291000000000",
+      "balance_eth": "1.204684290999999963"
+    },
+    {
+      "rank": 2,
+      "address": "0xf839293c8b0556613251ea17c3de65a1ade242b0",
+      "balance_wei": "1000000000000000000",
+      "balance_eth": "1.000000000000000000"
+    },
+    {
+      "rank": 3,
+      "address": "0x00d3fdb9e99079c1d1ea01463f179ec846c23d9a",
+      "balance_wei": "400000000000000000",
+      "balance_eth": "0.400000000000000022"
+    },
+    {
+      "rank": 4,
+      "address": "0xa31885e542f16c83eec1423392ddd65ac143e4b3",
+      "balance_wei": "333333330000000000",
+      "balance_eth": "0.333333329999999983"
+    },
+    {
+      "rank": 5,
+      "address": "0xe53355300752f77750d5e50db133bcfe9ad0d193",
+      "balance_wei": "215000000000000000",
+      "balance_eth": "0.214999999999999997"
+    },
+    {
+      "rank": 6,
+      "address": "0x6b3de9b20455f4cc16d3f82798c0f3d1f5382ff7",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006"
+    },
+    {
+      "rank": 7,
+      "address": "0x7820774535b91fcea012d0be5a1ab90db9d9e9d0",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006"
+    },
+    {
+      "rank": 8,
+      "address": "0xb79290b01ebe7e5ea1c35df58228be38b55714cd",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.100000000000000006"
+    }
+  ]
+}
