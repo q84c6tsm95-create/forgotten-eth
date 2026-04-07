@@ -872,12 +872,14 @@ async function checkLiveBalance(address, contractAddr) {
   try {
     const cfg = Object.values(EXCHANGES).find(e => e.contract.toLowerCase() === contractAddr.toLowerCase());
     if (!cfg) return null;
+    // balanceContract overrides where the balance call is made (vault vs crowdsale).
+    const balanceAddr = cfg.balanceContract || contractAddr;
     // Try each public RPC until one works
     let balance = null;
     for (let attempt = 0; attempt < PUBLIC_RPCS.length; attempt++) {
       try {
         const provider = getPublicProvider();
-        const contract = new ethers.Contract(contractAddr, [cfg.balanceAbi], provider);
+        const contract = new ethers.Contract(balanceAddr, [cfg.balanceAbi], provider);
         const result = await contract[cfg.balanceCall](...cfg.balanceArgs(address));
         balance = cfg.balanceTransform ? cfg.balanceTransform(result) : result;
         break;
@@ -1217,6 +1219,261 @@ const EXCHANGES = {
     category: 'ens',
     noWalletCheck: true,
     ensDeeds: true,
+  },
+  trend: {
+    name: 'Trend (TND)',
+    desc: 'Trend (TND) ran a 2018 ICO via the OpenZeppelin RefundableCrowdsale + CryptoHuntIco template. Soft cap missed, the contract finalized into refund mode, and ~28 ETH still sits in the sibling RefundVault. Single-tx claim: claimRefund() on the crowdsale returns your original deposit.',
+    color: '#0d9488',
+    contract: '0x5113309c84f7292b5f780748df5869cb9d0e3ad5',
+    balanceContract: '0x7192911827361f7326ec0ec945b6b3c53b141f32',
+    deployed: 'March 2018',
+    balanceAbi: 'function deposited(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'deposited',
+    withdrawAbi: 'function claimRefund()',
+    withdrawArgs: () => [],
+    withdrawCall: 'claimRefund',
+    category: 'ico',
+  },
+  global_ico: {
+    name: 'Global ICO Token (GLIF)',
+    desc: 'Global ICO Token (GLIF) reused the OpenZeppelin RefundableCrowdsale + CryptoHuntIco template for its 2018 sale. Soft cap missed (raised ~896 ETH, refunded most), ~16 ETH still sits unclaimed in the sibling RefundVault. Standard claimRefund() returns your deposit.',
+    color: '#0d9488',
+    contract: '0xd005c3dccd6e7056883dc612770021bc09837098',
+    balanceContract: '0x91bf99ca34268d407f3cc8d6525ce83c6ea7bcf5',
+    deployed: 'March 2018',
+    balanceAbi: 'function deposited(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'deposited',
+    withdrawAbi: 'function claimRefund()',
+    withdrawArgs: () => [],
+    withdrawCall: 'claimRefund',
+    category: 'ico',
+  },
+  crypto_hunt: {
+    name: 'CryptoHunt (CH)',
+    desc: 'CryptoHunt is a blockchain treasure-hunting game whose 2018 ICO didn\'t reach its soft cap. The contract is the canonical CryptoHuntIco source — OpenZeppelin RefundableCrowdsale pattern, public claimRefund() routing to the sibling RefundVault. ~10 ETH still claimable.',
+    color: '#0d9488',
+    contract: '0xb8f1437c742dc042af73d5bd18c8fc985ec8e3b4',
+    balanceContract: '0xebc7e601f7daf56b602334d6a3b081bb4d7d86e4',
+    deployed: 'March 2018',
+    balanceAbi: 'function deposited(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'deposited',
+    withdrawAbi: 'function claimRefund()',
+    withdrawArgs: () => [],
+    withdrawCall: 'claimRefund',
+    category: 'ico',
+  },
+  alttradex: {
+    name: 'Alttradex (ATXT)',
+    desc: 'Alttradex Token (ATXT) ran an October 2017 ICO using the OpenZeppelin RefundableCrowdsale + CryptoHuntIco template. Soft cap missed; finalize() routed the vault into refund mode. ~5 ETH still in the sibling RefundVault. Single-tx claimRefund() returns your deposit.',
+    color: '#0d9488',
+    contract: '0x12c33d513d4534e6cb5dc06c56683be52a936d24',
+    balanceContract: '0xe84e9f28a721010b8a2934810ce22975b15de46f',
+    deployed: 'October 2017',
+    balanceAbi: 'function deposited(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'deposited',
+    withdrawAbi: 'function claimRefund()',
+    withdrawArgs: () => [],
+    withdrawCall: 'claimRefund',
+    category: 'ico',
+  },
+  etcetera_ico: {
+    name: 'Etcetera (ERA)',
+    desc: 'Etcetera (ERA) was a 2018 ICO that used the OpenZeppelin RefundableCrowdsale + CryptoHuntIco template. The sale didn\'t reach its goal; the contract is in refund mode. ~5 ETH still in the sibling RefundVault waiting for stragglers.',
+    color: '#0d9488',
+    contract: '0xc49e03bdd6809fd168565b26d27d5cf72f9e9525',
+    balanceContract: '0x17be2c0aca46dd60cfc58dbb13f0b1c6c1921db8',
+    deployed: 'January 2018',
+    balanceAbi: 'function deposited(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'deposited',
+    withdrawAbi: 'function claimRefund()',
+    withdrawArgs: () => [],
+    withdrawCall: 'claimRefund',
+    category: 'ico',
+  },
+  enkronos: {
+    name: 'Enkronos Token (ENK)',
+    desc: 'EnkronosToken (ENK) — 2018 ICO via the OpenZeppelin RefundableCrowdsale + CryptoHuntIco template. Soft cap missed. ~1 ETH still in the sibling RefundVault. Standard claimRefund() returns your original deposit.',
+    color: '#0d9488',
+    contract: '0xda3fa12b3d41cd9948db6437f27c0c9978c55cbb',
+    balanceContract: '0xfe911bd81e9e7295dcd997973036f723d3e02300',
+    deployed: 'January 2018',
+    balanceAbi: 'function deposited(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'deposited',
+    withdrawAbi: 'function claimRefund()',
+    withdrawArgs: () => [],
+    withdrawCall: 'claimRefund',
+    category: 'ico',
+  },
+  deskbell: {
+    name: 'DeskBell (DBT)',
+    desc: 'DeskBell Token (DBT) ran a 2018 ICO via the OpenZeppelin RefundableCrowdsale (DeskBellPresale) template. Soft cap missed; ~4 ETH still sits in the sibling RefundVault. Standard single-tx claimRefund() returns your deposit.',
+    color: '#0d9488',
+    contract: '0x6e776e93291620dac8f3dde4a0b98c42a5359293',
+    balanceContract: '0x5a08600cbb2a6dd073a62cddb07861efe59d40f5',
+    deployed: 'March 2018',
+    balanceAbi: 'function deposited(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'deposited',
+    withdrawAbi: 'function claimRefund()',
+    withdrawArgs: () => [],
+    withdrawCall: 'claimRefund',
+    category: 'ico',
+  },
+  quintessence: {
+    name: 'Quintessence (QST)',
+    desc: 'Quintessence Token (QST) — 2018 ICO using the OpenZeppelin RefundableCrowdsale (DeskBellPresale-bytecode) template. ~1.5 ETH still in the sibling RefundVault. Standard claimRefund() returns your deposit.',
+    color: '#0d9488',
+    contract: '0xc86554bee96fdb3c85f85b576ed52d5e1eacc3a6',
+    balanceContract: '0xc178d4fe4451d863cd01fd3e240d17194fd178bc',
+    deployed: 'April 2018',
+    balanceAbi: 'function deposited(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'deposited',
+    withdrawAbi: 'function claimRefund()',
+    withdrawArgs: () => [],
+    withdrawCall: 'claimRefund',
+    category: 'ico',
+  },
+  deck_coin: {
+    name: 'Deck Coin (DEK)',
+    desc: 'Deck Coin (DEK) — 2017 ICO using the OpenZeppelin RefundableCrowdsale template. Soft cap missed. ~1.2 ETH still in the sibling RefundVault. Standard claimRefund() returns your deposit.',
+    color: '#0d9488',
+    contract: '0xcb7f070fda083e8e5f40559376c360f0709e985c',
+    balanceContract: '0x05b3abd9031a31a45121bda59c7bb52fc7db2590',
+    deployed: 'October 2017',
+    balanceAbi: 'function deposited(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'deposited',
+    withdrawAbi: 'function claimRefund()',
+    withdrawArgs: () => [],
+    withdrawCall: 'claimRefund',
+    category: 'ico',
+  },
+  tokpie: {
+    name: 'Tokpie (TKP)',
+    desc: 'Tokpie (TKP) — exchange-token ICO from 2018 using the OpenZeppelin RefundableCrowdsale template. The crowdsale didn\'t reach its soft cap; ~1.2 ETH still sits in the sibling RefundVault. Standard claimRefund() returns your original deposit.',
+    color: '#0d9488',
+    contract: '0x5e6a22ef928d09e9159737393ca155e9eb021d54',
+    balanceContract: '0x7d7417ed0748018f540aa0f68df31d8f44a342f7',
+    deployed: 'April 2018',
+    balanceAbi: 'function deposited(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'deposited',
+    withdrawAbi: 'function claimRefund()',
+    withdrawArgs: () => [],
+    withdrawCall: 'claimRefund',
+    category: 'ico',
+  },
+  globalspy: {
+    name: 'GlobalSpy (SPY)',
+    desc: 'GlobalSpy (SPY) — 2018 ICO using the OpenZeppelin RefundableCrowdsale template. ~1 ETH still in the sibling RefundVault. Standard claimRefund() returns your original deposit.',
+    color: '#0d9488',
+    contract: '0x05711090b4d375431e841ea79e52666f623d3353',
+    balanceContract: '0xaae985547c1512ffccee43ce5f55d73d5df6edca',
+    deployed: 'March 2018',
+    balanceAbi: 'function deposited(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'deposited',
+    withdrawAbi: 'function claimRefund()',
+    withdrawArgs: () => [],
+    withdrawCall: 'claimRefund',
+    category: 'ico',
+  },
+  bigtoken: {
+    name: 'BigToken (BTK)',
+    desc: 'BigToken (BTK) ran a 2018 ICO via the BigTokenCrowdSale (OpenZeppelin RefundableCrowdsale variant). Soft cap missed (raised ~927 ETH, refunded most). ~6 ETH still in the sibling RefundVault. Standard claimRefund() returns your deposit.',
+    color: '#0d9488',
+    contract: '0x2f4330e833c76860ea54f15b0195ff80a2c519c4',
+    balanceContract: '0xbad9b65cfb0c2e89bc9543b86849780baa52c605',
+    deployed: 'February 2018',
+    balanceAbi: 'function deposited(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'deposited',
+    withdrawAbi: 'function claimRefund()',
+    withdrawArgs: () => [],
+    withdrawCall: 'claimRefund',
+    category: 'ico',
+  },
+  winiota: {
+    name: 'WINiota (WIT)',
+    desc: 'WINiota Token (WIT) — June 2018 ICO whose crowdsale bytecode is identical to the FNT (Friend Network) RefundableCrowdsale. Soft cap missed; ~5 ETH still in the sibling RefundVault. Standard claimRefund() returns your deposit.',
+    color: '#0d9488',
+    contract: '0x3448295659daad4c834e5ce1c18c4e4ef73c7f06',
+    balanceContract: '0x028857f9e565d7e3e1d84b5f5736b53651c2778f',
+    deployed: 'June 2018',
+    balanceAbi: 'function deposited(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'deposited',
+    withdrawAbi: 'function claimRefund()',
+    withdrawArgs: () => [],
+    withdrawCall: 'claimRefund',
+    category: 'ico',
+  },
+  grapevine: {
+    name: 'Grapevine (GVINE)',
+    desc: 'Grapevine (GVINE) Crowdsale — 2018 ICO using the OpenZeppelin RefundableCrowdsale template. Soft cap missed; ~1 ETH still in the sibling RefundVault. Standard claimRefund() returns your deposit.',
+    color: '#0d9488',
+    contract: '0xea864a114c648eff4f92e55b870fe1e71fd60083',
+    balanceContract: '0x57d1fbc0404ec7b431914cdea7a040953eaf925d',
+    deployed: 'July 2018',
+    balanceAbi: 'function deposited(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'deposited',
+    withdrawAbi: 'function claimRefund()',
+    withdrawArgs: () => [],
+    withdrawCall: 'claimRefund',
+    category: 'ico',
+  },
+  vlb: {
+    name: 'VLB Token',
+    desc: 'Velix.AI ran its December 2017 ICO via the OpenZeppelin RefundableCrowdsale pattern. The sale missed its 5,000 ETH soft cap (raised ~4,900 ETH), the contract finalized into refund mode, and most depositors clawed back over the following months. ~81 ETH still sits in the sibling RefundVault waiting for the long tail of stragglers. Single-tx claim: claimRefund() on the crowdsale delegates to the vault and returns your original deposit.',
+    color: '#0d9488',
+    contract: '0xd7e011ad27b6128934e2afd1763120ede1274ae4',
+    balanceContract: '0x93519cc1a51ac56cf2daa8aaafcd4073f49a19d8',
+    deployed: 'December 2017',
+    balanceAbi: 'function deposited(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'deposited',
+    withdrawAbi: 'function claimRefund()',
+    withdrawArgs: () => [],
+    withdrawCall: 'claimRefund',
+    category: 'ico',
+  },
+  vlb_lino: {
+    name: 'VLB / Lino',
+    desc: 'A Wings-incubated 2018 ICO that reused the same VLB-style RefundableCrowdsale code. The USD-denominated soft cap was missed, the contract finalized into refund mode, and ~17 ETH remained in the sibling RefundVault unclaimed. Same single-tx pattern: claimRefund() on the crowdsale returns your deposit through the vault.',
+    color: '#0d9488',
+    contract: '0xdea2bc436d38d4f8ee6f9e63b63b72a399c24e2c',
+    balanceContract: '0x2cbc6812cff0b1113bf2808ffce6d83b97afd345',
+    deployed: 'March 2018',
+    balanceAbi: 'function deposited(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'deposited',
+    withdrawAbi: 'function claimRefund()',
+    withdrawArgs: () => [],
+    withdrawCall: 'claimRefund',
+    category: 'ico',
+  },
+  fnt: {
+    name: 'Friend Network Token',
+    desc: 'FriendNetwork ran a 2018 ICO with a 25,000 ETH minimum cap. Only ~3,700 ETH was raised, finalize() routed the contract into refund mode, and ~16 ETH still sits in the sibling RefundVault for buyers who never came back to claim. Standard OZ pattern: claimRefund() on the crowdsale and the vault sends your original ETH back.',
+    color: '#0d9488',
+    contract: '0x7c33f3d417ef65a5299998bf7bbd35921963336c',
+    balanceContract: '0x62bbb9fffd33d70a39fed4e7874163e8b97ea41b',
+    deployed: 'June 2018',
+    balanceAbi: 'function deposited(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'deposited',
+    withdrawAbi: 'function claimRefund()',
+    withdrawArgs: () => [],
+    withdrawCall: 'claimRefund',
+    category: 'ico',
   },
   confideal: {
     name: 'Confideal',
@@ -2585,9 +2842,13 @@ async function checkUserBalances(overrideAddress) {
         return { key, balance: 0n };
       }
 
-      // HAS API balance: verify onchain to confirm it's still claimable
+      // HAS API balance: verify onchain to confirm it's still claimable.
+      // balanceContract lets a protocol read its balance from a sibling
+      // address (e.g. OZ RefundVault holds the ETH, crowdsale receives the
+      // claimRefund call). Falls back to cfg.contract when not set.
       try {
-        const contract = new ethers.Contract(cfg.contract, [cfg.balanceAbi], walletProvider);
+        const balanceAddr = cfg.balanceContract || cfg.contract;
+        const contract = new ethers.Contract(balanceAddr, [cfg.balanceAbi], walletProvider);
         const result = await contract[cfg.balanceCall](...cfg.balanceArgs(checkAddr));
         const balance = cfg.balanceTransform ? cfg.balanceTransform(result) : result;
         return { key, balance };
@@ -5364,7 +5625,8 @@ async function checkSingleAddress(addr) {
         return { key, balance: BigInt(apiEntry.balance_wei) };
       }
       if (!provider) provider = new ethers.JsonRpcProvider(PUBLIC_RPC);
-      const contract = new ethers.Contract(cfg.contract, [cfg.balanceAbi], provider);
+      const balanceAddr = cfg.balanceContract || cfg.contract;
+      const contract = new ethers.Contract(balanceAddr, [cfg.balanceAbi], provider);
       const result = await contract[cfg.balanceCall](...cfg.balanceArgs(addr));
       const balance = cfg.balanceTransform ? cfg.balanceTransform(result) : result;
       return { key, balance };

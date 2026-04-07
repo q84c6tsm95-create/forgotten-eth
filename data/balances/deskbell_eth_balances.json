@@ -1,0 +1,37 @@
+{
+  "contract": "0x6e776e93291620dac8f3dde4a0b98c42a5359293",
+  "vault": "0x5a08600cbb2a6dd073a62cddb07861efe59d40f5",
+  "balance_source": "vault",
+  "name": "DeskBell (DBT)",
+  "description": "OZ RefundableCrowdsale \u2014 DeskBell (DBT). ETH stored in sibling RefundVault.",
+  "scan_date": "2026-04-07 12:06:36 UTC",
+  "contract_eth_balance": "3.82",
+  "total_addresses_scanned": 5,
+  "addresses_with_balance": 2,
+  "total_eth_in_balances": 3.82,
+  "coverage_pct": 100.0,
+  "distribution": {
+    "1-10 ETH": {
+      "count": 1,
+      "total_eth": 3.7
+    },
+    "0.1-1 ETH": {
+      "count": 1,
+      "total_eth": 0.12
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0x58d0ce76365da7de6353b5f4bc2f32656a7c6583",
+      "balance_wei": "3700000000000000000",
+      "balance_eth": "3.700000000000000178"
+    },
+    {
+      "rank": 2,
+      "address": "0x4fca0fc6c28ff4ea538eb0e1932febfadb8c1b37",
+      "balance_wei": "120000000000000000",
+      "balance_eth": "0.119999999999999996"
+    }
+  ]
+}

@@ -53,7 +53,8 @@
     "name": "Joyso",
     "contract": "0x04f062809b244e37e7fdc21d9409469c989c2342",
     "category": "dex",
-    "balance_file": "joyso_eth_balances.json"
+    "balance_file": "joyso_eth_balances.json",
+    "multi_step": true
   },
   {
     "key": "ethen",
@@ -151,7 +152,8 @@
     "name": "Neufund",
     "contract": "0xb1E4675f0dBE360bA90447A7e58c62C762Ad62D4",
     "category": "ico",
-    "balance_file": "neufund_locked_eth_balances.json"
+    "balance_file": "neufund_locked_eth_balances.json",
+    "multi_step": true
   },
   {
     "key": "bancor_eth",
@@ -772,7 +774,8 @@
     "name": "DigixDAO",
     "contract": "0xe0b7927c4af23765cb51314a0e0521a9645f0e2a",
     "category": "ico",
-    "balance_file": "digixdao_eth_balances.json"
+    "balance_file": "digixdao_eth_balances.json",
+    "multi_step": true
   },
   {
     "key": "p4d",
@@ -786,7 +789,8 @@
     "name": "NuCypher WorkLock",
     "contract": "0xe9778e69a961e64d3cdbb34cf6778281d34667c2",
     "category": "ico",
-    "balance_file": "nucypher_worklock_eth_balances.json"
+    "balance_file": "nucypher_worklock_eth_balances.json",
+    "multi_step": true
   },
   {
     "key": "tessera_dead",
@@ -814,7 +818,8 @@
     "name": "Kyber FeeHandler",
     "contract": "0xd3d2b5643e506c6d9b7099e9116d7aaa941114fe",
     "category": "dex",
-    "balance_file": "kyber_feehandler_eth_balances.json"
+    "balance_file": "kyber_feehandler_eth_balances.json",
+    "multi_step": true
   },
   {
     "key": "thedao",
@@ -828,7 +833,8 @@
     "name": "Augur v1",
     "contract": "0xd5524179cB7AE012f5B642C1D6D700Bbaa76B96b",
     "category": "prediction",
-    "balance_file": "augur_v1_eth_balances.json"
+    "balance_file": "augur_v1_eth_balances.json",
+    "multi_step": true
   },
   {
     "key": "ethfinex",
@@ -849,7 +855,8 @@
     "name": "Switcheo BrokerV2",
     "contract": "0x7ee7ca6e75de79e618e88bdf80d0b1db136b22d0",
     "category": "dex",
-    "balance_file": "switcheo_v2_eth_balances.json"
+    "balance_file": "switcheo_v2_eth_balances.json",
+    "multi_step": true
   },
   {
     "key": "unknown_dex_5995",
@@ -871,5 +878,124 @@
     "contract": "0x3a3A65aAb0dd2A17E3F1947bA16138cd37d08c04",
     "category": "defi",
     "balance_file": "aave_v1_eth_balances.json"
+  },
+  {
+    "key": "vlb",
+    "name": "VLB Token",
+    "contract": "0xd7e011ad27b6128934e2afd1763120ede1274ae4",
+    "category": "ico",
+    "balance_file": "vlb_eth_balances.json"
+  },
+  {
+    "key": "vlb_lino",
+    "name": "VLB / Lino",
+    "contract": "0xdea2bc436d38d4f8ee6f9e63b63b72a399c24e2c",
+    "category": "ico",
+    "balance_file": "vlb_lino_eth_balances.json"
+  },
+  {
+    "key": "fnt",
+    "name": "Friend Network Token",
+    "contract": "0x7c33f3d417ef65a5299998bf7bbd35921963336c",
+    "category": "ico",
+    "balance_file": "fnt_eth_balances.json"
+  },
+  {
+    "key": "trend",
+    "name": "Trend (TND)",
+    "contract": "0x5113309c84f7292b5f780748df5869cb9d0e3ad5",
+    "category": "ico",
+    "balance_file": "trend_eth_balances.json"
+  },
+  {
+    "key": "global_ico",
+    "name": "Global ICO Token (GLIF)",
+    "contract": "0xd005c3dccd6e7056883dc612770021bc09837098",
+    "category": "ico",
+    "balance_file": "global_ico_eth_balances.json"
+  },
+  {
+    "key": "crypto_hunt",
+    "name": "CryptoHunt (CH)",
+    "contract": "0xb8f1437c742dc042af73d5bd18c8fc985ec8e3b4",
+    "category": "ico",
+    "balance_file": "crypto_hunt_eth_balances.json"
+  },
+  {
+    "key": "alttradex",
+    "name": "Alttradex (ATXT)",
+    "contract": "0x12c33d513d4534e6cb5dc06c56683be52a936d24",
+    "category": "ico",
+    "balance_file": "alttradex_eth_balances.json"
+  },
+  {
+    "key": "etcetera_ico",
+    "name": "Etcetera (ERA)",
+    "contract": "0xc49e03bdd6809fd168565b26d27d5cf72f9e9525",
+    "category": "ico",
+    "balance_file": "etcetera_ico_eth_balances.json"
+  },
+  {
+    "key": "enkronos",
+    "name": "Enkronos Token (ENK)",
+    "contract": "0xda3fa12b3d41cd9948db6437f27c0c9978c55cbb",
+    "category": "ico",
+    "balance_file": "enkronos_eth_balances.json"
+  },
+  {
+    "key": "deskbell",
+    "name": "DeskBell (DBT)",
+    "contract": "0x6e776e93291620dac8f3dde4a0b98c42a5359293",
+    "category": "ico",
+    "balance_file": "deskbell_eth_balances.json"
+  },
+  {
+    "key": "quintessence",
+    "name": "Quintessence (QST)",
+    "contract": "0xc86554bee96fdb3c85f85b576ed52d5e1eacc3a6",
+    "category": "ico",
+    "balance_file": "quintessence_eth_balances.json"
+  },
+  {
+    "key": "deck_coin",
+    "name": "Deck Coin (DEK)",
+    "contract": "0xcb7f070fda083e8e5f40559376c360f0709e985c",
+    "category": "ico",
+    "balance_file": "deck_coin_eth_balances.json"
+  },
+  {
+    "key": "tokpie",
+    "name": "Tokpie (TKP)",
+    "contract": "0x5e6a22ef928d09e9159737393ca155e9eb021d54",
+    "category": "ico",
+    "balance_file": "tokpie_eth_balances.json"
+  },
+  {
+    "key": "globalspy",
+    "name": "GlobalSpy (SPY)",
+    "contract": "0x05711090b4d375431e841ea79e52666f623d3353",
+    "category": "ico",
+    "balance_file": "globalspy_eth_balances.json"
+  },
+  {
+    "key": "bigtoken",
+    "name": "BigToken (BTK)",
+    "contract": "0x2f4330e833c76860ea54f15b0195ff80a2c519c4",
+    "category": "ico",
+    "balance_file": "bigtoken_eth_balances.json"
+  },
+  {
+    "key": "winiota",
+    "name": "WINiota (WIT)",
+    "contract": "0x3448295659daad4c834e5ce1c18c4e4ef73c7f06",
+    "category": "ico",
+    "balance_file": "winiota_eth_balances.json"
+  },
+  {
+    "key": "grapevine",
+    "name": "Grapevine (GVINE)",
+    "contract": "0xea864a114c648eff4f92e55b870fe1e71fd60083",
+    "category": "ico",
+    "balance_file": "grapevine_eth_balances.json"
   }
 ]

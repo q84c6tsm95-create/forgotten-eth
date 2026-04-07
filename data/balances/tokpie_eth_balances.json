@@ -1,0 +1,39 @@
+{
+  "contract": "0x5e6a22ef928d09e9159737393ca155e9eb021d54",
+  "vault": "0x7d7417ed0748018f540aa0f68df31d8f44a342f7",
+  "balance_source": "vault",
+  "name": "Tokpie (TKP)",
+  "description": "OZ RefundableCrowdsale \u2014 Tokpie (TKP). ETH stored in sibling RefundVault.",
+  "scan_date": "2026-04-07 12:06:39 UTC",
+  "contract_eth_balance": "1.154832441",
+  "total_addresses_scanned": 12,
+  "addresses_with_balance": 3,
+  "total_eth_in_balances": 1.154832441,
+  "coverage_pct": 100.0,
+  "distribution": {
+    "0.1-1 ETH": {
+      "count": 3,
+      "total_eth": 1.154832441
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0x0d8cd327a0df23896c6424f730132675e22ee83e",
+      "balance_wei": "546840000000000000",
+      "balance_eth": "0.546839999999999993"
+    },
+    {
+      "rank": 2,
+      "address": "0xd48c41393b8aee904e2c7be661596d8c6f39a616",
+      "balance_wei": "333312000000000000",
+      "balance_eth": "0.333311999999999997"
+    },
+    {
+      "rank": 3,
+      "address": "0xd506fcd4ed5cb7d13f219ba7638465f924b7d5b9",
+      "balance_wei": "274680441000000000",
+      "balance_eth": "0.274680440999999997"
+    }
+  ]
+}

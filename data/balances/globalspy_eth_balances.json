@@ -1,0 +1,65 @@
+{
+  "contract": "0x05711090b4d375431e841ea79e52666f623d3353",
+  "vault": "0xaae985547c1512ffccee43ce5f55d73d5df6edca",
+  "balance_source": "vault",
+  "name": "GlobalSpy (SPY)",
+  "description": "OZ RefundableCrowdsale \u2014 GlobalSpy (SPY). ETH stored in sibling RefundVault.",
+  "scan_date": "2026-04-07 12:06:40 UTC",
+  "contract_eth_balance": "0.969807447",
+  "total_addresses_scanned": 6,
+  "addresses_with_balance": 6,
+  "total_eth_in_balances": 0.969807447,
+  "coverage_pct": 100.0,
+  "distribution": {
+    "0.1-1 ETH": {
+      "count": 3,
+      "total_eth": 0.895
+    },
+    "0.01-0.1 ETH": {
+      "count": 1,
+      "total_eth": 0.07
+    },
+    "<0.01 ETH": {
+      "count": 2,
+      "total_eth": 0.004807447
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0x59ceda34b3fa7bf655687698de76496e64b84487",
+      "balance_wei": "625000000000000000",
+      "balance_eth": "0.625000000000000000"
+    },
+    {
+      "rank": 2,
+      "address": "0xcd53a55a6195af4870773735616b7bef2cfb6f87",
+      "balance_wei": "150000000000000000",
+      "balance_eth": "0.149999999999999994"
+    },
+    {
+      "rank": 3,
+      "address": "0xc46e5282ca98b982b9cd5d7b029a77573b2f8307",
+      "balance_wei": "120000000000000000",
+      "balance_eth": "0.119999999999999996"
+    },
+    {
+      "rank": 4,
+      "address": "0x711348f1114e7296e288a45a61e4b80d7652178d",
+      "balance_wei": "70000000000000000",
+      "balance_eth": "0.070000000000000007"
+    },
+    {
+      "rank": 5,
+      "address": "0x06fd7c732f3e4c7d28a852ab1bcb1a7b2341c5d1",
+      "balance_wei": "4507447000000000",
+      "balance_eth": "0.004507447000000000"
+    },
+    {
+      "rank": 6,
+      "address": "0xd0593b233be4411a236f22b42087345e1137170b",
+      "balance_wei": "300000000000000",
+      "balance_eth": "0.000300000000000000"
+    }
+  ]
+}

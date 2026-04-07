@@ -1120,5 +1120,158 @@
     "contract": "0x3a3A65aAb0dd2A17E3F1947bA16138cd37d08c04",
     "deployed": "January 2020",
     "slug": "aave-v1"
+  },
+  "vlb": {
+    "name": "VLB Token",
+    "desc": "Velix.AI's December 2017 ICO via the OpenZeppelin RefundableCrowdsale pattern. The sale missed its 5,000 ETH soft cap (raised ~4,900 ETH), the owner finalized into refund mode, and most depositors clawed back over the following months. 81 ETH still sits in the RefundVault waiting for the long tail of stragglers. Single-tx claim: call claimRefund() on the crowdsale, which delegates to the vault and returns your original deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0xd7e011ad27b6128934e2afd1763120ede1274ae4",
+    "deployed": "December 2017",
+    "slug": "vlb"
+  },
+  "vlb_lino": {
+    "name": "VLB / Lino",
+    "desc": "A Wings-incubated 2018 ICO that reused the same VLB-style RefundableCrowdsale code. Soft cap (USD-denominated) was missed, the contract finalized into refund mode, and 17 ETH remained in the RefundVault unclaimed. Same single-tx pattern: claimRefund() on the crowdsale returns your deposit through the sibling vault.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0xdea2bc436d38d4f8ee6f9e63b63b72a399c24e2c",
+    "deployed": "March 2018",
+    "slug": "vlb-lino"
+  },
+  "fnt": {
+    "name": "Friend Network Token",
+    "desc": "FriendNetwork's 2018 ICO with a 25,000 ETH minimum cap. Only ~3,700 ETH was raised, finalize() routed the contract into refund mode, and 16 ETH still sits in the RefundVault for buyers who never came back to claim. Standard OZ pattern: call claimRefund() on the crowdsale and the vault sends your original ETH back.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0x7c33f3d417ef65a5299998bf7bbd35921963336c",
+    "deployed": "June 2018",
+    "slug": "fnt"
+  },
+  "trend": {
+    "name": "Trend (TND)",
+    "desc": "Trend (TND) ran a 2018 ICO via the OpenZeppelin RefundableCrowdsale + CryptoHuntIco template. Soft cap missed, the contract finalized into refund mode, and ~28 ETH still sits in the sibling RefundVault. Single-tx claim: claimRefund() on the crowdsale returns your original deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0x5113309c84f7292b5f780748df5869cb9d0e3ad5",
+    "deployed": "March 2018",
+    "slug": "trend"
+  },
+  "global_ico": {
+    "name": "Global ICO Token (GLIF)",
+    "desc": "Global ICO Token (GLIF) reused the OpenZeppelin RefundableCrowdsale + CryptoHuntIco template for its 2018 sale. Soft cap missed (raised ~896 ETH, refunded most), ~16 ETH still sits unclaimed in the sibling RefundVault. Standard claimRefund() returns your deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0xd005c3dccd6e7056883dc612770021bc09837098",
+    "deployed": "March 2018",
+    "slug": "global-ico"
+  },
+  "crypto_hunt": {
+    "name": "CryptoHunt (CH)",
+    "desc": "CryptoHunt is a blockchain treasure-hunting game whose 2018 ICO didn't reach its soft cap. The contract is the canonical CryptoHuntIco source \u2014 OpenZeppelin RefundableCrowdsale pattern, public claimRefund() routing to the sibling RefundVault. ~10 ETH still claimable.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0xb8f1437c742dc042af73d5bd18c8fc985ec8e3b4",
+    "deployed": "March 2018",
+    "slug": "crypto-hunt"
+  },
+  "alttradex": {
+    "name": "Alttradex (ATXT)",
+    "desc": "Alttradex Token (ATXT) ran an October 2017 ICO using the OpenZeppelin RefundableCrowdsale + CryptoHuntIco template. Soft cap missed; finalize() routed the vault into refund mode. ~5 ETH still in the sibling RefundVault. Single-tx claimRefund() returns your deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0x12c33d513d4534e6cb5dc06c56683be52a936d24",
+    "deployed": "October 2017",
+    "slug": "alttradex"
+  },
+  "etcetera_ico": {
+    "name": "Etcetera (ERA)",
+    "desc": "Etcetera (ERA) was a 2018 ICO that used the OpenZeppelin RefundableCrowdsale + CryptoHuntIco template. The sale didn't reach its goal; the contract is in refund mode. ~5 ETH still in the sibling RefundVault waiting for stragglers.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0xc49e03bdd6809fd168565b26d27d5cf72f9e9525",
+    "deployed": "January 2018",
+    "slug": "etcetera-ico"
+  },
+  "enkronos": {
+    "name": "Enkronos Token (ENK)",
+    "desc": "EnkronosToken (ENK) \u2014 2018 ICO via the OpenZeppelin RefundableCrowdsale + CryptoHuntIco template. Soft cap missed. ~1 ETH still in the sibling RefundVault. Standard claimRefund() returns your original deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0xda3fa12b3d41cd9948db6437f27c0c9978c55cbb",
+    "deployed": "January 2018",
+    "slug": "enkronos"
+  },
+  "deskbell": {
+    "name": "DeskBell (DBT)",
+    "desc": "DeskBell Token (DBT) ran a 2018 ICO via the OpenZeppelin RefundableCrowdsale (DeskBellPresale) template. Soft cap missed; ~4 ETH still sits in the sibling RefundVault. Standard single-tx claimRefund() returns your deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0x6e776e93291620dac8f3dde4a0b98c42a5359293",
+    "deployed": "March 2018",
+    "slug": "deskbell"
+  },
+  "quintessence": {
+    "name": "Quintessence (QST)",
+    "desc": "Quintessence Token (QST) \u2014 2018 ICO using the OpenZeppelin RefundableCrowdsale (DeskBellPresale-bytecode) template. ~1.5 ETH still in the sibling RefundVault. Standard claimRefund() returns your deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0xc86554bee96fdb3c85f85b576ed52d5e1eacc3a6",
+    "deployed": "April 2018",
+    "slug": "quintessence"
+  },
+  "deck_coin": {
+    "name": "Deck Coin (DEK)",
+    "desc": "Deck Coin (DEK) \u2014 2017 ICO using the OpenZeppelin RefundableCrowdsale template. Soft cap missed. ~1.2 ETH still in the sibling RefundVault. Standard claimRefund() returns your deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0xcb7f070fda083e8e5f40559376c360f0709e985c",
+    "deployed": "October 2017",
+    "slug": "deck-coin"
+  },
+  "tokpie": {
+    "name": "Tokpie (TKP)",
+    "desc": "Tokpie (TKP) \u2014 exchange-token ICO from 2018 using the OpenZeppelin RefundableCrowdsale template. The crowdsale didn't reach its soft cap; ~1.2 ETH still sits in the sibling RefundVault. Standard claimRefund() returns your original deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0x5e6a22ef928d09e9159737393ca155e9eb021d54",
+    "deployed": "April 2018",
+    "slug": "tokpie"
+  },
+  "globalspy": {
+    "name": "GlobalSpy (SPY)",
+    "desc": "GlobalSpy (SPY) \u2014 2018 ICO using the OpenZeppelin RefundableCrowdsale template. ~1 ETH still in the sibling RefundVault. Standard claimRefund() returns your original deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0x05711090b4d375431e841ea79e52666f623d3353",
+    "deployed": "March 2018",
+    "slug": "globalspy"
+  },
+  "bigtoken": {
+    "name": "BigToken (BTK)",
+    "desc": "BigToken (BTK) ran a 2018 ICO via the BigTokenCrowdSale (OpenZeppelin RefundableCrowdsale variant). Soft cap missed (raised ~927 ETH, refunded most). ~6 ETH still in the sibling RefundVault. Standard claimRefund() returns your deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0x2f4330e833c76860ea54f15b0195ff80a2c519c4",
+    "deployed": "February 2018",
+    "slug": "bigtoken"
+  },
+  "winiota": {
+    "name": "WINiota (WIT)",
+    "desc": "WINiota Token (WIT) \u2014 June 2018 ICO whose crowdsale bytecode is identical to the FNT (Friend Network) RefundableCrowdsale. Soft cap missed; ~5 ETH still in the sibling RefundVault. Standard claimRefund() returns your deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0x3448295659daad4c834e5ce1c18c4e4ef73c7f06",
+    "deployed": "June 2018",
+    "slug": "winiota"
+  },
+  "grapevine": {
+    "name": "Grapevine (GVINE)",
+    "desc": "Grapevine (GVINE) Crowdsale \u2014 2018 ICO using the OpenZeppelin RefundableCrowdsale template. Soft cap missed; ~1 ETH still in the sibling RefundVault. Standard claimRefund() returns your deposit.",
+    "category": "ico",
+    "color": "#0d9488",
+    "contract": "0xea864a114c648eff4f92e55b870fe1e71fd60083",
+    "deployed": "July 2018",
+    "slug": "grapevine"
   }
 }

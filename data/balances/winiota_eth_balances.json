@@ -1,0 +1,43 @@
+{
+  "contract": "0x3448295659daad4c834e5ce1c18c4e4ef73c7f06",
+  "vault": "0x028857f9e565d7e3e1d84b5f5736b53651c2778f",
+  "balance_source": "vault",
+  "name": "WINiota (WIT)",
+  "description": "OZ RefundableCrowdsale \u2014 WINiota (WIT). ETH stored in sibling RefundVault.",
+  "scan_date": "2026-04-07 12:06:42 UTC",
+  "contract_eth_balance": "4.991631624",
+  "total_addresses_scanned": 5,
+  "addresses_with_balance": 3,
+  "total_eth_in_balances": 4.991631624,
+  "coverage_pct": 100.0,
+  "distribution": {
+    "1-10 ETH": {
+      "count": 2,
+      "total_eth": 4.0
+    },
+    "0.1-1 ETH": {
+      "count": 1,
+      "total_eth": 0.991631624
+    }
+  },
+  "balances": [
+    {
+      "rank": 1,
+      "address": "0x9789b7b58c5e5f9d24f9811676d5287550d722c1",
+      "balance_wei": "2200000000000000000",
+      "balance_eth": "2.200000000000000178"
+    },
+    {
+      "rank": 2,
+      "address": "0xa665d83457cb91c3b254b35a5d61143f66473be7",
+      "balance_wei": "1800000000000000000",
+      "balance_eth": "1.800000000000000044"
+    },
+    {
+      "rank": 3,
+      "address": "0x477f7948a6c03e29ca224b57d8563c96345d0757",
+      "balance_wei": "991631624000000000",
+      "balance_eth": "0.991631624000000045"
+    }
+  ]
+}
