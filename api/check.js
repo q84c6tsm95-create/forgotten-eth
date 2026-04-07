@@ -1,7 +1,6 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { rateLimit } from './_ratelimit.js';
-import { requirePrivate } from './_private.js';
 import { sql } from '@vercel/postgres';
 
 // Sharded index: 256 prefix files (~200KB avg) + tiny meta.json
@@ -31,9 +30,6 @@ export default async function handler(req, res) {
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
-
-  // Gate before rate limiter: blocked requests don't hit Neon at all
-  if (!requirePrivate(req, res)) return;
 
   const ip = req.headers['cf-connecting-ip'] || req.headers['x-real-ip'] || req.headers['x-forwarded-for']?.split(',')[0]?.trim() || 'unknown';
   const allowed = await rateLimit(ip, 'check', 200, 60);

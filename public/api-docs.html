@@ -647,6 +647,8 @@
   <aside class="api-sidebar">
     <nav>
       <div class="sidebar-label">Endpoints</div>
+      <a href="#check-address">Check Address</a>
+      <a href="#check-batch">Batch Check</a>
       <a href="#summary">Summary</a>
       <a href="#protocol-detail">Protocol Detail</a>
       <a href="#total">Total</a>
@@ -666,6 +668,189 @@
   <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;margin-bottom:12px;background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 var(--radius-lg) var(--radius-lg) 0;font-family:var(--font-mono);font-size:13px;">
     <span style="color:var(--text2);font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Base URL</span>
     <span style="font-weight:700;color:var(--accent-text);">https://forgotteneth.com</span>
+  </div>
+
+  <!-- ── Check Address ── -->
+  <h2 id="check-address">Check Address</h2>
+  <div class="endpoint">
+    <span class="method">GET</span>
+    <span class="path">/api/check?address=0x...</span>
+    <p class="desc">Check if an Ethereum address has claimable ETH in any tracked contract. Returns per-protocol balances and coverage metadata. <strong>Rate limit:</strong> 30 req/min per IP.</p>
+    <div class="params">
+      <table>
+        <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">address</span></td><td>string</td><td>Ethereum address (0x + 40 hex chars)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="try-it">
+      <input type="text" id="tryAddress" placeholder="0x1234...5678" spellcheck="false" aria-label="Ethereum address">
+      <button id="tryBtn">Try it</button>
+    </div>
+    <div class="try-result" id="tryResult">
+      <div class="code-block">
+        <button class="copy-btn">Copy</button>
+        <pre id="tryOutput"></pre>
+      </div>
+    </div>
+
+    <!-- Code Examples -->
+    <h3>Examples</h3>
+    <div class="code-tabs">
+      <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="tab-curl">curl</button>
+        <button class="tab-btn" data-tab="tab-js">JavaScript</button>
+        <button class="tab-btn" data-tab="tab-py">Python</button>
+      </div>
+      <div class="tab-panel active" id="tab-curl">
+        <div class="code-block">
+          <button class="copy-btn">Copy</button>
+          <pre>curl "https://forgotteneth.com/api/check?address=0xab5801a7d398351b8be11c439e05c5b3259aec9b"</pre>
+        </div>
+      </div>
+      <div class="tab-panel" id="tab-js">
+        <div class="code-block">
+          <button class="copy-btn">Copy</button>
+          <pre><span class="json-key">const</span> res = <span class="json-key">await</span> fetch(<span class="json-string">'https://forgotteneth.com/api/check?address=0xab58...'</span>);
+<span class="json-key">const</span> data = <span class="json-key">await</span> res.json();
+console.log(<span class="json-string">`${data.total_claimable_eth} ETH claimable`</span>);</pre>
+        </div>
+      </div>
+      <div class="tab-panel" id="tab-py">
+        <div class="code-block">
+          <button class="copy-btn">Copy</button>
+          <pre><span class="json-key">import</span> requests
+r = requests.get(<span class="json-string">'https://forgotteneth.com/api/check'</span>, params={<span class="json-string">'address'</span>: <span class="json-string">'0xab58...'</span>})
+data = r.json()
+print(<span class="json-string">f"{data['total_claimable_eth']} ETH claimable"</span>)</pre>
+        </div>
+      </div>
+    </div>
+
+    <h3>Response</h3>
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre>{
+  <span class="json-key">"address"</span>: <span class="json-string">"0xab5801a7d398351b8be11c439e05c5b3259aec9b"</span>,
+  <span class="json-key">"checked_at"</span>: <span class="json-string">"2026-04-01T12:00:00.000Z"</span>,
+  <span class="json-key">"contracts_checked"</span>: <span class="json-number">117</span>,
+  <span class="json-key">"contracts_with_balance"</span>: <span class="json-number">1</span>,
+  <span class="json-key">"total_claimable_eth"</span>: <span class="json-string">"0.035096"</span>,
+  <span class="json-key">"balances"</span>: {
+    <span class="json-key">"ens_old"</span>: {
+      <span class="json-key">"contract"</span>: <span class="json-string">"0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef"</span>,
+      <span class="json-key">"balance_wei"</span>: <span class="json-string">"35095985789402980"</span>,
+      <span class="json-key">"balance_eth"</span>: <span class="json-number">0.03509598578940298</span>,
+      <span class="json-key">"deeds"</span>: [{ <span class="json-key">"hash"</span>: <span class="json-string">"0x4271..."</span>, <span class="json-key">"eth"</span>: <span class="json-number">0.01</span> }, ...]
+    }
+  },
+  <span class="json-key">"coverage"</span>: {
+    <span class="json-key">"etherdelta"</span>: { <span class="json-key">"coverage_pct"</span>: <span class="json-number">99.8</span>, <span class="json-key">"scan_date"</span>: <span class="json-string">"2026-03-30 UTC"</span> },
+    ...
+  }
+}</pre>
+    </div>
+
+    <h3>Response Fields</h3>
+    <div class="params">
+      <table>
+        <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">address</span></td><td>string</td><td>The queried address (echoed back)</td></tr>
+          <tr><td><span class="param-name">checked_at</span></td><td>string</td><td>ISO 8601 timestamp of the check</td></tr>
+          <tr><td><span class="param-name">contracts_checked</span></td><td>number</td><td>Number of contracts scanned</td></tr>
+          <tr><td><span class="param-name">contracts_with_balance</span></td><td>number</td><td>How many contracts have claimable ETH for this address</td></tr>
+          <tr><td><span class="param-name">total_claimable_eth</span></td><td>string</td><td>Sum of all claimable ETH across contracts</td></tr>
+          <tr><td><span class="param-name">balances</span></td><td>object</td><td>Per-protocol balance details, keyed by protocol key</td></tr>
+          <tr><td><span class="param-name">balances.*.contract</span></td><td>string</td><td>Contract address for this protocol</td></tr>
+          <tr><td><span class="param-name">balances.*.balance_wei</span></td><td>string</td><td>Balance in wei (raw integer as string)</td></tr>
+          <tr><td><span class="param-name">balances.*.balance_eth</span></td><td>number</td><td>Balance in ETH</td></tr>
+          <tr><td><span class="param-name">balances.*.deeds</span></td><td>array?</td><td>ENS only. List of deed hashes and their ETH values</td></tr>
+          <tr><td><span class="param-name">balances.*.bounty_details</span></td><td>array?</td><td>Bounties Network only. Per-bounty IDs and ETH amounts</td></tr>
+          <tr><td><span class="param-name">balances.*.epoch_details</span></td><td>array?</td><td>Kyber FeeHandler only. Per-epoch reward amounts</td></tr>
+          <tr><td><span class="param-name">coverage</span></td><td>object</td><td>Coverage metadata for every tracked protocol. <code class="inline-code">coverage_pct</code> = fraction of known depositors indexed. <code class="inline-code">scan_date</code> = last refresh date (UTC)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── Batch Check ── -->
+  <h2 id="check-batch">Batch Check</h2>
+  <div class="endpoint">
+    <span class="method" style="background:#c2410c">POST</span>
+    <span class="path">/api/check-batch</span>
+    <p class="desc">Check up to 200 addresses in a single request. Returns only addresses with claimable ETH. Ideal for scanning wallets in bulk. <strong>Rate limit:</strong> 10 req/min per IP.</p>
+    <div class="params">
+      <table>
+        <thead><tr><th>Body Field</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">addresses</span></td><td>string[]</td><td>Array of Ethereum addresses (max 200)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Examples</h3>
+    <div class="code-tabs">
+      <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="tab-batch-curl">curl</button>
+        <button class="tab-btn" data-tab="tab-batch-js">JavaScript</button>
+        <button class="tab-btn" data-tab="tab-batch-py">Python</button>
+      </div>
+      <div class="tab-panel active" id="tab-batch-curl">
+        <div class="code-block">
+          <button class="copy-btn">Copy</button>
+          <pre>curl -X POST "https://forgotteneth.com/api/check-batch" \
+  -H "Content-Type: application/json" \
+  -d '{"addresses":["0xab5801a7d398351b8be11c439e05c5b3259aec9b","0xd8da6bf26964af9d7eed9e03e53415d37aa96045"]}'</pre>
+        </div>
+      </div>
+      <div class="tab-panel" id="tab-batch-js">
+        <div class="code-block">
+          <button class="copy-btn">Copy</button>
+          <pre><span class="json-key">const</span> res = <span class="json-key">await</span> fetch(<span class="json-string">'https://forgotteneth.com/api/check-batch'</span>, {
+  method: <span class="json-string">'POST'</span>,
+  headers: { <span class="json-string">'Content-Type'</span>: <span class="json-string">'application/json'</span> },
+  body: JSON.stringify({ addresses: [<span class="json-string">'0xab58...'</span>, <span class="json-string">'0xd8da...'</span>] })
+});
+<span class="json-key">const</span> data = <span class="json-key">await</span> res.json();
+console.log(<span class="json-string">`Found ${data.found} addresses with ETH`</span>);</pre>
+        </div>
+      </div>
+      <div class="tab-panel" id="tab-batch-py">
+        <div class="code-block">
+          <button class="copy-btn">Copy</button>
+          <pre><span class="json-key">import</span> requests
+r = requests.post(<span class="json-string">'https://forgotteneth.com/api/check-batch'</span>,
+    json={<span class="json-string">'addresses'</span>: [<span class="json-string">'0xab58...'</span>, <span class="json-string">'0xd8da...'</span>]})
+data = r.json()
+<span class="json-key">for</span> addr, info <span class="json-key">in</span> data[<span class="json-string">'results'</span>].items():
+    print(<span class="json-string">f"{addr}: {info['total_claimable_eth']} ETH"</span>)</pre>
+        </div>
+      </div>
+    </div>
+
+    <h3>Response</h3>
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre>{
+  <span class="json-key">"checked"</span>: <span class="json-number">2</span>,
+  <span class="json-key">"found"</span>: <span class="json-number">1</span>,
+  <span class="json-key">"contracts_checked"</span>: <span class="json-number">120</span>,
+  <span class="json-key">"results"</span>: {
+    <span class="json-key">"0xab5801a7d398351b8be11c439e05c5b3259aec9b"</span>: {
+      <span class="json-key">"contracts_with_balance"</span>: <span class="json-number">1</span>,
+      <span class="json-key">"total_claimable_eth"</span>: <span class="json-string">"0.035096"</span>,
+      <span class="json-key">"balances"</span>: {
+        <span class="json-key">"ens_old"</span>: { <span class="json-key">"contract"</span>: <span class="json-string">"0x6090..."</span>, <span class="json-key">"balance_eth"</span>: <span class="json-number">0.035</span> }
+      }
+    }
+  }
+}</pre>
+    </div>
+
+    <h3>Rate Limits</h3>
+    <p class="desc">10 requests per minute. Each request can check up to 200 addresses (2,000 addresses/min). Only addresses with claimable ETH are included in the response.</p>
   </div>
 
   <!-- ── Summary ── -->
@@ -969,7 +1154,7 @@
     <li style="margin-bottom:8px;">All <code class="inline-code" style="color:var(--accent-text)">ETH</code> values are in ether (not wei) unless the field name ends in <code class="inline-code" style="color:var(--gold)">_wei</code>.</li>
     <li style="margin-bottom:8px;"><code class="inline-code" style="color:var(--accent-text)">coverage_pct</code> shows what fraction of depositors we've mapped. <code class="inline-code" style="color:var(--accent-text)">100%</code> means all known depositors are indexed.</li>
     <li style="margin-bottom:8px;">Data refreshes every <code class="inline-code" style="color:var(--accent-text)">6 hours</code>. The <code class="inline-code" style="color:var(--gold)">scan_date</code> field shows when each contract was last scanned.</li>
-    <li style="margin-bottom:8px;">The per-address balance lookup used by the site UI is internal and not documented here. All endpoints listed above return aggregate or protocol-level data. The full depositor index is mirrored in the public GitHub repo under <code class="inline-code" style="color:var(--accent-text)">data/index_shards/</code>.</li>
+    <li style="margin-bottom:8px;"><code class="inline-code" style="color:var(--accent-text)">/api/check</code> returns per-address balances. All other endpoints return aggregate data only.</li>
     <li style="margin-bottom:8px;">For protocol keys, see <code class="inline-code" style="color:var(--accent-text)">/data/protocols.json</code> or the <a href="/api/summary" style="color:var(--accent)">/api/summary</a> response.</li>
     <li style="margin-bottom:8px;">Static files under <code class="inline-code" style="color:var(--accent-text)">/data/</code> are not rate-limited and can be cached freely.</li>
   </ul>
@@ -1054,6 +1239,34 @@ function colorizeJson(json) {
   return str;
 }
 
+/* ── Try it widget ── */
+function tryCheck() {
+  var addr = document.getElementById('tryAddress').value.trim();
+  if (!/^0x[0-9a-fA-F]{40}$/.test(addr)) { alert('Enter a valid Ethereum address'); return; }
+  var el = document.getElementById('tryResult');
+  var out = document.getElementById('tryOutput');
+  var btn = document.getElementById('tryBtn');
+  el.style.display = 'block';
+  btn.disabled = true;
+  // Show spinner via DOM (no innerHTML with user content)
+  btn.textContent = '';
+  var spinner = document.createElement('span');
+  spinner.className = 'try-spinner';
+  btn.appendChild(spinner);
+  out.textContent = '';
+  fetch('/api/check?address=' + encodeURIComponent(addr))
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      out.innerHTML = colorizeJson(d);
+      btn.disabled = false;
+      btn.textContent = 'Try it';
+    })
+    .catch(function(e) {
+      out.textContent = 'Error: ' + e.message;
+      btn.disabled = false;
+      btn.textContent = 'Try it';
+    });
+}
 
 /* ── Try Summary ── */
 function trySummary() {
@@ -1152,6 +1365,7 @@ function showCopied(btn) {
 }
 
 /* ── Wire up all buttons (no inline onclick — blocked by CSP) ── */
+document.getElementById('tryBtn').addEventListener('click', tryCheck);
 document.getElementById('trySummaryBtn').addEventListener('click', trySummary);
 document.getElementById('tryTableBtn').addEventListener('click', tryTable);
 document.getElementById('tryClaimsBtn').addEventListener('click', tryClaims);
@@ -1167,6 +1381,9 @@ document.querySelectorAll('.tab-btn[data-tab]').forEach(function(btn) {
 });
 
 // Enter key for inputs
+document.getElementById('tryAddress').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') tryCheck();
+});
 
 /* ── Sidebar scroll spy ── */
 (function() {
