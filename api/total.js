@@ -30,9 +30,20 @@ export default async function handler(req, res) {
     }
   }
 
-  // Live claims from DB (cached 5 min, falls back to static file data)
+  // Live claims from DB (cached 5 min, falls back to static file data).
+  //
+  // Critical: the displayed value MUST never decrease. Two reasons:
+  //   1. The events table prunes claim_confirmed rows older than 90 days
+  //      (api/health.js DB cleanup), so a raw DB sum drops over time.
+  //   2. build_index.py already ratchets eth_claimed in data/total.json
+  //      (line 305: "eth_claimed is cumulative — never decrease").
+  // Without a matching ratchet here, the live API regresses to the
+  // unratcheted DB value and users see the hero counter fluctuate.
+  // We take max(file, live) per field so the value can only go up.
   const now = Date.now();
   if (!claimsCache || now > claimsCacheExpiry) {
+    const fileEth = parseFloat(fileData.eth_claimed || 0);
+    const fileWallets = parseInt(fileData.unique_claimers || 0, 10);
     try {
       const result = await sql`
         SELECT COALESCE(SUM(amount_eth), 0) AS eth, COUNT(DISTINCT address) AS wallets
@@ -45,16 +56,18 @@ export default async function handler(req, res) {
       // Add detected onchain withdrawals (not done through the site)
       const detectedEth = parseFloat(fileData.detected_eth || 0);
       const detectedWallets = parseInt(fileData.detected_wallets || 0, 10);
+      const liveEth = parseFloat((siteEth + detectedEth).toFixed(2));
+      const liveWallets = siteWallets + detectedWallets;
       claimsCache = {
-        eth_claimed: parseFloat((siteEth + detectedEth).toFixed(2)),
-        unique_claimers: siteWallets + detectedWallets,
+        eth_claimed: Math.max(fileEth, liveEth),
+        unique_claimers: Math.max(fileWallets, liveWallets),
       };
       claimsCacheExpiry = now + 300000; // 5 min
     } catch {
       // DB unavailable — use static file values
       claimsCache = {
-        eth_claimed: fileData.eth_claimed || 0,
-        unique_claimers: fileData.unique_claimers || 0,
+        eth_claimed: fileEth,
+        unique_claimers: fileWallets,
       };
       claimsCacheExpiry = now + 60000; // retry in 1 min
     }
