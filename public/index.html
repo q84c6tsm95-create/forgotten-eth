@@ -1143,6 +1143,41 @@
     .container { padding: 0 12px 8px; }
     .faq-q { font-size: 13px; }
   }
+
+  /* Re-engagement Loop: inline recognition message */
+  .recognition-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 18px;
+    margin: 0 0 16px;
+    background: var(--bg2);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 0 16px var(--gold-glow);
+  }
+  .recognition-icon { font-size: 20px; flex-shrink: 0; line-height: 1; padding-top: 2px; }
+  .recognition-content h4 {
+    margin: 0 0 6px;
+    font-family: var(--font-display);
+    font-size: 16px;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .recognition-content ul {
+    margin: 0 0 6px;
+    padding-left: 18px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text);
+  }
+  .recognition-content ul li strong { color: var(--gold); }
+  .recognition-meta {
+    margin: 6px 0 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text2);
+  }
 </style>
 </head>
 <body>
@@ -1326,7 +1361,7 @@
 }
 </script>
 <script src="/testmode.js"></script>
-<script src="/app.js?v=20260406"></script>
+<script src="/app.js?v=20260406d"></script>
 <script src="/theme.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 

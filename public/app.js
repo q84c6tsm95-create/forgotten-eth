@@ -3354,6 +3354,49 @@ async function checkUserBalances(overrideAddress) {
   rowsEl.innerHTML = html;
   banner.classList.add('visible');
 
+  // Re-engagement Loop: render the inline "since your last check..." message
+  // when the API response includes a recognition payload (returning visitor with new matches).
+  try {
+    if (apiResp && apiResp.data && apiResp.data.recognition) {
+      var rec = apiResp.data.recognition;
+      var newProtocols = rec.newly_added || [];
+      if (newProtocols.length > 0) {
+        var recMsg = document.createElement('div');
+        recMsg.className = 'recognition-message';
+        var icon = document.createElement('div');
+        icon.className = 'recognition-icon';
+        icon.textContent = '\u2728';
+        recMsg.appendChild(icon);
+        var content = document.createElement('div');
+        content.className = 'recognition-content';
+        var heading = document.createElement('h4');
+        heading.textContent = 'Since your last check, you have new balances in:';
+        content.appendChild(heading);
+        var ul = document.createElement('ul');
+        for (var i = 0; i < newProtocols.length; i++) {
+          var li = document.createElement('li');
+          var strong = document.createElement('strong');
+          strong.textContent = newProtocols[i];
+          li.appendChild(strong);
+          ul.appendChild(li);
+        }
+        content.appendChild(ul);
+        var meta = document.createElement('p');
+        meta.className = 'recognition-meta';
+        meta.textContent = 'Eligible since ' + (rec.first_eligible_at || 'recently') + '. The results below now include this match.';
+        content.appendChild(meta);
+        recMsg.appendChild(content);
+        rowsEl.insertBefore(recMsg, rowsEl.firstChild);
+        // Fire the recognition-seen POST so the message doesn't show again next visit
+        fetch('/api/eligible-recognition-seen', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ address: apiResp.data.address }),
+        }).catch(function() { /* silent */ });
+      }
+    }
+  } catch (e) { /* silent — recognition is optional */ }
+
   // Disable withdraw buttons if address mismatch
   const isMismatchFinal = overrideAddress && overrideAddress.toLowerCase() !== walletAddress.toLowerCase();
   if (isMismatchFinal) {

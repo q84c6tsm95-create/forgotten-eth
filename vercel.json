@@ -11,6 +11,10 @@
       "destination": "/changelog.html"
     },
     {
+      "source": "/feed.xml",
+      "destination": "/api/feed"
+    },
+    {
       "source": "/protocol/:slug",
       "destination": "/:slug"
     },
@@ -23,7 +27,7 @@
     "api/check.js": {
       "memory": 256,
       "maxDuration": 10,
-      "includeFiles": "data/index_shards/**/*.json"
+      "includeFiles": "{data/index_shards/**/*.json,data/eligible_checkers/recognition.json}"
     },
     "api/check-batch.js": {
       "memory": 512,
@@ -58,6 +62,10 @@
       "memory": 128,
       "maxDuration": 10
     },
+    "api/eligible-recognition-seen.js": {
+      "memory": 128,
+      "maxDuration": 5
+    },
     "api/protocol.js": {
       "memory": 256,
       "maxDuration": 10,
@@ -67,6 +75,11 @@
       "memory": 128,
       "maxDuration": 5,
       "includeFiles": "data/protocol_info.json"
+    },
+    "api/feed.js": {
+      "memory": 128,
+      "maxDuration": 5,
+      "includeFiles": "public/changelog.html"
     },
     "api/dune-webhook.js": {
       "includeFiles": "{data/protocols.json,data/withdrawal_events.json}"
@@ -140,7 +153,7 @@
       ]
     },
     {
-      "source": "/api/(check|check-batch|summary|table|total|stats|claims|sitemap)",
+      "source": "/api/(check|check-batch|summary|table|total|stats|claims|sitemap|feed)",
       "headers": [
         {
           "key": "Cache-Control",

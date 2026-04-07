@@ -133,6 +133,21 @@ export default async function handler(req, res) {
     coverage[key] = { coverage_pct: m.p, scan_date: scanDateOnly };
   }
 
+  // Re-engagement Loop: check if this address has a pending recognition message.
+  // recognition.json is committed to the repo by the cross-ref cron after every refresh.
+  // The file may not exist on first deploy — silent fallback to no recognition.
+  let recognition = null;
+  try {
+    const recRaw = readFileSync(join(process.cwd(), 'data', 'eligible_checkers', 'recognition.json'), 'utf8');
+    const recData = JSON.parse(recRaw);
+    if (recData && recData.schema_version === 1 && recData.addresses) {
+      const lower = address.toLowerCase();
+      if (recData.addresses[lower]) {
+        recognition = recData.addresses[lower];
+      }
+    }
+  } catch (e) { /* silent — file may not exist yet */ }
+
   return res.status(200).json({
     address,
     checked_at: new Date().toISOString(),
@@ -141,5 +156,6 @@ export default async function handler(req, res) {
     total_claimable_eth: totalClaimable.toFixed(6),
     balances: results,
     coverage,
+    ...(recognition ? { recognition } : {}),
   });
 }
