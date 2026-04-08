@@ -1,19 +1,28 @@
 import { sql } from '@vercel/postgres';
 import { rateLimit } from './_ratelimit.js';
+import { requireCloudflare, getClientIP } from './_security.js';
 
 // Cache for 10 minutes
 let cached = null;
 let cacheExpiry = 0;
 
 export default async function handler(req, res) {
-  if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method not allowed' });
+  // See check.js errResp comment — prevents Cloudflare edge-caching errors.
+  function errResp(code, body) {
+    res.setHeader('Cache-Control', 'private, no-store');
+    return res.status(code).json(body);
   }
 
-  const ip = req.headers['cf-connecting-ip'] || req.headers['x-real-ip'] || req.headers['x-forwarded-for']?.split(',')[0]?.trim() || 'unknown';
+  if (req.method !== 'GET') {
+    return errResp(405, { error: 'Method not allowed' });
+  }
+
+  if (!requireCloudflare(req, res)) return;
+
+  const ip = getClientIP(req) || 'unknown';
   const allowed = await rateLimit(ip, 'claims', 30, 60);
   if (!allowed) {
-    return res.status(429).json({ error: 'Rate limit exceeded. Try again in 1 minute.' });
+    return errResp(429, { error: 'Rate limit exceeded. Try again in 1 minute.' });
   }
 
   const now = Date.now();
@@ -78,6 +87,6 @@ export default async function handler(req, res) {
     return res.status(200).json(cached);
   } catch (e) {
     console.error('Claims query failed:', e.message);
-    return res.status(500).json({ error: 'Claims not available' });
+    return errResp(500, { error: 'Claims not available' });
   }
 }

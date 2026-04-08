@@ -665,6 +665,14 @@
     <div class="changelog-month">April 2026</div>
 
     <div class="changelog-entry">
+      <span class="changelog-date">Apr 8</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/keeperdao">KeeperDAO / Rook</a> LiquidityPoolV2 <span class="changelog-tag">+426 ETH</span></div>
+        <div class="changelog-desc">3AC-backed MEV arbitrage LP from October 2020, rebranded to Rook in late 2021, wound down in 2022, treasury liquidated April 2023. The contract is still live and un-paused — kETH and kwETH holders can redeem their proportional share of the 413 ETH + 13 WETH pool. kTokens are yield-bearing: 1 kETH = 1.081 ETH, 1 kwETH = 1.053 WETH (the extra 31 ETH is MEV profit the pool earned before shutdown, distributed to holders). Claim is a per-kToken 2-step flow — <code>kToken.approve(pool, amount)</code> then <code>pool.withdraw(user, kToken, amount)</code>. Users with both kETH and kwETH run two independent flows. New <code>keeperdaoMulti</code> render branch in the frontend, new custom <code>refresh_keeperdao.py</code> (skipped by smart_refresh). 296 addresses, 100% pool coverage.</div>
+      </div>
+    </div>
+
+    <div class="changelog-entry">
       <span class="changelog-date">Apr 7</span>
       <div class="changelog-body">
         <div class="changelog-name">5 abandoned MasterChef WETH farms <span class="changelog-tag">+76 WETH</span></div>

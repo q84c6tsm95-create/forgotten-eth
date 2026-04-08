@@ -1375,7 +1375,7 @@
   },
   "pallycoin": {
     "name": "PallyCoin (PAL)",
-    "desc": "Merunas Grincalaitis's December 2017 PallyCoin ICO. The contract is a custom OpenZeppelin RefundableCrowdsale variant where claimRefund() additionally calls token.refundTokens(msg.sender, tokensBought[msg.sender]) — meaning you must still hold your full PAL allocation to claim. Soft cap missed and the contract finalized into refund mode. ~43 ETH remains in the RefundVault, of which ~40.6 ETH is claimable by 35 stragglers who never sold their PAL. The remaining ~2.7 ETH is locked for 9 holders who sold some PAL.",
+    "desc": "Merunas Grincalaitis's December 2017 PallyCoin ICO. The contract is a custom OpenZeppelin RefundableCrowdsale variant where claimRefund() additionally calls token.refundTokens(msg.sender, tokensBought[msg.sender]) \u2014 meaning you must still hold your full PAL allocation to claim. Soft cap missed and the contract finalized into refund mode. ~43 ETH remains in the RefundVault, of which ~40.6 ETH is claimable by 35 stragglers who never sold their PAL. The remaining ~2.7 ETH is locked for 9 holders who sold some PAL.",
     "category": "ico",
     "color": "#0d9488",
     "contract": "0xb4f10530e531c32490c68062662eb5684057afb4",
@@ -1384,7 +1384,7 @@
   },
   "pallycoin_v2": {
     "name": "PallyCoin Fork (PAL2)",
-    "desc": "A 2018 PallyCoin fork by Manoj Patidar reusing the same RefundableCrowdsale + token-gated refund pattern, but against a separate PAL2 token. Soft cap missed. ~3.77 ETH still in the RefundVault, all claimable by 5 stragglers who still hold their full PAL2 allocation. Standard claimRefund() returns your deposit; you must hold PAL2 ≥ tokensBought.",
+    "desc": "A 2018 PallyCoin fork by Manoj Patidar reusing the same RefundableCrowdsale + token-gated refund pattern, but against a separate PAL2 token. Soft cap missed. ~3.77 ETH still in the RefundVault, all claimable by 5 stragglers who still hold their full PAL2 allocation. Standard claimRefund() returns your deposit; you must hold PAL2 \u2265 tokensBought.",
     "category": "ico",
     "color": "#0d9488",
     "contract": "0x77b275827eb3cf1792852b128a6dbc7a699bbd91",
@@ -1393,7 +1393,7 @@
   },
   "foreground": {
     "name": "ForegroundTokenSale (DEAL)",
-    "desc": "Foreground's DEAL token sale used a custom finite-state crowdsale (Prepared → Configured → Started → Ended → Finalized → Refunding) and held ETH directly in the crowdsale contract — no separate vault. The sale ended in the Refunding state and ~12.15 ETH still sits in the contract for 18 buyers. Single-tx claim: claimRefund() reads purchases[msg.sender].weiBalance and transfers it back. No token gating.",
+    "desc": "Foreground's DEAL token sale used a custom finite-state crowdsale (Prepared \u2192 Configured \u2192 Started \u2192 Ended \u2192 Finalized \u2192 Refunding) and held ETH directly in the crowdsale contract \u2014 no separate vault. The sale ended in the Refunding state and ~12.15 ETH still sits in the contract for 18 buyers. Single-tx claim: claimRefund() reads purchases[msg.sender].weiBalance and transfers it back. No token gating.",
     "category": "ico",
     "color": "#0d9488",
     "contract": "0x943e99d9efd4b44d808f6c83373a9a2c1e15e0f8",
@@ -1447,11 +1447,20 @@
   },
   "bdpmaster": {
     "name": "BDPMaster",
-    "desc": "BDPMaster is an abandoned MasterChef-style farm. Pool 1 accepted direct WETH stakes; ~1.74 WETH sits in the contract for 8 stakers. The standard withdraw() flow is BROKEN — the contract tries to mint BDPToken rewards, but BDPToken's minter role was revoked, so withdraw() reverts with `BDPToken: cannot mint for pool`. Use emergencyWithdraw(1) instead — it skips reward minting and returns your stake cleanly.",
+    "desc": "BDPMaster is an abandoned MasterChef-style farm. Pool 1 accepted direct WETH stakes; ~1.74 WETH sits in the contract for 8 stakers. The standard withdraw() flow is BROKEN \u2014 the contract tries to mint BDPToken rewards, but BDPToken's minter role was revoked, so withdraw() reverts with `BDPToken: cannot mint for pool`. Use emergencyWithdraw(1) instead \u2014 it skips reward minting and returns your stake cleanly.",
     "category": "masterchef",
     "color": "#a855f7",
     "contract": "0x0de845955e2bf089012f682fe9bc81dd5f11b372",
     "deployed": "September 2020",
     "slug": "bdpmaster"
+  },
+  "keeperdao": {
+    "name": "KeeperDAO / Rook",
+    "desc": "launched October 2020 as an on-chain liquidity underwriter backed by 3AC, Polychain and Pantera. Depositors earned yield from flash-loan fees and MEV arbitrage, receiving kTokens as LP shares. The project rebranded to Rook in late 2021, pivoted to MEV coordination, and wound down in 2022. The treasury was liquidated in April 2023 after a governance 'rage quit'. The LiquidityPoolV2 contract is still live and un-paused \u2014 depositors who still hold kETH or kwETH can redeem their proportional share of the pool (~1.08 ETH per kETH, ~1.05 WETH per kwETH, reflecting the final yield accrued before wind-down).",
+    "category": "defi",
+    "color": "#6366f1",
+    "contract": "0x35fFd6E268610E764fF6944d07760D0EFe5E40E5",
+    "deployed": "October 2020",
+    "slug": "keeperdao"
   }
 }

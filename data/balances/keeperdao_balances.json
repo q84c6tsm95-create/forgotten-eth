@@ -1,0 +1,5386 @@
+{
+  "contract": "0x35fFd6E268610E764fF6944d07760D0EFe5E40E5",
+  "contract_eth_balance": 426.39846034,
+  "total_eth_in_balances": 426.39846013,
+  "addresses_with_balance": 296,
+  "coverage_pct": 100.0,
+  "scan_date": "2026-04-08 09:57:31 UTC",
+  "distribution": {
+    ">=10 ETH": 10,
+    "1-10 ETH": 29,
+    "0.1-1 ETH": 90,
+    "0.01-0.1 ETH": 89,
+    "<0.01 ETH": 78
+  },
+  "balances": [
+    {
+      "address": "0x374ee47e1bd5fb06181d2aaba24df4c5adc92d7b",
+      "balance_wei": "100220793093167991797",
+      "balance_eth": "100.22079309",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "92690001966114681430",
+          "k_amount": 92.69000196611468,
+          "eth_eq_wei": "100220793093167991797",
+          "eth_eq": 100.22079309316798,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 1
+    },
+    {
+      "address": "0xeeb4094349f88c7e63cbb6d2810c57cc267caf57",
+      "balance_wei": "50824602788057990283",
+      "balance_eth": "50.82460279",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "47005540337050426674",
+          "k_amount": 47.00554033705043,
+          "eth_eq_wei": "50824602788057990283",
+          "eth_eq": 50.82460278805799,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 2
+    },
+    {
+      "address": "0x4f43862527e878692d13f2d43f4c53aa3aa12623",
+      "balance_wei": "47666142354660982269",
+      "balance_eth": "47.66614235",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "44084412946756193731",
+          "k_amount": 44.08441294675619,
+          "eth_eq_wei": "47666142354660982269",
+          "eth_eq": 47.666142354660984,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 3
+    },
+    {
+      "address": "0x34fcfd3e1f92659d0d91f514f66a8f32a6a5d31a",
+      "balance_wei": "39161873235647805057",
+      "balance_eth": "39.16187324",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "36219171642699549236",
+          "k_amount": 36.21917164269955,
+          "eth_eq_wei": "39161873235647805057",
+          "eth_eq": 39.16187323564781,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 4
+    },
+    {
+      "address": "0xad8bd992465c7797371f08991b59461e9d762a79",
+      "balance_wei": "23556407580776756564",
+      "balance_eth": "23.55640758",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "21786331933603913485",
+          "k_amount": 21.786331933603915,
+          "eth_eq_wei": "23556407580776756564",
+          "eth_eq": 23.556407580776757,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 5
+    },
+    {
+      "address": "0xdda212ac5bdf9a03e68e6e60040bd939e0a97eda",
+      "balance_wei": "17316475655066470170",
+      "balance_eth": "17.31647566",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "16015280990863608195",
+          "k_amount": 16.01528099086361,
+          "eth_eq_wei": "17316475655066470170",
+          "eth_eq": 17.31647565506647,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 6
+    },
+    {
+      "address": "0xdc6e1af161eee89e148dc448a86ca3b2cb43fbf8",
+      "balance_wei": "12166643507308721330",
+      "balance_eth": "12.16664351",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "11252417545379995726",
+          "k_amount": 11.252417545379995,
+          "eth_eq_wei": "12166643507308721330",
+          "eth_eq": 12.166643507308722,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 7
+    },
+    {
+      "address": "0x606c7c82c098e7074040a0b79409c0840fb5f607",
+      "balance_wei": "11925398690493036552",
+      "balance_eth": "11.92539869",
+      "keeperdao_items": [
+        {
+          "k_token": "kweth",
+          "k_address": "0xac19815455c2c438af8a8b4623f65f091364be10",
+          "k_amount_wei": "11330224538461397629",
+          "k_amount": 11.330224538461398,
+          "eth_eq_wei": "11925398690493036552",
+          "eth_eq": 11.925398690493036,
+          "underlying": "WETH",
+          "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+        }
+      ],
+      "rank": 8
+    },
+    {
+      "address": "0x802ac1fe9b950fad44709e2c70787573d846ac8f",
+      "balance_wei": "10046806527928597418",
+      "balance_eth": "10.04680653",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9291869362490184070",
+          "k_amount": 9.291869362490184,
+          "eth_eq_wei": "10046806527928597418",
+          "eth_eq": 10.046806527928597,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 9
+    },
+    {
+      "address": "0xdbb2a9f44557f55b5b1c324488a6231b9154a06f",
+      "balance_wei": "10042565322324032795",
+      "balance_eth": "10.04256532",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9287946849569533573",
+          "k_amount": 9.287946849569535,
+          "eth_eq_wei": "10042565322324032795",
+          "eth_eq": 10.042565322324034,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 10
+    },
+    {
+      "address": "0x0bb26f71a2d1e1da4675d06c3246065933e17896",
+      "balance_wei": "7125762460604051195",
+      "balance_eth": "7.12576246",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "6590318396996209810",
+          "k_amount": 6.59031839699621,
+          "eth_eq_wei": "7125762460604051195",
+          "eth_eq": 7.125762460604052,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 11
+    },
+    {
+      "address": "0xc640aa1dc536f8537485efb8a66128013041545c",
+      "balance_wei": "6378139967000663107",
+      "balance_eth": "6.37813997",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "5898873754988746409",
+          "k_amount": 5.898873754988747,
+          "eth_eq_wei": "6378139967000663107",
+          "eth_eq": 6.378139967000663,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 12
+    },
+    {
+      "address": "0xf4babfbe86df26e1f282c3528dc4729b6e9f6d5b",
+      "balance_wei": "6090798108490606469",
+      "balance_eth": "6.09079811",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "5633123339249322317",
+          "k_amount": 5.633123339249322,
+          "eth_eq_wei": "6090798108490606469",
+          "eth_eq": 6.090798108490606,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 13
+    },
+    {
+      "address": "0xd7f94d2c5a27a0c3338b542bfae783cc1ff3ab83",
+      "balance_wei": "5406235352643880255",
+      "balance_eth": "5.40623535",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "5000000000000000000",
+          "k_amount": 5.0,
+          "eth_eq_wei": "5406235352643880255",
+          "eth_eq": 5.40623535264388,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 14
+    },
+    {
+      "address": "0x63900455d188a7fa3c5258ac8f86f036f564489a",
+      "balance_wei": "5038999984348480709",
+      "balance_eth": "5.03899998",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "4660359432820654258",
+          "k_amount": 4.660359432820654,
+          "eth_eq_wei": "5038999984348480709",
+          "eth_eq": 5.0389999843484805,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 15
+    },
+    {
+      "address": "0xbfaec96105259600f66b45e889a872d5f5338dfa",
+      "balance_wei": "4983841059817368839",
+      "balance_eth": "4.98384106",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "4609345260357614152",
+          "k_amount": 4.609345260357614,
+          "eth_eq_wei": "4983841059817368839",
+          "eth_eq": 4.983841059817369,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 16
+    },
+    {
+      "address": "0x841d4d014a52e17b6e2ce4b46991f7e972e93935",
+      "balance_wei": "3289082026083485803",
+      "balance_eth": "3.28908203",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "3041933814881906735",
+          "k_amount": 3.0419338148819066,
+          "eth_eq_wei": "3289082026083485803",
+          "eth_eq": 3.2890820260834857,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 17
+    },
+    {
+      "address": "0xcec517adeb47599c940370b904732d7f7177491f",
+      "balance_wei": "3053424025082104607",
+      "balance_eth": "3.05342403",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "2823983628079426561",
+          "k_amount": 2.8239836280794264,
+          "eth_eq_wei": "3053424025082104607",
+          "eth_eq": 3.053424025082105,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 18
+    },
+    {
+      "address": "0x3493a9488e82e269b115199e2a8df9b6881b86bc",
+      "balance_wei": "2615584358839391572",
+      "balance_eth": "2.61558436",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "2419044111315149256",
+          "k_amount": 2.4190441113151495,
+          "eth_eq_wei": "2615584358839391572",
+          "eth_eq": 2.6155843588393917,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 19
+    },
+    {
+      "address": "0xb0efeb4fbf7dd342d439414e70c3c009a086fafd",
+      "balance_wei": "2108766495274937385",
+      "balance_eth": "2.10876650",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "1950309557133560972",
+          "k_amount": 1.9503095571335611,
+          "eth_eq_wei": "2108766495274937385",
+          "eth_eq": 2.108766495274937,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 20
+    },
+    {
+      "address": "0xe31001b22f1a8926280b645d51e27cefb0e50e47",
+      "balance_wei": "2050002670613504262",
+      "balance_eth": "2.05000267",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "1895961363956311391",
+          "k_amount": 1.8959613639563113,
+          "eth_eq_wei": "2050002670613504262",
+          "eth_eq": 2.0500026706135044,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 21
+    },
+    {
+      "address": "0xed02f16a57c32a08b55d923bf4690d200722f462",
+      "balance_wei": "2024607617999691327",
+      "balance_eth": "2.02460762",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "1872474546460108910",
+          "k_amount": 1.8724745464601087,
+          "eth_eq_wei": "2024607617999691327",
+          "eth_eq": 2.0246076179996915,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 22
+    },
+    {
+      "address": "0x724f69285dabba9676c59bf6d8564f3f838c8721",
+      "balance_wei": "2013708198815700919",
+      "balance_eth": "2.01370820",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "1862394131464246655",
+          "k_amount": 1.8623941314642465,
+          "eth_eq_wei": "2013708198815700919",
+          "eth_eq": 2.013708198815701,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 23
+    },
+    {
+      "address": "0x925d6e75fe6ad4e272cb91619a020ba43a957c31",
+      "balance_wei": "2006605407715194121",
+      "balance_eth": "2.00660541",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "1855825058313340239",
+          "k_amount": 1.8558250583133402,
+          "eth_eq_wei": "2006605407715194121",
+          "eth_eq": 2.006605407715194,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 24
+    },
+    {
+      "address": "0xd5a41a4d39e886c0eb160c1a6046ec8f1ede878b",
+      "balance_wei": "1424465937610679090",
+      "balance_eth": "1.42446594",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "1317428713970114469",
+          "k_amount": 1.3174287139701146,
+          "eth_eq_wei": "1424465937610679090",
+          "eth_eq": 1.424465937610679,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 25
+    },
+    {
+      "address": "0x4b6279e95255e93f34714384f72537b0897bfca9",
+      "balance_wei": "1154149746366736299",
+      "balance_eth": "1.15414975",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "1067424622757412626",
+          "k_amount": 1.0674246227574127,
+          "eth_eq_wei": "1154149746366736299",
+          "eth_eq": 1.1541497463667363,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 26
+    },
+    {
+      "address": "0xb0483b480070429ba6e7a8f64c97c9b899e4705f",
+      "balance_wei": "1103541674689176773",
+      "balance_eth": "1.10354167",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "1020619342949523745",
+          "k_amount": 1.0206193429495236,
+          "eth_eq_wei": "1103541674689176773",
+          "eth_eq": 1.1035416746891769,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 27
+    },
+    {
+      "address": "0x590c17999baf7748113b5a7316184efe9b4751a6",
+      "balance_wei": "1057697518070617607",
+      "balance_eth": "1.05769752",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "978220008081370611",
+          "k_amount": 0.9782200080813707,
+          "eth_eq_wei": "1057697518070617607",
+          "eth_eq": 1.0576975180706176,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 28
+    },
+    {
+      "address": "0x12958035f5d05d4e8acda1264cca55937a4afae8",
+      "balance_wei": "1055504183679287603",
+      "balance_eth": "1.05550418",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "976191485229274124",
+          "k_amount": 0.9761914852292741,
+          "eth_eq_wei": "1055504183679287603",
+          "eth_eq": 1.0555041836792876,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 29
+    },
+    {
+      "address": "0xab95d2cd70a80469985fafe7457de81498211ed4",
+      "balance_wei": "1050782893862582596",
+      "balance_eth": "1.05078289",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "971824962585752792",
+          "k_amount": 0.9718249625857528,
+          "eth_eq_wei": "1050782893862582596",
+          "eth_eq": 1.0507828938625827,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 30
+    },
+    {
+      "address": "0x8dcd3ff96655348c2054c08e982a907691e72a1e",
+      "balance_wei": "1027805065706083760",
+      "balance_eth": "1.02780507",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "950573734459639400",
+          "k_amount": 0.9505737344596394,
+          "eth_eq_wei": "1027805065706083760",
+          "eth_eq": 1.0278050657060838,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 31
+    },
+    {
+      "address": "0x2388bc0e3097baee29c7fcfa1daf4151d7bfe690",
+      "balance_wei": "1018633916843093127",
+      "balance_eth": "1.01863392",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "942091724091273224",
+          "k_amount": 0.9420917240912732,
+          "eth_eq_wei": "1018633916843093127",
+          "eth_eq": 1.0186339168430931,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 32
+    },
+    {
+      "address": "0x7cc0ec6e5b074fb42114750c9748463c4ac6cd16",
+      "balance_wei": "1017154411801526161",
+      "balance_eth": "1.01715441",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "940723392021856911",
+          "k_amount": 0.9407233920218568,
+          "eth_eq_wei": "1017154411801526161",
+          "eth_eq": 1.017154411801526,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 33
+    },
+    {
+      "address": "0x5a337f96ac355a7a8b36b4037e35bd3617a8fdb5",
+      "balance_wei": "1013526518615919734",
+      "balance_eth": "1.01352652",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "937368105996589594",
+          "k_amount": 0.9373681059965896,
+          "eth_eq_wei": "1013526518615919734",
+          "eth_eq": 1.0135265186159197,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 34
+    },
+    {
+      "address": "0xab34b26b34116a3e6ccb0833433a1d8a47cc67d2",
+      "balance_wei": "1012305743868962810",
+      "balance_eth": "1.01230574",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "936239062709230755",
+          "k_amount": 0.9362390627092307,
+          "eth_eq_wei": "1012305743868962810",
+          "eth_eq": 1.0123057438689629,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 35
+    },
+    {
+      "address": "0x2ad90658737cd1e324401de09f41ba104c34b959",
+      "balance_wei": "1008892938854520559",
+      "balance_eth": "1.00889294",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "933082702699142364",
+          "k_amount": 0.9330827026991424,
+          "eth_eq_wei": "1008892938854520559",
+          "eth_eq": 1.0088929388545205,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 36
+    },
+    {
+      "address": "0x2f959983c9a96cd901b0b6a5d07178933acdfa4d",
+      "balance_wei": "1005964056062016565",
+      "balance_eth": "1.00596406",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "930373902025979250",
+          "k_amount": 0.9303739020259792,
+          "eth_eq_wei": "1005964056062016565",
+          "eth_eq": 1.0059640560620164,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 37
+    },
+    {
+      "address": "0x769466611638b62b8ef5b79aa441afafafd93af6",
+      "balance_wei": "1004229098126514652",
+      "balance_eth": "1.00422910",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "928769312304729467",
+          "k_amount": 0.9287693123047295,
+          "eth_eq_wei": "1004229098126514652",
+          "eth_eq": 1.0042290981265147,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 38
+    },
+    {
+      "address": "0xd71c71899ef98ba3c95a831f08fa153ebf7d6e4f",
+      "balance_wei": "1002873256182896772",
+      "balance_eth": "1.00287326",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "927515351040395298",
+          "k_amount": 0.9275153510403953,
+          "eth_eq_wei": "1002873256182896772",
+          "eth_eq": 1.0028732561828968,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 39
+    },
+    {
+      "address": "0xd863693aa8601f87bce7fc0e64647aebae9829d8",
+      "balance_wei": "999400259531064178",
+      "balance_eth": "0.99940026",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "924303322313108990",
+          "k_amount": 0.924303322313109,
+          "eth_eq_wei": "999400259531064178",
+          "eth_eq": 0.9994002595310642,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 40
+    },
+    {
+      "address": "0x4a0f68f9baad8b18bf0d4ccfebc287a96a59f915",
+      "balance_wei": "999370670119592216",
+      "balance_eth": "0.99937067",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "924275956309280196",
+          "k_amount": 0.9242759563092803,
+          "eth_eq_wei": "999370670119592216",
+          "eth_eq": 0.9993706701195922,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 41
+    },
+    {
+      "address": "0x5d3ff6875268ccc1ecd9a7363e303ce14b213b40",
+      "balance_wei": "996291184818074475",
+      "balance_eth": "0.99629118",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "921427869701275107",
+          "k_amount": 0.9214278697012751,
+          "eth_eq_wei": "996291184818074475",
+          "eth_eq": 0.9962911848180745,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 42
+    },
+    {
+      "address": "0x0f0e67e29bd911bb04e430d4a2c6bf6cb5ece77a",
+      "balance_wei": "990371414066377390",
+      "balance_eth": "0.99037141",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "915952922380676066",
+          "k_amount": 0.915952922380676,
+          "eth_eq_wei": "990371414066377390",
+          "eth_eq": 0.9903714140663773,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 43
+    },
+    {
+      "address": "0x6ae9b6361dd35d7dde77a09e4bb96b4e2fa05ac3",
+      "balance_wei": "939697229594793531",
+      "balance_eth": "0.93969723",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "869086497626524348",
+          "k_amount": 0.8690864976265242,
+          "eth_eq_wei": "939697229594793531",
+          "eth_eq": 0.9396972295947935,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 44
+    },
+    {
+      "address": "0xb3a932432f3d5e5d8f586ea8905f15965b92ff24",
+      "balance_wei": "872543477025466905",
+      "balance_eth": "0.87254348",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "806978812528718192",
+          "k_amount": 0.8069788125287182,
+          "eth_eq_wei": "872543477025466905",
+          "eth_eq": 0.8725434770254669,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 45
+    },
+    {
+      "address": "0x51b3a21c89292e3b1e4be7659be7c435035a972f",
+      "balance_wei": "826702010998778732",
+      "balance_eth": "0.82670201",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "764581966075973829",
+          "k_amount": 0.7645819660759738,
+          "eth_eq_wei": "826702010998778732",
+          "eth_eq": 0.8267020109987787,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 46
+    },
+    {
+      "address": "0xefa1e3fc6a8f28012b98e433c26bc04e73d425fb",
+      "balance_wei": "808206828971664394",
+      "balance_eth": "0.80820683",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "747476549070710265",
+          "k_amount": 0.7474765490707103,
+          "eth_eq_wei": "808206828971664394",
+          "eth_eq": 0.8082068289716644,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 47
+    },
+    {
+      "address": "0xd4b950b67ec2ee0e08e791547a63f60410d9d8c2",
+      "balance_wei": "784084968419035726",
+      "balance_eth": "0.78408497",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "725167253434115340",
+          "k_amount": 0.7251672534341154,
+          "eth_eq_wei": "784084968419035726",
+          "eth_eq": 0.7840849684190357,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 48
+    },
+    {
+      "address": "0x26d67a0db9e68c5894064ec310a6c317d4c8b1d4",
+      "balance_wei": "742700991575981219",
+      "balance_eth": "0.74270099",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "686892951499760991",
+          "k_amount": 0.686892951499761,
+          "eth_eq_wei": "742700991575981219",
+          "eth_eq": 0.7427009915759811,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 49
+    },
+    {
+      "address": "0x8949dea4d703fbd236acbeddff1728a42c4e6b2a",
+      "balance_wei": "709611337267949145",
+      "balance_eth": "0.70961134",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "656289720092299403",
+          "k_amount": 0.6562897200922994,
+          "eth_eq_wei": "709611337267949145",
+          "eth_eq": 0.7096113372679492,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 50
+    },
+    {
+      "address": "0x2379dd05b8ae7b799a583674136c348bb47a2c2c",
+      "balance_wei": "699287494953886547",
+      "balance_eth": "0.69928749",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "462209377569430104",
+          "k_amount": 0.4622093775694301,
+          "eth_eq_wei": "499762535467875270",
+          "eth_eq": 0.49976253546787525,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        },
+        {
+          "k_token": "kweth",
+          "k_address": "0xac19815455c2c438af8a8b4623f65f091364be10",
+          "k_amount_wei": "189567045150962387",
+          "k_amount": 0.1895670451509624,
+          "eth_eq_wei": "199524959486011277",
+          "eth_eq": 0.19952495948601126,
+          "underlying": "WETH",
+          "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+        }
+      ],
+      "rank": 51
+    },
+    {
+      "address": "0x53627004393c652faf68c490e1f99770379c65e8",
+      "balance_wei": "676975293164556888",
+      "balance_eth": "0.67697529",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "626106013710156942",
+          "k_amount": 0.626106013710157,
+          "eth_eq_wei": "676975293164556888",
+          "eth_eq": 0.676975293164557,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 52
+    },
+    {
+      "address": "0xab3e5a900663ea8c573b8f893d540d331fbab9f5",
+      "balance_wei": "606805295702353343",
+      "balance_eth": "0.60680530",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "561208730402015894",
+          "k_amount": 0.5612087304020159,
+          "eth_eq_wei": "606805295702353343",
+          "eth_eq": 0.6068052957023533,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 53
+    },
+    {
+      "address": "0x355e06a143225a7144d7db217d92feb44bbc8664",
+      "balance_wei": "603067349468908754",
+      "balance_eth": "0.60306735",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "557751660935352207",
+          "k_amount": 0.5577516609353522,
+          "eth_eq_wei": "603067349468908754",
+          "eth_eq": 0.6030673494689088,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 54
+    },
+    {
+      "address": "0xc796df1f2eac8fa137735ef396fd061a837d8b2b",
+      "balance_wei": "518800795969839329",
+      "balance_eth": "0.51880080",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "479817065045201516",
+          "k_amount": 0.47981706504520155,
+          "eth_eq_wei": "518800795969839329",
+          "eth_eq": 0.5188007959698394,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 55
+    },
+    {
+      "address": "0x68cdd5d98f9de73f5c398a566a56058a3fb66463",
+      "balance_wei": "507126326556558880",
+      "balance_eth": "0.50712633",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "469019838646640145",
+          "k_amount": 0.46901983864664015,
+          "eth_eq_wei": "507126326556558880",
+          "eth_eq": 0.5071263265565589,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 56
+    },
+    {
+      "address": "0x8f308b3f43faaf7cd3174cf75ced7c09451fc44b",
+      "balance_wei": "507069031378149495",
+      "balance_eth": "0.50706903",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "468966848742693987",
+          "k_amount": 0.468966848742694,
+          "eth_eq_wei": "507069031378149495",
+          "eth_eq": 0.5070690313781495,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 57
+    },
+    {
+      "address": "0xece59074f2a430185876505716b4ad8b54b3766a",
+      "balance_wei": "506722438489813941",
+      "balance_eth": "0.50672244",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "468646299538185109",
+          "k_amount": 0.4686462995381851,
+          "eth_eq_wei": "506722438489813941",
+          "eth_eq": 0.5067224384898139,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 58
+    },
+    {
+      "address": "0x732b0be0134863cf7ab130345eac5c354f7ecfb9",
+      "balance_wei": "506421126902466287",
+      "balance_eth": "0.50642113",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "468367629107013166",
+          "k_amount": 0.4683676291070132,
+          "eth_eq_wei": "506421126902466287",
+          "eth_eq": 0.5064211269024663,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 59
+    },
+    {
+      "address": "0x495833d72cb1c78c5f53e0fbafdbe18e012b2482",
+      "balance_wei": "506391805548521248",
+      "balance_eth": "0.50639181",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "468340511018331825",
+          "k_amount": 0.46834051101833185,
+          "eth_eq_wei": "506391805548521248",
+          "eth_eq": 0.5063918055485213,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 60
+    },
+    {
+      "address": "0x2c9470add32348eb27afa40ea981142a8918d816",
+      "balance_wei": "505076403434546919",
+      "balance_eth": "0.50507640",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "467123950853844128",
+          "k_amount": 0.4671239508538441,
+          "eth_eq_wei": "505076403434546919",
+          "eth_eq": 0.505076403434547,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 61
+    },
+    {
+      "address": "0x7d36c503b281afce2b74fd555875fd09a8bae162",
+      "balance_wei": "504567020834260134",
+      "balance_eth": "0.50456702",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "466652844282394482",
+          "k_amount": 0.4666528442823945,
+          "eth_eq_wei": "504567020834260134",
+          "eth_eq": 0.5045670208342602,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 62
+    },
+    {
+      "address": "0xec2b1f83df21e602ec8eded8c223b1f74b2f605d",
+      "balance_wei": "502479800465865896",
+      "balance_eth": "0.50247980",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "464722461833012679",
+          "k_amount": 0.4647224618330127,
+          "eth_eq_wei": "502479800465865896",
+          "eth_eq": 0.5024798004658659,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 63
+    },
+    {
+      "address": "0xf2bef97376bd1279da6e4bbb76ecba2c7685d090",
+      "balance_wei": "441439059995770382",
+      "balance_eth": "0.44143906",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "408268444861439307",
+          "k_amount": 0.4082684448614393,
+          "eth_eq_wei": "441439059995770382",
+          "eth_eq": 0.4414390599957704,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 64
+    },
+    {
+      "address": "0xd1b59ea4671e1d3e6cbf5d6567d1c0ddb1e7dd11",
+      "balance_wei": "407107054470492296",
+      "balance_eth": "0.40710705",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "376516214995523215",
+          "k_amount": 0.3765162149955232,
+          "eth_eq_wei": "407107054470492296",
+          "eth_eq": 0.4071070544704923,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 65
+    },
+    {
+      "address": "0x74d4505d8bea5877d25c2cfd2aff395da5366d63",
+      "balance_wei": "404167270981924246",
+      "balance_eth": "0.40416727",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "373797332726431498",
+          "k_amount": 0.3737973327264315,
+          "eth_eq_wei": "404167270981924246",
+          "eth_eq": 0.40416727098192423,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 66
+    },
+    {
+      "address": "0x799950b1bee64101165df3c3ce01e8f60df75baa",
+      "balance_wei": "392348302588923213",
+      "balance_eth": "0.39234830",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "362866465290905359",
+          "k_amount": 0.3628664652909053,
+          "eth_eq_wei": "392348302588923213",
+          "eth_eq": 0.3923483025889232,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 67
+    },
+    {
+      "address": "0x62df5b399ba4e31b8a176eb741ed293477f3486c",
+      "balance_wei": "380885774916814676",
+      "balance_eth": "0.38088577",
+      "keeperdao_items": [
+        {
+          "k_token": "kweth",
+          "k_address": "0xac19815455c2c438af8a8b4623f65f091364be10",
+          "k_amount_wei": "361876484410850336",
+          "k_amount": 0.3618764844108503,
+          "eth_eq_wei": "380885774916814676",
+          "eth_eq": 0.38088577491681463,
+          "underlying": "WETH",
+          "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+        }
+      ],
+      "rank": 68
+    },
+    {
+      "address": "0xb3ac0a20b0157b4318fca69996030ada4db2f79a",
+      "balance_wei": "380883460499214779",
+      "balance_eth": "0.38088346",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "352263114398956458",
+          "k_amount": 0.35226311439895647,
+          "eth_eq_wei": "380883460499214779",
+          "eth_eq": 0.3808834604992148,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 69
+    },
+    {
+      "address": "0x3a60496c0c8e4a01c293a79bc88e2930cf940db3",
+      "balance_wei": "341042458518574892",
+      "balance_eth": "0.34104246",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "315415845105402734",
+          "k_amount": 0.31541584510540277,
+          "eth_eq_wei": "341042458518574892",
+          "eth_eq": 0.3410424585185749,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 70
+    },
+    {
+      "address": "0x300d5606f451785089816fb67a7ad052c5859b6a",
+      "balance_wei": "315421435361081930",
+      "balance_eth": "0.31542144",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "291720036944772818",
+          "k_amount": 0.2917200369447728,
+          "eth_eq_wei": "315421435361081930",
+          "eth_eq": 0.3154214353610819,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 71
+    },
+    {
+      "address": "0xb07707b55a05af09c3a22e5b5798bae4cc8d75dd",
+      "balance_wei": "315250328811270348",
+      "balance_eth": "0.31525033",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "291561787683826471",
+          "k_amount": 0.2915617876838265,
+          "eth_eq_wei": "315250328811270348",
+          "eth_eq": 0.31525032881127035,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 72
+    },
+    {
+      "address": "0x173218236b4781bb5c8f5e47ff4778514dc06d79",
+      "balance_wei": "312043824803709399",
+      "balance_eth": "0.31204382",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "288596226809758316",
+          "k_amount": 0.2885962268097583,
+          "eth_eq_wei": "312043824803709399",
+          "eth_eq": 0.3120438248037094,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 73
+    },
+    {
+      "address": "0xe41bc813a4db08bff5749f070f388feb2affdbf1",
+      "balance_wei": "304166044901082679",
+      "balance_eth": "0.30416604",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "281310399067562308",
+          "k_amount": 0.2813103990675623,
+          "eth_eq_wei": "304166044901082679",
+          "eth_eq": 0.3041660449010827,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 74
+    },
+    {
+      "address": "0xe7b4866ec488dc1d5130f960397754480de83491",
+      "balance_wei": "303110283931135040",
+      "balance_eth": "0.30311028",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "280333970091499208",
+          "k_amount": 0.2803339700914992,
+          "eth_eq_wei": "303110283931135040",
+          "eth_eq": 0.30311028393113504,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 75
+    },
+    {
+      "address": "0x84fef68dac5766380fa074bbf9b943e1e6fb86e4",
+      "balance_wei": "290406025091750868",
+      "balance_eth": "0.29040603",
+      "keeperdao_items": [
+        {
+          "k_token": "kweth",
+          "k_address": "0xac19815455c2c438af8a8b4623f65f091364be10",
+          "k_amount_wei": "275912408214467599",
+          "k_amount": 0.2759124082144676,
+          "eth_eq_wei": "290406025091750868",
+          "eth_eq": 0.29040602509175084,
+          "underlying": "WETH",
+          "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+        }
+      ],
+      "rank": 76
+    },
+    {
+      "address": "0x0ba9ffa26dda12a7bec51c9650b88a183bd38c33",
+      "balance_wei": "261326762323880764",
+      "balance_eth": "0.26132676",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "241690145986782469",
+          "k_amount": 0.24169014598678246,
+          "eth_eq_wei": "261326762323880764",
+          "eth_eq": 0.26132676232388075,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 77
+    },
+    {
+      "address": "0x45f0a6619ce819bd2ced8f5f8671826a09ce5277",
+      "balance_wei": "253278137875466406",
+      "balance_eth": "0.25327814",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "234246311300156926",
+          "k_amount": 0.23424631130015694,
+          "eth_eq_wei": "253278137875466406",
+          "eth_eq": 0.2532781378754664,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 78
+    },
+    {
+      "address": "0x0c938a2d436305b98633e60c0bae2b4dba455968",
+      "balance_wei": "252621622031142919",
+      "balance_eth": "0.25262162",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "233639127371323322",
+          "k_amount": 0.23363912737132334,
+          "eth_eq_wei": "252621622031142919",
+          "eth_eq": 0.2526216220311429,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 79
+    },
+    {
+      "address": "0x96914c4e5b6ff913522df06604f60a7b26930049",
+      "balance_wei": "252219739763593630",
+      "balance_eth": "0.25221974",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "233267443342294923",
+          "k_amount": 0.2332674433422949,
+          "eth_eq_wei": "252219739763593630",
+          "eth_eq": 0.25221973976359363,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 80
+    },
+    {
+      "address": "0x4271dcfe67126ae7319f3c2a2434d98e950d581a",
+      "balance_wei": "246471768230553894",
+      "balance_eth": "0.24647177",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "227951385902963567",
+          "k_amount": 0.22795138590296354,
+          "eth_eq_wei": "246471768230553894",
+          "eth_eq": 0.2464717682305539,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 81
+    },
+    {
+      "address": "0x870a9affe4e8ab81c9b2d23f8600d3bdf9d07cfd",
+      "balance_wei": "233327869887933969",
+      "balance_eth": "0.23332787",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "215795146407958973",
+          "k_amount": 0.21579514640795897,
+          "eth_eq_wei": "233327869887933969",
+          "eth_eq": 0.233327869887934,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 82
+    },
+    {
+      "address": "0x433ee2f00ad7ff824b2fe74bace417afd2d86d31",
+      "balance_wei": "210156185838160219",
+      "balance_eth": "0.21015619",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "194364629108668806",
+          "k_amount": 0.1943646291086688,
+          "eth_eq_wei": "210156185838160219",
+          "eth_eq": 0.21015618583816023,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 83
+    },
+    {
+      "address": "0x3d730f7eaffe02459e8337cd76b3ee2da86fbfbf",
+      "balance_wei": "203572139124563567",
+      "balance_eth": "0.20357214",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "188275320852437627",
+          "k_amount": 0.18827532085243764,
+          "eth_eq_wei": "203572139124563567",
+          "eth_eq": 0.20357213912456354,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 84
+    },
+    {
+      "address": "0xced2f0dcb70757339f7072a3ffa08a4a73497435",
+      "balance_wei": "203515934654787552",
+      "balance_eth": "0.20351593",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "188223339699093527",
+          "k_amount": 0.18822333969909352,
+          "eth_eq_wei": "203515934654787552",
+          "eth_eq": 0.20351593465478754,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 85
+    },
+    {
+      "address": "0x5a9f97f760442b429ac396794f9b2d1911d939a9",
+      "balance_wei": "202870245503476967",
+      "balance_eth": "0.20287025",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "187626168923874858",
+          "k_amount": 0.18762616892387485,
+          "eth_eq_wei": "202870245503476967",
+          "eth_eq": 0.20287024550347696,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 86
+    },
+    {
+      "address": "0x286fa26540aa1c0c56bff14a0880e0525736dc37",
+      "balance_wei": "202862534464020223",
+      "balance_eth": "0.20286253",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "187619037307367473",
+          "k_amount": 0.18761903730736748,
+          "eth_eq_wei": "202862534464020223",
+          "eth_eq": 0.20286253446402022,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 87
+    },
+    {
+      "address": "0xeb64770efb8249233a2124f5f7edb0226d9516e5",
+      "balance_wei": "202807115792462865",
+      "balance_eth": "0.20280712",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "187567782905789991",
+          "k_amount": 0.18756778290579,
+          "eth_eq_wei": "202807115792462865",
+          "eth_eq": 0.20280711579246288,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 88
+    },
+    {
+      "address": "0x105360064fb4371db6d8c61a659e639d3d42f06c",
+      "balance_wei": "201326895754401477",
+      "balance_eth": "0.20132690",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "186198789566147927",
+          "k_amount": 0.18619878956614794,
+          "eth_eq_wei": "201326895754401477",
+          "eth_eq": 0.20132689575440146,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 89
+    },
+    {
+      "address": "0xaa1f20fee38b71174d921eec2b801ab2cb67fef2",
+      "balance_wei": "199356915326977722",
+      "balance_eth": "0.19935692",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "184376837413750094",
+          "k_amount": 0.18437683741375008,
+          "eth_eq_wei": "199356915326977722",
+          "eth_eq": 0.19935691532697772,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 90
+    },
+    {
+      "address": "0xfa3afebe7550227eb947671ce0ea55101622ad6e",
+      "balance_wei": "192025639845345912",
+      "balance_eth": "0.19202564",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "177596448655751884",
+          "k_amount": 0.17759644865575186,
+          "eth_eq_wei": "192025639845345912",
+          "eth_eq": 0.19202563984534593,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 91
+    },
+    {
+      "address": "0xc5c124c515daecd1ae7b39ca95e49ef1864915fc",
+      "balance_wei": "179912638606661040",
+      "balance_eth": "0.17991264",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "166393642591490275",
+          "k_amount": 0.16639364259149028,
+          "eth_eq_wei": "179912638606661040",
+          "eth_eq": 0.17991263860666107,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 92
+    },
+    {
+      "address": "0x0e002dd36af1c3e0347d3c6472f2d4bdd852362c",
+      "balance_wei": "171778937279094232",
+      "balance_eth": "0.17177894",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "158871123872813812",
+          "k_amount": 0.15887112387281382,
+          "eth_eq_wei": "171778937279094232",
+          "eth_eq": 0.17177893727909424,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 93
+    },
+    {
+      "address": "0x47a9f342f472e28c5e60366cf76067921eddc29a",
+      "balance_wei": "162187060579316407",
+      "balance_eth": "0.16218706",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "150000000000000000",
+          "k_amount": 0.15,
+          "eth_eq_wei": "162187060579316407",
+          "eth_eq": 0.16218706057931642,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 94
+    },
+    {
+      "address": "0xd4034ac5899e7e87e40d227bd055d8794e7c0ece",
+      "balance_wei": "161391218243205008",
+      "balance_eth": "0.16139122",
+      "keeperdao_items": [
+        {
+          "k_token": "kweth",
+          "k_address": "0xac19815455c2c438af8a8b4623f65f091364be10",
+          "k_amount_wei": "153336486996372251",
+          "k_amount": 0.15333648699637226,
+          "eth_eq_wei": "161391218243205008",
+          "eth_eq": 0.161391218243205,
+          "underlying": "WETH",
+          "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+        }
+      ],
+      "rank": 95
+    },
+    {
+      "address": "0xf7c3c6ed8fb13529d959573a2b831ccc4bcad75e",
+      "balance_wei": "153529424296662527",
+      "balance_eth": "0.15352942",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "141992915848160471",
+          "k_amount": 0.14199291584816046,
+          "eth_eq_wei": "153529424296662527",
+          "eth_eq": 0.15352942429666253,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 96
+    },
+    {
+      "address": "0x474e8c560026495522c77b2bc137c296fff281c1",
+      "balance_wei": "152668272892538330",
+      "balance_eth": "0.15266827",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "141196473085357833",
+          "k_amount": 0.14119647308535785,
+          "eth_eq_wei": "152668272892538330",
+          "eth_eq": 0.15266827289253834,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 97
+    },
+    {
+      "address": "0x5439abacd98c1241c99e103fe6668dee81386d7f",
+      "balance_wei": "152665169628455289",
+      "balance_eth": "0.15266517",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "141193603006753575",
+          "k_amount": 0.14119360300675357,
+          "eth_eq_wei": "152665169628455289",
+          "eth_eq": 0.1526651696284553,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 98
+    },
+    {
+      "address": "0x7cffa3d22d97e34c51a4bf331171b07da23d036b",
+      "balance_wei": "152624358295439978",
+      "balance_eth": "0.15262436",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "141155858319042789",
+          "k_amount": 0.1411558583190428,
+          "eth_eq_wei": "152624358295439978",
+          "eth_eq": 0.15262435829543997,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 99
+    },
+    {
+      "address": "0x854776a3c11091d42f9e6c4c51abab65e4164b2b",
+      "balance_wei": "149516741549875044",
+      "balance_eth": "0.14951674",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "138281754120041190",
+          "k_amount": 0.13828175412004118,
+          "eth_eq_wei": "149516741549875044",
+          "eth_eq": 0.14951674154987504,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 100
+    },
+    {
+      "address": "0x7eb282f1701fd71c3d387ec96815c401bd851b8b",
+      "balance_wei": "140459165697043592",
+      "balance_eth": "0.14045917",
+      "keeperdao_items": [
+        {
+          "k_token": "kweth",
+          "k_address": "0xac19815455c2c438af8a8b4623f65f091364be10",
+          "k_amount_wei": "133449113705620136",
+          "k_amount": 0.13344911370562013,
+          "eth_eq_wei": "140459165697043592",
+          "eth_eq": 0.1404591656970436,
+          "underlying": "WETH",
+          "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+        }
+      ],
+      "rank": 101
+    },
+    {
+      "address": "0x79add7d7efbc20a14d03a1082faa172938fa15b3",
+      "balance_wei": "137530047929347934",
+      "balance_eth": "0.13753005",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "127195764666525164",
+          "k_amount": 0.12719576466652516,
+          "eth_eq_wei": "137530047929347934",
+          "eth_eq": 0.13753004792934795,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 102
+    },
+    {
+      "address": "0x31edc1d9d73b35f379b97831198f59ba05ea6d33",
+      "balance_wei": "133048973688138168",
+      "balance_eth": "0.13304897",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "123051407319024255",
+          "k_amount": 0.12305140731902425,
+          "eth_eq_wei": "133048973688138168",
+          "eth_eq": 0.13304897368813817,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 103
+    },
+    {
+      "address": "0x29687b1886f42cc43ce86881be9748840be3727e",
+      "balance_wei": "131358316427900985",
+      "balance_eth": "0.13135832",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "121487789431569190",
+          "k_amount": 0.12148778943156918,
+          "eth_eq_wei": "131358316427900985",
+          "eth_eq": 0.131358316427901,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 104
+    },
+    {
+      "address": "0x06231e5926d13ea0851ece3b69cb2f3ca1d72e5b",
+      "balance_wei": "126906468921872525",
+      "balance_eth": "0.12690647",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "84822432805772262",
+          "k_amount": 0.08482243280577226,
+          "eth_eq_wei": "91714006986365208",
+          "eth_eq": 0.09171400698636521,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        },
+        {
+          "k_token": "kweth",
+          "k_address": "0xac19815455c2c438af8a8b4623f65f091364be10",
+          "k_amount_wei": "33436072548956306",
+          "k_amount": 0.0334360725489563,
+          "eth_eq_wei": "35192461935507317",
+          "eth_eq": 0.03519246193550732,
+          "underlying": "WETH",
+          "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+        }
+      ],
+      "rank": 105
+    },
+    {
+      "address": "0x1a52ba41f4223e4167b09ca2ead2c350a06831e7",
+      "balance_wei": "115611081768578927",
+      "balance_eth": "0.11561108",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "106923833524968687",
+          "k_amount": 0.10692383352496869,
+          "eth_eq_wei": "115611081768578927",
+          "eth_eq": 0.11561108176857893,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 106
+    },
+    {
+      "address": "0x0ac9240875a2c67f3a7b00deb67b7034be5d5627",
+      "balance_wei": "115124690658194261",
+      "balance_eth": "0.11512469",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "106473990816819846",
+          "k_amount": 0.10647399081681984,
+          "eth_eq_wei": "115124690658194261",
+          "eth_eq": 0.11512469065819425,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 107
+    },
+    {
+      "address": "0xdd1a9bd209a435226f32636e9852b69dd12432e2",
+      "balance_wei": "114786700848589373",
+      "balance_eth": "0.11478670",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "106161398238474550",
+          "k_amount": 0.10616139823847455,
+          "eth_eq_wei": "114786700848589373",
+          "eth_eq": 0.11478670084858937,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 108
+    },
+    {
+      "address": "0x74b24e45b16eefff1fd06b00d8942b80d13b46d9",
+      "balance_wei": "110562730288035140",
+      "balance_eth": "0.11056273",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "102254825286107122",
+          "k_amount": 0.10225482528610712,
+          "eth_eq_wei": "110562730288035140",
+          "eth_eq": 0.11056273028803514,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 109
+    },
+    {
+      "address": "0x51fee03897bebc7877e76fdc4843e0584799466a",
+      "balance_wei": "105435747919129104",
+      "balance_eth": "0.10543575",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "97513094641326071",
+          "k_amount": 0.09751309464132607,
+          "eth_eq_wei": "105435747919129104",
+          "eth_eq": 0.1054357479191291,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 110
+    },
+    {
+      "address": "0x8ccf017d0ac8dc9933a9dec1e8540f763ce3aea8",
+      "balance_wei": "105137643112730621",
+      "balance_eth": "0.10513764",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "97237390027159859",
+          "k_amount": 0.09723739002715985,
+          "eth_eq_wei": "105137643112730621",
+          "eth_eq": 0.10513764311273062,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 111
+    },
+    {
+      "address": "0x640e8c6c58986c7c1070f4c4031ad15394405f66",
+      "balance_wei": "102057522579256927",
+      "balance_eth": "0.10205752",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "94388715919800305",
+          "k_amount": 0.0943887159198003,
+          "eth_eq_wei": "102057522579256927",
+          "eth_eq": 0.10205752257925693,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 112
+    },
+    {
+      "address": "0x09aeea1d6ed3e95a5e420aa815c26fe41ab79741",
+      "balance_wei": "101779191473023102",
+      "balance_eth": "0.10177919",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "94131299170363279",
+          "k_amount": 0.09413129917036328,
+          "eth_eq_wei": "101779191473023102",
+          "eth_eq": 0.1017791914730231,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 113
+    },
+    {
+      "address": "0xaed74a2a67cd05d54e74a0f86a2a3e0a8a8c6bf7",
+      "balance_wei": "101754609396223160",
+      "balance_eth": "0.10175461",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "94108564240049969",
+          "k_amount": 0.09410856424004997,
+          "eth_eq_wei": "101754609396223160",
+          "eth_eq": 0.10175460939622316,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 114
+    },
+    {
+      "address": "0xf5a8e355621e487c1e2f2d55f0070a084427661f",
+      "balance_wei": "101572803350505913",
+      "balance_eth": "0.10157280",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "93940419464750521",
+          "k_amount": 0.09394041946475053,
+          "eth_eq_wei": "101572803350505913",
+          "eth_eq": 0.10157280335050592,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 115
+    },
+    {
+      "address": "0x5ca0f55233543b659c8f2c1fc801b567b94a8b1a",
+      "balance_wei": "101386902867401329",
+      "balance_eth": "0.10138690",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "93768487916289844",
+          "k_amount": 0.09376848791628983,
+          "eth_eq_wei": "101386902867401329",
+          "eth_eq": 0.10138690286740133,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 116
+    },
+    {
+      "address": "0x76ce053ae76d4eda6fd3f24a001260e9232ad977",
+      "balance_wei": "101370207557174993",
+      "balance_eth": "0.10137021",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "93753047125113252",
+          "k_amount": 0.09375304712511325,
+          "eth_eq_wei": "101370207557174993",
+          "eth_eq": 0.10137020755717499,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 117
+    },
+    {
+      "address": "0x356da1ec172f07e0bb3150253d1225567868b5ca",
+      "balance_wei": "101360607419118792",
+      "balance_eth": "0.10136061",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "93744168360658884",
+          "k_amount": 0.09374416836065888,
+          "eth_eq_wei": "101360607419118792",
+          "eth_eq": 0.10136060741911879,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 118
+    },
+    {
+      "address": "0x94304bf6267ca3763a283b63b18afd5defde0e17",
+      "balance_wei": "101338073592128495",
+      "balance_eth": "0.10133807",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "93723327770562046",
+          "k_amount": 0.09372332777056205,
+          "eth_eq_wei": "101338073592128495",
+          "eth_eq": 0.1013380735921285,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 119
+    },
+    {
+      "address": "0x2bc79880f05ba1460ef2cc6b04b4ddf11bf43a94",
+      "balance_wei": "101313700961180250",
+      "balance_eth": "0.10131370",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "93700786547919634",
+          "k_amount": 0.09370078654791963,
+          "eth_eq_wei": "101313700961180250",
+          "eth_eq": 0.10131370096118025,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 120
+    },
+    {
+      "address": "0x9f87ac184c12746a67b878a41d3a2acf26adbe2b",
+      "balance_wei": "101303317060873183",
+      "balance_eth": "0.10130332",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "93691182914679741",
+          "k_amount": 0.09369118291467975,
+          "eth_eq_wei": "101303317060873183",
+          "eth_eq": 0.10130331706087319,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 121
+    },
+    {
+      "address": "0x15f75f25a3b2021eebd304bc4051c642e680307d",
+      "balance_wei": "101302038037841028",
+      "balance_eth": "0.10130204",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "93690000000000000",
+          "k_amount": 0.09369,
+          "eth_eq_wei": "101302038037841028",
+          "eth_eq": 0.10130203803784102,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 122
+    },
+    {
+      "address": "0xdf93282a22f1eedad5ed0e89bae22ea09fab7fa0",
+      "balance_wei": "101041745957143047",
+      "balance_eth": "0.10104175",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "93449266787589365",
+          "k_amount": 0.09344926678758936,
+          "eth_eq_wei": "101041745957143047",
+          "eth_eq": 0.10104174595714303,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 123
+    },
+    {
+      "address": "0xcb981399ea3b8cfd4f27ff4c78b1efeb87e72b26",
+      "balance_wei": "100927530359496298",
+      "balance_eth": "0.10092753",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "93343633578714272",
+          "k_amount": 0.09334363357871427,
+          "eth_eq_wei": "100927530359496298",
+          "eth_eq": 0.10092753035949631,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 124
+    },
+    {
+      "address": "0xd3432463cf264f4def759ca6f8843d47dd00b2fd",
+      "balance_wei": "100453130039728021",
+      "balance_eth": "0.10045313",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "92904880649158333",
+          "k_amount": 0.09290488064915833,
+          "eth_eq_wei": "100453130039728021",
+          "eth_eq": 0.10045313003972801,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 125
+    },
+    {
+      "address": "0x5fabf9d1f3dbc7577fce20d0a7dac2905f806a47",
+      "balance_wei": "100429853906046160",
+      "balance_eth": "0.10042985",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "92883353530781515",
+          "k_amount": 0.09288335353078152,
+          "eth_eq_wei": "100429853906046160",
+          "eth_eq": 0.10042985390604615,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 126
+    },
+    {
+      "address": "0xb4b7822307cc4fff4a2172d5315dbfd39e50a356",
+      "balance_wei": "100423858536836813",
+      "balance_eth": "0.10042386",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "92877808665622791",
+          "k_amount": 0.09287780866562279,
+          "eth_eq_wei": "100423858536836813",
+          "eth_eq": 0.10042385853683682,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 127
+    },
+    {
+      "address": "0xafd6537db3ac19b37ec6c6c744bb6b91eb476953",
+      "balance_wei": "100302524265197415",
+      "balance_eth": "0.10030252",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "92765591694176977",
+          "k_amount": 0.09276559169417697,
+          "eth_eq_wei": "100302524265197415",
+          "eth_eq": 0.10030252426519741,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 128
+    },
+    {
+      "address": "0xc7ab139f047b442838160489e1c889d7e0166f54",
+      "balance_wei": "100187811184842736",
+      "balance_eth": "0.10018781",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "92659498384441044",
+          "k_amount": 0.09265949838444104,
+          "eth_eq_wei": "100187811184842736",
+          "eth_eq": 0.10018781118484274,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 129
+    },
+    {
+      "address": "0xe1066fea9370c2b51591b3e3a153a044425c56ec",
+      "balance_wei": "99981968852459856",
+      "balance_eth": "0.09998197",
+      "keeperdao_items": [
+        {
+          "k_token": "kweth",
+          "k_address": "0xac19815455c2c438af8a8b4623f65f091364be10",
+          "k_amount_wei": "94992057397536724",
+          "k_amount": 0.09499205739753672,
+          "eth_eq_wei": "99981968852459856",
+          "eth_eq": 0.09998196885245986,
+          "underlying": "WETH",
+          "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+        }
+      ],
+      "rank": 130
+    },
+    {
+      "address": "0xe7ac5a3241069fd5a28f85fe6b75ff5a935a315d",
+      "balance_wei": "99939514584738154",
+      "balance_eth": "0.09993951",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "92429859288186056",
+          "k_amount": 0.09242985928818605,
+          "eth_eq_wei": "99939514584738154",
+          "eth_eq": 0.09993951458473815,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 131
+    },
+    {
+      "address": "0x1dd8ae3102eec14c3c98611caf70e8c9453ea98f",
+      "balance_wei": "99682500126830902",
+      "balance_eth": "0.09968250",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "92192157411424844",
+          "k_amount": 0.09219215741142485,
+          "eth_eq_wei": "99682500126830902",
+          "eth_eq": 0.0996825001268309,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 132
+    },
+    {
+      "address": "0xa96a65e325c9652202c432d4e87e66c21fb60d3b",
+      "balance_wei": "99678503053526342",
+      "balance_eth": "0.09967850",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "92188460686214199",
+          "k_amount": 0.0921884606862142,
+          "eth_eq_wei": "99678503053526342",
+          "eth_eq": 0.09967850305352634,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 133
+    },
+    {
+      "address": "0xaf0586cbe35d482b8e70893c71b7bc4ba319d9b5",
+      "balance_wei": "99667797789462629",
+      "balance_eth": "0.09966780",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "92178559837134000",
+          "k_amount": 0.092178559837134,
+          "eth_eq_wei": "99667797789462629",
+          "eth_eq": 0.09966779778946262,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 134
+    },
+    {
+      "address": "0xd609abd5201f51d99ea14a841cd37232083ea3a2",
+      "balance_wei": "95953337176739330",
+      "balance_eth": "0.09595334",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "88743211234610833",
+          "k_amount": 0.08874321123461083,
+          "eth_eq_wei": "95953337176739330",
+          "eth_eq": 0.09595333717673933,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 135
+    },
+    {
+      "address": "0x59f8f98ef020647521def4f14a8db46ea0da1133",
+      "balance_wei": "91574459165912569",
+      "balance_eth": "0.09157446",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "84693370888051279",
+          "k_amount": 0.08469337088805128,
+          "eth_eq_wei": "91574459165912569",
+          "eth_eq": 0.09157445916591257,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 136
+    },
+    {
+      "address": "0x606add02c64d10428aabf1d195ca51d6e6537845",
+      "balance_wei": "91168835405893785",
+      "balance_eth": "0.09116884",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "84318226509791445",
+          "k_amount": 0.08431822650979144,
+          "eth_eq_wei": "91168835405893785",
+          "eth_eq": 0.0911688354058938,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 137
+    },
+    {
+      "address": "0xe5b485fb0ec167e8a6874aca9daa81ed16c66921",
+      "balance_wei": "90944365379705738",
+      "balance_eth": "0.09094437",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "84110623610966229",
+          "k_amount": 0.08411062361096622,
+          "eth_eq_wei": "90944365379705738",
+          "eth_eq": 0.09094436537970574,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 138
+    },
+    {
+      "address": "0x9e5dd96f9afd985fb917e16b4cb089dc78ba9d56",
+      "balance_wei": "90437947708195344",
+      "balance_eth": "0.09043795",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "83642259177606207",
+          "k_amount": 0.0836422591776062,
+          "eth_eq_wei": "90437947708195344",
+          "eth_eq": 0.09043794770819534,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 139
+    },
+    {
+      "address": "0x98470a4959ff07ae7d336bf905cfc9c71b70e4af",
+      "balance_wei": "81150643376182653",
+      "balance_eth": "0.08115064",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "75052821494810172",
+          "k_amount": 0.07505282149481017,
+          "eth_eq_wei": "81150643376182653",
+          "eth_eq": 0.08115064337618266,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 140
+    },
+    {
+      "address": "0x335d6db771f57ef47af3d291a85e0b43f7ca0092",
+      "balance_wei": "80338746237367969",
+      "balance_eth": "0.08033875",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "74301931933169435",
+          "k_amount": 0.07430193193316945,
+          "eth_eq_wei": "80338746237367969",
+          "eth_eq": 0.08033874623736796,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 141
+    },
+    {
+      "address": "0x248f8308ff7ea917a52756430bd28c1eb028f447",
+      "balance_wei": "76968267873038987",
+      "balance_eth": "0.07696827",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "71184718063927991",
+          "k_amount": 0.071184718063928,
+          "eth_eq_wei": "76968267873038987",
+          "eth_eq": 0.076968267873039,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 142
+    },
+    {
+      "address": "0xc50761cef3e28a6113875265966c8a19cb7956cf",
+      "balance_wei": "73722563207222921",
+      "balance_eth": "0.07372256",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "68182902147581714",
+          "k_amount": 0.06818290214758171,
+          "eth_eq_wei": "73722563207222921",
+          "eth_eq": 0.07372256320722292,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 143
+    },
+    {
+      "address": "0xdc106fdaa416a8cc8816081c5864b478d45fa063",
+      "balance_wei": "72602972400537997",
+      "balance_eth": "0.07260297",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "67147439636559699",
+          "k_amount": 0.0671474396365597,
+          "eth_eq_wei": "72602972400537997",
+          "eth_eq": 0.072602972400538,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 144
+    },
+    {
+      "address": "0x98032b2b3469aa7a6a9575617cbc891d91b058fc",
+      "balance_wei": "70341679944479479",
+      "balance_eth": "0.07034168",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "65056065224832831",
+          "k_amount": 0.06505606522483283,
+          "eth_eq_wei": "70341679944479479",
+          "eth_eq": 0.07034167994447948,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 145
+    },
+    {
+      "address": "0xb404cd0840c8ec1af0fe1759d9a48a5e55ca151c",
+      "balance_wei": "70231188581664950",
+      "balance_eth": "0.07023119",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "64953876404325328",
+          "k_amount": 0.06495387640432533,
+          "eth_eq_wei": "70231188581664950",
+          "eth_eq": 0.07023118858166495,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 146
+    },
+    {
+      "address": "0xfb8e54c2f500efdf4fb06362bf92789655813cdc",
+      "balance_wei": "70148877444007194",
+      "balance_eth": "0.07014888",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "64877750290413637",
+          "k_amount": 0.06487775029041364,
+          "eth_eq_wei": "70148877444007194",
+          "eth_eq": 0.07014887744400719,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 147
+    },
+    {
+      "address": "0x4fa256f66080805cc392d3e50fc9c207a886c22a",
+      "balance_wei": "69677982739271714",
+      "balance_eth": "0.06967798",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "64442239556955471",
+          "k_amount": 0.06444223955695547,
+          "eth_eq_wei": "69677982739271714",
+          "eth_eq": 0.06967798273927171,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 148
+    },
+    {
+      "address": "0x74d15ea52f9747d00a4400eee33caeb7d23974c4",
+      "balance_wei": "59808856480474237",
+      "balance_eth": "0.05980886",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "55314699212294882",
+          "k_amount": 0.05531469921229488,
+          "eth_eq_wei": "59808856480474237",
+          "eth_eq": 0.05980885648047424,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 149
+    },
+    {
+      "address": "0xf27c504c6094ff413cce631390e2ad1160ed58c9",
+      "balance_wei": "54270963008279330",
+      "balance_eth": "0.05427096",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "50192934147547340",
+          "k_amount": 0.050192934147547344,
+          "eth_eq_wei": "54270963008279330",
+          "eth_eq": 0.05427096300827933,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 150
+    },
+    {
+      "address": "0x9e9e733aa715d9adf25e0be37630dc2936daba76",
+      "balance_wei": "52541866990143695",
+      "balance_eth": "0.05254187",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "48593765867451993",
+          "k_amount": 0.04859376586745199,
+          "eth_eq_wei": "52541866990143695",
+          "eth_eq": 0.052541866990143696,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 151
+    },
+    {
+      "address": "0x2a8600bbdaab254a2f8a8e00912799295c3dd601",
+      "balance_wei": "52539147384347669",
+      "balance_eth": "0.05253915",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "48591250618282628",
+          "k_amount": 0.04859125061828262,
+          "eth_eq_wei": "52539147384347669",
+          "eth_eq": 0.05253914738434767,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 152
+    },
+    {
+      "address": "0x505e20c0fb8252ca7ac21d54d5432eccd4f2d076",
+      "balance_wei": "52506377230686903",
+      "balance_eth": "0.05250638",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "48560942879603863",
+          "k_amount": 0.048560942879603865,
+          "eth_eq_wei": "52506377230686903",
+          "eth_eq": 0.05250637723068691,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 153
+    },
+    {
+      "address": "0x5853ed4f26a3fcea565b3fbc698bb19cdf6deb85",
+      "balance_wei": "51702169530347240",
+      "balance_eth": "0.05170217",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "47817164956629819",
+          "k_amount": 0.04781716495662982,
+          "eth_eq_wei": "51702169530347240",
+          "eth_eq": 0.05170216953034724,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 154
+    },
+    {
+      "address": "0x32b60985c5490397d200f91e624332d82597d649",
+      "balance_wei": "51358246567473299",
+      "balance_eth": "0.05135825",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "47499085054035726",
+          "k_amount": 0.04749908505403573,
+          "eth_eq_wei": "51358246567473299",
+          "eth_eq": 0.051358246567473294,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 155
+    },
+    {
+      "address": "0x0db4b723bed9e380fffe5ba94ede9ebd31503075",
+      "balance_wei": "50944081875374237",
+      "balance_eth": "0.05094408",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "47116041526438914",
+          "k_amount": 0.04711604152643891,
+          "eth_eq_wei": "50944081875374237",
+          "eth_eq": 0.05094408187537424,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 156
+    },
+    {
+      "address": "0x5999865518c9de250b820762130ff7a7119a4558",
+      "balance_wei": "50890619469053278",
+      "balance_eth": "0.05089062",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "47066596392409729",
+          "k_amount": 0.047066596392409725,
+          "eth_eq_wei": "50890619469053278",
+          "eth_eq": 0.05089061946905328,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 157
+    },
+    {
+      "address": "0x0b9ce057a387386f3ea3a549c85a5efe4fc76f5d",
+      "balance_wei": "50879272705121543",
+      "balance_eth": "0.05087927",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "47056102247046462",
+          "k_amount": 0.04705610224704646,
+          "eth_eq_wei": "50879272705121543",
+          "eth_eq": 0.05087927270512154,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 158
+    },
+    {
+      "address": "0xdd37bde1d74a63cb773b7ca8a15c4793f95ec43c",
+      "balance_wei": "50852904954088857",
+      "balance_eth": "0.05085290",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "47031715821638816",
+          "k_amount": 0.047031715821638814,
+          "eth_eq_wei": "50852904954088857",
+          "eth_eq": 0.050852904954088854,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 159
+    },
+    {
+      "address": "0x5009633ea9462d2a4d933956500c78f5f9405e8c",
+      "balance_wei": "50639139655620086",
+      "balance_eth": "0.05063914",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "46834013275851357",
+          "k_amount": 0.04683401327585136,
+          "eth_eq_wei": "50639139655620086",
+          "eth_eq": 0.050639139655620086,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 160
+    },
+    {
+      "address": "0xc350b306d4f21670317b1ca22416d9104320dcc6",
+      "balance_wei": "50638229574167196",
+      "balance_eth": "0.05063823",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "46833171579741656",
+          "k_amount": 0.04683317157974166,
+          "eth_eq_wei": "50638229574167196",
+          "eth_eq": 0.0506382295741672,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 161
+    },
+    {
+      "address": "0xf753a473bd93e59f865451a9a5238abee3bd37a6",
+      "balance_wei": "50233715291381416",
+      "balance_eth": "0.05023372",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "46459053310373347",
+          "k_amount": 0.046459053310373345,
+          "eth_eq_wei": "50233715291381416",
+          "eth_eq": 0.05023371529138142,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 162
+    },
+    {
+      "address": "0x86e18538ce2ebc086d76d8722945da30255b0477",
+      "balance_wei": "50150835684768202",
+      "balance_eth": "0.05015084",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "46382401443402107",
+          "k_amount": 0.0463824014434021,
+          "eth_eq_wei": "50150835684768202",
+          "eth_eq": 0.0501508356847682,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 163
+    },
+    {
+      "address": "0x8baecaac30c26fc00fad8ee9a0b54b8897d2462b",
+      "balance_wei": "50145263793665671",
+      "balance_eth": "0.05014526",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "46377248235357062",
+          "k_amount": 0.04637724823535706,
+          "eth_eq_wei": "50145263793665671",
+          "eth_eq": 0.05014526379366567,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 164
+    },
+    {
+      "address": "0x6362d241e89084391697424e40147ff7396fa760",
+      "balance_wei": "50111183197756669",
+      "balance_eth": "0.05011118",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "46345728523685302",
+          "k_amount": 0.046345728523685306,
+          "eth_eq_wei": "50111183197756669",
+          "eth_eq": 0.05011118319775667,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 165
+    },
+    {
+      "address": "0xce296b4779335f44555d05d4a231b60349c2e97a",
+      "balance_wei": "50095353327902062",
+      "balance_eth": "0.05009535",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "46331088141957502",
+          "k_amount": 0.0463310881419575,
+          "eth_eq_wei": "50095353327902062",
+          "eth_eq": 0.05009535332790206,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 166
+    },
+    {
+      "address": "0x820c46000a51aa4182a321bf318702ba19c2b7d7",
+      "balance_wei": "49704006757769490",
+      "balance_eth": "0.04970401",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "45969148136939789",
+          "k_amount": 0.045969148136939794,
+          "eth_eq_wei": "49704006757769490",
+          "eth_eq": 0.04970400675776949,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 167
+    },
+    {
+      "address": "0xc7a9ff55c1831822e7ee8fdeb572e14754a6ea68",
+      "balance_wei": "49657088473617997",
+      "balance_eth": "0.04965709",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "45925755386632916",
+          "k_amount": 0.04592575538663291,
+          "eth_eq_wei": "49657088473617997",
+          "eth_eq": 0.049657088473618,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 168
+    },
+    {
+      "address": "0x8967986ca73d565eb5b9d4bdca7e263ed61e33e7",
+      "balance_wei": "48283623226727992",
+      "balance_eth": "0.04828362",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "44655495069332522",
+          "k_amount": 0.04465549506933252,
+          "eth_eq_wei": "48283623226727992",
+          "eth_eq": 0.048283623226727995,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 169
+    },
+    {
+      "address": "0xdf48e1769eecc8367df7dc3db98138fa10d1f396",
+      "balance_wei": "44084519476473715",
+      "balance_eth": "0.04408452",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "40771920385332929",
+          "k_amount": 0.04077192038533293,
+          "eth_eq_wei": "44084519476473715",
+          "eth_eq": 0.04408451947647371,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 170
+    },
+    {
+      "address": "0xef76b1510064eb56e3bcb05edb84b7e7ed108de4",
+      "balance_wei": "43249882821151042",
+      "balance_eth": "0.04324988",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "40000000000000000",
+          "k_amount": 0.04,
+          "eth_eq_wei": "43249882821151042",
+          "eth_eq": 0.04324988282115104,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 171
+    },
+    {
+      "address": "0xced34d170df2790cbeb0743a67636228d5c45e62",
+      "balance_wei": "42047830252969743",
+      "balance_eth": "0.04204783",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "38888272069404596",
+          "k_amount": 0.038888272069404595,
+          "eth_eq_wei": "42047830252969743",
+          "eth_eq": 0.042047830252969744,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 172
+    },
+    {
+      "address": "0xa01486c07b3ab747722f69383dde42c924d043d3",
+      "balance_wei": "40580578948899562",
+      "balance_eth": "0.04058058",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "37531272967106329",
+          "k_amount": 0.03753127296710633,
+          "eth_eq_wei": "40580578948899562",
+          "eth_eq": 0.04058057894889956,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 173
+    },
+    {
+      "address": "0xeeede4cd48e6ec2160b8336e88db3e62a7eefe1f",
+      "balance_wei": "40435080965056008",
+      "balance_eth": "0.04043508",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "37396707993189313",
+          "k_amount": 0.03739670799318931,
+          "eth_eq_wei": "40435080965056008",
+          "eth_eq": 0.040435080965056006,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 174
+    },
+    {
+      "address": "0xa3ceca57e4bee224a7fe7aa46ae7f4418d54cf8d",
+      "balance_wei": "39870683216454226",
+      "balance_eth": "0.03987068",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "36874720221859891",
+          "k_amount": 0.03687472022185989,
+          "eth_eq_wei": "39870683216454226",
+          "eth_eq": 0.03987068321645423,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 175
+    },
+    {
+      "address": "0x714120f3dcaff119e82b923fb28f203249293907",
+      "balance_wei": "36884397813657745",
+      "balance_eth": "0.03688440",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "34112830285514390",
+          "k_amount": 0.034112830285514394,
+          "eth_eq_wei": "36884397813657745",
+          "eth_eq": 0.036884397813657745,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 176
+    },
+    {
+      "address": "0x5b20783f4baabd33bb53dd77c9b0459f5701e36a",
+      "balance_wei": "36880662440051597",
+      "balance_eth": "0.03688066",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "34109375595362655",
+          "k_amount": 0.03410937559536266,
+          "eth_eq_wei": "36880662440051597",
+          "eth_eq": 0.0368806624400516,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 177
+    },
+    {
+      "address": "0x7f285841c23b78d902650e897b94e927f789e28b",
+      "balance_wei": "36099656719533404",
+      "balance_eth": "0.03609966",
+      "keeperdao_items": [
+        {
+          "k_token": "kweth",
+          "k_address": "0xac19815455c2c438af8a8b4623f65f091364be10",
+          "k_amount_wei": "34297990952684878",
+          "k_amount": 0.03429799095268488,
+          "eth_eq_wei": "36099656719533404",
+          "eth_eq": 0.036099656719533406,
+          "underlying": "WETH",
+          "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+        }
+      ],
+      "rank": 178
+    },
+    {
+      "address": "0x6c3553e90aff3bda7e379c9875d67f9858c7bb5d",
+      "balance_wei": "35295513838885163",
+      "balance_eth": "0.03529551",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "32643338235010568",
+          "k_amount": 0.03264333823501057,
+          "eth_eq_wei": "35295513838885163",
+          "eth_eq": 0.03529551383888516,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 179
+    },
+    {
+      "address": "0x3ac46092ac3dadedc15cb79c4677c2fac14cc447",
+      "balance_wei": "35103542463223798",
+      "balance_eth": "0.03510354",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "32465791973019326",
+          "k_amount": 0.032465791973019326,
+          "eth_eq_wei": "35103542463223798",
+          "eth_eq": 0.0351035424632238,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 180
+    },
+    {
+      "address": "0x293e659d2d50baee7234d4f58d8dbf4ee7422852",
+      "balance_wei": "33664629041003250",
+      "balance_eth": "0.03366463",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "31135001387370055",
+          "k_amount": 0.031135001387370055,
+          "eth_eq_wei": "33664629041003250",
+          "eth_eq": 0.03366462904100325,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 181
+    },
+    {
+      "address": "0x8593b4a8179175e20a486acb36a1eeb1dd1b94ad",
+      "balance_wei": "32007657880484087",
+      "balance_eth": "0.03200766",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "29602538358629702",
+          "k_amount": 0.029602538358629703,
+          "eth_eq_wei": "32007657880484087",
+          "eth_eq": 0.03200765788048409,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 182
+    },
+    {
+      "address": "0x2a7ed01649b2b0c862dbd0f54e7396f17509e11d",
+      "balance_wei": "30539750650607535",
+      "balance_eth": "0.03053975",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "28244932618103919",
+          "k_amount": 0.02824493261810392,
+          "eth_eq_wei": "30539750650607535",
+          "eth_eq": 0.030539750650607538,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 183
+    },
+    {
+      "address": "0x8c052bd87c155fc577e0e2be6f97f471c11ab7c7",
+      "balance_wei": "27822454490222297",
+      "balance_eth": "0.02782245",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "25731819533731479",
+          "k_amount": 0.02573181953373148,
+          "eth_eq_wei": "27822454490222297",
+          "eth_eq": 0.027822454490222297,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 184
+    },
+    {
+      "address": "0x0178da1e23ce68bcf5af6671512c3438d6dfd223",
+      "balance_wei": "26115766133607482",
+      "balance_eth": "0.02611577",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "24153375158589568",
+          "k_amount": 0.024153375158589566,
+          "eth_eq_wei": "26115766133607482",
+          "eth_eq": 0.02611576613360748,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 185
+    },
+    {
+      "address": "0x2676afe6b00230bd764619c9fef61db36777fb06",
+      "balance_wei": "25335069610792829",
+      "balance_eth": "0.02533507",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "23431341736170344",
+          "k_amount": 0.023431341736170345,
+          "eth_eq_wei": "25335069610792829",
+          "eth_eq": 0.025335069610792828,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 186
+    },
+    {
+      "address": "0xe1df63759b4a2bda8f064ba2273ed8f01ba63268",
+      "balance_wei": "25128314992018117",
+      "balance_eth": "0.02512831",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "23240123073562916",
+          "k_amount": 0.023240123073562918,
+          "eth_eq_wei": "25128314992018117",
+          "eth_eq": 0.025128314992018116,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 187
+    },
+    {
+      "address": "0xd8aa8d33bec3d5e40e154bf4bf31c4e10dc19a6e",
+      "balance_wei": "25053170792150878",
+      "balance_eth": "0.02505317",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "23170625359381373",
+          "k_amount": 0.023170625359381372,
+          "eth_eq_wei": "25053170792150878",
+          "eth_eq": 0.02505317079215088,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 188
+    },
+    {
+      "address": "0x12363161666d532cecb688f764fb19a9cd3167a7",
+      "balance_wei": "24917487348406921",
+      "balance_eth": "0.02491749",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "23045137441363152",
+          "k_amount": 0.02304513744136315,
+          "eth_eq_wei": "24917487348406921",
+          "eth_eq": 0.02491748734840692,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 189
+    },
+    {
+      "address": "0x335e806c4610be1128650cac31263ae1959bddb5",
+      "balance_wei": "20932476064934556",
+      "balance_eth": "0.02093248",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "19359567887381818",
+          "k_amount": 0.019359567887381815,
+          "eth_eq_wei": "20932476064934556",
+          "eth_eq": 0.020932476064934556,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 190
+    },
+    {
+      "address": "0xad36ae0c0605d441d95e25e8a74e9a238bf47828",
+      "balance_wei": "20556101163990131",
+      "balance_eth": "0.02055610",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "19011474550342429",
+          "k_amount": 0.01901147455034243,
+          "eth_eq_wei": "20556101163990131",
+          "eth_eq": 0.02055610116399013,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 191
+    },
+    {
+      "address": "0x49e043522f92f1618606a8df73d79388704d8c2d",
+      "balance_wei": "20407986479873053",
+      "balance_eth": "0.02040799",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "18874489500251479",
+          "k_amount": 0.01887448950025148,
+          "eth_eq_wei": "20407986479873053",
+          "eth_eq": 0.02040798647987305,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 192
+    },
+    {
+      "address": "0x54393b75b90ec06ce33f741e4867905e2ac5e73c",
+      "balance_wei": "20355412268162002",
+      "balance_eth": "0.02035541",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "18825865820110232",
+          "k_amount": 0.01882586582011023,
+          "eth_eq_wei": "20355412268162002",
+          "eth_eq": 0.020355412268162,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 193
+    },
+    {
+      "address": "0x53e26955f12b8bafdb6474a09975fdc3aaf59ea3",
+      "balance_wei": "20279155100468440",
+      "balance_eth": "0.02027916",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "18755338768734020",
+          "k_amount": 0.01875533876873402,
+          "eth_eq_wei": "20279155100468440",
+          "eth_eq": 0.02027915510046844,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 194
+    },
+    {
+      "address": "0xdb5802f5579b97be83bd48acad271187f7813148",
+      "balance_wei": "20268057703772894",
+      "balance_eth": "0.02026806",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "18745075252653353",
+          "k_amount": 0.018745075252653353,
+          "eth_eq_wei": "20268057703772894",
+          "eth_eq": 0.020268057703772897,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 195
+    },
+    {
+      "address": "0x5bd5ee83d72cdecbc4ba8ea9dd84bb1223c42893",
+      "balance_wei": "20208553604928764",
+      "balance_eth": "0.02020855",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "18690042410978203",
+          "k_amount": 0.018690042410978203,
+          "eth_eq_wei": "20208553604928764",
+          "eth_eq": 0.020208553604928764,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 196
+    },
+    {
+      "address": "0xbaf8c648aafbc33d8d2fae5dad9ee264151a1dff",
+      "balance_wei": "20064605640115290",
+      "balance_eth": "0.02006461",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "18556910984556786",
+          "k_amount": 0.018556910984556783,
+          "eth_eq_wei": "20064605640115290",
+          "eth_eq": 0.020064605640115286,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 197
+    },
+    {
+      "address": "0xfd4ae6a022a86b3c8d60a764bc3d35d80869b538",
+      "balance_wei": "19989003593718476",
+      "balance_eth": "0.01998900",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "18486989827350930",
+          "k_amount": 0.01848698982735093,
+          "eth_eq_wei": "19989003593718476",
+          "eth_eq": 0.019989003593718475,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 198
+    },
+    {
+      "address": "0xdb5bc817fd928218a4397b2dc89b293970787f6b",
+      "balance_wei": "15763551439756216",
+      "balance_eth": "0.01576355",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "14579046611471665",
+          "k_amount": 0.014579046611471663,
+          "eth_eq_wei": "15763551439756216",
+          "eth_eq": 0.015763551439756215,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 199
+    },
+    {
+      "address": "0x19ccf3e10f844f41ccf7542b0c4da16253766392",
+      "balance_wei": "15545749623823792",
+      "balance_eth": "0.01554575",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "14377610860227585",
+          "k_amount": 0.014377610860227584,
+          "eth_eq_wei": "15545749623823792",
+          "eth_eq": 0.015545749623823792,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 200
+    },
+    {
+      "address": "0xcb4bdc593f4176ab98265e22ab0cbe2673f5ad4c",
+      "balance_wei": "15266831718035181",
+      "balance_eth": "0.01526683",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "14119651404529631",
+          "k_amount": 0.014119651404529632,
+          "eth_eq_wei": "15266831718035181",
+          "eth_eq": 0.01526683171803518,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 201
+    },
+    {
+      "address": "0x0ba6d89c5ea7cb11861baf2608ec7a02bfa1a1ee",
+      "balance_wei": "13640157603978882",
+      "balance_eth": "0.01364016",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "12615208841498421",
+          "k_amount": 0.01261520884149842,
+          "eth_eq_wei": "13640157603978882",
+          "eth_eq": 0.013640157603978883,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 202
+    },
+    {
+      "address": "0x1b569b73d27ff6afa1bed4bf9096fc02fde717f5",
+      "balance_wei": "10742946588137898",
+      "balance_eth": "0.01074295",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9935700064263886",
+          "k_amount": 0.009935700064263886,
+          "eth_eq_wei": "10742946588137898",
+          "eth_eq": 0.010742946588137898,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 203
+    },
+    {
+      "address": "0x945294c67752bd0a453975c04e3078c487a858df",
+      "balance_wei": "10514721089948687",
+      "balance_eth": "0.01051472",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9724623887125576",
+          "k_amount": 0.009724623887125576,
+          "eth_eq_wei": "10514721089948687",
+          "eth_eq": 0.010514721089948689,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 204
+    },
+    {
+      "address": "0xddf48f62e07c2e9f689ae903255d090e9bb9d725",
+      "balance_wei": "10512981240448179",
+      "balance_eth": "0.01051298",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9723014773401312",
+          "k_amount": 0.009723014773401312,
+          "eth_eq_wei": "10512981240448179",
+          "eth_eq": 0.01051298124044818,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 205
+    },
+    {
+      "address": "0x277a1b6f7066af5f378b26450d8f681ef9d1dc29",
+      "balance_wei": "10509650516547064",
+      "balance_eth": "0.01050965",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9719934326765293",
+          "k_amount": 0.009719934326765291,
+          "eth_eq_wei": "10509650516547064",
+          "eth_eq": 0.010509650516547064,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 206
+    },
+    {
+      "address": "0xfba22623a465d0cf942e86a17b871d153af6461c",
+      "balance_wei": "10507795765179360",
+      "balance_eth": "0.01050780",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9718218945130274",
+          "k_amount": 0.009718218945130273,
+          "eth_eq_wei": "10507795765179360",
+          "eth_eq": 0.01050779576517936,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 207
+    },
+    {
+      "address": "0xd21d49edcb5e314ecdac8bbeed3adf8e747cc317",
+      "balance_wei": "10502783839016359",
+      "balance_eth": "0.01050278",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9713583625137638",
+          "k_amount": 0.009713583625137637,
+          "eth_eq_wei": "10502783839016359",
+          "eth_eq": 0.01050278383901636,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 208
+    },
+    {
+      "address": "0x92c794b7fcfd304aee4a7c18e7e1b66d882a9c6f",
+      "balance_wei": "10501275446137380",
+      "balance_eth": "0.01050128",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9712188575920772",
+          "k_amount": 0.009712188575920771,
+          "eth_eq_wei": "10501275446137380",
+          "eth_eq": 0.01050127544613738,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 209
+    },
+    {
+      "address": "0x9bfbfeafc2775cc53acef3f78882a805d5eb7e62",
+      "balance_wei": "10499412004594485",
+      "balance_eth": "0.01049941",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9710465157107731",
+          "k_amount": 0.009710465157107733,
+          "eth_eq_wei": "10499412004594485",
+          "eth_eq": 0.010499412004594484,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 210
+    },
+    {
+      "address": "0xebc491da49b6faa6f6df71db8b78078aef1dfad8",
+      "balance_wei": "10250922054990474",
+      "balance_eth": "0.01025092",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9480647240021964",
+          "k_amount": 0.009480647240021964,
+          "eth_eq_wei": "10250922054990474",
+          "eth_eq": 0.010250922054990475,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 211
+    },
+    {
+      "address": "0x448e871a9911ab6d67350c85747e8d50df2c5318",
+      "balance_wei": "10204687629484180",
+      "balance_eth": "0.01020469",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9437886961851977",
+          "k_amount": 0.009437886961851976,
+          "eth_eq_wei": "10204687629484180",
+          "eth_eq": 0.01020468762948418,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 212
+    },
+    {
+      "address": "0xa6856f038eb44ef63174b8b4ba90a49f02df5c87",
+      "balance_wei": "10190692304234209",
+      "balance_eth": "0.01019069",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9424943273372778",
+          "k_amount": 0.009424943273372777,
+          "eth_eq_wei": "10190692304234209",
+          "eth_eq": 0.010190692304234208,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 213
+    },
+    {
+      "address": "0xbcd296fb0486976b8b8d6f1c45afb407633b5023",
+      "balance_wei": "10174541997615381",
+      "balance_eth": "0.01017454",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9410006533141029",
+          "k_amount": 0.009410006533141028,
+          "eth_eq_wei": "10174541997615381",
+          "eth_eq": 0.01017454199761538,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 214
+    },
+    {
+      "address": "0x94cfa59314cf834ef6cabd7945300ef7d04ea885",
+      "balance_wei": "10171103967716594",
+      "balance_eth": "0.01017110",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9406826843694929",
+          "k_amount": 0.009406826843694928,
+          "eth_eq_wei": "10171103967716594",
+          "eth_eq": 0.010171103967716593,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 215
+    },
+    {
+      "address": "0x0c42fa4328d33338e5b646ec2da7854c26206330",
+      "balance_wei": "10130472243984863",
+      "balance_eth": "0.01013047",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9369248269066412",
+          "k_amount": 0.009369248269066412,
+          "eth_eq_wei": "10130472243984863",
+          "eth_eq": 0.010130472243984863,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 216
+    },
+    {
+      "address": "0xd7795b6b4a6952ca9811a7dac3f11c46c3b6bcde",
+      "balance_wei": "10030651333822478",
+      "balance_eth": "0.01003065",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9276928102026728",
+          "k_amount": 0.009276928102026728,
+          "eth_eq_wei": "10030651333822478",
+          "eth_eq": 0.010030651333822478,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 217
+    },
+    {
+      "address": "0xed3a1a8bdb46fc47444d63c85d4ae29234b04bd1",
+      "balance_wei": "10023162735790597",
+      "balance_eth": "0.01002316",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9270002212250011",
+          "k_amount": 0.009270002212250012,
+          "eth_eq_wei": "10023162735790597",
+          "eth_eq": 0.010023162735790596,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 218
+    },
+    {
+      "address": "0x5db3975d0a0215ef70a6723a9a8fb68fb1f8e223",
+      "balance_wei": "9968032043896270",
+      "balance_eth": "0.00996803",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9219014150966880",
+          "k_amount": 0.00921901415096688,
+          "eth_eq_wei": "9968032043896270",
+          "eth_eq": 0.00996803204389627,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 219
+    },
+    {
+      "address": "0x0db6e6d82a25bc1289acd2054095c1a796d9c59d",
+      "balance_wei": "9966919250077868",
+      "balance_eth": "0.00996692",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9217984974704827",
+          "k_amount": 0.009217984974704828,
+          "eth_eq_wei": "9966919250077868",
+          "eth_eq": 0.009966919250077868,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 220
+    },
+    {
+      "address": "0xe84b1b9593865cb14846908910bb4b9a85746770",
+      "balance_wei": "9731223634758984",
+      "balance_eth": "0.00973122",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "9000000000000000",
+          "k_amount": 0.009,
+          "eth_eq_wei": "9731223634758984",
+          "eth_eq": 0.009731223634758984,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 221
+    },
+    {
+      "address": "0x66056a0ca413ac2d896ffbacf493c849311b7d32",
+      "balance_wei": "9583673843812012",
+      "balance_eth": "0.00958367",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "8863537395874919",
+          "k_amount": 0.008863537395874919,
+          "eth_eq_wei": "9583673843812012",
+          "eth_eq": 0.009583673843812012,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 222
+    },
+    {
+      "address": "0x21b70ef84e18b03d5e289cc0db416aae1ddfb22b",
+      "balance_wei": "9351938231009630",
+      "balance_eth": "0.00935194",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "8649214861165943",
+          "k_amount": 0.008649214861165943,
+          "eth_eq_wei": "9351938231009630",
+          "eth_eq": 0.00935193823100963,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 223
+    },
+    {
+      "address": "0x9e5488452bd4f5a28a43b39b9b7e0ba59aedbdfe",
+      "balance_wei": "9065081221551186",
+      "balance_eth": "0.00906508",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "8383912861949281",
+          "k_amount": 0.008383912861949281,
+          "eth_eq_wei": "9065081221551186",
+          "eth_eq": 0.009065081221551186,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 224
+    },
+    {
+      "address": "0x13e6e8d3c1ce51e08a522691062f5fa886962c69",
+      "balance_wei": "8943988685798499",
+      "balance_eth": "0.00894399",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "8271919461871473",
+          "k_amount": 0.008271919461871472,
+          "eth_eq_wei": "8943988685798499",
+          "eth_eq": 0.0089439886857985,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 225
+    },
+    {
+      "address": "0x1dc9ee19bc6ece2df030eb1f4f5d775e817d798d",
+      "balance_wei": "8324350629625922",
+      "balance_eth": "0.00832435",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "7698842250323933",
+          "k_amount": 0.007698842250323933,
+          "eth_eq_wei": "8324350629625922",
+          "eth_eq": 0.008324350629625922,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 226
+    },
+    {
+      "address": "0x7538eb6b4846f7a694ebe53429dd305ac10c2b4a",
+      "balance_wei": "8149887935078864",
+      "balance_eth": "0.00814989",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "7537489032079616",
+          "k_amount": 0.007537489032079616,
+          "eth_eq_wei": "8149887935078864",
+          "eth_eq": 0.008149887935078865,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 227
+    },
+    {
+      "address": "0x88418bff31b070d280a193f61aedd2867f70792a",
+      "balance_wei": "7755941015946063",
+      "balance_eth": "0.00775594",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "7173144073493838",
+          "k_amount": 0.007173144073493838,
+          "eth_eq_wei": "7755941015946063",
+          "eth_eq": 0.007755941015946063,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 228
+    },
+    {
+      "address": "0x743305cd8f7194f1fe86bdc956107b27148d8fde",
+      "balance_wei": "7694144990627825",
+      "balance_eth": "0.00769414",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "7115991525290385",
+          "k_amount": 0.007115991525290385,
+          "eth_eq_wei": "7694144990627825",
+          "eth_eq": 0.007694144990627825,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 229
+    },
+    {
+      "address": "0x97b59f79700d0dd59251123c05d32fb75487a841",
+      "balance_wei": "7421546990052228",
+      "balance_eth": "0.00742155",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "6863877084469486",
+          "k_amount": 0.006863877084469486,
+          "eth_eq_wei": "7421546990052228",
+          "eth_eq": 0.007421546990052228,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 230
+    },
+    {
+      "address": "0xe9dfa0901ac8c4f778fd2deae7ec98c605f68e64",
+      "balance_wei": "7245940073978327",
+      "balance_eth": "0.00724594",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "6701465623795635",
+          "k_amount": 0.006701465623795635,
+          "eth_eq_wei": "7245940073978327",
+          "eth_eq": 0.007245940073978327,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 231
+    },
+    {
+      "address": "0x355a0674dd5048e07a2223f58f67d74fa2c6b252",
+      "balance_wei": "6872264235527763",
+      "balance_eth": "0.00687226",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "6355868536288318",
+          "k_amount": 0.006355868536288318,
+          "eth_eq_wei": "6872264235527763",
+          "eth_eq": 0.006872264235527763,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 232
+    },
+    {
+      "address": "0x55ff197993a6d33eaac9a53305b2d0edd490b034",
+      "balance_wei": "6624726984773155",
+      "balance_eth": "0.00662473",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "4679476475414986",
+          "k_amount": 0.004679476475414986,
+          "eth_eq_wei": "5059670230650775",
+          "eth_eq": 0.005059670230650775,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        },
+        {
+          "k_token": "kweth",
+          "k_address": "0xac19815455c2c438af8a8b4623f65f091364be10",
+          "k_amount_wei": "1486947723917901",
+          "k_amount": 0.001486947723917901,
+          "eth_eq_wei": "1565056754122380",
+          "eth_eq": 0.00156505675412238,
+          "underlying": "WETH",
+          "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+        }
+      ],
+      "rank": 233
+    },
+    {
+      "address": "0x23f1045ca09e9c3206851336a2a05d35bbc812d3",
+      "balance_wei": "5147218028895114",
+      "balance_eth": "0.00514722",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "4760445756748182",
+          "k_amount": 0.004760445756748182,
+          "eth_eq_wei": "5147218028895114",
+          "eth_eq": 0.005147218028895114,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 234
+    },
+    {
+      "address": "0x2e1493555dbdb58bb61589fbee718286d7e690ba",
+      "balance_wei": "5108867026203446",
+      "balance_eth": "0.00510887",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "4724976525212681",
+          "k_amount": 0.004724976525212681,
+          "eth_eq_wei": "5108867026203446",
+          "eth_eq": 0.005108867026203446,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 235
+    },
+    {
+      "address": "0xfb421d25590d5b06924756ba9efdd4b0c454c0f9",
+      "balance_wei": "5052524587534797",
+      "balance_eth": "0.00505252",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "4672867770234880",
+          "k_amount": 0.00467286777023488,
+          "eth_eq_wei": "5052524587534797",
+          "eth_eq": 0.005052524587534797,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 236
+    },
+    {
+      "address": "0xa8d7b03f69ed4b26de7f81e4be16c79a20df6606",
+      "balance_wei": "4895208723427946",
+      "balance_eth": "0.00489521",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "4527372935247797",
+          "k_amount": 0.004527372935247797,
+          "eth_eq_wei": "4895208723427946",
+          "eth_eq": 0.004895208723427946,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 237
+    },
+    {
+      "address": "0x878bce522c077c62cb1ad1e488c65c0a2e58fe9b",
+      "balance_wei": "4736912145104832",
+      "balance_eth": "0.00473691",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "4380971078874951",
+          "k_amount": 0.004380971078874951,
+          "eth_eq_wei": "4736912145104832",
+          "eth_eq": 0.004736912145104832,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 238
+    },
+    {
+      "address": "0x8a2dfb8b3d7a05679305d86a46fae4fcbf657f74",
+      "balance_wei": "4720824705714463",
+      "balance_eth": "0.00472082",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "4366092481902197",
+          "k_amount": 0.004366092481902197,
+          "eth_eq_wei": "4720824705714463",
+          "eth_eq": 0.004720824705714463,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 239
+    },
+    {
+      "address": "0x777e36cc8269d346cf30d79852fb9384d5ebd73f",
+      "balance_wei": "4687027864956887",
+      "balance_eth": "0.00468703",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "4334835203451447",
+          "k_amount": 0.004334835203451447,
+          "eth_eq_wei": "4687027864956887",
+          "eth_eq": 0.004687027864956887,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 240
+    },
+    {
+      "address": "0x08e5c5ba165f89a46ef6f139a69fa07e217c917c",
+      "balance_wei": "4629233897002808",
+      "balance_eth": "0.00462923",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "4281383990006017",
+          "k_amount": 0.004281383990006017,
+          "eth_eq_wei": "4629233897002808",
+          "eth_eq": 0.004629233897002808,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 241
+    },
+    {
+      "address": "0x8ffb6f5821552ed950146d132e1e96cacba253d0",
+      "balance_wei": "3808815364413632",
+      "balance_eth": "0.00380882",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "3522613349186656",
+          "k_amount": 0.003522613349186656,
+          "eth_eq_wei": "3808815364413632",
+          "eth_eq": 0.003808815364413632,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 242
+    },
+    {
+      "address": "0xc6fe1dd2a94379af454b6f966dce066b49bc5a3a",
+      "balance_wei": "3600003163860034",
+      "balance_eth": "0.00360000",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "3329491715616375",
+          "k_amount": 0.003329491715616375,
+          "eth_eq_wei": "3600003163860034",
+          "eth_eq": 0.003600003163860034,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 243
+    },
+    {
+      "address": "0x20398cd70e7fbfdee2501929bf775cecefd927d4",
+      "balance_wei": "3581956765673481",
+      "balance_eth": "0.00358196",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "3312801359935016",
+          "k_amount": 0.003312801359935016,
+          "eth_eq_wei": "3581956765673481",
+          "eth_eq": 0.003581956765673481,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 244
+    },
+    {
+      "address": "0x8d54824bc340bd715ede3559cfda7aa25ffafb78",
+      "balance_wei": "3381848071459983",
+      "balance_eth": "0.00338185",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "3127729233806030",
+          "k_amount": 0.00312772923380603,
+          "eth_eq_wei": "3381848071459983",
+          "eth_eq": 0.003381848071459983,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 245
+    },
+    {
+      "address": "0x61c8ec356be297d2f6fc87745e47a224c6abab5a",
+      "balance_wei": "3361351817611749",
+      "balance_eth": "0.00336135",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "3108773109524269",
+          "k_amount": 0.003108773109524269,
+          "eth_eq_wei": "3361351817611749",
+          "eth_eq": 0.003361351817611749,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 246
+    },
+    {
+      "address": "0x6d1105ba1b4effb4073e99df2c8ff17ebffff0a8",
+      "balance_wei": "3236190770335222",
+      "balance_eth": "0.00323619",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "2993016914027417",
+          "k_amount": 0.002993016914027417,
+          "eth_eq_wei": "3236190770335222",
+          "eth_eq": 0.003236190770335222,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 247
+    },
+    {
+      "address": "0x678fb21b9736e6c7da9f7d37a77ab766bb2519c7",
+      "balance_wei": "3202945870287995",
+      "balance_eth": "0.00320295",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "2962270102356548",
+          "k_amount": 0.002962270102356548,
+          "eth_eq_wei": "3202945870287995",
+          "eth_eq": 0.003202945870287995,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 248
+    },
+    {
+      "address": "0x0bfd9fc73c82be0558f3a651f10a8bd8c784f45e",
+      "balance_wei": "2660677701968926",
+      "balance_eth": "0.00266068",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "2460749050323661",
+          "k_amount": 0.002460749050323661,
+          "eth_eq_wei": "2660677701968926",
+          "eth_eq": 0.002660677701968926,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 249
+    },
+    {
+      "address": "0x0acf1b98ae3a2084b729797116b0f5ad8d86a3ee",
+      "balance_wei": "2101561858381599",
+      "balance_eth": "0.00210156",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "1943646291086686",
+          "k_amount": 0.001943646291086686,
+          "eth_eq_wei": "2101561858381599",
+          "eth_eq": 0.002101561858381599,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 250
+    },
+    {
+      "address": "0xc7d3dcd422ee14a5a69e8232d5c59eefa7333898",
+      "balance_wei": "1864017833244252",
+      "balance_eth": "0.00186402",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "1723951799779368",
+          "k_amount": 0.001723951799779368,
+          "eth_eq_wei": "1864017833244252",
+          "eth_eq": 0.001864017833244252,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 251
+    },
+    {
+      "address": "0x1b4274e01a59618b25b6aa88c9636307b507ca89",
+      "balance_wei": "1862275324990749",
+      "balance_eth": "0.00186228",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "1722340227086134",
+          "k_amount": 0.001722340227086134,
+          "eth_eq_wei": "1862275324990749",
+          "eth_eq": 0.001862275324990749,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 252
+    },
+    {
+      "address": "0xeabc5cc2be1169849fa7470768b05cefaf6346cd",
+      "balance_wei": "1717182048138221",
+      "balance_eth": "0.00171718",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "1588149549666244",
+          "k_amount": 0.001588149549666244,
+          "eth_eq_wei": "1717182048138221",
+          "eth_eq": 0.001717182048138221,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 253
+    },
+    {
+      "address": "0x694eb1136add5150c350d10c0cd7dc18d9d3eb30",
+      "balance_wei": "1640826307914667",
+      "balance_eth": "0.00164083",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "1517531332697376",
+          "k_amount": 0.001517531332697376,
+          "eth_eq_wei": "1640826307914667",
+          "eth_eq": 0.001640826307914667,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 254
+    },
+    {
+      "address": "0xf00d0a7d9b36aef74fddfa60a608e4770993aff4",
+      "balance_wei": "1235889356540688",
+      "balance_eth": "0.00123589",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "1143022154905156",
+          "k_amount": 0.001143022154905156,
+          "eth_eq_wei": "1235889356540688",
+          "eth_eq": 0.001235889356540688,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 255
+    },
+    {
+      "address": "0x0779ad44e918c2e771cf91cc05b5f4d6cf2edb03",
+      "balance_wei": "1171208950828355",
+      "balance_eth": "0.00117121",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "1083201964427598",
+          "k_amount": 0.001083201964427598,
+          "eth_eq_wei": "1171208950828355",
+          "eth_eq": 0.001171208950828355,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 256
+    },
+    {
+      "address": "0x480c896bd09d0ba7d4522f9349d8e10ef36686f8",
+      "balance_wei": "1053313034881320",
+      "balance_eth": "0.00105331",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "974164983740678",
+          "k_amount": 0.000974164983740678,
+          "eth_eq_wei": "1053313034881320",
+          "eth_eq": 0.00105331303488132,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 257
+    },
+    {
+      "address": "0xf24f63889b16fb1a8edf0f0b4e84a661ba13e1cf",
+      "balance_wei": "1051377323061715",
+      "balance_eth": "0.00105138",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "972374725184270",
+          "k_amount": 0.00097237472518427,
+          "eth_eq_wei": "1051377323061715",
+          "eth_eq": 0.001051377323061715,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 258
+    },
+    {
+      "address": "0xa928b7626d2e32f1f1c2d346848f21694aa4e02d",
+      "balance_wei": "1050466572698659",
+      "balance_eth": "0.00105047",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "971532410427652",
+          "k_amount": 0.000971532410427652,
+          "eth_eq_wei": "1050466572698659",
+          "eth_eq": 0.001050466572698659,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 259
+    },
+    {
+      "address": "0x883ab2ae1bdda0531078b27dd45600193aba1f34",
+      "balance_wei": "1049941200459447",
+      "balance_eth": "0.00104994",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "971046515710772",
+          "k_amount": 0.000971046515710772,
+          "eth_eq_wei": "1049941200459447",
+          "eth_eq": 0.001049941200459447,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 260
+    },
+    {
+      "address": "0xd95d89877f39ed4e6e2fca06424b5cbd20ffce91",
+      "balance_wei": "1018037244116557",
+      "balance_eth": "0.00101804",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "941539886548496",
+          "k_amount": 0.000941539886548496,
+          "eth_eq_wei": "1018037244116557",
+          "eth_eq": 0.001018037244116557,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 261
+    },
+    {
+      "address": "0x923d99e83e0a492fda01095885bb75a14479b68f",
+      "balance_wei": "996699861660714",
+      "balance_eth": "0.00099670",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "921805837747413",
+          "k_amount": 0.000921805837747413,
+          "eth_eq_wei": "996699861660714",
+          "eth_eq": 0.000996699861660714,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 262
+    },
+    {
+      "address": "0x6fac5ca3a8a7f53385e87a1e7e683dd7486afc3b",
+      "balance_wei": "906154419673878",
+      "balance_eth": "0.00090615",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "838064161626565",
+          "k_amount": 0.000838064161626565,
+          "eth_eq_wei": "906154419673878",
+          "eth_eq": 0.000906154419673878,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 263
+    },
+    {
+      "address": "0x2d9f9f7862a8e435d890f487a01ea15eceb6c6ef",
+      "balance_wei": "842144753204548",
+      "balance_eth": "0.00084214",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "778864309701855",
+          "k_amount": 0.000778864309701855,
+          "eth_eq_wei": "842144753204548",
+          "eth_eq": 0.000842144753204548,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 264
+    },
+    {
+      "address": "0xd4e76294e4c02a4cc65f6ba92a7fb47a6e90f4dc",
+      "balance_wei": "819239861751407",
+      "balance_eth": "0.00081924",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "757680537669123",
+          "k_amount": 0.000757680537669123,
+          "eth_eq_wei": "819239861751407",
+          "eth_eq": 0.000819239861751407,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 265
+    },
+    {
+      "address": "0x1dcc2c07df920d1d1964fe020eb27b93819fb8e0",
+      "balance_wei": "759969962031207",
+      "balance_eth": "0.00075997",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "702864296926649",
+          "k_amount": 0.000702864296926649,
+          "eth_eq_wei": "759969962031207",
+          "eth_eq": 0.000759969962031207,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 266
+    },
+    {
+      "address": "0x915d26fa87d887e165d6573a77461f79a3de37ed",
+      "balance_wei": "590448792403795",
+      "balance_eth": "0.00059045",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "546081287522047",
+          "k_amount": 0.000546081287522047,
+          "eth_eq_wei": "590448792403795",
+          "eth_eq": 0.000590448792403795,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 267
+    },
+    {
+      "address": "0x3b3053b42ff03d0d7c43e7d2f1bd3a78b009160a",
+      "balance_wei": "563454542897293",
+      "balance_eth": "0.00056345",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "521115439990732",
+          "k_amount": 0.000521115439990732,
+          "eth_eq_wei": "563454542897293",
+          "eth_eq": 0.000563454542897293,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 268
+    },
+    {
+      "address": "0xad970b7c19fc4b05728109136655015de7feeb7e",
+      "balance_wei": "353534925616925",
+      "balance_eth": "0.00035353",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "326969603204596",
+          "k_amount": 0.000326969603204596,
+          "eth_eq_wei": "353534925616925",
+          "eth_eq": 0.000353534925616925,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 269
+    },
+    {
+      "address": "0x34e2f73d877a299bb0abbf71f6bb9eb47da1fe50",
+      "balance_wei": "343305661567653",
+      "balance_eth": "0.00034331",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "317508986544363",
+          "k_amount": 0.000317508986544363,
+          "eth_eq_wei": "343305661567653",
+          "eth_eq": 0.000343305661567653,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 270
+    },
+    {
+      "address": "0xcd1e8ae6d43ca88662ed69afe205fa2efc6a415f",
+      "balance_wei": "322434063333360",
+      "balance_eth": "0.00032243",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "298205722005495",
+          "k_amount": 0.000298205722005495,
+          "eth_eq_wei": "322434063333360",
+          "eth_eq": 0.00032243406333336,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 271
+    },
+    {
+      "address": "0x3a0cca1a832644b60730e5d4c27947c5de609d62",
+      "balance_wei": "278638715392517",
+      "balance_eth": "0.00027864",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "257701244227419",
+          "k_amount": 0.000257701244227419,
+          "eth_eq_wei": "278638715392517",
+          "eth_eq": 0.000278638715392517,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 272
+    },
+    {
+      "address": "0x9749fc1cc2c0a1a192a0bae614d9d4881c0e0bc8",
+      "balance_wei": "114036621239651",
+      "balance_eth": "0.00011404",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "105467681113700",
+          "k_amount": 0.0001054676811137,
+          "eth_eq_wei": "114036621239651",
+          "eth_eq": 0.000114036621239651,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 273
+    },
+    {
+      "address": "0x9aa51865ade30ff5a6b366e73d6b2077454e646a",
+      "balance_wei": "105358795992196",
+      "balance_eth": "0.00010536",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "97441925036312",
+          "k_amount": 9.7441925036312e-05,
+          "eth_eq_wei": "105358795992196",
+          "eth_eq": 0.000105358795992196,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 274
+    },
+    {
+      "address": "0x42b9df65b219b3dd36ff330a4dd8f327a6ada990",
+      "balance_wei": "105124407675652",
+      "balance_eth": "0.00010512",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "97225149127333",
+          "k_amount": 9.7225149127333e-05,
+          "eth_eq_wei": "105124407675652",
+          "eth_eq": 0.000105124407675652,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 275
+    },
+    {
+      "address": "0xedf7b675a2fe3c27efb263fb4c204a3f0fb17d46",
+      "balance_wei": "105012754461373",
+      "balance_eth": "0.00010501",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "97121885759207",
+          "k_amount": 9.7121885759207e-05,
+          "eth_eq_wei": "105012754461373",
+          "eth_eq": 0.000105012754461373,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 276
+    },
+    {
+      "address": "0xa46208360297bb909ee0f36bb6b83239ebf4c21d",
+      "balance_wei": "102870924113527",
+      "balance_eth": "0.00010287",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "95140996833609",
+          "k_amount": 9.5140996833609e-05,
+          "eth_eq_wei": "102870924113527",
+          "eth_eq": 0.000102870924113527,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 277
+    },
+    {
+      "address": "0x4c09d894399e3f8d6276c63fccf4d8e7e9a86268",
+      "balance_wei": "101794912220630",
+      "balance_eth": "0.00010179",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "94145838629508",
+          "k_amount": 9.4145838629508e-05,
+          "eth_eq_wei": "101794912220630",
+          "eth_eq": 0.00010179491222063,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 278
+    },
+    {
+      "address": "0x5290d046f674c2fc9c6cf9905a0d19b39eba0a76",
+      "balance_wei": "101617651611835",
+      "balance_eth": "0.00010162",
+      "keeperdao_items": [
+        {
+          "k_token": "kweth",
+          "k_address": "0xac19815455c2c438af8a8b4623f65f091364be10",
+          "k_amount_wei": "96546106316018",
+          "k_amount": 9.6546106316018e-05,
+          "eth_eq_wei": "101617651611835",
+          "eth_eq": 0.000101617651611835,
+          "underlying": "WETH",
+          "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+        }
+      ],
+      "rank": 279
+    },
+    {
+      "address": "0xc19355f5a4aaaf31aa865ce1264e1cffeb68c171",
+      "balance_wei": "101304555506871",
+      "balance_eth": "0.00010130",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "93692328301365",
+          "k_amount": 9.3692328301365e-05,
+          "eth_eq_wei": "101304555506871",
+          "eth_eq": 0.000101304555506871,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 280
+    },
+    {
+      "address": "0x099173acced65d93c5bb4506e0e3f81264047674",
+      "balance_wei": "75219454417539",
+      "balance_eth": "0.00007522",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "69567313954205",
+          "k_amount": 6.9567313954205e-05,
+          "eth_eq_wei": "75219454417539",
+          "eth_eq": 7.5219454417539e-05,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 281
+    },
+    {
+      "address": "0xf7801b408c5e3d352e9d67ee2774ae82800bc2d7",
+      "balance_wei": "50294976007035",
+      "balance_eth": "0.00005029",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "46515710773153",
+          "k_amount": 4.6515710773153e-05,
+          "eth_eq_wei": "50294976007035",
+          "eth_eq": 5.0294976007035e-05,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 282
+    },
+    {
+      "address": "0xa512e549d68f15a9f23c1df98970e684301ac1e7",
+      "balance_wei": "50225163230251",
+      "balance_eth": "0.00005023",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "46451143868246",
+          "k_amount": 4.6451143868246e-05,
+          "eth_eq_wei": "50225163230251",
+          "eth_eq": 5.0225163230251e-05,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 283
+    },
+    {
+      "address": "0x17080b589cdcbd10ebeaa24cb0096f4bb29eb52b",
+      "balance_wei": "40258467777184",
+      "balance_eth": "0.00004026",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "37233365873996",
+          "k_amount": 3.7233365873996e-05,
+          "eth_eq_wei": "40258467777184",
+          "eth_eq": 4.0258467777184e-05,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 284
+    },
+    {
+      "address": "0xe8c85e71cfd86556997a498095dca847029defd0",
+      "balance_wei": "37268830857896",
+      "balance_eth": "0.00003727",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "34468376260821",
+          "k_amount": 3.4468376260821e-05,
+          "eth_eq_wei": "37268830857896",
+          "eth_eq": 3.7268830857896e-05,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 285
+    },
+    {
+      "address": "0x8275a90029f67ea2f64ea9ba81b1c6903f0776b2",
+      "balance_wei": "36802448190586",
+      "balance_eth": "0.00003680",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "34037038521259",
+          "k_amount": 3.4037038521259e-05,
+          "eth_eq_wei": "36802448190586",
+          "eth_eq": 3.6802448190586e-05,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 286
+    },
+    {
+      "address": "0xc706c813aa7a67817983d0f5562057ef5bf38d54",
+      "balance_wei": "21622887765079",
+      "balance_eth": "0.00002162",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "19998100669540",
+          "k_amount": 1.999810066954e-05,
+          "eth_eq_wei": "21622887765079",
+          "eth_eq": 2.1622887765079e-05,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 287
+    },
+    {
+      "address": "0x18960c91688c5ca0767c7bf2c80df5e679648256",
+      "balance_wei": "15215623823110",
+      "balance_eth": "0.00001522",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "14072291373395",
+          "k_amount": 1.4072291373395e-05,
+          "eth_eq_wei": "15215623823110",
+          "eth_eq": 1.521562382311e-05,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 288
+    },
+    {
+      "address": "0x82e4d78c6c62d461251fa5a1d4deb9f0fe378e30",
+      "balance_wei": "13417484965000",
+      "balance_eth": "0.00001342",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "12409268270608",
+          "k_amount": 1.2409268270608e-05,
+          "eth_eq_wei": "13417484965000",
+          "eth_eq": 1.3417484965e-05,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 289
+    },
+    {
+      "address": "0xd97edc1d2fbb60a996461f9ce3c3777d35815e4e",
+      "balance_wei": "12724876440921",
+      "balance_eth": "0.00001272",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "11768703738266",
+          "k_amount": 1.1768703738266e-05,
+          "eth_eq_wei": "12724876440921",
+          "eth_eq": 1.2724876440921e-05,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 290
+    },
+    {
+      "address": "0x0383143d0d61112615c124b64994bfc7e94d8e4d",
+      "balance_wei": "8601727114433",
+      "balance_eth": "0.00000860",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "7955376110501",
+          "k_amount": 7.955376110501e-06,
+          "eth_eq_wei": "8601727114433",
+          "eth_eq": 8.601727114433e-06,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 291
+    },
+    {
+      "address": "0xc85c1a16b06a8db1880ba0f54a265752df429692",
+      "balance_wei": "6592111771185",
+      "balance_eth": "0.00000659",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "6096767289239",
+          "k_amount": 6.096767289239e-06,
+          "eth_eq_wei": "6592111771185",
+          "eth_eq": 6.592111771185e-06,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 292
+    },
+    {
+      "address": "0x7eca0c387b3d07d97f95e9ac3551f1760b8b6c54",
+      "balance_wei": "3182101431625",
+      "balance_eth": "0.00000318",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "2942991956565",
+          "k_amount": 2.942991956565e-06,
+          "eth_eq_wei": "3182101431625",
+          "eth_eq": 3.182101431625e-06,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 293
+    },
+    {
+      "address": "0xdd10664a1f77c915048908587e6961fbf9d0813e",
+      "balance_wei": "2928988817421",
+      "balance_eth": "0.00000293",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "2708898731156",
+          "k_amount": 2.708898731156e-06,
+          "eth_eq_wei": "2928988817421",
+          "eth_eq": 2.928988817421e-06,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 294
+    },
+    {
+      "address": "0x15b8a4acd82326c4a4cd98fbb6f7ad2fc3101b1f",
+      "balance_wei": "1286038951044",
+      "balance_eth": "0.00000129",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "1189403408432",
+          "k_amount": 1.189403408432e-06,
+          "eth_eq_wei": "1286038951044",
+          "eth_eq": 1.286038951044e-06,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 295
+    },
+    {
+      "address": "0x544d2d796e165f0d4c626d1d15667a469a7bffe0",
+      "balance_wei": "1142226539862",
+      "balance_eth": "0.00000114",
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "1056397349871",
+          "k_amount": 1.056397349871e-06,
+          "eth_eq_wei": "1142226539862",
+          "eth_eq": 1.142226539862e-06,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 296
+    }
+  ],
+  "meta": {
+    "pool": "0x35fFd6E268610E764fF6944d07760D0EFe5E40E5",
+    "keth": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+    "kweth": "0xac19815455c2c438af8a8b4623f65f091364be10",
+    "keth_rate": 1.081247070528776,
+    "kweth_rate": 1.0525297755583987,
+    "pool_eth_balance": 413.1274537438728,
+    "pool_weth_balance": 13.271006595845474,
+    "keth_supply": 382.08422940913573,
+    "kweth_supply": 12.608675691673241
+  }
+}

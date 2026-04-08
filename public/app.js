@@ -2870,6 +2870,26 @@ const EXCHANGES = {
     announceArgs: (amount) => ['0x0000000000000000000000000000000000000000', amount],
     announceCall: 'announceWithdraw',
   },
+  keeperdao: {
+    name: 'KeeperDAO / Rook',
+    desc: 'launched October 2020 as an on-chain liquidity underwriter backed by 3AC, Polychain and Pantera. Depositors earned yield from flash-loan fees and MEV arbitrage, receiving kTokens (kETH, kwETH) as LP shares. The project rebranded to Rook in late 2021 and wound down in 2022; the treasury was liquidated in April 2023 after a governance "rage quit". The LiquidityPoolV2 contract is still live and un-paused — current kETH holders receive ~1.08 ETH per kETH and kwETH holders ~1.05 WETH per kwETH, reflecting the final MEV yield accrued before shutdown.',
+    category: 'defi',
+    color: '#6366f1',
+    contract: '0x35fFd6E268610E764fF6944d07760D0EFe5E40E5',
+    deployed: 'October 2020',
+    // Withdrawal flow: per-kToken 2-step (approve + withdraw). Users may hold kETH
+    // and/or kwETH; each is rendered as a separate item in the claim modal.
+    // The LP pool signature is withdraw(address _to, address _kToken, uint256 _kTokenAmount).
+    // Balance file uses `keeperdao_items` array for per-item breakdown (see balance_source).
+    keeperdaoMulti: true,
+    noWalletCheck: true,
+    balanceAbi: 'function underlyingBalance(address _token, address _owner) view returns (uint256)',
+    balanceArgs: (user) => ['0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', user],
+    balanceCall: 'underlyingBalance',
+    balanceTransform: (result) => 0n,  // real balance comes from API keeperdao_items
+    withdrawAbi: 'function withdraw(address _to, address _kToken, uint256 _kTokenAmount)',
+    withdrawCall: 'withdraw',
+  },
 };
 
 // Per-tab state
@@ -3782,6 +3802,45 @@ async function checkUserBalances(overrideAddress) {
             }
           } else {
             html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">Bounty IDs not available. <a href="${etherscanAddr(cfg.contract)}#writeContract" target="_blank" rel="noopener noreferrer">Use Etherscan</a> to call killBounty with your bounty ID.</div>`;
+          }
+          html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
+        } else if (cfg.keeperdaoMulti) {
+          // KeeperDAO: per-kToken 2-step flow (approve kToken, then LP.withdraw).
+          // Users may hold kETH (→ ETH) and/or kwETH (→ WETH). Each item renders
+          // as its own inline row with a state-tracked Step 1/Step 2 button pair.
+          // State transition (approve → withdraw) is driven by allowance check on
+          // tab open (window._keeperdaoState[itemKey] = 'needs-approve' | 'needs-withdraw').
+          const kdItems = apiBalances[key]?.keeperdao_items || [];
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
+              </div>
+              <div class="claim-card-meta">
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Flow</span><span class="claim-card-meta-value">per kToken: <code class="inline-code">approve(pool, amount)</code> → <code class="inline-code">withdraw(user, kToken, amount)</code></span></div>
+              </div>`;
+          if (kdItems.length > 0) {
+            // Always render BOTH buttons per item; Step 2 starts disabled and
+            // gets enabled by the Step 1 handler via element.disabled = false.
+            // No re-rendering, no innerHTML rewrites — simpler + safer.
+            for (let ki = 0; ki < kdItems.length; ki++) {
+              const it = kdItems[ki];
+              const itemKey = key + '-' + esc(it.k_token) + '-' + ki;
+              html += `<div class="claim-row" style="margin:6px 16px;border-left:2px solid var(--accent);padding:8px 12px">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                  <span style="font-size:13px"><b>${esc(it.k_token)}</b> · ${fmtEth(it.k_amount)} ${esc(it.k_token)} <span style="color:var(--text2);font-size:12px">&rarr; ${fmtEth(it.eth_eq)} ${esc(it.underlying)}</span></span>
+                </div>
+                <div class="claim-card-actions" style="padding:0">
+                  <button class="claim-btn" id="approveBtn-${itemKey}" data-action="keeperdao-approve" data-key="${esc(key)}" data-item-idx="${ki}">Step 1: Approve ${esc(it.k_token)}</button>
+                  <button class="claim-btn" id="withdrawBtn-${itemKey}" data-action="keeperdao-withdraw" data-key="${esc(key)}" data-item-idx="${ki}" disabled style="opacity:0.35">Step 2: Withdraw ${esc(it.underlying)}</button>
+                </div>
+                <div class="claim-card-status" id="kdStatus-${itemKey}"></div>
+              </div>`;
+            }
+          } else {
+            html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">No kToken items detected for this address. <a href="${etherscanAddr(cfg.contract)}#readContract" target="_blank" rel="noopener noreferrer">Query underlyingBalance on Etherscan</a> if you believe this is wrong.</div>`;
           }
           html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
         } else if (cfg.switcheoWithdraw) {
@@ -5351,6 +5410,111 @@ async function killBounty(key, bountyId, btn) {
   }
 }
 
+// ─── KeeperDAO / Rook: per-kToken 2-step (approve kToken to LP, then LP.withdraw) ───
+//
+// Users hold kETH and/or kwETH. Each item in apiBalances[key].keeperdao_items
+// gets its own Step 1 + Step 2 button row. Both buttons are rendered upfront —
+// Step 2 starts disabled and is enabled via `.disabled = false` after Step 1
+// succeeds. No innerHTML rewriting, no element replacement.
+//
+// Step 1: kToken.approve(poolAddress, kAmount)  — so LP.burnFrom() is allowed
+// Step 2: pool.withdraw(user, kToken, kAmount)  — burns kToken, transfers underlying
+
+window._keeperdaoState = window._keeperdaoState || {};
+
+async function keeperdaoApprove(key, itemIdx) {
+  if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+
+  const cfg = EXCHANGES[key];
+  const items = (lastApiBalances && lastApiBalances[key] && lastApiBalances[key].keeperdao_items) || [];
+  const it = items[itemIdx];
+  if (!it) return;
+  const itemKey = key + '-' + it.k_token + '-' + itemIdx;
+  const btn = document.getElementById('approveBtn-' + itemKey);
+  const wBtn = document.getElementById('withdrawBtn-' + itemKey);
+  const statusEl = document.getElementById('kdStatus-' + itemKey);
+  if (!btn) return;
+
+  btn.disabled = true;
+  btn.textContent = 'Approving...';
+  btn.classList.add('pending');
+
+  try {
+    const kToken = new ethers.Contract(it.k_address, ['function approve(address,uint256) returns (bool)'], walletSigner);
+    const tx = await kToken.approve(cfg.contract, it.k_amount_wei);
+    btn.textContent = 'Pending...';
+    if (statusEl) statusEl.textContent = 'Approve tx: ' + tx.hash.slice(0, 22) + '...';
+    await tx.wait();
+    btn.textContent = 'Step 1: Approved';
+    btn.classList.remove('pending');
+    btn.style.opacity = '0.35';
+    window._keeperdaoState[itemKey] = 'needs-withdraw';
+    // Enable Step 2 button in place (it was rendered disabled upfront).
+    if (wBtn) { wBtn.disabled = false; wBtn.style.opacity = ''; }
+    if (statusEl) statusEl.textContent = 'Approved. Click Step 2 to withdraw.';
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Step 1: Approve ' + it.k_token;
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      if (statusEl) statusEl.textContent = 'Rejected';
+    } else {
+      if (statusEl) statusEl.textContent = 'Failed: ' + (e.reason || e.message || 'Unknown error');
+    }
+  }
+}
+
+async function keeperdaoWithdraw(key, itemIdx) {
+  if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+
+  const cfg = EXCHANGES[key];
+  const items = (lastApiBalances && lastApiBalances[key] && lastApiBalances[key].keeperdao_items) || [];
+  const it = items[itemIdx];
+  if (!it) return;
+  const itemKey = key + '-' + it.k_token + '-' + itemIdx;
+  const btn = document.getElementById('withdrawBtn-' + itemKey);
+  const statusEl = document.getElementById('kdStatus-' + itemKey);
+  if (!btn) return;
+
+  btn.disabled = true;
+  btn.textContent = 'Withdrawing...';
+  btn.classList.add('pending');
+
+  try {
+    const pool = new ethers.Contract(cfg.contract, ['function withdraw(address _to, address _kToken, uint256 _kTokenAmount)'], walletSigner);
+    logEvent('claim_started', { address: walletAddress, contract: key, extra: { item: it.k_token } });
+    const tx = await pool.withdraw(walletAddress, it.k_address, it.k_amount_wei);
+    btn.textContent = 'Pending...';
+    if (statusEl) statusEl.textContent = 'Withdraw tx: ' + tx.hash.slice(0, 22) + '...';
+    const receipt = await tx.wait();
+    btn.textContent = 'Done';
+    btn.classList.remove('pending');
+    btn.style.background = 'var(--green)';
+    btn.style.opacity = '0.7';
+    window._keeperdaoState[itemKey] = 'done';
+    logEvent('claim_confirmed', {
+      address: walletAddress,
+      contract: key,
+      amount_eth: parseFloat(it.eth_eq || 0),
+      tx_hash: tx.hash,
+      block_num: receipt.blockNumber,
+      extra: { item: it.k_token, underlying: it.underlying },
+    });
+    if (statusEl) statusEl.textContent = fmtEth(it.eth_eq) + ' ' + it.underlying + ' withdrawn to your wallet.';
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Step 2: Withdraw ' + it.underlying;
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      if (statusEl) statusEl.textContent = 'Rejected';
+    } else {
+      if (statusEl) statusEl.textContent = 'Failed: ' + (e.reason || e.message || 'Unknown error');
+    }
+  }
+}
+
 // ─── MoonCat Adoption Request Cancellation ───
 
 async function cancelMoonCatRequest(key, catIdHex, index) {
@@ -6203,15 +6367,14 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
       else if (_attempt === 0) await new Promise(r => setTimeout(r, 1500));
     } catch { if (_attempt === 0) await new Promise(r => setTimeout(r, 1500)); }
   }
-  // Fallback: use values baked into the page if API is unreachable
-  // Fallback: try static total.json file directly (served from CDN, no serverless)
-  if (!totalData) {
-    try {
-      var _fallbackResp = await fetch('/data/total.json');
-      if (_fallbackResp.ok) totalData = await _fallbackResp.json();
-    } catch(e) {}
-  }
-  if (!totalData) totalData = { total_eth: 163410, total_contract_eth: 164553, contract_count: 163, eth_claimed: 1273, peak_eth: 164905 };
+  // Fallback: use values baked into the page if API is unreachable.
+  // A prior commit had a second fallback that fetched /data/total.json, but
+  // that URL always 404'd in production (Vercel only serves public/; data/
+  // is bundled via includeFiles into API handlers, never served as a static
+  // asset). The fetch was dead code and has been removed. The hardcoded
+  // values below are the real last resort — update them when adding
+  // protocols (grep for this comment).
+  if (!totalData) totalData = { total_eth: 163836, total_contract_eth: 164979, contract_count: 164, eth_claimed: 1273, peak_eth: 165331 };
   try {
       var totalEthVal = Math.round(totalData.total_eth);
       const contractCount = totalData.contract_count || Object.keys(EXCHANGES).length;
@@ -6454,6 +6617,10 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     augurClaimShares(btn.dataset.key, btn.dataset.market, btn);
   } else if (action === 'kill-bounty') {
     killBounty(btn.dataset.key, parseInt(btn.dataset.bountyId), btn);
+  } else if (action === 'keeperdao-approve') {
+    keeperdaoApprove(btn.dataset.key, parseInt(btn.dataset.itemIdx));
+  } else if (action === 'keeperdao-withdraw') {
+    keeperdaoWithdraw(btn.dataset.key, parseInt(btn.dataset.itemIdx));
   } else if (action === 'cancel-mooncat') {
     cancelMoonCatRequest(btn.dataset.key, btn.dataset.catId, parseInt(btn.dataset.index));
   } else if (action === 'claim-ens-deed') {

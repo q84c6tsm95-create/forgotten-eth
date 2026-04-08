@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { rateLimit } from './_ratelimit.js';
+import { requireCloudflare, getClientIP } from './_security.js';
 import { sql } from '@vercel/postgres';
 
 // Sharded index: 256 prefix files (~200KB avg) + tiny meta.json
@@ -43,7 +44,9 @@ export default async function handler(req, res) {
     return errResp(405, { error: 'Method not allowed' });
   }
 
-  const ip = req.headers['cf-connecting-ip'] || req.headers['x-real-ip'] || req.headers['x-forwarded-for']?.split(',')[0]?.trim() || 'unknown';
+  if (!requireCloudflare(req, res)) return;
+
+  const ip = getClientIP(req) || 'unknown';
   const allowed = await rateLimit(ip, 'check', 200, 60);
   if (!allowed) {
     return errResp(429, { error: 'Rate limit exceeded. Try again in 1 minute.' });

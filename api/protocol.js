@@ -538,10 +538,20 @@ ${JSON.stringify({
 }
 
 export default async function handler(req, res) {
-  if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
+  // Error paths here serve HTML (SSR, not JSON) so we can't reuse the
+  // check.js errResp closure. Set no-store inline before each 4xx so
+  // Cloudflare doesn't edge-cache error HTML. See check.js errResp
+  // comment for the 2026-04-07 incident background.
+  if (req.method !== 'GET') {
+    res.setHeader('Cache-Control', 'private, no-store');
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
   const slug = req.query.slug;
-  if (!slug || !/^[a-z0-9-]+$/.test(slug)) return res.status(400).json({ error: 'Invalid slug' });
+  if (!slug || !/^[a-z0-9-]+$/.test(slug)) {
+    res.setHeader('Cache-Control', 'private, no-store');
+    return res.status(400).json({ error: 'Invalid slug' });
+  }
 
   // Slug-to-key aliases for cleaner URLs
   const SLUG_ALIASES = { 'ens': 'ens_old' };
@@ -550,12 +560,14 @@ export default async function handler(req, res) {
   const info = loadProtocolInfo();
   const protocol = info[key];
   if (!protocol) {
+    res.setHeader('Cache-Control', 'private, no-store');
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     return res.status(404).send('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Not Found — Forgotten ETH</title><style>body{font-family:-apple-system,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;background:#12111a;color:#d4d0de;text-align:center}a{color:#7ec8be}</style></head><body><div><h1>Protocol not found</h1><p style="margin-top:12px"><a href="/">Back to Forgotten ETH</a></p></div></body></html>');
   }
 
   const meta = loadMeta(key);
   if (!meta) {
+    res.setHeader('Cache-Control', 'private, no-store');
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     return res.status(404).send('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Not Found — Forgotten ETH</title><style>body{font-family:-apple-system,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;background:#12111a;color:#d4d0de;text-align:center}a{color:#7ec8be}</style></head><body><div><h1>Protocol data not found</h1><p style="margin-top:12px"><a href="/">Back to Forgotten ETH</a></p></div></body></html>');
   }

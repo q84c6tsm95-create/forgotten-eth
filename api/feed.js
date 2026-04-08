@@ -95,6 +95,9 @@ function buildRss(entries) {
 
 export default function handler(req, res) {
   if (req.method !== 'GET') {
+    // no-store on errors so Cloudflare doesn't edge-cache the 405 and serve
+    // it to other clients. See check.js errResp comment for background.
+    res.setHeader('Cache-Control', 'private, no-store');
     res.status(405).send('Method not allowed');
     return;
   }
@@ -108,6 +111,8 @@ export default function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.status(200).send(xml);
   } catch (e) {
-    res.status(500).json({ error: 'feed generation failed', message: e.message });
+    console.error('feed generation failed:', e.message);
+    res.setHeader('Cache-Control', 'private, no-store');
+    res.status(500).json({ error: 'feed generation failed' });
   }
 }
