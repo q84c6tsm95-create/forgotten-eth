@@ -4068,6 +4068,71 @@ async function claimETH(key) {
     btn.disabled = false;
     return;
   }
+
+  // ── Aave v1 click-time debt preflight ──────────────────────────────
+  // The result-card render trusts a missing _aaveV1DebtState as "no debt",
+  // which means a stale/failed/race-condition detection sends the user
+  // straight to a doomed redeem. Re-verify here before signing — it's the
+  // only place we can guarantee the check actually ran. If debt is found,
+  // populate state (so the next re-scan surfaces the multi-step Repay UI)
+  // and abort. ~373 ETH across ~597 holders is currently locked behind
+  // dust-debt positions this catches.
+  if (cfg.aaveV1Repay) {
+    try {
+      const lpAbi = [
+        'function getUserAccountData(address) view returns (uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)',
+        'function getUserReserveData(address,address) view returns (uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,bool)'
+      ];
+      const lp = new ethers.Contract(cfg.aaveV1Repay.lendingPool, lpAbi, walletProvider || walletSigner);
+      const acct = await lp.getUserAccountData(walletAddress);
+      const totalBorrowsETH = acct[2];
+      if (totalBorrowsETH > 0n) {
+        // Has outstanding debt — refuse the redeem and populate state for
+        // the next render pass so the multi-step UI surfaces.
+        const debts = {};
+        for (const [sym, info] of Object.entries(cfg.aaveV1Repay.tokens)) {
+          try {
+            const rd = await lp.getUserReserveData(info.addr, walletAddress);
+            const totalOwed = rd[1] + rd[6];
+            if (totalOwed > 0n) debts[sym] = { amount: totalOwed, decimals: info.decimals, addr: info.addr };
+          } catch {}
+        }
+        window._aaveV1DebtState = window._aaveV1DebtState || {};
+        window._aaveV1DebtState[key] = { hasDebt: Object.keys(debts).length > 0, debts };
+        const debtSummary = Object.entries(debts).map(([sym, d]) => {
+          const fmt = parseFloat(ethers.formatUnits(d.amount, d.decimals));
+          return fmt.toFixed(sym === 'WBTC' ? 6 : (sym === 'USDC' || sym === 'USDT') ? 2 : 4) + ' ' + sym;
+        }).join(', ') || 'unknown';
+        btn.disabled = false;
+        btn.textContent = 'Redeem aETH';
+        // Build the warning DOM safely — no innerHTML with interpolated values.
+        statusEl.textContent = '';
+        const warn = document.createElement('div');
+        warn.style.cssText = 'padding:12px;background:rgba(250,204,21,0.08);border:1px solid #facc15;border-radius:6px;margin-top:8px;color:#facc15;font-size:13px;line-height:1.5';
+        const title = document.createElement('b');
+        title.textContent = '⚠️ Outstanding debt blocks redeem.';
+        warn.appendChild(title);
+        warn.appendChild(document.createElement('br'));
+        warn.appendChild(document.createTextNode('You have '));
+        const debtSpan = document.createElement('strong');
+        debtSpan.textContent = debtSummary;
+        warn.appendChild(debtSpan);
+        warn.appendChild(document.createTextNode(' borrowed against this aETH. Aave v1 won\'t allow redemption until the debt is repaid.'));
+        warn.appendChild(document.createElement('br'));
+        warn.appendChild(document.createTextNode('Reconnect your wallet (or refresh the page) — the site will then show the multi-step Repay → Redeem flow.'));
+        statusEl.appendChild(warn);
+        logEvent('claim_failed', { address: walletAddress, contract: key, extra: { reason: 'preflight_debt_detected', debt_assets: Object.keys(debts) } });
+        return;
+      }
+    } catch (e) {
+      btn.disabled = false;
+      btn.textContent = 'Redeem aETH';
+      statusEl.textContent = 'Could not verify debt state — please refresh and try again.';
+      logEvent('claim_failed', { address: walletAddress, contract: key, extra: { reason: 'preflight_check_threw', err: (e.shortMessage || e.message || '?').slice(0, 100) } });
+      return;
+    }
+  }
+
   btn.textContent = 'Confirming...';
   btn.classList.add('pending');
   statusEl.textContent = 'Confirm in wallet...';
