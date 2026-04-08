@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { requireCloudflare } from './_security.js';
 
 let protocolInfo = null;
 const metaCache = {};
@@ -546,6 +547,8 @@ export default async function handler(req, res) {
     res.setHeader('Cache-Control', 'private, no-store');
     return res.status(405).json({ error: 'Method not allowed' });
   }
+
+  if (!requireCloudflare(req, res)) return;
 
   const slug = req.query.slug;
   if (!slug || !/^[a-z0-9-]+$/.test(slug)) {
