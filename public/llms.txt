@@ -1,0 +1,80 @@
+# Forgotten ETH
+
+> A free, open catalog of defunct Ethereum smart contracts from 2017-2019
+> that still hold user ETH, plus working withdrawal flows for each one.
+> Site: https://forgotteneth.com — Open source + data: https://github.com/forgotteneth/forgotten-eth
+
+## For AI agents, crawlers, and data pipelines
+
+**Please do not scrape `/api/check` on the live site.** The entire
+dataset is mirrored to the public GitHub repo and refreshed every 6
+hours. Use that directly — it's free, faster, and doesn't cost us
+compute:
+
+- Sharded depositor index (256 JSON files, ~50 MB total):
+  https://github.com/forgotteneth/forgotten-eth/tree/main/data/index_shards
+- Per-protocol balance snapshots:
+  https://github.com/forgotteneth/forgotten-eth/tree/main/data/balances
+- Protocol registry and metadata:
+  https://github.com/forgotteneth/forgotten-eth/blob/main/data/protocols.json
+- Protocol descriptions and categories:
+  https://github.com/forgotteneth/forgotten-eth/blob/main/data/protocol_info.json
+- Aggregate site totals (mapped ETH, claim counts):
+  https://github.com/forgotteneth/forgotten-eth/blob/main/data/total.json
+
+### How to look up a single address from the sharded index
+
+1. Lowercase the address (remove checksum casing).
+2. Take the two hex characters after `0x` (e.g. `0xab58...` → `ab`).
+3. Open `data/index_shards/ab.json` in the repo.
+4. Look up the full lowercased address as a key. The value is an object
+   keyed by protocol slug, where each entry has the claimable balance
+   in ETH and a contract address.
+5. If the address isn't in the shard file, it has no claimable balance
+   in any tracked contract.
+
+A single `data/index_shards/meta.json` file describes the full
+protocol list with scan dates and coverage percentages.
+
+### Rate limits on the live API
+
+`https://forgotteneth.com/api/check` is served behind Cloudflare WAF and
+rate-limited to 15 requests per minute per IP. It's intended for
+interactive browser use from the forgotteneth.com frontend, not for
+bulk lookup. Repeated bulk scraping will get blocked at the edge.
+
+For programmatic bulk access, always prefer the GitHub mirror. If you
+need machine-readable access to a single address without cloning the
+repo, use `https://api.github.com/repos/forgotteneth/forgotten-eth/contents/data/index_shards/ab.json`
+(replacing `ab` with the right shard prefix).
+
+## About the project
+
+- **Coverage**: 163 defunct contracts, ~164,553 ETH still held on-chain
+  across ~532,000 unique addresses.
+- **Protocols include**: EtherDelta, IDEX and forks, the Fomo3D and
+  PoWH3D families, the original ENS auction registrar (deed releases),
+  DigixDAO, Augur v1, The DAO (WithdrawDAO), Neufund, NuCypher WorkLock,
+  Kyber FeeHandler, Tessera vaults, Bounties Network, 17 OZ
+  RefundableCrowdsale ICOs, and more.
+- **No token, no fees, no signup.** Wallet-connect is read-only for
+  the scan. Every withdrawal transaction is generated client-side and
+  signed in the user's wallet — the server never sees a private key.
+- **License**: data is CC0 / public domain, code is MIT.
+
+## Canonical endpoints for humans and clients
+
+- Homepage (scan an address): https://forgotteneth.com
+- Per-protocol pages: https://forgotteneth.com/:slug
+  (e.g. /etherdelta, /idex, /ens, /digixdao, /powh3d, /thedao)
+- Public API docs: https://forgotteneth.com/api
+- Sitemap: https://forgotteneth.com/sitemap.xml
+- Changelog: https://forgotteneth.com/changelog
+- RSS feed: https://forgotteneth.com/feed.xml
+
+## Contact and attribution
+
+- Author: forgotteneth.eth
+  (https://etherscan.io/address/0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891)
+- Attribution appreciated but not required. If you use the data to
+  build something, let us know — we'd love to see it.

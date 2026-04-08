@@ -59,6 +59,16 @@ export default async function handler(req, res) {
 
   res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
   res.setHeader('X-Content-Type-Options', 'nosniff');
+  // Tell well-behaved scrapers/LLMs where to find the bulk data dump so
+  // they can stop hitting this endpoint per-address. See public/llms.txt
+  // for the full LLM-friendly spec. This is a hint, not enforcement —
+  // real bots ignore it, but agents like ChatGPT-User, PerplexityBot,
+  // Claude-Web, and GPTBot follow it.
+  res.setHeader(
+    'Link',
+    '<https://github.com/forgotteneth/forgotten-eth/tree/main/data/index_shards>; rel="alternate"; type="application/json"; title="Bulk sharded depositor index — use this for programmatic access", ' +
+    '<https://forgotteneth.com/llms.txt>; rel="describedby"; type="text/plain"; title="LLM-friendly site description"'
+  );
 
   const meta = loadMeta();
   const normalized = address.toLowerCase();

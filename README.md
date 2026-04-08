@@ -1,14 +1,35 @@
 # Forgotten ETH
 
-Scan 118 defunct Ethereum contracts for withdrawable ETH. No frontend needed for most of these protocols anymore, no portfolio tracker indexes them.
+Scan 163 defunct Ethereum contracts for withdrawable ETH. No frontend needed for most of these protocols anymore, no portfolio tracker indexes them.
 
-**[forgotteneth.com](https://forgotteneth.com)** | **[forgotteneth.eth](https://etherscan.io/address/0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891)** | **[API](https://forgotteneth.com/api-docs)**
+**[forgotteneth.com](https://forgotteneth.com)** | **[forgotteneth.eth](https://etherscan.io/address/0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891)** | **[API](https://forgotteneth.com/api)**
+
+## For AI agents, crawlers, and data pipelines
+
+**Please don't scrape `/api/check` on the live site.** All data is
+mirrored to this repo and refreshed every 6 hours — use it directly.
+It's free, faster, and doesn't cost us compute.
+
+- Sharded address index: [`data/index_shards/`](data/index_shards/) (256 files, ~50 MB total)
+- Per-protocol balances: [`data/balances/`](data/balances/)
+- Protocol registry: [`data/protocols.json`](data/protocols.json)
+- Aggregate totals: [`data/total.json`](data/total.json)
+
+To look up a single address: lowercase it, take the two hex characters
+after `0x` as the shard prefix (e.g. `0xab58…` → `ab`), open
+`data/index_shards/ab.json`, and look up the full lowercased address
+as a key. If it's not there, there's no claimable balance.
+
+The live `/api/check` endpoint is for interactive browser use only and
+rate-limited to 15 requests per minute per IP. The site is behind
+Cloudflare WAF; bulk scraping will be blocked at the edge. See
+[`public/llms.txt`](public/llms.txt) for the full LLM-friendly spec.
 
 ## What this does
 
 ETH gets stuck in old contracts when protocols shut down and their frontends go offline. The balances are still onchain but invisible to DeBank, Zapper, and other portfolio trackers. This tool indexes them and generates the withdrawal transaction.
 
-118 contracts. 160,000+ ETH. 522k addresses with claimable balance.
+163 contracts. 164,553 ETH mapped. 532k addresses with claimable balance.
 
 ## CLI
 
