@@ -1115,25 +1115,21 @@
   }
   /* ── Recently indexed box ── */
   .changelog {
-    max-width: 520px;
+    max-width: 440px;
     margin: 28px auto 0;
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 11px;
     text-align: left;
-    padding: 14px 20px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    background: color-mix(in srgb, var(--bg2) 40%, transparent);
   }
-  .changelog-title { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--text2); opacity: 0.45; margin-bottom: 10px; text-align: center; }
-  .changelog-entry { display: grid; grid-template-columns: 44px 1fr auto; align-items: baseline; gap: 14px; padding: 7px 0; border-bottom: 1px solid var(--border); }
+  .changelog-title { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--text2); opacity: 0.4; margin-bottom: 8px; text-align: center; }
+  .changelog-entry { display: grid; grid-template-columns: 40px 1fr auto; align-items: baseline; gap: 12px; padding: 5px 0; }
   .changelog-entry:last-child { border-bottom: none; }
-  .changelog-date { color: var(--text2); opacity: 0.5; font-size: 11px; }
+  .changelog-date { color: var(--text2); opacity: 0.5; font-size: 10px; }
   .changelog-name { font-weight: 400; color: var(--text2); letter-spacing: 0.2px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .changelog-name a { color: var(--text2); text-decoration: none; transition: color 150ms ease; }
   .changelog-name a:hover { color: var(--accent); }
   .changelog-desc { color: var(--text2); font-size: 11px; margin-top: 2px; }
-  .changelog-tag { font-size: 9px; padding: 2px 7px; border-radius: 3px; background: var(--accent-glow); color: var(--accent); font-weight: 600; letter-spacing: 0.3px; justify-self: end; }
+  .changelog-tag { font-size: 9px; padding: 1px 6px; border-radius: 3px; background: var(--accent-glow); color: var(--accent); font-weight: 600; letter-spacing: 0.3px; justify-self: end; }
 
   @media (max-width: 480px) {
     .header h1 { font-size: 28px; }
@@ -1270,12 +1266,7 @@
       <div class="changelog-name"><a href="/changelog">17 OZ refund-vault ICOs</a></div>
       <span class="changelog-tag">+201 ETH</span>
     </div>
-    <div class="changelog-entry">
-      <span class="changelog-date">Apr 5</span>
-      <div class="changelog-name"><a href="/ethfinex">Ethfinex Trustless</a></div>
-      <span class="changelog-tag">+1,032 ETH</span>
-    </div>
-    <div style="text-align:center;margin-top:12px"><a href="/changelog" style="color:var(--accent);font-size:11px;font-family:var(--font-mono);text-decoration:none;opacity:0.7">view full changelog &rarr;</a></div>
+    <div style="text-align:center;margin-top:10px"><a href="/changelog" style="color:var(--accent);font-size:10px;font-family:var(--font-mono);text-decoration:none;opacity:0.7">view full changelog &rarr;</a></div>
   </div>
 
   <div class="explorer-toggle-wrap">
