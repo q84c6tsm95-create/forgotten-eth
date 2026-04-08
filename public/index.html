@@ -1115,22 +1115,25 @@
   }
   /* ── Recently indexed box ── */
   .changelog {
-    max-width: 560px;
+    max-width: 520px;
     margin: 28px auto 0;
     font-family: var(--font-mono);
     font-size: 12px;
     text-align: left;
+    padding: 14px 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--bg2) 40%, transparent);
   }
-  .changelog-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text2); opacity: 0.4; margin-bottom: 12px; text-align: center; }
-  .changelog-entry { display: flex; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+  .changelog-title { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--text2); opacity: 0.45; margin-bottom: 10px; text-align: center; }
+  .changelog-entry { display: grid; grid-template-columns: 44px 1fr auto; align-items: baseline; gap: 14px; padding: 7px 0; border-bottom: 1px solid var(--border); }
   .changelog-entry:last-child { border-bottom: none; }
-  .changelog-date { color: var(--text2); opacity: 0.5; font-size: 11px; min-width: 52px; flex-shrink: 0; padding-top: 1px; }
-  .changelog-body { flex: 1; }
-  .changelog-name { font-weight: 400; color: var(--text2); letter-spacing: 0.2px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+  .changelog-date { color: var(--text2); opacity: 0.5; font-size: 11px; }
+  .changelog-name { font-weight: 400; color: var(--text2); letter-spacing: 0.2px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .changelog-name a { color: var(--text2); text-decoration: none; transition: color 150ms ease; }
   .changelog-name a:hover { color: var(--accent); }
   .changelog-desc { color: var(--text2); font-size: 11px; margin-top: 2px; }
-  .changelog-tag { display: inline-block; font-size: 9px; padding: 1px 6px; border-radius: 3px; background: var(--accent-glow); color: var(--accent); font-weight: 600; flex-shrink: 0; }
+  .changelog-tag { font-size: 9px; padding: 2px 7px; border-radius: 3px; background: var(--accent-glow); color: var(--accent); font-weight: 600; letter-spacing: 0.3px; justify-self: end; }
 
   @media (max-width: 480px) {
     .header h1 { font-size: 28px; }
@@ -1254,27 +1257,23 @@
     <div class="changelog-title">Changelog</div>
     <div class="changelog-entry">
       <span class="changelog-date">Apr 8</span>
-      <div class="changelog-body">
-        <div class="changelog-name"><a href="/keeperdao">KeeperDAO / Rook</a> <span class="changelog-tag">+426 ETH</span></div>
-      </div>
+      <div class="changelog-name"><a href="/keeperdao">KeeperDAO / Rook</a></div>
+      <span class="changelog-tag">+426 ETH</span>
     </div>
     <div class="changelog-entry">
       <span class="changelog-date">Apr 7</span>
-      <div class="changelog-body">
-        <div class="changelog-name">5 MasterChef WETH farms <span class="changelog-tag">+76 WETH</span></div>
-      </div>
+      <div class="changelog-name">5 MasterChef WETH farms</div>
+      <span class="changelog-tag">+76 WETH</span>
     </div>
     <div class="changelog-entry">
       <span class="changelog-date">Apr 7</span>
-      <div class="changelog-body">
-        <div class="changelog-name"><a href="/changelog">17 OZ refund-vault ICOs</a> <span class="changelog-tag">+201 ETH</span></div>
-      </div>
+      <div class="changelog-name"><a href="/changelog">17 OZ refund-vault ICOs</a></div>
+      <span class="changelog-tag">+201 ETH</span>
     </div>
     <div class="changelog-entry">
       <span class="changelog-date">Apr 5</span>
-      <div class="changelog-body">
-        <div class="changelog-name"><a href="/ethfinex">Ethfinex Trustless</a> <span class="changelog-tag">+1,032 ETH</span></div>
-      </div>
+      <div class="changelog-name"><a href="/ethfinex">Ethfinex Trustless</a></div>
+      <span class="changelog-tag">+1,032 ETH</span>
     </div>
     <div style="text-align:center;margin-top:12px"><a href="/changelog" style="color:var(--accent);font-size:11px;font-family:var(--font-mono);text-decoration:none;opacity:0.7">view full changelog &rarr;</a></div>
   </div>
