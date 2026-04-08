@@ -64,9 +64,12 @@ export default async function handler(req, res) {
   // for the full LLM-friendly spec. This is a hint, not enforcement —
   // real bots ignore it, but agents like ChatGPT-User, PerplexityBot,
   // Claude-Web, and GPTBot follow it.
+  // HTTP headers must be latin-1 / ASCII only — no em-dashes, no unicode.
+  // (Learned the hard way: U+2014 in the title string made Node throw from
+  // setHeader and 500 every /api/check response.)
   res.setHeader(
     'Link',
-    '<https://github.com/forgotteneth/forgotten-eth/tree/main/data/index_shards>; rel="alternate"; type="application/json"; title="Bulk sharded depositor index — use this for programmatic access", ' +
+    '<https://github.com/forgotteneth/forgotten-eth/tree/main/data/index_shards>; rel="alternate"; type="application/json"; title="Bulk sharded depositor index for programmatic access", ' +
     '<https://forgotteneth.com/llms.txt>; rel="describedby"; type="text/plain"; title="LLM-friendly site description"'
   );
 
