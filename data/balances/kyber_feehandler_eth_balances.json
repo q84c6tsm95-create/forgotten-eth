@@ -1,9 +1,9 @@
 {
   "contract": "0xd3d2b5643e506c6d9b7099e9116d7aaa941114fe",
   "contract_eth_balance": 88.81228,
-  "total_eth_in_balances": 22.705428,
-  "addresses_with_balance": 1601,
-  "coverage_pct": 25.57,
+  "total_eth_in_balances": 62.479074,
+  "addresses_with_balance": 1613,
+  "coverage_pct": 70.35,
   "scan_date": "2026-03-28",
   "distribution": {
     "0.1-1 ETH": {
@@ -16,6 +16,26 @@
     }
   },
   "balances": [
+    {
+      "address": "0xde63aef60307655405835da74ba02ce4db1a42fb",
+      "balance_eth": 35.144151,
+      "balance_wei": "35144151170276514249",
+      "claim_types": [
+        "platform_fee"
+      ],
+      "pending_integration": true,
+      "pending_reason": "kyber_platform_fee"
+    },
+    {
+      "address": "0x54ff3ebb350e1261d304e46bb97ea399ee24b49b",
+      "balance_eth": 3.197633,
+      "balance_wei": "3197633211814963237",
+      "claim_types": [
+        "reserve_rebate"
+      ],
+      "pending_integration": true,
+      "pending_reason": "kyber_reserve_rebate"
+    },
     {
       "address": "0x2bde3b9c0129be4689e245ba689b9b0ae4ac666d",
       "balance_eth": "1.953433",
@@ -35,6 +55,16 @@
       ],
       "balance_wei": "1953433000000000000",
       "rank": 1
+    },
+    {
+      "address": "0x4d37f28d2db99e8d35a6c725a5f1749a085850a3",
+      "balance_eth": 0.727853,
+      "balance_wei": "727853034605574061",
+      "claim_types": [
+        "platform_fee"
+      ],
+      "pending_integration": true,
+      "pending_reason": "kyber_platform_fee"
     },
     {
       "address": "0xcd36c2161d7e3b20577264641ec6a045b2da9a84",
@@ -83,6 +113,23 @@
       ],
       "balance_wei": "663709000000000128",
       "rank": 2
+    },
+    {
+      "address": "0xf1aa99c69715f423086008eb9d06dc1e35cc504d",
+      "balance_eth": 0.633118,
+      "epoch_details": [
+        {
+          "epoch": 17,
+          "eth": 0.450121
+        }
+      ],
+      "balance_wei": "450121000000000000",
+      "rank": 6,
+      "claim_types": [
+        "platform_fee"
+      ],
+      "pending_integration": true,
+      "pending_reason": "kyber_platform_fee"
     },
     {
       "address": "0x7901f3d88a11529647bb558ea02999645f8f1c89",
@@ -185,16 +232,14 @@
       "rank": 5
     },
     {
-      "address": "0xf1aa99c69715f423086008eb9d06dc1e35cc504d",
-      "balance_eth": "0.450121",
-      "epoch_details": [
-        {
-          "epoch": 17,
-          "eth": 0.450121
-        }
+      "address": "0xc6ac8c45ff4afb3d848c3365c90a94c735c6809c",
+      "balance_eth": 0.327468,
+      "balance_wei": "327467754192395957",
+      "claim_types": [
+        "platform_fee"
       ],
-      "balance_wei": "450121000000000000",
-      "rank": 6
+      "pending_integration": true,
+      "pending_reason": "kyber_platform_fee"
     },
     {
       "address": "0x0a81d78ce5ecb3d39cca9842af76c90ab5b8faec",
@@ -807,6 +852,16 @@
       ],
       "balance_wei": "146705000000000000",
       "rank": 27
+    },
+    {
+      "address": "0x6ca94bdee70c7f5011aaced0ac97af01415c46fe",
+      "balance_eth": 0.14551,
+      "balance_wei": "145510380935904693",
+      "claim_types": [
+        "platform_fee"
+      ],
+      "pending_integration": true,
+      "pending_reason": "kyber_platform_fee"
     },
     {
       "address": "0x7604735e4704c0521ecd5c48e7003ba1a7809bde",
@@ -6151,6 +6206,16 @@
       ],
       "balance_wei": "10235000000000000",
       "rank": 328
+    },
+    {
+      "address": "0xf3835cfa207b5b9b87f2e20ae8a6bcd179bf8404",
+      "balance_eth": 0.010198,
+      "balance_wei": "10197627693600302",
+      "claim_types": [
+        "reserve_rebate"
+      ],
+      "pending_integration": true,
+      "pending_reason": "kyber_reserve_rebate"
     },
     {
       "address": "0x9691b80213c660588b78fc1f7f59f9be99d54502",
@@ -15941,6 +16006,16 @@
       "rank": 1048
     },
     {
+      "address": "0xb21579a8956bde929b08c1bb8331ba081348ecb7",
+      "balance_eth": 0.001353,
+      "balance_wei": "1352987123390715",
+      "claim_types": [
+        "reserve_rebate"
+      ],
+      "pending_integration": true,
+      "pending_reason": "kyber_reserve_rebate"
+    },
+    {
       "address": "0xc686ebc3ba57316af6db031140650bc5737b7a1e",
       "balance_eth": "0.00135",
       "epoch_details": [
@@ -22895,6 +22970,16 @@
       ],
       "balance_wei": "5000000000000",
       "rank": 1601
+    },
+    {
+      "address": "0x4420f4efa831d9fa76109c6fc9378e8759d365df",
+      "balance_eth": 0.000001,
+      "balance_wei": "999999999999",
+      "claim_types": [
+        "platform_fee"
+      ],
+      "pending_integration": true,
+      "pending_reason": "kyber_platform_fee"
     }
   ]
 }
