@@ -4,6 +4,7 @@
 
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { requireCloudflare } from './_security.js';
 
 const SITE_URL = 'https://forgotteneth.com';
 
@@ -101,6 +102,8 @@ export default function handler(req, res) {
     res.status(405).send('Method not allowed');
     return;
   }
+  if (!requireCloudflare(req, res)) return;
+
   try {
     const path = join(process.cwd(), 'public', 'changelog.html');
     const html = readFileSync(path, 'utf-8');

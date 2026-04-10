@@ -87,8 +87,9 @@ function renderPage(slug, key, info, meta) {
   const title = seo.title || `${info.name} - Forgotten ETH | ${fmtEth(meta.total_eth)} ETH Unclaimed`;
   const descShort = seo.metaDesc || (info.desc ? info.desc.slice(0, 155).replace(/["\n]/g, ' ') + '...' : `${fmtEth(meta.total_eth)} ETH stuck in ${info.name}`);
   const scanDate = meta.scan_date ? meta.scan_date.replace(/\s\d{2}:\d{2}:\d{2}\s*UTC$/, '') : '';
-  const tvlJson = meta.tvl ? JSON.stringify(meta.tvl) : 'null';
-  const activityJson = meta.activity ? JSON.stringify(meta.activity) : 'null';
+  // Escape </ sequences to prevent script tag breakout (JSON.stringify doesn't)
+  const tvlJson = (meta.tvl ? JSON.stringify(meta.tvl) : 'null').replace(/<\//g, '<\\/');
+  const activityJson = (meta.activity ? JSON.stringify(meta.activity) : 'null').replace(/<\//g, '<\\/');
 
   // Use the exact same CSS variables and font as the main page
   return `<!DOCTYPE html>

@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { requireCloudflare } from './_security.js';
 
 let protocolInfo = null;
 
@@ -12,6 +13,8 @@ function loadProtocolInfo() {
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'GET only' });
+
+  if (!requireCloudflare(req, res)) return;
 
   const info = loadProtocolInfo();
   const base = 'https://forgotteneth.com';

@@ -82,6 +82,7 @@
       "includeFiles": "public/changelog.html"
     },
     "api/dune-webhook.js": {
+      "maxDuration": 15,
       "includeFiles": "{data/protocols.json,data/withdrawal_events.json}"
     },
     "api/quick-scan.js": {
