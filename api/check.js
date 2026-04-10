@@ -121,6 +121,7 @@ export default async function handler(req, res) {
       let epochs = typeof val === 'object' && val.ep ? val.ep : null;
       let augurClaims = typeof val === 'object' && val.ac ? val.ac : null;
       let keeperdaoItems = typeof val === 'object' && val.kd ? val.kd : null;
+      let trancheDetails = typeof val === 'object' && val.tr ? val.tr : null;
 
       if (itemsClaimed && itemsClaimed.size > 0) {
         if (deeds) {
@@ -157,6 +158,7 @@ export default async function handler(req, res) {
         ...(epochs ? { epoch_details: epochs } : {}),
         ...(augurClaims ? { augur_claims: augurClaims } : {}),
         ...(keeperdaoItems ? { keeperdao_items: keeperdaoItems } : {}),
+        ...(trancheDetails ? { tranche_details: trancheDetails } : {}),
       };
     }
   }

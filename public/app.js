@@ -2925,8 +2925,8 @@ const EXCHANGES = {
     contract: '0xb9ed94c6d594b2517c4296e24a8c517ff133fb6d',
     deployed: 'August 2021',
     noWalletCheck: true,
+    hegicMulti: true,
     withdrawAbi: 'function withdrawWithoutHedge(uint256 trancheID) returns (uint256)',
-    withdrawArgs: (amount, extra) => [extra?.trancheId || 0],
     withdrawCall: 'withdrawWithoutHedge',
   },
 };
@@ -3846,6 +3846,31 @@ async function checkUserBalances(overrideAddress) {
             }
           } else {
             html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">Bounty IDs not available. <a href="${etherscanAddr(cfg.contract)}#writeContract" target="_blank" rel="noopener noreferrer">Use Etherscan</a> to call killBounty with your bounty ID.</div>`;
+          }
+          html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
+        } else if (cfg.hegicMulti) {
+          // Hegic V1: per-tranche withdrawWithoutHedge buttons
+          const trancheDetails = apiBalances[key]?.tranche_details || [];
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
+              </div>
+              <div class="claim-card-meta">
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">withdrawWithoutHedge(trancheID) per tranche</span></div>
+              </div>`;
+          if (trancheDetails.length > 0) {
+            for (const td of trancheDetails) {
+              const tdEth = td.eth ? ' · ' + fmtEth(td.eth) + ' ETH' : '';
+              html += `<div class="claim-row" style="margin:4px 16px;border-left:2px solid var(--accent);padding:6px 12px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:13px">Tranche #${esc(String(td.id))}<span style="color:var(--text2);font-size:12px">${tdEth}</span></span>
+                <button class="claim-btn" data-action="hegic-withdraw" data-key="${key}" data-tranche-id="${td.id}">Withdraw</button>
+              </div>`;
+            }
+          } else {
+            html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">Tranche IDs not available. <a href="${etherscanAddr(cfg.contract)}#writeContract" target="_blank" rel="noopener noreferrer">Use Etherscan</a> to call withdrawWithoutHedge with your tranche ID.</div>`;
           }
           html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
         } else if (cfg.keeperdaoMulti) {
@@ -5519,6 +5544,42 @@ async function killBounty(key, bountyId, btn) {
   }
 }
 
+// ─── Hegic V1 Call: per-tranche withdrawWithoutHedge ───
+
+async function hegicWithdrawTranche(key, trancheId, btn) {
+  if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Withdrawing...';
+  btn.classList.add('pending');
+  var statusEl = document.getElementById('claimStatus-' + key);
+
+  try {
+    var contract = new ethers.Contract(EXCHANGES[key].contract, ['function withdrawWithoutHedge(uint256 trancheID) returns (uint256)'], walletSigner);
+    logEvent('claim_started', { address: walletAddress, contract: key });
+    var tx = await contract.withdrawWithoutHedge(trancheId);
+    btn.textContent = 'Pending...';
+    if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
+    var receipt = await tx.wait();
+    btn.textContent = 'Done';
+    btn.classList.remove('pending');
+    btn.style.background = 'var(--green)';
+    btn.style.opacity = '0.7';
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)), tx_hash: tx.hash, block_num: receipt.blockNumber });
+    if (statusEl) statusEl.textContent = 'Tranche #' + trancheId + ' withdrawn. WETH returned to your wallet.';
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Withdraw';
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      if (statusEl) statusEl.textContent = 'Rejected';
+    } else {
+      if (statusEl) statusEl.textContent = 'Failed: ' + (e.reason || e.message || 'Unknown error');
+    }
+  }
+}
+
 // ─── KeeperDAO / Rook: per-kToken 2-step (approve kToken to LP, then LP.withdraw) ───
 //
 // Users hold kETH and/or kwETH. Each item in apiBalances[key].keeperdao_items
@@ -6738,6 +6799,8 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     augurClaimShares(btn.dataset.key, btn.dataset.market, btn);
   } else if (action === 'kill-bounty') {
     killBounty(btn.dataset.key, parseInt(btn.dataset.bountyId), btn);
+  } else if (action === 'hegic-withdraw') {
+    hegicWithdrawTranche(btn.dataset.key, parseInt(btn.dataset.trancheId), btn);
   } else if (action === 'keeperdao-approve') {
     keeperdaoApprove(btn.dataset.key, parseInt(btn.dataset.itemIdx));
   } else if (action === 'keeperdao-withdraw') {

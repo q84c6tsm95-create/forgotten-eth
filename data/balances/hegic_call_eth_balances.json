@@ -4,155 +4,235 @@
   "total_eth_in_balances": 80.54849218,
   "addresses_with_balance": 18,
   "coverage_pct": 100.0,
-  "scan_date": "2026-04-10 10:01:28 UTC",
+  "scan_date": "2026-04-10 12:23:01 UTC",
   "balance_source": "weth",
-  "description": "Hegic CALL options v1 \u2014 LP tranches. withdraw(trancheID) or withdrawWithoutHedge(trancheID). All lockups expired.",
+  "description": "Hegic CALL options v1 \u2014 LP tranches. withdrawWithoutHedge(trancheID) per ERC-721 tranche.",
   "distribution": {},
   "balances": [
     {
       "address": "0xf15968a096fc8f47650001585d23bee819b5affb",
       "balance_wei": "77733709559185082360",
       "balance_eth": 77.73370955918509,
-      "tranche_ids": [
-        0,
-        1,
-        32
+      "tranche_details": [
+        {
+          "id": 0,
+          "eth": 0.04552115,
+          "hedged": false
+        },
+        {
+          "id": 1,
+          "eth": 5.57685325,
+          "hedged": false
+        },
+        {
+          "id": 32,
+          "eth": 72.11133516,
+          "hedged": false
+        }
       ]
     },
     {
       "address": "0x114f9008abfbf04f5e536e044b6d544d3c238310",
       "balance_wei": "1098899817213942475",
       "balance_eth": 1.0988998172139426,
-      "tranche_ids": [
-        66
+      "tranche_details": [
+        {
+          "id": 66,
+          "eth": 1.09889982,
+          "hedged": false
+        }
       ]
     },
     {
       "address": "0xb98ece8a010daa74720281bf147bb1ce7209fcbc",
       "balance_wei": "511998437623416877",
       "balance_eth": 0.5119984376234169,
-      "tranche_ids": [
-        57
+      "tranche_details": [
+        {
+          "id": 57,
+          "eth": 0.51199844,
+          "hedged": false
+        }
       ]
     },
     {
       "address": "0x9e9ddaae1bcfcb13f4f1720b561fed7eb0ad03e0",
       "balance_wei": "511985707297321943",
       "balance_eth": 0.511985707297322,
-      "tranche_ids": [
-        47
+      "tranche_details": [
+        {
+          "id": 47,
+          "eth": 0.51198571,
+          "hedged": false
+        }
       ]
     },
     {
       "address": "0xeb9d7174317679e7c49c4c7c1b0ad08033c43997",
       "balance_wei": "384985578961896369",
       "balance_eth": 0.3849855789618964,
-      "tranche_ids": [
-        23
+      "tranche_details": [
+        {
+          "id": 23,
+          "eth": 0.38498558,
+          "hedged": false
+        }
       ]
     },
     {
       "address": "0x039ece9148c7c04f5913bfa6dac5dc0eff3b4cae",
       "balance_wei": "148758271084774463",
       "balance_eth": 0.14875827108477446,
-      "tranche_ids": [
-        6
+      "tranche_details": [
+        {
+          "id": 6,
+          "eth": 0.14875827,
+          "hedged": true
+        }
       ]
     },
     {
       "address": "0xa6e3475e2d4a9937b61be131407598ed188b54f3",
       "balance_wei": "75732414138451253",
       "balance_eth": 0.07573241413845125,
-      "tranche_ids": [
-        41
+      "tranche_details": [
+        {
+          "id": 41,
+          "eth": 0.07573241,
+          "hedged": true
+        }
       ]
     },
     {
       "address": "0xf35bb0619b0d78613c42dbc9e44d535749649dcb",
       "balance_wei": "30553271685457155",
       "balance_eth": 0.030553271685457156,
-      "tranche_ids": [
-        60
+      "tranche_details": [
+        {
+          "id": 60,
+          "eth": 0.03055327,
+          "hedged": true
+        }
       ]
     },
     {
       "address": "0x1c053ccbca2784b8b5eea4b51eb6ad9cb10a54b8",
       "balance_wei": "22721715341792641",
       "balance_eth": 0.02272171534179264,
-      "tranche_ids": [
-        43
+      "tranche_details": [
+        {
+          "id": 43,
+          "eth": 0.02272172,
+          "hedged": true
+        }
       ]
     },
     {
       "address": "0x01d094da0858f6c255cc3d6113dc2c205b965b28",
       "balance_wei": "12215001460723576",
       "balance_eth": 0.012215001460723575,
-      "tranche_ids": [
-        70
+      "tranche_details": [
+        {
+          "id": 70,
+          "eth": 0.012215,
+          "hedged": false
+        }
       ]
     },
     {
       "address": "0xf045474ba3466283ebb97904df3fb22b14271ca8",
       "balance_wei": "7583568956720147",
       "balance_eth": 0.007583568956720147,
-      "tranche_ids": [
-        49
+      "tranche_details": [
+        {
+          "id": 49,
+          "eth": 0.00758357,
+          "hedged": true
+        }
       ]
     },
     {
       "address": "0xeb1bcb9dffb7839df1627f4b66e58904a228856d",
       "balance_wei": "5111126452393238",
       "balance_eth": 0.005111126452393238,
-      "tranche_ids": [
-        65
+      "tranche_details": [
+        {
+          "id": 65,
+          "eth": 0.00511113,
+          "hedged": false
+        }
       ]
     },
     {
       "address": "0xeea82a8f223bb4905ff4519cbd0560961d23ad97",
       "balance_wei": "2347460886989230",
       "balance_eth": 0.00234746088698923,
-      "tranche_ids": [
-        68
+      "tranche_details": [
+        {
+          "id": 68,
+          "eth": 0.00234746,
+          "hedged": true
+        }
       ]
     },
     {
       "address": "0x9be620d27b4180e4ad09885ed46c60be88b9af55",
       "balance_wei": "1363183454492122",
       "balance_eth": 0.001363183454492122,
-      "tranche_ids": [
-        42
+      "tranche_details": [
+        {
+          "id": 42,
+          "eth": 0.00136318,
+          "hedged": true
+        }
       ]
     },
     {
       "address": "0x98098214ad5b1b08cc9d94e32f056e9a0de18110",
       "balance_wei": "302668063999751",
       "balance_eth": 0.000302668063999751,
-      "tranche_ids": [
-        38
+      "tranche_details": [
+        {
+          "id": 38,
+          "eth": 0.00030267,
+          "hedged": true
+        }
       ]
     },
     {
       "address": "0x60952c16425811d65cfa5ec7e4e086d71cd5dc46",
       "balance_wei": "151406171898833",
       "balance_eth": 0.000151406171898833,
-      "tranche_ids": [
-        39
+      "tranche_details": [
+        {
+          "id": 39,
+          "eth": 0.00015141,
+          "hedged": true
+        }
       ]
     },
     {
       "address": "0xe2b424053b9ebfcedf89ecb8bf2972974e98700c",
       "balance_wei": "57711337540945",
       "balance_eth": 5.7711337540945e-05,
-      "tranche_ids": [
-        69
+      "tranche_details": [
+        {
+          "id": 69,
+          "eth": 5.771e-05,
+          "hedged": false
+        }
       ]
     },
     {
       "address": "0xd52522c38f2584e1043173de43f2ca42e2fd5632",
       "balance_wei": "15281637360552",
       "balance_eth": 1.5281637360552e-05,
-      "tranche_ids": [
-        61
+      "tranche_details": [
+        {
+          "id": 61,
+          "eth": 1.528e-05,
+          "hedged": true
+        }
       ]
     }
   ]
