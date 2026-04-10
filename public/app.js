@@ -1660,6 +1660,7 @@ const EXCHANGES = {
     color: '#a855f7',
     contract: '0x87ae4928f6582376a0489e9f70750334bbc2eb35',
     deployed: 'September 2020',
+    returnsWeth: true,
     balanceAbi: 'function userInfo(uint256, address) view returns (uint256, uint256)',
     balanceArgs: (user) => [0, user],
     balanceCall: 'userInfo',
@@ -1667,6 +1668,7 @@ const EXCHANGES = {
     withdrawAbi: 'function emergencyWithdraw(uint256)',
     withdrawArgs: () => [0],
     withdrawCall: 'emergencyWithdraw',
+    returnsWeth: true,
     category: 'masterchef',
   },
   gov_treasurer: {
@@ -1682,6 +1684,7 @@ const EXCHANGES = {
     withdrawAbi: 'function emergencyWithdraw(uint256)',
     withdrawArgs: () => [2],
     withdrawCall: 'emergencyWithdraw',
+    returnsWeth: true,
     category: 'masterchef',
   },
   mysteryman: {
@@ -1697,6 +1700,7 @@ const EXCHANGES = {
     withdrawAbi: 'function emergencyWithdraw(uint256)',
     withdrawArgs: () => [0],
     withdrawCall: 'emergencyWithdraw',
+    returnsWeth: true,
     category: 'masterchef',
   },
   masterstar: {
@@ -1712,6 +1716,7 @@ const EXCHANGES = {
     withdrawAbi: 'function emergencyWithdraw(uint256)',
     withdrawArgs: () => [0],
     withdrawCall: 'emergencyWithdraw',
+    returnsWeth: true,
     category: 'masterchef',
   },
   bdpmaster: {
@@ -1727,6 +1732,7 @@ const EXCHANGES = {
     withdrawAbi: 'function emergencyWithdraw(uint256)',
     withdrawArgs: () => [1],
     withdrawCall: 'emergencyWithdraw',
+    returnsWeth: true,
     category: 'masterchef',
   },
   vlb: {
@@ -2897,6 +2903,7 @@ const EXCHANGES = {
     color: '#f59e0b',
     contract: '0x6b1803a257298292517668a5832bc5a27cb012fb',
     deployed: 'March 2021',
+    returnsWeth: true,
     noWalletCheck: true,
     balanceAbi: 'function balanceOf(address) view returns (uint256)',
     balanceArgs: (user) => [user],
@@ -2912,6 +2919,7 @@ const EXCHANGES = {
     color: '#009cb4',
     contract: '0xf1d29a124622c06f7026f35553543c833102183b',
     deployed: 'May 2019',
+    returnsWeth: true,
     noWalletCheck: true,
     withdrawAbi: 'function withdrawDeposit() returns (uint256)',
     withdrawArgs: () => [],
@@ -2945,10 +2953,59 @@ const EXCHANGES = {
     color: '#2563eb',
     contract: '0xb9ed94c6d594b2517c4296e24a8c517ff133fb6d',
     deployed: 'August 2021',
+    returnsWeth: true,
     noWalletCheck: true,
     hegicMulti: true,
     withdrawAbi: 'function withdrawWithoutHedge(uint256 trancheID) returns (uint256)',
     withdrawCall: 'withdrawWithoutHedge',
+  },
+  shrimp: {
+    name: 'Shrimp Finance',
+    desc: 'Shrimp Finance launched in September 2020 during DeFi Summer as a Synthetix StakingRewards fork. Users staked WETH to earn SHRIMP governance tokens. The project went defunct within weeks — the frontend is offline, the SHRIMP token worthless, and the team vanished. All staked WETH remains fully withdrawable via exit() with no time locks or token requirements.',
+    category: 'defi',
+    color: '#f97316',
+    contract: '0x7127ee43fafba873ce985683ab79df2ce2912198',
+    deployed: 'September 2020',
+    returnsWeth: true,
+    noWalletCheck: true,
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: 'function exit()',
+    withdrawArgs: () => [],
+    withdrawCall: 'exit',
+  },
+  bee: {
+    name: 'Bee2 Finance',
+    desc: 'Bee2 Finance launched in September 2020 during DeFi Summer as a Synthetix StakingRewards fork. Users staked WETH to earn BEE governance tokens. The project went defunct within weeks — the frontend is offline and the BEE token worthless. All staked WETH remains fully withdrawable via exit() with no time locks or token requirements.',
+    category: 'defi',
+    color: '#eab308',
+    contract: '0x3e63e6f0d6e90e120eb31e005aa149b476a89492',
+    deployed: 'September 2020',
+    returnsWeth: true,
+    noWalletCheck: true,
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: 'function exit()',
+    withdrawArgs: () => [],
+    withdrawCall: 'exit',
+  },
+  kitten: {
+    name: 'Kitten Finance',
+    desc: 'Kitten Finance launched in September 2020 during DeFi Summer as a Synthetix StakingRewards fork. Users staked WETH to earn KIF governance tokens. The project went defunct within weeks — the frontend is offline and the KIF token worthless. All staked WETH remains fully withdrawable via exit() with no time locks or token requirements.',
+    category: 'defi',
+    color: '#ec4899',
+    contract: '0xb1236770ed9015e331c021347e005b00c8b8a01b',
+    deployed: 'September 2020',
+    returnsWeth: true,
+    noWalletCheck: true,
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: 'function exit()',
+    withdrawArgs: () => [],
+    withdrawCall: 'exit',
   },
 };
 
@@ -3962,11 +4019,12 @@ async function checkUserBalances(overrideAddress) {
           const exitBtn = cfg.exitAbi ? `<button class="claim-btn" id="exitBtn-${key}" data-action="claim-exit" data-key="${key}" style="background:var(--text2)">Exit (sell + withdraw)</button>` : '';
           const lastTx = apiBalances[key]?.last_tx_date ? apiBalances[key] : null;
           const adoptionReqs = apiBalances[key]?.adoption_requests;
+          const unit = cfg.returnsWeth ? 'WETH' : 'ETH';
           html += `
             <div class="claim-card">
               <div class="claim-card-header">
                 <span class="claim-card-name">${esc(cfg.name)}</span>
-                <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} ${unit}</span>
               </div>
               <div class="claim-card-meta" id="claimDetails-${key}">
                 ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${esc(lastTx.last_tx_date)} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
@@ -6577,7 +6635,7 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
   // asset). The fetch was dead code and has been removed. The hardcoded
   // values below are the real last resort — update them when adding
   // protocols (grep for this comment).
-  if (!totalData) totalData = { total_eth: 164102, total_contract_eth: 165249, contract_count: 163, eth_claimed: 1400, peak_eth: 165510 };
+  if (!totalData) totalData = { total_eth: 164553, total_contract_eth: 165700, contract_count: 170, eth_claimed: 1400, peak_eth: 165960 };
   try {
       var totalEthVal = Math.round(totalData.total_eth);
       const contractCount = totalData.contract_count || Object.keys(EXCHANGES).length;

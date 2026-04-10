@@ -1490,5 +1490,35 @@
     "slug": "hegic-v1-pool",
     "category": "defi",
     "contract": "0x878F15ffC8b894A1BA7647c7176E4C01f74e140b"
+  },
+  "shrimp": {
+    "name": "Shrimp Finance",
+    "desc": "Shrimp Finance launched in September 2020 during DeFi Summer as a Synthetix StakingRewards fork. Users staked WETH to earn SHRIMP governance tokens. The project went defunct within weeks \u2014 the frontend is offline, the SHRIMP token worthless, and the team vanished. All staked WETH remains fully withdrawable via exit() with no time locks or token requirements.",
+    "blurb": "DeFi Summer 2020 yield farm \u2014 WETH staking pool (Synthetix fork)",
+    "slug": "shrimp",
+    "category": "defi",
+    "color": "#f97316",
+    "contract": "0x7127ee43fafba873ce985683ab79df2ce2912198",
+    "deployed": "September 2020"
+  },
+  "bee": {
+    "name": "Bee2 Finance",
+    "desc": "Bee2 Finance launched in September 2020 during DeFi Summer as a Synthetix StakingRewards fork. Users staked WETH to earn BEE governance tokens. The project went defunct within weeks \u2014 the frontend is offline and the BEE token worthless. All staked WETH remains fully withdrawable via exit() with no time locks or token requirements.",
+    "blurb": "DeFi Summer 2020 yield farm \u2014 WETH staking pool (Synthetix fork)",
+    "slug": "bee",
+    "category": "defi",
+    "color": "#eab308",
+    "contract": "0x3e63e6f0d6e90e120eb31e005aa149b476a89492",
+    "deployed": "September 2020"
+  },
+  "kitten": {
+    "name": "Kitten Finance",
+    "desc": "Kitten Finance launched in September 2020 during DeFi Summer as a Synthetix StakingRewards fork. Users staked WETH to earn KIF governance tokens. The project went defunct within weeks \u2014 the frontend is offline and the KIF token worthless. All staked WETH remains fully withdrawable via exit() with no time locks or token requirements.",
+    "blurb": "DeFi Summer 2020 yield farm \u2014 WETH staking pool (Synthetix fork)",
+    "slug": "kitten",
+    "category": "defi",
+    "color": "#ec4899",
+    "contract": "0xb1236770ed9015e331c021347e005b00c8b8a01b",
+    "deployed": "September 2020"
   }
 }
