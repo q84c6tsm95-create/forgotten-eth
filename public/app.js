@@ -2917,6 +2917,27 @@ const EXCHANGES = {
     withdrawArgs: () => [],
     withdrawCall: 'withdrawDeposit',
   },
+  hegic_eth_pool: {
+    name: 'Hegic V1 Pool',
+    desc: 'Hegic ETH Pool v1.1 was the liquidity pool backing ETH call and put options on the Hegic protocol. Liquidity providers deposited native ETH and received writeETH tokens representing their pool share. The protocol migrated to newer versions and v1.1 is deprecated. All option locks have been released — writeETH holders can withdraw their proportional share of the pool.',
+    category: 'defi',
+    color: '#2563eb',
+    contract: '0x878F15ffC8b894A1BA7647c7176E4C01f74e140b',
+    deployed: 'October 2020',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    balanceTransform: (result) => {
+      // writeETH → ETH: multiply by totalBalance/totalSupply
+      // API already stores ETH-equivalent, but fresh RPC returns writeETH tokens.
+      // The transform is applied in the balance pipeline — not here (noWalletCheck).
+      return result;
+    },
+    noWalletCheck: true,
+    withdrawAbi: 'function withdraw(uint256 amount, uint256 maxBurn) returns (uint256)',
+    withdrawArgs: (amount) => [amount, amount * 2000n],
+    withdrawCall: 'withdraw',
+  },
   hegic_call: {
     name: 'Hegic V1 Call',
     desc: 'Hegic V1 launched in 2021 as a peer-to-pool options protocol. Liquidity providers deposited WETH into the call options pool and received ERC-721 tranche NFTs representing their share. The protocol migrated to V2/V3 and the V1 pool is deprecated. All lockup periods have expired — tranche owners can withdraw their proportional share of the remaining pool liquidity.',

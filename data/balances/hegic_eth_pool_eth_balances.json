@@ -1,0 +1,2995 @@
+{
+  "contract": "0x878f15ffc8b894a1ba7647c7176e4c01f74e140b",
+  "contract_eth_balance": 62.250451,
+  "total_eth_in_balances": 60.29739473,
+  "addresses_with_balance": 403,
+  "coverage_pct": 96.86,
+  "scan_date": "2026-04-10 12:57:53 UTC",
+  "description": "Hegic ETH Pool v1.1 \u2014 writeETH LP token holders. Direct holders call withdraw(amount, maxBurn). Stakers in StakingRewards call exit() first to unstake writeETH, then withdraw from pool.",
+  "staking_contracts": [
+    "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e",
+    "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a",
+    "0x9b18975e64763bda591618cdf02d2f14a9875981"
+  ],
+  "distribution": {},
+  "balances": [
+    {
+      "address": "0xc6e028b261dbf755df997e3af86af104674c183b",
+      "balance_wei": "8795605630432168960",
+      "balance_eth": 8.795605630432169,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xd9876b83dee2f271efdb5a94cb988a2f492fa65e",
+      "balance_wei": "8416505530949234375",
+      "balance_eth": 8.416505530949234,
+      "writeETH_balance": "10042616296420616699998"
+    },
+    {
+      "address": "0xbaf7dbf18d08d12ddb5dbee47b3b5aa9924c2a50",
+      "balance_wei": "8130614147789624916",
+      "balance_eth": 8.130614147789625,
+      "writeETH_balance": "9701489274883316632885"
+    },
+    {
+      "address": "0x93aa8c9a50efa30bb28ce0ad12516686c963472a",
+      "balance_wei": "5027174216494412800",
+      "balance_eth": 5.027174216494413,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0x326832cbef3715f57d6edacec85299328053ad50",
+      "balance_wei": "4218134124913688576",
+      "balance_eth": 4.218134124913688,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x22829be57e1d5642062b51686f7ffe95dde99f44",
+      "balance_wei": "1860656720288371887",
+      "balance_eth": 1.860656720288372,
+      "writeETH_balance": "2220144860892772776428"
+    },
+    {
+      "address": "0xfbb21b7816bda793ef46392863e6fc4d5b315b46",
+      "balance_wei": "1670316095050660096",
+      "balance_eth": 1.6703160950506601,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xbb1d287db93ea323a0328d1b58f893ac919b74a2",
+      "balance_wei": "1027901134889784722",
+      "balance_eth": 1.0279011348897846,
+      "writeETH_balance": "1226496750984629333212"
+    },
+    {
+      "address": "0xbb34894d6e4001518594de7ee5edf80512df2076",
+      "balance_wei": "949232289157793426",
+      "balance_eth": 0.9492322891577935,
+      "writeETH_balance": "1132628692648120109288"
+    },
+    {
+      "address": "0x5bdb484f9bec35a18d8e5bd7ff15594a335f1d2c",
+      "balance_wei": "870826070383724800",
+      "balance_eth": 0.8708260703837248,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xa509ce524095e54233074b485825ebb9641d00e2",
+      "balance_wei": "869121559194784192",
+      "balance_eth": 0.8691215591947843,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xdd4b06800844542a60ea940c6cd91017d41c057b",
+      "balance_wei": "858403881738763264",
+      "balance_eth": 0.8584038817387633,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xf78e59853ad27c326f90293ff17e1708f991e42c",
+      "balance_wei": "846158570700875392",
+      "balance_eth": 0.8461585707008754,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x0916d93c1a06e1cc3a6553a3e48d37122d968283",
+      "balance_wei": "845968211447138543",
+      "balance_eth": 0.8459682114471385,
+      "writeETH_balance": "1009413481080985598321"
+    },
+    {
+      "address": "0xb18c5aea83f7d0deb017e7eff08e9046121f78bc",
+      "balance_wei": "841652511817843328",
+      "balance_eth": 0.8416525118178433,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xc97db12bacaf9c724d08b570d3e5c65eb3f73799",
+      "balance_wei": "841471685536283648",
+      "balance_eth": 0.8414716855362836,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xa4a8b0c9d743fdd4c7364219dd0e3396002e89d3",
+      "balance_wei": "841320985900478336",
+      "balance_eth": 0.8413209859004783,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x4b224f6c115de2313b6272db1fd6b7b2bfe5915b",
+      "balance_wei": "840141480286128512",
+      "balance_eth": 0.8401414802861286,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x6b8e13b769458c19193dd7df435050b7427b4841",
+      "balance_wei": "840091438317970744",
+      "balance_eth": 0.8400914383179707,
+      "writeETH_balance": "1002401286129015893171"
+    },
+    {
+      "address": "0x8dc82ddbf1efb4befcb577b1c0a6efb812a0c562",
+      "balance_wei": "838078970910104448",
+      "balance_eth": 0.8380789709101044,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0x5d58518c1902ed78c48d77ebe71feede67419438",
+      "balance_wei": "670463176728083456",
+      "balance_eth": 0.6704631767280834,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0x5d3d55f4abd9843416254683933b093f06cb0e72",
+      "balance_wei": "636025820175506048",
+      "balance_eth": 0.636025820175506,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x5376d18b8b2ebc4b3d4977f0a6c393d00f571ce4",
+      "balance_wei": "610939782504979712",
+      "balance_eth": 0.6109397825049797,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xa7258ec040748652576ffb447b228272b87ade4a",
+      "balance_wei": "431159019915725668",
+      "balance_eth": 0.4311590199157257,
+      "writeETH_balance": "461088848837675778",
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x9f420ad6f39aa1fc0a689418fb47f84a8308621e",
+      "balance_wei": "429201940869381632",
+      "balance_eth": 0.4292019408693816,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x58170c67411b7eb85389130f9b0ed5163daa2b93",
+      "balance_wei": "420735842768143004",
+      "balance_eth": 0.42073584276814296,
+      "writeETH_balance": "502024101990351412581"
+    },
+    {
+      "address": "0x2c1fa9b7a343d7308b95bc8c8822dc4c83de4525",
+      "balance_wei": "418595033673077467",
+      "balance_eth": 0.41859503367307743,
+      "writeETH_balance": "499469677921291733935"
+    },
+    {
+      "address": "0x3db5743b936cb7280fdd475562b0942e31843337",
+      "balance_wei": "353553995005496384",
+      "balance_eth": 0.3535539950054964,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x02df9d6091392abdd3680c07ac6bb1ffab35a342",
+      "balance_wei": "350709925407667956",
+      "balance_eth": 0.350709925407668,
+      "writeETH_balance": "418468828810747554951"
+    },
+    {
+      "address": "0xf50fc185df5078f8f9111d6dc34ac873d6ec32d3",
+      "balance_wei": "350486244241739248",
+      "balance_eth": 0.35048624424173924,
+      "writeETH_balance": "418201931330089134336"
+    },
+    {
+      "address": "0x78f7df4732c4aecbd92a4f8948311e8ea11c8352",
+      "balance_wei": "293488638183886655",
+      "balance_eth": 0.29348863818388665,
+      "writeETH_balance": "192104050976614546",
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x28c4d931af6d11eae882518e931c0eb246b7c259",
+      "balance_wei": "273475368506622289",
+      "balance_eth": 0.2734753685066223,
+      "writeETH_balance": "326312171047131928295"
+    },
+    {
+      "address": "0xc2bfb0ddc3ac819e85dd0d809ab5a4eb3b2ac153",
+      "balance_wei": "232840434748906111",
+      "balance_eth": 0.23284043474890612,
+      "writeETH_balance": "277826365809006178278"
+    },
+    {
+      "address": "0x8afc98aebe82d7f2acdb2b224ed68da49c703cc1",
+      "balance_wei": "215640335449235303",
+      "balance_eth": 0.2156403354492353,
+      "writeETH_balance": "257303121703510352241"
+    },
+    {
+      "address": "0xbef1fbc7550eef8ca7267f8dcb2ecbc2ba5c32a4",
+      "balance_wei": "210472816165460290",
+      "balance_eth": 0.2104728161654603,
+      "writeETH_balance": "251137211970489141284"
+    },
+    {
+      "address": "0xb86be1621813f5e9e1b7debeaa12b1131d5f48c0",
+      "balance_wei": "209152260357361924",
+      "balance_eth": 0.20915226035736192,
+      "writeETH_balance": "249561518206613500000",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x9f9f96917e2e2a386a3c1f082fb6b58e2c76d858",
+      "balance_wei": "200520741502916643",
+      "balance_eth": 0.20052074150291663,
+      "writeETH_balance": "262346942273156257",
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x6fc74a8bdaf3fe42c7ddbcd20dedc64a4e0e59c5",
+      "balance_wei": "200335398616907302",
+      "balance_eth": 0.2003353986169073,
+      "writeETH_balance": "239041194888060322572"
+    },
+    {
+      "address": "0x9c1e062720f5ef26bd7814b6f67c9dca61321fc9",
+      "balance_wei": "193203557560306606",
+      "balance_eth": 0.1932035575603066,
+      "writeETH_balance": "230531446637420007906"
+    },
+    {
+      "address": "0x44aa1c276260ddb8b886d85e7b36085e0295159a",
+      "balance_wei": "188482896197389408",
+      "balance_eth": 0.18848289619738942,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xb16e1101cbb48f631ab4dbd54c801ecef9b47d2b",
+      "balance_wei": "175354962703833984",
+      "balance_eth": 0.175354962703834,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x35c1208d3dfa13e38afd54a170f27c25f05d447a",
+      "balance_wei": "168003093530701408",
+      "balance_eth": 0.16800309353070142,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x7826122a73a4e76e0342476b0c86fc8312416a56",
+      "balance_wei": "131454824025466801",
+      "balance_eth": 0.1314548240254668,
+      "writeETH_balance": "156852550401920484490"
+    },
+    {
+      "address": "0x005b0743d8b2ed646499dc48b64b95e71b8afa43",
+      "balance_wei": "129940702488243648",
+      "balance_eth": 0.12994070248824366,
+      "writeETH_balance": "155045893046493816300"
+    },
+    {
+      "address": "0x852f1bf3eb83bdc8c2fdb0f6520d85d2a873c756",
+      "balance_wei": "128213176475756220",
+      "balance_eth": 0.12821317647575622,
+      "writeETH_balance": "152984600408866318791"
+    },
+    {
+      "address": "0x21a0c4f490267a1fb0da93571a77004b41b43f14",
+      "balance_wei": "121071962428368974",
+      "balance_eth": 0.12107196242836897,
+      "writeETH_balance": "144463668258961271027"
+    },
+    {
+      "address": "0xced2f0dcb70757339f7072a3ffa08a4a73497435",
+      "balance_wei": "110905061841400800",
+      "balance_eth": 0.1109050618414008,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x3f0194b2bf9325fbf27b8c5b9597cc912173245b",
+      "balance_wei": "102676184457192208",
+      "balance_eth": 0.1026761844571922,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xa1875f808db4a8ed0245984a6d15471bc72558c5",
+      "balance_wei": "92635674977635415",
+      "balance_eth": 0.0926356749776354,
+      "writeETH_balance": "110533348518503607444"
+    },
+    {
+      "address": "0x71e2246a69a2f37e92601259c93c82e96c3ba601",
+      "balance_wei": "88256317130857565",
+      "balance_eth": 0.08825631713085756,
+      "writeETH_balance": "105307876935530793238"
+    },
+    {
+      "address": "0x341add7879fcc4da75698105d222d54726c8950e",
+      "balance_wei": "87677481351916992",
+      "balance_eth": 0.087677481351917,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xac5c12dd746cfc38de81bed3670f634cf8d7cdd1",
+      "balance_wei": "86918334146543296",
+      "balance_eth": 0.08691833414654329,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x37ac2a34d44d9e0682bc9f7be3f77fe6d589ed85",
+      "balance_wei": "86430170291104183",
+      "balance_eth": 0.08643017029110417,
+      "writeETH_balance": "103128909435880618629"
+    },
+    {
+      "address": "0x0fa0a7f22ef9dd169320d3d979ec68f43b34f2ee",
+      "balance_wei": "86420907239882846",
+      "balance_eth": 0.08642090723988285,
+      "writeETH_balance": "103117856717052370517"
+    },
+    {
+      "address": "0x2319fc093bead97d0a5c329f09895031ca1ee955",
+      "balance_wei": "86228299842062736",
+      "balance_eth": 0.08622829984206273,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x6715fd4994379ff0b1bc3d0bd3d599f83e9ec4be",
+      "balance_wei": "86200098521717680",
+      "balance_eth": 0.08620009852171769,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xa971699a905c630b73d53c34b370055632a95afd",
+      "balance_wei": "85887818725054574",
+      "balance_eth": 0.08588781872505458,
+      "writeETH_balance": "481772847474570118",
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x0ff67d2714b0fbbbec4a87bfe3b823c9fb3f887c",
+      "balance_wei": "85781837388992224",
+      "balance_eth": 0.08578183738899223,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x8a8b65af44adf126faf6e98ca02174dff2d452df",
+      "balance_wei": "85469533329193149",
+      "balance_eth": 0.08546953332919315,
+      "writeETH_balance": "101982672630931511312"
+    },
+    {
+      "address": "0x258b58b608f4e4bbe0bd4419e4cef3bddcf741d7",
+      "balance_wei": "84564774443991632",
+      "balance_eth": 0.08456477444399163,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x1b44e3fe80ed89c84a72939e35da348037667378",
+      "balance_wei": "84192533504386848",
+      "balance_eth": 0.08419253350438685,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x07df7775902c31c24eddac2c462b30cf988d7e19",
+      "balance_wei": "84166152580828512",
+      "balance_eth": 0.08416615258082852,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x03c2bfd2509de9b13d0124015077e100a292336d",
+      "balance_wei": "84143979401073421",
+      "balance_eth": 0.08414397940107342,
+      "writeETH_balance": "100401015085366019696"
+    },
+    {
+      "address": "0xfc4a74a46cdf1c6ba1e48093958f3e57b6f7115a",
+      "balance_wei": "83868371288251870",
+      "balance_eth": 0.08386837128825188,
+      "writeETH_balance": "72158113185602021",
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xef93b3fe19749650f933e75e3dc07ef3c657cd16",
+      "balance_wei": "83807897091010439",
+      "balance_eth": 0.08380789709101043,
+      "writeETH_balance": "100000000000000000000"
+    },
+    {
+      "address": "0x59f4cdf0276be7c3e48de82acfb068fc4e6c2cd8",
+      "balance_wei": "83738352743589114",
+      "balance_eth": 0.08373835274358912,
+      "writeETH_balance": "99917019338469017472"
+    },
+    {
+      "address": "0xc6aeecb1a26c0611e575352d22b2e86b0126c444",
+      "balance_wei": "83720366149466080",
+      "balance_eth": 0.08372036614946608,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x1db5fb7005412b6e593a9b28afec4c7430b1e812",
+      "balance_wei": "83626676294280334",
+      "balance_eth": 0.08362667629428033,
+      "writeETH_balance": "83766443234687298",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xea7686aca004ecdfd0dcb20004fa6b9ba6c80ed2",
+      "balance_wei": "83515804752532992",
+      "balance_eth": 0.083515804752533,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xb946cc36e1785546e2c87bfc956134cfb988343f",
+      "balance_wei": "61224776710250362",
+      "balance_eth": 0.06122477671025036,
+      "writeETH_balance": "73053708344171744417"
+    },
+    {
+      "address": "0x4f468fdf44530d27110865fa03f9a4686ff8ff33",
+      "balance_wei": "58806400682257952",
+      "balance_eth": 0.05880640068225795,
+      "writeETH_balance": "70168090029031112522"
+    },
+    {
+      "address": "0x6da0c6a8889089c9e466be8699992f19f0e18e3d",
+      "balance_wei": "51402823786527079",
+      "balance_eth": 0.05140282378652708,
+      "writeETH_balance": "61334105222454919984"
+    },
+    {
+      "address": "0xfa31dcff7bed47232b82b50fc0ec9582b9b4fb3a",
+      "balance_wei": "47469892612056266",
+      "balance_eth": 0.047469892612056266,
+      "writeETH_balance": "56641312167165773456"
+    },
+    {
+      "address": "0xc5d599f902f7e304c07cadf0471fcce878339995",
+      "balance_wei": "46317837488817707",
+      "balance_eth": 0.0463178374888177,
+      "writeETH_balance": "55266674259251803722"
+    },
+    {
+      "address": "0x4814450b168770f931de9fbb7d8965a160ae8275",
+      "balance_wei": "46305083834161096",
+      "balance_eth": 0.0463050838341611,
+      "writeETH_balance": "55251456535028558114"
+    },
+    {
+      "address": "0x5c5949adad50f897e8e63266edd0572afd205dd8",
+      "balance_wei": "46305083834161096",
+      "balance_eth": 0.0463050838341611,
+      "writeETH_balance": "55251456535028558114"
+    },
+    {
+      "address": "0xde930080e0ba5d8ca2b7163b39d3407fd34dc6c2",
+      "balance_wei": "43838362202255614",
+      "balance_eth": 0.043838362202255614,
+      "writeETH_balance": "52308152004637146921"
+    },
+    {
+      "address": "0x355b9e38d761c896f197499c0b1b4f2473704a7e",
+      "balance_wei": "43410245014891611",
+      "balance_eth": 0.04341024501489161,
+      "writeETH_balance": "51797320445531096706"
+    },
+    {
+      "address": "0x4c09d894399e3f8d6276c63fccf4d8e7e9a86268",
+      "balance_wei": "43061834513973995",
+      "balance_eth": 0.04306183451397399,
+      "writeETH_balance": "41381595301468285400",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x8317372dd93a8747ee785299e4c351c7664ec495",
+      "balance_wei": "38712720458759100",
+      "balance_eth": 0.038712720458759106,
+      "writeETH_balance": "46192210761140285954"
+    },
+    {
+      "address": "0xcf2db24e539b9d7ae55862409f8ccfecb0267668",
+      "balance_wei": "33639538505916681",
+      "balance_eth": 0.03363953850591668,
+      "writeETH_balance": "40138864800993782715"
+    },
+    {
+      "address": "0xf44e0184455b9c366282ae674afce8442541c537",
+      "balance_wei": "33603657532718829",
+      "balance_eth": 0.03360365753271883,
+      "writeETH_balance": "40096051445160635726"
+    },
+    {
+      "address": "0x1aad954c7ee0a0cc790fdb2668d4e3dde0e1d409",
+      "balance_wei": "26404516057493748",
+      "balance_eth": 0.02640451605749375,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x854776a3c11091d42f9e6c4c51abab65e4164b2b",
+      "balance_wei": "25869472558102528",
+      "balance_eth": 0.025869472558102527,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xd490b104bfe8cc6b13f052ad481e462acda9e0ab",
+      "balance_wei": "25505537476625970",
+      "balance_eth": 0.02550553747662597,
+      "writeETH_balance": "30433334282243663676"
+    },
+    {
+      "address": "0x45286c238c3c0b01eb1d8b79887fabc0cff2496f",
+      "balance_wei": "25250913275120499",
+      "balance_eth": 0.0252509132751205,
+      "writeETH_balance": "30129515417502357171"
+    },
+    {
+      "address": "0x53801076eb5875cdfa2008320f21bbaf2ad3cecb",
+      "balance_wei": "23621579484041179",
+      "balance_eth": 0.02362157948404118,
+      "writeETH_balance": "28185386227254378536"
+    },
+    {
+      "address": "0xb82f28b33c171498f29867568323d4eba240eb30",
+      "balance_wei": "17643692708403928",
+      "balance_eth": 0.01764369270840393,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x7db66467963f3bd1dd09c0e3af1368552e8d1ecc",
+      "balance_wei": "17194941942273449",
+      "balance_eth": 0.01719494194227345,
+      "writeETH_balance": "20517090320976262894"
+    },
+    {
+      "address": "0x5853ed4f26a3fcea565b3fbc698bb19cdf6deb85",
+      "balance_wei": "16963643021687489",
+      "balance_eth": 0.01696364302168749,
+      "writeETH_balance": "10241103297540054315",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xa5601046293a9f1229eb97084c6d4c4de99737c7",
+      "balance_wei": "16833230516165702",
+      "balance_eth": 0.0168332305161657,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x35e77e687680ab308e400665982c46886fd400ef",
+      "balance_wei": "16764421473167501",
+      "balance_eth": 0.0167644214731675,
+      "writeETH_balance": "20003391154132321229"
+    },
+    {
+      "address": "0x38c1649b72fd245e434b9db29f6148a90aa7ca12",
+      "balance_wei": "16749109796238974",
+      "balance_eth": 0.016749109796238976,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x1a1947318d09199c6c198892072b1d0f2f306f87",
+      "balance_wei": "16151706665336990",
+      "balance_eth": 0.01615170666533699,
+      "writeETH_balance": "19272296795369043152"
+    },
+    {
+      "address": "0x78b1714709d70184a02f8198566a704547c64046",
+      "balance_wei": "15961697077702545",
+      "balance_eth": 0.015961697077702543,
+      "writeETH_balance": "19045576409546563587"
+    },
+    {
+      "address": "0x4c026d5d6a7fe1b2e2b28b916ef2016f6058f7b4",
+      "balance_wei": "10000404572926116",
+      "balance_eth": 0.010000404572926115,
+      "writeETH_balance": "11932532517867935928"
+    },
+    {
+      "address": "0x707b76aced04c9ac36afc9bb8738dd099456fa48",
+      "balance_wei": "9634860735887585",
+      "balance_eth": 0.009634860735887584,
+      "writeETH_balance": "11496363791856862843"
+    },
+    {
+      "address": "0x3f8d9259bc2e4197de35316559f23886bb3202f0",
+      "balance_wei": "9577148711594970",
+      "balance_eth": 0.00957714871159497,
+      "writeETH_balance": "11427501517183698022"
+    },
+    {
+      "address": "0xebecc2846d1bd19a217245a78139fdc4262f90b3",
+      "balance_wei": "9318471012869687",
+      "balance_eth": 0.009318471012869688,
+      "writeETH_balance": "11118845999381629449"
+    },
+    {
+      "address": "0xf88593a3b58b069bcce2b50cc502c9bf8ba5b248",
+      "balance_wei": "8991320481893848",
+      "balance_eth": 0.008991320481893848,
+      "writeETH_balance": "10728488357284283709"
+    },
+    {
+      "address": "0x5cfab816d0d4006fe0bdf30144e2772281f858f9",
+      "balance_wei": "8973170369631662",
+      "balance_eth": 0.008973170369631661,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x1bf7a7435cd80a2302186817f95b43cea10ea02e",
+      "balance_wei": "8604223430263404",
+      "balance_eth": 0.008604223430263404,
+      "writeETH_balance": "10266602228331448242"
+    },
+    {
+      "address": "0x2b09bfca423cb4c8e688ee223ab00a9a0092d271",
+      "balance_wei": "8581908847880398",
+      "balance_eth": 0.008581908847880399,
+      "writeETH_balance": "10239976357551306837"
+    },
+    {
+      "address": "0xd33a97de61e09d26937dd8cf5f7fb511b82ddcc6",
+      "balance_wei": "8577851987028328",
+      "balance_eth": 0.008577851987028328,
+      "writeETH_balance": "10235135690987791137"
+    },
+    {
+      "address": "0x926d8f0b7b76e85b717c1ca798a48633659b4b10",
+      "balance_wei": "8459613903652697",
+      "balance_eth": 0.008459613903652697,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x340a637a0704ea65aa51d5d59f2dc574be5d1976",
+      "balance_wei": "8423910753366256",
+      "balance_eth": 0.008423910753366256,
+      "writeETH_balance": "10051452244671389010"
+    },
+    {
+      "address": "0x7f9d39de53a3036463146e91e921cc9fbfcb2de4",
+      "balance_wei": "8414587648296160",
+      "balance_eth": 0.00841458764829616,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x1823b5c394a3bdd564e8761b9a39e0441b4c0c86",
+      "balance_wei": "8413213267781370",
+      "balance_eth": 0.00841321326778137,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xa00c99f5f955552742f1089ded88abdc74e67bac",
+      "balance_wei": "8380789709101044",
+      "balance_eth": 0.008380789709101045,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0x07647ebe3a5eff8174eb6b3881650e791158bbce",
+      "balance_wei": "8362470481659958",
+      "balance_eth": 0.008362470481659959,
+      "writeETH_balance": "9978141406625211354"
+    },
+    {
+      "address": "0xde98f62c8773ed56c177cc5ecc44f152f040bf9b",
+      "balance_wei": "7542710738190940",
+      "balance_eth": 0.00754271073819094,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x741d172d958b110491feb0781b8712e627359a74",
+      "balance_wei": "6039523442588067",
+      "balance_eth": 0.006039523442588067,
+      "writeETH_balance": "7206389436104691924"
+    },
+    {
+      "address": "0xf3e5ace7b07568da95270983eed63e04b4ba509e",
+      "balance_wei": "6009636044852217",
+      "balance_eth": 0.006009636044852217,
+      "writeETH_balance": "7170727644348487144"
+    },
+    {
+      "address": "0xfeca984fe7b7e43608836d2136a78a06840774f6",
+      "balance_wei": "5203434410130178",
+      "balance_eth": 0.005203434410130178,
+      "writeETH_balance": "6208763840571676962"
+    },
+    {
+      "address": "0x0827bae42e9fffd8a82e9c8f432b45118fb98abf",
+      "balance_wei": "5048990273483520",
+      "balance_eth": 0.00504899027348352,
+      "writeETH_balance": "1005137979048311333",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x3e6e4c0ad92e6877349d4fb4d39053396a21f2d4",
+      "balance_wei": "5025882873604842",
+      "balance_eth": 0.005025882873604842,
+      "writeETH_balance": "5996908463348066388"
+    },
+    {
+      "address": "0x20f9e5a17b00350f1eaf9ad18bc5be0d54c0bc3f",
+      "balance_wei": "4914122307581146",
+      "balance_eth": 0.004914122307581146,
+      "writeETH_balance": "5863555199630768554"
+    },
+    {
+      "address": "0x56560795a30a8e595dfb682d66f888a46a7b7044",
+      "balance_wei": "4864236680132747",
+      "balance_eth": 0.004864236680132747,
+      "writeETH_balance": "5804031420631486826"
+    },
+    {
+      "address": "0x8c3986fef3d1ab24c9a9b74faf1e689431f6e7dc",
+      "balance_wei": "4864236680132747",
+      "balance_eth": 0.004864236680132747,
+      "writeETH_balance": "5804031420631486826"
+    },
+    {
+      "address": "0x217eec0917b681065c9732af160f7f0a2461562d",
+      "balance_wei": "4864236680132747",
+      "balance_eth": 0.004864236680132747,
+      "writeETH_balance": "5804031420631486826"
+    },
+    {
+      "address": "0x89ea8541865c4fdf62add7227245fc255ecab715",
+      "balance_wei": "4299651337799451",
+      "balance_eth": 0.004299651337799451,
+      "writeETH_balance": "5130365379685262163"
+    },
+    {
+      "address": "0xbd09b8e2e8b1c3789d7f802be2a21dfaf87c32a4",
+      "balance_wei": "4276946174538824",
+      "balance_eth": 0.004276946174538824,
+      "writeETH_balance": "5103273465857653813"
+    },
+    {
+      "address": "0xa6ad2839c55e26911ff67244d1aff86a03953a3f",
+      "balance_wei": "3576261731077757",
+      "balance_eth": 0.003576261731077757,
+      "writeETH_balance": "4267213299952089674"
+    },
+    {
+      "address": "0xd4ee113548dd66913dff6743e9b89e9fca7e4ead",
+      "balance_wei": "3441987016905809",
+      "balance_eth": 0.003441987016905809,
+      "writeETH_balance": "4102309196640408448",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x1975d9b8dfdedfcfe5d7c2d1229d01155f628825",
+      "balance_wei": "3061266918910355",
+      "balance_eth": 0.003061266918910355,
+      "writeETH_balance": "3652718926458684520"
+    },
+    {
+      "address": "0xaf519e476c65947d63a590862bbad3c78aab35b7",
+      "balance_wei": "2165338981625106",
+      "balance_eth": 0.002165338981625106,
+      "writeETH_balance": "2583693251810955368"
+    },
+    {
+      "address": "0x27d4193fe8ba4db5a47eff08423b42eebd77b786",
+      "balance_wei": "1873947214218249",
+      "balance_eth": 0.001873947214218249,
+      "writeETH_balance": "67515770889757210",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xdb06b20458e156e27f60b33b965a3551bbd8857c",
+      "balance_wei": "1780879589208447",
+      "balance_eth": 0.001780879589208447,
+      "writeETH_balance": "2120847651755031391",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x2859b34b65df0f10124acdf30b82234e067d0dfe",
+      "balance_wei": "1732554362797239",
+      "balance_eth": 0.001732554362797239,
+      "writeETH_balance": "2067292490248009805"
+    },
+    {
+      "address": "0x1bf45bdabf317904c66f0d1b6d87ec6de419813c",
+      "balance_wei": "1724442648964187",
+      "balance_eth": 0.001724442648964187,
+      "writeETH_balance": "2057613552922756071"
+    },
+    {
+      "address": "0x6b55bd21b2c98f985a5ae053f0afc8c5705d598e",
+      "balance_wei": "1673520118018229",
+      "balance_eth": 0.001673520118018229,
+      "writeETH_balance": "1995852535508540206",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x513d3136bd4fec01bdcb3f3d2d6933432bc855fa",
+      "balance_wei": "1618368692948506",
+      "balance_eth": 0.001618368692948506,
+      "writeETH_balance": "1931045580574648296"
+    },
+    {
+      "address": "0x0a77ace569d4f5a0810b95ec62814c1d05a6938c",
+      "balance_wei": "1528711159109215",
+      "balance_eth": 0.001528711159109215,
+      "writeETH_balance": "463317559854690174",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x3c3698258060eb0e633dab458d96a7a8b34db9b6",
+      "balance_wei": "1096325698903975",
+      "balance_eth": 0.001096325698903976,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x046c7e1c4d4efe14e5bc340617d3ebe76e2df335",
+      "balance_wei": "923321724563477",
+      "balance_eth": 0.000923321724563477,
+      "writeETH_balance": "1101712077992846181"
+    },
+    {
+      "address": "0x2e800c331b153d2ef0b60f1b58074d39f092706d",
+      "balance_wei": "916492990685963",
+      "balance_eth": 0.000916492990685963,
+      "writeETH_balance": "1093563998737142862"
+    },
+    {
+      "address": "0xd9b49a81ee72af3c026a2c144c9ffd678a78c8b1",
+      "balance_wei": "887633204562490",
+      "balance_eth": 0.00088763320456249,
+      "writeETH_balance": "1059128358272220189"
+    },
+    {
+      "address": "0x58f1ab922dcab71093f46e8047291a217bb22ac4",
+      "balance_wei": "850956805449643",
+      "balance_eth": 0.000850956805449643,
+      "writeETH_balance": "1015365896275862434",
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xb413a48088cfb0074f75349c790062920434e321",
+      "balance_wei": "847495607901499",
+      "balance_eth": 0.000847495607901499,
+      "writeETH_balance": "1011235978133623098"
+    },
+    {
+      "address": "0xa8f0493f916508c7c3e24711262487a0452a1837",
+      "balance_wei": "842026048176147",
+      "balance_eth": 0.000842026048176147,
+      "writeETH_balance": "1004709672242171152"
+    },
+    {
+      "address": "0xd9b33fe2eae536b3331adb9f0cbd60c741edb7f7",
+      "balance_wei": "839432932329839",
+      "balance_eth": 0.000839432932329839,
+      "writeETH_balance": "1001615553505972271"
+    },
+    {
+      "address": "0x2e1493555dbdb58bb61589fbee718286d7e690ba",
+      "balance_wei": "838942256515958",
+      "balance_eth": 0.000838942256515958,
+      "writeETH_balance": "1001030076682292482"
+    },
+    {
+      "address": "0xdc5494798d21e50145a7019d542594392390456d",
+      "balance_wei": "838078970910104",
+      "balance_eth": 0.000838078970910104,
+      "writeETH_balance": "1000000000000000000"
+    },
+    {
+      "address": "0x68af70143172a109f414d5e935bfb8900ff7ff46",
+      "balance_wei": "838078970910104",
+      "balance_eth": 0.000838078970910104,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x89065a6ca0edc0c487ce685feb1beddc27824e97",
+      "balance_wei": "838078970910046",
+      "balance_eth": 0.000838078970910046,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x9651e25a28c7d356db9b044e344f72781b3cdcba",
+      "balance_wei": "836983075851638",
+      "balance_eth": 0.000836983075851638,
+      "writeETH_balance": "998692372560934895"
+    },
+    {
+      "address": "0xac8f599d034d646966f8246bd7cd70a63acd4d66",
+      "balance_wei": "828079560122389",
+      "balance_eth": 0.000828079560122389,
+      "writeETH_balance": "988068653271593585"
+    },
+    {
+      "address": "0x1b495f5d684710943913cf25f00315a461fa146b",
+      "balance_wei": "824102040858291",
+      "balance_eth": 0.000824102040858291,
+      "writeETH_balance": "983322657485804148"
+    },
+    {
+      "address": "0xc28f85d6a2cd2252dac06f3db42a17033c4e7791",
+      "balance_wei": "808501568670761",
+      "balance_eth": 0.000808501568670761,
+      "writeETH_balance": "964708096413368803"
+    },
+    {
+      "address": "0x767d222a509d107522e50161ca17ffcf0e5aa3de",
+      "balance_wei": "772108555707763",
+      "balance_eth": 0.000772108555707763,
+      "writeETH_balance": "919477876331264927",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x19256dff4fb712818c693dd6b097bdcd79dc5381",
+      "balance_wei": "748034844086439",
+      "balance_eth": 0.000748034844086439,
+      "writeETH_balance": "890120857458395752",
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x44f5aad918b9dc5fbd0d0c204c8f657f8aeac175",
+      "balance_wei": "738331649871354",
+      "balance_eth": 0.000738331649871354,
+      "writeETH_balance": "880981000000000000"
+    },
+    {
+      "address": "0x17fe4ed21e35b5ad800179b0c20447ca3f5280db",
+      "balance_wei": "732458317129362",
+      "balance_eth": 0.000732458317129362,
+      "writeETH_balance": "855956641863035762",
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xea472ae4f3883850b7bdf7f5ba0548f33b9edc1f",
+      "balance_wei": "729604284373133",
+      "balance_eth": 0.000729604284373133,
+      "writeETH_balance": "870567464043186942"
+    },
+    {
+      "address": "0x76d2ddce6b781e66c4b184c82fbf4f94346cfb0d",
+      "balance_wei": "717693302316511",
+      "balance_eth": 0.000717693302316511,
+      "writeETH_balance": "708830220961025917",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x4cfb53fcf0f5e3a8ca56fc0be6a995bc668b5234",
+      "balance_wei": "685631041303390",
+      "balance_eth": 0.00068563104130339,
+      "writeETH_balance": "818098371516034635"
+    },
+    {
+      "address": "0x4703bf8ddf7acf99eac0cd87eec06835cb1b3586",
+      "balance_wei": "642430004637253",
+      "balance_eth": 0.000642430004637254,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xde014535b188d1685833b38323906e45b6ffa69d",
+      "balance_wei": "619666033033243",
+      "balance_eth": 0.000619666033033243,
+      "writeETH_balance": "79388595277989226",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xd95562a170f130cd6ac88491e714b1093c2d3169",
+      "balance_wei": "616624419424672",
+      "balance_eth": 0.000616624419424672,
+      "writeETH_balance": "701229326779260104",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x8b7048135b2d35ddfdc6eeb6e96ce498dfac28d0",
+      "balance_wei": "606415867281354",
+      "balance_eth": 0.000606415867281355,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x87e6888935180a9b27a9b48b75c9b779bfec1f76",
+      "balance_wei": "580508744399047",
+      "balance_eth": 0.000580508744399047,
+      "writeETH_balance": "199595622476881294",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x5304ca83ba49dbf9f5adabb1fbe761cf48c6bc4d",
+      "balance_wei": "578255685444544",
+      "balance_eth": 0.000578255685444544,
+      "writeETH_balance": "689977562396767185"
+    },
+    {
+      "address": "0xea0e065560333d66a3f9aa648e63848b86d3362a",
+      "balance_wei": "561945114721052",
+      "balance_eth": 0.000561945114721052,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x007cb567dd764f31316632c5ff31392fcda01788",
+      "balance_wei": "550715250729468",
+      "balance_eth": 0.000550715250729468,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x6e43d04a2c8b8dc3a6fa9dd35711559b493543d1",
+      "balance_wei": "547982614369399",
+      "balance_eth": 0.000547982614369399,
+      "writeETH_balance": "653855583292256000"
+    },
+    {
+      "address": "0xc9a46ad3eeb4925263e32d4d5e4fc3e1a85a9862",
+      "balance_wei": "544436720100609",
+      "balance_eth": 0.000544436720100609,
+      "writeETH_balance": "649624604599472622"
+    },
+    {
+      "address": "0x2070c6d43518c01d238f01db44239b84abbb8452",
+      "balance_wei": "521603096120001",
+      "balance_eth": 0.000521603096120001,
+      "writeETH_balance": "622379410801313022"
+    },
+    {
+      "address": "0x42032c22c510ad0698f16be9b99640efdeb02832",
+      "balance_wei": "512880763803058",
+      "balance_eth": 0.000512880763803058,
+      "writeETH_balance": "611971880431857625",
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xa833af9f45e5f2de634705131e86a3e13dec029a",
+      "balance_wei": "504046908143584",
+      "balance_eth": 0.000504046908143584,
+      "writeETH_balance": "600431279914133892",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xb6002599bdde73c9a4ff95a2233789a1b5f6dfef",
+      "balance_wei": "495937401785711",
+      "balance_eth": 0.000495937401785711,
+      "writeETH_balance": "591754976559252395"
+    },
+    {
+      "address": "0xbea645da9c7f6de1f7e287759ccbfd5ab9f57c08",
+      "balance_wei": "484575524331475",
+      "balance_eth": 0.000484575524331476,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xc27c4f22e5b181bc2841f13a5b8e1b5b2a6f0f5e",
+      "balance_wei": "481238567803066",
+      "balance_eth": 0.000481238567803066,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xca31c12fe129b3feba944cba1e2c1c02f0dc596b",
+      "balance_wei": "440296373533043",
+      "balance_eth": 0.000440296373533043,
+      "writeETH_balance": "525363824670254175"
+    },
+    {
+      "address": "0x535a129e2f69d85605f0598b69d0929636e71500",
+      "balance_wei": "419123293352143",
+      "balance_eth": 0.000419123293352143,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x727f75f271fb0d42c13e76dc2b3c4679418c571f",
+      "balance_wei": "407938688946601",
+      "balance_eth": 0.000407938688946601,
+      "writeETH_balance": "477844474346975396",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x529dc8d8e7aa7ad5cf9968a8c4a7475395312c86",
+      "balance_wei": "393737101371555",
+      "balance_eth": 0.000393737101371555,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xa5a479fc42336239cd34d99a956fcc946b2feff6",
+      "balance_wei": "385354789894494",
+      "balance_eth": 0.000385354789894494,
+      "writeETH_balance": "459807253576619324"
+    },
+    {
+      "address": "0xab8140174c6e46d78bed397b96da352ea38c2821",
+      "balance_wei": "378577770831339",
+      "balance_eth": 0.000378577770831339,
+      "writeETH_balance": "451720880644844012",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x7f9cd82f6d2ef610c9587d6f4c5f079a0353ae20",
+      "balance_wei": "373822295426029",
+      "balance_eth": 0.000373822295426029,
+      "writeETH_balance": "446046623768737066"
+    },
+    {
+      "address": "0x82b8b659a4a98f69cb7899e1a07089ea3b90a894",
+      "balance_wei": "365037354517448",
+      "balance_eth": 0.000365037354517448,
+      "writeETH_balance": "435564388545675365"
+    },
+    {
+      "address": "0xe73619697140698bd6466b1a044a0e9f5508272a",
+      "balance_wei": "324583204227711",
+      "balance_eth": 0.000324583204227711,
+      "writeETH_balance": "387294295041173117",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xc2a83bf41061a5775eaaca119088e3bff3c06fd0",
+      "balance_wei": "312312761650714",
+      "balance_eth": 0.000312312761650714,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x0aa80985eba2010a76f3bd17ebb070970317e5d2",
+      "balance_wei": "289559602408440",
+      "balance_eth": 0.00028955960240844,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xf364a8388af8d8f65fb9dc9806d81ccc6c444e84",
+      "balance_wei": "280187999987327",
+      "balance_eth": 0.000280187999987327,
+      "writeETH_balance": "334321716345012159"
+    },
+    {
+      "address": "0x9c83c5c5c33365426bef49b533f36aa386aafcbc",
+      "balance_wei": "229357178012774",
+      "balance_eth": 0.000229357178012774,
+      "writeETH_balance": "273670126531997365"
+    },
+    {
+      "address": "0x80b404747162605dbf68eb1cf9cac3020e24c74a",
+      "balance_wei": "225915372956393",
+      "balance_eth": 0.000225915372956393,
+      "writeETH_balance": "268840924405612536",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xb157de3db68569c3683196539349016a5b4a2517",
+      "balance_wei": "211804249409841",
+      "balance_eth": 0.000211804249409841,
+      "writeETH_balance": "252725884745484859"
+    },
+    {
+      "address": "0xb764d27911451d2b01c9945ace15112a0bfed98b",
+      "balance_wei": "191625927611593",
+      "balance_eth": 0.000191625927611593,
+      "writeETH_balance": "228649010729261889"
+    },
+    {
+      "address": "0x7c707ea96b204643689042ba0166108a5be84f05",
+      "balance_wei": "184509670071088",
+      "balance_eth": 0.000184509670071088,
+      "writeETH_balance": "220157856807600819"
+    },
+    {
+      "address": "0x6100ac7f99090e4d6b227cbdc4bd9b6bc4eaf594",
+      "balance_wei": "170379019804724",
+      "balance_eth": 0.000170379019804724,
+      "writeETH_balance": "203261343901745183",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x57af825ff979bd64b841ab525a5c743912abbc59",
+      "balance_wei": "168215400645729",
+      "balance_eth": 0.000168215400645729,
+      "writeETH_balance": "200715453417304255"
+    },
+    {
+      "address": "0x3464af71d0b2e70e4b16a772b8ffbe7c7b82bf4b",
+      "balance_wei": "167876077200832",
+      "balance_eth": 0.000167876077200832,
+      "writeETH_balance": "200310570993720726"
+    },
+    {
+      "address": "0x2bcc70568b9f317e882d84f60abe94acdad865e5",
+      "balance_wei": "167602131256801",
+      "balance_eth": 0.000167602131256801,
+      "writeETH_balance": "199983697329614808"
+    },
+    {
+      "address": "0xdd4e6f72a039990a6b85e0f0865cdaa3cd8649a3",
+      "balance_wei": "152867737677927",
+      "balance_eth": 0.000152867737677927,
+      "writeETH_balance": "182402545564319032"
+    },
+    {
+      "address": "0x0d9f35ff1df9c3ef13613b82d4f72841a0205ed9",
+      "balance_wei": "146762173668648",
+      "balance_eth": 0.000146762173668648,
+      "writeETH_balance": "175117356195291876"
+    },
+    {
+      "address": "0xd84dfb8860da13f4a62a40a1d9824e2b8077dc9c",
+      "balance_wei": "145468691438780",
+      "balance_eth": 0.00014546869143878,
+      "writeETH_balance": "173573966759731821"
+    },
+    {
+      "address": "0xc49ff6c811c155c0d0760da564d71a5ec47b3ab5",
+      "balance_wei": "139999529420097",
+      "balance_eth": 0.000139999529420097,
+      "writeETH_balance": "167048135413857704"
+    },
+    {
+      "address": "0xb6b6b529f3d2d059f1c75f9657432f3551af6247",
+      "balance_wei": "131904568234986",
+      "balance_eth": 0.000131904568234986,
+      "writeETH_balance": "157389187431521184"
+    },
+    {
+      "address": "0x213353406af8bc04023e497a9997903509615718",
+      "balance_wei": "126166622606393",
+      "balance_eth": 0.000126166622606393,
+      "writeETH_balance": "150542642144311943"
+    },
+    {
+      "address": "0x9e2faaae64cc1f40e9eabd2f502811ffca2fd0ee",
+      "balance_wei": "114605394825669",
+      "balance_eth": 0.000114605394825669,
+      "writeETH_balance": "136747727605209493"
+    },
+    {
+      "address": "0xbce85248ca6527e3b5eac83ec665f03e30f3cbab",
+      "balance_wei": "102052769824991",
+      "balance_eth": 0.000102052769824991,
+      "writeETH_balance": "121769872968138753"
+    },
+    {
+      "address": "0x6af3317a545d1977003e7fde666d5dabbca01ce5",
+      "balance_wei": "95573116915349",
+      "balance_eth": 9.5573116915349e-05,
+      "writeETH_balance": "114038318861004811"
+    },
+    {
+      "address": "0x352ecff1aab07d86f1eb614723f0ca83ec74d717",
+      "balance_wei": "94623319693297",
+      "balance_eth": 9.4623319693297e-05,
+      "writeETH_balance": "112905016087614895"
+    },
+    {
+      "address": "0x0f11a0ad3b93fc9838b663511c44598335055f85",
+      "balance_wei": "89737842120856",
+      "balance_eth": 8.9737842120856e-05,
+      "writeETH_balance": "107075639928545621"
+    },
+    {
+      "address": "0x003d241dee35670d9a432025f912edd0cc774581",
+      "balance_wei": "88169758525084",
+      "balance_eth": 8.8169758525084e-05,
+      "writeETH_balance": "105204594776238635"
+    },
+    {
+      "address": "0xd8ed830e33859af668bf4bf1550dfe4cc9984157",
+      "balance_wei": "85972566526281",
+      "balance_eth": 8.5972566526281e-05,
+      "writeETH_balance": "102582894345768583"
+    },
+    {
+      "address": "0xc66545f3cf7f13615d0df0bd7fcfb733af417713",
+      "balance_wei": "85409873016591",
+      "balance_eth": 8.5409873016591e-05,
+      "writeETH_balance": "101911485648949315"
+    },
+    {
+      "address": "0xb76bf854ef3a9105a2ffe204608d06c7a5259604",
+      "balance_wei": "83301912654537",
+      "balance_eth": 8.3301912654537e-05,
+      "writeETH_balance": "99396256851638134"
+    },
+    {
+      "address": "0x827ea2c64d3f5093f632ab6daa94ee8d7eee0686",
+      "balance_wei": "83036296662064",
+      "balance_eth": 8.3036296662064e-05,
+      "writeETH_balance": "99079322527197666"
+    },
+    {
+      "address": "0xa6744604dcb2ab90eeb9fb9e3b456b43a41b1035",
+      "balance_wei": "81801308290627",
+      "balance_eth": 8.1801308290627e-05,
+      "writeETH_balance": "97605728254697000"
+    },
+    {
+      "address": "0xcd76828051e1c153e54ab0b1cf95eb09636ad8de",
+      "balance_wei": "81556612883238",
+      "balance_eth": 8.1556612883238e-05,
+      "writeETH_balance": "97313756476520267"
+    },
+    {
+      "address": "0x7595964c89ed5ec8e47a43b2b57f07c6d83133fd",
+      "balance_wei": "80659907390413",
+      "balance_eth": 8.0659907390413e-05,
+      "writeETH_balance": "96243803018731575"
+    },
+    {
+      "address": "0xdfea4755c067dfabaf0a18c88d226337874469ac",
+      "balance_wei": "80481213023940",
+      "balance_eth": 8.048121302394e-05,
+      "writeETH_balance": "96030584011125465"
+    },
+    {
+      "address": "0xc2d3204b67fd2240d7ddfe0f7bc16ddf921a4e75",
+      "balance_wei": "80418932544283",
+      "balance_eth": 8.0418932544283e-05,
+      "writeETH_balance": "95956270632770556"
+    },
+    {
+      "address": "0x52e38021b95068264c3b71159fc29517e4d1faf1",
+      "balance_wei": "79514646387734",
+      "balance_eth": 7.9514646387734e-05,
+      "writeETH_balance": "94877271889290730"
+    },
+    {
+      "address": "0xdaa5dda232b24e1f03aa687b30d14fb36a22f9fa",
+      "balance_wei": "79503432786796",
+      "balance_eth": 7.9503432786796e-05,
+      "writeETH_balance": "94863891763614233",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xd988502d28344f85272109fefa2df5304ea1d087",
+      "balance_wei": "79199710065250",
+      "balance_eth": 7.919971006525e-05,
+      "writeETH_balance": "94501488301567020"
+    },
+    {
+      "address": "0x822fe0e19903591578f269deda9d50b453c8ac86",
+      "balance_wei": "78649347020831",
+      "balance_eth": 7.8649347020832e-05,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xe32307b731526a00cb32e8678f64ec3fa121f44d",
+      "balance_wei": "77943119469975",
+      "balance_eth": 7.7943119469975e-05,
+      "writeETH_balance": "92923812582794720",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xae3a94c250ae8236de0f9168dbe52db8f4ba3bf1",
+      "balance_wei": "77633707668753",
+      "balance_eth": 7.7633707668753e-05,
+      "writeETH_balance": "92632926446595145"
+    },
+    {
+      "address": "0x3043dc1342011e40d79440c8da82db11adc54fe5",
+      "balance_wei": "76238990082326",
+      "balance_eth": 7.6238990082326e-05,
+      "writeETH_balance": "90968742479643993"
+    },
+    {
+      "address": "0xcd7c44cea43eaac0178599063f5054687b3ea262",
+      "balance_wei": "74575125852356",
+      "balance_eth": 7.4575125852356e-05,
+      "writeETH_balance": "88983411397821463"
+    },
+    {
+      "address": "0xab7e73662a6f233c1cac5a0709012c21c93cb951",
+      "balance_wei": "74469062708471",
+      "balance_eth": 7.4469062708471e-05,
+      "writeETH_balance": "88856856326321119",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xed605d711eb350fde447fad52485ec5e531535ab",
+      "balance_wei": "73428289036288",
+      "balance_eth": 7.3428289036288e-05,
+      "writeETH_balance": "87615000000000000"
+    },
+    {
+      "address": "0x04ada96a5c5a1fdf7e315f14aeb2ce9eb61efb5e",
+      "balance_wei": "73321334208508",
+      "balance_eth": 7.3321334208508e-05,
+      "writeETH_balance": "87487380967077618"
+    },
+    {
+      "address": "0x25125e438b7ae0f9ae8511d83abb0f4574217c7a",
+      "balance_wei": "73062384560275",
+      "balance_eth": 7.3062384560275e-05,
+      "writeETH_balance": "82220624687810563",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xd65ad9600aa0a3d48234fc9dc727ff20749daa22",
+      "balance_wei": "72800670504646",
+      "balance_eth": 7.2800670504646e-05,
+      "writeETH_balance": "86866122443794310"
+    },
+    {
+      "address": "0xd8008ede4559e51efaa8f2a7f8e4f5ffb1fb8f28",
+      "balance_wei": "72762139339262",
+      "balance_eth": 7.2762139339262e-05,
+      "writeETH_balance": "86820146865452117"
+    },
+    {
+      "address": "0xe1c16e2278b5ed608eed8ce226594f51b52cc485",
+      "balance_wei": "69439306010451",
+      "balance_eth": 6.9439306010451e-05,
+      "writeETH_balance": "82855325596636865"
+    },
+    {
+      "address": "0x17d32b837d79e8783b1e57c09a180ec33ba4bdb3",
+      "balance_wei": "68943116370212",
+      "balance_eth": 6.8943116370212e-05,
+      "writeETH_balance": "82263269647900150"
+    },
+    {
+      "address": "0x549750e6b5b40e627365bdcf7f7780dbfde113a4",
+      "balance_wei": "68754742890933",
+      "balance_eth": 6.8754742890933e-05,
+      "writeETH_balance": "82038501474711359"
+    },
+    {
+      "address": "0x91dda995be3a56bbf2ac6e5e14eb9213a336aac6",
+      "balance_wei": "68041093045769",
+      "balance_eth": 6.8041093045769e-05,
+      "writeETH_balance": "81186970926953773"
+    },
+    {
+      "address": "0xd25baae3ff5b6d793c25baeb475ed890c16c39bc",
+      "balance_wei": "67038402369761",
+      "balance_eth": 6.7038402369761e-05,
+      "writeETH_balance": "79990555421002095"
+    },
+    {
+      "address": "0x57a999b3375587470083f07abb26ea70c3dca91a",
+      "balance_wei": "66042444014262",
+      "balance_eth": 6.6042444014262e-05,
+      "writeETH_balance": "78802172953396786"
+    },
+    {
+      "address": "0x6071fbe5d7365420b5549b4f5d72e21b06673d18",
+      "balance_wei": "64319773849505",
+      "balance_eth": 6.4319773849505e-05,
+      "writeETH_balance": "76746674337453262"
+    },
+    {
+      "address": "0x1d7e97cf3d5765054e520c171b69f7a2d02e0c26",
+      "balance_wei": "63046645440922",
+      "balance_eth": 6.3046645440922e-05,
+      "writeETH_balance": "75227571182770555"
+    },
+    {
+      "address": "0x3185dc7c056f01b650a29424c13acd0349c81f15",
+      "balance_wei": "62994299676546",
+      "balance_eth": 6.2994299676546e-05,
+      "writeETH_balance": "75165111956043540",
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0x43ffbf682b61d1a8d7c3235eb724775c5d8479d1",
+      "balance_wei": "62210433317358",
+      "balance_eth": 6.2210433317358e-05,
+      "writeETH_balance": "74229798714316633"
+    },
+    {
+      "address": "0xc805f55c18c62e278382cc16f51ea5c4becfc74d",
+      "balance_wei": "60898934486924",
+      "balance_eth": 6.0898934486924e-05,
+      "writeETH_balance": "72664911781274982"
+    },
+    {
+      "address": "0x594b417e3a74bb74b25519cb803752230b1244e0",
+      "balance_wei": "60805568990924",
+      "balance_eth": 6.0805568990924e-05,
+      "writeETH_balance": "72553507606680204"
+    },
+    {
+      "address": "0x6977e753e022f65ebeb170d8267b2ea54a431523",
+      "balance_wei": "59711127310751",
+      "balance_eth": 5.9711127310751e-05,
+      "writeETH_balance": "71247614341928038",
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xf5dcb2a47f738d8ba39f9fa2ddc7592f268a262a",
+      "balance_wei": "58739039043372",
+      "balance_eth": 5.8739039043372e-05,
+      "writeETH_balance": "70087713786190186"
+    },
+    {
+      "address": "0x46df698064d927b86b18059b836c5f1c7d62478a",
+      "balance_wei": "58701547447143",
+      "balance_eth": 5.8701547447143e-05,
+      "writeETH_balance": "70042978626938568"
+    },
+    {
+      "address": "0xce2f0727943e7c1a17f27aa6f67ed6821cdf8d7d",
+      "balance_wei": "58593589611488",
+      "balance_eth": 5.8593589611488e-05,
+      "writeETH_balance": "69914162745064278",
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xbc904354748f3eaea50f0ea36c959313ff55cc39",
+      "balance_wei": "56184772950715",
+      "balance_eth": 5.6184772950715e-05,
+      "writeETH_balance": "67039950769438996"
+    },
+    {
+      "address": "0xd461b2871b39e84fd33293b70254a6359f84dd45",
+      "balance_wei": "54536975979555",
+      "balance_eth": 5.4536975979555e-05,
+      "writeETH_balance": "65073791210810792",
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x4fd0e381c994b4262e4b452843b7b28c6a38acf6",
+      "balance_wei": "52125219795042",
+      "balance_eth": 5.2125219795042e-05,
+      "writeETH_balance": "62196071735862770"
+    },
+    {
+      "address": "0xa2c12dbe82f19ef06850d4693f2b2d5724b8ea3e",
+      "balance_wei": "51613733232383",
+      "balance_eth": 5.1613733232383e-05,
+      "writeETH_balance": "61585763423146354"
+    },
+    {
+      "address": "0xf22c5bbb2bef346d7d0ca12e6c038e688c0d1985",
+      "balance_wei": "51443300526371",
+      "balance_eth": 5.1443300526371e-05,
+      "writeETH_balance": "61382402269928080"
+    },
+    {
+      "address": "0x30bacd12a889c9be7e5da52aa089744c62aff878",
+      "balance_wei": "50147574188136",
+      "balance_eth": 5.0147574188136e-05,
+      "writeETH_balance": "59804275470113010",
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x7fd8a3e656c90a0e3cd703e4ba46aa4c9d9e84fb",
+      "balance_wei": "49728249126523",
+      "balance_eth": 4.9728249126523e-05,
+      "writeETH_balance": "59335994402199726"
+    },
+    {
+      "address": "0xd2050719ea37325bdb6c18a85f6c442221811fac",
+      "balance_wei": "49680238121345",
+      "balance_eth": 4.9680238121345e-05,
+      "writeETH_balance": "59278707431825491"
+    },
+    {
+      "address": "0x84a7672ba74a5a2712a070ea7cfd0c3c4ffda73b",
+      "balance_wei": "49281415108747",
+      "balance_eth": 4.9281415108747e-05,
+      "writeETH_balance": "58802829827875368"
+    },
+    {
+      "address": "0xf6853c77a2452576eae5af424975a101ffc47308",
+      "balance_wei": "48467841022444",
+      "balance_eth": 4.8467841022444e-05,
+      "writeETH_balance": "57832051475173271",
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e",
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xb48793b421179a1c2ebb68c6d81177e985d43c34",
+      "balance_wei": "47044736707484",
+      "balance_eth": 4.7044736707484e-05,
+      "writeETH_balance": "56134014025428031"
+    },
+    {
+      "address": "0x82ccf5ed8f713281b1be7d12f64a614e20c3bad0",
+      "balance_wei": "15923500447291",
+      "balance_eth": 1.5923500447292e-05,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0x9ffc409816f1abf6072e6718d85694c5ce893e8a",
+      "balance_wei": "12564447075777",
+      "balance_eth": 1.2564447075778e-05,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x1fe9fd1156688699f4ca017e72ee0d9873f9d758",
+      "balance_wei": "8380789709101",
+      "balance_eth": 8.380789709101e-06,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x0d7bb1ec806c6f314ac19533ce585b1698867f6a",
+      "balance_wei": "8380789709101",
+      "balance_eth": 8.380789709101e-06,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x3aa667d05a6aa1115cf4a533c29bb538acd1300c",
+      "balance_wei": "8283810244433",
+      "balance_eth": 8.283810244433e-06,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xae653682dee958914a82c9628de794dcbbee3d04",
+      "balance_wei": "7479854815372",
+      "balance_eth": 7.479854815373e-06,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x702d4960c5042e605a1dae7b005784a9cb0f0137",
+      "balance_wei": "6670101603985",
+      "balance_eth": 6.670101603985e-06,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x74bd0c664b7bc4dc284ee0cdffe7ef2950eb960c",
+      "balance_wei": "5782744899279",
+      "balance_eth": 5.78274489928e-06,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x8ab738cf91bc2f915c1bd1b5c446ee5353d279c3",
+      "balance_wei": "3352315883640",
+      "balance_eth": 3.35231588364e-06,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x9fae1b2be0a8d7e64780fd740f8ad05188e8170a",
+      "balance_wei": "738456731656",
+      "balance_eth": 7.38456731656e-07,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x9c17af3c0aa3f429f7073ff5057aaf642248f896",
+      "balance_wei": "591015589742",
+      "balance_eth": 5.91015589743e-07,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x81d98c8fda0410ee3e9d7586cb949cd19fa4cf38",
+      "balance_wei": "462308919307",
+      "balance_eth": 4.62308919307e-07,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xa23842c61ca1e15bb148ab13840768b87f04e642",
+      "balance_wei": "404477118221",
+      "balance_eth": 4.04477118221e-07,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xd1098b247dd031145c7d2f42ee3aacae2253b8d8",
+      "balance_wei": "230640678749",
+      "balance_eth": 2.30640678749e-07,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x431c381b7c80a310c746dabf8ccba16530efc164",
+      "balance_wei": "113845678646",
+      "balance_eth": 1.13845678646e-07,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x6fcf92925e0281d957b0076d3751cad76916c96b",
+      "balance_wei": "83807897091",
+      "balance_eth": 8.3807897091e-08,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x09fa38eba245bb68354b8950fa2fe71f02863393",
+      "balance_wei": "81027328721",
+      "balance_eth": 8.1027328722e-08,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x79c4213a328e3b4f1d87b4953c14759399db25e2",
+      "balance_wei": "45181891860",
+      "balance_eth": 4.518189186e-08,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x464d876a94de8cbc957a81b15a5da34f2b66107a",
+      "balance_wei": "31133878050",
+      "balance_eth": 3.1133878051e-08,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x46ba0af6bc60e6fabd9957744c057d031c720ace",
+      "balance_wei": "29683835262",
+      "balance_eth": 2.9683835263e-08,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x9f7b5af7454a895a7aa0b35c71ad57805fe2325e",
+      "balance_wei": "26051776999",
+      "balance_eth": 2.6051776999e-08,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x055de0509847776d1d1b8e6ad9635fb5b53a0bc0",
+      "balance_wei": "1315220321",
+      "balance_eth": 1.315220321e-09,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xd657860fc512ec2250a7385a353f599e3276fddb",
+      "balance_wei": "1133305697",
+      "balance_eth": 1.133305698e-09,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x974f68c1a39f11aa7b74b92d7b8f05d8902ea70f",
+      "balance_wei": "838078970",
+      "balance_eth": 8.38078971e-10,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x7c8619b5e95bcbf42752d3f2fd297c2afb4a3b80",
+      "balance_wei": "827846980",
+      "balance_eth": 8.27846981e-10,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x1a4689403e6e70c5e37046cd43db1847c6dc3e7b",
+      "balance_wei": "784815637",
+      "balance_eth": 7.84815638e-10,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x3247da930721fadf467dcfaa2e211fa309381371",
+      "balance_wei": "655489057",
+      "balance_eth": 6.55489057e-10,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xfca6443846fa6c4d02947d7e7baf3667bc9742d0",
+      "balance_wei": "643048775",
+      "balance_eth": 6.43048776e-10,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x5edcf547ece0ea1765d6c02e9e5bae53b52e09d4",
+      "balance_wei": "290981018",
+      "balance_eth": 2.90981019e-10,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xd4ca3a2f1046b845aad5fe16211fd1686421e175",
+      "balance_wei": "245991538",
+      "balance_eth": 2.45991539e-10,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xebcd54d901596ce65fa504d96a397e8463d6262d",
+      "balance_wei": "226995846",
+      "balance_eth": 2.26995847e-10,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xcff7303b8e08403438c751bf21c04771252fa413",
+      "balance_wei": "158355021",
+      "balance_eth": 1.58355022e-10,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x11a8c90d36d147fa27e6313bfe1ec7a0eaab424a",
+      "balance_wei": "157817812",
+      "balance_eth": 1.57817812e-10,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x9ea9e7ad4d1a5dd893cbdfc9027e116ae675cc2e",
+      "balance_wei": "28349385",
+      "balance_eth": 2.8349385e-11,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xf9306b541f442a51333e22fd494b77d4c33a69e3",
+      "balance_wei": "15207781",
+      "balance_eth": 1.5207781e-11,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x03dc54da70469dc3d53d4af0ae43236b6ff4f2b7",
+      "balance_wei": "839673",
+      "balance_eth": 8.39673e-13,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xf28d4face9315ec0343d69e28b90712cb9aca453",
+      "balance_wei": "499778",
+      "balance_eth": 4.99778e-13,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x804604f55fe79ad0237696465c57d3de997c14c1",
+      "balance_wei": "432448",
+      "balance_eth": 4.32448e-13,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x0a53e28f2f7b27971e18a6305c2c74a449badd2e",
+      "balance_wei": "335231",
+      "balance_eth": 3.35232e-13,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x9efab36288565dc343b6909350767cb392aa4f69",
+      "balance_wei": "167614",
+      "balance_eth": 1.67614e-13,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x330e75e1f48b1ee968197cc870511665a4a5a832",
+      "balance_wei": "124434",
+      "balance_eth": 1.24434e-13,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x7b4778d265f5280f600a2917c6aaf59b44fb2429",
+      "balance_wei": "83807",
+      "balance_eth": 8.3808e-14,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xd04bf9c1efa966918d7cb6c407692dbf8e069866",
+      "balance_wei": "82969",
+      "balance_eth": 8.297e-14,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xc216d39cceb3d86a72e06da26a97d1adbae97685",
+      "balance_wei": "73503",
+      "balance_eth": 7.3503e-14,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x505846a0a89dd26fa5cd0677fd5406039c218620",
+      "balance_wei": "61605",
+      "balance_eth": 6.1605e-14,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xa38475ec707f358f338fc2dc393d92845276e568",
+      "balance_wei": "35827",
+      "balance_eth": 3.5828e-14,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xb289360a2ab9eacffd1d7883183a6d9576db515f",
+      "balance_wei": "25980",
+      "balance_eth": 2.598e-14,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0xd3ce92e2f9c613adf53d81cdf0e07fb4e91d9289",
+      "balance_wei": "25142",
+      "balance_eth": 2.5142e-14,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x6dd92fc9d6eb5390e2bbb6931ebb45ae2ed7c4d7",
+      "balance_wei": "25141",
+      "balance_eth": 2.5141e-14,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x58d0f94716224217faaab820e9cde976fbcc5798",
+      "balance_wei": "23729",
+      "balance_eth": 2.3729e-14,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x2880a6bb2cd1df6e03dc8bbfbed009de586c2603",
+      "balance_wei": "17599",
+      "balance_eth": 1.7599e-14,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xf0bbfb6b0d222e0d065538546d20302298752446",
+      "balance_wei": "15227",
+      "balance_eth": 1.5227e-14,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x474267f71a188ab6c13c8e0a0907de217377e6b3",
+      "balance_wei": "11733",
+      "balance_eth": 1.1733e-14,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0xaae102ca930508e6da30924bf0374f0f247729d5",
+      "balance_wei": "11732",
+      "balance_eth": 1.1732e-14,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xe84f67eca9ed5c69c0915b13533eb09b63f0edb1",
+      "balance_wei": "10392",
+      "balance_eth": 1.0392e-14,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x8eb60797eac90e9118ecbafb383ea6587aa9701e",
+      "balance_wei": "8380",
+      "balance_eth": 8.381e-15,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xdd22b770af2ea02534fd2ab53e730c997aec7e89",
+      "balance_wei": "8380",
+      "balance_eth": 8.381e-15,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xcbdc76e52895b5de79c315b8ab3f0a7a5ac04ab3",
+      "balance_wei": "8380",
+      "balance_eth": 8.381e-15,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x4996de5a4e624fce5a718b2a2547901fb050c2b4",
+      "balance_wei": "8380",
+      "balance_eth": 8.38e-15,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x909fdf2feea01276081253e2486dfbc81ab491d4",
+      "balance_wei": "8094",
+      "balance_eth": 8.094e-15,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xe9d88d7360eaebec2a7432c4163c06f3c509c538",
+      "balance_wei": "7794",
+      "balance_eth": 7.794e-15,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0x3e8acff977fb67220e06faddb8e04c2e1aef2a31",
+      "balance_wei": "7579",
+      "balance_eth": 7.579e-15,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x6ceaa647f9e67faea9edb996cf1e971bfc35da05",
+      "balance_wei": "7542",
+      "balance_eth": 7.543e-15,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0x92b0f8dde5215d4db5a9edd44f3585d50883bc80",
+      "balance_wei": "7542",
+      "balance_eth": 7.542e-15,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xd64d9f5b9050a634ef9d0089d22766a36ca8a2aa",
+      "balance_wei": "7277",
+      "balance_eth": 7.278e-15,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xb8f95c3d754a9183b6000572d34e7fb2f3047974",
+      "balance_wei": "6704",
+      "balance_eth": 6.705e-15,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xc3db09cd17f9c442afdd164c11608650362b21c4",
+      "balance_wei": "6597",
+      "balance_eth": 6.597e-15,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x3f9517ac3ccc311c84826fb000bc8df1e45c4b72",
+      "balance_wei": "6364",
+      "balance_eth": 6.364e-15,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x6a12795beb0c4dfe39b5cb1ceec8ce1784a9f073",
+      "balance_wei": "6325",
+      "balance_eth": 6.325e-15,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x2b2411bd9dcfb0d3f375521917e623676987dfb1",
+      "balance_wei": "6317",
+      "balance_eth": 6.317e-15,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xca718fe2453624aadeab1df37019e881c6b13122",
+      "balance_wei": "5866",
+      "balance_eth": 5.867e-15,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x98116cae5813810941a0404f4208a5355c595a9d",
+      "balance_wei": "5730",
+      "balance_eth": 5.73e-15,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0xd6f82502f20647dd8d78dffb6ad7f8d8193d5e29",
+      "balance_wei": "5691",
+      "balance_eth": 5.692e-15,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xe551388b683bb1e34e27e5a7b00eabe79b080bf7",
+      "balance_wei": "5195",
+      "balance_eth": 5.195e-15,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x8c340ad3e0ca75edf7c023e3d128eebfc4d7f2c0",
+      "balance_wei": "5178",
+      "balance_eth": 5.179e-15,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xe90b4aa6002e263031e9a05d50ce8709b9f92fa8",
+      "balance_wei": "5048",
+      "balance_eth": 5.049e-15,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0xa0e04247d39ebc07f38acca38dc10e14fa8d6c98",
+      "balance_wei": "4190",
+      "balance_eth": 4.19e-15,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0xe229f68271345c696ba5980cd5486e76f31c2eb9",
+      "balance_wei": "4160",
+      "balance_eth": 4.16e-15,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x8a6ad6dd70acba5f90acbfd094ea930099b48071",
+      "balance_wei": "3660",
+      "balance_eth": 3.661e-15,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0x2dd6253ca3c08a2a65063ba23f69d3e93f0f25ea",
+      "balance_wei": "2846",
+      "balance_eth": 2.846e-15,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xa8207755df9a64c5ad734266fd34a5134d2528a1",
+      "balance_wei": "2513",
+      "balance_eth": 2.514e-15,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x6fb737d1ebb73cda6cfa36fd16d9273065d1b084",
+      "balance_wei": "2475",
+      "balance_eth": 2.475e-15,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x8c4eb6988a199dabcae0ce31052b3f3ac591787e",
+      "balance_wei": "2449",
+      "balance_eth": 2.45e-15,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x72c2c890625f7e2ec82a49a5b0d6438c36fc1bb5",
+      "balance_wei": "1680",
+      "balance_eth": 1.68e-15,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e",
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0x51ab3dbf9a5089a85e6e3e8252df7c911078dd84",
+      "balance_wei": "1676",
+      "balance_eth": 1.676e-15,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0x3483a0282281768e2883c443989194259cba7eaf",
+      "balance_wei": "1676",
+      "balance_eth": 1.676e-15,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x5d47e5d242a8f66a6286b0a2353868875f5d6068",
+      "balance_wei": "1676",
+      "balance_eth": 1.676e-15,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xadbc69b07b839ca353177b5a22013b30624d2dc5",
+      "balance_wei": "1676",
+      "balance_eth": 1.676e-15,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xbcd5a1776d5e28222f0ed0b8203e5648a0668842",
+      "balance_wei": "1561",
+      "balance_eth": 1.561e-15,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xe51b3d74b9e8203b5e817e691a5d0d7f00898fbd",
+      "balance_wei": "1000",
+      "balance_eth": 1e-15,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xc392fde132396c439191388daa3ccb8a3c51fe76",
+      "balance_wei": "912",
+      "balance_eth": 9.12e-16,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x1000f47de952a518ef7bfc3376becc6e70f94939",
+      "balance_wei": "838",
+      "balance_eth": 8.38e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xca9f486512154391c63a67069bfc1b1e4fb44774",
+      "balance_wei": "838",
+      "balance_eth": 8.38e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xca748cb3e3de6ceab581db13bb9362d4d55353b9",
+      "balance_wei": "838",
+      "balance_eth": 8.38e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x3cfb57e004fc303b827b48bb481c1cea69ab7b30",
+      "balance_wei": "838",
+      "balance_eth": 8.38e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x0b04b98852ea0a3f0192916e593f2f0561852ab6",
+      "balance_wei": "799",
+      "balance_eth": 8e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x655c7eadf9360603cb5077d8dc57fa07bcf61d55",
+      "balance_wei": "759",
+      "balance_eth": 7.59e-16,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xd53ea1cd7d20316d77ea633fdf99a06f576ca29e",
+      "balance_wei": "747",
+      "balance_eth": 7.47e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xcce853ecb829d914d119724761e3deb6ad982047",
+      "balance_wei": "670",
+      "balance_eth": 6.7e-16,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x8e373acd610df5f3ff2dac01b0749c6b311f44bf",
+      "balance_wei": "670",
+      "balance_eth": 6.7e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xad068cd212cf961fc806fa5c0dcf34d9808af9a6",
+      "balance_wei": "627",
+      "balance_eth": 6.28e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xae74a3cab14567ee50a749400b1ccb7b05d5f614",
+      "balance_wei": "586",
+      "balance_eth": 5.87e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x2ae461c5dcfc259a6fd9da6178fd0d1920309619",
+      "balance_wei": "549",
+      "balance_eth": 5.5e-16,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x758eda007369ad1c3df83c99027bd718416473fa",
+      "balance_wei": "536",
+      "balance_eth": 5.37e-16,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x9b667fa9ef908407dc90ad0274039fa2fd0007b3",
+      "balance_wei": "487",
+      "balance_eth": 4.88e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x778e6362b2edcefc06a768ca0a438cae0cb568b1",
+      "balance_wei": "471",
+      "balance_eth": 4.71e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x5b21175a82f112c88e306a546166037d238de684",
+      "balance_wei": "453",
+      "balance_eth": 4.54e-16,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x9f74142501830af396d88bcf79e850398bd79e78",
+      "balance_wei": "364",
+      "balance_eth": 3.64e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x47b2efa18736c6c211505aefd321bec3ac3e8779",
+      "balance_wei": "360",
+      "balance_eth": 3.6e-16,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e",
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0xd0dc07b98769f23a7bdbef15a35faa256cb65dcf",
+      "balance_wei": "343",
+      "balance_eth": 3.44e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xce99c32ecd2a482299b86ee715ce76d4df220792",
+      "balance_wei": "303",
+      "balance_eth": 3.04e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x97fc2e88d19523f0011ed3bb4ac592802dc435ab",
+      "balance_wei": "293",
+      "balance_eth": 2.93e-16,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xc0ef45535291d020309c7051ea26b7e36f2a41ff",
+      "balance_wei": "284",
+      "balance_eth": 2.84e-16,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e",
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xae2a132a0d1e0e8c98580a810540ba94ddb4cd9e",
+      "balance_wei": "251",
+      "balance_eth": 2.51e-16,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xcfb464585241eab3ecb392011648a8e829b951ed",
+      "balance_wei": "228",
+      "balance_eth": 2.29e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x2e15d7aa0650de1009710fdd45c3468d75ae1392",
+      "balance_wei": "224",
+      "balance_eth": 2.25e-16,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x738c696bef0030600884cac2e1d3dcca330e4ea8",
+      "balance_wei": "225",
+      "balance_eth": 2.25e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x8064eebd2d1ccd4290924665efc17c8f2da5bfc4",
+      "balance_wei": "196",
+      "balance_eth": 1.97e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x42740f20aed483b69701a55ab295a2edc886b1fe",
+      "balance_wei": "187",
+      "balance_eth": 1.87e-16,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x59e0375e991fe25f2b9ca900dd3ecf3173e02d31",
+      "balance_wei": "167",
+      "balance_eth": 1.68e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x1eaeed9afb9440571dcf83afea57da5cfbb05fab",
+      "balance_wei": "156",
+      "balance_eth": 1.57e-16,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x7fb7e28b8bbba6a0c28c8ac6a522c2fefe44ee96",
+      "balance_wei": "129",
+      "balance_eth": 1.29e-16,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0x297946c26171008ba8c0e5642814b5fe6b842ab7",
+      "balance_wei": "103",
+      "balance_eth": 1.04e-16,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x8ed5003d47e6b8a7024ef9cee90403ed786b151e",
+      "balance_wei": "90",
+      "balance_eth": 9.1e-17,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x5ae725d8c2fc96b6471a842dee617c637dc8cc7c",
+      "balance_wei": "83",
+      "balance_eth": 8.4e-17,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xf1d8722bc108fa8f2d9a4fb68af04a369739318e",
+      "balance_wei": "83",
+      "balance_eth": 8.4e-17,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x9be83911a3ebe8d27ddacb541d0189cba1320326",
+      "balance_wei": "75",
+      "balance_eth": 7.6e-17,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x3873a4479fc2bb6d8bd7704e8673f22b51e0c263",
+      "balance_wei": "72",
+      "balance_eth": 7.3e-17,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0x7ece5fc7290e8df49f8f1ca2f838dc1c8b0712f1",
+      "balance_wei": "68",
+      "balance_eth": 6.8e-17,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x1d5c41dda161071f7c8a80141eefdae10ed82915",
+      "balance_wei": "52",
+      "balance_eth": 5.2e-17,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x67168517c1d0835147e2bd66e40a602e9fb9cbd9",
+      "balance_wei": "50",
+      "balance_eth": 5.1e-17,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xc1178d5bada448126a5054eaf4e7c2f3fca5e974",
+      "balance_wei": "47",
+      "balance_eth": 4.8e-17,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x8c66125e0c2db4fdaf60cdb1a4d1873579497064",
+      "balance_wei": "42",
+      "balance_eth": 4.2e-17,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x33c388bbb8941bda62c07552fa940f39f59dfa4e",
+      "balance_wei": "41",
+      "balance_eth": 4.2e-17,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xaec6534caabf36defd5a440caa6b856d3c528fff",
+      "balance_wei": "41",
+      "balance_eth": 4.1e-17,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xb6f4053be27551d43268c07fefa13b8a7ce23448",
+      "balance_wei": "33",
+      "balance_eth": 3.4e-17,
+      "staking_contracts": [
+        "0x4f439c4f249f382c91e5b5c2b98ef746e4e5789a"
+      ]
+    },
+    {
+      "address": "0x3707aa64a35fe74dd4a21bdca160071929f6512a",
+      "balance_wei": "22",
+      "balance_eth": 2.2e-17,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x65b0d5e1dc0dee0704f53f660aa865c72e986fc7",
+      "balance_wei": "16",
+      "balance_eth": 1.6e-17,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x10c663c71dd117b84470aa2f9797d845bee01d9a",
+      "balance_wei": "13",
+      "balance_eth": 1.4e-17,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x5a361a1dfd52538a158e352d21b5b622360a7c13",
+      "balance_wei": "13",
+      "balance_eth": 1.3e-17,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x377a1a7a3d763090456c085d65e01363f789ba03",
+      "balance_wei": "8",
+      "balance_eth": 9e-18,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0xa68119904fcb1072befe3692d5cdd29fdbeea5de",
+      "balance_wei": "8",
+      "balance_eth": 8e-18,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x68f437fecc4cb129eedd38037f892ce2595df1e6",
+      "balance_wei": "6",
+      "balance_eth": 7e-18,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x763cd8f7d253705c2c5fee1bd2d8ff17441afc38",
+      "balance_wei": "4",
+      "balance_eth": 4e-18,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0x2d1e7b6e6284409e16991de76d2a82847a7d61c5",
+      "balance_wei": "2",
+      "balance_eth": 3e-18,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x48c89d77ae34ae475e4523b25ab01e363dce5a78",
+      "balance_wei": "2",
+      "balance_eth": 2e-18,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    },
+    {
+      "address": "0x5a075fdef83cfdaa2082692060fead2fc5ba7480",
+      "balance_wei": "1",
+      "balance_eth": 2e-18,
+      "staking_contracts": [
+        "0x9b18975e64763bda591618cdf02d2f14a9875981"
+      ]
+    },
+    {
+      "address": "0xe7813c0eb3d25ffe9c60531271e6c201d187a425",
+      "balance_wei": "0",
+      "balance_eth": 0.0,
+      "staking_contracts": [
+        "0x8fcaef0dbf40d36e5397ae1979c9075bf34c180e"
+      ]
+    }
+  ]
+}
