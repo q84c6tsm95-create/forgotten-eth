@@ -557,7 +557,7 @@ export default async function handler(req, res) {
   }
 
   // Slug-to-key aliases for cleaner URLs
-  const SLUG_ALIASES = { 'ens': 'ens_old' };
+  const SLUG_ALIASES = { 'ens': 'ens_old', 'popfinance': 'genesis_weth_pool', 'gnosis_dutchx': 'dxmgnpool', 'hegic_v1_call': 'hegic_call' };
   let key = slug.replace(/-/g, '_');
   if (SLUG_ALIASES[key]) key = SLUG_ALIASES[key];
   const info = loadProtocolInfo();

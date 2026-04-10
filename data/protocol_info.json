@@ -1462,5 +1462,26 @@
     "contract": "0x35fFd6E268610E764fF6944d07760D0EFe5E40E5",
     "deployed": "October 2020",
     "slug": "keeperdao"
+  },
+  "genesis_weth_pool": {
+    "name": "Pop Finance",
+    "blurb": "Pop Finance WETH staking pool \u2014 defunct yield farm",
+    "slug": "popfinance",
+    "category": "defi",
+    "contract": "0x6b1803a257298292517668a5832bc5a27cb012fb"
+  },
+  "dxmgnpool": {
+    "name": "Gnosis DutchX",
+    "blurb": "Gnosis DutchX magnolia pool \u2014 WETH deposits for DutchX auctions",
+    "slug": "gnosis-dutchx",
+    "category": "defi",
+    "contract": "0xf1d29a124622c06f7026f35553543c833102183b"
+  },
+  "hegic_call": {
+    "name": "Hegic V1 Call",
+    "blurb": "Hegic ETH call options v1 \u2014 LP liquidity tranches",
+    "slug": "hegic-v1-call",
+    "category": "defi",
+    "contract": "0xb9ed94c6d594b2517c4296e24a8c517ff133fb6d"
   }
 }

@@ -1144,5 +1144,27 @@
     "contract": "0x35fFd6E268610E764fF6944d07760D0EFe5E40E5",
     "category": "defi",
     "balance_file": "keeperdao_balances.json"
+  },
+  {
+    "key": "genesis_weth_pool",
+    "name": "Pop Finance",
+    "contract": "0x6b1803a257298292517668a5832bc5a27cb012fb",
+    "category": "defi",
+    "balance_file": "genesis_weth_pool_eth_balances.json"
+  },
+  {
+    "key": "dxmgnpool",
+    "name": "Gnosis DutchX",
+    "contract": "0xf1d29a124622c06f7026f35553543c833102183b",
+    "category": "defi",
+    "balance_file": "dxmgnpool_eth_balances.json"
+  },
+  {
+    "key": "hegic_call",
+    "name": "Hegic V1 Call",
+    "contract": "0xb9ed94c6d594b2517c4296e24a8c517ff133fb6d",
+    "category": "defi",
+    "balance_file": "hegic_call_eth_balances.json",
+    "multi_step": true
   }
 ]
