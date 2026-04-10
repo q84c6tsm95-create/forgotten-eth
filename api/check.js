@@ -120,6 +120,7 @@ export default async function handler(req, res) {
       let bounties = typeof val === 'object' && val.b ? val.b : null;
       let epochs = typeof val === 'object' && val.ep ? val.ep : null;
       let augurClaims = typeof val === 'object' && val.ac ? val.ac : null;
+      let keeperdaoItems = typeof val === 'object' && val.kd ? val.kd : null;
 
       if (itemsClaimed && itemsClaimed.size > 0) {
         if (deeds) {
@@ -155,6 +156,7 @@ export default async function handler(req, res) {
         ...(bounties ? { bounty_details: bounties } : {}),
         ...(epochs ? { epoch_details: epochs } : {}),
         ...(augurClaims ? { augur_claims: augurClaims } : {}),
+        ...(keeperdaoItems ? { keeperdao_items: keeperdaoItems } : {}),
       };
     }
   }

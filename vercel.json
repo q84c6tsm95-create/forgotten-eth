@@ -37,7 +37,7 @@
     "api/health.js": {
       "memory": 256,
       "maxDuration": 10,
-      "includeFiles": "{data/health.json,data/total.json}"
+      "includeFiles": "{data/health.json,data/total.json,data/index_shards/meta.json,data/index_shards/13.json,data/index_shards/61.json,data/index_shards/1d.json,data/index_shards/e1.json}"
     },
     "api/table.js": {
       "memory": 256,

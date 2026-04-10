@@ -3039,6 +3039,7 @@ async function connectWallet() {
       const accounts = await walletProvider.send('eth_requestAccounts', []);
       walletSigner = await walletProvider.getSigner();
       walletAddress = await walletSigner.getAddress();
+      if (window._attachEip6963Listeners) window._attachEip6963Listeners(choice.provider);
 
       document.getElementById('walletBtn').textContent = 'Disconnect';
       document.getElementById('walletBtn').classList.add('connected');
@@ -3111,14 +3112,16 @@ async function checkUserBalances(overrideAddress) {
   // Fetch pre-computed balances from API (avoids loading full JSON)
   let apiBalances = {};
   let apiCoverage = {};
+  let apiResp = null;
+  window._lastApiBalances = null;
   try {
-    const apiResp = await fetchCheck(checkAddr);
+    apiResp = await fetchCheck(checkAddr);
     console.log('[Scan] fetchCheck response:', apiResp.ok, apiResp.status, apiResp.data ? Object.keys(apiResp.data.balances || {}) : 'NO DATA');
     if (apiResp.ok && apiResp.data) {
       apiBalances = apiResp.data.balances || {};
       apiCoverage = apiResp.data.coverage || {};
+      window._lastApiBalances = apiBalances;
       console.log('[Scan] apiBalances keys:', Object.keys(apiBalances));
-      console.log('[Scan] avastars in apiBalances:', 'avastars' in apiBalances, apiBalances.avastars);
     } else if (apiResp.status === 429) {
       console.warn('API rate limited — noWalletCheck protocols may not appear');
       showInlineError('walletError', 'Rate limited — some results may be missing. Wait a moment and try again.');
@@ -3186,6 +3189,8 @@ async function checkUserBalances(overrideAddress) {
     }
   });
   const balanceResults = await Promise.all(rpcChecks);
+  clearInterval(_progressInterval);
+  if (_scanProgressEl) _scanProgressEl.textContent = 'Checking contracts... ' + _totalContracts + '/' + _totalContracts;
 
   // Check Neufund LockedAccount state (NEU balance + neumarksDue)
   window._neufundLockedState = {};
@@ -5492,7 +5497,7 @@ async function keeperdaoApprove(key, itemIdx) {
   if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
 
   const cfg = EXCHANGES[key];
-  const items = (lastApiBalances && lastApiBalances[key] && lastApiBalances[key].keeperdao_items) || [];
+  const items = (window._lastApiBalances && window._lastApiBalances[key] && window._lastApiBalances[key].keeperdao_items) || [];
   const it = items[itemIdx];
   if (!it) return;
   const itemKey = key + '-' + it.k_token + '-' + itemIdx;
@@ -5535,7 +5540,7 @@ async function keeperdaoWithdraw(key, itemIdx) {
   if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
 
   const cfg = EXCHANGES[key];
-  const items = (lastApiBalances && lastApiBalances[key] && lastApiBalances[key].keeperdao_items) || [];
+  const items = (window._lastApiBalances && window._lastApiBalances[key] && window._lastApiBalances[key].keeperdao_items) || [];
   const it = items[itemIdx];
   if (!it) return;
   const itemKey = key + '-' + it.k_token + '-' + itemIdx;
@@ -5719,6 +5724,8 @@ async function ensManualRelease() {
       showInlineError('addrError', 'You are not the owner of this deed. Deed owner: ' + deedOwner);
       return;
     }
+    var deedValue = await deed.value();
+    var deedEth = parseFloat(ethers.formatEther(deedValue));
   } catch (e) {
     console.error('Deed verification failed:', e);
     showInlineError('addrError', 'Deed verification failed — please try again.');
@@ -5747,8 +5754,8 @@ async function ensManualRelease() {
 }
 
 // Listen for account/chain changes
-if (window.ethereum) {
-  window.ethereum.on('accountsChanged', async (accounts) => {
+function _onAccountsChanged(accounts) {
+  (async () => {
     if (accounts.length === 0) {
       walletAddress = null;
       walletSigner = null;
@@ -5768,11 +5775,21 @@ if (window.ethereum) {
       scanStart();
       try { await checkUserBalances(); } catch(e) {}
     }
-  });
-  window.ethereum.on('chainChanged', () => {
-    if (walletAddress) checkNetwork();
-  });
+  })();
 }
+function _onChainChanged() { if (walletAddress) checkNetwork(); }
+if (window.ethereum) {
+  window.ethereum.on('accountsChanged', _onAccountsChanged);
+  window.ethereum.on('chainChanged', _onChainChanged);
+}
+// EIP-6963 wallets (Rabby, etc.) may use a different provider object than window.ethereum.
+// Re-attach listeners to the actual connected provider after each wallet connection.
+window._attachEip6963Listeners = function(rawProvider) {
+  if (rawProvider && rawProvider !== window.ethereum && rawProvider.on) {
+    rawProvider.on('accountsChanged', _onAccountsChanged);
+    rawProvider.on('chainChanged', _onChainChanged);
+  }
+};
 
 // ─── Tab Switching ───
 
@@ -6439,7 +6456,7 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
   // asset). The fetch was dead code and has been removed. The hardcoded
   // values below are the real last resort — update them when adding
   // protocols (grep for this comment).
-  if (!totalData) totalData = { total_eth: 163836, total_contract_eth: 164979, contract_count: 164, eth_claimed: 1273, peak_eth: 165331 };
+  if (!totalData) totalData = { total_eth: 164102, total_contract_eth: 165249, contract_count: 163, eth_claimed: 1400, peak_eth: 165510 };
   try {
       var totalEthVal = Math.round(totalData.total_eth);
       const contractCount = totalData.contract_count || Object.keys(EXCHANGES).length;
