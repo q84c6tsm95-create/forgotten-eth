@@ -219,15 +219,19 @@ try { __ACT = JSON.parse(document.getElementById('act-data').textContent); } cat
   });
 
   // Corrupt toggle — switches between clean and corrupt variant
+  // Text corruption engine lives in /corrupt.js (shared across all pages)
   if (corruptBtn) {
     corruptBtn.addEventListener('click', function() {
       if (transitioning) return;
       transitioning = true;
+      var wasCorrupt = isCorrupt();
       corruptTransition(function() {
-        if (isCorrupt()) {
+        if (wasCorrupt) {
           current = isDark() ? 'dark' : 'light';
+          if (window.stopCorruptCycle) window.stopCorruptCycle();
         } else {
           current = isDark() ? 'corrupt-dark' : 'corrupt-light';
+          if (window.startCorruptCycle) setTimeout(window.startCorruptCycle, 300);
         }
         applyTheme(current);
         try { localStorage.setItem('theme', current); } catch(e) {}

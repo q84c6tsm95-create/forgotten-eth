@@ -1212,7 +1212,8 @@ data = r.json()
 
   if (corruptBtn) {
     corruptBtn.addEventListener('click', function() {
-      if (isCorrupt()) {
+      var wasCorrupt = isCorrupt();
+      if (wasCorrupt) {
         current = isDark() ? 'dark' : 'light';
       } else {
         current = isDark() ? 'corrupt-dark' : 'corrupt-light';
@@ -1220,10 +1221,13 @@ data = r.json()
       applyTheme(current);
       try { localStorage.setItem('theme', current); } catch(e) {}
       setToggleLabel();
+      if (wasCorrupt) { if (window.stopCorruptCycle) window.stopCorruptCycle(); }
+      else { if (window.startCorruptCycle) setTimeout(window.startCorruptCycle, 100); }
     });
   }
 })();
 </script>
+<script src="/corrupt.js"></script>
 <script>
 /* ── JSON syntax colorizer (matches static example styling) ── */
 function colorizeJson(json) {

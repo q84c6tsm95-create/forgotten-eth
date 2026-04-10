@@ -535,6 +535,7 @@ ${JSON.stringify({
 <script id="tvl-data" type="application/json">${tvlJson}</script>
 <script id="act-data" type="application/json">${activityJson}</script>
 <script src="/protocol.js"></script>
+<script src="/corrupt.js"></script>
 </body>
 </html>`;
 }

@@ -1035,13 +1035,17 @@
   });
   if (corruptBtn) {
     corruptBtn.addEventListener('click', function() {
-      current = isCorrupt() ? (isDark() ? 'dark' : 'light') : (isDark() ? 'corrupt-dark' : 'corrupt-light');
+      var wasCorrupt = isCorrupt();
+      current = wasCorrupt ? (isDark() ? 'dark' : 'light') : (isDark() ? 'corrupt-dark' : 'corrupt-light');
       applyTheme(current);
       try { localStorage.setItem('theme', current); } catch(e) {}
       setToggleLabel();
+      if (wasCorrupt) { if (window.stopCorruptCycle) window.stopCorruptCycle(); }
+      else { if (window.startCorruptCycle) setTimeout(window.startCorruptCycle, 100); }
     });
   }
 })();
 </script>
+<script src="/corrupt.js"></script>
 </body>
 </html>
