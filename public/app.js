@@ -4107,6 +4107,10 @@ async function checkUserBalances(overrideAddress) {
               </div>
               <div class="claim-card-status" id="claimStatus-${key}"></div>
             </div>`;
+          // Auto-detect pre-existing matured pending request (e.g. user
+          // started Step 1 earlier, closed the tab, came back). Run on the
+          // next tick so the DOM elements exist.
+          setTimeout(() => mesaCheckPendingOnLoad(key), 100);
         } else if (cfg.switcheoWithdraw) {
           // Switcheo BrokerV2: 2-step announceWithdraw + slowWithdraw (0 delay)
           const lastTx = apiBalances[key]?.last_tx_date ? apiBalances[key] : null;
@@ -5742,12 +5746,27 @@ async function killBounty(key, bountyId, btn) {
 
 // ─── Mesa / Gnosis Protocol v1: 2-step requestWithdraw + withdraw ───
 //
-// Step 1: requestWithdraw(WETH, amount) — registers a withdraw request that
-//         matures after one batch (5 min).
-// Step 2: withdraw(user, WETH) — finalizes after the batch tick. Permissionless,
-//         so anyone can call for any user once their request matures.
+// Step 1: requestWithdraw(WETH, amount) — registers a withdraw request at the
+//         CURRENT batch. Mesa's BATCH_TIME is 300 seconds (5 minutes).
+// Step 2: withdraw(user, WETH) — finalizes. Requires `pendingWithdraws.batchId
+//         < getCurrentBatchId()`, i.e. the chain must have ticked past the
+//         batch where the request was registered. This is anywhere from ~1s
+//         to 300s depending on where in the batch window Step 1 landed.
+//
+// Rather than waiting a fixed 5 min, we poll getCurrentBatchId() every 5s
+// and enable Step 2 as soon as the chain ticks over. On average this saves
+// ~2.5 minutes of wait vs a fixed countdown.
 
 const MESA_WETH_ADDR = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2';
+const MESA_READ_ABI = [
+  'function requestWithdraw(address token, uint256 amount)',
+  'function withdraw(address user, address token)',
+  'function getCurrentBatchId() view returns (uint32)',
+  'function getPendingWithdraw(address user, address token) view returns (uint256 amount, uint32 batchId)',
+];
+
+// Track per-tab Mesa polling so we don't double-start
+const _mesaPollState = {};
 
 async function mesaRequestWithdraw(key, btn) {
   if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
@@ -5764,34 +5783,20 @@ async function mesaRequestWithdraw(key, btn) {
     if (bal === 0n) {
       throw new Error('No claimable balance');
     }
-    var contract = new ethers.Contract(EXCHANGES[key].contract, ['function requestWithdraw(address token, uint256 amount)'], walletSigner);
+    var contract = new ethers.Contract(EXCHANGES[key].contract, MESA_READ_ABI, walletSigner);
     logEvent('claim_started', { address: walletAddress, contract: key });
     var tx = await contract.requestWithdraw(MESA_WETH_ADDR, bal);
     btn.textContent = 'Pending...';
     if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
-    var receipt = await tx.wait();
+    await tx.wait();
     btn.textContent = 'Requested';
     btn.classList.remove('pending');
     btn.style.background = 'var(--green)';
     btn.style.opacity = '0.7';
-    if (statusEl) statusEl.textContent = 'Withdraw requested. Wait ~5 min for the next batch tick, then click Step 2.';
-    if (step2Btn) {
-      var startMs = Date.now();
-      var waitMs = 305 * 1000;
-      var update = function() {
-        var elapsed = Date.now() - startMs;
-        if (elapsed >= waitMs) {
-          step2Btn.disabled = false;
-          step2Btn.style.opacity = '1';
-          step2Btn.textContent = 'Step 2: Withdraw';
-        } else {
-          var remaining = Math.ceil((waitMs - elapsed) / 1000);
-          step2Btn.textContent = 'Step 2: Withdraw (' + remaining + 's)';
-          setTimeout(update, 1000);
-        }
-      };
-      update();
-    }
+    if (statusEl) statusEl.textContent = 'Withdraw requested. Waiting for the next batch tick...';
+
+    // Start polling for the batch tick
+    mesaStartPolling(key, step2Btn, statusEl);
   } catch (e) {
     btn.disabled = false;
     btn.textContent = 'Step 1: Request withdraw';
@@ -5801,6 +5806,126 @@ async function mesaRequestWithdraw(key, btn) {
     } else {
       if (statusEl) statusEl.textContent = 'Failed: ' + (e.reason || e.message || 'Unknown error');
     }
+  }
+}
+
+// Poll getCurrentBatchId every 5s; enable Step 2 when it ticks past the
+// request's registered batch. Idempotent — safe to call multiple times.
+async function mesaStartPolling(key, step2Btn, statusEl) {
+  if (_mesaPollState[key]) return; // already polling
+  _mesaPollState[key] = true;
+
+  var readProvider = walletProvider;
+  if (!readProvider) {
+    // Fallback: user disconnected. Use a public RPC.
+    readProvider = new ethers.JsonRpcProvider('https://ethereum.publicnode.com');
+  }
+  var readContract = new ethers.Contract(EXCHANGES[key].contract, MESA_READ_ABI, readProvider);
+
+  var registeredBatchId;
+  try {
+    var pending = await readContract.getPendingWithdraw(walletAddress, MESA_WETH_ADDR);
+    registeredBatchId = BigInt(pending[1]);
+    if (pending[0] === 0n) {
+      // No pending request — user probably refreshed. Exit silently.
+      _mesaPollState[key] = false;
+      return;
+    }
+  } catch (e) {
+    // Read failed — fall back to fixed 5-min timer
+    registeredBatchId = null;
+  }
+
+  // Check every 5s; show countdown relative to batch boundary
+  var pollMs = 5000;
+  var startMs = Date.now();
+  var maxWaitMs = 330 * 1000; // safety cap: batches are 300s, +30s slack
+
+  async function tick() {
+    if (!_mesaPollState[key]) return;
+    var elapsed = Date.now() - startMs;
+
+    try {
+      var currentBatchId = BigInt(await readContract.getCurrentBatchId());
+      if (registeredBatchId !== null && currentBatchId > registeredBatchId) {
+        if (step2Btn) {
+          step2Btn.disabled = false;
+          step2Btn.style.opacity = '1';
+          step2Btn.textContent = 'Step 2: Withdraw';
+        }
+        if (statusEl) statusEl.textContent = 'Ready. Click Step 2 to finalize.';
+        _mesaPollState[key] = false;
+        return;
+      }
+    } catch (e) {
+      // swallow transient read errors; keep polling
+    }
+
+    // Show estimated time remaining (worst case: full batch = 300s)
+    var approxRemaining = Math.max(0, Math.ceil((maxWaitMs - elapsed) / 1000));
+    if (step2Btn) {
+      step2Btn.textContent = 'Step 2: Withdraw (checking... ~' + approxRemaining + 's left)';
+    }
+
+    if (elapsed >= maxWaitMs) {
+      // Safety: enable the button anyway. The contract will revert if not
+      // matured, and the user can re-try.
+      if (step2Btn) {
+        step2Btn.disabled = false;
+        step2Btn.style.opacity = '1';
+        step2Btn.textContent = 'Step 2: Withdraw';
+      }
+      if (statusEl) statusEl.textContent = 'Batch should be ready. Click Step 2 — will retry if not matured.';
+      _mesaPollState[key] = false;
+      return;
+    }
+
+    setTimeout(tick, pollMs);
+  }
+  tick();
+}
+
+// Tab-open check: if the user already has a matured pending withdraw request
+// (e.g. they closed the tab after Step 1 and came back later), enable Step 2
+// immediately. Called from the balance check flow when the mesa card renders.
+async function mesaCheckPendingOnLoad(key) {
+  if (!walletAddress || !walletProvider) return;
+  try {
+    var readContract = new ethers.Contract(EXCHANGES[key].contract, MESA_READ_ABI, walletProvider);
+    var pending = await readContract.getPendingWithdraw(walletAddress, MESA_WETH_ADDR);
+    var pendingAmount = BigInt(pending[0]);
+    if (pendingAmount === 0n) return; // no pending request
+    var registeredBatchId = BigInt(pending[1]);
+    var currentBatchId = BigInt(await readContract.getCurrentBatchId());
+    var step1Btn = document.getElementById('mesaReqBtn-' + key);
+    var step2Btn = document.getElementById('mesaWithdrawBtn-' + key);
+    var statusEl = document.getElementById('claimStatus-' + key);
+    if (currentBatchId > registeredBatchId) {
+      // Already matured — enable Step 2, disable Step 1
+      if (step2Btn) {
+        step2Btn.disabled = false;
+        step2Btn.style.opacity = '1';
+        step2Btn.textContent = 'Step 2: Withdraw';
+      }
+      if (step1Btn) {
+        step1Btn.textContent = 'Already requested';
+        step1Btn.disabled = true;
+        step1Btn.style.opacity = '0.5';
+      }
+      if (statusEl) statusEl.textContent = 'Pending request detected — ready to finalize.';
+    } else {
+      // Still waiting for tick — start polling
+      if (step1Btn) {
+        step1Btn.textContent = 'Requested';
+        step1Btn.disabled = true;
+        step1Btn.style.background = 'var(--green)';
+        step1Btn.style.opacity = '0.7';
+      }
+      if (statusEl) statusEl.textContent = 'Pending request detected — waiting for batch tick...';
+      mesaStartPolling(key, step2Btn, statusEl);
+    }
+  } catch (e) {
+    // silent — if the read fails, leave the default UI state
   }
 }
 
