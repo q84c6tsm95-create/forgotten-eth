@@ -1560,5 +1560,13 @@
     "color": "#22c55e",
     "contract": "0xa17a8883da1abd57c690df9ebf58fc194edab66f",
     "deployed": "September 2020"
+  },
+  "mesa": {
+    "name": "Mesa / Gnosis Protocol v1",
+    "desc": "Mesa was the precursor to CowSwap (Gnosis Protocol v1), a batch-auction DEX deployed in early 2020. Users deposited tokens to trade across discrete batches and had to explicitly withdraw to retrieve them. The contract has been dormant since early 2022 but the 2-step withdraw path (requestWithdraw → wait one batch → withdraw) is still permissionless. 116 unique holders forgot to finalize withdrawals after their last trades.",
+    "category": "dex",
+    "color": "#10b981",
+    "contract": "0x6f400810b62df8e13fded51be75ff5393eaa841f",
+    "deployed": "February 2020"
   }
 }

@@ -3087,6 +3087,23 @@ const EXCHANGES = {
     withdrawArgs: () => [],
     withdrawCall: 'getReward',
   },
+  mesa: {
+    name: 'Mesa / Gnosis Protocol v1',
+    desc: 'Mesa was the precursor to CowSwap (Gnosis Protocol v1), a batch-auction DEX deployed in 2020. Users deposited tokens to trade and had to explicitly withdraw to retrieve them. The contract has been dormant since early 2022 but the 2-step withdraw path (requestWithdraw → wait one batch → withdraw) is still permissionless.',
+    category: 'dex',
+    color: '#10b981',
+    contract: '0x6f400810b62df8e13fded51be75ff5393eaa841f',
+    deployed: 'February 2020',
+    returnsWeth: true,
+    balanceAbi: 'function getBalance(address user, address token) view returns (uint256)',
+    balanceArgs: (user) => [user, '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'],
+    balanceCall: 'getBalance',
+    mesaWithdraw: true,
+    requestWithdrawAbi: 'function requestWithdraw(address token, uint256 amount)',
+    requestWithdrawCall: 'requestWithdraw',
+    withdrawAbi: 'function withdraw(address user, address token)',
+    withdrawCall: 'withdraw',
+  },
 };
 
 // Per-tab state
@@ -4070,6 +4087,26 @@ async function checkUserBalances(overrideAddress) {
             html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">No kToken items detected for this address. <a href="${etherscanAddr(cfg.contract)}#readContract" target="_blank" rel="noopener noreferrer">Query underlyingBalance on Etherscan</a> if you believe this is wrong.</div>`;
           }
           html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
+        } else if (cfg.mesaWithdraw) {
+          // Mesa / Gnosis Protocol v1: 2-step requestWithdraw + withdraw with one-batch (5min) delay
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} WETH</span>
+              </div>
+              <div class="claim-card-meta" id="claimDetails-${key}">
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text)">requestWithdraw(WETH, amount)</span></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Wait</span><span class="claim-card-meta-value">~5 min (one batch)</span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text)">withdraw(user, WETH)</span></span></div>
+              </div>
+              <div class="claim-card-actions">
+                <button class="claim-btn" id="mesaReqBtn-${key}" data-action="mesa-request" data-key="${key}">Step 1: Request withdraw</button>
+                <button class="claim-btn" disabled style="opacity:0.35" id="mesaWithdrawBtn-${key}" data-action="mesa-withdraw" data-key="${key}">Step 2: Withdraw (after 5 min)</button>
+              </div>
+              <div class="claim-card-status" id="claimStatus-${key}"></div>
+            </div>`;
         } else if (cfg.switcheoWithdraw) {
           // Switcheo BrokerV2: 2-step announceWithdraw + slowWithdraw (0 delay)
           const lastTx = apiBalances[key]?.last_tx_date ? apiBalances[key] : null;
@@ -5703,6 +5740,105 @@ async function killBounty(key, bountyId, btn) {
   }
 }
 
+// ─── Mesa / Gnosis Protocol v1: 2-step requestWithdraw + withdraw ───
+//
+// Step 1: requestWithdraw(WETH, amount) — registers a withdraw request that
+//         matures after one batch (5 min).
+// Step 2: withdraw(user, WETH) — finalizes after the batch tick. Permissionless,
+//         so anyone can call for any user once their request matures.
+
+const MESA_WETH_ADDR = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2';
+
+async function mesaRequestWithdraw(key, btn) {
+  if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Requesting...';
+  btn.classList.add('pending');
+  var statusEl = document.getElementById('claimStatus-' + key);
+  var step2Btn = document.getElementById('mesaWithdrawBtn-' + key);
+
+  try {
+    var bal = userBalances[key] || 0n;
+    if (bal === 0n) {
+      throw new Error('No claimable balance');
+    }
+    var contract = new ethers.Contract(EXCHANGES[key].contract, ['function requestWithdraw(address token, uint256 amount)'], walletSigner);
+    logEvent('claim_started', { address: walletAddress, contract: key });
+    var tx = await contract.requestWithdraw(MESA_WETH_ADDR, bal);
+    btn.textContent = 'Pending...';
+    if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
+    var receipt = await tx.wait();
+    btn.textContent = 'Requested';
+    btn.classList.remove('pending');
+    btn.style.background = 'var(--green)';
+    btn.style.opacity = '0.7';
+    if (statusEl) statusEl.textContent = 'Withdraw requested. Wait ~5 min for the next batch tick, then click Step 2.';
+    if (step2Btn) {
+      var startMs = Date.now();
+      var waitMs = 305 * 1000;
+      var update = function() {
+        var elapsed = Date.now() - startMs;
+        if (elapsed >= waitMs) {
+          step2Btn.disabled = false;
+          step2Btn.style.opacity = '1';
+          step2Btn.textContent = 'Step 2: Withdraw';
+        } else {
+          var remaining = Math.ceil((waitMs - elapsed) / 1000);
+          step2Btn.textContent = 'Step 2: Withdraw (' + remaining + 's)';
+          setTimeout(update, 1000);
+        }
+      };
+      update();
+    }
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Step 1: Request withdraw';
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      if (statusEl) statusEl.textContent = 'Rejected';
+    } else {
+      if (statusEl) statusEl.textContent = 'Failed: ' + (e.reason || e.message || 'Unknown error');
+    }
+  }
+}
+
+async function mesaWithdraw(key, btn) {
+  if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Withdrawing...';
+  btn.classList.add('pending');
+  var statusEl = document.getElementById('claimStatus-' + key);
+
+  try {
+    var contract = new ethers.Contract(EXCHANGES[key].contract, ['function withdraw(address user, address token)'], walletSigner);
+    var tx = await contract.withdraw(walletAddress, MESA_WETH_ADDR);
+    btn.textContent = 'Pending...';
+    if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
+    var receipt = await tx.wait();
+    btn.textContent = 'Done';
+    btn.classList.remove('pending');
+    btn.style.background = 'var(--green)';
+    btn.style.opacity = '0.7';
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)), tx_hash: tx.hash, block_num: receipt.blockNumber });
+    if (statusEl) statusEl.textContent = 'WETH transferred to your wallet.';
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Step 2: Withdraw';
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      if (statusEl) statusEl.textContent = 'Rejected';
+    } else if (e.message && e.message.indexOf('not registered') !== -1) {
+      if (statusEl) statusEl.textContent = 'Withdraw not yet matured. Wait one more batch.';
+    } else {
+      if (statusEl) statusEl.textContent = 'Failed: ' + (e.reason || e.message || 'Unknown error');
+    }
+  }
+}
+
 // ─── Hegic V1 Call: per-tranche withdrawWithoutHedge ───
 
 async function hegicWithdrawTranche(key, trancheId, btn) {
@@ -6948,6 +7084,10 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     switcheoAnnounce(btn.dataset.key);
   } else if (action === 'switcheo-withdraw') {
     switcheoWithdraw(btn.dataset.key);
+  } else if (action === 'mesa-request') {
+    mesaRequestWithdraw(btn.dataset.key, btn);
+  } else if (action === 'mesa-withdraw') {
+    mesaWithdraw(btn.dataset.key, btn);
   } else if (action === 'kyber-claim-epoch') {
     kyberClaimEpoch(btn.dataset.key, parseInt(btn.dataset.epoch), btn);
   } else if (action === 'augur-mailbox') {
