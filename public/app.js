@@ -3963,6 +3963,7 @@ async function checkUserBalances(overrideAddress) {
           // Each user has 1+ expired ITM oToken positions; we render them as a list and
           // submit a single tx with all Redeem actions in one ActionArgs[] array.
           const positions = apiBalances[key]?.positions || [];
+          _opynPositions[key] = positions;
           html += `
             <div class="claim-card">
               <div class="claim-card-header">
@@ -5799,7 +5800,7 @@ async function opynRedeemAll(key, btn) {
   if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
   if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
 
-  var positions = (apiBalances && apiBalances[key] && apiBalances[key].positions) || [];
+  var positions = _opynPositions[key] || [];
   if (positions.length === 0) {
     showInlineError('walletError', 'No expired oToken positions detected for this address.');
     return;
@@ -5878,6 +5879,7 @@ const MESA_READ_ABI = [
 ];
 
 // Track per-tab Mesa polling so we don't double-start
+const _opynPositions = {};
 const _mesaPollState = {};
 
 async function mesaRequestWithdraw(key, btn) {
