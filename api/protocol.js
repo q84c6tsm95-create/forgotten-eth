@@ -559,7 +559,7 @@ export default async function handler(req, res) {
   }
 
   // Slug-to-key aliases for cleaner URLs
-  const SLUG_ALIASES = { 'ens': 'ens_old', 'popfinance': 'genesis_weth_pool', 'gnosis_dutchx': 'dxmgnpool', 'hegic_v1_call': 'hegic_call', 'hegic_v1_pool': 'hegic_eth_pool', 'yam_finance': 'yam_weth', 'yam_v1': 'yam_weth', 'spaghetti_money': 'spaghetti', 'doki_doki': 'dokidoki', 'cofix': 'cofi', 'cofix_staking': 'cofi', 'pkl_finance': 'pickle_staking', 'gnosis_protocol': 'mesa', 'gnosis_protocol_v1': 'mesa', 'mesa_dex': 'mesa', 'gpv1': 'mesa', 'batch_exchange': 'mesa' };
+  const SLUG_ALIASES = { 'ens': 'ens_old', 'popfinance': 'genesis_weth_pool', 'gnosis_dutchx': 'dxmgnpool', 'hegic_v1_call': 'hegic_call', 'hegic_v1_pool': 'hegic_eth_pool', 'yam_finance': 'yam_weth', 'yam_v1': 'yam_weth', 'spaghetti_money': 'spaghetti', 'doki_doki': 'dokidoki', 'cofix': 'cofi', 'cofix_staking': 'cofi', 'pkl_finance': 'pickle_staking', 'opyn': 'opyn_gamma_redeem', 'opyn_v2': 'opyn_gamma_redeem', 'opyn_gamma': 'opyn_gamma_redeem', 'gnosis_protocol': 'mesa', 'gnosis_protocol_v1': 'mesa', 'mesa_dex': 'mesa', 'gpv1': 'mesa', 'batch_exchange': 'mesa' };
   let key = slug.replace(/-/g, '_');
   if (SLUG_ALIASES[key]) key = SLUG_ALIASES[key];
   const info = loadProtocolInfo();

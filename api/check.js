@@ -122,6 +122,7 @@ export default async function handler(req, res) {
       let augurClaims = typeof val === 'object' && val.ac ? val.ac : null;
       let keeperdaoItems = typeof val === 'object' && val.kd ? val.kd : null;
       let trancheDetails = typeof val === 'object' && val.tr ? val.tr : null;
+      let opynPositions = typeof val === 'object' && val.op ? val.op : null;
 
       if (itemsClaimed && itemsClaimed.size > 0) {
         if (deeds) {
@@ -159,6 +160,7 @@ export default async function handler(req, res) {
         ...(augurClaims ? { augur_claims: augurClaims } : {}),
         ...(keeperdaoItems ? { keeperdao_items: keeperdaoItems } : {}),
         ...(trancheDetails ? { tranche_details: trancheDetails } : {}),
+        ...(opynPositions ? { positions: opynPositions } : {}),
       };
     }
   }

@@ -4,17 +4,13 @@
   "balance_source": "vault",
   "name": "Enkronos Token (ENK)",
   "description": "OZ RefundableCrowdsale \u2014 Enkronos Token (ENK). ETH stored in sibling RefundVault.",
-  "scan_date": "2026-04-07 12:06:35 UTC",
-  "contract_eth_balance": "1.13",
+  "scan_date": "2026-04-12 06:15:31 UTC",
+  "contract_eth_balance": "0.13",
   "total_addresses_scanned": 2,
-  "addresses_with_balance": 2,
-  "total_eth_in_balances": 1.13,
+  "addresses_with_balance": 1,
+  "total_eth_in_balances": 0.13,
   "coverage_pct": 100.0,
   "distribution": {
-    "1-10 ETH": {
-      "count": 1,
-      "total_eth": 1.0
-    },
     "0.1-1 ETH": {
       "count": 1,
       "total_eth": 0.13
@@ -23,12 +19,6 @@
   "balances": [
     {
       "rank": 1,
-      "address": "0x054474482038662bd8ee7af66c2c80122c7de786",
-      "balance_wei": "1000000000000000000",
-      "balance_eth": "1.000000000000000000"
-    },
-    {
-      "rank": 2,
       "address": "0x23c4f744a9a006b38138e519d886b53f9d9ebc34",
       "balance_wei": "130000000000000000",
       "balance_eth": "0.130000000000000004"

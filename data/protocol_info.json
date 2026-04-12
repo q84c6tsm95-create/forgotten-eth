@@ -1561,6 +1561,14 @@
     "contract": "0xa17a8883da1abd57c690df9ebf58fc194edab66f",
     "deployed": "September 2020"
   },
+  "opyn_gamma_redeem": {
+    "name": "Opyn v2 Gamma",
+    "desc": "Opyn v2 Gamma was the first major decentralized options protocol on Ethereum, launched in late 2020. Holders of expired in-the-money WETH-collateralized oTokens can redeem their share of the underlying collateral via the Controller contract. The protocol went silent in early 2022 — these are forgotten redemption claims from 2,613 unique holders across 38 different oToken series.",
+    "category": "options",
+    "color": "#a855f7",
+    "contract": "0x4ccc2339f87f6c59c6893e1a678c2266ca58dc72",
+    "deployed": "December 2020"
+  },
   "mesa": {
     "name": "Mesa / Gnosis Protocol v1",
     "desc": "Mesa was the precursor to CowSwap (Gnosis Protocol v1), a batch-auction DEX deployed in early 2020. Users deposited tokens to trade across discrete batches and had to explicitly withdraw to retrieve them. The contract has been dormant since early 2022 but the 2-step withdraw path (requestWithdraw → wait one batch → withdraw) is still permissionless. 116 unique holders forgot to finalize withdrawals after their last trades.",

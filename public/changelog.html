@@ -665,10 +665,18 @@
     <div class="changelog-month">April 2026</div>
 
     <div class="changelog-entry">
-      <span class="changelog-date">Apr 11</span>
+      <span class="changelog-date">Apr 12</span>
       <div class="changelog-body">
         <div class="changelog-name"><a href="/mesa">Mesa / Gnosis Protocol v1</a> <span class="changelog-tag">+139 WETH</span></div>
         <div class="changelog-desc">The precursor to CowSwap (Gnosis Protocol v1), a batch-auction DEX deployed in 2020 and dormant since early 2022. 116 unique holders forgot to finalize WETH withdrawals after their last trades. The 2-step flow (requestWithdraw → wait one batch → withdraw) is still permissionless on the deployed contract. Notably, the withdraw step is callable by anyone — making this one of the few protocols where third-party "gift" finalization is possible.</div>
+      </div>
+    </div>
+
+    <div class="changelog-entry">
+      <span class="changelog-date">Apr 12</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/opyn">Opyn v2 Gamma</a> <span class="changelog-tag">+380 WETH</span></div>
+        <div class="changelog-desc">First major decentralized options protocol on Ethereum, dormant since early 2022. Holders of expired in-the-money WETH-collateralized oTokens can redeem their share of the underlying collateral via Controller.operate([Redeem]). 2,441 unique holders across 38 expired oToken series. To unblock redemption, the missing USDC=$1 expiry prices were pushed to the Opyn Oracle for 23 historical expiries (a permissionless one-time action via the ChainlinkStablePricer). Each holder may have multiple oToken positions; the claim batches them into a single tx.</div>
       </div>
     </div>
 

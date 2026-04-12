@@ -3087,6 +3087,17 @@ const EXCHANGES = {
     withdrawArgs: () => [],
     withdrawCall: 'getReward',
   },
+  opyn_gamma_redeem: {
+    name: 'Opyn v2 Gamma',
+    desc: 'Opyn v2 Gamma was the first major decentralized options protocol on Ethereum, launched in late 2020. Holders of expired in-the-money WETH-collateralized oTokens can redeem their share of the underlying collateral. The protocol went silent in early 2022 — these are forgotten redemption claims from 2,613 holders across 38 oToken series. Each holder may have multiple oToken positions; the claim batches them into one Controller.operate() call.',
+    category: 'options',
+    color: '#a855f7',
+    contract: '0x4ccc2339f87f6c59c6893e1a678c2266ca58dc72',
+    deployed: 'December 2020',
+    returnsWeth: true,
+    noWalletCheck: true,
+    opynRedeemMulti: true,
+  },
   mesa: {
     name: 'Mesa / Gnosis Protocol v1',
     desc: 'Mesa was the precursor to CowSwap (Gnosis Protocol v1), a batch-auction DEX deployed in 2020. Users deposited tokens to trade and had to explicitly withdraw to retrieve them. The contract has been dormant since early 2022 but the 2-step withdraw path (requestWithdraw → wait one batch → withdraw) is still permissionless.',
@@ -4021,6 +4032,35 @@ async function checkUserBalances(overrideAddress) {
             }
           } else {
             html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">Bounty IDs not available. <a href="${etherscanAddr(cfg.contract)}#writeContract" target="_blank" rel="noopener noreferrer">Use Etherscan</a> to call killBounty with your bounty ID.</div>`;
+          }
+          html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
+        } else if (cfg.opynRedeemMulti) {
+          // Opyn v2 Gamma: per-oToken Redeem actions, batched in one Controller.operate() call.
+          // Each user has 1+ expired ITM oToken positions; we render them as a list and
+          // submit a single tx with all Redeem actions in one ActionArgs[] array.
+          const positions = apiBalances[key]?.positions || [];
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
+              </div>
+              <div class="claim-card-meta">
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">Controller.operate([Redeem]) — batched per oToken position</span></div>
+              </div>`;
+          if (positions.length > 0) {
+            for (const p of positions) {
+              const pEth = p.payout_eth ? ' · ' + fmtEth(p.payout_eth) + ' WETH' : '';
+              html += `<div class="claim-row" style="margin:4px 16px;border-left:2px solid var(--accent);padding:6px 12px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:13px"><a href="${etherscanAddr(p.otoken)}" target="_blank" rel="noopener noreferrer" style="color:var(--text)">oToken ${esc(p.otoken.slice(0,10))}…</a><span style="color:var(--text2);font-size:12px">${pEth}</span></span>
+              </div>`;
+            }
+            html += `<div class="claim-card-actions" style="margin-top:8px">
+              <button class="claim-btn" data-action="opyn-redeem-all" data-key="${esc(key)}">Claim all (${positions.length} position${positions.length > 1 ? 's' : ''})</button>
+            </div>`;
+          } else {
+            html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">No expired oToken positions detected for this address.</div>`;
           }
           html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
         } else if (cfg.hegicMulti) {
@@ -5744,6 +5784,78 @@ async function killBounty(key, bountyId, btn) {
   }
 }
 
+// ─── Opyn v2 Gamma: batched Redeem of all expired oToken positions in one tx ───
+//
+// Each user has 1+ expired in-the-money WETH-collateralized oToken positions.
+// We batch ALL of their Redeem actions into a single Controller.operate() call,
+// so the user signs once and receives the sum of payouts to their address.
+//
+// Action struct: (uint8 actionType, address owner, address secondAddress,
+//                 address asset, uint256 vaultId, uint256 amount, uint256 index, bytes data)
+// For Redeem (actionType = 8): owner = 0x0, secondAddress = recipient, asset = oToken,
+//                              amount = oToken units to burn (raw, 8 decimals).
+
+async function opynRedeemAll(key, btn) {
+  if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+
+  var positions = (apiBalances && apiBalances[key] && apiBalances[key].positions) || [];
+  if (positions.length === 0) {
+    showInlineError('walletError', 'No expired oToken positions detected for this address.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Redeeming...';
+  btn.classList.add('pending');
+  var statusEl = document.getElementById('claimStatus-' + key);
+
+  try {
+    var ZERO = '0x0000000000000000000000000000000000000000';
+    var actions = positions.map(function(p) {
+      return {
+        actionType: 8, // Redeem
+        owner: ZERO,
+        secondAddress: walletAddress,
+        asset: p.otoken,
+        vaultId: 0,
+        amount: BigInt(p.amount),
+        index: 0,
+        data: '0x',
+      };
+    });
+
+    var iface = new ethers.Interface([
+      'function operate((uint8 actionType, address owner, address secondAddress, address asset, uint256 vaultId, uint256 amount, uint256 index, bytes data)[])'
+    ]);
+    var calldata = iface.encodeFunctionData('operate', [actions]);
+
+    logEvent('claim_started', { address: walletAddress, contract: key });
+    var tx = await walletSigner.sendTransaction({
+      to: EXCHANGES[key].contract,
+      data: calldata,
+    });
+    btn.textContent = 'Pending...';
+    if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
+    var receipt = await tx.wait();
+    btn.textContent = 'Done';
+    btn.classList.remove('pending');
+    btn.style.background = 'var(--green)';
+    btn.style.opacity = '0.7';
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)), tx_hash: tx.hash, block_num: receipt.blockNumber });
+    if (statusEl) statusEl.textContent = positions.length + ' position' + (positions.length > 1 ? 's' : '') + ' redeemed. WETH transferred to your wallet.';
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Claim all (' + positions.length + ' position' + (positions.length > 1 ? 's' : '') + ')';
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      if (statusEl) statusEl.textContent = 'Rejected';
+    } else {
+      if (statusEl) statusEl.textContent = 'Failed: ' + (e.reason || e.message || 'Unknown error');
+    }
+  }
+}
+
 // ─── Mesa / Gnosis Protocol v1: 2-step requestWithdraw + withdraw ───
 //
 // Step 1: requestWithdraw(WETH, amount) — registers a withdraw request at the
@@ -6976,7 +7088,7 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
   // asset). The fetch was dead code and has been removed. The hardcoded
   // values below are the real last resort — update them when adding
   // protocols (grep for this comment).
-  if (!totalData) totalData = { total_eth: 164553, total_contract_eth: 165700, contract_count: 170, eth_claimed: 1400, peak_eth: 165960 };
+  if (!totalData) totalData = { total_eth: 165446, total_contract_eth: 166596, contract_count: 177, eth_claimed: 1401, peak_eth: 166848 };
   try {
       var totalEthVal = Math.round(totalData.total_eth);
       const contractCount = totalData.contract_count || Object.keys(EXCHANGES).length;
@@ -7223,6 +7335,12 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     augurClaimShares(btn.dataset.key, btn.dataset.market, btn);
   } else if (action === 'kill-bounty') {
     killBounty(btn.dataset.key, parseInt(btn.dataset.bountyId), btn);
+  } else if (action === 'opyn-redeem-all') {
+    opynRedeemAll(btn.dataset.key, btn);
+  } else if (action === 'mesa-request') {
+    mesaRequestWithdraw(btn.dataset.key, btn);
+  } else if (action === 'mesa-withdraw') {
+    mesaWithdraw(btn.dataset.key, btn);
   } else if (action === 'hegic-withdraw') {
     hegicWithdrawTranche(btn.dataset.key, parseInt(btn.dataset.trancheId), btn);
   } else if (action === 'keeperdao-approve') {
