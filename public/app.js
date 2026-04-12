@@ -3958,6 +3958,35 @@ async function checkUserBalances(overrideAddress) {
             html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">Claim details not available. <a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">View on Etherscan</a>.</div>`;
           }
           html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
+        } else if (cfg.opynRedeemMulti) {
+          // Opyn v2 Gamma: per-oToken Redeem actions, batched in one Controller.operate() call.
+          // Each user has 1+ expired ITM oToken positions; we render them as a list and
+          // submit a single tx with all Redeem actions in one ActionArgs[] array.
+          const positions = apiBalances[key]?.positions || [];
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
+              </div>
+              <div class="claim-card-meta">
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">Controller.operate([Redeem]) — batched per oToken position</span></div>
+              </div>`;
+          if (positions.length > 0) {
+            for (const p of positions) {
+              const pEth = p.payout_eth ? ' · ' + fmtEth(p.payout_eth) + ' WETH' : '';
+              html += `<div class="claim-row" style="margin:4px 16px;border-left:2px solid var(--accent);padding:6px 12px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:13px"><a href="${etherscanAddr(p.otoken)}" target="_blank" rel="noopener noreferrer" style="color:var(--text)">oToken ${esc(p.otoken.slice(0,10))}…</a><span style="color:var(--text2);font-size:12px">${pEth}</span></span>
+              </div>`;
+            }
+            html += `<div class="claim-card-actions" style="margin-top:8px">
+              <button class="claim-btn" data-action="opyn-redeem-all" data-key="${esc(key)}">Claim all (${positions.length} position${positions.length > 1 ? 's' : ''})</button>
+            </div>`;
+          } else {
+            html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">No expired oToken positions detected for this address.</div>`;
+          }
+          html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
         } else if (!cfg.withdrawAbi) {
           // Contracts without direct withdraw
           html += `
@@ -4032,35 +4061,6 @@ async function checkUserBalances(overrideAddress) {
             }
           } else {
             html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">Bounty IDs not available. <a href="${etherscanAddr(cfg.contract)}#writeContract" target="_blank" rel="noopener noreferrer">Use Etherscan</a> to call killBounty with your bounty ID.</div>`;
-          }
-          html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
-        } else if (cfg.opynRedeemMulti) {
-          // Opyn v2 Gamma: per-oToken Redeem actions, batched in one Controller.operate() call.
-          // Each user has 1+ expired ITM oToken positions; we render them as a list and
-          // submit a single tx with all Redeem actions in one ActionArgs[] array.
-          const positions = apiBalances[key]?.positions || [];
-          html += `
-            <div class="claim-card">
-              <div class="claim-card-header">
-                <span class="claim-card-name">${esc(cfg.name)}</span>
-                <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
-              </div>
-              <div class="claim-card-meta">
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
-                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">Controller.operate([Redeem]) — batched per oToken position</span></div>
-              </div>`;
-          if (positions.length > 0) {
-            for (const p of positions) {
-              const pEth = p.payout_eth ? ' · ' + fmtEth(p.payout_eth) + ' WETH' : '';
-              html += `<div class="claim-row" style="margin:4px 16px;border-left:2px solid var(--accent);padding:6px 12px;display:flex;align-items:center;justify-content:space-between">
-                <span style="font-size:13px"><a href="${etherscanAddr(p.otoken)}" target="_blank" rel="noopener noreferrer" style="color:var(--text)">oToken ${esc(p.otoken.slice(0,10))}…</a><span style="color:var(--text2);font-size:12px">${pEth}</span></span>
-              </div>`;
-            }
-            html += `<div class="claim-card-actions" style="margin-top:8px">
-              <button class="claim-btn" data-action="opyn-redeem-all" data-key="${esc(key)}">Claim all (${positions.length} position${positions.length > 1 ? 's' : ''})</button>
-            </div>`;
-          } else {
-            html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">No expired oToken positions detected for this address.</div>`;
           }
           html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
         } else if (cfg.hegicMulti) {
