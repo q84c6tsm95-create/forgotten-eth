@@ -7,19 +7,19 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; connect-src 'self' https://ethereum.publicnode.com https://1rpc.io https://eth.llamarpc.com https://vitals.vercel-insights.com https://api.coingecko.com https://cdn.jsdelivr.net; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com;">
 <meta http-equiv="X-Frame-Options" content="DENY">
 <title>Forgotten ETH - Recover ETH Stuck in Old Smart Contracts</title>
-<meta name="description" content="150,000+ ETH stuck in defunct smart contracts. Check if you have unclaimed ETH in old DEXes, ICO contracts, ENS deeds, DAO treasuries, and more.">
+<meta name="description" content="165,000+ ETH stuck in defunct smart contracts. Check if you have unclaimed ETH in old DEXes, ICO contracts, ENS deeds, DAO treasuries, and more.">
 <link rel="canonical" href="https://forgotteneth.com/">
-<meta property="og:title" content="Forgotten ETH: 150,000+ ETH Stuck in Old Smart Contracts">
+<meta property="og:title" content="Forgotten ETH: 165,000+ ETH Stuck in Old Smart Contracts">
 <meta property="og:description" content="Thousands of ETH sit forgotten in defunct contracts. Portfolio trackers don't detect these balances. Check if you have unclaimed ETH.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://forgotteneth.com">
-<meta property="og:image" content="https://forgotteneth.com/og-image-wide.png">
+<meta property="og:image" content="https://forgotteneth.com/og-image-wide.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Forgotten ETH: 150,000+ ETH Stuck in Old Smart Contracts">
+<meta name="twitter:title" content="Forgotten ETH: 165,000+ ETH Stuck in Old Smart Contracts">
 <meta name="twitter:description" content="Thousands of ETH sit forgotten in defunct contracts. Portfolio trackers don't detect these balances. Check if you have unclaimed ETH.">
-<meta name="twitter:image" content="https://forgotteneth.com/og-image-wide.png">
+<meta name="twitter:image" content="https://forgotteneth.com/og-image-wide.png?v=2">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -724,6 +724,7 @@
   .claim-btn:disabled { background: #ccc; color: #888; cursor: not-allowed; transform: none; box-shadow: none; opacity: 0.5; }
   .claim-btn.pending { background: var(--yellow); color: #000; animation: pulse-pending 1.5s ease-in-out infinite; }
   .claim-btn.success { background: var(--green); color: #fff; }
+  .claim-btn.claimed { background: var(--green); color: #fff; opacity: 0.7; cursor: default; transform: none; box-shadow: none; }
   .claim-btn.waiting { background: var(--bg3); color: var(--text2); border: 1px solid var(--border); }
   @keyframes pulse-pending { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
 
@@ -1282,24 +1283,24 @@
   <div class="changelog fade-in fade-in-4">
     <div class="changelog-title">Changelog</div>
     <div class="changelog-entry">
-      <span class="changelog-date">Apr 11</span>
-      <div class="changelog-name"><a href="/mesa">Mesa / Gnosis Protocol v1</a></div>
-      <span class="changelog-tag">+139 WETH</span>
+      <span class="changelog-date">Apr 12</span>
+      <div class="changelog-name"><a href="/opyn-v1">Opyn v1</a>, <a href="/unagii">Unagii</a></div>
+      <span class="changelog-tag">+37 ETH</span>
     </div>
     <div class="changelog-entry">
-      <span class="changelog-date">Apr 11</span>
-      <div class="changelog-name"><a href="/opyn">Opyn v2 Gamma</a></div>
-      <span class="changelog-tag">+380 WETH</span>
+      <span class="changelog-date">Apr 12</span>
+      <div class="changelog-name"><a href="/uma">UMA Yield Dollar</a></div>
+      <span class="changelog-tag">+267 WETH</span>
+    </div>
+    <div class="changelog-entry">
+      <span class="changelog-date">Apr 12</span>
+      <div class="changelog-name"><a href="/mesa">Mesa</a>, <a href="/opyn">Opyn v2 Gamma</a></div>
+      <span class="changelog-tag">+519 WETH</span>
     </div>
     <div class="changelog-entry">
       <span class="changelog-date">Apr 10</span>
-      <div class="changelog-name"><a href="/yam-finance">Yam v1</a>, <a href="/spaghetti-money">Spaghetti</a>, <a href="/dokidoki">Doki Doki</a>, <a href="/cofi">CoFiX</a>, <a href="/pickle-staking">Pkl v1</a>, <a href="/shrimp">Shrimp</a>, <a href="/bee">Bee2</a>, <a href="/kitten">Kitten</a>, <a href="/hegic-v1-pool">Hegic Pool</a>, <a href="/gnosis-dutchx">DutchX</a>, <a href="/hegic-v1-call">Hegic Call</a>, <a href="/popfinance">Pop</a></div>
+      <div class="changelog-name"><a href="/yam-finance">Yam v1</a>, <a href="/spaghetti-money">Spaghetti</a>, <a href="/dokidoki">Doki Doki</a> + 9 more</div>
       <span class="changelog-tag">+828 ETH</span>
-    </div>
-    <div class="changelog-entry">
-      <span class="changelog-date">Apr 8</span>
-      <div class="changelog-name"><a href="/keeperdao">KeeperDAO / Rook</a></div>
-      <span class="changelog-tag">+426 ETH</span>
     </div>
     <div style="text-align:center;margin-top:8px"><a href="/changelog" style="color:var(--accent);font-size:9px;font-family:var(--font-mono);text-decoration:none;opacity:0.7">view full changelog &rarr;</a></div>
   </div>
@@ -1386,7 +1387,7 @@
 }
 </script>
 <script src="/testmode.js"></script>
-<script src="/app.js?v=20260412a"></script>
+<script src="/app.js?v=20260412d"></script>
 <script src="/theme.js"></script>
 <script src="/corrupt.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>

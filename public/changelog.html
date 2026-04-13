@@ -667,6 +667,22 @@
     <div class="changelog-entry">
       <span class="changelog-date">Apr 12</span>
       <div class="changelog-body">
+        <div class="changelog-name"><a href="/opyn-v1">Opyn v1</a> + <a href="/unagii">Unagii ETH Vault</a> <span class="changelog-tag">+37 ETH</span></div>
+        <div class="changelog-desc">Opyn v1: 5 expired ETH-collateralized oToken contracts from the original Opyn factory (Feb 2020). 99 vault owners can call redeemVaultBalance() to reclaim collateral — 25 ETH across 5 contracts. Unagii: dead Yearn-style ETH vault (Mar 2021). 27 uETH holders can burn shares for proportional ETH — 12 ETH total.</div>
+      </div>
+    </div>
+
+    <div class="changelog-entry">
+      <span class="changelog-date">Apr 12</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/uma">UMA Yield Dollar</a> <span class="changelog-tag">+267 WETH</span></div>
+        <div class="changelog-desc">UMA's ExpiringMultiParty contracts let users deposit WETH to mint synthetic tokens (yUSD, uUSDrBTC, uUSDrETH). All 6 contracts expired in 2020-2021 and the UMA frontend no longer supports v1 settlement. 185 sponsors and token holders across 6 EMP contracts still have unclaimed WETH. Both sponsor excess collateral and synthetic token redemptions are recoverable via settleExpired().</div>
+      </div>
+    </div>
+
+    <div class="changelog-entry">
+      <span class="changelog-date">Apr 12</span>
+      <div class="changelog-body">
         <div class="changelog-name"><a href="/mesa">Mesa / Gnosis Protocol v1</a> <span class="changelog-tag">+139 WETH</span></div>
         <div class="changelog-desc">The precursor to CowSwap (Gnosis Protocol v1), a batch-auction DEX deployed in 2020 and dormant since early 2022. 116 unique holders forgot to finalize WETH withdrawals after their last trades. The 2-step flow (requestWithdraw → wait one batch → withdraw) is still permissionless on the deployed contract. Notably, the withdraw step is callable by anyone — making this one of the few protocols where third-party "gift" finalization is possible.</div>
       </div>

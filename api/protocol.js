@@ -103,7 +103,7 @@ function renderPage(slug, key, info, meta) {
 <meta property="og:title" content="${esc(info.name)} - ${fmtEth(meta.total_eth)} ETH Unclaimed">
 <meta property="og:description" content="${esc(descShort)}">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://forgotteneth.com/og-image-wide.png">
+<meta property="og:image" content="https://forgotteneth.com/og-image-wide.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://forgotteneth.com/${slug}">
@@ -112,7 +112,7 @@ function renderPage(slug, key, info, meta) {
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(info.name)} - ${fmtEth(meta.total_eth)} ETH Unclaimed">
 <meta name="twitter:description" content="${esc(descShort)}">
-<meta name="twitter:image" content="https://forgotteneth.com/og-image-wide.png">
+<meta name="twitter:image" content="https://forgotteneth.com/og-image-wide.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -559,7 +559,7 @@ export default async function handler(req, res) {
   }
 
   // Slug-to-key aliases for cleaner URLs
-  const SLUG_ALIASES = { 'ens': 'ens_old', 'popfinance': 'genesis_weth_pool', 'gnosis_dutchx': 'dxmgnpool', 'hegic_v1_call': 'hegic_call', 'hegic_v1_pool': 'hegic_eth_pool', 'yam_finance': 'yam_weth', 'yam_v1': 'yam_weth', 'spaghetti_money': 'spaghetti', 'doki_doki': 'dokidoki', 'cofix': 'cofi', 'cofix_staking': 'cofi', 'pkl_finance': 'pickle_staking', 'opyn': 'opyn_gamma_redeem', 'opyn_v2': 'opyn_gamma_redeem', 'opyn_gamma': 'opyn_gamma_redeem', 'gnosis_protocol': 'mesa', 'gnosis_protocol_v1': 'mesa', 'mesa_dex': 'mesa', 'gpv1': 'mesa', 'batch_exchange': 'mesa' };
+  const SLUG_ALIASES = { 'ens': 'ens_old', 'popfinance': 'genesis_weth_pool', 'gnosis_dutchx': 'dxmgnpool', 'hegic_v1_call': 'hegic_call', 'hegic_v1_pool': 'hegic_eth_pool', 'yam_finance': 'yam_weth', 'yam_v1': 'yam_weth', 'spaghetti_money': 'spaghetti', 'doki_doki': 'dokidoki', 'cofix': 'cofi', 'cofix_staking': 'cofi', 'pkl_finance': 'pickle_staking', 'opyn': 'opyn_gamma_redeem', 'opyn_v2': 'opyn_gamma_redeem', 'opyn_gamma': 'opyn_gamma_redeem', 'gnosis_protocol': 'mesa', 'gnosis_protocol_v1': 'mesa', 'mesa_dex': 'mesa', 'gpv1': 'mesa', 'batch_exchange': 'mesa', 'uma': 'uma_yield_dollar', 'uma_v1': 'uma_yield_dollar', 'uma_emp': 'uma_yield_dollar', 'unagii_eth': 'unagii', 'unagii_vault': 'unagii', 'opyn_v1_options': 'opyn_v1', 'opyn_v1_otoken': 'opyn_v1' };
   let key = slug.replace(/-/g, '_');
   if (SLUG_ALIASES[key]) key = SLUG_ALIASES[key];
   const info = loadProtocolInfo();

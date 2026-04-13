@@ -1239,11 +1239,34 @@
     "multi_step": true
   },
   {
+    "key": "opyn_v1",
+    "name": "Opyn v1",
+    "contract": "0xb529964f86fbf99a6aa67f72a27e59fa3fa4feac",
+    "category": "options",
+    "balance_file": "opyn_v1_eth_balances.json",
+    "multi_contract": true
+  },
+  {
     "key": "mesa",
     "name": "Mesa / Gnosis Protocol v1",
     "contract": "0x6f400810b62df8e13fded51be75ff5393eaa841f",
     "category": "dex",
     "balance_file": "mesa_eth_balances.json",
     "multi_step": true
+  },
+  {
+    "key": "uma_yield_dollar",
+    "name": "UMA Yield Dollar",
+    "contract": "0xe1ee8d4c5dba1c221840c08f6cf42154435b9d52",
+    "category": "options",
+    "balance_file": "uma_yield_dollar_eth_balances.json",
+    "multi_step": true
+  },
+  {
+    "key": "unagii",
+    "name": "Unagii ETH Vault",
+    "contract": "0x77607588222e01bf892a29Abab45796A2047fc7b",
+    "category": "yield",
+    "balance_file": "unagii_eth_balances.json"
   }
 ]

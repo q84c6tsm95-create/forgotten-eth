@@ -760,6 +760,9 @@ function showDonationModal(totalEth) {
       confirmBtn.style.opacity = '1';
       confirmBtn.style.background = 'var(--accent)';
       confirmBtn.textContent = 'Donate ' + fmtDonation(amt) + ' ETH';
+      if (e.code !== 'ACTION_REJECTED' && e.code !== 4001) {
+        errEl.textContent = e.reason || e.message || 'Transaction failed';
+      }
     });
   });
 
@@ -3098,6 +3101,16 @@ const EXCHANGES = {
     noWalletCheck: true,
     opynRedeemMulti: true,
   },
+  opyn_v1: {
+    name: 'Opyn v1',
+    desc: 'Opyn v1 launched in early 2020 as one of Ethereum\'s first decentralized options protocols. Vault owners deposited ETH as collateral to write put options. After option expiry, vault owners can call redeemVaultBalance() on each oToken contract to reclaim their ETH collateral. The original frontend no longer supports v1 contracts.',
+    category: 'options',
+    color: '#7c3aed',
+    contract: '0xb529964f86fbf99a6aa67f72a27e59fa3fa4feac',
+    deployed: 'February 2020',
+    noWalletCheck: true,
+    opynV1Multi: true,
+  },
   mesa: {
     name: 'Mesa / Gnosis Protocol v1',
     desc: 'Mesa was the precursor to CowSwap (Gnosis Protocol v1), a batch-auction DEX deployed in 2020. Users deposited tokens to trade and had to explicitly withdraw to retrieve them. The contract has been dormant since early 2022 but the 2-step withdraw path (requestWithdraw → wait one batch → withdraw) is still permissionless.',
@@ -3113,6 +3126,35 @@ const EXCHANGES = {
     requestWithdrawAbi: 'function requestWithdraw(address token, uint256 amount)',
     requestWithdrawCall: 'requestWithdraw',
     withdrawAbi: 'function withdraw(address user, address token)',
+    withdrawCall: 'withdraw',
+  },
+  uma_yield_dollar: {
+    name: 'UMA Yield Dollar',
+    desc: 'UMA\'s ExpiringMultiParty contracts let users deposit WETH as collateral to mint synthetic tokens (yUSD, uUSDrBTC, uUSDrETH). All contracts expired in 2020-2021 and the UMA frontend no longer supports v1 settlement. Sponsors can reclaim excess collateral and synthetic token holders can redeem their share via settleExpired() on each EMP contract.',
+    category: 'options',
+    color: '#FF4A4A',
+    contract: '0xe1ee8d4c5dba1c221840c08f6cf42154435b9d52',
+    deployed: 'June 2020',
+    returnsWeth: true,
+    noWalletCheck: true,
+    umaSettleMulti: true,
+  },
+  unagii: {
+    name: 'Unagii ETH Vault',
+    desc: 'Unagii was a Yearn-style vault protocol (2021) where users deposited ETH and received uETH shares. The protocol deployed ETH into yield strategies but went dormant in late 2022. The vault is immutable and unpaused with 0% withdrawal fee. Users can burn uETH shares to reclaim proportional ETH via withdraw().',
+    category: 'yield',
+    color: '#6366f1',
+    contract: '0x77607588222e01bf892a29Abab45796A2047fc7b',
+    deployed: 'March 2021',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    // balanceOf returns uETH shares; transform to ETH for display:
+    // eth = shares * totalAssets / totalSupply = shares * 11741597487099198635 / 10525550563291082186
+    balanceTransform: (result) => result * 11741597487099198635n / 10525550563291082186n,
+    vaultShareWithdraw: true, // claimETH reads raw balanceOf at claim time for withdraw args
+    withdrawAbi: 'function withdraw(uint256 _shares, uint256 _min)',
+    withdrawArgs: (shares) => [shares, 0n],
     withdrawCall: 'withdraw',
   },
 };
@@ -3988,6 +4030,62 @@ async function checkUserBalances(overrideAddress) {
             html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">No expired oToken positions detected for this address.</div>`;
           }
           html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
+        } else if (cfg.opynV1Multi) {
+          // Opyn v1: per-oToken redeemVaultBalance() calls. Each vault owner may have
+          // collateral across multiple expired oToken contracts. Each needs a separate tx.
+          const positions = apiBalances[key]?.positions || [];
+          _opynV1Positions[key] = positions;
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
+              </div>
+              <div class="claim-card-meta">
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Factory</span><span class="claim-card-meta-value"><a href="${etherscanAddr('0xb529964f86fbf99a6aa67f72a27e59fa3fa4feac')}" target="_blank" rel="noopener noreferrer">0xb529964f...a4FEaC</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">redeemVaultBalance() — per oToken contract</span></div>
+              </div>`;
+          if (positions.length > 0) {
+            for (let pi = 0; pi < positions.length; pi++) {
+              const p = positions[pi];
+              const pEth = p.collateral_eth ? ' \u00b7 ' + fmtEth(p.collateral_eth) + ' ETH' : '';
+              html += `<div class="claim-row" style="margin:4px 16px;border-left:2px solid #7c3aed;padding:6px 12px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:13px"><a href="${etherscanAddr(p.otoken)}" target="_blank" rel="noopener noreferrer" style="color:var(--text)">oToken ${esc(p.otoken.slice(0,10))}\u2026</a><span style="color:var(--text2);font-size:12px">${pEth}</span></span>
+                <button class="claim-btn" data-action="opyn-v1-redeem" data-key="${esc(key)}" data-otoken="${p.otoken}" data-index="${pi}">Redeem</button>
+              </div>`;
+            }
+          } else {
+            html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">No vault positions detected for this address.</div>`;
+          }
+          html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
+        } else if (cfg.umaSettleMulti) {
+          // UMA EMP: per-EMP settleExpired() calls. Each sponsor may have positions
+          // across multiple expired EMP contracts. Each needs a separate tx.
+          const positions = apiBalances[key]?.positions || [];
+          _umaPositions[key] = positions;
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
+              </div>
+              <div class="claim-card-meta">
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Factory</span><span class="claim-card-meta-value"><a href="${etherscanAddr('0xddfc7e3b4531158acf4c7a5d2c3cd3bb8c189413')}" target="_blank" rel="noopener noreferrer">0xddfc7e3b...c189413</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">settleExpired() — per EMP contract</span></div>
+              </div>`;
+          if (positions.length > 0) {
+            for (let pi = 0; pi < positions.length; pi++) {
+              const p = positions[pi];
+              const pEth = p.claimable_eth ? ' \u00b7 ' + fmtEth(p.claimable_eth) + ' WETH' : '';
+              html += `<div class="claim-row" style="margin:4px 16px;border-left:2px solid #ff4a4a;padding:6px 12px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:13px"><a href="${etherscanAddr(p.emp)}" target="_blank" rel="noopener noreferrer" style="color:var(--text)">EMP ${esc(p.emp.slice(0,10))}\u2026</a><span style="color:var(--text2);font-size:12px">${pEth}</span></span>
+                <button class="claim-btn" data-action="uma-settle" data-key="${esc(key)}" data-emp="${p.emp}" data-index="${pi}">Settle</button>
+              </div>`;
+            }
+          } else {
+            html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">No EMP positions detected for this address.</div>`;
+          }
+          html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
         } else if (!cfg.withdrawAbi) {
           // Contracts without direct withdraw
           html += `
@@ -4449,8 +4547,19 @@ async function claimETH(key) {
 
   let tx = null;
   try {
+    // For vault-style protocols (Unagii): withdraw() takes raw shares, not ETH.
+    // Read the actual share balance on-chain so the tx call uses the right amount.
+    let withdrawBalance = balance;
+    if (cfg.vaultShareWithdraw) {
+      try {
+        const vaultContract = new ethers.Contract(cfg.contract, [cfg.balanceAbi], walletProvider || walletSigner);
+        withdrawBalance = await vaultContract[cfg.balanceCall](...cfg.balanceArgs(walletAddress));
+      } catch (e) {
+        console.error('Failed to read vault shares:', e.message);
+      }
+    }
     const contract = new ethers.Contract(cfg.contract, [cfg.withdrawAbi], walletSigner);
-    const args = cfg.withdrawArgs(balance, walletAddress);
+    const args = cfg.withdrawArgs(withdrawBalance, walletAddress);
     const ethAmount = ethers.formatEther(balance);
 
     window.va?.track?.('claim_initiated', { exchange: cfg.name, amount_eth: ethAmount });
@@ -4473,10 +4582,10 @@ async function claimETH(key) {
     window.va?.track?.('claim_confirmed', { exchange: cfg.name, amount_eth: ethAmount, tx_hash: tx.hash, block: receipt.blockNumber });
     logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethAmount), tx_hash: tx.hash, block_num: receipt.blockNumber });
 
-    btn.textContent = 'Done';
+    btn.textContent = '\u2713 Claimed';
     btn.classList.remove('pending');
-    btn.style.background = 'var(--green)';
-    btn.style.opacity = '0.7';
+    btn.classList.add('claimed');
+    btn.disabled = true;
     statusEl.innerHTML = `<div class="claim-recovered">
         <div class="claim-recovered-label">Recovered</div>
         <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div>
@@ -4618,7 +4727,7 @@ async function nucypherRefund(key) {
     const claimedEthNum = parseFloat(ethAmount);
     const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
     const fakeTxHash = '0x' + Array.from({length: 64}, () => '0123456789abcdef'[Math.floor(Math.random()*16)]).join('');
-    btn.textContent = 'Done'; btn.classList.remove('pending'); btn.style.background = 'var(--green)'; btn.style.opacity = '0.7';
+    btn.textContent = '\u2713 Claimed'; btn.classList.remove('pending'); btn.classList.add('claimed'); btn.disabled = true;
     statusEl.innerHTML = `<div class="claim-recovered"><div class="claim-recovered-label">Recovered</div><div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div><div class="claim-recovered-tx"><a href="${etherscanTx(fakeTxHash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div><div style="font-size:10px;color:var(--yellow);margin-top:2px">[TEST MODE]</div></div>`;
     showDonationModal(claimedEthNum);
     userBalances[key] = 0n;
@@ -4642,7 +4751,7 @@ async function nucypherRefund(key) {
     const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
     window.va?.track?.('claim_confirmed', { exchange: cfg.name, amount_eth: ethAmount, tx_hash: tx.hash, block: receipt.blockNumber });
     logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: claimedEthNum, tx_hash: tx.hash, block_num: receipt.blockNumber });
-    btn.textContent = 'Done'; btn.classList.remove('pending'); btn.style.background = 'var(--green)'; btn.style.opacity = '0.7';
+    btn.textContent = '\u2713 Claimed'; btn.classList.remove('pending'); btn.classList.add('claimed'); btn.disabled = true;
     statusEl.innerHTML = `<div class="claim-recovered"><div class="claim-recovered-label">Recovered</div><div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div><div class="claim-recovered-tx"><a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div></div>`;
     showDonationModal(claimedEthNum);
     userBalances[key] = 0n;
@@ -4778,10 +4887,10 @@ async function digixBurn(key) {
     const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
     window.va?.track?.('claim_confirmed', { exchange: cfg.name, amount_eth: ethAmount, tx_hash: tx.hash, block: receipt.blockNumber });
     logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: claimedEthNum, tx_hash: tx.hash, block_num: receipt.blockNumber });
-    btn.textContent = 'Done';
+    btn.textContent = '\u2713 Claimed';
     btn.classList.remove('pending');
-    btn.style.background = 'var(--green)';
-    btn.style.opacity = '0.7';
+    btn.classList.add('claimed');
+    btn.disabled = true;
     statusEl.innerHTML = `<div class="claim-recovered">
         <div class="claim-recovered-label">Recovered</div>
         <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div>
@@ -4880,10 +4989,10 @@ async function daoWithdrawExecute(key) {
     const ethAmount = ethers.formatEther(userBalances[key] || 0n);
     const claimedEthNum = parseFloat(ethAmount);
     const fakeTxHash = '0x' + Array.from({length: 64}, () => '0123456789abcdef'[Math.floor(Math.random()*16)]).join('');
-    btn.textContent = 'Done';
+    btn.textContent = '\u2713 Claimed';
     btn.classList.remove('pending');
-    btn.style.background = 'var(--green)';
-    btn.style.opacity = '0.7';
+    btn.classList.add('claimed');
+    btn.disabled = true;
     const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
     statusEl.innerHTML = `<div class="claim-recovered">
       <div class="claim-recovered-label">Recovered</div>
@@ -4917,10 +5026,10 @@ async function daoWithdrawExecute(key) {
     const claimedEthNum = parseFloat(ethAmount);
     const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
     logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: claimedEthNum, tx_hash: tx.hash, block_num: receipt.blockNumber });
-    btn.textContent = 'Done';
+    btn.textContent = '\u2713 Claimed';
     btn.classList.remove('pending');
-    btn.style.background = 'var(--green)';
-    btn.style.opacity = '0.7';
+    btn.classList.add('claimed');
+    btn.disabled = true;
     statusEl.innerHTML = `<div class="claim-recovered">
         <div class="claim-recovered-label">Recovered</div>
         <div class="claim-recovered-amount">${fmtEth(ethAmount)} ETH${claimUsd}</div>
@@ -5035,10 +5144,10 @@ async function daoMsigWithdraw(key, msigAddr) {
     if (remainingBal === 0n) {
       const claimUsd = _ethPrice ? ' (' + fmtUsd(amountEth * _ethPrice) + ')' : '';
       logEvent('claim_confirmed', { address: msigAddr, contract: key, amount_eth: amountEth, tx_hash: tx.hash, block_num: receipt.blockNumber });
-      btn.textContent = 'Done';
+      btn.textContent = '\u2713 Claimed';
       btn.classList.remove('pending');
-      btn.style.background = 'var(--green)';
-      btn.style.opacity = '0.7';
+      btn.classList.add('claimed');
+      btn.disabled = true;
       statusEl.innerHTML = `<div class="claim-recovered">
           <div class="claim-recovered-label">Recovered to Multisig</div>
           <div class="claim-recovered-amount">${fmtEth(amountEth)} ETH${claimUsd}</div>
@@ -5132,10 +5241,10 @@ async function neufundWithdrawEthT(key) {
     statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash.slice(0, 18)}...</a>`;
     await tx.wait();
     const claimedEthNum = parseFloat(ethAmount);
-    btn.textContent = 'Done';
+    btn.textContent = '\u2713 Claimed';
     btn.classList.remove('pending');
-    btn.style.background = 'var(--green)';
-    btn.style.opacity = '0.7';
+    btn.classList.add('claimed');
+    btn.disabled = true;
     const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
     statusEl.innerHTML = `<div class="claim-recovered">
         <div class="claim-recovered-label">Recovered</div>
@@ -5211,10 +5320,10 @@ async function switcheoWithdraw(key) {
     await tx.wait();
     const ethAmount = ethers.formatEther(balance);
     const claimUsd = window._ethPrice ? ' (~$' + (parseFloat(ethAmount) * window._ethPrice).toFixed(2) + ')' : '';
-    btn.textContent = 'Done';
+    btn.textContent = '\u2713 Claimed';
     btn.classList.remove('pending');
-    btn.style.background = 'var(--green)';
-    btn.style.opacity = '0.7';
+    btn.classList.add('claimed');
+    btn.disabled = true;
     statusEl.innerHTML = '<div class="claim-recovered"><div class="claim-recovered-label">Recovered</div><div class="claim-recovered-amount">' + fmtEth(ethAmount) + ' ETH' + claimUsd + '</div><div class="claim-recovered-tx"><a href="' + etherscanTx(tx.hash) + '" target="_blank" rel="noopener noreferrer">View transaction on Etherscan</a></div></div>';
     showDonationModal(parseFloat(ethAmount));
     userBalances[key] = 0n;
@@ -5561,10 +5670,10 @@ async function kyberClaimEpoch(key, epoch, btn) {
     var tx = await contract.claimStakerReward(walletAddress, epoch);
     if (statusEl) statusEl.textContent = 'Tx submitted, waiting for confirmation...';
     var receipt = await tx.wait();
-    btn.textContent = 'Done';
+    btn.textContent = '\u2713 Claimed';
     btn.classList.remove('pending');
-    btn.style.background = 'var(--green)';
-    btn.style.opacity = '0.7';
+    btn.classList.add('claimed');
+    btn.disabled = true;
     logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)), tx_hash: tx.hash, block_num: receipt.blockNumber });
     if (statusEl) statusEl.textContent = 'Epoch ' + epoch + ' claimed!';
   } catch (e) {
@@ -5642,10 +5751,10 @@ async function augurWithdrawMailbox(key, mailboxAddr, btn) {
     btn.textContent = 'Pending...';
     if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
     var receipt = await tx.wait();
-    btn.textContent = 'Done';
+    btn.textContent = '\u2713 Claimed';
     btn.classList.remove('pending');
-    btn.style.background = 'var(--green)';
-    btn.style.opacity = '0.7';
+    btn.classList.add('claimed');
+    btn.disabled = true;
     btn.disabled = true;
     logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)), tx_hash: tx.hash, block_num: receipt.blockNumber });
     if (statusEl) statusEl.textContent = 'Mailbox fees withdrawn to your wallet.';
@@ -5687,10 +5796,10 @@ async function augurCancelOrder(key, orderId, btn) {
     btn.textContent = 'Pending...';
     if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
     var receipt = await tx.wait();
-    btn.textContent = 'Done';
+    btn.textContent = '\u2713 Claimed';
     btn.classList.remove('pending');
-    btn.style.background = 'var(--green)';
-    btn.style.opacity = '0.7';
+    btn.classList.add('claimed');
+    btn.disabled = true;
     btn.disabled = true;
     logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)), tx_hash: tx.hash, block_num: receipt.blockNumber });
     if (statusEl) statusEl.textContent = 'Order cancelled. Escrowed ETH returned to your wallet.';
@@ -5732,10 +5841,10 @@ async function augurClaimShares(key, marketAddr, btn) {
     btn.textContent = 'Pending...';
     if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
     var receipt = await tx.wait();
-    btn.textContent = 'Done';
+    btn.textContent = '\u2713 Claimed';
     btn.classList.remove('pending');
-    btn.style.background = 'var(--green)';
-    btn.style.opacity = '0.7';
+    btn.classList.add('claimed');
+    btn.disabled = true;
     btn.disabled = true;
     logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)), tx_hash: tx.hash, block_num: receipt.blockNumber });
     if (statusEl) statusEl.textContent = 'Shares claimed. Proceeds sent to your wallet.';
@@ -5767,10 +5876,10 @@ async function killBounty(key, bountyId, btn) {
     btn.textContent = 'Pending...';
     if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
     var receipt = await tx.wait();
-    btn.textContent = 'Done';
+    btn.textContent = '\u2713 Claimed';
     btn.classList.remove('pending');
-    btn.style.background = 'var(--green)';
-    btn.style.opacity = '0.7';
+    btn.classList.add('claimed');
+    btn.disabled = true;
     logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)), tx_hash: tx.hash, block_num: receipt.blockNumber });
     if (statusEl) statusEl.textContent = 'Bounty #' + bountyId + ' withdrawn. ETH returned to your wallet.';
   } catch (e) {
@@ -5839,15 +5948,117 @@ async function opynRedeemAll(key, btn) {
     btn.textContent = 'Pending...';
     if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
     var receipt = await tx.wait();
-    btn.textContent = 'Done';
+    btn.textContent = '\u2713 Claimed';
     btn.classList.remove('pending');
-    btn.style.background = 'var(--green)';
-    btn.style.opacity = '0.7';
+    btn.classList.add('claimed');
+    btn.disabled = true;
     logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)), tx_hash: tx.hash, block_num: receipt.blockNumber });
     if (statusEl) statusEl.textContent = positions.length + ' position' + (positions.length > 1 ? 's' : '') + ' redeemed. WETH transferred to your wallet.';
   } catch (e) {
     btn.disabled = false;
     btn.textContent = 'Claim all (' + positions.length + ' position' + (positions.length > 1 ? 's' : '') + ')';
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      if (statusEl) statusEl.textContent = 'Rejected';
+    } else {
+      if (statusEl) statusEl.textContent = 'Failed: ' + (e.reason || e.message || 'Unknown error');
+    }
+  }
+}
+
+// ─── UMA EMP: settleExpired() per EMP contract ───
+
+async function umaSettleExpired(key, empAddr, posIndex, btn) {
+  if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+
+  var positions = _umaPositions[key] || [];
+  var pos = positions[posIndex];
+  if (!pos) {
+    showInlineError('walletError', 'Position not found.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Settling...';
+  btn.classList.add('pending');
+  var statusEl = document.getElementById('claimStatus-' + key);
+
+  try {
+    var iface = new ethers.Interface(['function settleExpired() returns (uint256)']);
+    var calldata = iface.encodeFunctionData('settleExpired', []);
+
+    logEvent('claim_started', { address: walletAddress, contract: key, emp: empAddr });
+    var tx = await walletSigner.sendTransaction({
+      to: empAddr,
+      data: calldata,
+    });
+    btn.textContent = 'Pending...';
+    if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
+    var receipt = await tx.wait();
+    btn.textContent = '\u2713 Claimed';
+    btn.classList.remove('pending');
+    btn.classList.add('claimed');
+    btn.disabled = true;
+    var claimEth = pos.claimable_eth || 0;
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: claimEth, tx_hash: tx.hash, block_num: receipt.blockNumber });
+    if (statusEl) statusEl.textContent = 'Settled. ' + fmtEth(claimEth) + ' WETH transferred to your wallet.';
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Settle';
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      if (statusEl) statusEl.textContent = 'Rejected';
+    } else {
+      if (statusEl) statusEl.textContent = 'Failed: ' + (e.reason || e.message || 'Unknown error');
+    }
+  }
+}
+
+// ─── Opyn v1: redeemVaultBalance() per oToken contract ───
+//
+// Each vault owner has ETH collateral in one or more expired oToken contracts.
+// After expiry, they call redeemVaultBalance() on each oToken to reclaim
+// their collateral. Simple no-arg call, returns native ETH.
+
+async function opynV1Redeem(key, otokenAddr, posIndex, btn) {
+  if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+
+  var positions = _opynV1Positions[key] || [];
+  var pos = positions[posIndex];
+  if (!pos) {
+    showInlineError('walletError', 'Position not found.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Redeeming...';
+  btn.classList.add('pending');
+  var statusEl = document.getElementById('claimStatus-' + key);
+
+  try {
+    var iface = new ethers.Interface(['function redeemVaultBalance()']);
+    var calldata = iface.encodeFunctionData('redeemVaultBalance', []);
+
+    logEvent('claim_started', { address: walletAddress, contract: key, otoken: otokenAddr });
+    var tx = await walletSigner.sendTransaction({
+      to: otokenAddr,
+      data: calldata,
+    });
+    btn.textContent = 'Pending...';
+    if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
+    var receipt = await tx.wait();
+    btn.textContent = '\u2713 Claimed';
+    btn.classList.remove('pending');
+    btn.classList.add('claimed');
+    btn.disabled = true;
+    var claimEth = pos.collateral_eth || 0;
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: claimEth, tx_hash: tx.hash, block_num: receipt.blockNumber });
+    if (statusEl) statusEl.textContent = 'Redeemed. ' + fmtEth(claimEth) + ' ETH transferred to your wallet.';
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Redeem';
     btn.classList.remove('pending');
     if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
       if (statusEl) statusEl.textContent = 'Rejected';
@@ -5880,6 +6091,8 @@ const MESA_READ_ABI = [
 
 // Track per-tab Mesa polling so we don't double-start
 const _opynPositions = {};
+const _opynV1Positions = {};
+const _umaPositions = {};
 const _mesaPollState = {};
 
 async function mesaRequestWithdraw(key, btn) {
@@ -5975,10 +6188,12 @@ async function mesaStartPolling(key, step2Btn, statusEl) {
       // swallow transient read errors; keep polling
     }
 
-    // Show estimated time remaining (worst case: full batch = 300s)
-    var approxRemaining = Math.max(0, Math.ceil((maxWaitMs - elapsed) / 1000));
+    // Compute exact seconds until the next batch boundary
+    // Batch N ends at N * 300 seconds since Unix epoch
+    var nextBatchTs = registeredBatchId !== null ? Number(registeredBatchId + 1n) * 300 : 0;
+    var secsLeft = nextBatchTs > 0 ? Math.max(0, nextBatchTs - Math.floor(Date.now() / 1000)) : Math.max(0, Math.ceil((maxWaitMs - elapsed) / 1000));
     if (step2Btn) {
-      step2Btn.textContent = 'Step 2: Withdraw (checking... ~' + approxRemaining + 's left)';
+      step2Btn.textContent = secsLeft > 0 ? 'Step 2: Withdraw (' + secsLeft + 's)' : 'Step 2: Withdraw (checking...)';
     }
 
     if (elapsed >= maxWaitMs) {
@@ -6058,10 +6273,10 @@ async function mesaWithdraw(key, btn) {
     btn.textContent = 'Pending...';
     if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
     var receipt = await tx.wait();
-    btn.textContent = 'Done';
+    btn.textContent = '\u2713 Claimed';
     btn.classList.remove('pending');
-    btn.style.background = 'var(--green)';
-    btn.style.opacity = '0.7';
+    btn.classList.add('claimed');
+    btn.disabled = true;
     logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)), tx_hash: tx.hash, block_num: receipt.blockNumber });
     if (statusEl) statusEl.textContent = 'WETH transferred to your wallet.';
   } catch (e) {
@@ -6096,10 +6311,10 @@ async function hegicWithdrawTranche(key, trancheId, btn) {
     btn.textContent = 'Pending...';
     if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
     var receipt = await tx.wait();
-    btn.textContent = 'Done';
+    btn.textContent = '\u2713 Claimed';
     btn.classList.remove('pending');
-    btn.style.background = 'var(--green)';
-    btn.style.opacity = '0.7';
+    btn.classList.add('claimed');
+    btn.disabled = true;
     logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)), tx_hash: tx.hash, block_num: receipt.blockNumber });
     if (statusEl) statusEl.textContent = 'Tranche #' + trancheId + ' withdrawn. WETH returned to your wallet.';
   } catch (e) {
@@ -6193,10 +6408,10 @@ async function keeperdaoWithdraw(key, itemIdx) {
     btn.textContent = 'Pending...';
     if (statusEl) statusEl.textContent = 'Withdraw tx: ' + tx.hash.slice(0, 22) + '...';
     const receipt = await tx.wait();
-    btn.textContent = 'Done';
+    btn.textContent = '\u2713 Claimed';
     btn.classList.remove('pending');
-    btn.style.background = 'var(--green)';
-    btn.style.opacity = '0.7';
+    btn.classList.add('claimed');
+    btn.disabled = true;
     window._keeperdaoState[itemKey] = 'done';
     logEvent('claim_confirmed', {
       address: walletAddress,
@@ -6291,12 +6506,10 @@ async function claimENSDeed(index) {
     window.va?.track?.('claim_confirmed', { exchange: 'ENS Old Registrar', amount_eth: ethAmount, tx_hash: tx.hash, block: receipt.blockNumber });
     logEvent('claim_confirmed', { address: walletAddress, contract: 'ens_old', amount_eth: parseFloat(ethAmount), tx_hash: tx.hash, block_num: receipt.blockNumber, extra: { deed_name: deed.name || null, deed_hash: deed.labelHash } });
 
-    btn.textContent = 'Released';
+    btn.textContent = '\u2713 Claimed';
     btn.disabled = true;
     btn.classList.remove('pending');
-    btn.style.background = 'var(--green)';
-    btn.style.opacity = '0.5';
-    btn.style.cursor = 'default';
+    btn.classList.add('claimed');
     const claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
     statusEl.innerHTML = '<div class="claim-recovered">' +
       '<div class="claim-recovered-label">Released</div>' +
@@ -7045,10 +7258,10 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
     var result = await testSimulateTx(fromAddr, cfg.contract, calldata);
 
     if (result.success) {
-      btn.textContent = 'SIM OK';
+      btn.textContent = '\u2713 Claimed';
       btn.classList.remove('pending');
-      btn.style.background = 'var(--green)';
-      btn.style.opacity = '0.7';
+      btn.classList.add('claimed');
+      btn.disabled = true;
       var claimedEthNum = parseFloat(ethAmount);
       var claimUsd = _ethPrice ? ' (' + fmtUsd(claimedEthNum * _ethPrice) + ')' : '';
       statusEl.innerHTML = '<div class="claim-recovered"><div class="claim-recovered-label" style="color:var(--green)">Simulation Passed</div><div class="claim-recovered-amount">' + fmtEth(ethAmount) + ' ETH' + claimUsd + '</div><div style="font-size:10px;color:#d946ef;margin-top:2px">[TEST MODE] ' + esc(cfg.withdrawCall) + '() would succeed</div></div>';
@@ -7090,7 +7303,7 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
   // asset). The fetch was dead code and has been removed. The hardcoded
   // values below are the real last resort — update them when adding
   // protocols (grep for this comment).
-  if (!totalData) totalData = { total_eth: 165446, total_contract_eth: 166596, contract_count: 177, eth_claimed: 1401, peak_eth: 166848 };
+  if (!totalData) totalData = { total_eth: 165748, total_contract_eth: 166899, contract_count: 180, eth_claimed: 1401, peak_eth: 167150 };
   try {
       var totalEthVal = Math.round(totalData.total_eth);
       const contractCount = totalData.contract_count || Object.keys(EXCHANGES).length;
@@ -7339,6 +7552,10 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     killBounty(btn.dataset.key, parseInt(btn.dataset.bountyId), btn);
   } else if (action === 'opyn-redeem-all') {
     opynRedeemAll(btn.dataset.key, btn);
+  } else if (action === 'opyn-v1-redeem') {
+    opynV1Redeem(btn.dataset.key, btn.dataset.otoken, parseInt(btn.dataset.index), btn);
+  } else if (action === 'uma-settle') {
+    umaSettleExpired(btn.dataset.key, btn.dataset.emp, parseInt(btn.dataset.index), btn);
   } else if (action === 'mesa-request') {
     mesaRequestWithdraw(btn.dataset.key, btn);
   } else if (action === 'mesa-withdraw') {

@@ -1569,6 +1569,14 @@
     "contract": "0x4ccc2339f87f6c59c6893e1a678c2266ca58dc72",
     "deployed": "December 2020"
   },
+  "opyn_v1": {
+    "name": "Opyn v1",
+    "desc": "Opyn v1 launched in early 2020 as one of Ethereum's first decentralized options protocols. Vault owners deposited ETH as collateral to write put options (oTokens). After the options expired, vault owners could call redeemVaultBalance() to reclaim their ETH collateral. Opyn v1 was superseded by Gamma (v2) in late 2020 and the original frontend no longer supports v1 contracts. 99 vault owners across 5 expired oToken contracts still have unclaimed ETH collateral.",
+    "category": "options",
+    "color": "#7c3aed",
+    "contract": "0xb529964f86fbf99a6aa67f72a27e59fa3fa4feac",
+    "deployed": "February 2020"
+  },
   "mesa": {
     "name": "Mesa / Gnosis Protocol v1",
     "desc": "Mesa was the precursor to CowSwap (Gnosis Protocol v1), a batch-auction DEX deployed in early 2020. Users deposited tokens to trade across discrete batches and had to explicitly withdraw to retrieve them. The contract has been dormant since early 2022 but the 2-step withdraw path (requestWithdraw → wait one batch → withdraw) is still permissionless. 116 unique holders forgot to finalize withdrawals after their last trades.",
@@ -1576,5 +1584,21 @@
     "color": "#10b981",
     "contract": "0x6f400810b62df8e13fded51be75ff5393eaa841f",
     "deployed": "February 2020"
+  },
+  "uma_yield_dollar": {
+    "name": "UMA Yield Dollar",
+    "desc": "UMA's ExpiringMultiParty contracts let users deposit WETH as collateral to mint synthetic tokens (yUSD, uUSDrBTC, uUSDrETH). All contracts expired in 2020-2021 and the UMA frontend no longer supports v1 settlement. Sponsors can reclaim excess collateral and synthetic token holders can redeem their share via settleExpired() on each EMP contract.",
+    "category": "options",
+    "color": "#FF4A4A",
+    "contract": "0xe1ee8d4c5dba1c221840c08f6cf42154435b9d52",
+    "deployed": "June 2020"
+  },
+  "unagii": {
+    "name": "Unagii ETH Vault",
+    "desc": "Unagii was a Yearn-style vault protocol launched in March 2021 where users deposited ETH and received uETH shares representing proportional ownership of the vault. The protocol deployed ETH into yield strategies but went dormant in late 2022. The vault contract is immutable and unpaused with no withdrawal fee. Users can burn their uETH shares to reclaim proportional ETH via withdraw().",
+    "category": "yield",
+    "color": "#6366f1",
+    "contract": "0x77607588222e01bf892a29Abab45796A2047fc7b",
+    "deployed": "March 2021"
   }
 }

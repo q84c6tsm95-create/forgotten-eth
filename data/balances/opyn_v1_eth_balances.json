@@ -1,0 +1,1258 @@
+{
+  "contract": "0xb529964f86fbf99a6aa67f72a27e59fa3fa4feac",
+  "otoken_contracts": [
+    "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+    "0x4ba8c6ce0e855c051e65dfc37883360efaf7c82b",
+    "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+    "0xddac4aed7c8f73032b388efe2c778fc194bc81ed",
+    "0x67904e24b071d1406a63eceddea6ba0f4a79ab1e"
+  ],
+  "contract_eth_balance": 0.0,
+  "total_eth_in_balances": 24.864898,
+  "addresses_with_balance": 99,
+  "coverage_pct": 100.0,
+  "scan_date": "2026-04-12 20:38:32 UTC",
+  "balance_source": "eth",
+  "description": "Opyn v1 ETH-collateralized oToken vaults. Vault owners deposited ETH as collateral to write options. After option expiry, vault owners can call redeemVaultBalance() on each oToken contract to reclaim their ETH collateral. The Opyn v1 protocol was superseded by Gamma (v2) in late 2020 and the frontend no longer supports v1.",
+  "distribution": {
+    "1_plus": 7,
+    "0.1_to_1": 15,
+    "0.01_to_0.1": 48,
+    "under_0.01": 29
+  },
+  "opyn_v1_multi": true,
+  "balances": [
+    {
+      "address": "0x19ee7696d2a71548a7f1fc9cef644460d7e73297",
+      "balance_wei": "5917442434502188016",
+      "balance_eth": 5.917442,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 5.917442
+        }
+      ],
+      "rank": 1
+    },
+    {
+      "address": "0x4bdfad117a88c780f3cdd4622b35fe7f77906192",
+      "balance_wei": "5000000000000000000",
+      "balance_eth": 5.0,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 5.0
+        }
+      ],
+      "rank": 2
+    },
+    {
+      "address": "0xaa679e4ee126f49c4c7e06bffae0f64562e74deb",
+      "balance_wei": "2393000000000000000",
+      "balance_eth": 2.393,
+      "positions": [
+        {
+          "otoken": "0x4ba8c6ce0e855c051e65dfc37883360efaf7c82b",
+          "collateral_eth": 2.393
+        }
+      ],
+      "rank": 3
+    },
+    {
+      "address": "0x4d042952046798d57c4675e199b519c344769424",
+      "balance_wei": "2200000000000000000",
+      "balance_eth": 2.2,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 2.2
+        }
+      ],
+      "rank": 4
+    },
+    {
+      "address": "0xab8717148e13931bf9b52034302b0b1744bf2ca2",
+      "balance_wei": "1287285326905694722",
+      "balance_eth": 1.287285,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.0
+        },
+        {
+          "otoken": "0x4ba8c6ce0e855c051e65dfc37883360efaf7c82b",
+          "collateral_eth": 1.287285
+        }
+      ],
+      "rank": 5
+    },
+    {
+      "address": "0x93fc1f35f53a9553534979233caf273214c51fd7",
+      "balance_wei": "1000000000000000000",
+      "balance_eth": 1.0,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 1.0
+        }
+      ],
+      "rank": 6
+    },
+    {
+      "address": "0xebcb4e8532cfe6effc42518f8ae5976a02b9290b",
+      "balance_wei": "1000000000000000000",
+      "balance_eth": 1.0,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 1.0
+        }
+      ],
+      "rank": 7
+    },
+    {
+      "address": "0xe3b1c7a434657876c3f35003885f2edf1bcaf646",
+      "balance_wei": "838281092508586678",
+      "balance_eth": 0.838281,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.838281
+        }
+      ],
+      "rank": 8
+    },
+    {
+      "address": "0x4b5160ab8efec1742f20a74428e08790cbc90a48",
+      "balance_wei": "587646988250444962",
+      "balance_eth": 0.587647,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.587647
+        }
+      ],
+      "rank": 9
+    },
+    {
+      "address": "0xfc43f5f9dd45258b3aff31bdbe6561d97e8b71de",
+      "balance_wei": "500000000000000000",
+      "balance_eth": 0.5,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.25
+        },
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.25
+        }
+      ],
+      "rank": 10
+    },
+    {
+      "address": "0x267a3195ea57ad38e65993dbcb9fbebf8995621d",
+      "balance_wei": "500000000000000002",
+      "balance_eth": 0.5,
+      "positions": [
+        {
+          "otoken": "0x4ba8c6ce0e855c051e65dfc37883360efaf7c82b",
+          "collateral_eth": 0.5
+        }
+      ],
+      "rank": 11
+    },
+    {
+      "address": "0xb22601b9794edec77789feb509804fb7f5afc81e",
+      "balance_wei": "330000000000000000",
+      "balance_eth": 0.33,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.33
+        }
+      ],
+      "rank": 12
+    },
+    {
+      "address": "0x7820774535b91fcea012d0be5a1ab90db9d9e9d0",
+      "balance_wei": "280000000000000000",
+      "balance_eth": 0.28,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.18
+        },
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.1
+        }
+      ],
+      "rank": 13
+    },
+    {
+      "address": "0x2482dc04ac628a4b2700c071bfee557fd86c91ea",
+      "balance_wei": "250000000000827441",
+      "balance_eth": 0.25,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.25
+        }
+      ],
+      "rank": 14
+    },
+    {
+      "address": "0xe086c1573e67cad5c38efabe0cc47f63d382a7ab",
+      "balance_wei": "250000000000000000",
+      "balance_eth": 0.25,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.25
+        }
+      ],
+      "rank": 15
+    },
+    {
+      "address": "0x7234d240c723760f2abf1cb4ead6d4d450f44446",
+      "balance_wei": "200000000000000000",
+      "balance_eth": 0.2,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.2
+        }
+      ],
+      "rank": 16
+    },
+    {
+      "address": "0x0ad82809168be581d1e708457b4a45b0bb311632",
+      "balance_wei": "200000000000000000",
+      "balance_eth": 0.2,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.2
+        }
+      ],
+      "rank": 17
+    },
+    {
+      "address": "0xd89b6d5228672ec03ab5929d625e373b4f1f25f3",
+      "balance_wei": "100000000000000000",
+      "balance_eth": 0.1,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.1
+        }
+      ],
+      "rank": 18
+    },
+    {
+      "address": "0x0bf5f6856cf82ccd0141d0418885ba4e079f4d40",
+      "balance_wei": "100000000000000000",
+      "balance_eth": 0.1,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.1
+        }
+      ],
+      "rank": 19
+    },
+    {
+      "address": "0x3111b7716dcc3ddf8509b3efc320488e9e39faca",
+      "balance_wei": "100000000000000000",
+      "balance_eth": 0.1,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.1
+        }
+      ],
+      "rank": 20
+    },
+    {
+      "address": "0x86282134ce9fc4ac724b84b93d6d5b41ce59a40d",
+      "balance_wei": "100000000000000000",
+      "balance_eth": 0.1,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.1
+        }
+      ],
+      "rank": 21
+    },
+    {
+      "address": "0xdfbdd1a390380ceb66809e108c012789a60cae95",
+      "balance_wei": "100000000000000000",
+      "balance_eth": 0.1,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.1
+        }
+      ],
+      "rank": 22
+    },
+    {
+      "address": "0x184dcb4e576df6e2dcf20b1111b2dab701fb377d",
+      "balance_wei": "96189159387063586",
+      "balance_eth": 0.096189,
+      "positions": [
+        {
+          "otoken": "0x4ba8c6ce0e855c051e65dfc37883360efaf7c82b",
+          "collateral_eth": 0.096189
+        }
+      ],
+      "rank": 23
+    },
+    {
+      "address": "0x3839acf1ee7699d1f46b1be840d8ad8317fdf757",
+      "balance_wei": "75000000001828007",
+      "balance_eth": 0.075,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.075
+        }
+      ],
+      "rank": 24
+    },
+    {
+      "address": "0xf665f2ed351696817898fe0ace20c5c1bc3c5796",
+      "balance_wei": "75000000000869469",
+      "balance_eth": 0.075,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.075
+        }
+      ],
+      "rank": 25
+    },
+    {
+      "address": "0xd4c80637f45a55b5e1afa9cd0c935395063d4523",
+      "balance_wei": "75000000000632271",
+      "balance_eth": 0.075,
+      "positions": [
+        {
+          "otoken": "0x4ba8c6ce0e855c051e65dfc37883360efaf7c82b",
+          "collateral_eth": 0.05
+        },
+        {
+          "otoken": "0xddac4aed7c8f73032b388efe2c778fc194bc81ed",
+          "collateral_eth": 0.025
+        }
+      ],
+      "rank": 26
+    },
+    {
+      "address": "0x08378daccb47692e28665105818105904fa50f4f",
+      "balance_wei": "51243076036992951",
+      "balance_eth": 0.051243,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.051243
+        }
+      ],
+      "rank": 27
+    },
+    {
+      "address": "0x24ba6f0905ffb8ca3009dfb57ca403e4a9d86291",
+      "balance_wei": "50000000000537508",
+      "balance_eth": 0.05,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.05
+        }
+      ],
+      "rank": 28
+    },
+    {
+      "address": "0x269f443b4963706e3073b734dc8814665c4d6bd6",
+      "balance_wei": "50000000000000000",
+      "balance_eth": 0.05,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.05
+        }
+      ],
+      "rank": 29
+    },
+    {
+      "address": "0x644239848c7b402d813295893db428aae7cc4cb5",
+      "balance_wei": "50000000000722713",
+      "balance_eth": 0.05,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.05
+        }
+      ],
+      "rank": 30
+    },
+    {
+      "address": "0x6717af6cef0ac26999eec6484ed213c9ff81a257",
+      "balance_wei": "50000000000000000",
+      "balance_eth": 0.05,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.05
+        }
+      ],
+      "rank": 31
+    },
+    {
+      "address": "0xcae687969d3a6c4649d114b1c768d5b1deae547b",
+      "balance_wei": "50000000000881621",
+      "balance_eth": 0.05,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.05
+        }
+      ],
+      "rank": 32
+    },
+    {
+      "address": "0xffaccef20064fceae070107e8e4821a7fa981bb5",
+      "balance_wei": "50000000000000000",
+      "balance_eth": 0.05,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.05
+        }
+      ],
+      "rank": 33
+    },
+    {
+      "address": "0x5699b6d7fc319f816bc09d692bd01a83213b7ec2",
+      "balance_wei": "50000000000000000",
+      "balance_eth": 0.05,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.05
+        }
+      ],
+      "rank": 34
+    },
+    {
+      "address": "0x67922a9561423548a9ccfd67ad80d6c637c26bfe",
+      "balance_wei": "50000000000000000",
+      "balance_eth": 0.05,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.05
+        }
+      ],
+      "rank": 35
+    },
+    {
+      "address": "0xcb9dfa012e0d162cc4124b5464f7ecf49b5f37b5",
+      "balance_wei": "50000000000000000",
+      "balance_eth": 0.05,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.05
+        }
+      ],
+      "rank": 36
+    },
+    {
+      "address": "0x7e5ce10826ee167de897d262fcc9976f609ecd2b",
+      "balance_wei": "50000000000316138",
+      "balance_eth": 0.05,
+      "positions": [
+        {
+          "otoken": "0xddac4aed7c8f73032b388efe2c778fc194bc81ed",
+          "collateral_eth": 0.05
+        }
+      ],
+      "rank": 37
+    },
+    {
+      "address": "0xd0c81e82abddf29c6505d660f5bebe60cdff03c5",
+      "balance_wei": "41000000000000000",
+      "balance_eth": 0.041,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.021
+        },
+        {
+          "otoken": "0xddac4aed7c8f73032b388efe2c778fc194bc81ed",
+          "collateral_eth": 0.02
+        }
+      ],
+      "rank": 38
+    },
+    {
+      "address": "0x3e0cf03f718520f30300266dcf4db50ba12d3331",
+      "balance_wei": "40921590761773445",
+      "balance_eth": 0.040922,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.040922
+        }
+      ],
+      "rank": 39
+    },
+    {
+      "address": "0x01252be268b05625b554c80dd46ea669df5e948b",
+      "balance_wei": "40338692541705022",
+      "balance_eth": 0.040339,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.040339
+        }
+      ],
+      "rank": 40
+    },
+    {
+      "address": "0xb258ad4125e84068f3a47fbbc4f6aced2bc148ec",
+      "balance_wei": "35000612429876785",
+      "balance_eth": 0.035001,
+      "positions": [
+        {
+          "otoken": "0x4ba8c6ce0e855c051e65dfc37883360efaf7c82b",
+          "collateral_eth": 0.035001
+        }
+      ],
+      "rank": 41
+    },
+    {
+      "address": "0x8976a268ec70cf8549bc93c10e297ac8e16ad102",
+      "balance_wei": "33400000000000000",
+      "balance_eth": 0.0334,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.0334
+        }
+      ],
+      "rank": 42
+    },
+    {
+      "address": "0x8183866223445441b6fb9206b9f0b583410977e6",
+      "balance_wei": "32100000000000005",
+      "balance_eth": 0.0321,
+      "positions": [
+        {
+          "otoken": "0x4ba8c6ce0e855c051e65dfc37883360efaf7c82b",
+          "collateral_eth": 0.0321
+        }
+      ],
+      "rank": 43
+    },
+    {
+      "address": "0xc759678ef908eab0e9d94599da7b8848c0af35c2",
+      "balance_wei": "28465598951189214",
+      "balance_eth": 0.028466,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.005966
+        },
+        {
+          "otoken": "0xddac4aed7c8f73032b388efe2c778fc194bc81ed",
+          "collateral_eth": 0.0225
+        }
+      ],
+      "rank": 44
+    },
+    {
+      "address": "0x0b71a7537206f5e1b574cefc23f8e553a4785669",
+      "balance_wei": "25000000000000000",
+      "balance_eth": 0.025,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.025
+        }
+      ],
+      "rank": 45
+    },
+    {
+      "address": "0x1b976af94caa1d9b2fe5ed038ef9818dd6d48870",
+      "balance_wei": "25000000000959734",
+      "balance_eth": 0.025,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.025
+        }
+      ],
+      "rank": 46
+    },
+    {
+      "address": "0xbdaa99322852947ddca0f7c0ed82b66d21d467f1",
+      "balance_wei": "25000000000343107",
+      "balance_eth": 0.025,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.025
+        }
+      ],
+      "rank": 47
+    },
+    {
+      "address": "0xdd72de18cee28897837e417f2ac453cd565dea3b",
+      "balance_wei": "23653428158430248",
+      "balance_eth": 0.023653,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.023653
+        }
+      ],
+      "rank": 48
+    },
+    {
+      "address": "0x218b3d19227ad2388da4fcbd6089ec7821ed47b3",
+      "balance_wei": "23384932363931599",
+      "balance_eth": 0.023385,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.023385
+        }
+      ],
+      "rank": 49
+    },
+    {
+      "address": "0x2b5b3c98ad9b7c6b814edc5e63dd487e6bc5f454",
+      "balance_wei": "22500000001209483",
+      "balance_eth": 0.0225,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.0225
+        }
+      ],
+      "rank": 50
+    },
+    {
+      "address": "0x960cda0827ad96506945c9d3ef18416502019419",
+      "balance_wei": "21000000000000000",
+      "balance_eth": 0.021,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.021
+        }
+      ],
+      "rank": 51
+    },
+    {
+      "address": "0x1955c2b76b1cf245795950e75eb176080879da50",
+      "balance_wei": "20000000000000000",
+      "balance_eth": 0.02,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.02
+        }
+      ],
+      "rank": 52
+    },
+    {
+      "address": "0x3832419fa0a12d8233c41d5548e9b4fad8564789",
+      "balance_wei": "20000000000000000",
+      "balance_eth": 0.02,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.02
+        }
+      ],
+      "rank": 53
+    },
+    {
+      "address": "0x3d86e054b2d299356f92115c43df7c1d3b98c4da",
+      "balance_wei": "20000000000000000",
+      "balance_eth": 0.02,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.02
+        }
+      ],
+      "rank": 54
+    },
+    {
+      "address": "0x6787871ffc2aa1ddac3b72bf546344583f8849a3",
+      "balance_wei": "20000000000000000",
+      "balance_eth": 0.02,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.02
+        }
+      ],
+      "rank": 55
+    },
+    {
+      "address": "0xb44420fb0877a94357e843e2e81a70b08fc04530",
+      "balance_wei": "20000000000000000",
+      "balance_eth": 0.02,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.02
+        }
+      ],
+      "rank": 56
+    },
+    {
+      "address": "0x357d0e27700f4d5bcfd975ec24f9d54bc4f3abeb",
+      "balance_wei": "20000000000000000",
+      "balance_eth": 0.02,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.02
+        }
+      ],
+      "rank": 57
+    },
+    {
+      "address": "0x9e68b67660c223b3e0634d851f5df821e0e17d84",
+      "balance_wei": "19641925816370218",
+      "balance_eth": 0.019642,
+      "positions": [
+        {
+          "otoken": "0x67904e24b071d1406a63eceddea6ba0f4a79ab1e",
+          "collateral_eth": 0.019642
+        }
+      ],
+      "rank": 58
+    },
+    {
+      "address": "0xe0f312c1d27e389061b6cbde969f5cf4b6033f04",
+      "balance_wei": "16500000000000000",
+      "balance_eth": 0.0165,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.0165
+        }
+      ],
+      "rank": 59
+    },
+    {
+      "address": "0x75b379238868ebb577ce9888524d3cd71ee4b236",
+      "balance_wei": "10100000000000000",
+      "balance_eth": 0.0101,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.0101
+        }
+      ],
+      "rank": 60
+    },
+    {
+      "address": "0xe0e8c1d735698060477e79a8e4c20276fc2ec7a7",
+      "balance_wei": "10085210806296623",
+      "balance_eth": 0.010085,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.010085
+        }
+      ],
+      "rank": 61
+    },
+    {
+      "address": "0x108a62856c9d3d8ec98a491dc7b507bb7d4618cf",
+      "balance_wei": "10000000000000000",
+      "balance_eth": 0.01,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.01
+        }
+      ],
+      "rank": 62
+    },
+    {
+      "address": "0x2527fedd0eb265b82126c7fec1ede54199302ecd",
+      "balance_wei": "10000000000000000",
+      "balance_eth": 0.01,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.01
+        }
+      ],
+      "rank": 63
+    },
+    {
+      "address": "0x521e0a5aab17fe8ebdc80b46679c4a15f3a74eab",
+      "balance_wei": "10000000000000000",
+      "balance_eth": 0.01,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.01
+        }
+      ],
+      "rank": 64
+    },
+    {
+      "address": "0x5853ed4f26a3fcea565b3fbc698bb19cdf6deb85",
+      "balance_wei": "10000000000000000",
+      "balance_eth": 0.01,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.01
+        }
+      ],
+      "rank": 65
+    },
+    {
+      "address": "0x5c2e7837a5dc5d07c6977bfedb46a1f3ec6a5a77",
+      "balance_wei": "10000000000000000",
+      "balance_eth": 0.01,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.01
+        }
+      ],
+      "rank": 66
+    },
+    {
+      "address": "0xad8c540a8b291529a12bdde08bf352cdcfc76bc4",
+      "balance_wei": "10000000000000000",
+      "balance_eth": 0.01,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.01
+        }
+      ],
+      "rank": 67
+    },
+    {
+      "address": "0xe38ef7739775ec8c9ad62b759eb6aa9f047d84ed",
+      "balance_wei": "10000000000000000",
+      "balance_eth": 0.01,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.01
+        }
+      ],
+      "rank": 68
+    },
+    {
+      "address": "0x2577a8539cb2194acd72f035dbb691ce5f406d3f",
+      "balance_wei": "10000000000000000",
+      "balance_eth": 0.01,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.01
+        }
+      ],
+      "rank": 69
+    },
+    {
+      "address": "0xffa22a4d4e77c1a09743a524ffd1a720ce46d208",
+      "balance_wei": "10000000000000000",
+      "balance_eth": 0.01,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.01
+        }
+      ],
+      "rank": 70
+    },
+    {
+      "address": "0xb529fbc84ea5a268bda69d4888c6610ae03e8f48",
+      "balance_wei": "9879532028263640",
+      "balance_eth": 0.00988,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.00988
+        }
+      ],
+      "rank": 71
+    },
+    {
+      "address": "0x47dbb61b56c37dd47f4f208ad693062b78e4c958",
+      "balance_wei": "6871990490886929",
+      "balance_eth": 0.006872,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.001772
+        },
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.005
+        },
+        {
+          "otoken": "0xddac4aed7c8f73032b388efe2c778fc194bc81ed",
+          "collateral_eth": 0.0001
+        }
+      ],
+      "rank": 72
+    },
+    {
+      "address": "0xfb338c5fe584c026270e5ded1c2e0aca786a22fe",
+      "balance_wei": "6004030906636797",
+      "balance_eth": 0.006004,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.003904
+        },
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.0001
+        },
+        {
+          "otoken": "0xddac4aed7c8f73032b388efe2c778fc194bc81ed",
+          "collateral_eth": 0.002
+        }
+      ],
+      "rank": 73
+    },
+    {
+      "address": "0x1f7cf870b1bc69884cef24df4bdececdbd092553",
+      "balance_wei": "5501136041480263",
+      "balance_eth": 0.005501,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.005501
+        }
+      ],
+      "rank": 74
+    },
+    {
+      "address": "0x08c2828ec23eaa2434861cedf8469572c2fd2ea7",
+      "balance_wei": "5350000000000006",
+      "balance_eth": 0.00535,
+      "positions": [
+        {
+          "otoken": "0x4ba8c6ce0e855c051e65dfc37883360efaf7c82b",
+          "collateral_eth": 0.00535
+        }
+      ],
+      "rank": 75
+    },
+    {
+      "address": "0x3782ba5cce541df13616d644a607a7202a145dbb",
+      "balance_wei": "5000000000000000",
+      "balance_eth": 0.005,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.005
+        }
+      ],
+      "rank": 76
+    },
+    {
+      "address": "0x764cc3ced132f1a7cf4fb06a49df1b846a585a4d",
+      "balance_wei": "5000000000855966",
+      "balance_eth": 0.005,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.005
+        }
+      ],
+      "rank": 77
+    },
+    {
+      "address": "0xddf48f62e07c2e9f689ae903255d090e9bb9d725",
+      "balance_wei": "5000000000997946",
+      "balance_eth": 0.005,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.005
+        }
+      ],
+      "rank": 78
+    },
+    {
+      "address": "0x9bbe56603d98cb53c787caec314257a8197479de",
+      "balance_wei": "5000000000000000",
+      "balance_eth": 0.005,
+      "positions": [
+        {
+          "otoken": "0x4ba8c6ce0e855c051e65dfc37883360efaf7c82b",
+          "collateral_eth": 0.005
+        }
+      ],
+      "rank": 79
+    },
+    {
+      "address": "0xd986005d25bfdb3fd216e58f5b9a09677832e6cd",
+      "balance_wei": "5000000000316132",
+      "balance_eth": 0.005,
+      "positions": [
+        {
+          "otoken": "0xddac4aed7c8f73032b388efe2c778fc194bc81ed",
+          "collateral_eth": 0.005
+        }
+      ],
+      "rank": 80
+    },
+    {
+      "address": "0x7dac5dcc33e665640546d2db1d3fe88b27e0082f",
+      "balance_wei": "3510359960238733",
+      "balance_eth": 0.00351,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.00351
+        }
+      ],
+      "rank": 81
+    },
+    {
+      "address": "0x313638c16b16183be9ae577a0fab9fc5b5f60f69",
+      "balance_wei": "2511759070678037",
+      "balance_eth": 0.002512,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.002512
+        }
+      ],
+      "rank": 82
+    },
+    {
+      "address": "0x962ccada98a5c4e58e8a09855bf8ccb8dac7789d",
+      "balance_wei": "2000000000000000",
+      "balance_eth": 0.002,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.002
+        }
+      ],
+      "rank": 83
+    },
+    {
+      "address": "0xf196bba501bd8b6bfbe230dd6db39a93c72cb4f8",
+      "balance_wei": "2000000000000000",
+      "balance_eth": 0.002,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.002
+        }
+      ],
+      "rank": 84
+    },
+    {
+      "address": "0xf4d9a2d0075e0f003410ae774456fbeeedd18c72",
+      "balance_wei": "1189979125750831",
+      "balance_eth": 0.00119,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.00119
+        }
+      ],
+      "rank": 85
+    },
+    {
+      "address": "0x25ba6badee1ba37df41d2cd23b45649ee7bb9c93",
+      "balance_wei": "1100000000000005",
+      "balance_eth": 0.0011,
+      "positions": [
+        {
+          "otoken": "0x4ba8c6ce0e855c051e65dfc37883360efaf7c82b",
+          "collateral_eth": 0.0011
+        }
+      ],
+      "rank": 86
+    },
+    {
+      "address": "0xfe32a37f15ee4a4b59715530e5817d1322b9df80",
+      "balance_wei": "892733103240405",
+      "balance_eth": 0.000893,
+      "positions": [
+        {
+          "otoken": "0xddac4aed7c8f73032b388efe2c778fc194bc81ed",
+          "collateral_eth": 0.000893
+        }
+      ],
+      "rank": 87
+    },
+    {
+      "address": "0xfc778fcf3a159f2ef4b9c32f2a05557597955520",
+      "balance_wei": "750000000000002",
+      "balance_eth": 0.00075,
+      "positions": [
+        {
+          "otoken": "0x4ba8c6ce0e855c051e65dfc37883360efaf7c82b",
+          "collateral_eth": 0.00075
+        }
+      ],
+      "rank": 88
+    },
+    {
+      "address": "0xabc04058e20c9cba4f360244648fedf30cebc3b4",
+      "balance_wei": "685816222291191",
+      "balance_eth": 0.000686,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.000636
+        },
+        {
+          "otoken": "0xddac4aed7c8f73032b388efe2c778fc194bc81ed",
+          "collateral_eth": 5e-05
+        }
+      ],
+      "rank": 89
+    },
+    {
+      "address": "0xab1b90932ab0243817b0eb2cea53919d8f249a1e",
+      "balance_wei": "600000000000000",
+      "balance_eth": 0.0006,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.0006
+        }
+      ],
+      "rank": 90
+    },
+    {
+      "address": "0x30904bfe0b4ed1946d86555a461b31ac30e43e19",
+      "balance_wei": "450000000871863",
+      "balance_eth": 0.00045,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.00045
+        }
+      ],
+      "rank": 91
+    },
+    {
+      "address": "0x2da2515c6a37d555121a263db04e1b452ee58c3f",
+      "balance_wei": "450000000000000",
+      "balance_eth": 0.00045,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.00045
+        }
+      ],
+      "rank": 92
+    },
+    {
+      "address": "0x4d8c0dc9f27b5956a4ff3729bb999a716884c1e4",
+      "balance_wei": "250000000000002",
+      "balance_eth": 0.00025,
+      "positions": [
+        {
+          "otoken": "0x4ba8c6ce0e855c051e65dfc37883360efaf7c82b",
+          "collateral_eth": 0.00025
+        }
+      ],
+      "rank": 93
+    },
+    {
+      "address": "0x855328ee5e94924cb83b267f25a513c2a2fc3e5e",
+      "balance_wei": "220000000000000",
+      "balance_eth": 0.00022,
+      "positions": [
+        {
+          "otoken": "0xddac4aed7c8f73032b388efe2c778fc194bc81ed",
+          "collateral_eth": 0.00022
+        }
+      ],
+      "rank": 94
+    },
+    {
+      "address": "0xa00c99f5f955552742f1089ded88abdc74e67bac",
+      "balance_wei": "100000000000000",
+      "balance_eth": 0.0001,
+      "positions": [
+        {
+          "otoken": "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+          "collateral_eth": 0.0001
+        }
+      ],
+      "rank": 95
+    },
+    {
+      "address": "0x3586a4eb36cf07e76ee05b020596bbc2bf06ce63",
+      "balance_wei": "100000000000000",
+      "balance_eth": 0.0001,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.0001
+        }
+      ],
+      "rank": 96
+    },
+    {
+      "address": "0x3e33c96a17462d452cc01e22e7799cc7386ed699",
+      "balance_wei": "100000000000000",
+      "balance_eth": 0.0001,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.0001
+        }
+      ],
+      "rank": 97
+    },
+    {
+      "address": "0xe7be0540916eb95f63004694d97747c0ac29c409",
+      "balance_wei": "100000000000000",
+      "balance_eth": 0.0001,
+      "positions": [
+        {
+          "otoken": "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+          "collateral_eth": 0.0001
+        }
+      ],
+      "rank": 98
+    },
+    {
+      "address": "0x78353498a7c2741d52de5ef45e58bd17148a6297",
+      "balance_wei": "100005420255844",
+      "balance_eth": 0.0001,
+      "positions": [
+        {
+          "otoken": "0xddac4aed7c8f73032b388efe2c778fc194bc81ed",
+          "collateral_eth": 0.0001
+        }
+      ],
+      "rank": 99
+    }
+  ]
+}
