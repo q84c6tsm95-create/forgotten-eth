@@ -1563,7 +1563,7 @@
   },
   "opyn_gamma_redeem": {
     "name": "Opyn v2 Gamma",
-    "desc": "Opyn v2 Gamma was the first major decentralized options protocol on Ethereum, launched in late 2020. Holders of expired in-the-money WETH-collateralized oTokens can redeem their share of the underlying collateral via the Controller contract. The protocol went silent in early 2022 — these are forgotten redemption claims from 2,613 unique holders across 38 different oToken series.",
+    "desc": "Opyn v2 Gamma was the first major decentralized options protocol on Ethereum, launched in late 2020. Holders of expired in-the-money WETH-collateralized oTokens can redeem their share of the underlying collateral via the Controller contract. The protocol went silent in early 2022 \u2014 these are forgotten redemption claims from 2,613 unique holders across 38 different oToken series.",
     "category": "options",
     "color": "#a855f7",
     "contract": "0x4ccc2339f87f6c59c6893e1a678c2266ca58dc72",
@@ -1579,7 +1579,7 @@
   },
   "mesa": {
     "name": "Mesa / Gnosis Protocol v1",
-    "desc": "Mesa was the precursor to CowSwap (Gnosis Protocol v1), a batch-auction DEX deployed in early 2020. Users deposited tokens to trade across discrete batches and had to explicitly withdraw to retrieve them. The contract has been dormant since early 2022 but the 2-step withdraw path (requestWithdraw → wait one batch → withdraw) is still permissionless. 116 unique holders forgot to finalize withdrawals after their last trades.",
+    "desc": "Mesa was the precursor to CowSwap (Gnosis Protocol v1), a batch-auction DEX deployed in early 2020. Users deposited tokens to trade across discrete batches and had to explicitly withdraw to retrieve them. The contract has been dormant since early 2022 but the 2-step withdraw path (requestWithdraw \u2192 wait one batch \u2192 withdraw) is still permissionless. 116 unique holders forgot to finalize withdrawals after their last trades.",
     "category": "dex",
     "color": "#10b981",
     "contract": "0x6f400810b62df8e13fded51be75ff5393eaa841f",
@@ -1600,5 +1600,23 @@
     "color": "#6366f1",
     "contract": "0x77607588222e01bf892a29Abab45796A2047fc7b",
     "deployed": "March 2021"
+  },
+  "veil_ether": {
+    "name": "Veil Ether",
+    "desc": "ETH wrapper from Veil, a prediction market built on Augur and 0x that shut down in July 2019. Users deposited ETH and received Veil Ether tokens for use on the platform. The tokens can still be unwrapped 1:1 for ETH.",
+    "category": "defi",
+    "color": "#6366f1",
+    "contract": "0x53b04999c1ff2d77fcdde98935bb936a67209e4c",
+    "deployed": "January 2019",
+    "slug": "veil-ether"
+  },
+  "gavcoin": {
+    "name": "GavCoin",
+    "desc": "An early Ethereum bonding curve token created in 2015. Users deposited ETH and received GavCoin tokens at a price determined by the bonding curve. Token holders can refund their tokens for ETH at their original purchase price.",
+    "category": "token",
+    "color": "#8b5cf6",
+    "contract": "0x0b8d56c26d8cf16fe1bddf4967753503d974de06",
+    "deployed": "August 2015",
+    "slug": "gavcoin"
   }
 }

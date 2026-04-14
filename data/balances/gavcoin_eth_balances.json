@@ -1,0 +1,937 @@
+{
+  "contract": "0x0b8d56c26d8cf16fe1bddf4967753503d974de06",
+  "contract_eth_balance": 47.3212,
+  "total_eth_in_balances": 47.3212,
+  "addresses_with_balance": 115,
+  "coverage_pct": 100.0,
+  "scan_date": "2026-04-13",
+  "distribution": {
+    "over_10": 1,
+    "1_to_10": 12,
+    "01_to_1": 21,
+    "under_01": 81
+  },
+  "notes": "Each holder has a unique refund_price from their original buyin. Call refund(price, token_balance) to claim.",
+  "balances": [
+    {
+      "address": "0xf228e528bdc9665d19497dd8541ecf4b20e13809",
+      "balance_wei": "14000000000000000000",
+      "balance_eth": "14.0",
+      "token_balance": "1",
+      "refund_price": "14000000000000000000000000000000000000",
+      "rank": 1
+    },
+    {
+      "address": "0x006bf8fffa0e1b3cd01aa319634c7c5d5aee2390",
+      "balance_wei": "5063000000000000000",
+      "balance_eth": "5.063",
+      "token_balance": "100000000",
+      "refund_price": "50630000000000000000000000000",
+      "rank": 2
+    },
+    {
+      "address": "0x37254fcc9c1c564d7c9200d30263ef3443b46491",
+      "balance_wei": "2999999999999999999",
+      "balance_eth": "3.0",
+      "token_balance": "66666666",
+      "refund_price": "45000000450000004500000045000",
+      "rank": 3
+    },
+    {
+      "address": "0x8f942338c828c42c56053a5fc3da6bc014ec69d2",
+      "balance_wei": "2449999999999999999",
+      "balance_eth": "2.45",
+      "token_balance": "300009",
+      "refund_price": "8166421674016446173281468222619",
+      "rank": 4
+    },
+    {
+      "address": "0x948c61d80269e56ed71e8f278e080fb70bb1b856",
+      "balance_wei": "2407999999999999999",
+      "balance_eth": "2.408",
+      "token_balance": "239000000",
+      "refund_price": "10075313807531380753138075313",
+      "rank": 5
+    },
+    {
+      "address": "0x3daa12f9482b7a3e5480463d710278f84330e9e1",
+      "balance_wei": "2349999999999999999",
+      "balance_eth": "2.35",
+      "token_balance": "4166664",
+      "refund_price": "564000360960231014547849310623",
+      "rank": 6
+    },
+    {
+      "address": "0x33bb361ff578fa67a726a39383d430b09f259fd5",
+      "balance_wei": "2099999999999999999",
+      "balance_eth": "2.1",
+      "token_balance": "95411431",
+      "refund_price": "22009941345497689894201461038",
+      "rank": 7
+    },
+    {
+      "address": "0x51a364bbec416d07b19d7525a4c34c24ca767a7a",
+      "balance_wei": "1624593999999999999",
+      "balance_eth": "1.624594",
+      "token_balance": "88887988",
+      "refund_price": "18276867736054504912407287247",
+      "rank": 8
+    },
+    {
+      "address": "0xbad1085c42cfc7c1c8729cbd485fce8b253b5c14",
+      "balance_wei": "1199999999999999999",
+      "balance_eth": "1.2",
+      "token_balance": "27312410",
+      "refund_price": "43936071551357057103346061369",
+      "rank": 9
+    },
+    {
+      "address": "0xfdf97eaa34a883647fac329926b1747e9ef601c6",
+      "balance_wei": "1005999999999999999",
+      "balance_eth": "1.006",
+      "token_balance": "3714285",
+      "refund_price": "270846205931962679223592158383",
+      "rank": 10
+    },
+    {
+      "address": "0x1f1b6e02588a0055e9d93ecda2bd04cfc377f25c",
+      "balance_wei": "999999999999999999",
+      "balance_eth": "1.0",
+      "token_balance": "52631578",
+      "refund_price": "19000000342000006156000110808",
+      "rank": 11
+    },
+    {
+      "address": "0xb0fd393997aa133f14079a7861d09c6fb2016969",
+      "balance_wei": "999999999999999999",
+      "balance_eth": "1.0",
+      "token_balance": "25285716",
+      "refund_price": "39548019917648367165082452084",
+      "rank": 12
+    },
+    {
+      "address": "0xc8cd27bfd9445efc51faebabaceb51ff9fd44bb0",
+      "balance_wei": "999999999999999999",
+      "balance_eth": "1.0",
+      "token_balance": "90000000",
+      "refund_price": "11111111111111111111111111111",
+      "rank": 13
+    },
+    {
+      "address": "0x003e07c10cd803f10f33b0a1c470a8e3f7e326f4",
+      "balance_wei": "980000000000000000",
+      "balance_eth": "0.98",
+      "token_balance": "49000000",
+      "refund_price": "20000000000000000000000000000",
+      "rank": 14
+    },
+    {
+      "address": "0xf2da5add7c6f8a47997efa04049ee7888542744b",
+      "balance_wei": "800000000000000000",
+      "balance_eth": "0.8",
+      "token_balance": "100000000",
+      "refund_price": "8000000000000000000000000000",
+      "rank": 15
+    },
+    {
+      "address": "0x9c5e07eb0c64e93d84f43bb957e949091242b6ed",
+      "balance_wei": "799999999999999999",
+      "balance_eth": "0.8",
+      "token_balance": "34980236",
+      "refund_price": "22870057251757821187941670833",
+      "rank": 16
+    },
+    {
+      "address": "0x12d964f702db7b301765c0066a04ec4fbdb59e3a",
+      "balance_wei": "649999999999999999",
+      "balance_eth": "0.65",
+      "token_balance": "28260869",
+      "refund_price": "23000000460000009200000184000",
+      "rank": 17
+    },
+    {
+      "address": "0xf6abb80f11f269e4500a05721680e0a3ab075ecf",
+      "balance_wei": "599999999999999999",
+      "balance_eth": "0.6",
+      "token_balance": "110578607",
+      "refund_price": "5426004326496896456653681665",
+      "rank": 18
+    },
+    {
+      "address": "0x007e917588d7a1392c3604501e00a73565d06845",
+      "balance_wei": "499999999999999999",
+      "balance_eth": "0.5",
+      "token_balance": "190999750",
+      "refund_price": "2617804473566064877048268387",
+      "rank": 19
+    },
+    {
+      "address": "0x0bd031229a6c65bff623a6c569600a2b2ff323bd",
+      "balance_wei": "499999999999999999",
+      "balance_eth": "0.5",
+      "token_balance": "35714285",
+      "refund_price": "14000000280000005600000112000",
+      "rank": 20
+    },
+    {
+      "address": "0xc92298527578f68c5e00d835d4961aee66c50b28",
+      "balance_wei": "499999999999999999",
+      "balance_eth": "0.5",
+      "token_balance": "23764470",
+      "refund_price": "21039812796161664871970635154",
+      "rank": 21
+    },
+    {
+      "address": "0xe874016d3d17323086f04bab6ad61f997b503923",
+      "balance_wei": "494999999999999999",
+      "balance_eth": "0.495",
+      "token_balance": "16666668",
+      "refund_price": "29699997624000190079984793601",
+      "rank": 22
+    },
+    {
+      "address": "0x65824e0078843f8e333ada7681ad8a3f17a29db7",
+      "balance_wei": "405000000000000000",
+      "balance_eth": "0.405",
+      "token_balance": "45000000",
+      "refund_price": "9000000000000000000000000000",
+      "rank": 23
+    },
+    {
+      "address": "0xb1b0932df7cd1b88bdd1a8d89933c64794fabb7c",
+      "balance_wei": "249999999999999999",
+      "balance_eth": "0.25",
+      "token_balance": "11904761",
+      "refund_price": "21000001596000121296009218496",
+      "rank": 24
+    },
+    {
+      "address": "0x7c4401ae98f12ef6de39ae24cf9fc51f80eba16b",
+      "balance_wei": "200000000000000000",
+      "balance_eth": "0.2",
+      "token_balance": "10000000",
+      "refund_price": "20000000000000000000000000000",
+      "rank": 25
+    },
+    {
+      "address": "0x0002b44ddb1476db43c868bd494422ee4c136fed",
+      "balance_wei": "199999999999999999",
+      "balance_eth": "0.2",
+      "token_balance": "2579696",
+      "refund_price": "77528514987812517443915872257",
+      "rank": 26
+    },
+    {
+      "address": "0x980dd9b5873578b4a7de7797cdf015ffe30167a3",
+      "balance_wei": "190000000000000000",
+      "balance_eth": "0.19",
+      "token_balance": "7600000",
+      "refund_price": "25000000000000000000000000000",
+      "rank": 27
+    },
+    {
+      "address": "0x0079418d9dc201b95717806441698a949adb8fee",
+      "balance_wei": "164000000000000000",
+      "balance_eth": "0.164",
+      "token_balance": "1000000",
+      "refund_price": "164000000000000000000000000000",
+      "rank": 28
+    },
+    {
+      "address": "0x00a7fe7c9f394cf9a1fed84c135aa4cff02f64d4",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.1",
+      "token_balance": "5000000",
+      "refund_price": "20000000000000000000000000000",
+      "rank": 29
+    },
+    {
+      "address": "0x00d17c08bd748e25c751b1b1838df6a61063289e",
+      "balance_wei": "100000000000000000",
+      "balance_eth": "0.1",
+      "token_balance": "5000000",
+      "refund_price": "20000000000000000000000000000",
+      "rank": 30
+    },
+    {
+      "address": "0x00d154d3f01bb0fdb6adbc1411d88dac1657717b",
+      "balance_wei": "99999999999999999",
+      "balance_eth": "0.1",
+      "token_balance": "9090909",
+      "refund_price": "11000000110000001100000011000",
+      "rank": 31
+    },
+    {
+      "address": "0x7f15472bcc0ebd2f11a2476fb90536d849cc8d25",
+      "balance_wei": "99999999999999999",
+      "balance_eth": "0.1",
+      "token_balance": "4347826",
+      "refund_price": "23000000460000009200000184000",
+      "rank": 32
+    },
+    {
+      "address": "0x8191a2e4721ca4f2f4533c3c12b628f141ff2c19",
+      "balance_wei": "99999999999999999",
+      "balance_eth": "0.1",
+      "token_balance": "4347826",
+      "refund_price": "23000000460000009200000184000",
+      "rank": 33
+    },
+    {
+      "address": "0xe5b39eaf749bd4e156e385a4c133d40446c4a055",
+      "balance_wei": "99999999999999999",
+      "balance_eth": "0.1",
+      "token_balance": "6",
+      "refund_price": "16666666666666666666666666666666666",
+      "rank": 34
+    },
+    {
+      "address": "0xd65653065088e7527061ef4aabd131b86af6e2df",
+      "balance_wei": "74000000000000000",
+      "balance_eth": "0.074",
+      "token_balance": "5000000",
+      "refund_price": "14800000000000000000000000000",
+      "rank": 35
+    },
+    {
+      "address": "0x8e49d2574042611cf30551e90d37d7b2c08b7028",
+      "balance_wei": "62000000000000000",
+      "balance_eth": "0.062",
+      "token_balance": "3875000",
+      "refund_price": "16000000000000000000000000000",
+      "rank": 36
+    },
+    {
+      "address": "0x7d1cd61f6153efd679963d101c5c49374989c7e7",
+      "balance_wei": "60000000000000000",
+      "balance_eth": "0.06",
+      "token_balance": "10000000",
+      "refund_price": "6000000000000000000000000000",
+      "rank": 37
+    },
+    {
+      "address": "0x59c9d0d98e806c80cc890bc8f9ec2bd900b8c3c1",
+      "balance_wei": "57000000000000000",
+      "balance_eth": "0.057",
+      "token_balance": "3800000",
+      "refund_price": "15000000000000000000000000000",
+      "rank": 38
+    },
+    {
+      "address": "0x46710560f82d6621a6c793c67241fa072724eac6",
+      "balance_wei": "49999999999999999",
+      "balance_eth": "0.05",
+      "token_balance": "2380952",
+      "refund_price": "21000003360000537600086016013",
+      "rank": 39
+    },
+    {
+      "address": "0x68acfd5353fa889b349b599c63202cc54af7a44d",
+      "balance_wei": "49999999999999999",
+      "balance_eth": "0.05",
+      "token_balance": "2083333",
+      "refund_price": "24000003840000614400098304015",
+      "rank": 40
+    },
+    {
+      "address": "0xd20ce27f650598c2d790714b4f6a7222b8ddce22",
+      "balance_wei": "48000000000000000",
+      "balance_eth": "0.048",
+      "token_balance": "1",
+      "refund_price": "48000000000000000000000000000000000",
+      "rank": 41
+    },
+    {
+      "address": "0x878d6f8a9d4390cae5045a2ba3fd108fd9d43dff",
+      "balance_wei": "44000000000000000",
+      "balance_eth": "0.044",
+      "token_balance": "2000000",
+      "refund_price": "22000000000000000000000000000",
+      "rank": 42
+    },
+    {
+      "address": "0x00eb1d70c4bb880e888af962ffbed0d8ebb27dbf",
+      "balance_wei": "42000000000000000",
+      "balance_eth": "0.042",
+      "token_balance": "2000000",
+      "refund_price": "21000000000000000000000000000",
+      "rank": 43
+    },
+    {
+      "address": "0xafce0f1914cc1d5246ec515687b347b9b2898075",
+      "balance_wei": "42000000000000000",
+      "balance_eth": "0.042",
+      "token_balance": "2800000",
+      "refund_price": "15000000000000000000000000000",
+      "rank": 44
+    },
+    {
+      "address": "0x9791d060155feedc635a6c0a83b8e5c8e3816ce8",
+      "balance_wei": "34000000000000000",
+      "balance_eth": "0.034",
+      "token_balance": "1700000",
+      "refund_price": "20000000000000000000000000000",
+      "rank": 45
+    },
+    {
+      "address": "0x0002ff24dc5b0c7c2b5ee3e5297da604b7b18739",
+      "balance_wei": "32000000000000000",
+      "balance_eth": "0.032",
+      "token_balance": "2000000",
+      "refund_price": "16000000000000000000000000000",
+      "rank": 46
+    },
+    {
+      "address": "0x0092c5057b27a736417808d5fc2a85c8f24a6def",
+      "balance_wei": "32000000000000000",
+      "balance_eth": "0.032",
+      "token_balance": "1600000",
+      "refund_price": "20000000000000000000000000000",
+      "rank": 47
+    },
+    {
+      "address": "0x2abf3282f80657057ad565dd63ad440c0c9d73c0",
+      "balance_wei": "27999999999999999",
+      "balance_eth": "0.028",
+      "token_balance": "1500000",
+      "refund_price": "18666666666666666666666666666",
+      "rank": 48
+    },
+    {
+      "address": "0x06eb9b9aed025dfb2451d6ab8da56fd5c198b664",
+      "balance_wei": "26260000000000000",
+      "balance_eth": "0.02626",
+      "token_balance": "1010000",
+      "refund_price": "26000000000000000000000000000",
+      "rank": 49
+    },
+    {
+      "address": "0x3002908c1e97f7e3e938608e2ad178e202461a90",
+      "balance_wei": "26259999999999999",
+      "balance_eth": "0.02626",
+      "token_balance": "1009990",
+      "refund_price": "26000257428291369221477440370",
+      "rank": 50
+    },
+    {
+      "address": "0x00cde2f39417eb9fd9f290c5ecae2d098f1ca559",
+      "balance_wei": "24999999999999999",
+      "balance_eth": "0.025",
+      "token_balance": "1190475",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 51
+    },
+    {
+      "address": "0x4bce130ef58c75b6a98032a5260c6357c50d9c6b",
+      "balance_wei": "24000000000000000",
+      "balance_eth": "0.024",
+      "token_balance": "2000000",
+      "refund_price": "12000000000000000000000000000",
+      "rank": 52
+    },
+    {
+      "address": "0x6a98d68952dfcb7c95449ced2100be5f4e242229",
+      "balance_wei": "23999999999999999",
+      "balance_eth": "0.024",
+      "token_balance": "1142857",
+      "refund_price": "21000002625000328125041015630",
+      "rank": 53
+    },
+    {
+      "address": "0xe4b6210b7b77d578bacb93556901f3d1251aaaee",
+      "balance_wei": "22000000000000000",
+      "balance_eth": "0.022",
+      "token_balance": "2000000",
+      "refund_price": "11000000000000000000000000000",
+      "rank": 54
+    },
+    {
+      "address": "0x00dc86fed3c0a70474ed235d9fd4ac774fa7f622",
+      "balance_wei": "21999999999999999",
+      "balance_eth": "0.022",
+      "token_balance": "1047618",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 55
+    },
+    {
+      "address": "0x00005428a48b69a4d396e3114db65bac45276cbb",
+      "balance_wei": "21000000000000000",
+      "balance_eth": "0.021",
+      "token_balance": "1000000",
+      "refund_price": "21000000000000000000000000000",
+      "rank": 56
+    },
+    {
+      "address": "0x0009a26e7862964a9727cc3af93c93eb5b21a998",
+      "balance_wei": "21000000000000000",
+      "balance_eth": "0.021",
+      "token_balance": "1000000",
+      "refund_price": "21000000000000000000000000000",
+      "rank": 57
+    },
+    {
+      "address": "0x00f3d74df747e2fc800a4e331c4d843a007c5a72",
+      "balance_wei": "21000000000000000",
+      "balance_eth": "0.021",
+      "token_balance": "1000000",
+      "refund_price": "21000000000000000000000000000",
+      "rank": 58
+    },
+    {
+      "address": "0x30a18b5c45f3adbe7157f48de6d89eab8168f634",
+      "balance_wei": "21000000000000000",
+      "balance_eth": "0.021",
+      "token_balance": "1000000",
+      "refund_price": "21000000000000000000000000000",
+      "rank": 59
+    },
+    {
+      "address": "0xd96f129b274812ec82d85b761f844eda5221a39f",
+      "balance_wei": "20999999999999999",
+      "balance_eth": "0.021",
+      "token_balance": "2412500",
+      "refund_price": "8704663212435233160621761658",
+      "rank": 60
+    },
+    {
+      "address": "0x0039f22efb07a647557c7c5d17854cfd6d489ef3",
+      "balance_wei": "20000000000000000",
+      "balance_eth": "0.02",
+      "token_balance": "1000000",
+      "refund_price": "20000000000000000000000000000",
+      "rank": 61
+    },
+    {
+      "address": "0x008e0d8b2c959986952b2bdd7491d961b298595c",
+      "balance_wei": "20000000000000000",
+      "balance_eth": "0.02",
+      "token_balance": "1000000",
+      "refund_price": "20000000000000000000000000000",
+      "rank": 62
+    },
+    {
+      "address": "0x6c35b50abbd6094f62936adc0f0e2e58bd19a407",
+      "balance_wei": "20000000000000000",
+      "balance_eth": "0.02",
+      "token_balance": "1000000",
+      "refund_price": "20000000000000000000000000000",
+      "rank": 63
+    },
+    {
+      "address": "0x008a4eb0b328cf16905b3ec48d7a743a08e43723",
+      "balance_wei": "19999999999999999",
+      "balance_eth": "0.02",
+      "token_balance": "952380",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 64
+    },
+    {
+      "address": "0x38796f8e197a534cfb92fb53ff2f140859d92600",
+      "balance_wei": "19999999999999999",
+      "balance_eth": "0.02",
+      "token_balance": "2333333",
+      "refund_price": "8571429795918542274077467725",
+      "rank": 65
+    },
+    {
+      "address": "0x00bdfbf323ef803d38a5c3f7fb419ec83576d8a9",
+      "balance_wei": "16000000000000000",
+      "balance_eth": "0.016",
+      "token_balance": "1000000",
+      "refund_price": "16000000000000000000000000000",
+      "rank": 66
+    },
+    {
+      "address": "0x009218942e20b423fa6d9c0e38f0af2622f056ed",
+      "balance_wei": "15000000000000000",
+      "balance_eth": "0.015",
+      "token_balance": "1000000",
+      "refund_price": "15000000000000000000000000000",
+      "rank": 67
+    },
+    {
+      "address": "0x4bfcc4ed47f8dc1bc5c0390ac8eb5e01da831320",
+      "balance_wei": "14000000000000000",
+      "balance_eth": "0.014",
+      "token_balance": "1000000",
+      "refund_price": "14000000000000000000000000000",
+      "rank": 68
+    },
+    {
+      "address": "0x3a7db224acae17de7798797d82cdf8253017dfa8",
+      "balance_wei": "11000000000000000",
+      "balance_eth": "0.011",
+      "token_balance": "1000000",
+      "refund_price": "11000000000000000000000000000",
+      "rank": 69
+    },
+    {
+      "address": "0x000b1b387d42e0317bdce79d956ea393067c4774",
+      "balance_wei": "10000000000000000",
+      "balance_eth": "0.01",
+      "token_balance": "625000",
+      "refund_price": "16000000000000000000000000000",
+      "rank": 70
+    },
+    {
+      "address": "0x000b743367db1385d73a2d49890287aeaad9b52a",
+      "balance_wei": "10000000000000000",
+      "balance_eth": "0.01",
+      "token_balance": "500000",
+      "refund_price": "20000000000000000000000000000",
+      "rank": 71
+    },
+    {
+      "address": "0x000ebb8b36ed2fa0533d54c7134cb423743fd0dd",
+      "balance_wei": "10000000000000000",
+      "balance_eth": "0.01",
+      "token_balance": "500000",
+      "refund_price": "20000000000000000000000000000",
+      "rank": 72
+    },
+    {
+      "address": "0x0070527586027dcba7e78fcd78e90592bb786a3c",
+      "balance_wei": "10000000000000000",
+      "balance_eth": "0.01",
+      "token_balance": "500000",
+      "refund_price": "20000000000000000000000000000",
+      "rank": 73
+    },
+    {
+      "address": "0x023a5ae9d2dbfc534c362da5327847a6efa2d6b4",
+      "balance_wei": "10000000000000000",
+      "balance_eth": "0.01",
+      "token_balance": "1000000",
+      "refund_price": "10000000000000000000000000000",
+      "rank": 74
+    },
+    {
+      "address": "0xc568f4948a04dc062009e1887bbcb4cce4d6aae2",
+      "balance_wei": "10000000000000000",
+      "balance_eth": "0.01",
+      "token_balance": "625000",
+      "refund_price": "16000000000000000000000000000",
+      "rank": 75
+    },
+    {
+      "address": "0x003186a8ec7c852878c692e08b5ce8ed01777d22",
+      "balance_wei": "9999999999999999",
+      "balance_eth": "0.01",
+      "token_balance": "476190",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 76
+    },
+    {
+      "address": "0x004e7106c4df291ba773fddc9305f0fba03fe5df",
+      "balance_wei": "9999999999999999",
+      "balance_eth": "0.01",
+      "token_balance": "376190",
+      "refund_price": "26582312129509024694967968313",
+      "rank": 77
+    },
+    {
+      "address": "0x0094103c5b0bcd76ce8e63c5cf13165891031c74",
+      "balance_wei": "9999999999999999",
+      "balance_eth": "0.01",
+      "token_balance": "476190",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 78
+    },
+    {
+      "address": "0x00b089a286a4faac3b66c3a4ad92cc33d76adaac",
+      "balance_wei": "9999999999999999",
+      "balance_eth": "0.01",
+      "token_balance": "476190",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 79
+    },
+    {
+      "address": "0x00bc894689f9202d7e7b18734c97453335548694",
+      "balance_wei": "9999999999999999",
+      "balance_eth": "0.01",
+      "token_balance": "476190",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 80
+    },
+    {
+      "address": "0x00d74c25bbf93df8b2a41d82b0076843b4db0349",
+      "balance_wei": "9999999999999999",
+      "balance_eth": "0.01",
+      "token_balance": "375490",
+      "refund_price": "26631867692881301765692828038",
+      "rank": 81
+    },
+    {
+      "address": "0x3ff047e5e803e20f5ef55ea1029adb89618047db",
+      "balance_wei": "9999999999999999",
+      "balance_eth": "0.01",
+      "token_balance": "2666666",
+      "refund_price": "3750000937500234375058593764",
+      "rank": 82
+    },
+    {
+      "address": "0x752cf3efca9e126bbebb54000acf7b22ebea3213",
+      "balance_wei": "9999999999999999",
+      "balance_eth": "0.01",
+      "token_balance": "1550000",
+      "refund_price": "6451612903225806451612903225",
+      "rank": 83
+    },
+    {
+      "address": "0xbe87165084fb9473bcb2423da43ae52e3f5909a1",
+      "balance_wei": "9999999999999999",
+      "balance_eth": "0.01",
+      "token_balance": "384615",
+      "refund_price": "26000026000026000026000026000",
+      "rank": 84
+    },
+    {
+      "address": "0xdb30ace2f50db33d0dd6c940f05d9dba5657eb76",
+      "balance_wei": "9999999999999999",
+      "balance_eth": "0.01",
+      "token_balance": "476190",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 85
+    },
+    {
+      "address": "0x00a31b1da1ebf276dedf10aedbb2b553db3a1e3b",
+      "balance_wei": "5000000000000000",
+      "balance_eth": "0.005",
+      "token_balance": "200000",
+      "refund_price": "25000000000000000000000000000",
+      "rank": 86
+    },
+    {
+      "address": "0x00f0c5cf9281dd2e981cc49a99c7068e399faeae",
+      "balance_wei": "5000000000000000",
+      "balance_eth": "0.005",
+      "token_balance": "250000",
+      "refund_price": "20000000000000000000000000000",
+      "rank": 87
+    },
+    {
+      "address": "0x937b9de95764968a1533506841f02f16d956b422",
+      "balance_wei": "4999999999999999",
+      "balance_eth": "0.005",
+      "token_balance": "238095",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 88
+    },
+    {
+      "address": "0xacbb6e2b07cdaba10dbd9a484865de69caf5e064",
+      "balance_wei": "4999999999999999",
+      "balance_eth": "0.005",
+      "token_balance": "1750000",
+      "refund_price": "2857142857142857142857142857",
+      "rank": 89
+    },
+    {
+      "address": "0xc2ec2bee757959919a98f426c20205e744a7c41e",
+      "balance_wei": "2100000000000000",
+      "balance_eth": "0.0021",
+      "token_balance": "100000",
+      "refund_price": "21000000000000000000000000000",
+      "rank": 90
+    },
+    {
+      "address": "0x002776d3900e33eb568e3f3d560150f3663c1a03",
+      "balance_wei": "2099999999999999",
+      "balance_eth": "0.0021",
+      "token_balance": "99999",
+      "refund_price": "21000210002100021000210002100",
+      "rank": 91
+    },
+    {
+      "address": "0x00b851eda9a38498f477fc4c4c41ff92bbd4ec77",
+      "balance_wei": "2000000000000000",
+      "balance_eth": "0.002",
+      "token_balance": "100000",
+      "refund_price": "20000000000000000000000000000",
+      "rank": 92
+    },
+    {
+      "address": "0x000e66639f17982ce2d1d71aafcf443154ed1e08",
+      "balance_wei": "999999999999999",
+      "balance_eth": "0.001",
+      "token_balance": "47619",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 93
+    },
+    {
+      "address": "0x00261f3ac8f2bdc2624dc51fd134765e1f8e79da",
+      "balance_wei": "999999999999999",
+      "balance_eth": "0.001",
+      "token_balance": "47619",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 94
+    },
+    {
+      "address": "0x003927043a70561ae447ca0a0b7905aee2c0eb11",
+      "balance_wei": "999999999999999",
+      "balance_eth": "0.001",
+      "token_balance": "47619",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 95
+    },
+    {
+      "address": "0x007f5535abc02df8101b7b063d0277bec9bd9a97",
+      "balance_wei": "999999999999999",
+      "balance_eth": "0.001",
+      "token_balance": "45454",
+      "refund_price": "22000264003168038016456197474",
+      "rank": 96
+    },
+    {
+      "address": "0x009befe5643f9892c8ff4f6240e66f3e816b7a10",
+      "balance_wei": "999999999999999",
+      "balance_eth": "0.001",
+      "token_balance": "47619",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 97
+    },
+    {
+      "address": "0x00a7592c85db3fcfd886763cea043bda86c7bfc5",
+      "balance_wei": "999999999999999",
+      "balance_eth": "0.001",
+      "token_balance": "47619",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 98
+    },
+    {
+      "address": "0x00a9aebad6a9de41773c25eb27e94c012e5794a4",
+      "balance_wei": "999999999999999",
+      "balance_eth": "0.001",
+      "token_balance": "47619",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 99
+    },
+    {
+      "address": "0x00acf767f7622e9f762db1a9fb61b437f6d941ee",
+      "balance_wei": "999999999999999",
+      "balance_eth": "0.001",
+      "token_balance": "47619",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 100
+    },
+    {
+      "address": "0x00bea3abea24e93c685270a06de63a073a205784",
+      "balance_wei": "999999999999999",
+      "balance_eth": "0.001",
+      "token_balance": "47619",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 101
+    },
+    {
+      "address": "0x162e478022fe7cbc64a66009428d74a940197a32",
+      "balance_wei": "999999999999999",
+      "balance_eth": "0.001",
+      "token_balance": "47619",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 102
+    },
+    {
+      "address": "0x4238498bea0c72e56c617ed8d61e723d1f568214",
+      "balance_wei": "999999999999999",
+      "balance_eth": "0.001",
+      "token_balance": "47619",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 103
+    },
+    {
+      "address": "0x8b104344f397afc33ee55c743a0fbd7d956201cd",
+      "balance_wei": "999999999999999",
+      "balance_eth": "0.001",
+      "token_balance": "47619",
+      "refund_price": "21000021000021000021000021000",
+      "rank": 104
+    },
+    {
+      "address": "0xeb5ab487124ca50cc354ce17556e0e861aa78c62",
+      "balance_wei": "999999999999999",
+      "balance_eth": "0.001",
+      "token_balance": "47610",
+      "refund_price": "21003990758244066372610796051",
+      "rank": 105
+    },
+    {
+      "address": "0x003bc3a66b0ccd172d67d51c9100ec3f83d8de8b",
+      "balance_wei": "500000000000000",
+      "balance_eth": "0.0005",
+      "token_balance": "25000",
+      "refund_price": "20000000000000000000000000000",
+      "rank": 106
+    },
+    {
+      "address": "0x00130fa56c1260c30d03cd167b2dd65ea3e7e70d",
+      "balance_wei": "99999999999999",
+      "balance_eth": "0.0001",
+      "token_balance": "4761",
+      "refund_price": "21003990758244066372610796051",
+      "rank": 107
+    },
+    {
+      "address": "0x004d7f0dc9c5cf9e68171ed800dda8e0e8c65776",
+      "balance_wei": "99999999999999",
+      "balance_eth": "0.0001",
+      "token_balance": "4761",
+      "refund_price": "21003990758244066372610796051",
+      "rank": 108
+    },
+    {
+      "address": "0x8cbe38659606603c811315aed9a77ed42bd41f4d",
+      "balance_wei": "99999999999999",
+      "balance_eth": "0.0001",
+      "token_balance": "4261",
+      "refund_price": "23468669326449190330908237502",
+      "rank": 109
+    },
+    {
+      "address": "0xeed67a55986ffe1ac3f7a05f1d13c2ba3b9e7000",
+      "balance_wei": "99999999999999",
+      "balance_eth": "0.0001",
+      "token_balance": "4761",
+      "refund_price": "21003990758244066372610796051",
+      "rank": 110
+    },
+    {
+      "address": "0x551e06af1c492655bb9f15c9b12459386b5ce015",
+      "balance_wei": "10000000000000",
+      "balance_eth": "1e-05",
+      "token_balance": "500",
+      "refund_price": "20000000000000000000000000000",
+      "rank": 111
+    },
+    {
+      "address": "0x00c4fd7096091f97a4e891180b56a9f670d14ddd",
+      "balance_wei": "9999999999999",
+      "balance_eth": "1e-05",
+      "token_balance": "476",
+      "refund_price": "21008403361344537815126050420",
+      "rank": 112
+    },
+    {
+      "address": "0x5da9e94410a1241a76dfd182777e5983ae4f7a15",
+      "balance_wei": "1000000000000",
+      "balance_eth": "1e-06",
+      "token_balance": "500",
+      "refund_price": "2000000000000000000000000000",
+      "rank": 113
+    },
+    {
+      "address": "0x00fa5b65c2d7b7c181d9bfe2ee754f3037e6583c",
+      "balance_wei": "999999999999",
+      "balance_eth": "1e-06",
+      "token_balance": "47",
+      "refund_price": "21276595744680851063829787234",
+      "rank": 114
+    },
+    {
+      "address": "0x00ebc108c2d8fc65dff1ece619442016c616c836",
+      "balance_wei": "100000000000",
+      "balance_eth": "0.0",
+      "token_balance": "4",
+      "refund_price": "25000000000000000000000000000",
+      "rank": 115
+    }
+  ]
+}

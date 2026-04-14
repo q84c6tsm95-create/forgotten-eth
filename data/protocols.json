@@ -1244,7 +1244,7 @@
     "contract": "0xb529964f86fbf99a6aa67f72a27e59fa3fa4feac",
     "category": "options",
     "balance_file": "opyn_v1_eth_balances.json",
-    "multi_contract": true
+    "multi_step": true
   },
   {
     "key": "mesa",
@@ -1268,5 +1268,20 @@
     "contract": "0x77607588222e01bf892a29Abab45796A2047fc7b",
     "category": "yield",
     "balance_file": "unagii_eth_balances.json"
+  },
+  {
+    "key": "veil_ether",
+    "name": "Veil Ether",
+    "contract": "0x53b04999c1ff2d77fcdde98935bb936a67209e4c",
+    "category": "defi",
+    "balance_file": "veil_ether_eth_balances.json"
+  },
+  {
+    "key": "gavcoin",
+    "name": "GavCoin",
+    "contract": "0x0b8d56c26d8cf16fe1bddf4967753503d974de06",
+    "category": "token",
+    "balance_file": "gavcoin_eth_balances.json",
+    "multi_step": true
   }
 ]

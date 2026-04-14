@@ -3157,6 +3157,39 @@ const EXCHANGES = {
     withdrawArgs: (shares) => [shares, 0n],
     withdrawCall: 'withdraw',
   },
+  veil_ether: {
+    name: 'Veil Ether',
+    desc: 'ETH wrapper from Veil, a prediction market built on Augur and 0x that shut down in July 2019. Users deposited ETH and received Veil Ether tokens for use on the platform. The tokens can still be unwrapped 1:1 for ETH.',
+    category: 'defi',
+    color: '#6366f1',
+    contract: '0x53b04999c1ff2d77fcdde98935bb936a67209e4c',
+    deployed: 'January 2019',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: 'function withdraw(uint256 amount)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'withdraw',
+  },
+  gavcoin: {
+    name: 'GavCoin',
+    desc: 'An early Ethereum bonding curve token created in 2015. Users deposited ETH and received GavCoin tokens at a price determined by the bonding curve. Token holders can refund their tokens for ETH at their original purchase price.',
+    category: 'token',
+    color: '#8b5cf6',
+    contract: '0x0b8d56c26d8cf16fe1bddf4967753503d974de06',
+    deployed: 'August 2015',
+    noWalletCheck: true,
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: 'function refund(uint256 price, uint256 units)',
+    withdrawArgs: (amount, addr) => {
+      const api = window._lastApiBalances?.gavcoin;
+      if (!api?.refund_price || !api?.token_balance) throw new Error('Missing refund parameters — refresh and try again');
+      return [BigInt(api.refund_price), BigInt(api.token_balance)];
+    },
+    withdrawCall: 'refund',
+  },
 };
 
 // Per-tab state
@@ -4351,7 +4384,7 @@ async function checkUserBalances(overrideAddress) {
       <div class="no-balance-check">&#10003;</div>
       <div class="no-balance-title">No unclaimed ETH found</div>
       <div class="no-balance-addr">${esc(checkAddr)}</div>
-      <p style="font-size:12px">Checked ${Object.keys(EXCHANGES).length} contracts. Try other wallets from 2015-2019.</p>
+      <p style="font-size:12px">Checked ${Object.keys(EXCHANGES).length} contracts.</p>
     </div>` + _botCTA;
     var _bannerTitle = 'Scan Complete';
   } else {
@@ -7168,7 +7201,7 @@ async function checkManualAddress() {
   let finalHtml;
   if (grandFound === 0) {
     const addrDisplay = resolvedAddrs.length === 1 ? esc(resolvedAddrs[0]) : resolvedAddrs.length + ' addresses';
-    finalHtml = '<div class="no-balance-state"><div class="no-balance-check">&#10003;</div><div class="no-balance-title">No unclaimed ETH found</div><div class="no-balance-addr">' + addrDisplay + '</div><p>Checked ' + Object.keys(EXCHANGES).length + ' contracts.</p><div class="no-balance-hint">Try other wallets from 2015-2019.</div></div>' + _botCTA;
+    finalHtml = '<div class="no-balance-state"><div class="no-balance-check">&#10003;</div><div class="no-balance-title">No unclaimed ETH found</div><div class="no-balance-addr">' + addrDisplay + '</div><p>Checked ' + Object.keys(EXCHANGES).length + ' contracts.</p></div>' + _botCTA;
     var _manualTitle = 'Scan Complete';
     var _manualCelebrate = false;
   } else {

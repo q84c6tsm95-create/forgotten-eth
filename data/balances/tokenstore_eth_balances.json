@@ -3,10 +3,10 @@
   "token_checked": "0x0000000000000000000000000000000000000000",
   "description": "ETH balances in defunct Token.Store contract",
   "scan_date": "2026-04-01 16:57:53 UTC",
-  "contract_eth_balance": 633.548601,
+  "contract_eth_balance": 633.50178,
   "total_addresses_scanned": 20750,
-  "addresses_with_balance": 15133,
-  "total_eth_in_balances": 633.53863411,
+  "addresses_with_balance": 15132,
+  "total_eth_in_balances": 633.49269995,
   "coverage_pct": 100,
   "distribution": {
     ">=100 ETH": {
@@ -5031,7 +5031,8 @@
       "rank": 833,
       "address": "0xf67D8Fe352Ce557a4f80A067240Ac221d3362709",
       "balance_wei": "45934155483527300",
-      "balance_eth": "0.045934155483527299"
+      "balance_eth": "0.045934155483527299",
+      "claimed": true
     },
     {
       "rank": 834,
@@ -91013,5 +91014,5 @@
       "original_balance_eth": "0.02"
     }
   ],
-  "last_event_refresh": "2026-04-11T14:10:04Z"
+  "last_event_refresh": "2026-04-13T16:44:40Z"
 }

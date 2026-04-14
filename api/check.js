@@ -123,6 +123,8 @@ export default async function handler(req, res) {
       let keeperdaoItems = typeof val === 'object' && val.kd ? val.kd : null;
       let trancheDetails = typeof val === 'object' && val.tr ? val.tr : null;
       let opynPositions = typeof val === 'object' && val.op ? val.op : null;
+      let refundPrice = typeof val === 'object' && val.rp ? val.rp : null;
+      let tokenBalance = typeof val === 'object' && val.tb ? val.tb : null;
 
       if (itemsClaimed && itemsClaimed.size > 0) {
         if (deeds) {
@@ -161,6 +163,7 @@ export default async function handler(req, res) {
         ...(keeperdaoItems ? { keeperdao_items: keeperdaoItems } : {}),
         ...(trancheDetails ? { tranche_details: trancheDetails } : {}),
         ...(opynPositions ? { positions: opynPositions } : {}),
+        ...(refundPrice ? { refund_price: refundPrice, token_balance: tokenBalance } : {}),
       };
     }
   }
