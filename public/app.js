@@ -3111,6 +3111,23 @@ const EXCHANGES = {
     noWalletCheck: true,
     opynV1Multi: true,
   },
+  celer: {
+    name: 'Celer Payment Channels',
+    desc: 'Celer was a state-channel protocol launched in 2019 that let users make off-chain micropayments through a hub-and-spoke network of liquidity nodes. Celer pivoted to cBridge cross-chain bridging in 2021 and took the official CelerPay UI offline; the contracts were never paused. Users who opened channels and never cooperatively settled can still recover their deposits through the unilateral path: call intendWithdraw, wait 10,000 blocks (~1.4 days) for the dispute window, then call confirmWithdraw. The counterparty can veto during the window, but Celer\'s own OSP node stopped serving channel-veto signals after the cBridge migration.',
+    category: 'payment_channel',
+    color: '#7c3aed',
+    contract: '0xa6cd930fc92f1634d8183af2fb86bd1766f2f82a',
+    deployed: 'July 2019',
+    noWalletCheck: true,
+    celerWithdraw: true,
+    // All user-facing actions go through the CelerLedger entry point, not the
+    // CelerWallet vault itself (the wallet's withdraw() is onlyOperator).
+    celerLedger: '0x4f7f56d57607e346ff8719c9f34cba3bbccae71f',
+    intendWithdrawAbi: 'function intendWithdraw(bytes32 channelId, uint256 amount, bytes32 recipientChannelId)',
+    confirmWithdrawAbi: 'function confirmWithdraw(bytes32 channelId)',
+    getChannelStatusAbi: 'function getChannelStatus(bytes32 channelId) view returns (uint8)',
+    getWithdrawIntentAbi: 'function getWithdrawIntent(bytes32 channelId) view returns (address receiver, uint256 amount, uint256 requestTime, bytes32 recipientChannelId)',
+  },
   mesa: {
     name: 'Mesa / Gnosis Protocol v1',
     desc: 'Mesa was the precursor to CowSwap (Gnosis Protocol v1), a batch-auction DEX deployed in 2020. Users deposited tokens to trade and had to explicitly withdraw to retrieve them. The contract has been dormant since early 2022 but the 2-step withdraw path (requestWithdraw → wait one batch → withdraw) is still permissionless.',
@@ -4119,8 +4136,10 @@ async function checkUserBalances(overrideAddress) {
             html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">No EMP positions detected for this address.</div>`;
           }
           html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
-        } else if (!cfg.withdrawAbi) {
-          // Contracts without direct withdraw
+        } else if (!cfg.withdrawAbi && !cfg.celerWithdraw) {
+          // Contracts without direct withdraw. Protocols with their own
+          // per-item action ABIs (celer: intendWithdrawAbi / confirmWithdrawAbi)
+          // opt out of the generic "Manual" fallback explicitly.
           html += `
             <div class="claim-card">
               <div class="claim-card-header">
@@ -4259,6 +4278,44 @@ async function checkUserBalances(overrideAddress) {
             html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">No kToken items detected for this address. <a href="${etherscanAddr(cfg.contract)}#readContract" target="_blank" rel="noopener noreferrer">Query underlyingBalance on Etherscan</a> if you believe this is wrong.</div>`;
           }
           html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
+        } else if (cfg.celerWithdraw) {
+          // Celer payment channels: per-channel 2-step flow via CelerLedger.
+          const channels = apiBalances[key]?.celer_channels || [];
+          const totalEth = channels.reduce((s, c) => s + Number(BigInt(c.claimable_wei || '0')) / 1e18, 0);
+          console.log('[Celer] render branch hit — channels=', channels.length, 'totalEth=', totalEth);
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(totalEth)} ETH</span>
+              </div>
+              <div class="claim-card-meta" id="claimDetails-${key}">
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Entry point</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.celerLedger)}" target="_blank" rel="noopener noreferrer">CelerLedger ${cfg.celerLedger.slice(0, 10)}…</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Vault</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">CelerWallet ${cfg.contract.slice(0, 10)}…</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Channels</span><span class="claim-card-meta-value">${channels.length}</span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Flow</span><span class="claim-card-meta-value">intendWithdraw → wait 10,000 blocks (~1.4 days) → confirmWithdraw</span></div>
+              </div>`;
+          for (let ci = 0; ci < channels.length; ci++) {
+            const ch = channels[ci];
+            const chId = ch.channel_id;
+            const amt = ch.claimable_wei;
+            const amtEth = Number(BigInt(amt)) / 1e18;
+            const itemKey = key + '-' + ci;
+            html += `<div class="claim-row" style="margin:6px 16px;border-left:2px solid var(--accent);padding:8px 12px">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                <span style="font-size:13px"><b>${fmtEth(amtEth)} ETH</b> · channel <a href="${etherscanAddr(cfg.celerLedger)}" target="_blank" rel="noopener noreferrer" style="font-family:monospace">${chId.slice(0, 10)}…</a> · counterparty <span style="font-family:monospace;color:var(--text2)">${ch.counterparty.slice(0, 10)}…</span></span>
+              </div>
+              <div class="claim-card-actions" style="padding:0">
+                <button class="claim-btn" id="celerIntendBtn-${itemKey}" data-action="celer-intend" data-key="${esc(key)}" data-channel-id="${esc(chId)}" data-amount-wei="${esc(amt)}">Step 1: intendWithdraw</button>
+                <button class="claim-btn" id="celerConfirmBtn-${itemKey}" data-action="celer-confirm" data-key="${esc(key)}" data-channel-id="${esc(chId)}" disabled style="opacity:0.35">Step 2: confirmWithdraw</button>
+              </div>
+              <div class="claim-card-status" id="celerStatus-${itemKey}"></div>
+            </div>`;
+          }
+          html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
+          // Auto-detect any pre-existing pending intents for these channels on
+          // the next tick so the DOM exists. Enables step 2 if matured.
+          setTimeout(() => celerCheckPendingOnLoad(key, channels), 100);
         } else if (cfg.mesaWithdraw) {
           // Mesa / Gnosis Protocol v1: 2-step requestWithdraw + withdraw with one-batch (5min) delay
           html += `
@@ -6128,6 +6185,186 @@ const _opynV1Positions = {};
 const _umaPositions = {};
 const _mesaPollState = {};
 
+// ─── Celer payment channels: intendWithdraw → 10k-block wait → confirmWithdraw
+//
+// UX shape (see claim-card render block for `cfg.celerWithdraw`):
+//   - Each channel renders as its own row with its own step 1 / step 2 buttons.
+//   - intendWithdraw is a single tx; confirmWithdraw is single tx + anyone can call.
+//   - The challenge window is ~1.4 days so we can't in-tab poll to completion;
+//     instead, on page load we query the ledger's withdrawIntent state and
+//     switch step 2 on if the window has already matured (user came back later).
+//
+// Intent state also gets mirrored to localStorage so we can show "pending,
+// ready at block N" in between sessions without an RPC hit.
+async function celerIntendWithdraw(key, channelId, amountWei, btn) {
+  if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+
+  const cfg = EXCHANGES[key];
+  if (!cfg || !cfg.celerLedger) return;
+  const itemKey = btn.id.replace('celerIntendBtn-', '');
+  const statusEl = document.getElementById('celerStatus-' + itemKey);
+  const step2Btn = document.getElementById('celerConfirmBtn-' + itemKey);
+
+  btn.disabled = true;
+  btn.textContent = 'Sending intent…';
+  btn.classList.add('pending');
+  if (statusEl) statusEl.textContent = '';
+
+  try {
+    const iface = new ethers.Interface([cfg.intendWithdrawAbi]);
+    const data = iface.encodeFunctionData('intendWithdraw', [
+      channelId, BigInt(amountWei), '0x' + '0'.repeat(64),
+    ]);
+    const tx = await walletSigner.sendTransaction({ to: cfg.celerLedger, data });
+    if (statusEl) {
+      statusEl.textContent = '';
+      const a = document.createElement('a');
+      a.href = etherscanTx(tx.hash); a.target = '_blank'; a.rel = 'noopener noreferrer';
+      a.textContent = tx.hash.slice(0, 10) + '…';
+      statusEl.appendChild(document.createTextNode('Submitted: '));
+      statusEl.appendChild(a);
+      statusEl.appendChild(document.createTextNode(' — waiting for inclusion'));
+    }
+    const receipt = await tx.wait();
+    if (receipt.status !== 1) throw new Error('intendWithdraw reverted');
+
+    const rec = {
+      channelId, amountWei: String(amountWei),
+      intendBlock: Number(receipt.blockNumber),
+      txHash: tx.hash, ts: Date.now(),
+    };
+    try {
+      const lsKey = 'celerIntent:' + walletAddress.toLowerCase() + ':' + channelId.toLowerCase();
+      localStorage.setItem(lsKey, JSON.stringify(rec));
+    } catch (e) {}
+
+    const readyAt = rec.intendBlock + 10000;
+    btn.textContent = 'Step 1: submitted';
+    btn.classList.remove('pending');
+    if (statusEl) {
+      statusEl.textContent = `Intent recorded at block ${rec.intendBlock}. Ready at block ${readyAt} (~1.4 days). Safe to close the tab — step 2 lights up automatically when the window matures.`;
+    }
+
+    setTimeout(() => celerCheckChannelMaturity(cfg, channelId, rec.intendBlock, step2Btn, statusEl), 30_000);
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Step 1: intendWithdraw';
+    btn.classList.remove('pending');
+    if (statusEl) {
+      const span = document.createElement('span'); span.style.color = 'var(--red)';
+      span.textContent = (e && e.message) ? e.message : String(e);
+      statusEl.textContent = ''; statusEl.appendChild(span);
+    }
+  }
+}
+
+async function celerConfirmWithdraw(key, channelId, btn) {
+  if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+
+  const cfg = EXCHANGES[key];
+  if (!cfg || !cfg.celerLedger) return;
+  const itemKey = btn.id.replace('celerConfirmBtn-', '');
+  const statusEl = document.getElementById('celerStatus-' + itemKey);
+
+  btn.disabled = true;
+  btn.textContent = 'Confirming…';
+  btn.classList.add('pending');
+
+  try {
+    const iface = new ethers.Interface([cfg.confirmWithdrawAbi]);
+    const data = iface.encodeFunctionData('confirmWithdraw', [channelId]);
+    const tx = await walletSigner.sendTransaction({ to: cfg.celerLedger, data });
+    if (statusEl) {
+      statusEl.textContent = '';
+      const a = document.createElement('a');
+      a.href = etherscanTx(tx.hash); a.target = '_blank'; a.rel = 'noopener noreferrer';
+      a.textContent = tx.hash.slice(0, 10) + '…';
+      statusEl.appendChild(document.createTextNode('Submitted: '));
+      statusEl.appendChild(a);
+    }
+    const receipt = await tx.wait();
+    if (receipt.status !== 1) throw new Error('confirmWithdraw reverted');
+
+    try {
+      const lsKey = 'celerIntent:' + walletAddress.toLowerCase() + ':' + channelId.toLowerCase();
+      localStorage.removeItem(lsKey);
+    } catch (e) {}
+
+    btn.textContent = '✓ Claimed';
+    btn.classList.remove('pending');
+    if (statusEl) {
+      statusEl.textContent = '';
+      const span = document.createElement('span'); span.style.color = 'var(--green)';
+      span.textContent = 'Withdrawal confirmed on-chain. ';
+      const a = document.createElement('a');
+      a.href = etherscanTx(tx.hash); a.target = '_blank'; a.rel = 'noopener noreferrer';
+      a.textContent = 'view tx';
+      span.appendChild(a);
+      statusEl.appendChild(span);
+    }
+
+    try {
+      logEvent('claim_confirmed', {
+        address: walletAddress, contract: cfg.contract,
+        tx_hash: tx.hash, protocol: 'celer', item_id: channelId,
+      });
+    } catch (e) {}
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Step 2: confirmWithdraw';
+    btn.classList.remove('pending');
+    if (statusEl) {
+      const span = document.createElement('span'); span.style.color = 'var(--red)';
+      span.textContent = (e && e.message) ? e.message : String(e);
+      statusEl.textContent = ''; statusEl.appendChild(span);
+    }
+  }
+}
+
+async function celerCheckChannelMaturity(cfg, channelId, intendBlock, step2Btn, statusEl) {
+  if (!step2Btn) return;
+  try {
+    const current = await getPublicProvider().getBlockNumber();
+    const ready = current >= (intendBlock + 10000);
+    if (ready) {
+      step2Btn.disabled = false;
+      step2Btn.style.opacity = '1';
+      if (statusEl) {
+        statusEl.textContent = '';
+        const span = document.createElement('span'); span.style.color = 'var(--green)';
+        span.textContent = `Dispute window cleared (block ${current} ≥ ${intendBlock + 10000}). You can call confirmWithdraw now.`;
+        statusEl.appendChild(span);
+      }
+    } else {
+      const remaining = intendBlock + 10000 - current;
+      const hours = Math.round((remaining * 12) / 3600);
+      if (statusEl) statusEl.textContent = `Waiting dispute window: ${remaining} blocks remaining (~${hours}h). Safe to close this tab.`;
+    }
+  } catch (e) {}
+}
+
+async function celerCheckPendingOnLoad(key, channels) {
+  const cfg = EXCHANGES[key];
+  if (!cfg || !walletAddress || !channels) return;
+  for (let ci = 0; ci < channels.length; ci++) {
+    const ch = channels[ci];
+    const chId = ch.channel_id;
+    const itemKey = key + '-' + ci;
+    const step2Btn = document.getElementById('celerConfirmBtn-' + itemKey);
+    const statusEl = document.getElementById('celerStatus-' + itemKey);
+    if (!step2Btn) continue;
+    const lsKey = 'celerIntent:' + walletAddress.toLowerCase() + ':' + chId.toLowerCase();
+    let rec = null;
+    try { rec = JSON.parse(localStorage.getItem(lsKey) || 'null'); } catch (e) {}
+    if (!rec || !rec.intendBlock) continue;
+    const step1Btn = document.getElementById('celerIntendBtn-' + itemKey);
+    if (step1Btn) { step1Btn.textContent = 'Step 1: submitted'; step1Btn.disabled = true; }
+    celerCheckChannelMaturity(cfg, chId, rec.intendBlock, step2Btn, statusEl);
+  }
+}
+
 async function mesaRequestWithdraw(key, btn) {
   if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
   if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
@@ -7573,6 +7810,10 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     mesaRequestWithdraw(btn.dataset.key, btn);
   } else if (action === 'mesa-withdraw') {
     mesaWithdraw(btn.dataset.key, btn);
+  } else if (action === 'celer-intend') {
+    celerIntendWithdraw(btn.dataset.key, btn.dataset.channelId, btn.dataset.amountWei, btn);
+  } else if (action === 'celer-confirm') {
+    celerConfirmWithdraw(btn.dataset.key, btn.dataset.channelId, btn);
   } else if (action === 'kyber-claim-epoch') {
     kyberClaimEpoch(btn.dataset.key, parseInt(btn.dataset.epoch), btn);
   } else if (action === 'augur-mailbox') {

@@ -1618,5 +1618,13 @@
     "contract": "0x0b8d56c26d8cf16fe1bddf4967753503d974de06",
     "deployed": "August 2015",
     "slug": "gavcoin"
+  },
+  "celer": {
+    "name": "Celer Payment Channels",
+    "desc": "Celer was a state-channel protocol for off-chain micropayments, launched in 2019. CelerWallet is the on-chain vault; CelerLedger is the user entry point that enforces channel accounting. Celer pivoted to cBridge in 2021 and took the official CelerPay UI offline, but the contracts remained live and unpaused. Users who opened channels and never cooperatively settled can still recover their deposits via the unilateral path: intendWithdraw starts a 10,000-block (~1.4 day) dispute window; after the window any tx sender can confirm and the ETH returns to the depositor.",
+    "category": "payment_channel",
+    "color": "#7c3aed",
+    "contract": "0xa6cd930fc92f1634d8183af2fb86bd1766f2f82a",
+    "deployed": "July 2019"
   }
 }

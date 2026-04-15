@@ -125,6 +125,7 @@ export default async function handler(req, res) {
       let opynPositions = typeof val === 'object' && val.op ? val.op : null;
       let refundPrice = typeof val === 'object' && val.rp ? val.rp : null;
       let tokenBalance = typeof val === 'object' && val.tb ? val.tb : null;
+      let celerChannels = typeof val === 'object' && val.cc ? val.cc : null;
 
       if (itemsClaimed && itemsClaimed.size > 0) {
         if (deeds) {
@@ -146,6 +147,11 @@ export default async function handler(req, res) {
           augurClaims = augurClaims.filter(c => !itemsClaimed.has(c.id || ''));
           if (augurClaims.length === 0) continue;
         }
+        if (celerChannels) {
+          celerChannels = celerChannels.filter(c => !itemsClaimed.has(c.channel_id || ''));
+          if (celerChannels.length === 0) continue;
+          balanceEth = (celerChannels.reduce((s, c) => s + Number(BigInt(c.claimable_wei || '0')), 0) / 1e18).toFixed(8);
+        }
       }
 
       const balFloat = parseFloat(balanceEth);
@@ -164,6 +170,7 @@ export default async function handler(req, res) {
         ...(trancheDetails ? { tranche_details: trancheDetails } : {}),
         ...(opynPositions ? { positions: opynPositions } : {}),
         ...(refundPrice ? { refund_price: refundPrice, token_balance: tokenBalance } : {}),
+        ...(celerChannels ? { celer_channels: celerChannels } : {}),
       };
     }
   }

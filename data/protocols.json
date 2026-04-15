@@ -1283,5 +1283,13 @@
     "category": "token",
     "balance_file": "gavcoin_eth_balances.json",
     "multi_step": true
+  },
+  {
+    "key": "celer",
+    "name": "Celer Payment Channels",
+    "contract": "0xa6cd930fc92f1634d8183af2fb86bd1766f2f82a",
+    "category": "payment_channel",
+    "balance_file": "celer_eth_balances.json",
+    "multi_step": true
   }
 ]

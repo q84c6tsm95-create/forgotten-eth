@@ -1,6 +1,6 @@
 # Forgotten ETH
 
-Scan 163 defunct Ethereum contracts for withdrawable ETH. No frontend needed for most of these protocols anymore, no portfolio tracker indexes them.
+Scan 183 defunct Ethereum contracts for withdrawable ETH. No frontend needed for most of these protocols anymore, no portfolio tracker indexes them.
 
 **[forgotteneth.com](https://forgotteneth.com)** | **[forgotteneth.eth](https://etherscan.io/address/0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891)** | **[API](https://forgotteneth.com/api)**
 
@@ -21,7 +21,7 @@ after `0x` as the shard prefix (e.g. `0xab58…` → `ab`), open
 as a key. If it's not there, there's no claimable balance.
 
 The live `/api/check` endpoint is for interactive browser use only and
-rate-limited to 15 requests per minute per IP. The site is behind
+rate-limited to 30 requests per minute per IP. The site is behind
 Cloudflare WAF; bulk scraping will be blocked at the edge. See
 [`public/llms.txt`](public/llms.txt) for the full LLM-friendly spec.
 
@@ -29,7 +29,7 @@ Cloudflare WAF; bulk scraping will be blocked at the edge. See
 
 ETH gets stuck in old contracts when protocols shut down and their frontends go offline. The balances are still onchain but invisible to DeBank, Zapper, and other portfolio trackers. This tool indexes them and generates the withdrawal transaction.
 
-163 contracts. 164,553 ETH mapped. 532k addresses with claimable balance.
+183 contracts. 165,921 ETH mapped. 536k addresses with claimable balance. 1,423 ETH already withdrawn by 445 unique claimers since launch.
 
 ## CLI
 
@@ -40,7 +40,7 @@ npm install
 npm run check:address -- 0xe1bdff947510a8e9623cf7f3c6cf6fe5e37c16b8
 ```
 
-Uses Multicall3 to batch-check all contracts with a direct `view` balance function against a public RPC. Skips protocols that need precomputed discovery (ENS old registrar, Kyber FeeHandler, Bounties Network).
+Uses Multicall3 to batch-check all contracts with a direct `view` balance function against a public RPC. Skips protocols where balances are token-derived, multi-item, or require precomputed discovery (ENS old registrar, DigixDAO, The DAO, Aave v1, Augur v1, MoonCatRescue, Kyber FeeHandler, Bounties Network, Tessera vaults, Ethfinex Trustless, KeeperDAO, Celer Payment Channels, etc.). For those, fetch `data/balances/<key>_eth_balances.json` directly.
 
 ```
 npm run check:address -- vitalik.eth              # ENS resolution
@@ -51,7 +51,7 @@ npm run check:address -- 0x... --rpc <url>        # custom RPC
 ## Web
 
 1. Paste address or connect wallet
-2. Scans all 118 contracts (API-first, RPC verification for connected wallets)
+2. Scans all 183 contracts (API-first, RPC verification for connected wallets)
 3. Click Withdraw — tx goes directly from the original contract to your wallet
 
 No custody. No intermediary contracts. No token approvals for standard withdrawals (The DAO, DigixDAO, and Neufund require token burns as part of their original contract design). Every withdrawal is reproducible on Etherscan.
@@ -66,7 +66,11 @@ No custody. No intermediary contracts. No token approvals for standard withdrawa
 | ENS old registrar | Unreleased deed deposits from the 2017 .eth auction | 1 |
 | NFT auctions | MoonCatRescue, DADA, Age of Dinos, PersonaBid | 4 |
 | DAO refunds | The DAO WithdrawDAO, DigixDAO Acid, NuCypher WorkLock | 3 |
-| Token wrappers | Neufund EtherToken, Bancor Old ETH, Maker W-ETH, Old WETH | 4 |
+| Token wrappers | Neufund EtherToken, W-ETH (Maker), Old WETH (June 2016) | 3 |
+| WETH pools | GenesisWethPool, DxMgnPool, Hegic CALL, Mesa, UMA Yield Dollar, Unagii, Opyn v1 | ~8 |
+| ICO refund vaults | 17 OpenZeppelin RefundableCrowdsale ICOs (Vuepay, POP, Veil, GavCoin, etc.) | ~17 |
+| Options / yield | Opyn v1 / v2 Gamma, KeeperDAO kToken pools | 3 |
+| Payment channels | Celer (intendWithdraw → confirmWithdraw) | 1 |
 | Bounty/Other | Bounties Network, Confideal, SportCrypt, Tessera vaults | ~6 |
 
 Full list in [`data/protocols.json`](data/protocols.json).
@@ -75,6 +79,15 @@ Full list in [`data/protocols.json`](data/protocols.json).
 
 | Date | Protocol | ETH | Addresses | Notes |
 |------|----------|-----|-----------|-------|
+| Apr 15 | Celer Payment Channels | 151 | 1,551 | Unilateral intendWithdraw → 10k-block window → confirmWithdraw (OSP slice excluded) |
+| Apr 13 | GavCoin | 47 | 115 | 2015 bonding-curve ICO, per-user refund |
+| Apr 13 | Veil Ether | 57 | 376 | Veil prediction-market WETH escrow |
+| Apr 12 | Opyn v1 + Unagii | 56 | 126 | oToken vault collateral + uETH share vault |
+| Apr 12 | UMA Yield Dollar | 267 | 185 | 6 ExpiringMultiParty contracts, settleExpired() per-EMP |
+| Apr 11 | Mesa / Gnosis Protocol v1 | — | 116 | requestWithdraw → wait one batch (5 min) → withdraw |
+| Apr 10 | WETH pools batch | 289 | — | GenesisWethPool + DxMgnPool + Hegic CALL |
+| Apr 8 | KeeperDAO | 426 | 296 | Per-kToken approve+withdraw; ETH + WETH bundled |
+| Apr 7 | Refund vaults | 201 | — | 17 OZ RefundableCrowdsale ICOs (Vuepay, POP, etc.) |
 | Apr 3 | Old WETH | 3,258 | 987 | June 2016 WETH wrapper. Community submission ([#7](https://github.com/q84c6tsm95-create/forgotten-eth/issues/7)) |
 | Apr 1 | The DAO | 81,914 | 4,854 | WithdrawDAO wrapper. 67 Parity multisigs supported. Community PR ([doublesharp](https://github.com/doublesharp)) |
 | Mar 28 | Kyber FeeHandler | 23 | 1,605 | Epoch-based staking rewards, epochs 1-21 |
@@ -92,6 +105,10 @@ Full list in [`data/protocols.json`](data/protocols.json).
 Know a defunct contract with stuck ETH? Open a PR or [submit it on the site](https://forgotteneth.com/submit).
 
 Thanks to [banteg](https://github.com/banteg) for the CLI and [doublesharp](https://github.com/doublesharp) for The DAO integration.
+
+## Notifications
+
+Want a heads-up when a new protocol unlocks ETH for an address you care about? Talk to [@forgottenETH_bot](https://t.me/forgottenETH_bot) on Telegram — `/watch 0x…` and you'll get a DM the next time a new contract matches. Or subscribe to the [RSS feed](https://forgotteneth.com/feed.xml).
 
 ## License
 
