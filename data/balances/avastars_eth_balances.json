@@ -1,9 +1,9 @@
 {
   "contract": "0xe31763aad9294f073ddf18b36503ed037ae5e737",
   "contract_eth_balance": 36.86133,
-  "total_eth_in_balances": 36.86092962,
-  "addresses_with_balance": 934,
-  "coverage_pct": 100,
+  "total_eth_in_balances": 36.74022962,
+  "addresses_with_balance": 933,
+  "coverage_pct": 99.67,
   "scan_date": "2026-04-05",
   "distribution": {
     "whale": 0,
@@ -311,7 +311,8 @@
       "rank": 50,
       "address": "0xe72eb31b59f85b19499a0f3b3260011894fa0d65",
       "balance_wei": "120699999999999989",
-      "balance_eth": "0.120699999999999988"
+      "balance_eth": "0.120699999999999988",
+      "claimed": true
     },
     {
       "rank": 51,
@@ -5625,5 +5626,5 @@
       "balance_eth": "0.0000000005388"
     }
   ],
-  "last_event_refresh": "2026-04-06T15:09:09Z"
+  "last_event_refresh": "2026-04-16T03:46:38Z"
 }

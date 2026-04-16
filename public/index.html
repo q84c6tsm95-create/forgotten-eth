@@ -722,6 +722,7 @@
   }
   .claim-btn:hover:not(:disabled) { background: #0d6560; transform: translate(-1px, -1px); box-shadow: 2px 2px 0 rgba(15, 118, 110, 0.4); }
   .claim-btn:disabled { background: #ccc; color: #888; cursor: not-allowed; transform: none; box-shadow: none; opacity: 0.5; }
+  .claim-btn.claimed-btn { background: var(--green, #16a34a); color: #fff; opacity: 0.85; cursor: default; }
   .claim-btn.pending { background: var(--yellow); color: #000; animation: pulse-pending 1.5s ease-in-out infinite; }
   .claim-btn.success { background: var(--green); color: #fff; }
   .claim-btn.claimed { background: var(--green); color: #fff; opacity: 0.7; cursor: default; transform: none; box-shadow: none; }
@@ -920,6 +921,11 @@
 
   .claim-none { color: var(--text2); font-size: 13px; }
   .no-balance-msg { color: var(--text2); font-size: 13px; padding: 8px 0; }
+
+  /* Already-claimed card + hero */
+  .claimed-card { opacity: 0.7; }
+  .claimed-hero .claim-hero-amount { color: var(--green, #16a34a); }
+  .claimed-hero .claim-hero-contracts { color: var(--text2); }
 
   /* ── Network warning ── */
   .network-warn { background: #fff0f0; color: var(--red); padding: 10px 16px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; margin-bottom: 12px; display: none; border: 1px solid #fca5a5; }
@@ -1387,7 +1393,7 @@
 }
 </script>
 <script src="/testmode.js"></script>
-<script src="/app.js?v=20260415c"></script>
+<script src="/app.js?v=20260416"></script>
 <script src="/theme.js"></script>
 <script src="/corrupt.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>

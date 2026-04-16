@@ -3298,6 +3298,68 @@ function truncAddr(a) { return a.slice(0, 8) + '...' + a.slice(-6); }
 function etherscanAddr(a) { return `https://etherscan.io/address/${encodeURIComponent(a)}`; }
 function etherscanTx(h) { return `https://etherscan.io/tx/${encodeURIComponent(h)}`; }
 
+// ─── Claimed balance card builder (shared by wallet + manual scan flows) ───
+function buildClaimedCards(claimedBalances) {
+  var html = '';
+  var count = 0;
+  var ethTotal = 0;
+  if (!claimedBalances) return { html: html, count: count, ethTotal: ethTotal };
+  for (var cKey in claimedBalances) {
+    var cCfg = EXCHANGES[cKey];
+    if (!cCfg) continue;
+    count++;
+    var claim = claimedBalances[cKey];
+    var cEth = parseFloat(claim.balance_eth);
+    ethTotal += cEth;
+    var cTxLink = claim.tx_hash
+      ? '<a href="' + etherscanTx(claim.tx_hash) + '" target="_blank" rel="noopener noreferrer">view tx</a>'
+      : '';
+    var cDate = claim.claimed_at
+      ? new Date(claim.claimed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+      : '';
+
+    // Multi-item protocols (ENS deeds, Bounties, Kyber epochs, etc.): per-item rows
+    if (claim.claims && claim.claims.length > 1) {
+      var SHOW_INITIAL = 10;
+      var itemsHtml = '';
+      var sorted = claim.claims; // already sorted by amount desc from API
+      for (var ci = 0; ci < sorted.length; ci++) {
+        var it = sorted[ci];
+        var itLabel = it.item_id ? it.item_id.slice(0, 10) + '...' : '#' + (ci + 1);
+        var itTx = it.tx_hash ? '<a href="' + etherscanTx(it.tx_hash) + '" target="_blank" rel="noopener noreferrer" style="font-size:11px;color:var(--text2)">tx</a>' : '';
+        var hidden = ci >= SHOW_INITIAL;
+        itemsHtml += '<div class="claim-row" ' + (hidden ? 'data-claimed-hidden="' + cKey + '"' : '') + ' style="' + (hidden ? 'display:none;' : '') + 'margin:4px 16px;border-left:2px solid var(--green, #16a34a);padding:6px 12px;display:flex;align-items:center;justify-content:space-between">' +
+          '<span style="font-size:12px"><span style="font-family:var(--font-mono);color:var(--text2)">' + esc(itLabel) + '</span><span style="color:var(--text2)"> · ' + fmtEth(it.amount_eth) + ' ETH</span></span>' +
+          '<span style="display:flex;align-items:center;gap:8px">' + itTx + '<span style="font-size:11px;color:var(--green, #16a34a);font-weight:600">Claimed</span></span>' +
+        '</div>';
+      }
+      if (sorted.length > SHOW_INITIAL) {
+        itemsHtml += '<div style="text-align:center;margin:8px 0 4px"><button onclick="document.querySelectorAll(\'[data-claimed-hidden=' + cKey + ']\').forEach(function(e){e.style.display=\'flex\'});this.parentNode.remove()" style="background:var(--accent);color:#fff;border:none;padding:6px 18px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">Show all ' + sorted.length + ' claims</button></div>';
+      }
+      html += '<div class="claim-card claimed-card">' +
+        '<div class="claim-card-header"><span class="claim-card-name">' + esc(cCfg.name) + '</span><span class="claim-card-amount">' + fmtEth(cEth) + ' ETH</span></div>' +
+        '<div class="claim-card-meta">' +
+          '<div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="' + etherscanAddr(claim.contract) + '" target="_blank" rel="noopener noreferrer">' + claim.contract + '</a></span></div>' +
+          '<div class="claim-card-meta-row"><span class="claim-card-meta-label">Status</span><span class="claim-card-meta-value" style="color:var(--green, #16a34a)">' + claim.claim_count + ' claims completed</span></div>' +
+        '</div>' +
+        itemsHtml +
+      '</div>';
+    } else {
+      // Single-item claimed card
+      var cCountLabel = claim.claim_count > 1 ? ' · ' + claim.claim_count + ' claims' : '';
+      html += '<div class="claim-card claimed-card">' +
+        '<div class="claim-card-header"><span class="claim-card-name">' + esc(cCfg.name) + '</span><span class="claim-card-amount">' + fmtEth(cEth) + ' ETH</span></div>' +
+        '<div class="claim-card-meta">' +
+          '<div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="' + etherscanAddr(claim.contract) + '" target="_blank" rel="noopener noreferrer">' + claim.contract + '</a></span></div>' +
+          (cDate ? '<div class="claim-card-meta-row"><span class="claim-card-meta-label">Claimed</span><span class="claim-card-meta-value">' + cDate + cCountLabel + (cTxLink ? ' · ' + cTxLink : '') + '</span></div>' : '') +
+        '</div>' +
+        '<div class="claim-card-actions"><button class="claim-btn claimed-btn" disabled>Claimed</button></div>' +
+      '</div>';
+    }
+  }
+  return { html: html, count: count, ethTotal: ethTotal };
+}
+
 // ─── Web3 Wallet ───
 
 async function connectWallet() {
@@ -4436,13 +4498,28 @@ async function checkUserBalances(overrideAddress) {
         <div class="claim-card-status" id="claimStatus-msig-${mm.key}"></div>
       </div>`;
   }
-  if (!hasBalance) {
+  // ── Build "Already Claimed" cards from API response ──
+  var _cc = buildClaimedCards(apiResp && apiResp.data ? apiResp.data.claimed_balances : null);
+  var claimedHtml = _cc.html;
+  var claimedCount = _cc.count;
+  var claimedEthTotal = _cc.ethTotal;
+
+  if (!hasBalance && claimedCount === 0) {
     html = `<div class="no-balance-state">
       <div class="no-balance-check">&#10003;</div>
       <div class="no-balance-title">No unclaimed ETH found</div>
       <div class="no-balance-addr">${esc(checkAddr)}</div>
       <p style="font-size:12px">Checked ${Object.keys(EXCHANGES).length} contracts.</p>
     </div>` + _botCTA;
+    var _bannerTitle = 'Scan Complete';
+  } else if (!hasBalance && claimedCount > 0) {
+    const usdStr = ethPrice ? fmtUsd(claimedEthTotal * ethPrice) : '';
+    html = `<div class="claim-hero claimed-hero">
+      <div class="claim-hero-amount">${fmtEth(claimedEthTotal)} ETH</div>
+      ${usdStr ? '<div class="claim-hero-usd">' + usdStr + '</div>' : ''}
+      <div class="claim-hero-contracts">Claimed from ${claimedCount} contract${claimedCount > 1 ? 's' : ''}</div>
+    </div>
+    <div class="claim-rows-list">${claimedHtml}</div>` + _botCTA;
     var _bannerTitle = 'Scan Complete';
   } else {
     let totalEth = 0;
@@ -4458,7 +4535,8 @@ async function checkUserBalances(overrideAddress) {
       ? `<div style="text-align:center;margin-top:12px;padding:10px;background:var(--bg2);border:1px solid var(--yellow);border-radius:8px;font-size:12px;color:var(--text2)">
           Showing balances for <b>${esc(truncAddr(overrideAddress))}</b>. To withdraw, connect the wallet that owns this address.
         </div>` : '';
-    html = prefix + '<div class="claim-rows-list">' + html + '</div>' + mismatchNote + _botCTA;
+    const claimedSection = claimedHtml ? `<div style="margin-top:16px;padding-top:12px;border-top:1px dashed var(--border)"><div style="font-size:11px;color:var(--text2);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px">Previously Claimed</div>${claimedHtml}</div>` : '';
+    html = prefix + '<div class="claim-rows-list">' + html + claimedSection + '</div>' + mismatchNote + _botCTA;
     var _bannerTitle = 'Claimable ETH Found';
     var _celebrate = true;
     logEvent('found', { address: checkAddr, contracts_found: claimCount, total_eth: totalEth });
@@ -7252,11 +7330,13 @@ async function checkSingleAddress(addr) {
 
   let apiBalances = {};
   let apiCoverage = {};
+  let claimedBalances = null;
   try {
     const apiResp = await fetchCheck(addr);
     if (apiResp.ok && apiResp.data) {
       apiBalances = apiResp.data.balances || {};
       apiCoverage = apiResp.data.coverage || {};
+      if (apiResp.data.claimed_balances) claimedBalances = apiResp.data.claimed_balances;
     }
   } catch (e) { console.warn('API check failed, falling back to RPC', e); }
 
@@ -7369,7 +7449,7 @@ async function checkSingleAddress(addr) {
     }
   }
 
-  return { found, totalEth, html, apiBalances };
+  return { found, totalEth, html, apiBalances, claimedBalances };
 }
 
 async function checkManualAddress() {
@@ -7434,19 +7514,34 @@ async function checkManualAddress() {
   let grandFound = result.found;
   let allHtml = result.html;
 
+  // Build claimed cards for the manual flow
+  var _mcc = buildClaimedCards(result.claimedBalances);
+  var mClaimedHtml = _mcc.html;
+  var mClaimedCount = _mcc.count;
+  var mClaimedEth = _mcc.ethTotal;
+
   const ethPrice = await getEthPrice();
   let finalHtml;
-  if (grandFound === 0) {
+  if (grandFound === 0 && mClaimedCount === 0) {
     const addrDisplay = resolvedAddrs.length === 1 ? esc(resolvedAddrs[0]) : resolvedAddrs.length + ' addresses';
     finalHtml = '<div class="no-balance-state"><div class="no-balance-check">&#10003;</div><div class="no-balance-title">No unclaimed ETH found</div><div class="no-balance-addr">' + addrDisplay + '</div><p>Checked ' + Object.keys(EXCHANGES).length + ' contracts.</p></div>' + _botCTA;
     var _manualTitle = 'Scan Complete';
     var _manualCelebrate = false;
+  } else if (grandFound === 0 && mClaimedCount > 0) {
+    var usdStr = ethPrice ? fmtUsd(mClaimedEth * ethPrice) : '';
+    finalHtml = '<div class="claim-hero claimed-hero"><div class="claim-hero-amount">' + fmtEth(mClaimedEth) + ' ETH</div>' +
+      (usdStr ? '<div class="claim-hero-usd">' + usdStr + '</div>' : '') +
+      '<div class="claim-hero-contracts">Claimed from ' + mClaimedCount + ' contract' + (mClaimedCount > 1 ? 's' : '') + '</div></div>' +
+      '<div class="claim-rows-list">' + mClaimedHtml + '</div>' + _botCTA;
+    var _manualTitle = 'Scan Complete';
+    var _manualCelebrate = false;
   } else {
     const usdStr = ethPrice ? fmtUsd(grandTotalEth * ethPrice) : '';
+    var claimedSection = mClaimedHtml ? '<div style="margin-top:16px;padding-top:12px;border-top:1px dashed var(--border)"><div style="font-size:11px;color:var(--text2);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px">Previously Claimed</div>' + mClaimedHtml + '</div>' : '';
     finalHtml = '<div class="claim-hero"><div class="claim-hero-amount">' + fmtEth(grandTotalEth) + ' ETH</div>' +
       (usdStr ? '<div class="claim-hero-usd">' + usdStr + '</div>' : '') +
       '<div class="claim-hero-contracts">' + grandFound + ' contract' + (grandFound > 1 ? 's' : '') + (resolvedAddrs.length > 1 ? ' across ' + resolvedAddrs.length + ' addresses' : '') + '</div></div>' +
-      '<div class="claim-rows-list">' + allHtml + '</div>' +
+      '<div class="claim-rows-list">' + allHtml + claimedSection + '</div>' +
       '<div style="text-align:center;margin-top:16px">' +
         '<button class="wallet-btn" data-action="connect-for-manual" style="padding:8px 18px;font-size:14px">Connect Wallet to Claim</button>' +
       '</div>' + _botCTA;

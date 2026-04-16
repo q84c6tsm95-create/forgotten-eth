@@ -82,26 +82,43 @@ export default async function handler(req, res) {
   const shard = loadShard(prefix);
   const entry = shard[normalized];
 
-  // Filter out addresses/items recently marked as claimed (instant, before shard catches up)
-  // Skip the DB query entirely when the shard has no entry for this address —
-  // there's nothing to filter, so the claimed_addresses lookup would be a no-op.
-  // This cuts Neon egress on the hot path since most checks find no balance.
+  // Query claimed_addresses for filtering (existing) AND claim history display (new).
+  // Previously gated on `if (entry)` to cut Neon egress, but we now need claim
+  // history even when the shard is empty (post-Tier-3 refresh cleaned up the address).
   let claimedProtocols = new Set();   // protocols fully claimed (item_id IS NULL)
   let claimedItems = {};              // protocol → Set of claimed item_ids
-  if (entry) {
-    try {
-      const { rows } = await sql`SELECT protocol, item_id FROM claimed_addresses WHERE address = ${normalized}`;
-      for (const r of rows) {
-        if (!r.item_id) {
-          claimedProtocols.add(r.protocol);
-        } else {
-          if (!claimedItems[r.protocol]) claimedItems[r.protocol] = new Set();
-          claimedItems[r.protocol].add(r.item_id);
+  let claimedDetails = {};            // protocol → { total_eth, last_tx, last_claimed, count }
+  try {
+    const { rows } = await sql`SELECT protocol, item_id, amount_eth, tx_hash, claimed_at FROM claimed_addresses WHERE address = ${normalized}`;
+    for (const r of rows) {
+      if (!r.item_id) {
+        claimedProtocols.add(r.protocol);
+      } else {
+        if (!claimedItems[r.protocol]) claimedItems[r.protocol] = new Set();
+        claimedItems[r.protocol].add(r.item_id);
+      }
+      // Build claim details for the "Already Claimed" display
+      const eth = parseFloat(r.amount_eth || 0);
+      if (eth > 0) {
+        if (!claimedDetails[r.protocol]) claimedDetails[r.protocol] = { total_eth: 0, last_tx: null, last_claimed: null, count: 0, items: [] };
+        claimedDetails[r.protocol].total_eth += eth;
+        claimedDetails[r.protocol].count++;
+        claimedDetails[r.protocol].items.push({
+          item_id: r.item_id || null,
+          amount_eth: eth,
+          tx_hash: r.tx_hash || null,
+          claimed_at: r.claimed_at || null,
+        });
+        const ts = r.claimed_at ? new Date(r.claimed_at).getTime() : 0;
+        const prev = claimedDetails[r.protocol].last_claimed ? new Date(claimedDetails[r.protocol].last_claimed).getTime() : 0;
+        if (ts > prev) {
+          claimedDetails[r.protocol].last_claimed = r.claimed_at;
+          claimedDetails[r.protocol].last_tx = r.tx_hash;
         }
       }
-    } catch {
-      // DB down — fall back to shard data only (no regression)
     }
+  } catch {
+    // DB down — fall back to shard data only (no regression)
   }
 
   const results = {};
@@ -175,6 +192,31 @@ export default async function handler(req, res) {
     }
   }
 
+  // Build claimed_balances for protocols not in active results.
+  // Shows "Already Claimed" cards instead of the Madotsuki blanket when a user
+  // re-scans after withdrawing. Data comes from claimed_addresses (populated by
+  // Dune webhook, site claims, and historical backfill).
+  const claimedBalances = {};
+  let totalClaimedEth = 0;
+  for (const [proto, detail] of Object.entries(claimedDetails)) {
+    if (results[proto]) continue; // still has active balance — don't show as claimed
+    const contractMeta = meta[proto];
+    if (!contractMeta) continue;
+    // Include per-item breakdown for multi-item protocols (ENS deeds, Augur, Bounties, etc.)
+    const hasMultipleItems = detail.items.some(i => i.item_id);
+    claimedBalances[proto] = {
+      contract: contractMeta.c,
+      balance_eth: detail.total_eth.toFixed(8),
+      tx_hash: detail.last_tx || null,
+      claimed_at: detail.last_claimed || null,
+      claim_count: detail.count,
+      ...(hasMultipleItems ? {
+        claims: detail.items.sort((a, b) => b.amount_eth - a.amount_eth),
+      } : {}),
+    };
+    totalClaimedEth += detail.total_eth;
+  }
+
   const coverage = {};
   for (const [key, m] of Object.entries(meta)) {
     // Round scan_date to date-only to avoid disclosing operational timing patterns
@@ -204,6 +246,10 @@ export default async function handler(req, res) {
     contracts_with_balance: Object.keys(results).length,
     total_claimable_eth: totalClaimable.toFixed(6),
     balances: results,
+    ...(Object.keys(claimedBalances).length > 0 ? {
+      claimed_balances: claimedBalances,
+      total_claimed_eth: totalClaimedEth.toFixed(6),
+    } : {}),
     coverage,
     ...(recognition ? { recognition } : {}),
   });
