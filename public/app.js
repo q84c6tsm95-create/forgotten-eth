@@ -3207,6 +3207,123 @@ const EXCHANGES = {
     },
     withdrawCall: 'refund',
   },
+  vader_merkle: {
+    name: 'Vader Protocol',
+    desc: 'Vader Protocol was a DeFi liquidity protocol with its own stablecoin (USDV). After the protocol wound down, unclaimed WETH remains in a merkle distribution contract. Users can claim their share by providing a valid merkle proof. The original claim UI is offline but proofs are preserved.',
+    category: 'defi',
+    color: '#7c3aed',
+    contract: '0xf5644345a5a9dc14076b58802dc908b83e62b0e1',
+    deployed: '2022',
+    noWalletCheck: true,
+    merkleClaim: true,
+    withdrawAbi: 'function claim(address account, uint256 amount, bytes32[] proof)',
+    withdrawArgs: (amount, addr) => {
+      const api = window._lastApiBalances?.vader_merkle;
+      if (!api?.merkle_proof || !api?.merkle_wei) throw new Error('Missing merkle proof — refresh and try again');
+      return [addr, BigInt(api.merkle_wei), api.merkle_proof];
+    },
+    withdrawCall: 'claim',
+  },
+  yearn_v1_weth: {
+    name: 'Yearn v1 yWETH',
+    desc: 'Yearn Finance launched the v1 yWETH vault in August 2020 as one of the first wrapped-token yield vaults. Users deposited WETH and received yWETH shares representing proportional ownership of the vault. The yearn.fi frontend dropped v1 vault support, leaving share holders without an interface. The vault is unpaused and immutable, and all WETH sits directly in the vault (no active strategy), so yWETH holders can still redeem their shares for the underlying WETH at the current pricePerFullShare.',
+    category: 'defi',
+    color: '#0657f9',
+    contract: '0xe1237aA7f535b0CC33Fd973D66cBf830354D16c7',
+    deployed: 'August 2020',
+    returnsWeth: true,
+    noWalletCheck: true,
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: 'function withdraw(uint256 _shares)',
+    // withdraw() takes rawSHARES, not WETH equivalent. balance here is WETH-eq
+    // (shares × pps, ~1.014 WETH/share). Pass the shares from the shard; fall
+    // back to balance if the shard encoding is stale.
+    withdrawArgs: (bal) => {
+      const api = window._lastApiBalances?.yearn_v1_weth;
+      const shares = api?.yearn_shares_wei ? BigInt(api.yearn_shares_wei) : bal;
+      return [shares];
+    },
+    withdrawCall: 'withdraw',
+  },
+  x2y2_fee_sharing: {
+    name: 'X2Y2 Fee Sharing',
+    desc: 'X2Y2 launched in February 2022 as an NFT marketplace competing with OpenSea. Stakers locked X2Y2 tokens into the FeeSharingSystem to earn a share of marketplace WETH fees. The x2y2.io frontend went offline and the project is dormant. The staking contract remains unpaused and immutable — stakers can claim accrued WETH rewards at any time via harvest(), or unstake their tokens and claim simultaneously via withdraw(shares, true).',
+    category: 'nft',
+    color: '#1d6d7d',
+    contract: '0xc8C3CC5be962b6D281E4a53DBcCe1359F76a1B85',
+    deployed: 'February 2022',
+    returnsWeth: true,
+    noWalletCheck: true,
+    balanceAbi: 'function calculatePendingRewards(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'calculatePendingRewards',
+    withdrawAbi: 'function harvest()',
+    withdrawArgs: () => [],
+    withdrawCall: 'harvest',
+  },
+  tokemak_weth: {
+    name: 'Tokemak v1 tWETH',
+    desc: 'Tokemak launched its v1 reactor system in August 2021 — the ETH pool (EthPool) accepted WETH and minted tWETH shares 1:1 with WETH. Tokemak rebranded to Auto Finance in 2024 and the v1 reactor UI was retired. The contract is unpaused and tWETH holders can still exit via a 2-step flow: requestWithdrawal queues the amount at the current manager cycle, and withdraw pays out the WETH after the manager rolls cycles (~weekly). Holders with a matured pending request can call step 2 directly.',
+    category: 'defi',
+    color: '#6e40c9',
+    contract: '0xD3D13a578a53685B4ac36A1Bab31912D2B2A2F36',
+    deployed: 'August 2021',
+    returnsWeth: true,
+    noWalletCheck: true,
+    tokemakWithdraw: true,
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    announceAbi: 'function requestWithdrawal(uint256 amount)',
+    announceArgs: (amount) => [amount],
+    announceCall: 'requestWithdrawal',
+    withdrawAbi: 'function withdraw(uint256 requestedAmount, bool asEth)',
+    withdrawArgs: (amount) => [amount, false],
+    withdrawCall: 'withdraw',
+  },
+  euler_claims: {
+    name: 'Euler Redemptions',
+    desc: 'After the March 2023 Euler exploit, recovered funds were distributed via a one-shot merkle-drop contract. Each depositor index pays out a basket of WETH, DAI, USDC, COMP, and other tokens proportional to pre-exploit holdings. The euler-redemption-scripts repository was archived June 2024 with 1,638 indices still unclaimed. The contract is unpaused and the merkle root is final — anyone who never returned to claim can still call claimAndAgreeToTerms with their original index and proof. Each claim sends the entire token basket in a single tx.',
+    category: 'lending',
+    color: '#1e293b',
+    contract: '0xBC8021015db2ca0599e0692d63ae6B91564cf026',
+    deployed: 'July 2023',
+    returnsWeth: true,
+    noWalletCheck: true,
+    merkleClaim: true,
+    eulerClaim: true,
+    withdrawAbi: 'function claimAndAgreeToTerms(bytes32 acceptanceToken, uint256 index, (address,uint256)[] tokenAmounts, bytes32[] proof)',
+    withdrawArgs: (amount, addr) => {
+      const api = window._lastApiBalances?.euler_claims;
+      if (!api?.merkle_proof || api?.merkle_index === undefined || api?.merkle_index === null || !api?.merkle_tokens) {
+        throw new Error('Missing merkle data — refresh and try again');
+      }
+      const TERMS_HASH = '0x427a506ff6e15bd1b7e4e93da52c8ec95f6af1279618a2f076946e83d8294996';
+      // acceptanceToken = keccak256(abi.encodePacked(msg.sender, terms_hash))
+      const acceptanceToken = ethers.keccak256(
+        ethers.solidityPacked(['address', 'bytes32'], [addr, TERMS_HASH])
+      );
+      const tokenAmounts = api.merkle_tokens.map(([t, a]) => [t, BigInt(a)]);
+      return [acceptanceToken, BigInt(api.merkle_index), tokenAmounts, api.merkle_proof];
+    },
+    withdrawCall: 'claimAndAgreeToTerms',
+  },
+  gnosis_auction: {
+    name: 'Gnosis Auction',
+    desc: 'Gnosis Auction (EasyAuction) is a batch auction platform launched by Gnosis in 2021 for fair token launches. Bidders submitted WETH orders; orders below the clearing price are refunded. The gnosis-auction.eth.limo frontend is dead but the contract is immutable with no deadline. Unfilled and partially-filled orders can still be claimed via claimFromParticipantOrder(auctionId, orders[]) — one call per auction.',
+    category: 'defi',
+    color: '#3e6957',
+    contract: '0x0b7fFc1f4AD541A4Ed16b40D8c37f0929158D101',
+    deployed: 'July 2021',
+    returnsWeth: true,
+    noWalletCheck: true,
+    gnosisMulti: true,
+    withdrawAbi: 'function claimFromParticipantOrder(uint256 auctionId, bytes32[] orders) returns (uint256 sumAuctioningTokenAmount, uint256 sumBiddingTokenAmount)',
+    withdrawArgs: () => [], // filled per-auction in custom UI handler
+    withdrawCall: 'claimFromParticipantOrder',
+  },
 };
 
 // Per-tab state
@@ -4424,6 +4541,61 @@ async function checkUserBalances(overrideAddress) {
               </div>
               <div class="claim-card-status" id="claimStatus-${key}"></div>
             </div>`;
+        } else if (cfg.tokemakWithdraw) {
+          // Tokemak v1 EthPool: 2-step requestWithdrawal + withdraw with cycle wait
+          // (manager rolls cycles every ~7 days). Users with a pre-existing pending
+          // request that has matured can skip Step 1.
+          const lastTx = apiBalances[key]?.last_tx_date ? apiBalances[key] : null;
+          const apiTk = apiBalances[key] || {};
+          const isReady = apiTk.tokemak_ready === true;
+          const requestedAmount = apiTk.tokemak_requested_eth ? parseFloat(apiTk.tokemak_requested_eth) : 0;
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} WETH</span>
+              </div>
+              <div class="claim-card-meta" id="claimDetails-${key}">
+                ${lastTx ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Last tx</span><span class="claim-card-meta-value">${esc(lastTx.last_tx_date)} · <a href="${etherscanTx(lastTx.last_tx_hash)}" target="_blank" rel="noopener noreferrer">view tx</a></span></div>` : ''}
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 1</span><span class="claim-card-meta-value"><span style="color:var(--text)">requestWithdrawal(amount)</span></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Wait</span><span class="claim-card-meta-value">Until next manager cycle rollover (~7 days)</span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Step 2</span><span class="claim-card-meta-value"><span style="color:var(--text)">withdraw(amount, false)</span> &middot; returns WETH</span></div>
+                ${isReady ? `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:var(--green)">Ready</span><span class="claim-card-meta-value" style="color:var(--green)">${fmtEth(requestedAmount)} WETH already requested in a prior cycle — Step 2 is unlocked.</span></div>` : ''}
+              </div>
+              <div class="claim-card-actions">
+                <button class="claim-btn" id="announceBtn-${key}" data-action="switcheo-announce" data-key="${key}"${isReady ? ' style="opacity:0.35"' : ''}${isReady ? ' disabled' : ''}>Step 1: Request withdrawal</button>
+                <button class="claim-btn"${isReady ? '' : ' disabled style="opacity:0.35"'} id="claimBtn-${key}" data-action="switcheo-withdraw" data-key="${key}">Step 2: Withdraw WETH</button>
+              </div>
+              <div class="claim-card-status" id="claimStatus-${key}"></div>
+            </div>`;
+        } else if (cfg.gnosisMulti) {
+          // Gnosis Auction: per-auction claims via claimFromParticipantOrder(auctionId, orders[])
+          // Each auction in auction_refunds has its own order bytes + refund amount.
+          const auctionRefunds = apiBalances[key]?.gnosis_auction_refunds || [];
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} WETH</span>
+              </div>
+              <div class="claim-card-meta">
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">claimFromParticipantOrder(auctionId, bytes32[] orders) per auction</span></div>
+              </div>`;
+          if (auctionRefunds.length > 0) {
+            for (let ai = 0; ai < auctionRefunds.length; ai++) {
+              const ar = auctionRefunds[ai];
+              const arEth = ar.weth ? ' · ' + fmtEth(ar.weth) + ' WETH' : '';
+              html += `<div class="claim-row" style="margin:4px 16px;border-left:2px solid var(--accent);padding:6px 12px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:13px">Auction #${esc(String(ar.auction_id))}<span style="color:var(--text2);font-size:12px">${arEth}</span></span>
+                <button class="claim-btn" data-action="gnosis-claim" data-key="${key}" data-auction-idx="${ai}">Claim</button>
+              </div>`;
+            }
+          } else {
+            html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">Auction refund details not available. <a href="${etherscanAddr(cfg.contract)}#writeContract" target="_blank" rel="noopener noreferrer">Use Etherscan</a> to call claimFromParticipantOrder.</div>`;
+          }
+          html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
         } else {
           const wArgs = cfg.withdrawArgs(balance, walletAddress);
           const argsDisplay = wArgs.length > 0 ? wArgs.map(a => typeof a === 'bigint' ? a.toString() + ' wei (' + ethers.formatEther(a) + ' ETH)' : String(a)).join(', ') : 'none';
@@ -5503,6 +5675,79 @@ async function switcheoWithdraw(key) {
       statusEl.textContent = 'Rejected';
     } else {
       statusEl.textContent = 'Withdraw failed: ' + (e.shortMessage || e.reason || e.message || 'Unknown error').slice(0, 150);
+    }
+  }
+}
+
+// Ribbon v2 + Gnosis helper: build the "Recovered" status DOM tree safely
+// without innerHTML. Mirrors the visual output of the existing switcheoWithdraw
+// success branch but uses createElement/textContent for XSS safety.
+function buildRecoveredStatus(statusEl, label, ethAmount, unit, txHash) {
+  const wrap = document.createElement('div');
+  wrap.className = 'claim-recovered';
+  const lbl = document.createElement('div');
+  lbl.className = 'claim-recovered-label';
+  lbl.textContent = label;
+  const amt = document.createElement('div');
+  amt.className = 'claim-recovered-amount';
+  const usd = window._ethPrice ? ' (~$' + (parseFloat(ethAmount) * window._ethPrice).toFixed(2) + ')' : '';
+  amt.textContent = fmtEth(ethAmount) + ' ' + unit + usd;
+  const txDiv = document.createElement('div');
+  txDiv.className = 'claim-recovered-tx';
+  const a = document.createElement('a');
+  a.href = etherscanTx(txHash);
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  a.textContent = 'View transaction on Etherscan';
+  txDiv.appendChild(a);
+  wrap.append(lbl, amt, txDiv);
+  statusEl.replaceChildren(wrap);
+}
+
+// Gnosis Auction: per-auction claimFromParticipantOrder(auctionId, bytes32[] orders).
+// The orders array is built from auction_refunds[idx].orders (list of {buy, sell}).
+// userId packed into first 8 bytes of bytes32, then buyAmount (12) + sellAmount (12).
+async function gnosisClaim(key, auctionIdx, btn) {
+  const cfg = EXCHANGES[key];
+  const statusEl = document.getElementById('claimStatus-' + key);
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+  if (!walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  const apiData = window._lastApiBalances?.[key];
+  const auctionRefunds = apiData?.gnosis_auction_refunds || [];
+  const ar = auctionRefunds[auctionIdx];
+  if (!ar) { statusEl.textContent = 'Auction data missing — refresh and retry.'; return; }
+  const userId = BigInt(apiData.gnosis_user_id || 0);
+  if (userId === 0n) { statusEl.textContent = 'User ID not resolved — unable to build order bytes.'; return; }
+  const orderBytes = [];
+  for (const o of (ar.orders || [])) {
+    const buyHex = BigInt(o.buy).toString(16).padStart(24, '0');
+    const sellHex = BigInt(o.sell).toString(16).padStart(24, '0');
+    const uidHex = userId.toString(16).padStart(16, '0');
+    orderBytes.push('0x' + uidHex + buyHex + sellHex);
+  }
+  btn.disabled = true;
+  btn.classList.add('pending');
+  btn.textContent = 'Claiming...';
+  try {
+    const contract = new ethers.Contract(cfg.contract, [cfg.withdrawAbi], walletSigner);
+    const tx = await contract.claimFromParticipantOrder(BigInt(ar.auction_id), orderBytes);
+    statusEl.textContent = 'Waiting for confirmation...';
+    await tx.wait();
+    const ethAmount = ar.weth ? ar.weth.toString() : '0';
+    btn.textContent = '\u2713 Claimed';
+    btn.classList.remove('pending');
+    btn.classList.add('claimed');
+    btn.disabled = true;
+    buildRecoveredStatus(statusEl, 'Recovered from auction #' + ar.auction_id, ethAmount, 'WETH', tx.hash);
+    showDonationModal(parseFloat(ethAmount));
+  } catch (e) {
+    btn.disabled = false;
+    btn.classList.remove('pending');
+    btn.textContent = 'Claim';
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      statusEl.textContent = 'Rejected';
+    } else {
+      statusEl.textContent = 'Claim failed: ' + (e.shortMessage || e.reason || e.message || 'Unknown error').slice(0, 150);
     }
   }
 }
@@ -7337,6 +7582,10 @@ async function checkSingleAddress(addr) {
       apiBalances = apiResp.data.balances || {};
       apiCoverage = apiResp.data.coverage || {};
       if (apiResp.data.claimed_balances) claimedBalances = apiResp.data.claimed_balances;
+      // Mirror wallet-flow behavior so withdrawArgs closures (yearn, gnosis,
+      // ribbon, euler, etc.) can read per-protocol claim data when the user
+      // eventually clicks claim from the manual-paste flow.
+      window._lastApiBalances = apiBalances;
     }
   } catch (e) { console.warn('API check failed, falling back to RPC', e); }
 
@@ -7668,7 +7917,7 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
   // asset). The fetch was dead code and has been removed. The hardcoded
   // values below are the real last resort — update them when adding
   // protocols (grep for this comment).
-  if (!totalData) totalData = { total_eth: 165748, total_contract_eth: 166899, contract_count: 180, eth_claimed: 1401, peak_eth: 167150 };
+  if (!totalData) totalData = { total_eth: 168794, total_contract_eth: 170177, contract_count: 191, eth_claimed: 1426, peak_eth: 170177 };
   try {
       var totalEthVal = Math.round(totalData.total_eth);
       const contractCount = totalData.contract_count || Object.keys(EXCHANGES).length;
@@ -7901,6 +8150,8 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     switcheoAnnounce(btn.dataset.key);
   } else if (action === 'switcheo-withdraw') {
     switcheoWithdraw(btn.dataset.key);
+  } else if (action === 'gnosis-claim') {
+    gnosisClaim(btn.dataset.key, parseInt(btn.dataset.auctionIdx), btn);
   } else if (action === 'mesa-request') {
     mesaRequestWithdraw(btn.dataset.key, btn);
   } else if (action === 'mesa-withdraw') {

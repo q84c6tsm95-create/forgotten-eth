@@ -1,0 +1,2488 @@
+{
+  "contract": "0x0b7fFc1f4AD541A4ED16b40D8c37f0929158D101",
+  "contract_eth_balance": 307.81053878,
+  "total_eth_in_balances": 305.9102143,
+  "addresses_with_balance": 109,
+  "coverage_pct": 99.38,
+  "scan_date": "2026-04-17 17:18:56 UTC",
+  "distribution": {
+    "10-100 ETH": {
+      "count": 5,
+      "total_eth": 239.95893878
+    },
+    "1-10 ETH": {
+      "count": 18,
+      "total_eth": 49.37536927
+    },
+    "0.1-1 ETH": {
+      "count": 55,
+      "total_eth": 15.25543661
+    },
+    "0.01-0.1 ETH": {
+      "count": 26,
+      "total_eth": 1.30573324
+    },
+    "<0.01 ETH": {
+      "count": 5,
+      "total_eth": 0.0147364
+    }
+  },
+  "balances": [
+    {
+      "address": "0x84D34f4f83a87596Cd3FB6887cFf8F17Bf5A7B83",
+      "balance_wei": "98460000000000000000",
+      "balance_eth": 98.46,
+      "user_id": 8968,
+      "unclaimed_auctions": 2,
+      "auction_refunds": [
+        {
+          "auction_id": 84,
+          "weth_refund_wei": "43860000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1906956521739",
+              "sell": "43860000000000000000"
+            }
+          ]
+        },
+        {
+          "auction_id": 108,
+          "weth_refund_wei": "54600000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1706250000000",
+              "sell": "54600000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 1
+    },
+    {
+      "address": "0xc3B7Bd82832076221B9FEcc38bbbB5C1b9BA5C0F",
+      "balance_wei": "46176648778304000000",
+      "balance_eth": 46.17664878,
+      "user_id": 12516,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 164,
+          "weth_refund_wei": "46176648778304000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1049469290416",
+              "sell": "46176648778304000000"
+            }
+          ]
+        }
+      ],
+      "rank": 2
+    },
+    {
+      "address": "0x57bfaa4781E2f5aD8955fe01E2bB2e5c40F6c354",
+      "balance_wei": "33100000000000000000",
+      "balance_eth": 33.1,
+      "user_id": 12496,
+      "unclaimed_auctions": 3,
+      "auction_refunds": [
+        {
+          "auction_id": 146,
+          "weth_refund_wei": "8100000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "300000000000",
+              "sell": "8100000000000000000"
+            }
+          ]
+        },
+        {
+          "auction_id": 164,
+          "weth_refund_wei": "15000000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "375000000000",
+              "sell": "15000000000000000000"
+            }
+          ]
+        },
+        {
+          "auction_id": 175,
+          "weth_refund_wei": "10000000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "333333333333",
+              "sell": "10000000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 3
+    },
+    {
+      "address": "0x3396C5aDe0266F1BD93911F9Acb9413333a735Da",
+      "balance_wei": "31202290000000000000",
+      "balance_eth": 31.20229,
+      "user_id": 8843,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 174,
+          "weth_refund_wei": "31202290000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "891494000000",
+              "sell": "31202290000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 4
+    },
+    {
+      "address": "0x569BB8c30F66b165440C3102de5Ee2d4B1dca854",
+      "balance_wei": "31020000000000000000",
+      "balance_eth": 31.02,
+      "user_id": 12537,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 271,
+          "weth_refund_wei": "31020000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1000000000000",
+              "sell": "31020000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 5
+    },
+    {
+      "address": "0x724700FBEf76E1A606953896FdAd777032f2987E",
+      "balance_wei": "8000000000000000000",
+      "balance_eth": 8.0,
+      "user_id": 8864,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 62,
+          "weth_refund_wei": "8000000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "188235294117",
+              "sell": "8000000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 6
+    },
+    {
+      "address": "0xf632f067bB26B08E95e23225A016ED9E02265137",
+      "balance_wei": "5000000000000000000",
+      "balance_eth": 5.0,
+      "user_id": 8073,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "5000000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "49950049950049950049950",
+              "sell": "5000000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 7
+    },
+    {
+      "address": "0xfF43229E1A7257CEcD40e112AC35B5219CD2D076",
+      "balance_wei": "5000000000000000000",
+      "balance_eth": 5.0,
+      "user_id": 8083,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "5000000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "33333333333333333333333",
+              "sell": "5000000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 8
+    },
+    {
+      "address": "0x5d76A92b7cB9E1A81B8eb8c16468F1155B2f64f4",
+      "balance_wei": "5000000000000000000",
+      "balance_eth": 5.0,
+      "user_id": 8221,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "5000000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "16666666666666666666666",
+              "sell": "5000000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 9
+    },
+    {
+      "address": "0x370Ceca4fC1287ED99924bbA76259F6C771A6022",
+      "balance_wei": "3500000000000000000",
+      "balance_eth": 3.5,
+      "user_id": 8187,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "3500000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "34965034965034965034965",
+              "sell": "3500000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 10
+    },
+    {
+      "address": "0x839395e20bbB182fa440d08F850E6c7A8f6F0780",
+      "balance_wei": "3000000000000000000",
+      "balance_eth": 3.0,
+      "user_id": 8174,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "3000000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "14285034045997809628112",
+              "sell": "3000000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 11
+    },
+    {
+      "address": "0x25125E438b7Ae0f9AE8511D83aBB0F4574217C7a",
+      "balance_wei": "3000000000000000000",
+      "balance_eth": 3.0,
+      "user_id": 11495,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "3000000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "121555915721231766612641",
+              "sell": "3000000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 12
+    },
+    {
+      "address": "0xC8C911f0C5c61f20aeB8E93E0c33017563b8bd3c",
+      "balance_wei": "2290403115418000000",
+      "balance_eth": 2.29040312,
+      "user_id": 12383,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 156,
+          "weth_refund_wei": "2290403115418000000",
+          "tokens_owed_wei": "30593844987",
+          "orders": [
+            {
+              "buy": "100000000000",
+              "sell": "3300000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 13
+    },
+    {
+      "address": "0xE58C7aB48556f9DfEc55b1d0d77A2545805B2bC2",
+      "balance_wei": "2185476151779477409",
+      "balance_eth": 2.18547615,
+      "user_id": 8042,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "2185476151779477409",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "21832928589205568521478",
+              "sell": "2185476151779477409"
+            }
+          ]
+        }
+      ],
+      "rank": 14
+    },
+    {
+      "address": "0xbD9c944DCFB31Cd24c81EBF1C974d950f44E42B8",
+      "balance_wei": "2000000000000000000",
+      "balance_eth": 2.0,
+      "user_id": 12141,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "2000000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "48511897542872389453513",
+              "sell": "2000000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 15
+    },
+    {
+      "address": "0x8BC9014980aafc72477cf2afae4FA605558F0cDb",
+      "balance_wei": "1900000000000000000",
+      "balance_eth": 1.9,
+      "user_id": 13602,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "1900000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "260443784878939253384040",
+              "sell": "1900000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 16
+    },
+    {
+      "address": "0x9F0409224987547F2991Ca03Eda3bfDc2395eb5c",
+      "balance_wei": "1800000000000000000",
+      "balance_eth": 1.8,
+      "user_id": 12033,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "1800000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "46765393608729540140296",
+              "sell": "1800000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 17
+    },
+    {
+      "address": "0x01eF276360ac939c653B128122d0179136089CfE",
+      "balance_wei": "1396790000000000000",
+      "balance_eth": 1.39679,
+      "user_id": 8279,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "1396790000000000000",
+          "tokens_owed_wei": "1089296963500000000000",
+          "orders": [
+            {
+              "buy": "9990009990009990009990",
+              "sell": "1000000000000000000"
+            },
+            {
+              "buy": "999500249875062468765",
+              "sell": "200000000000000000"
+            },
+            {
+              "buy": "499875031242189452636",
+              "sell": "200000000000000000"
+            },
+            {
+              "buy": "99900099900099900099",
+              "sell": "100000000000000000"
+            },
+            {
+              "buy": "5094905094905094905",
+              "sell": "51000000000000000"
+            },
+            {
+              "buy": "84634151248751248751",
+              "sell": "84718785400000000"
+            },
+            {
+              "buy": "655529646902065289806",
+              "sell": "196790000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 18
+    },
+    {
+      "address": "0x5c3BCD428758006927830806C19C6fA75A6Ea9e8",
+      "balance_wei": "1200000000000000000",
+      "balance_eth": 1.2,
+      "user_id": 8025,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "1200000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "6000000000000000000000",
+              "sell": "1200000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 19
+    },
+    {
+      "address": "0x9A5c0F32587de1188f4bC5A4EdF72b0aE1396f16",
+      "balance_wei": "1101700000000000000",
+      "balance_eth": 1.1017,
+      "user_id": 11291,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 91,
+          "weth_refund_wei": "1101700000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "73446666666",
+              "sell": "1101700000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 20
+    },
+    {
+      "address": "0x29a9A733546d64FB2ff620ABE99B3F41303bC5c2",
+      "balance_wei": "1001000000000000000",
+      "balance_eth": 1.001,
+      "user_id": 8567,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 40,
+          "weth_refund_wei": "1001000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "834166666666666666666",
+              "sell": "1001000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 21
+    },
+    {
+      "address": "0xF4B0400eB76fb71e111322360cea2eFdC6BE0Bfb",
+      "balance_wei": "1000000000000000000",
+      "balance_eth": 1.0,
+      "user_id": 8305,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "1000000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "40518638573743922204213",
+              "sell": "1000000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 22
+    },
+    {
+      "address": "0x33b467c8cFF395e8dA9e6B47eF52EB472Ce61D09",
+      "balance_wei": "1000000000000000000",
+      "balance_eth": 1.0,
+      "user_id": 14313,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 562,
+          "weth_refund_wei": "1000000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "330743999999977136328768",
+              "sell": "1000000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 23
+    },
+    {
+      "address": "0xc55f30A77FDaD6AB9606cB655EDc49cd3Db02327",
+      "balance_wei": "917291224800345984",
+      "balance_eth": 0.91729122,
+      "user_id": 12522,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 256,
+          "weth_refund_wei": "917291224800345984",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "35295456465",
+              "sell": "917291224800345984"
+            }
+          ]
+        }
+      ],
+      "rank": 24
+    },
+    {
+      "address": "0xA4290C9EAe274c7A8FbC57A1E68AdC3E95E7C67e",
+      "balance_wei": "820000000000000000",
+      "balance_eth": 0.82,
+      "user_id": 8842,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 53,
+          "weth_refund_wei": "820000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "30047636496",
+              "sell": "820000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 25
+    },
+    {
+      "address": "0x79dD11Ee6b3970dd46a333fF03c9Fa775680Ae7d",
+      "balance_wei": "580000000000000000",
+      "balance_eth": 0.58,
+      "user_id": 11476,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "580000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "23500810372771474878444",
+              "sell": "580000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 26
+    },
+    {
+      "address": "0x4337941A2Fe5d22e3f70850b69931D97044Dc176",
+      "balance_wei": "551000000000000000",
+      "balance_eth": 0.551,
+      "user_id": 12538,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 295,
+          "weth_refund_wei": "551000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "10000000000",
+              "sell": "551000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 27
+    },
+    {
+      "address": "0x471A02528929c9869e86501a6770E8F8ef77Ec63",
+      "balance_wei": "519026887851120535",
+      "balance_eth": 0.51902689,
+      "user_id": 13533,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "519026887851120535",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "84463941935748363370836",
+              "sell": "519026887851120535"
+            }
+          ]
+        }
+      ],
+      "rank": 28
+    },
+    {
+      "address": "0xFdB3001A5e1a9Abe4b4C76CFBe3950de1da6Ad28",
+      "balance_wei": "500000000000000000",
+      "balance_eth": 0.5,
+      "user_id": 11667,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "500000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "16666666666666666666666",
+              "sell": "500000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 29
+    },
+    {
+      "address": "0x896b94f4f27f12369698C302e2049cAe86936BbB",
+      "balance_wei": "500000000000000000",
+      "balance_eth": 0.5,
+      "user_id": 11722,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "500000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "16666666666666666666666",
+              "sell": "500000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 30
+    },
+    {
+      "address": "0x7558B9A644CcD3C815F7b717213Dff0B0a9b0f98",
+      "balance_wei": "500000000000000000",
+      "balance_eth": 0.5,
+      "user_id": 11728,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "500000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "20259319286871961102106",
+              "sell": "500000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 31
+    },
+    {
+      "address": "0x3c0a3d1994C567Fd4BF17dc5858eC84fF1F87501",
+      "balance_wei": "500000000000000000",
+      "balance_eth": 0.5,
+      "user_id": 12057,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "500000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "12893243940175348117586",
+              "sell": "500000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 32
+    },
+    {
+      "address": "0xDccc5094404422cD48CD7AfA95b618fE0Cd3d0Fe",
+      "balance_wei": "500000000000000000",
+      "balance_eth": 0.5,
+      "user_id": 13532,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "500000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "163392916666665600255563",
+              "sell": "500000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 33
+    },
+    {
+      "address": "0xd54f7AB07175d9eFFC4b72581517800B47ee7094",
+      "balance_wei": "400000000000000000",
+      "balance_eth": 0.4,
+      "user_id": 8861,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 55,
+          "weth_refund_wei": "400000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "10000000000",
+              "sell": "400000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 34
+    },
+    {
+      "address": "0x63C5c5a49c2C24afbCfBE1df60cCd2c6CF4ebAAC",
+      "balance_wei": "400000000000000000",
+      "balance_eth": 0.4,
+      "user_id": 11882,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "400000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "7285974499089253187613",
+              "sell": "400000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 35
+    },
+    {
+      "address": "0x998cF04333527d2994eB05F034649fb5e0eEAb5b",
+      "balance_wei": "400000000000000000",
+      "balance_eth": 0.4,
+      "user_id": 13731,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "400000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "39216199999997689557968",
+              "sell": "400000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 36
+    },
+    {
+      "address": "0x0508c3a6CB083b03D760a2cD7bD28A0a32A63E84",
+      "balance_wei": "350000000000000000",
+      "balance_eth": 0.35,
+      "user_id": 11553,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "350000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "7000000000000000000000",
+              "sell": "350000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 37
+    },
+    {
+      "address": "0x846c243F92427A68CCb90c7B3C77f9bf5740ef90",
+      "balance_wei": "321693519713423326",
+      "balance_eth": 0.32169352,
+      "user_id": 13623,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "321693519713423326",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "42563175875414226563939",
+              "sell": "321693519713423326"
+            }
+          ]
+        }
+      ],
+      "rank": 38
+    },
+    {
+      "address": "0x01Ec202abB571E073c144691B848f947b017FD16",
+      "balance_wei": "300000000000000000",
+      "balance_eth": 0.3,
+      "user_id": 11612,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "300000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "12155591572123176661264",
+              "sell": "300000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 39
+    },
+    {
+      "address": "0x16598793223CA18E5Fcf2ec1b1AAf3f0d46C0171",
+      "balance_wei": "300000000000000000",
+      "balance_eth": 0.3,
+      "user_id": 11617,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "300000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "12155591572123176661264",
+              "sell": "300000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 40
+    },
+    {
+      "address": "0xbc3b76686c627B229BE6DB20f4C47AB0E6bfFE09",
+      "balance_wei": "300000000000000000",
+      "balance_eth": 0.3,
+      "user_id": 13613,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "300000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "48519599999993317686609",
+              "sell": "300000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 41
+    },
+    {
+      "address": "0x732876f7fB9CBB32B4C97cB3C3a767fF5a8b8b58",
+      "balance_wei": "263900000000000000",
+      "balance_eth": 0.2639,
+      "user_id": 13607,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "263900000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "35596166666663272756293",
+              "sell": "263900000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 42
+    },
+    {
+      "address": "0x34E040AE65E8CBfde0B8e2F8bBDa396f8f05e46C",
+      "balance_wei": "260000000000000000",
+      "balance_eth": 0.26,
+      "user_id": 13369,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "260000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "50699221168246190172420",
+              "sell": "260000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 43
+    },
+    {
+      "address": "0x260eb0ffCb01d9A117b57531997cD32f8B445aeB",
+      "balance_wei": "250078618798280511",
+      "balance_eth": 0.25007862,
+      "user_id": 13841,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "250078618798280511",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "22955345929161808255919",
+              "sell": "250078618798280511"
+            }
+          ]
+        }
+      ],
+      "rank": 44
+    },
+    {
+      "address": "0x3028200Db75f3162893182478Ea4391Df8E601Ed",
+      "balance_wei": "250000000000000000",
+      "balance_eth": 0.25,
+      "user_id": 8119,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "250000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "2497502497502497502497",
+              "sell": "250000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 45
+    },
+    {
+      "address": "0xbee0889F9f74090889C3AD5fDf174b6Af6480607",
+      "balance_wei": "250000000000000000",
+      "balance_eth": 0.25,
+      "user_id": 8250,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "250000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "2497502497502497502497",
+              "sell": "250000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 46
+    },
+    {
+      "address": "0x696F11E949D291743D544eb4447Fc3Eb4cEc4393",
+      "balance_wei": "250000000000000000",
+      "balance_eth": 0.25,
+      "user_id": 11380,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "250000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "10129659643435980551053",
+              "sell": "250000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 47
+    },
+    {
+      "address": "0xd9eA1D79C21722Ed93e5f2fE6C1Ae5F013D03D00",
+      "balance_wei": "250000000000000000",
+      "balance_eth": 0.25,
+      "user_id": 11389,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "250000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "10129659643435980551053",
+              "sell": "250000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 48
+    },
+    {
+      "address": "0x71f525469A028E0908EEf58319f98Bb111B7F05f",
+      "balance_wei": "250000000000000000",
+      "balance_eth": 0.25,
+      "user_id": 13989,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "250000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "28709705882351105815637",
+              "sell": "250000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 49
+    },
+    {
+      "address": "0x58C5B41C9FA99bd39a17D47Fe31b6B67ADF08637",
+      "balance_wei": "250000000000000000",
+      "balance_eth": 0.25,
+      "user_id": 13991,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "250000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "27121805555554245964106",
+              "sell": "250000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 50
+    },
+    {
+      "address": "0x7431878e089FC91FA52a5A27F4AD511f95F7B047",
+      "balance_wei": "229500000000000000",
+      "balance_eth": 0.2295,
+      "user_id": 13544,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "229500000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "16628430742881173151641",
+              "sell": "100000000000000000"
+            },
+            {
+              "buy": "17226409212694890114383",
+              "sell": "129500000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 51
+    },
+    {
+      "address": "0x00dBE6dFc86866B80C930E70111DE8cF4382b824",
+      "balance_wei": "220743062803714011",
+      "balance_eth": 0.22074306,
+      "user_id": 2654,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 11,
+          "weth_refund_wei": "220743062803714011",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "2940104725675466315",
+              "sell": "220743062803714011"
+            }
+          ]
+        }
+      ],
+      "rank": 52
+    },
+    {
+      "address": "0xe205C202F41D87A6c0ACD672C3E9E01DbC9E517D",
+      "balance_wei": "220000000000000000",
+      "balance_eth": 0.22,
+      "user_id": 12129,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "220000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "5360623781676413255360",
+              "sell": "220000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 53
+    },
+    {
+      "address": "0xb193d67F33f356556203DD8528775A142BfACdb8",
+      "balance_wei": "212677963085566653",
+      "balance_eth": 0.21267796,
+      "user_id": 13618,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "212677963085566653",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "160064645251542066050148",
+              "sell": "212677963085566653"
+            }
+          ]
+        }
+      ],
+      "rank": 54
+    },
+    {
+      "address": "0x80bc944A117Bd8cAD0938964888726b6caD5d378",
+      "balance_wei": "200166466821123185",
+      "balance_eth": 0.20016647,
+      "user_id": 8473,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "200166466821123185",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1999665003208023826173",
+              "sell": "200166466821123185"
+            }
+          ]
+        }
+      ],
+      "rank": 55
+    },
+    {
+      "address": "0x2d53B848079979B6B10202e38290d6F4C2Ff7c5F",
+      "balance_wei": "200000000000000000",
+      "balance_eth": 0.2,
+      "user_id": 8136,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "200000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1998001998001998001998",
+              "sell": "200000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 56
+    },
+    {
+      "address": "0x4A400d3b54c1497580F24c4941F4a2E8BcCb2A95",
+      "balance_wei": "200000000000000000",
+      "balance_eth": 0.2,
+      "user_id": 11450,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "200000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "6666666666666666666666",
+              "sell": "200000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 57
+    },
+    {
+      "address": "0x11a9D0163ad6D0bfa531cc80073c34b435DAf915",
+      "balance_wei": "200000000000000000",
+      "balance_eth": 0.2,
+      "user_id": 13345,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "200000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "39057899999996492795869",
+              "sell": "200000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 58
+    },
+    {
+      "address": "0x4b7f39401247D6fE208e54D53d14cA0117c844aD",
+      "balance_wei": "200000000000000000",
+      "balance_eth": 0.2,
+      "user_id": 13600,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "200000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "13722257743675663594553",
+              "sell": "100000000000000000"
+            },
+            {
+              "buy": "13714392403712119291835",
+              "sell": "100000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 59
+    },
+    {
+      "address": "0xEF0A8A08220a961D9D099C97642c5a41fc9Cb889",
+      "balance_wei": "195000000000000000",
+      "balance_eth": 0.195,
+      "user_id": 12701,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 241,
+          "weth_refund_wei": "195000000000000000",
+          "tokens_owed_wei": "249999999999999999999",
+          "orders": [
+            {
+              "buy": "823529411764705882352",
+              "sell": "280000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 60
+    },
+    {
+      "address": "0xBbCA66808712CcE5fd8D376Cf5d6bd4D064Cd0b8",
+      "balance_wei": "189387013677342973",
+      "balance_eth": 0.18938701,
+      "user_id": 8246,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "189387013677342973",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "650803532254427314285",
+              "sell": "136668741773429736"
+            },
+            {
+              "buy": "170058941625526570967",
+              "sell": "52718271903913237"
+            }
+          ]
+        }
+      ],
+      "rank": 61
+    },
+    {
+      "address": "0x4e209Fc427BA76f073a91e837a1E3377EcFb9B6a",
+      "balance_wei": "160000000000000000",
+      "balance_eth": 0.16,
+      "user_id": 8138,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "160000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1584158415841584158415",
+              "sell": "160000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 62
+    },
+    {
+      "address": "0xa967266d4Ef3bc4c9E9D941CE0377e664831A5E8",
+      "balance_wei": "158069745491495455",
+      "balance_eth": 0.15806975,
+      "user_id": 13589,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "158069745491495455",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "62234613462539795454035",
+              "sell": "158069745491495455"
+            }
+          ]
+        }
+      ],
+      "rank": 63
+    },
+    {
+      "address": "0xe44b70FDE82b7AC74cD53C19252d597a694A8649",
+      "balance_wei": "152993763920547833",
+      "balance_eth": 0.15299376,
+      "user_id": 14438,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 562,
+          "weth_refund_wei": "152993763920547833",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "66287167427006299051777",
+              "sell": "152993763920547833"
+            }
+          ]
+        }
+      ],
+      "rank": 64
+    },
+    {
+      "address": "0xdaAc81cD83CEBd005D82A608F58197a5b6614Ef6",
+      "balance_wei": "152808353231940417",
+      "balance_eth": 0.15280835,
+      "user_id": 11686,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "152808353231940417",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "4303248471752757448606",
+              "sell": "152808353231940417"
+            }
+          ]
+        }
+      ],
+      "rank": 65
+    },
+    {
+      "address": "0x4ADd4D2c14E0d25ED469b866E05FC5Fc2A45413e",
+      "balance_wei": "150000000000000000",
+      "balance_eth": 0.15,
+      "user_id": 13723,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "150000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "16609732394365068825492",
+              "sell": "150000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 66
+    },
+    {
+      "address": "0xA99fFd15cE50b882e5B4bD2dd53B530A45A985f4",
+      "balance_wei": "125000000000000000",
+      "balance_eth": 0.125,
+      "user_id": 8082,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "125000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1136363636363636363636",
+              "sell": "125000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 67
+    },
+    {
+      "address": "0x9031537E04e25f02dccFD0988214AC320611Ed6F",
+      "balance_wei": "125000000000000000",
+      "balance_eth": 0.125,
+      "user_id": 8220,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "125000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1248751248751248751248",
+              "sell": "125000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 68
+    },
+    {
+      "address": "0x22BB11A4262Bd20B27E82c8F6BE45559d7139025",
+      "balance_wei": "120000000000000000",
+      "balance_eth": 0.12,
+      "user_id": 12310,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "120000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "2590114396719188430822",
+              "sell": "120000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 69
+    },
+    {
+      "address": "0x2213431dF63F04A7250ad16BE1BA6DE0695e3Da8",
+      "balance_wei": "111100000000000000",
+      "balance_eth": 0.1111,
+      "user_id": 8251,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "111100000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1109890109890109890109",
+              "sell": "111100000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 70
+    },
+    {
+      "address": "0x3E86eAC93A2dbB4faEB8709d77d451aeDA710eF9",
+      "balance_wei": "100000000000000000",
+      "balance_eth": 0.1,
+      "user_id": 8107,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "100000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "990099009900990099009",
+              "sell": "100000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 71
+    },
+    {
+      "address": "0x4152C19c67Ae3AA0b04f3926826719E1293560Ea",
+      "balance_wei": "100000000000000000",
+      "balance_eth": 0.1,
+      "user_id": 8170,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "100000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "990099009900990099009",
+              "sell": "100000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 72
+    },
+    {
+      "address": "0x6Ceb397b68059Ca73049874D0a30c62500aE9877",
+      "balance_wei": "100000000000000000",
+      "balance_eth": 0.1,
+      "user_id": 8341,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "100000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "333333333333333333333",
+              "sell": "100000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 73
+    },
+    {
+      "address": "0xA66277439e3A01612F5E37cD5926574beE238FF9",
+      "balance_wei": "100000000000000000",
+      "balance_eth": 0.1,
+      "user_id": 13528,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "100000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "16274065449706787614208",
+              "sell": "100000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 74
+    },
+    {
+      "address": "0xB7455bA9561b083e6185cd8582F897eB28e74d56",
+      "balance_wei": "100000000000000000",
+      "balance_eth": 0.1,
+      "user_id": 13566,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "100000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "14536271703871663531249",
+              "sell": "100000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 75
+    },
+    {
+      "address": "0x5d47e5D242a8F66a6286b0a2353868875F5d6068",
+      "balance_wei": "100000000000000000",
+      "balance_eth": 0.1,
+      "user_id": 7411,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "100000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "13153049180326871877205",
+              "sell": "100000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 76
+    },
+    {
+      "address": "0xC0961b301c09290bCBBDB96E4158f4CD169a33b9",
+      "balance_wei": "100000000000000000",
+      "balance_eth": 0.1,
+      "user_id": 13631,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "100000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "13728217974674402952243",
+              "sell": "100000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 77
+    },
+    {
+      "address": "0xAA424F46cDFC89cd27c8A55D82c42d6c88a931C0",
+      "balance_wei": "100000000000000000",
+      "balance_eth": 0.1,
+      "user_id": 13669,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "100000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "13602755079904292174582",
+              "sell": "100000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 78
+    },
+    {
+      "address": "0xb684d372352C897aa9502db98cdB90fc1C7D290e",
+      "balance_wei": "95000000000000000",
+      "balance_eth": 0.095,
+      "user_id": 8113,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "95000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "949050949050949050949",
+              "sell": "95000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 79
+    },
+    {
+      "address": "0x99fC5d8Dd4AeFA2FB65c8A961124ba7F914cd804",
+      "balance_wei": "80000000000000000",
+      "balance_eth": 0.08,
+      "user_id": 8184,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "80000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "799200799200799200799",
+              "sell": "80000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 80
+    },
+    {
+      "address": "0x49b78045d9B8CF4d83C49A942309A8Fc53B61DA1",
+      "balance_wei": "80000000000000000",
+      "balance_eth": 0.08,
+      "user_id": 8407,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "80000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "294659300184162062615",
+              "sell": "80000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 81
+    },
+    {
+      "address": "0x081F1436bad87776Ae4E13bd7bf240b2df26AfD0",
+      "balance_wei": "80000000000000000",
+      "balance_eth": 0.08,
+      "user_id": 13551,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "80000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "12363226837059864600233",
+              "sell": "80000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 82
+    },
+    {
+      "address": "0xCC322b22a65583Bb8EdB5Ea1355F2f497c055152",
+      "balance_wei": "78700000000000000",
+      "balance_eth": 0.0787,
+      "user_id": 12571,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 238,
+          "weth_refund_wei": "78700000000000000",
+          "tokens_owed_wei": "3026923076",
+          "orders": [
+            {
+              "buy": "3384946236",
+              "sell": "78700000000000000"
+            },
+            {
+              "buy": "2500000000",
+              "sell": "78700000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 83
+    },
+    {
+      "address": "0x0C791435Dae68D3cBaf746960c237cd3d65D4121",
+      "balance_wei": "72000000000000000",
+      "balance_eth": 0.072,
+      "user_id": 11363,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "72000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "2880000000000000000000",
+              "sell": "72000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 84
+    },
+    {
+      "address": "0x363b90Bc22843D884e531823D793A1544feB5d38",
+      "balance_wei": "70000000000000000",
+      "balance_eth": 0.07,
+      "user_id": 13516,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "70000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "8136855917023887730967",
+              "sell": "50000000000000000"
+            },
+            {
+              "buy": "3254742366809555092386",
+              "sell": "20000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 85
+    },
+    {
+      "address": "0x051F86354fB19b89dDfB97762aF05327D164ABBB",
+      "balance_wei": "67700000000000000",
+      "balance_eth": 0.0677,
+      "user_id": 11577,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "67700000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "2358885017421602787456",
+              "sell": "67700000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 86
+    },
+    {
+      "address": "0x444dAFedC3b86C9C72d65Ba4781CC4d4C5d9D1EE",
+      "balance_wei": "62393376118427300",
+      "balance_eth": 0.06239338,
+      "user_id": 13503,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "62393376118427300",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "10153892351942057000143",
+              "sell": "62393376118427300"
+            }
+          ]
+        }
+      ],
+      "rank": 87
+    },
+    {
+      "address": "0xAcC89b21449b6CBB5101D5267F730C25E02E2409",
+      "balance_wei": "60000000000000000",
+      "balance_eth": 0.06,
+      "user_id": 8397,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "60000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "285442435775451950523",
+              "sell": "60000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 88
+    },
+    {
+      "address": "0x83a291a6f59fE4AaB9D7693587379Ebb4E3D7E9A",
+      "balance_wei": "55000000000000000",
+      "balance_eth": 0.055,
+      "user_id": 11715,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "55000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "2228525121555915721231",
+              "sell": "55000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 89
+    },
+    {
+      "address": "0xDb9918673D782a8116f583937f2f4A32352F11A2",
+      "balance_wei": "55000000000000000",
+      "balance_eth": 0.055,
+      "user_id": 11883,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "55000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "2228525121555915721231",
+              "sell": "55000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 90
+    },
+    {
+      "address": "0x702163D75780970b88b534032c35f8874D8Aa93B",
+      "balance_wei": "52000000000000000",
+      "balance_eth": 0.052,
+      "user_id": 13381,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "52000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "10139844233649238034484",
+              "sell": "52000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 91
+    },
+    {
+      "address": "0x8FC513de68fA5C94b6C15d99cB7c2e85058a5E62",
+      "balance_wei": "51002491286046731",
+      "balance_eth": 0.05100249,
+      "user_id": 12045,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "51002491286046731",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1020049825720934620000",
+              "sell": "51002491286046731"
+            }
+          ]
+        }
+      ],
+      "rank": 92
+    },
+    {
+      "address": "0xa6Bb66053eEeE083fDf3195Ab680A7A6E24BD8f2",
+      "balance_wei": "51000000000000000",
+      "balance_eth": 0.051,
+      "user_id": 8121,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "51000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "509490509490509490509",
+              "sell": "51000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 93
+    },
+    {
+      "address": "0x6e7321BC4C7C314fCF633aCfF200F9c5f29BC4e0",
+      "balance_wei": "51000000000000000",
+      "balance_eth": 0.051,
+      "user_id": 8466,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 30,
+          "weth_refund_wei": "51000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "157019704433497536945",
+              "sell": "51000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 94
+    },
+    {
+      "address": "0x88004d06Cb9Eb4a83e94e349D7B5f7e003E4E1Df",
+      "balance_wei": "50000000000000000",
+      "balance_eth": 0.05,
+      "user_id": 11444,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 98,
+          "weth_refund_wei": "50000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1020408163265306122448",
+              "sell": "50000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 95
+    },
+    {
+      "address": "0x424978Cb7F42Bc8EC47904133b68B8ff15f6E0Bc",
+      "balance_wei": "50000000000000000",
+      "balance_eth": 0.05,
+      "user_id": 13511,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "50000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "46762738095228018758754",
+              "sell": "50000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 96
+    },
+    {
+      "address": "0xa8e8aFfC55E6AB42Ba4A3e19Cb5a3c7aDCf0407b",
+      "balance_wei": "43000000000000000",
+      "balance_eth": 0.043,
+      "user_id": 12743,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 287,
+          "weth_refund_wei": "43000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "843137254",
+              "sell": "43000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 97
+    },
+    {
+      "address": "0x8d6f555FF6c723af052D1dDDC95Ca766B1027DBc",
+      "balance_wei": "20000000000000000",
+      "balance_eth": 0.02,
+      "user_id": 13639,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "20000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "14487709090901035953566",
+              "sell": "20000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 98
+    },
+    {
+      "address": "0x06c4C0A523D3b030f9219a976c0C7dC07B412D8e",
+      "balance_wei": "20000000000000000",
+      "balance_eth": 0.02,
+      "user_id": 13702,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "20000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "2361347156469101678767",
+              "sell": "20000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 99
+    },
+    {
+      "address": "0xa844BB44EdBe2E46E2a56138fFCC8Cd1f68cCb59",
+      "balance_wei": "15084461959058713",
+      "balance_eth": 0.01508446,
+      "user_id": 13559,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "15084461959058713",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "2301300671675939881251",
+              "sell": "15084461959058713"
+            }
+          ]
+        }
+      ],
+      "rank": 100
+    },
+    {
+      "address": "0x30d18DCDfcC98e2dd8d5FBEc9A5f651dd5dD395C",
+      "balance_wei": "12852910497668389",
+      "balance_eth": 0.01285291,
+      "user_id": 13606,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "12852910497668389",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1712149542448800037042",
+              "sell": "12852910497668389"
+            }
+          ]
+        }
+      ],
+      "rank": 101
+    },
+    {
+      "address": "0xE890814C04Db3344Aa6b93eD66f5f6fc735C26B1",
+      "balance_wei": "12000000000000000",
+      "balance_eth": 0.012,
+      "user_id": 13276,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 557,
+          "weth_refund_wei": "12000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "189676799999145392209923",
+              "sell": "12000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 102
+    },
+    {
+      "address": "0x930FA525933Aa205Cc4E833dfE10F421263b9A9f",
+      "balance_wei": "12000000000000000",
+      "balance_eth": 0.012,
+      "user_id": 13557,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "12000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1808887302153815969404",
+              "sell": "12000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 103
+    },
+    {
+      "address": "0x56708d05E652D8998A3F9491ACe269e98D6BC530",
+      "balance_wei": "10000000000000000",
+      "balance_eth": 0.01,
+      "user_id": 13574,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "10000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1417257431912309000307",
+              "sell": "10000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 104
+    },
+    {
+      "address": "0x901826a5A6619a02F238a9A9B9e75422470710e5",
+      "balance_wei": "6252300000000000",
+      "balance_eth": 0.0062523,
+      "user_id": 12703,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 243,
+          "weth_refund_wei": "6252300000000000",
+          "tokens_owed_wei": "2142219577",
+          "orders": [
+            {
+              "buy": "100000000",
+              "sell": "6252300000000000"
+            },
+            {
+              "buy": "2000000000",
+              "sell": "144000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 105
+    },
+    {
+      "address": "0xc56fCdF6EA115E5B86512c999163C5E3298c883c",
+      "balance_wei": "5000000000000000",
+      "balance_eth": 0.005,
+      "user_id": 12744,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 288,
+          "weth_refund_wei": "5000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "100000000",
+              "sell": "5000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 106
+    },
+    {
+      "address": "0x2fe18163b50e699DbB601D86CB40a73A11176a62",
+      "balance_wei": "2000000000000000",
+      "balance_eth": 0.002,
+      "user_id": 13706,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 560,
+          "weth_refund_wei": "2000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1122991428570846544222",
+              "sell": "2000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 107
+    },
+    {
+      "address": "0x1BC82b850E0BC1a71ef2A8A450a0F150Cd154E1C",
+      "balance_wei": "1000000000000000",
+      "balance_eth": 0.001,
+      "user_id": 11284,
+      "unclaimed_auctions": 1,
+      "auction_refunds": [
+        {
+          "auction_id": 80,
+          "weth_refund_wei": "1000000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "75357950",
+              "sell": "1000000000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 108
+    },
+    {
+      "address": "0x422f7Bb366608723c8fe61Ac6D923023dCCBC3d7",
+      "balance_wei": "484097000000000",
+      "balance_eth": 0.0004841,
+      "user_id": 12502,
+      "unclaimed_auctions": 6,
+      "auction_refunds": [
+        {
+          "auction_id": 151,
+          "weth_refund_wei": "131500000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "10000000",
+              "sell": "130000000000000"
+            },
+            {
+              "buy": "100000",
+              "sell": "1500000000000"
+            }
+          ]
+        },
+        {
+          "auction_id": 156,
+          "weth_refund_wei": "7000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1000",
+              "sell": "7000000000"
+            }
+          ]
+        },
+        {
+          "auction_id": 163,
+          "weth_refund_wei": "35200000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1000000",
+              "sell": "32000000000000"
+            },
+            {
+              "buy": "100000",
+              "sell": "3200000000000"
+            }
+          ]
+        },
+        {
+          "auction_id": 170,
+          "weth_refund_wei": "39600000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1000000",
+              "sell": "36000000000000"
+            },
+            {
+              "buy": "100000",
+              "sell": "3600000000000"
+            }
+          ]
+        },
+        {
+          "auction_id": 179,
+          "weth_refund_wei": "260000000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "10000000",
+              "sell": "260000000000000"
+            }
+          ]
+        },
+        {
+          "auction_id": 206,
+          "weth_refund_wei": "17790000000000",
+          "tokens_owed_wei": "0",
+          "orders": [
+            {
+              "buy": "1000000",
+              "sell": "17790000000000"
+            }
+          ]
+        }
+      ],
+      "rank": 109
+    }
+  ],
+  "meta": {
+    "weth_in_contract": 307.810539,
+    "eth_in_contract": 0.0,
+    "total_auctions": 565,
+    "weth_bidding_auctions": 136,
+    "weth_auctioning_auctions": 9,
+    "total_sell_orders": 22024,
+    "total_claimed": 19299,
+    "total_cancelled": 2073,
+    "total_user_registrations": 14591,
+    "verified_unclaimed_orders": 283,
+    "unresolved_user_ids": 0,
+    "claim_method": "claimFromParticipantOrder(uint256 auctionId, bytes32[] orders) where each order = pack(userId, buyAmount, sellAmount)",
+    "unclaimed_orders": 290,
+    "verified_via": "eth_call simulation of claimFromParticipantOrder",
+    "simulation_fail_count": 2,
+    "coverage_type": "exact_weth_refund"
+  },
+  "description": "Gnosis EasyAuction unclaimed WETH refunds. Users placed bids (sellAmount WETH for auctioningToken) across 565 auctions. For each bid below the clearing price (not filled), the WETH is refundable via claimFromParticipantOrder. Bids at/above clearing price are fully or partially filled and return auctioning tokens instead. The gnosis-auction.eth.limo UI is dead; the contract remains immutable and has no deadline. Per-user balance is the exact WETH refund computed by simulating claimFromParticipantOrder via eth_call."
+}

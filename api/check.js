@@ -143,6 +143,13 @@ export default async function handler(req, res) {
       let refundPrice = typeof val === 'object' && val.rp ? val.rp : null;
       let tokenBalance = typeof val === 'object' && val.tb ? val.tb : null;
       let celerChannels = typeof val === 'object' && val.cc ? val.cc : null;
+      let merkleProof = typeof val === 'object' && val.mp ? val.mp : null;
+      let merkleWei = typeof val === 'object' && val.mw ? val.mw : null;
+      let merkleIndex = typeof val === 'object' && val.mi !== undefined ? val.mi : null;
+      let merkleTokens = typeof val === 'object' && val.mt ? val.mt : null;
+      let tokemakState = typeof val === 'object' && val.tk ? val.tk : null;
+      let gnosisState = typeof val === 'object' && val.ga ? val.ga : null;
+      let yearnShares = typeof val === 'object' && val.sw ? val.sw : null;
 
       if (itemsClaimed && itemsClaimed.size > 0) {
         if (deeds) {
@@ -173,7 +180,7 @@ export default async function handler(req, res) {
 
       const balFloat = parseFloat(balanceEth);
       totalClaimable += balFloat;
-      const balanceWei = BigInt(Math.round(balFloat * 1e18)).toString();
+      const balanceWei = merkleWei || BigInt(Math.round(balFloat * 1e18)).toString();
       results[key] = {
         contract: contractMeta.c,
         balance_wei: balanceWei,
@@ -188,6 +195,19 @@ export default async function handler(req, res) {
         ...(opynPositions ? { positions: opynPositions } : {}),
         ...(refundPrice ? { refund_price: refundPrice, token_balance: tokenBalance } : {}),
         ...(celerChannels ? { celer_channels: celerChannels } : {}),
+        ...(merkleProof ? { merkle_proof: merkleProof, merkle_wei: merkleWei } : {}),
+        ...(merkleIndex !== null ? { merkle_index: merkleIndex } : {}),
+        ...(merkleTokens ? { merkle_tokens: merkleTokens } : {}),
+        ...(tokemakState ? { tokemak_ready: tokemakState.r === true, tokemak_requested_eth: tokemakState.p } : {}),
+        ...(gnosisState ? {
+          gnosis_user_id: gnosisState.uid,
+          gnosis_auction_refunds: (gnosisState.ar || []).map(r => ({
+            auction_id: r.id,
+            weth: r.w,
+            orders: r.o,
+          })),
+        } : {}),
+        ...(yearnShares ? { yearn_shares_wei: yearnShares } : {}),
       };
     }
   }

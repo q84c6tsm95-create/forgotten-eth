@@ -1626,5 +1626,54 @@
     "color": "#7c3aed",
     "contract": "0xa6cd930fc92f1634d8183af2fb86bd1766f2f82a",
     "deployed": "July 2019"
+  },
+  "vader_merkle": {
+    "name": "Vader Protocol",
+    "description": "Vader Protocol was a DeFi liquidity protocol with its own stablecoin (USDV). After the protocol wound down, unclaimed WETH remains in a merkle distribution contract. Users can claim their share by providing a merkle proof.",
+    "contract": "0xf5644345a5a9dc14076b58802dc908b83e62b0e1",
+    "category": "defi",
+    "token": "WETH",
+    "website": "https://www.vaderprotocol.io",
+    "status": "defunct"
+  },
+  "yearn_v1_weth": {
+    "name": "Yearn v1 yWETH",
+    "desc": "Yearn Finance launched the v1 yWETH vault in August 2020 as one of the first wrapped-token yield vaults. Users deposited WETH and received yWETH shares representing proportional ownership of the vault's WETH balance plus accrued yield. The yearn.fi frontend dropped v1 vault support, leaving share holders without an interface. The vault is unpaused and immutable, and all WETH sits directly in the vault (no active strategy), so yWETH holders can still redeem their shares for the underlying WETH at the current pricePerFullShare.",
+    "category": "defi",
+    "color": "#0657f9",
+    "contract": "0xe1237aA7f535b0CC33Fd973D66cBf830354d16c7",
+    "deployed": "August 2020"
+  },
+  "euler_claims": {
+    "name": "Euler Redemptions",
+    "desc": "After the March 2023 Euler exploit, the recovered funds were distributed to depositors via a one-shot merkle-drop contract (EulerClaims) deployed July 2023. Each depositor's index pays out a basket of WETH, DAI, USDC, COMP, and other tokens proportional to their pre-exploit holdings. The euler-redemption-scripts repository was archived June 2024 with 1,638 indices still unclaimed. The contract is unpaused and the merkle root is final \u2014 anyone who never returned to claim can still call claimAndAgreeToTerms with the original index and proof. Each claim sends the entire basket of tokens in a single tx.",
+    "category": "lending",
+    "color": "#1e293b",
+    "contract": "0xbc8021015db2ca0599e0692d63ae6b91564cf026",
+    "deployed": "July 2023"
+  },
+  "tokemak_weth": {
+    "name": "Tokemak v1 tWETH",
+    "desc": "Tokemak launched its v1 reactor system in August 2021. The ETH pool (EthPool) accepted WETH deposits and minted tWETH shares 1:1 with WETH. Tokemak rebranded to Auto Finance in 2024 and the v1 reactor UI was retired. The contract is unpaused and tWETH holders can still exit via a 2-step flow: requestWithdrawal queues the amount at the current manager cycle, and withdraw pays out the WETH after the manager rolls cycles (~weekly). 93 tWETH holders already have matured withdrawal requests pending and can call step 2 directly.",
+    "category": "defi",
+    "color": "#6e40c9",
+    "contract": "0xd3d13a578a53685b4ac36a1bab31912d2b2a2f36",
+    "deployed": "August 2021"
+  },
+  "x2y2_fee_sharing": {
+    "name": "X2Y2 Fee Sharing",
+    "desc": "X2Y2 launched in February 2022 as an NFT marketplace competing with OpenSea. Stakers locked X2Y2 tokens into the FeeSharingSystem to earn a share of marketplace WETH fees. The x2y2.io frontend went offline and the project is dormant; the staking contract remains unpaused and immutable. Stakers can claim accrued WETH rewards at any time via harvest(), or unstake and claim simultaneously via withdraw(shares, true). About 207 WETH of accumulated fees beyond what users can claim is contract dust from accounting precision and is not user-claimable.",
+    "category": "nft",
+    "color": "#1d6d7d",
+    "contract": "0xc8c3cc5be962b6d281e4a53dbcce1359f76a1b85",
+    "deployed": "February 2022"
+  },
+  "gnosis_auction": {
+    "name": "Gnosis Auction",
+    "desc": "Gnosis Auction (EasyAuction) is a batch auction platform launched by Gnosis in 2021 for fair token launches. Bidders submitted WETH orders at their chosen price; orders below the clearing price were refunded. The gnosis-auction.eth.limo frontend is dead, but the contract is immutable with no deadline. Unfilled and partially-filled orders can still be claimed via claimFromParticipantOrder(auctionId, orders[]), which returns the unfilled WETH portion of each order.",
+    "category": "defi",
+    "color": "#3e6957",
+    "contract": "0x0b7ffc1f4ad541a4ed16b40d8c37f0929158d101",
+    "deployed": "July 2021"
   }
 }

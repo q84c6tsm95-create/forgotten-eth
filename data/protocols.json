@@ -1291,5 +1291,49 @@
     "category": "payment_channel",
     "balance_file": "celer_eth_balances.json",
     "multi_step": true
+  },
+  {
+    "key": "vader_merkle",
+    "name": "Vader Protocol",
+    "contract": "0xf5644345a5a9dc14076b58802dc908b83e62b0e1",
+    "category": "defi",
+    "balance_file": "vader_merkle_eth_balances.json"
+  },
+  {
+    "key": "yearn_v1_weth",
+    "name": "Yearn v1 yWETH",
+    "contract": "0xe1237aA7f535b0CC33Fd973D66cBf830354d16c7",
+    "category": "defi",
+    "balance_file": "yearn_v1_weth_eth_balances.json"
+  },
+  {
+    "key": "euler_claims",
+    "name": "Euler Redemptions",
+    "contract": "0xbc8021015db2ca0599e0692d63ae6b91564cf026",
+    "category": "lending",
+    "balance_file": "euler_claims_eth_balances.json"
+  },
+  {
+    "key": "tokemak_weth",
+    "name": "Tokemak v1 tWETH",
+    "contract": "0xd3d13a578a53685b4ac36a1bab31912d2b2a2f36",
+    "category": "defi",
+    "balance_file": "tokemak_weth_eth_balances.json",
+    "multi_step": true
+  },
+  {
+    "key": "x2y2_fee_sharing",
+    "name": "X2Y2 Fee Sharing",
+    "contract": "0xc8c3cc5be962b6d281e4a53dbcce1359f76a1b85",
+    "category": "nft",
+    "balance_file": "x2y2_fee_sharing_eth_balances.json"
+  },
+  {
+    "key": "gnosis_auction",
+    "name": "Gnosis Auction",
+    "contract": "0x0b7ffc1f4ad541a4ed16b40d8c37f0929158d101",
+    "category": "defi",
+    "balance_file": "gnosis_auction_eth_balances.json",
+    "multi_step": true
   }
 ]

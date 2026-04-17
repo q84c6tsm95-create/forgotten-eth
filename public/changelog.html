@@ -665,6 +665,30 @@
     <div class="changelog-month">April 2026</div>
 
     <div class="changelog-entry">
+      <span class="changelog-date">Apr 17</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/gnosis-auction">Gnosis Auction</a> <span class="changelog-tag">+306 WETH</span></div>
+        <div class="changelog-desc">The EasyAuction batch-auction contract (2021) still holds unclaimed WETH from 565 auctions. Bids below the clearing price are refundable via claimFromParticipantOrder(auctionId, orders[]) — one call per auction, with order bytes packing userId + buyAmount + sellAmount. The gnosis-auction.eth.limo UI is dead but the contract is immutable with no deadline. Exact per-user refund computed by simulating each claim via eth_call: 305.91 WETH across 109 bidders, 99.4% of the contract balance.</div>
+      </div>
+    </div>
+
+    <div class="changelog-entry">
+      <span class="changelog-date">Apr 17</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/x2y2-fee-sharing">X2Y2 Fee Sharing</a> <span class="changelog-tag">+321 WETH</span></div>
+        <div class="changelog-desc">The X2Y2 NFT marketplace launched a FeeSharingSystem in Feb 2022 where X2Y2 stakers earned WETH from marketplace fees. 6,803 stakers can still claim via harvest() or withdraw(shares, true). The x2y2.io frontend is gone, but the contract is immutable. Full reconciliation against totalShares confirms 321.34 WETH is the complete claimable pool (every address scanned). A separate 207 WETH in the contract is stranded in the reward-accounting math and requires a single admin transaction from the still-active 2-of-3 multisig to release.</div>
+      </div>
+    </div>
+
+    <div class="changelog-entry">
+      <span class="changelog-date">Apr 17</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/yearn-v1-weth">Yearn v1 yWETH</a> + <a href="/euler-claims">Euler Redemptions</a> + <a href="/tokemak-weth">Tokemak v1 tWETH</a> <span class="changelog-tag">+963 WETH</span></div>
+        <div class="changelog-desc">Three abandoned WETH positions surfaced via the Nansen WETH-holders scan. <strong>Yearn v1 yWETH (496 WETH, 539 holders):</strong> the original WETH yield vault from Aug 2020. yearn.fi dropped v1 support; vault is immutable with all WETH sitting as idle liquidity. Redeem via withdraw(shares). <strong>Euler Redemptions (192 WETH, 1,638 addresses):</strong> post-exploit merkle distribution for the March 2023 Euler hack. Each index releases a basket of WETH + DAI + USDC + COMP. The euler-redemption-scripts repo was archived with 1,638 indices still unclaimed. <strong>Tokemak v1 tWETH (276 WETH, 374 holders):</strong> the v1 EthPool from Aug 2021. Tokemak rebranded to Auto Finance; v1 UI is gone. 2-step: requestWithdrawal → wait for next manager cycle → withdraw.</div>
+      </div>
+    </div>
+
+    <div class="changelog-entry">
       <span class="changelog-date">Apr 12</span>
       <div class="changelog-body">
         <div class="changelog-name"><a href="/opyn-v1">Opyn v1</a> + <a href="/unagii">Unagii ETH Vault</a> <span class="changelog-tag">+37 ETH</span></div>
