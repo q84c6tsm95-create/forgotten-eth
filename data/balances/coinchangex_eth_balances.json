@@ -3,10 +3,10 @@
   "token_checked": "0x0000000000000000000000000000000000000000",
   "description": "ETH balances in defunct Coinchangex contract",
   "scan_date": "2026-03-31 08:31:34 UTC",
-  "contract_eth_balance": 17.359297,
+  "contract_eth_balance": 17.351301,
   "total_addresses_scanned": 559,
-  "addresses_with_balance": 210,
-  "total_eth_in_balances": 17.35929675,
+  "addresses_with_balance": 209,
+  "total_eth_in_balances": 17.35130075,
   "coverage_pct": 100,
   "distribution": {
     "1-10 ETH": {
@@ -458,7 +458,8 @@
       "rank": 72,
       "address": "0x57b00c981363C67B11E07EaA71364BF20E8025Fe",
       "balance_wei": "7996000000000000",
-      "balance_eth": "0.007996000000000000"
+      "balance_eth": "0.007996000000000000",
+      "claimed": true
     },
     {
       "rank": 73,
@@ -1309,5 +1310,5 @@
       "balance_eth": "0.000000000000000001"
     }
   ],
-  "last_event_refresh": "2026-04-15T06:23:58Z"
+  "last_event_refresh": "2026-04-19T03:50:27Z"
 }
