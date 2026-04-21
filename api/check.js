@@ -135,6 +135,8 @@ export default async function handler(req, res) {
       const itemsClaimed = claimedItems[key];
       let deeds = typeof val === 'object' && val.d ? val.d : null;
       let bounties = typeof val === 'object' && val.b ? val.b : null;
+      let nftDetails = typeof val === 'object' && val.nft ? val.nft : null;
+      let nftAllowlisted = typeof val === 'object' && 'al' in val ? val.al : null;
       let epochs = typeof val === 'object' && val.ep ? val.ep : null;
       let augurClaims = typeof val === 'object' && val.ac ? val.ac : null;
       let keeperdaoItems = typeof val === 'object' && val.kd ? val.kd : null;
@@ -188,6 +190,8 @@ export default async function handler(req, res) {
         ...(deeds ? { deeds } : {}),
         ...(typeof val === 'object' && val.a ? { adoption_requests: val.a } : {}),
         ...(bounties ? { bounty_details: bounties } : {}),
+        ...(nftDetails ? { nft_details: nftDetails } : {}),
+        ...(nftAllowlisted !== null ? { allowlisted: nftAllowlisted } : {}),
         ...(epochs ? { epoch_details: epochs } : {}),
         ...(augurClaims ? { augur_claims: augurClaims } : {}),
         ...(keeperdaoItems ? { keeperdao_items: keeperdaoItems } : {}),

@@ -270,8 +270,6 @@ function renderPage(slug, key, info, meta) {
   .header h1, .header .site-name { font-family: var(--font-display); font-size: 38px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
   .header h1 a, .header .site-name a { color: inherit; text-decoration: none; }
   .header .subtitle { font-family: var(--font-display); font-size: 16px; color: var(--text2); font-weight: 400; margin-bottom: 20px; font-style: italic; letter-spacing: 0.3px; opacity: 0.8; }
-  .hero-tagline { font-family: var(--font-display); color: var(--text); font-size: 17px; line-height: 1.5; max-width: 700px; margin: 0 auto 18px; font-weight: 400; text-align: center; }
-  .hero-tagline a { color: var(--text2); }
   .header-nav { display: inline-flex; align-items: center; justify-content: center; gap: 24px; margin-top: 2px; font-size: 13px; font-family: var(--font-mono); }
   .header-nav a { color: var(--text2); text-decoration: none; transition: color 150ms ease; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; }
   .header-nav a:hover { color: var(--accent); text-decoration-color: var(--accent); }
@@ -281,9 +279,8 @@ function renderPage(slug, key, info, meta) {
 
   /* Protocol content */
   .project-desc { color: var(--text2); font-size: 13px; line-height: 1.6; margin-bottom: 16px; }
-  .color-bar { height: 4px; width: 48px; border-radius: 2px; margin-bottom: 16px; }
-  .protocol-hero { padding: 28px 0 0; }
-  .protocol-hero h2 { font-family: var(--font-display); font-size: 28px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.2px; }
+  .protocol-hero { padding: 32px 0 24px; }
+  .protocol-hero h1 { font-family: var(--font-display); font-size: 32px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.5px; line-height: 1.15; }
 
   /* Cards — matches main page */
   .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px; }
@@ -299,7 +296,15 @@ function renderPage(slug, key, info, meta) {
   .chart-wrap { position: relative; height: 300px; }
 
   /* Contract info */
-  .contract-info { font-family: var(--font-mono); font-size: 12px; color: var(--text2); margin-bottom: 16px; text-align: center; }
+  .contract-info { font-family: var(--font-mono); font-size: 12px; color: var(--text2); margin-bottom: 16px; }
+
+  /* Subpage stats layout — cards + charts + distribution */
+  .subpage-stats { display: flex; flex-direction: column; }
+  @media (max-width: 768px) {
+    /* On mobile, swap charts (order 3) and distribution (order 2) so users hit actionable data first */
+    .subpage-stats > .charts { order: 3; }
+    .subpage-stats > :nth-child(3) { order: 2; }
+  }
 
   /* Table — matches main page */
   .table-wrap { overflow-x: auto; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); }
@@ -336,10 +341,12 @@ function renderPage(slug, key, info, meta) {
   .check-result:empty { display: none; }
   .check-result { margin-top: 16px; font-size: 13px; text-align: center; }
   .check-result .found { color: var(--green); font-weight: 700; font-size: 18px; }
+  .check-result .found a.claim-cta { display: inline-block; margin-top: 10px; padding: 10px 24px; background: var(--accent); color: #fff; border-radius: var(--radius); text-decoration: none; font-weight: 700; font-size: 14px; transition: background 0.15s; }
+  .check-result .found a.claim-cta:hover { background: var(--accent2); color: #fff; }
   .check-result .not-found { color: var(--text2); }
   .check-result .others { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--connect-border); font-size: 13px; color: var(--text2); }
   .check-result .others a.others-cta { display: inline-block; margin-top: 8px; padding: 8px 20px; background: var(--accent); color: #fff; border-radius: var(--radius); text-decoration: none; font-weight: 600; font-size: 13px; }
-  .check-result .others a.others-cta:hover { background: #5b21b6; color: #fff; }
+  .check-result .others a.others-cta:hover { background: var(--accent2); color: #fff; }
 
   /* About / FAQ — matches main page */
   .about-section { border-top: 1px solid var(--border); margin-top: 48px; padding: 40px 0 8px; }
@@ -392,9 +399,30 @@ function renderPage(slug, key, info, meta) {
     .faq-q { font-size: 13px; }
     .table-wrap { font-size: 12px; }
   }
+
+  /* A11y: focus visibility, reduced motion, skip link, corrupt-light text contrast */
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+  :focus:not(:focus-visible) { outline: none; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  .skip-link { position: absolute; top: -40px; left: 0; background: var(--accent); color: #fff; padding: 8px 16px; text-decoration: none; z-index: 10000; border-radius: 0 0 var(--radius) 0; font-size: 13px; font-weight: 700; }
+  .skip-link:focus { top: 0; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  /* Corrupt-light: darken #ff0066 text uses to #cc0052 for WCAG AA */
+  [data-theme="corrupt-light"] .btn { border-color: #cc0052; color: #cc0052; }
+  [data-theme="corrupt-light"] a:hover { color: #cc0052; }
+  [data-theme="corrupt-light"] .faq-q:hover { color: #cc0052; }
+  [data-theme="corrupt-light"] #corruptToggle { color: #cc0052 !important; }
 </style>
 </head>
 <body data-protocol-key="${key}" data-protocol-name="${esc(info.name)}">
+<a href="#main" class="skip-link">Skip to main content</a>
 <div class="container">
 
   <!-- Header — same as main page -->
@@ -418,10 +446,20 @@ function renderPage(slug, key, info, meta) {
     </div>
   </div>
 
-  <p class="hero-tagline"><span style="font-weight:600">Thousands of ETH sit forgotten in defunct contracts from the 2015&ndash;2019 era.</span><br><span style="color:var(--text2)"><a href="https://debank.com" target="_blank" rel="noopener noreferrer">DeBank</a>, <a href="https://zapper.xyz" target="_blank" rel="noopener noreferrer">Zapper</a>, and other portfolio trackers don't detect them.</span></p>
+  <main id="main">
+  <!-- Protocol identity — leads the page -->
+  <div class="protocol-hero">
+    <h1>${esc(info.name)}</h1>
+    <p class="project-desc">${esc(info.desc)}</p>
+    <div class="contract-info">
+      Contract: <a href="https://etherscan.io/address/${esc(info.contract)}" target="_blank" rel="noopener noreferrer">${esc(info.contract)}</a>
+      &middot; Deployed: ${esc(info.deployed)}
+    </div>
+  </div>
 
   <!-- Address check -->
   <div class="connect-section">
+    <label for="checkAddr" style="color:var(--text2);font-size:12px;text-align:center;letter-spacing:0.3px;display:block;margin:0">Check if an address has unclaimed ETH in <strong style="color:var(--text)">${esc(info.name)}</strong></label>
     <div class="connect-input-row">
       <div class="connect-input-wrap">
         <input type="text" id="checkAddr" class="connect-input" placeholder="0x... or ENS name" spellcheck="false" autocomplete="off">
@@ -431,41 +469,32 @@ function renderPage(slug, key, info, meta) {
     <div id="checkResult" class="check-result"></div>
   </div>
 
-  <!-- Protocol info -->
-  <div class="protocol-hero">
-    <div class="color-bar" style="background:${esc(info.color)}"></div>
-    <h1 style="font-family:var(--font-mono);font-size:24px;font-weight:800;margin-bottom:8px;letter-spacing:-0.3px">${esc(info.name)}</h1>
-    <p class="project-desc">${esc(info.desc)}</p>
-    <div class="contract-info">
-      Contract: <a href="https://etherscan.io/address/${esc(info.contract)}" target="_blank" rel="noopener noreferrer">${esc(info.contract)}</a>
-      &middot; Deployed: ${esc(info.deployed)}
+  <div class="subpage-stats">
+    <div class="cards">
+      <div class="card"><div class="label">Unclaimed ETH</div><div class="value eth">${fmtEth(meta.total_eth)} ETH</div></div>
+      <div class="card"><div class="label">Addresses</div><div class="value eth">${fmtNum(meta.addresses_with_balance)}</div></div>
     </div>
-  </div>
 
-  <div class="cards">
-    <div class="card"><div class="label">Unclaimed ETH</div><div class="value eth">${fmtEth(meta.total_eth)} ETH</div></div>
-    <div class="card"><div class="label">Addresses</div><div class="value eth">${fmtNum(meta.addresses_with_balance)}</div></div>
-  </div>
-
-  <div class="charts">
-    <div class="chart-box">
-      <h3>ETH Balance Over Time</h3>
-      <div class="chart-wrap"><canvas id="tvlChart"></canvas></div>
+    <div class="charts">
+      <div class="chart-box">
+        <h3>ETH Balance Over Time</h3>
+        <div class="chart-wrap"><canvas id="tvlChart"></canvas></div>
+      </div>
+      <div class="chart-box">
+        <h3>Contract Interactions</h3>
+        <div class="chart-wrap"><canvas id="actChart"></canvas></div>
+      </div>
     </div>
-    <div class="chart-box">
-      <h3>Contract Interactions</h3>
-      <div class="chart-wrap"><canvas id="actChart"></canvas></div>
-    </div>
-  </div>
 
-  ${renderDistribution(meta.distribution)}
+    ${renderDistribution(meta.distribution)}
+  </div>
 
   ${seo.faq ? `
   <div style="margin-top:32px">
     <h3 style="font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;font-weight:700">Frequently Asked Questions</h3>
     <div class="faq-list">
       ${seo.faq.map(f => `<div class="faq-item">
-        <div class="faq-q" data-faq-toggle>${esc(f.q)} <span class="faq-arrow">&#x25BC;</span></div>
+        <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">${esc(f.q)} <span class="faq-arrow">&#x25BC;</span></div>
         <div class="faq-a">${esc(f.a)}</div>
       </div>`).join('')}
     </div>
@@ -479,41 +508,42 @@ function renderPage(slug, key, info, meta) {
     <div class="faq-label">Frequently Asked Questions</div>
     <div class="faq-list">
     <div class="faq-item">
-      <div class="faq-q" data-faq-toggle>How does it work? <span class="faq-arrow">&#x25BC;</span></div>
+      <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">How does it work? <span class="faq-arrow">&#x25BC;</span></div>
       <div class="faq-a">Paste any address or connect your wallet. We check ${contractCount} defunct contracts for unclaimed balances. If found, click Withdraw — the transaction goes directly from the original contract to your wallet.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" data-faq-toggle>Is this safe? <span class="faq-arrow">&#x25BC;</span></div>
+      <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">Is this safe? <span class="faq-arrow">&#x25BC;</span></div>
       <div class="faq-a">Yes. Fully <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a>. No proxy contracts, no intermediaries. Most withdrawals are simple ETH transfers with no approvals needed. A few contracts (e.g. wrapped ETH variants, dividend tokens) require a token burn or two-step process — the UI explains each case. Every withdrawal can be done manually on Etherscan — this site just makes it easier.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" data-faq-toggle>Why can't my portfolio tracker see these? <span class="faq-arrow">&#x25BC;</span></div>
+      <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">Why can't my portfolio tracker see these? <span class="faq-arrow">&#x25BC;</span></div>
       <div class="faq-a">DeBank, Zerion, and Zapper only index active protocols. These contracts are defunct or too obscure to be tracked. Your ETH is still onchain, it just doesn't show up in standard wallet interfaces.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" data-faq-toggle>Do you charge fees? <span class="faq-arrow">&#x25BC;</span></div>
+      <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">Do you charge fees? <span class="faq-arrow">&#x25BC;</span></div>
       <div class="faq-a">No. Completely free. After a successful claim, there's an optional donation prompt — entirely voluntary.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" data-faq-toggle>What contracts are tracked? <span class="faq-arrow">&#x25BC;</span></div>
+      <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">What contracts are tracked? <span class="faq-arrow">&#x25BC;</span></div>
       <div class="faq-a">${contractCount} contracts across defunct DEXes (EtherDelta, IDEX v1, Token.Store), dividend tokens (PoWH3D, Fomo3D), NFT auctions (MoonCatRescue, DADA), bounty platforms, ICO escrows, ENS old registrar deeds, DAO treasury refunds (DigixDAO), and wrapped ETH variants.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" data-faq-toggle>Don't trust, verify <span class="faq-arrow">&#x25BC;</span></div>
+      <div class="faq-q" data-faq-toggle role="button" tabindex="0" aria-expanded="false">Don't trust, verify <span class="faq-arrow">&#x25BC;</span></div>
       <div class="faq-a">You don't need this site to claim. Every withdrawal can be done directly on Etherscan: go to the contract, click "Write Contract", connect your wallet, call the withdraw function. We simply facilitate the crafting of withdrawal transactions on your behalf — each contract's address and function is shown in the claim details. Our code is <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">open source</a> for anyone to audit. Know a contract we're missing? <a href="https://github.com/q84c6tsm95-create/forgotten-eth/issues" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Open an issue</a>.</div>
     </div>
     </div>
   </div>
 
+  </main>
 </div>
 
 <footer class="site-footer" style="text-align:center;padding:16px 0 20px;margin-top:12px">
   <p style="margin-bottom:8px;display:flex;justify-content:center;gap:24px;align-items:center">
-    <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" title="GitHub" style="color:var(--text2)"><svg width="29" height="29" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
-    <a href="https://x.com/3pa15" target="_blank" rel="noopener noreferrer" title="X/Twitter" style="color:var(--text2)"><svg width="23" height="23" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-    <a href="https://t.me/forgottenETH_bot" target="_blank" rel="noopener noreferrer" title="Telegram" style="color:var(--text2)"><svg width="29" height="29" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+    <a href="https://github.com/q84c6tsm95-create/forgotten-eth" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository" title="GitHub" style="color:var(--text2)"><svg width="29" height="29" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+    <a href="https://x.com/3pa15" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter) profile" title="X/Twitter" style="color:var(--text2)"><svg width="23" height="23" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="https://t.me/forgottenETH_bot" target="_blank" rel="noopener noreferrer" aria-label="Telegram bot" title="Telegram" style="color:var(--text2)"><svg width="29" height="29" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
   </p>
-  <p style="font-size:13px;color:var(--text2);opacity:0.7">made with <svg width="14" height="18" viewBox="0 0 14 18" style="vertical-align:middle;margin:0 3px" aria-label="Madotsuki"><rect x="4" y="0" width="6" height="2" fill="#5c3a1e"/><rect x="3" y="2" width="8" height="2" fill="#5c3a1e"/><rect x="2" y="2" width="1" height="6" fill="#5c3a1e"/><rect x="11" y="2" width="1" height="6" fill="#5c3a1e"/><rect x="3" y="4" width="8" height="2" fill="#f0c8a0"/><rect x="4" y="4" width="2" height="1" fill="#2a2018"/><rect x="8" y="4" width="2" height="1" fill="#2a2018"/><rect x="3" y="6" width="8" height="2" fill="#f0c8a0"/><rect x="3" y="8" width="8" height="5" fill="#c84b6b"/><rect x="5" y="9" width="1" height="2" fill="#f0c8a0"/><rect x="8" y="9" width="1" height="2" fill="#f0c8a0"/><rect x="6" y="9" width="2" height="3" fill="#87ceeb"/><rect x="3" y="13" width="3" height="3" fill="#c84b6b"/><rect x="8" y="13" width="3" height="3" fill="#c84b6b"/><rect x="3" y="16" width="3" height="2" fill="#5c3a1e"/><rect x="8" y="16" width="3" height="2" fill="#5c3a1e"/></svg> by <a href="https://t.me/syLKf" target="_blank" rel="noopener noreferrer" style="color:var(--text);text-decoration:none;font-weight:700">aaaaaaaaaaway</a></p>
+  <p style="font-size:13px;color:var(--text2);opacity:0.7">made with <span style="color:#e11d48;font-size:16px;vertical-align:middle">&#10084;</span> by <a href="https://t.me/syLKf" target="_blank" rel="noopener noreferrer" style="color:var(--text);text-decoration:none;font-weight:700">aaaaaaaaaaway</a></p>
   <p style="margin-top:4px;font-size:11px;color:var(--text2);opacity:0.7"><a href="https://etherscan.io/address/0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891" target="_blank" rel="noopener noreferrer" style="color:var(--text2);text-decoration:none;font-family:var(--font-mono)">forgotteneth.eth</a></p>
 </footer>
 

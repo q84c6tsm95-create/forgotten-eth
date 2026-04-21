@@ -1335,5 +1335,13 @@
     "category": "defi",
     "balance_file": "gnosis_auction_eth_balances.json",
     "multi_step": true
+  },
+  {
+    "key": "nomad_recovery",
+    "name": "Nomad Bridge Recovery",
+    "contract": "0xa4B86BcbB18639D8e708d6163a0c734aFcDB770c",
+    "category": "hack_recovery",
+    "balance_file": "nomad_recovery_eth_balances.json",
+    "multi_step": true
   }
 ]

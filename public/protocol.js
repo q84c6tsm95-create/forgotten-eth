@@ -323,10 +323,15 @@ try { __ACT = JSON.parse(document.getElementById('act-data').textContent); } cat
   else window.addEventListener('load', renderCharts);
 })();
 
-// FAQ toggle
+// FAQ toggle (keyboard + ARIA state)
 document.querySelectorAll('[data-faq-toggle]').forEach(function(el) {
-  el.addEventListener('click', function() {
-    this.closest('.faq-item').classList.toggle('open');
+  function toggle() {
+    var isOpen = el.closest('.faq-item').classList.toggle('open');
+    el.setAttribute('aria-expanded', String(isOpen));
+  }
+  el.addEventListener('click', toggle);
+  el.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
   });
 });
 
@@ -386,9 +391,9 @@ function checkAddress() {
         foundDiv.appendChild(document.createTextNode(' found in ' + protoName + '!'));
         foundDiv.appendChild(document.createElement('br'));
         var claimLink = document.createElement('a');
-        claimLink.href = '/?address=' + encodeURIComponent(addr);
+        claimLink.href = '/?address=' + encodeURIComponent(addr) + '#' + thisKey;
         claimLink.className = 'claim-cta';
-        claimLink.textContent = 'Go to claim page \u2192';
+        claimLink.textContent = 'Claim now \u2192';
         foundDiv.appendChild(claimLink);
         result.appendChild(foundDiv);
       } else {

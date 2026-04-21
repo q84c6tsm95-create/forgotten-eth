@@ -466,9 +466,14 @@ function showDonationModal(totalEth) {
   var drawn = 0;
   var modalRevealed = false;
 
+  var _donationPrevFocus = document.activeElement;
+
   var overlay = document.createElement('div');
   overlay.className = 'modal-overlay';
   overlay.id = 'donationModal';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-labelledby', 'donationModalTitle');
   overlay.style.cssText = 'opacity:0;z-index:99999;';
 
   var box = document.createElement('div');
@@ -479,6 +484,7 @@ function showDonationModal(totalEth) {
   var topRow = document.createElement('div');
   topRow.style.cssText = 'margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);';
   var recoveredAmount = document.createElement('div');
+  recoveredAmount.id = 'donationModalTitle';
   recoveredAmount.style.cssText = 'font-size:32px;font-weight:800;letter-spacing:-1px;line-height:1.2;background:linear-gradient(90deg, #b45309 0%, #d97706 20%, #fbbf24 50%, #d97706 80%, #b45309 100%);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 2s ease-in-out infinite;';
   var ethVal = fmtEth(totalEth.toString());
   recoveredAmount.textContent = ethVal + ' ETH';
@@ -505,10 +511,12 @@ function showDonationModal(totalEth) {
   // ── Middle: donation prompt + ENS + controls (compact) ──
   var midRow = document.createElement('div');
   midRow.style.cssText = 'margin-bottom:16px;';
-  var addrRow = document.createElement('div');
-  addrRow.style.cssText = 'font-size:13px;color:var(--text2);margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;';
+  var addrRow = document.createElement('button');
+  addrRow.type = 'button';
+  addrRow.setAttribute('aria-label', 'Copy donation address forgotteneth.eth');
+  addrRow.style.cssText = 'font-size:13px;color:var(--text2);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;background:none;border:none;padding:0;font-family:inherit;';
   addrRow.title = 'Click to copy address';
-  var supportText = document.createTextNode('Support ');
+  var supportText = document.createTextNode('If this helped, you can send a bit back to ');
   var ensName = document.createElement('span');
   ensName.textContent = 'forgotteneth.eth';
   ensName.style.cssText = 'color:var(--accent-text);font-weight:600;font-family:var(--font-mono);transition:color 0.15s;';
@@ -589,6 +597,11 @@ function showDonationModal(totalEth) {
   var ethLabel = document.createElement('span');
   ethLabel.style.cssText = 'font-size:13px;color:var(--text2);font-weight:600;';
   ethLabel.textContent = 'ETH';
+  var amtLabel = document.createElement('label');
+  amtLabel.setAttribute('for', 'modalDonationAmt');
+  amtLabel.textContent = 'Donation amount in ETH';
+  amtLabel.style.cssText = 'position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;';
+  customRow.appendChild(amtLabel);
   customRow.appendChild(amtInput);
   customRow.appendChild(ethLabel);
   if (_ethPrice) {
@@ -626,7 +639,11 @@ function showDonationModal(totalEth) {
   pctRow.style.marginBottom = '0';
   customRow.style.marginBottom = '0';
 
+  var pillsLabel = document.createElement('div');
+  pillsLabel.style.cssText = 'font-size:11px;color:var(--text2);text-align:center;margin-bottom:8px;letter-spacing:0.3px;opacity:0.7;';
+  pillsLabel.textContent = 'suggested — % of what you recovered';
   midRow.appendChild(addrRow);
+  midRow.appendChild(pillsLabel);
   midRow.appendChild(controlsRow);
 
   // ── Bottom: button + skip inline ──
@@ -641,6 +658,8 @@ function showDonationModal(totalEth) {
   errEl.style.cssText = 'font-size:12px;color:var(--red);margin-top:6px;';
 
   var closeX = document.createElement('button');
+  closeX.type = 'button';
+  closeX.setAttribute('aria-label', 'Close donation dialog');
   closeX.style.cssText = 'position:absolute;top:12px;right:14px;background:none;border:none;font-size:18px;color:var(--text2);cursor:pointer;padding:4px 8px;line-height:1;transition:color 0.15s;';
   closeX.textContent = '\u00D7';
   closeX.addEventListener('mouseenter', function() { closeX.style.color = 'var(--text)'; });
@@ -673,6 +692,23 @@ function showDonationModal(totalEth) {
   overlay.appendChild(box);
   document.body.appendChild(overlay);
 
+  // Accessibility: Escape dismisses; focus trap keeps focus inside the dialog
+  var _donationEscHandler = function(e) {
+    if (e.key === 'Escape' && modalRevealed) {
+      var suppress = dontShowCheck.checked;
+      dismissModal(!suppress, 'escape');
+      if (suppress) _donationModalSuppressed = true;
+    }
+  };
+  var _donationFocusTrap = function(e) {
+    if (modalRevealed && !overlay.contains(e.target)) {
+      e.stopPropagation();
+      try { closeX.focus(); } catch(_) {}
+    }
+  };
+  document.addEventListener('keydown', _donationEscHandler);
+  document.addEventListener('focusin', _donationFocusTrap);
+
   // Click outside box to dismiss (only after modal is visible)
   overlay.addEventListener('click', function(e) {
     if (e.target === overlay && modalRevealed) {
@@ -692,6 +728,7 @@ function showDonationModal(totalEth) {
     if (!modalRevealed && drawn >= blocks.length * 0.5) {
       modalRevealed = true;
       overlay.style.opacity = '1';
+      try { closeX.focus(); } catch(_) {}
     }
     if (drawn < blocks.length) {
       requestAnimationFrame(pixelStep);
@@ -743,7 +780,7 @@ function showDonationModal(totalEth) {
     confirmBtn.disabled = true;
     confirmBtn.style.opacity = '0.6';
     confirmBtn.style.background = 'var(--gold)';
-    confirmBtn.textContent = 'Sending...';
+    confirmBtn.textContent = 'Confirm in wallet';
     var amountWei = ethers.parseEther(amt.toFixed(18));
     sendDonation(amountWei).then(function() {
       while (box.firstChild) box.removeChild(box.firstChild);
@@ -751,7 +788,7 @@ function showDonationModal(totalEth) {
       msg.style.cssText = 'padding:20px 0;text-align:center;';
       var successText = document.createElement('div');
       successText.style.cssText = 'font-size:14px;font-weight:600;color:var(--green);';
-      successText.textContent = 'Thank you for your donation.';
+      successText.textContent = 'thank you — this helps add more protocols';
       msg.appendChild(successText);
       box.appendChild(msg);
       setTimeout(function() { dismissModal(false, 'donation_success'); }, 2500);
@@ -761,12 +798,14 @@ function showDonationModal(totalEth) {
       confirmBtn.style.background = 'var(--accent)';
       confirmBtn.textContent = 'Donate ' + fmtDonation(amt) + ' ETH';
       if (e.code !== 'ACTION_REJECTED' && e.code !== 4001) {
-        errEl.textContent = e.reason || e.message || 'Transaction failed';
+        errEl.textContent = e.reason || e.message || 'something went wrong — nothing was sent';
       }
     });
   });
 
   function dismissModal(resetFlag, reason) {
+    document.removeEventListener('keydown', _donationEscHandler);
+    document.removeEventListener('focusin', _donationFocusTrap);
     logEvent('found', { extra: { donation_modal: 'dismissed', reason: reason || 'unknown', reset: resetFlag } });
     overlay.style.opacity = '0';
     overlay.style.transition = 'opacity 0.25s ease';
@@ -774,6 +813,9 @@ function showDonationModal(totalEth) {
       overlay.remove();
       _lastClaimTxHash = null;
       if (resetFlag) _donationModalShown = false;
+      if (_donationPrevFocus && typeof _donationPrevFocus.focus === 'function') {
+        try { _donationPrevFocus.focus(); } catch(_) {}
+      }
     }, 250);
   }
 
@@ -3324,6 +3366,41 @@ const EXCHANGES = {
     withdrawArgs: () => [], // filled per-auction in custom UI handler
     withdrawCall: 'claimFromParticipantOrder',
   },
+  nomad_recovery: {
+    name: 'Nomad Bridge Recovery',
+    desc: 'After the August 2022 Nomad bridge exploit, a fraction of the drained funds were returned to a recovery Accountant contract. Affected depositors received one ERC-721 NFT per token they held pre-hack (WETH, USDC, USDT, DAI, FRAX, WBTC, CQT, FXS). Each NFT can be redeemed independently via recover(tokenId) for its pro-rata share of the current pool. Two requirements: the caller must own the NFT AND be on the contract\'s allowList (KYC-gated by the Nomad team). The Nomad dashboard is discontinued but the contract is permissionless for allowlisted holders. Roughly 95% of the claimable WETH is held by allowlisted addresses that have never called recover.',
+    category: 'defi',
+    color: '#2d3748',
+    contract: '0xa4B86BcbB18639D8e708d6163a0c734aFcDB770c',
+    deployed: 'January 2023',
+    returnsWeth: true,
+    noWalletCheck: true,
+    nomadRecovery: true,
+    nftMulti: true,
+    withdrawAbi: 'function recover(uint256 _id)',
+    withdrawArgs: (amount, addr) => {
+      // The generic claim flow only handles one recover(tokenId) per click.
+      // We pick the highest-value NFT (WETH preferred) from the API data so the
+      // primary click matches the headline balance_eth shown in the card.
+      // Multi-NFT users need to click again per additional NFT (each NFT is an
+      // independent asset; recover() is not batchable by design).
+      const api = window._lastApiBalances?.nomad_recovery;
+      if (!api) throw new Error('Missing Nomad Recovery data — refresh and try again');
+      if (api.allowlisted === false) {
+        throw new Error('This address is not on Nomad\'s allowList — claim would revert on-chain. Contact the Nomad team to request allowlisting.');
+      }
+      const nfts = api.nft_details || [];
+      if (!nfts.length) throw new Error('No Nomad NFTs found for this address');
+      const sorted = [...nfts].sort((a, b) => {
+        const aw = a.asset_symbol === 'WETH' ? 1 : 0;
+        const bw = b.asset_symbol === 'WETH' ? 1 : 0;
+        if (aw !== bw) return bw - aw;
+        return Number(b.amount || 0) - Number(a.amount || 0);
+      });
+      return [BigInt(sorted[0].nft_id)];
+    },
+    withdrawCall: 'recover',
+  },
 };
 
 // Per-tab state
@@ -4391,6 +4468,48 @@ async function checkUserBalances(overrideAddress) {
             }
           } else {
             html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">Bounty IDs not available. <a href="${etherscanAddr(cfg.contract)}#writeContract" target="_blank" rel="noopener noreferrer">Use Etherscan</a> to call killBounty with your bounty ID.</div>`;
+          }
+          html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
+        } else if (cfg.nftMulti) {
+          // Nomad Recovery: per-NFT recover() buttons, gated on allowlist
+          const nftDetails = apiBalances[key]?.nft_details || [];
+          const allowlisted = apiBalances[key]?.allowlisted === true;
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
+              </div>
+              <div class="claim-card-meta">
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">recover(uint256 _id) per NFT</span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Allowlist</span><span class="claim-card-meta-value">${allowlisted ? '<span style="color:#059669">✓ on allowList — ready to claim</span>' : '<span style="color:#b45309">✗ not on allowList — request KYC from Nomad first</span>'}</span></div>
+              </div>`;
+          if (!allowlisted) {
+            html += `<div style="margin:8px 16px;padding:8px 12px;font-size:12px;color:#8a4a00;background:#fff3e0;border-left:3px solid #f59e0b;border-radius:4px">Your NFTs are real but <code>recover()</code> will revert without KYC. Request allowlisting from the Nomad team — context at <a href="https://github.com/nomad-xyz/hack-data" target="_blank" rel="noopener noreferrer">nomad-xyz/hack-data</a>, or DM <a href="https://x.com/nomadxyz_" target="_blank" rel="noopener noreferrer">@nomadxyz_</a>. Once allowlisted, refresh this page to claim.</div>`;
+          }
+          if (nftDetails.length > 0) {
+            // Sort: WETH first, then by amount desc
+            const sortedNfts = [...nftDetails].sort((a, b) => {
+              const aw = a.asset_symbol === 'WETH' ? 1 : 0;
+              const bw = b.asset_symbol === 'WETH' ? 1 : 0;
+              if (aw !== bw) return bw - aw;
+              return Number(b.amount || 0) - Number(a.amount || 0);
+            });
+            for (const nd of sortedNfts) {
+              const sym = nd.asset_symbol || '?';
+              const amt = sym === 'WETH' ? fmtEth(nd.amount) + ' ETH'
+                        : sym === 'USDC' || sym === 'USDT' || sym === 'DAI' || sym === 'FRAX' ? Number(nd.amount).toFixed(2) + ' ' + sym
+                        : sym === 'WBTC' ? Number(nd.amount).toFixed(6) + ' WBTC'
+                        : Number(nd.amount).toFixed(4) + ' ' + sym;
+              const disabled = allowlisted ? '' : 'disabled style="opacity:.45;cursor:not-allowed"';
+              html += `<div class="claim-row" style="margin:4px 16px;border-left:2px solid var(--accent);padding:6px 12px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:13px">NFT #${esc(String(nd.nft_id))}<span style="color:var(--text2);font-size:12px"> · ${esc(amt)}</span></span>
+                <button class="claim-btn" data-action="nomad-recover" data-key="${key}" data-nft-id="${nd.nft_id}" data-asset-symbol="${esc(sym)}" ${disabled}>Claim</button>
+              </div>`;
+            }
+          } else {
+            html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">No claimable NFTs found in the contract for this address.</div>`;
           }
           html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
         } else if (cfg.hegicMulti) {
@@ -6307,6 +6426,43 @@ async function killBounty(key, bountyId, btn) {
   }
 }
 
+// Nomad Recovery: claim a single NFT via recover(tokenId). One tx per NFT.
+// The contract requires BOTH msg.sender == ownerOf(id) AND allowList[msg.sender].
+// Non-allowlisted users see the button disabled via the render logic.
+async function nomadRecover(key, nftId, assetSymbol, btn) {
+  if (!walletAddress || !walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Claiming...';
+  btn.classList.add('pending');
+  var statusEl = document.getElementById('claimStatus-' + key);
+
+  try {
+    var contract = new ethers.Contract(EXCHANGES[key].contract, ['function recover(uint256 _id)'], walletSigner);
+    logEvent('claim_started', { address: walletAddress, contract: key });
+    var tx = await contract.recover(BigInt(nftId));
+    btn.textContent = 'Pending...';
+    if (statusEl) statusEl.textContent = 'Tx submitted: ' + tx.hash.slice(0, 22) + '...';
+    var receipt = await tx.wait();
+    btn.textContent = '\u2713 Claimed';
+    btn.classList.remove('pending');
+    btn.classList.add('claimed');
+    btn.disabled = true;
+    logEvent('claim_confirmed', { address: walletAddress, contract: key, amount_eth: parseFloat(ethers.formatEther(userBalances[key] || 0n)), tx_hash: tx.hash, block_num: receipt.blockNumber });
+    if (statusEl) statusEl.textContent = 'NFT #' + nftId + ' (' + (assetSymbol || '?') + ') claimed.';
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Claim';
+    btn.classList.remove('pending');
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      if (statusEl) statusEl.textContent = 'Rejected';
+    } else {
+      if (statusEl) statusEl.textContent = 'Failed: ' + (e.reason || e.message || 'Unknown error');
+    }
+  }
+}
+
 // ─── Opyn v2 Gamma: batched Redeem of all expired oToken positions in one tx ───
 //
 // Each user has 1+ expired in-the-money WETH-collateralized oToken positions.
@@ -7639,12 +7795,19 @@ async function checkSingleAddress(addr) {
       totalEth += parseFloat(ethAmount);
       const mLastTx = apiBalances[key]?.last_tx_date || '';
       const mLastTxHtml = mLastTx ? '<span style="font-size:11px;color:var(--text2);margin-left:8px">last tx: ' + esc(mLastTx) + '</span>' : '';
-      html += '<div class="claim-card"><div class="claim-card-header"><span class="claim-card-name">' + esc(cfg.name) + mLastTxHtml + '</span><span class="claim-card-amount">' + fmtEth(ethAmount) + ' ETH</span><span class="claim-card-tag">Claimable</span></div>';
+      // Unit label matches the asset the user actually gets back: WETH for
+      // WETH-wrapped protocols, ETH for native. Before: all manual-scan cards
+      // showed 'ETH' even when the protocol returns WETH (tokemak_weth,
+      // yearn_v1_weth, vader_merkle, gnosis_auction, x2y2_fee_sharing, etc.),
+      // misrepresenting the redeemed asset. The wallet-connected scan already
+      // did this correctly — now both paths agree.
+      const mUnit = cfg.returnsWeth ? 'WETH' : 'ETH';
+      html += '<div class="claim-card"><div class="claim-card-header"><span class="claim-card-name">' + esc(cfg.name) + mLastTxHtml + '</span><span class="claim-card-amount">' + fmtEth(ethAmount) + ' ' + mUnit + '</span><span class="claim-card-tag">Claimable</span></div>';
       // Kyber: show per-epoch breakdown
       if (cfg.kyberFeeHandler && apiBalances[key]?.epoch_details) {
         var eps = apiBalances[key].epoch_details;
         for (var ei = 0; ei < eps.length; ei++) {
-          html += '<div style="margin:4px 16px;border-left:2px solid var(--accent);padding:4px 12px;font-size:13px">Epoch ' + eps[ei].epoch + '<span style="color:var(--text2);font-size:12px"> · ' + fmtEth(eps[ei].eth) + ' ETH</span></div>';
+          html += '<div style="margin:4px 16px;border-left:2px solid var(--accent);padding:4px 12px;font-size:13px">Epoch ' + eps[ei].epoch + '<span style="color:var(--text2);font-size:12px"> · ' + fmtEth(eps[ei].eth) + ' ' + mUnit + '</span></div>';
         }
       }
       // Show Augur v1 per-item breakdown (with simulate buttons in test mode)
@@ -7692,6 +7855,36 @@ async function checkSingleAddress(addr) {
         for (var bi = 0; bi < bds.length; bi++) {
           var bdEth = bds[bi].eth ? ' · ' + fmtEth(bds[bi].eth) + ' ETH' : '';
           html += '<div style="margin:4px 16px;border-left:2px solid var(--accent);padding:4px 12px;font-size:13px">Bounty #' + esc(String(bds[bi].id)) + '<span style="color:var(--text2);font-size:12px">' + bdEth + '</span></div>';
+        }
+      }
+      // Show per-NFT breakdown in manual check flow (Nomad Recovery)
+      if (cfg.nftMulti && apiBalances[key]?.nft_details) {
+        var nfts = apiBalances[key].nft_details;
+        var allowed = apiBalances[key].allowlisted === true;
+        // Group by asset for readability
+        var byAsset = {};
+        for (var ni = 0; ni < nfts.length; ni++) {
+          var a = nfts[ni].asset_symbol || '?';
+          if (!byAsset[a]) byAsset[a] = { count: 0, total: 0, ids: [] };
+          byAsset[a].count += 1;
+          byAsset[a].total += Number(nfts[ni].amount || 0);
+          byAsset[a].ids.push(nfts[ni].nft_id);
+        }
+        var assetLines = [];
+        Object.keys(byAsset).sort().forEach(function(a) {
+          var info = byAsset[a];
+          var fmt = a === 'WETH' ? fmtEth(info.total) : info.total.toFixed(a === 'USDC' || a === 'USDT' ? 2 : 4);
+          assetLines.push('<div style="margin:4px 16px;border-left:2px solid var(--accent);padding:4px 12px;font-size:13px">' +
+            esc(a) + ' · ' + fmt + ' across ' + info.count + ' NFT' + (info.count !== 1 ? 's' : '') +
+            '<span style="color:var(--text2);font-size:11px"> · IDs ' + info.ids.slice(0,5).join(',') + (info.ids.length > 5 ? '…' : '') + '</span></div>');
+        });
+        html += assetLines.join('');
+        if (allowed) {
+          html += '<div style="margin:6px 16px;padding:6px 12px;font-size:12px;color:var(--text2);background:#e6f7ee;border-radius:4px">You are on the Nomad allowList. Each NFT is claimed separately via <code>recover(tokenId)</code>.</div>';
+        } else {
+          html += '<div style="margin:6px 16px;padding:8px 12px;font-size:12px;color:#8a4a00;background:#fff3e0;border-left:3px solid #f59e0b;border-radius:4px">' +
+            '<b>Not on Nomad\'s allowList yet.</b> Your NFTs are real but <code>recover()</code> reverts without KYC. You need to request allowlisting from the Nomad team first — <a href="https://github.com/nomad-xyz/hack-data" target="_blank" rel="noopener">nomad-xyz/hack-data</a> has the victim-research context, and the recovery dashboard (when available) is at <a href="https://recovery.nomad.xyz" target="_blank" rel="noopener">recovery.nomad.xyz</a>. If the dashboard is down, reach out via <a href="https://x.com/nomadxyz_" target="_blank" rel="noopener">@nomadxyz_</a> on X.' +
+            '</div>';
         }
       }
       html += '</div>';
@@ -7917,7 +8110,11 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
   // asset). The fetch was dead code and has been removed. The hardcoded
   // values below are the real last resort — update them when adding
   // protocols (grep for this comment).
-  if (!totalData) totalData = { total_eth: 168794, total_contract_eth: 170177, contract_count: 191, eth_claimed: 1426, peak_eth: 170177 };
+  // Fallback matches data/total.json at 2026-04-21 after the WETH heal landed.
+  // contract_count derives from EXCHANGES at runtime if the API/file fails —
+  // that's always-fresh. Update total_eth / eth_claimed / peak_eth after each
+  // protocol addition (grep for this comment in app.js).
+  if (!totalData) totalData = { total_eth: 167525, total_contract_eth: 168342, contract_count: Object.keys(EXCHANGES).length, eth_claimed: 1437, peak_eth: 171052 };
   try {
       var totalEthVal = Math.round(totalData.total_eth);
       const contractCount = totalData.contract_count || Object.keys(EXCHANGES).length;
@@ -8170,6 +8367,8 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     augurClaimShares(btn.dataset.key, btn.dataset.market, btn);
   } else if (action === 'kill-bounty') {
     killBounty(btn.dataset.key, parseInt(btn.dataset.bountyId), btn);
+  } else if (action === 'nomad-recover') {
+    nomadRecover(btn.dataset.key, btn.dataset.nftId, btn.dataset.assetSymbol, btn);
   } else if (action === 'opyn-redeem-all') {
     opynRedeemAll(btn.dataset.key, btn);
   } else if (action === 'opyn-v1-redeem') {
@@ -8279,11 +8478,22 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
   }
 });
 
-// ─── FAQ toggle ───
+// ─── FAQ toggle (keyboard + ARIA state) ───
+function _faqToggle(q) {
+  var isOpen = q.parentElement.classList.toggle('open');
+  q.setAttribute('aria-expanded', String(isOpen));
+}
 document.addEventListener('click', function(e) {
   var q = e.target.closest('[data-faq-toggle]');
   if (!q) return;
-  q.parentElement.classList.toggle('open');
+  _faqToggle(q);
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  var q = e.target.closest && e.target.closest('[data-faq-toggle]');
+  if (!q) return;
+  e.preventDefault();
+  _faqToggle(q);
 });
 
 // ─── Watchlist bar event delegation ───
