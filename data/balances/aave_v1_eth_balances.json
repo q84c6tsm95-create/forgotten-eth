@@ -3,10 +3,10 @@
   "eth_source": "0x3dfd23A6c5E8BbcFc9581d2E864a68feb6a076d3",
   "description": "aETH token balances (Aave v1 lending pool, ETH market)",
   "scan_date": "2026-04-04 09:41:42 UTC",
-  "contract_eth_balance": 941.649967,
+  "contract_eth_balance": 941.639967,
   "total_addresses_scanned": 14759,
-  "addresses_with_balance": 5020,
-  "total_eth_in_balances": 941.88935531,
+  "addresses_with_balance": 5019,
+  "total_eth_in_balances": 941.87934265,
   "coverage_pct": 100.03,
   "distribution": {
     "100+ ETH": {
@@ -11464,7 +11464,8 @@
       "address": "0xc6062bd17327af1dc5847eb4ed3326eef41f99c6",
       "balance_wei": "10012661308330164",
       "balance_eth": "0.010012661308330164",
-      "rank": 1905
+      "rank": 1905,
+      "claimed": true
     },
     {
       "address": "0x24ee47d4ebe2852843ce5c25393a8d0fa12154c8",
@@ -30184,5 +30185,5 @@
       "rank": 5025
     }
   ],
-  "last_event_refresh": "2026-04-19T03:50:05Z"
+  "last_event_refresh": "2026-04-20T14:10:58Z"
 }
