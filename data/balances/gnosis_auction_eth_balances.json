@@ -1,6 +1,6 @@
 {
   "contract": "0x0b7fFc1f4AD541A4ED16b40D8c37f0929158D101",
-  "contract_eth_balance": 0.0,
+  "contract_eth_balance": 307.81053878,
   "total_eth_in_balances": 305.9102143,
   "addresses_with_balance": 109,
   "coverage_pct": 99.38,
@@ -2484,5 +2484,6 @@
     "simulation_fail_count": 2,
     "coverage_type": "exact_weth_refund"
   },
-  "description": "Gnosis EasyAuction unclaimed WETH refunds. Users placed bids (sellAmount WETH for auctioningToken) across 565 auctions. For each bid below the clearing price (not filled), the WETH is refundable via claimFromParticipantOrder. Bids at/above clearing price are fully or partially filled and return auctioning tokens instead. The gnosis-auction.eth.limo UI is dead; the contract remains immutable and has no deadline. Per-user balance is the exact WETH refund computed by simulating claimFromParticipantOrder via eth_call."
+  "description": "Gnosis EasyAuction unclaimed WETH refunds. Users placed bids (sellAmount WETH for auctioningToken) across 565 auctions. For each bid below the clearing price (not filled), the WETH is refundable via claimFromParticipantOrder. Bids at/above clearing price are fully or partially filled and return auctioning tokens instead. The gnosis-auction.eth.limo UI is dead; the contract remains immutable and has no deadline. Per-user balance is the exact WETH refund computed by simulating claimFromParticipantOrder via eth_call.",
+  "balance_source": "weth"
 }

@@ -3,7 +3,7 @@
   "eth_source": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
   "description": "Pending WETH rewards in X2Y2 Fee Sharing staking contract. Rewards distribution ended at block 22420924 (~April 2025); the 321 WETH of outstanding claims is fully mapped. The contract holds an additional 207 WETH that is not user-claimable \u2014 it accumulated from rounding in the updateRewards() formula across 878 reward-period updates and has no user-callable withdraw path. Only REWARD_UPDATE_ROLE could redistribute it.",
   "scan_date": "2026-04-17 12:15:32 UTC",
-  "contract_eth_balance": 0.0,
+  "contract_eth_balance": 528.49152715,
   "total_addresses_scanned": 22905,
   "addresses_with_balance": 6803,
   "total_eth_in_balances": 321.336917,
@@ -40860,5 +40860,6 @@
     "manual_recompute_matches": true,
     "totalshares_reconciles": true,
     "note": "Every address verified via userInfo() + calculatePendingRewards() via Multicall3 in 100-addr batches. Sum of per-user pending rewards exactly matches calculatePendingRewards total."
-  }
+  },
+  "balance_source": "weth"
 }
