@@ -5,7 +5,7 @@
   "addresses_with_balance": 116,
   "coverage_pct": 100.0,
   "scan_date": "2026-04-22 03:48:22 UTC",
-  "balance_source": "weth",
+  "balance_source": "token",
   "description": "Mesa was the precursor to CowSwap (Gnosis Protocol v1), a batch-auction DEX deployed in 2020. Users deposited tokens to trade; the contract has been dormant since early 2022 but the 2-step withdraw path (requestWithdraw \u2192 wait one batch \u2192 withdraw) is still permissionless.",
   "distribution": {
     "1_plus": 18,
@@ -710,5 +710,11 @@
       "balance_eth": 0.0001,
       "rank": 116
     }
-  ]
+  ],
+  "meta": {
+    "weth_in_contract": 170.860119,
+    "stranded_eth_balance": 31.421977,
+    "stranded_reason": "31.42 WETH stranded in uncleared order commitments from 2020-2022. Mesa (Gnosis Protocol v1) is a batch-auction DEX: users deposit WETH, place orders, and call requestWithdraw \u2192 withdraw to exit. For orders that never cleared (no matching counterparty solver submitted), the committed WETH sits in the contract's reservedBalance accounting slot with no user-callable unlock path. getBalance(user, WETH) returns only the withdrawable portion; the stranded slot is only clearable via batch solving, which ceased in early 2022.",
+    "coverage_type": "user_claimable_ceiling"
+  }
 }
