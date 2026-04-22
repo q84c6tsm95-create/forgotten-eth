@@ -5,13 +5,25 @@
   "total_eth_in_balances": 426.3974421,
   "addresses_with_balance": 295,
   "coverage_pct": 100.0,
-  "scan_date": "2026-04-22 08:23:19 UTC",
+  "scan_date": "2026-04-22 09:17:08 UTC",
   "distribution": {
     ">=10 ETH": 10,
     "1-10 ETH": 29,
     "0.1-1 ETH": 90,
     "0.01-0.1 ETH": 89,
     "<0.01 ETH": 77
+  },
+  "meta": {
+    "pool": "0x35fFd6E268610E764fF6944d07760D0EFe5E40E5",
+    "keth": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+    "kweth": "0xac19815455c2c438af8a8b4623f65f091364be10",
+    "keth_rate": 1.081247070528776,
+    "kweth_rate": 1.0525297755583987,
+    "pool_eth_balance": 413.12643570662874,
+    "pool_weth_balance": 13.271006595845474,
+    "keth_supply": 382.08328786924915,
+    "kweth_supply": 12.608675691673241,
+    "note": "Bundled ETH+WETH as single ETH bucket. Per-user eth_eq comes from LP.underlyingBalance() - authoritative. Users with both kETH and kwETH redeem each separately (2-step approve + withdraw per item)."
   },
   "balances": [
     {
@@ -5354,17 +5366,5 @@
       ],
       "rank": 295
     }
-  ],
-  "meta": {
-    "pool": "0x35fFd6E268610E764fF6944d07760D0EFe5E40E5",
-    "keth": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
-    "kweth": "0xac19815455c2c438af8a8b4623f65f091364be10",
-    "keth_rate": 1.081247070528776,
-    "kweth_rate": 1.0525297755583987,
-    "pool_eth_balance": 413.12643570662874,
-    "pool_weth_balance": 13.271006595845474,
-    "keth_supply": 382.08328786924915,
-    "kweth_supply": 12.608675691673241,
-    "note": "Bundled ETH+WETH as single ETH bucket. Per-user eth_eq comes from LP.underlyingBalance() - authoritative. Users with both kETH and kwETH redeem each separately (2-step approve + withdraw per item)."
-  }
+  ]
 }
