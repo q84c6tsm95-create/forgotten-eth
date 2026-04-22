@@ -665,6 +665,14 @@
     <div class="changelog-month">April 2026</div>
 
     <div class="changelog-entry">
+      <span class="changelog-date">Apr 21</span>
+      <div class="changelog-body">
+        <div class="changelog-name"><a href="/nomad-recovery">Nomad Bridge Recovery</a> <span class="changelog-tag">+48 ETH</span></div>
+        <div class="changelog-desc">Post-exploit recovery contract for the August 2022 Nomad bridge hack. A fraction of the drained funds were returned to an Accountant contract that issues one ERC-721 NFT per token the user held pre-hack (WETH, USDC, USDT, DAI, FRAX, WBTC, CQT, FXS). Each NFT is redeemable independently via recover(tokenId) for a pro-rata share of the current pool. Two requirements: the caller must own the NFT AND be on the contract's allowList (KYC-gated by the Nomad team). The Nomad dashboard is discontinued but the contract is immutable and permissionless for allowlisted holders. 178 addresses with unclaimed NFTs; ~48 ETH of WETH across the pool.</div>
+      </div>
+    </div>
+
+    <div class="changelog-entry">
       <span class="changelog-date">Apr 17</span>
       <div class="changelog-body">
         <div class="changelog-name"><a href="/gnosis-auction">Gnosis Auction</a> <span class="changelog-tag">+306 WETH</span></div>
