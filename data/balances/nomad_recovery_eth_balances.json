@@ -1,11 +1,19 @@
 {
   "contract": "0xa4B86BcbB18639D8e708d6163a0c734aFcDB770c",
   "balance_source": "token",
-  "contract_eth_balance": 48.49634,
-  "total_eth_in_balances": 48.49634,
-  "addresses_with_balance": 178,
-  "coverage_pct": 100.0,
-  "scan_date": "2026-04-21 12:37:54 UTC",
+  "contract_eth_balance": 100.664,
+  "total_eth_in_balances": 48.49634011,
+  "addresses_with_balance": 591,
+  "coverage_pct": 48.18,
+  "scan_date": "2026-04-22 20:56:15 UTC",
+  "distribution": {
+    ">=100": 0,
+    "10-100": 2,
+    "1-10": 5,
+    "0.1-1": 31,
+    "0.01-0.1": 54,
+    "<0.01": 499
+  },
   "isMultiAssetNft": true,
   "affectedAssets": [
     "?",
@@ -21,14 +29,6 @@
   "total_owners_seen": 848,
   "total_nfts": 1596,
   "github_source": "https://github.com/nomad-xyz/hack-data",
-  "distribution": {
-    ">=100": 0,
-    "10-100": 2,
-    "1-10": 5,
-    "0.1-1": 31,
-    "0.01-0.1": 54,
-    "<0.01": 499
-  },
   "balances": [
     {
       "address": "0x26fa88f455189cc47fa50eba022d5ac6fb852c31",

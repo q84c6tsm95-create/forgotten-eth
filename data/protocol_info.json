@@ -1679,6 +1679,9 @@
   "nomad_recovery": {
     "name": "Nomad Bridge Recovery",
     "desc": "After the August 2022 Nomad Bridge exploit ($190M drained in a chain of ~300 copycat transactions), whitehats returned roughly $40M to a Nomad-controlled address. The Nomad Foundation deployed an AllowListNFTRecoveryAccountant contract (0xa4B86BcbB18639D8e708d6163a0c734aFcDB770c) that mints one ERC-721 NFT per affected (user, asset) pair — someone bridged WETH + USDC + WBTC pre-hack would receive three NFTs. Each NFT represents a fixed pro-rata share of whatever the Accountant holds of that specific asset. Users call recover(tokenId) to claim. Two gates apply: the caller must own the NFT, AND the caller must be on the allowList[] (maintained by the Nomad team via off-chain KYC verification). The contract is still active — the official recovery dashboard was discontinued but the contract itself is immutable and permissionless for allowlisted holders. About 95% of the WETH pool (46 of 48 claimable WETH) is held by allowlisted addresses who have never called recover(). Victim research data: github.com/nomad-xyz/hack-data.",
+    "contract": "0xa4B86BcbB18639D8e708d6163a0c734aFcDB770c",
+    "deployed": "January 2023",
+    "color": "#2d3748",
     "category": "Hack Recovery",
     "links": {
       "Contract": "https://etherscan.io/address/0xa4B86BcbB18639D8e708d6163a0c734aFcDB770c",

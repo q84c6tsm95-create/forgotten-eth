@@ -667,8 +667,8 @@
     <div class="changelog-entry">
       <span class="changelog-date">Apr 21</span>
       <div class="changelog-body">
-        <div class="changelog-name"><a href="/nomad-recovery">Nomad Bridge Recovery</a> <span class="changelog-tag">+48 ETH</span></div>
-        <div class="changelog-desc">Post-exploit recovery contract for the August 2022 Nomad bridge hack. A fraction of the drained funds were returned to an Accountant contract that issues one ERC-721 NFT per token the user held pre-hack (WETH, USDC, USDT, DAI, FRAX, WBTC, CQT, FXS). Each NFT is redeemable independently via recover(tokenId) for a pro-rata share of the current pool. Two requirements: the caller must own the NFT AND be on the contract's allowList (KYC-gated by the Nomad team). The Nomad dashboard is discontinued but the contract is immutable and permissionless for allowlisted holders. 178 addresses with unclaimed NFTs; ~48 ETH of WETH across the pool.</div>
+        <div class="changelog-name"><a href="/nomad-recovery">Nomad Bridge Recovery</a> <span class="changelog-tag">+100 WETH</span></div>
+        <div class="changelog-desc">Post-exploit recovery contract for the August 2022 Nomad bridge hack. The Accountant contract holds 100 WETH total, issuing one ERC-721 NFT per (user, asset) pair — covering WETH, USDC, USDT, DAI, FRAX, WBTC, CQT, and FXS. Each NFT is redeemable independently via recover(tokenId). Two requirements: the caller must own the NFT AND be on the contract's allowList. 178 addresses currently hold unclaimed WETH NFTs, with ~90% already allowlisted; non-allowlisted holders need to request KYC from the Nomad team before claim will go through. The allowList grows over time as new users are approved — the refresh cron re-queries allowList(addr) every 12h, so previously-gated addresses flip to "ready to claim" automatically once Nomad adds them.</div>
       </div>
     </div>
 
