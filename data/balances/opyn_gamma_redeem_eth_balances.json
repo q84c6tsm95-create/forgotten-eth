@@ -5,8 +5,8 @@
   "total_eth_in_balances": 380.062951,
   "addresses_with_balance": 2431,
   "coverage_pct": 100.0,
-  "scan_date": "2026-04-21 20:14:43 UTC",
-  "balance_source": "token",
+  "scan_date": "2026-04-22 03:49:31 UTC",
+  "balance_source": "weth",
   "description": "Opyn v2 Gamma Protocol expired oToken redemption pool. Holders of expired in-the-money WETH-collateralized oTokens can call Controller.operate([Redeem]) to claim their share of the underlying collateral. The protocol went silent in early 2022 \u2014 these are forgotten redemption claims.",
   "distribution": {
     "1_plus": 4,
@@ -31734,6 +31734,5 @@
       ],
       "rank": 2431
     }
-  ],
-  "_note_contract_eth_balance": "opyn_gamma_redeem is multi-contract (WETH across many sub-vaults). contract_eth_balance is set to total_eth_in_balances pending refresh by refresh_opyn_gamma_redeem.py via run_custom_refreshes.py on next CI cycle."
+  ]
 }

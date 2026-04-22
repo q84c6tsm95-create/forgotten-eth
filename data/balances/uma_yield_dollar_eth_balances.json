@@ -1,19 +1,19 @@
 {
-  "contract": "0x516f595978d87b67401dab7afd8555c3d28a3af4",
+  "contract": "0xeaa081a9fad4607cdf046fea7d4bf3dfef533282",
   "factory_contract": "0xddfc7e3b4531158acf4c7a5d2c3cd3bb8c189413",
   "emp_contracts": [
-    "0x516f595978d87b67401dab7afd8555c3d28a3af4",
+    "0xeaa081a9fad4607cdf046fea7d4bf3dfef533282",
     "0xe1ee8d4c5dba1c221840c08f6cf42154435b9d52",
     "0xfa3aa7ee08399a4ce0b4921c85ab7d645ccac669",
-    "0xeaa081a9fad4607cdf046fea7d4bf3dfef533282",
-    "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
-    "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56"
+    "0x516f595978d87b67401dab7afd8555c3d28a3af4",
+    "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
+    "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5"
   ],
   "contract_eth_balance": 267.707388,
   "total_eth_in_balances": 266.735523,
   "addresses_with_balance": 185,
   "coverage_pct": 99.6,
-  "scan_date": "2026-04-21 20:15:51 UTC",
+  "scan_date": "2026-04-22 03:46:52 UTC",
   "balance_source": "weth",
   "description": "UMA ExpiringMultiParty (EMP) contracts held WETH as collateral for synthetic tokens. After expiry, sponsors call settleExpired() to reclaim excess collateral. The UMA v1 frontend no longer supports these contracts \u2014 remaining WETH is claimable directly onchain.",
   "distribution": {
@@ -86,14 +86,14 @@
       "balance_eth": 19.019373,
       "positions": [
         {
-          "emp": "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
-          "claimable_eth": 3.84264,
+          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
+          "claimable_eth": 15.176732,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
         },
         {
-          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
-          "claimable_eth": 15.176732,
+          "emp": "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
+          "claimable_eth": 3.84264,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
         }
@@ -316,14 +316,14 @@
           "tokens_outstanding": "100000000000000000000"
         },
         {
-          "emp": "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
-          "claimable_eth": 0.208,
+          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
+          "claimable_eth": 0.54,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
         },
         {
-          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
-          "claimable_eth": 0.54,
+          "emp": "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
+          "claimable_eth": 0.208,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
         }
@@ -884,14 +884,14 @@
       "balance_eth": 0.03278,
       "positions": [
         {
-          "emp": "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
-          "claimable_eth": 0.00036,
+          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
+          "claimable_eth": 0.03242,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
         },
         {
-          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
-          "claimable_eth": 0.03242,
+          "emp": "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
+          "claimable_eth": 0.00036,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
         }
@@ -1230,14 +1230,14 @@
       "balance_eth": 0.011712,
       "positions": [
         {
-          "emp": "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
-          "claimable_eth": 0.005499,
+          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
+          "claimable_eth": 0.006213,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
         },
         {
-          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
-          "claimable_eth": 0.006213,
+          "emp": "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
+          "claimable_eth": 0.005499,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
         }
@@ -1750,14 +1750,14 @@
       "balance_eth": 0.002335,
       "positions": [
         {
-          "emp": "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
-          "claimable_eth": 0.00052,
+          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
+          "claimable_eth": 0.001815,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
         },
         {
-          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
-          "claimable_eth": 0.001815,
+          "emp": "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
+          "claimable_eth": 0.00052,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
         }
@@ -2118,14 +2118,14 @@
       "balance_eth": 0.001029,
       "positions": [
         {
-          "emp": "0x516f595978d87b67401dab7afd8555c3d28a3af4",
-          "claimable_eth": 0.00049,
+          "emp": "0xeaa081a9fad4607cdf046fea7d4bf3dfef533282",
+          "claimable_eth": 0.000539,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
         },
         {
-          "emp": "0xeaa081a9fad4607cdf046fea7d4bf3dfef533282",
-          "claimable_eth": 0.000539,
+          "emp": "0x516f595978d87b67401dab7afd8555c3d28a3af4",
+          "claimable_eth": 0.00049,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
         }
