@@ -1,11 +1,11 @@
 {
-  "contract": "0x77607588222e01bf892a29abab45796a2047fc7b",
-  "contract_eth_balance": 11.741597,
-  "total_eth_in_balances": 11.741473,
+  "contract": "0x77607588222e01bf892a29Abab45796A2047fc7b",
+  "balance_source": "eth",
+  "contract_eth_balance": 11.74159749,
+  "total_eth_in_balances": 11.741472,
   "addresses_with_balance": 27,
   "coverage_pct": 100.0,
-  "scan_date": "2026-04-22 14:12:49 UTC",
-  "balance_source": "eth",
+  "scan_date": "2026-04-22 16:46:18 UTC",
   "description": "Unagii ETH Vault (uETH). Users deposited ETH and received uETH shares representing proportional ownership. The vault used strategies to generate yield. Users can withdraw by burning uETH shares via withdraw(shares, min). No fee, no time lock.",
   "distribution": {
     "1_plus": 1,

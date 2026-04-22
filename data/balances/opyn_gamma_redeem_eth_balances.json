@@ -1,12 +1,11 @@
 {
   "contract": "0x4ccc2339f87f6c59c6893e1a678c2266ca58dc72",
-  "pool_contract": "0x5934807cc0654d46755ebd2848840b616256c6ef",
+  "balance_source": "weth",
   "contract_eth_balance": 380.062951,
   "total_eth_in_balances": 380.062951,
   "addresses_with_balance": 2431,
   "coverage_pct": 100.0,
-  "scan_date": "2026-04-22 14:16:51 UTC",
-  "balance_source": "weth",
+  "scan_date": "2026-04-22 16:50:36 UTC",
   "description": "Opyn v2 Gamma Protocol expired oToken redemption pool. Holders of expired in-the-money WETH-collateralized oTokens can call Controller.operate([Redeem]) to claim their share of the underlying collateral. The protocol went silent in early 2022 \u2014 these are forgotten redemption claims.",
   "distribution": {
     "1_plus": 4,
@@ -14,6 +13,7 @@
     "0.01_to_0.1": 995,
     "under_0.01": 1336
   },
+  "pool_contract": "0x5934807cc0654d46755ebd2848840b616256c6ef",
   "opyn_redeem": true,
   "balances": [
     {

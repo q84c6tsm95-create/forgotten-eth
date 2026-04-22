@@ -1,11 +1,12 @@
 {
   "contract": "0x0b8d56c26d8cf16fe1bddf4967753503d974de06",
   "balance_source": "eth",
-  "contract_eth_balance": 41.103461,
-  "total_eth_in_balances": 18.642986,
+  "contract_eth_balance": 41.10346126,
+  "total_eth_in_balances": 18.64298609,
   "addresses_with_balance": 115,
   "coverage_pct": 45.36,
-  "scan_date": "2026-04-16 17:36:55 UTC",
+  "scan_date": "2026-04-22 17:09:17 UTC",
+  "description": "GavCoin 2015 bonding curve. refund(price, units) requires BOTH balance >= units AND receipt[price].units >= units. Each user may have multiple receipts at different prices from incremental buyins; this scan greedy-refunds price-descending against live balanceOf to compute the max claimable per address. Tokens that moved via transfer() leave receipts orphaned at the sender (receipt > balance, partly unrefundable) and unrefundable on the recipient (balance > 0, no receipt). Reconstructed via Buyin/Refund event replay from block 350000.",
   "distribution": {
     ">=10 ETH": 0,
     "1-10 ETH": 4,
@@ -13,7 +14,6 @@
     "0.01-0.1 ETH": 46,
     "<0.01 ETH": 46
   },
-  "notes": "GavCoin 2015 bonding curve. refund(price, units) requires BOTH balance >= units AND receipt[price].units >= units. Each user may have multiple receipts at different prices from incremental buyins; this scan greedy-refunds price-descending against live balanceOf to compute the max claimable per address. Tokens that moved via transfer() leave receipts orphaned at the sender (receipt > balance, partly unrefundable) and unrefundable on the recipient (balance > 0, no receipt). Reconstructed via Buyin/Refund event replay from block 350000.",
   "balances": [
     {
       "address": "0x948c61d80269e56ed71e8f278e080fb70bb1b856",

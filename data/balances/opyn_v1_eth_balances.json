@@ -1,18 +1,11 @@
 {
   "contract": "0xb529964f86fbf99a6aa67f72a27e59fa3fa4feac",
-  "otoken_contracts": [
-    "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
-    "0x4ba8c6ce0e855c051e65dfc37883360efaf7c82b",
-    "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
-    "0xddac4aed7c8f73032b388efe2c778fc194bc81ed",
-    "0x67904e24b071d1406a63eceddea6ba0f4a79ab1e"
-  ],
-  "contract_eth_balance": 24.865764,
+  "balance_source": "eth",
+  "contract_eth_balance": 24.86576383,
   "total_eth_in_balances": 24.864898,
   "addresses_with_balance": 99,
   "coverage_pct": 100.0,
-  "scan_date": "2026-04-22 14:13:02 UTC",
-  "balance_source": "eth",
+  "scan_date": "2026-04-22 16:46:33 UTC",
   "description": "Opyn v1 ETH-collateralized oToken vaults. Vault owners deposited ETH as collateral to write options. After option expiry, vault owners can call redeemVaultBalance() on each oToken contract to reclaim their ETH collateral. The Opyn v1 protocol was superseded by Gamma (v2) in late 2020 and the frontend no longer supports v1.",
   "distribution": {
     "1_plus": 7,
@@ -20,6 +13,13 @@
     "0.01_to_0.1": 48,
     "under_0.01": 29
   },
+  "otoken_contracts": [
+    "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
+    "0x4ba8c6ce0e855c051e65dfc37883360efaf7c82b",
+    "0x8ed9f862363ffdfd3a07546e618214b6d59f03d4",
+    "0xddac4aed7c8f73032b388efe2c778fc194bc81ed",
+    "0x67904e24b071d1406a63eceddea6ba0f4a79ab1e"
+  ],
   "opyn_v1_multi": true,
   "balances": [
     {
