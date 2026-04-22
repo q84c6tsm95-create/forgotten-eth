@@ -1,3 +1,9 @@
+// Capture the incoming URL hash before clearing it. Protocol subpages link to
+// /?address=X#<key> from their "Claim now" CTA to preselect that protocol tab
+// on landing. Sanitized to safe characters to prevent selector injection.
+var _incomingHash = window.location.hash
+  ? window.location.hash.slice(1).replace(/[^a-z0-9_-]/gi, '')
+  : '';
 // Clear hash on load so refresh always starts at top
 if (window.location.hash) history.replaceState(null, '', window.location.pathname + window.location.search);
 
@@ -7440,6 +7446,18 @@ tabSelect.addEventListener('change', () => {
   const tab = document.querySelector('.tab[data-tab="' + tabSelect.value + '"]');
   if (tab) switchTab(tab);
 });
+
+// Apply hash-based tab deep-link captured from the URL at page load.
+// Protocol subpages link here with /?address=X#<key> so the user lands on
+// the right tab (the hash is stripped at line 2 of this file to keep refresh
+// stable, but _incomingHash retains the value for this one-shot lookup).
+if (_incomingHash) {
+  const _targetTab = document.querySelector('.tab[data-tab="' + _incomingHash + '"]');
+  if (_targetTab) {
+    switchTab(_targetTab);
+    _targetTab.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
 
 // ─── Data Loading & Rendering ───
 
