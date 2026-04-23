@@ -8183,7 +8183,7 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
   // contract_count derives from EXCHANGES at runtime if the API/file fails —
   // that's always-fresh. Update total_eth / eth_claimed / peak_eth after each
   // protocol addition (grep for this comment in app.js).
-  if (!totalData) totalData = { total_eth: 167901, total_contract_eth: 168564, contract_count: Object.keys(EXCHANGES).length, eth_claimed: 1469, peak_eth: 171052 };
+  if (!totalData) totalData = { total_eth: 167329, total_contract_eth: 168563, contract_count: Object.keys(EXCHANGES).length, eth_claimed: 1469, peak_eth: 168798 };
   try {
       var totalEthVal = Math.round(totalData.total_eth);
       const contractCount = totalData.contract_count || Object.keys(EXCHANGES).length;
