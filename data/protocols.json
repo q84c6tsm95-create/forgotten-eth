@@ -1533,5 +1533,31 @@
     "category": "hack_recovery",
     "balance_file": "nomad_recovery_eth_balances.json",
     "multi_step": true
+  },
+  {
+    "key": "x2y2_presale",
+    "name": "X2Y2 Presale",
+    "contract": "0xc2f44bc508b6b50047a2f3afb1984ed105070be1",
+    "balance_source": "token",
+    "category": "nft",
+    "balance_file": "x2y2_presale_eth_balances.json"
+  },
+  {
+    "key": "metadrop_anata",
+    "name": "Metadrop: Anata",
+    "contract": "0x0cba81ba02c58a4c2c160fdd2e7411ad9cdf5dbe",
+    "balance_source": "eth",
+    "category": "nft",
+    "balance_file": "metadrop_anata_eth_balances.json",
+    "multi_step": true
+  },
+  {
+    "key": "metadrop_webaverse",
+    "name": "Metadrop: Webaverse",
+    "contract": "0x1ecb59aecf1fc5da695242c6e78c2007e775d40f",
+    "balance_source": "eth",
+    "category": "nft",
+    "balance_file": "metadrop_webaverse_eth_balances.json",
+    "multi_step": true
   }
 ]

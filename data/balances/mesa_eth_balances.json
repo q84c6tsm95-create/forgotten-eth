@@ -1,17 +1,17 @@
 {
   "contract": "0x6f400810b62df8e13fded51be75ff5393eaa841f",
   "balance_source": "token",
-  "contract_eth_balance": 139.438144,
-  "total_eth_in_balances": 139.438144,
-  "addresses_with_balance": 116,
+  "contract_eth_balance": 139.436144,
+  "total_eth_in_balances": 139.436144,
+  "addresses_with_balance": 114,
   "coverage_pct": 100.0,
-  "scan_date": "2026-04-22 16:49:08 UTC",
+  "scan_date": "2026-04-23 14:17:24 UTC",
   "description": "Mesa was the precursor to CowSwap (Gnosis Protocol v1), a batch-auction DEX deployed in 2020. Users deposited tokens to trade; the contract has been dormant since early 2022 but the 2-step withdraw path (requestWithdraw \u2192 wait one batch \u2192 withdraw) is still permissionless.",
   "distribution": {
     "1_plus": 18,
     "0.1_to_1": 37,
     "0.01_to_0.1": 43,
-    "under_0.01": 18
+    "under_0.01": 16
   },
   "meta": {
     "weth_in_contract": null,
@@ -661,58 +661,46 @@
       "rank": 107
     },
     {
-      "address": "0x545aafbcb74de9aeaee0c028180f93e40aff9db9",
-      "balance_wei": "1000000000000000",
-      "balance_eth": 0.001,
-      "rank": 108
-    },
-    {
-      "address": "0xbfc8ae1a7e13912c6447a129ae57b7f11a4f05b8",
-      "balance_wei": "1000000000000000",
-      "balance_eth": 0.001,
-      "rank": 109
-    },
-    {
       "address": "0x124ac3da7f059753c7dac3e359ae454c2c1b4eba",
       "balance_wei": "971102295719262",
       "balance_eth": 0.000971,
-      "rank": 110
+      "rank": 108
     },
     {
       "address": "0x121205bb13f8e69eaff032cf135c5bea241d0f61",
       "balance_wei": "500032964094212",
       "balance_eth": 0.0005,
-      "rank": 111
+      "rank": 109
     },
     {
       "address": "0x348a2852524fb76b3d88d9bda6565856157592ac",
       "balance_wei": "481424618464357",
       "balance_eth": 0.000481,
-      "rank": 112
+      "rank": 110
     },
     {
       "address": "0x007ab8fe04ad2863cb6881caa6744d522c532b71",
       "balance_wei": "354407197077944",
       "balance_eth": 0.000354,
-      "rank": 113
+      "rank": 111
     },
     {
       "address": "0x11f425e8b37eaf07acead202b14c052faac476d1",
       "balance_wei": "249041313786077",
       "balance_eth": 0.000249,
-      "rank": 114
+      "rank": 112
     },
     {
       "address": "0x53e0b897eae600b2f6855fce4a42482e9229d2c2",
       "balance_wei": "233629796990335",
       "balance_eth": 0.000234,
-      "rank": 115
+      "rank": 113
     },
     {
       "address": "0x3bcc8a32be13cac3fe40db73c0c2ae1b2a3e422d",
       "balance_wei": "100000000000000",
       "balance_eth": 0.0001,
-      "rank": 116
+      "rank": 114
     }
   ]
 }

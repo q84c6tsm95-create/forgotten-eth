@@ -3311,6 +3311,57 @@ const EXCHANGES = {
     withdrawArgs: () => [],
     withdrawCall: 'harvest',
   },
+  x2y2_presale: {
+    name: 'X2Y2 Presale',
+    desc: 'Alongside the February 2022 X2Y2 launch, a signer-gated presale sold 1,000 staking shares at 1.5 ETH each and paid a proportional share of marketplace WETH fees to participants over a one-year staking window. Staking ended in February 2023 and the x2y2.io frontend went offline. The contract is unpaused and immutable — presale participants with remaining X2Y2 tokens can call harvest() to claim pending WETH rewards at any time. Depositors who already withdrew their X2Y2 tokens forfeited future harvests by design.',
+    category: 'nft',
+    color: '#2d7d8d',
+    contract: '0xc2f44bc508b6b50047a2f3afb1984ed105070be1',
+    deployed: 'February 2022',
+    returnsWeth: true,
+    noWalletCheck: true,
+    withdrawAbi: 'function harvest()',
+    withdrawArgs: () => [],
+    withdrawCall: 'harvest',
+  },
+  metadrop_anata: {
+    name: 'Metadrop: Anata',
+    desc: 'In April 2022, Metadrop ran a sealed-bid auction for the Anata NFT collection (1,920 items). Bidders above the clearing price won NFTs; the difference between their bid and the clearing price is refundable via a merkle-gated claim. 120 bidders have never claimed their refund (197.33 ETH). The on-chain root is frozen and matching proofs were reconstructed from archived Metadrop frontend JS.',
+    category: 'nft',
+    color: '#9b59b6',
+    contract: '0x0cba81ba02c58a4c2c160fdd2e7411ad9cdf5dbe',
+    deployed: 'April 2022',
+    noWalletCheck: true,
+    merkleClaim: true,
+    withdrawAbi: 'function claimRefund(uint256 refundAmount_, bytes32[] proof_)',
+    withdrawArgs: (amount, addr) => {
+      const api = window._lastApiBalances?.metadrop_anata;
+      if (!api?.merkle_proof || !api?.merkle_wei) {
+        throw new Error('Missing merkle data — refresh and try again');
+      }
+      return [BigInt(api.merkle_wei), api.merkle_proof];
+    },
+    withdrawCall: 'claimRefund',
+  },
+  metadrop_webaverse: {
+    name: 'Metadrop: Webaverse',
+    desc: 'In August 2022, Metadrop ran a sealed-bid auction for the Webaverse metaverse NFT collection (7,870 items). Bidders above the clearing price won NFTs; the difference between their bid and the clearing price is refundable via a merkle-gated claim. Webaverse went dormant late 2023. 90 bidders have never claimed their refund (134.15 ETH). The on-chain root is frozen and matching proofs were reconstructed from archived Metadrop frontend JS.',
+    category: 'nft',
+    color: '#6e5494',
+    contract: '0x1ecb59aecf1fc5da695242c6e78c2007e775d40f',
+    deployed: 'August 2022',
+    noWalletCheck: true,
+    merkleClaim: true,
+    withdrawAbi: 'function claimRefund(uint256 refundAmount_, bytes32[] proof_)',
+    withdrawArgs: (amount, addr) => {
+      const api = window._lastApiBalances?.metadrop_webaverse;
+      if (!api?.merkle_proof || !api?.merkle_wei) {
+        throw new Error('Missing merkle data — refresh and try again');
+      }
+      return [BigInt(api.merkle_wei), api.merkle_proof];
+    },
+    withdrawCall: 'claimRefund',
+  },
   tokemak_weth: {
     name: 'Tokemak v1 tWETH',
     desc: 'Tokemak launched its v1 reactor system in August 2021 — the ETH pool (EthPool) accepted WETH and minted tWETH shares 1:1 with WETH. Tokemak rebranded to Auto Finance in 2024 and the v1 reactor UI was retired. The contract is unpaused and tWETH holders can still exit via a 2-step flow: requestWithdrawal queues the amount at the current manager cycle, and withdraw pays out the WETH after the manager rolls cycles (~weekly). Holders with a matured pending request can call step 2 directly.',
@@ -8132,7 +8183,7 @@ async function _testClaimETH(key, cfg, btn, statusEl, balance) {
   // contract_count derives from EXCHANGES at runtime if the API/file fails —
   // that's always-fresh. Update total_eth / eth_claimed / peak_eth after each
   // protocol addition (grep for this comment in app.js).
-  if (!totalData) totalData = { total_eth: 167525, total_contract_eth: 168342, contract_count: Object.keys(EXCHANGES).length, eth_claimed: 1437, peak_eth: 171052 };
+  if (!totalData) totalData = { total_eth: 167901, total_contract_eth: 168564, contract_count: Object.keys(EXCHANGES).length, eth_claimed: 1469, peak_eth: 171052 };
   try {
       var totalEthVal = Math.round(totalData.total_eth);
       const contractCount = totalData.contract_count || Object.keys(EXCHANGES).length;

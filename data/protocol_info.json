@@ -1668,6 +1668,33 @@
     "contract": "0xc8c3cc5be962b6d281e4a53dbcce1359f76a1b85",
     "deployed": "February 2022"
   },
+  "x2y2_presale": {
+    "name": "X2Y2 Presale",
+    "desc": "Alongside the February 2022 launch, X2Y2 ran a signer-gated presale that sold 1,000 staking shares at 1.5 ETH each (1,500 ETH raised). Presale depositors received 15,000 X2Y2 tokens per share with a one-year linear unlock, and earned a proportional share of marketplace WETH fees directed to this contract over that period. The staking phase ended in February 2023 and the x2y2.io frontend went offline. The contract is unpaused and immutable — presale participants who still hold their share of X2Y2 tokens can call harvest() at any time to claim their pending WETH rewards. Depositors who already called withdraw() (which internally harvests and claims the X2Y2 tokens) no longer have any pending rewards. About 121 WETH in the contract is math-stranded from that pattern and can only be swept by the X2Y2 admin multisig via treasuryWithdraw().",
+    "category": "nft",
+    "color": "#2d7d8d",
+    "contract": "0xc2f44bc508b6b50047a2f3afb1984ed105070be1",
+    "deployed": "February 2022",
+    "slug": "x2y2-presale"
+  },
+  "metadrop_anata": {
+    "name": "Metadrop: Anata",
+    "desc": "In April 2022, Metadrop ran a sealed-bid auction for the Anata NFT collection — 1,920 items at a uniform clearing price. Bidders submitted ETH-backed orders above a minimum reserve; those who bid above the clearing price won NFTs while the difference between their bid and the clearing price was refundable via a merkle-gated claim. Metadrop set the refund merkle root on-chain and shut down metadrop.com shortly after. The contract is immutable with no deadline — 120 bidders across 197.33 ETH have never claimed their refund. The root is frozen on-chain and matching proofs were reconstructed from archived frontend JS bundles.",
+    "category": "nft",
+    "color": "#9b59b6",
+    "contract": "0x0cba81ba02c58a4c2c160fdd2e7411ad9cdf5dbe",
+    "deployed": "April 2022",
+    "slug": "metadrop-anata"
+  },
+  "metadrop_webaverse": {
+    "name": "Metadrop: Webaverse",
+    "desc": "In August 2022, Metadrop ran a sealed-bid auction for the Webaverse metaverse NFT collection — 7,870 items at a uniform clearing price. Bidders submitted ETH-backed orders above a reserve; winners received NFTs and the difference between their bid and the clearing price was refundable via a merkle-gated claim. Webaverse as a project went dormant in late 2023 and metadrop.com shut down around the same time. The contract is immutable with no deadline — 90 bidders across 134.15 ETH have never claimed their refund. The on-chain root is frozen and matching proofs were reconstructed from archived frontend JS bundles.",
+    "category": "nft",
+    "color": "#6e5494",
+    "contract": "0x1ecb59aecf1fc5da695242c6e78c2007e775d40f",
+    "deployed": "August 2022",
+    "slug": "metadrop-webaverse"
+  },
   "gnosis_auction": {
     "name": "Gnosis Auction",
     "desc": "Gnosis Auction (EasyAuction) is a batch auction platform launched by Gnosis in 2021 for fair token launches. Bidders submitted WETH orders at their chosen price; orders below the clearing price were refunded. The gnosis-auction.eth.limo frontend is dead, but the contract is immutable with no deadline. Unfilled and partially-filled orders can still be claimed via claimFromParticipantOrder(auctionId, orders[]), which returns the unfilled WETH portion of each order.",
