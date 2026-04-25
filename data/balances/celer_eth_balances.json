@@ -1,21 +1,21 @@
 {
   "contract": "0xa6cd930fc92f1634d8183af2fb86bd1766f2f82a",
   "balance_source": "token",
-  "contract_eth_balance": 151.9787782,
-  "total_eth_in_balances": 151.9787782,
-  "addresses_with_balance": 1551,
+  "contract_eth_balance": 151.7687782,
+  "total_eth_in_balances": 151.7687782,
+  "addresses_with_balance": 1547,
   "coverage_pct": 100.0,
-  "scan_date": "2026-04-24 04:06:06 UTC",
+  "scan_date": "2026-04-25 03:47:10 UTC",
   "distribution": {
     ">0 ETH": 117,
-    ">0.01 ETH": 1263,
+    ">0.01 ETH": 1259,
     ">0.1 ETH": 151,
     ">1 ETH": 18,
     ">10 ETH": 2,
     ">100 ETH": 0
   },
   "meta": {
-    "wallet_total_eth": 384.18033594,
+    "wallet_total_eth": 383.97033594,
     "osp_address": "0x4d5f5ff50cc7fdbdc995d837ed467f6e99ca5d03",
     "osp_claimable_eth": 232.20155775,
     "active_eth_channels": 2248,
@@ -7215,27 +7215,6 @@
           "channel_balance_wei": "321600000000000000",
           "raw_withdraw_limit_wei": "60800000000000000",
           "claimable_wei": "60800000000000000",
-          "dispute_timeout_blocks": 10000,
-          "status": "Operable"
-        }
-      ]
-    },
-    {
-      "address": "0x84c151b8d4af70246a2e372ac2c433933cee883a",
-      "balance_wei": "60000000000000000",
-      "balance_eth": 0.06,
-      "celer_channels": [
-        {
-          "channel_id": "0x0384e63f213b129a20c8295de9cfa7a97d913ad71beb3444662493731ee47da2",
-          "counterparty": "0x4d5f5ff50cc7fdbdc995d837ed467f6e99ca5d03",
-          "deposit_wei": "60000000000000000",
-          "withdrawal_wei": "0",
-          "transfer_in_wei": "0",
-          "transfer_out_wei": "0",
-          "pending_pay_out_wei": "0",
-          "channel_balance_wei": "120000000000000000",
-          "raw_withdraw_limit_wei": "60000000000000000",
-          "claimable_wei": "60000000000000000",
           "dispute_timeout_blocks": 10000,
           "status": "Operable"
         }
@@ -18897,27 +18876,6 @@
       ]
     },
     {
-      "address": "0xb4bd570fb38ab659ce7092c9845b8c9f84e8fc6b",
-      "balance_wei": "50000000000000000",
-      "balance_eth": 0.05,
-      "celer_channels": [
-        {
-          "channel_id": "0x9382e2a16bf08ca382efc034b6b4ffbad6df5bf3648146bf1431755fda57bca2",
-          "counterparty": "0x4d5f5ff50cc7fdbdc995d837ed467f6e99ca5d03",
-          "deposit_wei": "50000000000000000",
-          "withdrawal_wei": "0",
-          "transfer_in_wei": "0",
-          "transfer_out_wei": "0",
-          "pending_pay_out_wei": "0",
-          "channel_balance_wei": "100000000000000000",
-          "raw_withdraw_limit_wei": "50000000000000000",
-          "claimable_wei": "50000000000000000",
-          "dispute_timeout_blocks": 10000,
-          "status": "Operable"
-        }
-      ]
-    },
-    {
       "address": "0xaca817ddd867b264ac7766d028b3235190420c4d",
       "balance_wei": "50000000000000000",
       "balance_eth": 0.05,
@@ -19995,27 +19953,6 @@
       "celer_channels": [
         {
           "channel_id": "0xb580fdc02580719b8335aedaa76d680f11bbc075efd0aa702c71c6be74cc7e91",
-          "counterparty": "0x4d5f5ff50cc7fdbdc995d837ed467f6e99ca5d03",
-          "deposit_wei": "50000000000000000",
-          "withdrawal_wei": "0",
-          "transfer_in_wei": "0",
-          "transfer_out_wei": "0",
-          "pending_pay_out_wei": "0",
-          "channel_balance_wei": "200000000000000000",
-          "raw_withdraw_limit_wei": "50000000000000000",
-          "claimable_wei": "50000000000000000",
-          "dispute_timeout_blocks": 10000,
-          "status": "Operable"
-        }
-      ]
-    },
-    {
-      "address": "0x40c89e39b9a129f320250316ca56046a9befacc3",
-      "balance_wei": "50000000000000000",
-      "balance_eth": 0.05,
-      "celer_channels": [
-        {
-          "channel_id": "0xb59907649fca9dd6e1c2afc15879bcb5af29f86e75a2dfa21591dd4e8c789a2c",
           "counterparty": "0x4d5f5ff50cc7fdbdc995d837ed467f6e99ca5d03",
           "deposit_wei": "50000000000000000",
           "withdrawal_wei": "0",
@@ -21451,27 +21388,6 @@
           "transfer_out_wei": "0",
           "pending_pay_out_wei": "0",
           "channel_balance_wei": "400000000000000000",
-          "raw_withdraw_limit_wei": "50000000000000000",
-          "claimable_wei": "50000000000000000",
-          "dispute_timeout_blocks": 10000,
-          "status": "Operable"
-        }
-      ]
-    },
-    {
-      "address": "0x2c263af7a55225e71df32e10a19553bc2b85d582",
-      "balance_wei": "50000000000000000",
-      "balance_eth": 0.05,
-      "celer_channels": [
-        {
-          "channel_id": "0xd51df3a8f6722956b6fe1cc482734125dbf00f20fc06d2c6cec66bca3f8bc623",
-          "counterparty": "0x4d5f5ff50cc7fdbdc995d837ed467f6e99ca5d03",
-          "deposit_wei": "50000000000000000",
-          "withdrawal_wei": "0",
-          "transfer_in_wei": "0",
-          "transfer_out_wei": "0",
-          "pending_pay_out_wei": "0",
-          "channel_balance_wei": "100000000000000000",
           "raw_withdraw_limit_wei": "50000000000000000",
           "claimable_wei": "50000000000000000",
           "dispute_timeout_blocks": 10000,
