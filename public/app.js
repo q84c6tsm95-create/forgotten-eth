@@ -5891,7 +5891,7 @@ async function neufundWithdrawEthT(key) {
     window.va?.track?.('claim_confirmed', { exchange: cfg.name, amount_eth: ethAmount, tx_hash: tx.hash });
   } catch (e) {
     btn.disabled = false;
-    btn.textContent = 'Step 3: Withdraw ETH';
+    btn.textContent = 'Step 2: Withdraw ETH';
     btn.classList.remove('pending');
     if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
       statusEl.textContent = 'Rejected';
