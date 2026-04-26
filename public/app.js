@@ -3852,10 +3852,11 @@ async function checkUserBalances(overrideAddress) {
     if (!cfg.neufundLocked || !walletProvider) continue;
     let lockedAccount = cfg.neufundLocked.lockedAccount;
     let etherToken = cfg.neufundLocked.etherToken;
-    let bal, neuDue, unlockDate;
+    let bal = 0n, neuDue = 0n, unlockDate = 0n;
     try {
       const v1 = new ethers.Contract(cfg.contract, [cfg.balanceAbi], walletProvider);
       [bal, neuDue, unlockDate] = await v1[cfg.balanceCall](...cfg.balanceArgs(checkAddr));
+      let resolvedVersion = 'v1';
       if (bal === 0n || balance === 0n) {
         // v1 zero — try v2
         const v2 = new ethers.Contract(NEUFUND_V2_LOCKED, [cfg.balanceAbi], walletProvider);
@@ -3864,20 +3865,50 @@ async function checkUserBalances(overrideAddress) {
           bal = b2; neuDue = n2; unlockDate = u2;
           lockedAccount = NEUFUND_V2_LOCKED;
           etherToken = NEUFUND_V2_ETHERTOKEN;
+          resolvedVersion = 'v2';
         }
       }
-      if (bal === 0n) continue;
+      // Even if BOTH LockedAccount balances are 0, the user may already hold
+      // ETH-T from a completed Step 1 in a prior session (they ran
+      // approveAndCall but never finished the unwrap). Check both EtherTokens
+      // before giving up — if either has a balance, we still need to render
+      // the card with Step 2 active. Without this branch, post-step-1
+      // users saw "Need ? NEU" instead of "Step 2: Withdraw ETH".
+      const v1EthT = new ethers.Contract(cfg.neufundLocked.etherToken, ['function balanceOf(address) view returns (uint256)'], walletProvider);
+      const v2EthT = new ethers.Contract(NEUFUND_V2_ETHERTOKEN, ['function balanceOf(address) view returns (uint256)'], walletProvider);
+      const [v1EthTBal, v2EthTBal] = await Promise.all([
+        v1EthT.balanceOf(checkAddr),
+        v2EthT.balanceOf(checkAddr),
+      ]);
+      if (bal === 0n && v1EthTBal === 0n && v2EthTBal === 0n) continue;
+      // If LockedAccount is empty but ETH-T is held, route to that version's
+      // EtherToken for the Step 2 unwrap. Prefer v2 if both are present
+      // (extreme edge case; not seen in practice).
+      let ethTBal = 0n;
+      if (bal === 0n) {
+        if (v2EthTBal > 0n) {
+          ethTBal = v2EthTBal;
+          etherToken = NEUFUND_V2_ETHERTOKEN;
+          lockedAccount = NEUFUND_V2_LOCKED;
+          resolvedVersion = 'v2';
+        } else if (v1EthTBal > 0n) {
+          ethTBal = v1EthTBal;
+          etherToken = cfg.neufundLocked.etherToken;
+          lockedAccount = cfg.neufundLocked.lockedAccount;
+          resolvedVersion = 'v1';
+        }
+      } else {
+        ethTBal = (resolvedVersion === 'v2') ? v2EthTBal : v1EthTBal;
+      }
       const neuContract = new ethers.Contract(cfg.neufundLocked.neuToken, ['function balanceOf(address) view returns (uint256)', 'function allowance(address,address) view returns (uint256)'], walletProvider);
       const neuBal = await neuContract.balanceOf(checkAddr);
       const neuAllowance = await neuContract.allowance(checkAddr, lockedAccount);
-      const ethTContract = new ethers.Contract(etherToken, ['function balanceOf(address) view returns (uint256)'], walletProvider);
-      const ethTBal = await ethTContract.balanceOf(checkAddr);
       window._neufundLockedState[key] = {
         neuDue, neuBal, neuAllowance, ethTBal, unlockDate,
         // Per-user contract pair — v2 users have these overridden so the
         // approveAndCall + withdraw flow targets the right contracts.
         lockedAccount, etherToken,
-        version: lockedAccount === NEUFUND_V2_LOCKED ? 'v2' : 'v1',
+        version: resolvedVersion,
         balanceWei: bal,
       };
     } catch (e) {
