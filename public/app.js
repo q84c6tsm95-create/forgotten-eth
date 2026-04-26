@@ -4285,13 +4285,32 @@ async function checkUserBalances(overrideAddress) {
           // Per project UX rule: show all steps as buttons side-by-side with the
           // active step highlighted and inactive ones dimmed (matches daoWithdraw,
           // keeperdao patterns). After Step 1 confirms, the unlock function
-          // dims the step 1 button and promotes step 2 (transfers `id` and
-          // `data-action`).
+          // dims the step 1 button and promotes step 2.
+          //
+          // Data sources, in priority order:
+          //   1. window._neufundLockedState — populated by wallet-connected
+          //      RPC enrichment; carries the LIVE NEU balance + version.
+          //   2. apiBalances[key] — always available via /api/check; carries
+          //      the per-user neu_needed/neu_balance/version from the
+          //      balance file. Used when the user looked up an address
+          //      without connecting a wallet, OR when the enrichment pass
+          //      didn't run (e.g. RPC error).
+          // Without the API fallback, anonymous lookups of v2 users showed
+          // "Need ? NEU" placeholders even though the API had the answer.
           const nfState = window._neufundLockedState?.[key];
+          const nfApi = apiBalances[key] || {};
           let actionBtn, stepInfo;
-          const hasNeu = nfState && nfState.neuBal >= nfState.neuDue;
+          let neuDueWei, neuBalWei;
+          if (nfState) {
+            neuDueWei = nfState.neuDue;
+            neuBalWei = nfState.neuBal;
+          } else if (nfApi.neufund_neu_needed_wei) {
+            neuDueWei = BigInt(nfApi.neufund_neu_needed_wei);
+            neuBalWei = nfApi.neufund_neu_balance_wei ? BigInt(nfApi.neufund_neu_balance_wei) : 0n;
+          }
+          const hasNeu = neuDueWei !== undefined && neuBalWei >= neuDueWei;
           const hasEthT = nfState && nfState.ethTBal > 0n;
-          const neuDueStr = nfState ? parseFloat(ethers.formatEther(nfState.neuDue)).toFixed(2) : '?';
+          const neuDueStr = neuDueWei !== undefined ? parseFloat(ethers.formatEther(neuDueWei)).toFixed(2) : '?';
 
           if (hasEthT) {
             // Either step 1 was completed earlier and step 2 was never finished,
@@ -4303,13 +4322,17 @@ async function checkUserBalances(overrideAddress) {
             actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="neufund-approve-and-unlock" data-key="${key}">Step 1: Unlock</button><button class="claim-btn" disabled style="opacity:0.35">Step 2: Withdraw ETH</button>`;
             stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:#facc15">Status</span><span class="claim-card-meta-value" style="color:#facc15">Step 1 burns ${neuDueStr} NEU and returns ETH-T. Step 2 unwraps ETH-T to ETH.</span></div>`;
           } else {
-            // No NEU. Show the exact deficit so the user knows what they need
-            // to unlock, plus the NEU token address for reference. Keep the
-            // copy short — judgement on whether/how to source NEU is on them.
-            const haveStr = nfState ? parseFloat(ethers.formatEther(nfState.neuBal)).toFixed(2) : '0';
-            const deficitStr = nfState ? parseFloat(ethers.formatEther(nfState.neuDue - nfState.neuBal)).toFixed(2) : '?';
+            // No NEU at the queried address (or shortfall). neuBalWei may be
+            // 0n when nfState is missing AND the API didn't carry a stored
+            // balance — show the requirement clearly, omit deficit math when
+            // we can't compute it.
+            const haveStr = neuBalWei !== undefined ? parseFloat(ethers.formatEther(neuBalWei)).toFixed(2) : '?';
+            const deficitWei = (neuDueWei !== undefined && neuBalWei !== undefined)
+              ? (neuDueWei - neuBalWei) : undefined;
+            const deficitStr = deficitWei !== undefined && deficitWei > 0n
+              ? parseFloat(ethers.formatEther(deficitWei)).toFixed(2) : '?';
             const neuAddr = cfg.neufundLocked.neuToken;
-            actionBtn = `<button class="claim-btn" disabled style="opacity:0.5">Need ${deficitStr} more NEU</button><button class="claim-btn" disabled style="opacity:0.35">Step 2: Withdraw ETH</button>`;
+            actionBtn = `<button class="claim-btn" disabled style="opacity:0.5">Need ${deficitStr === '?' ? neuDueStr : deficitStr} more NEU</button><button class="claim-btn" disabled style="opacity:0.35">Step 2: Withdraw ETH</button>`;
             stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:var(--red)">NEU required</span><span class="claim-card-meta-value" style="color:var(--red)">You need ${neuDueStr} NEU to redeem ${fmtEth(ethAmount)} ETH. Wallet has ${haveStr}; short by ${deficitStr}.</span></div><div class="claim-card-meta-row"><span class="claim-card-meta-label">NEU token</span><span class="claim-card-meta-value"><a href="${etherscanAddr(neuAddr)}" target="_blank" rel="noopener noreferrer">${neuAddr}</a></span></div>`;
           }
           const lastTx = apiBalances[key]?.last_tx_date ? apiBalances[key] : null;

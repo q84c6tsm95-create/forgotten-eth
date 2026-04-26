@@ -158,6 +158,8 @@ export default async function handler(req, res) {
       let neufundLockedAccount = typeof val === 'object' && val.nc ? val.nc : null;
       let neufundEtherToken = typeof val === 'object' && val.net ? val.net : null;
       let neufundClaimable = typeof val === 'object' && 'ncl' in val ? val.ncl : null;
+      let neufundNeuNeededWei = typeof val === 'object' && val.nn ? val.nn : null;
+      let neufundNeuBalanceWei = typeof val === 'object' && val.nbb ? val.nbb : null;
 
       if (itemsClaimed && itemsClaimed.size > 0) {
         if (deeds) {
@@ -223,6 +225,8 @@ export default async function handler(req, res) {
           neufund_locked_account: neufundLockedAccount,
           neufund_ether_token: neufundEtherToken,
           ...(neufundClaimable !== null ? { neufund_claimable: neufundClaimable } : {}),
+          ...(neufundNeuNeededWei ? { neufund_neu_needed_wei: neufundNeuNeededWei } : {}),
+          ...(neufundNeuBalanceWei ? { neufund_neu_balance_wei: neufundNeuBalanceWei } : {}),
         } : {}),
       };
     }
