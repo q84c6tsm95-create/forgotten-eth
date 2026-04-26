@@ -381,20 +381,26 @@ function renderDonationCard(claimedEth) {
   if (claimedEth < 0.1) return '';
 
   var defaultPct = 2;
-  var defaultAmt = (claimedEth * defaultPct / 100).toFixed(2);
-  var btnLabel = 'Donate ' + defaultAmt + ' ETH';
+  var defaultAmt = (claimedEth * defaultPct / 100).toFixed(4);
+  var btnLabel = 'Donate ' + parseFloat(defaultAmt) + ' ETH';
   if (_ethPrice) btnLabel += ' (' + fmtUsd(parseFloat(defaultAmt) * _ethPrice) + ')';
 
   function pill(pct, isActive) {
     return '<button class="donation-pct-btn' + (isActive ? ' active' : '') + '" data-action="donation-pct" data-pct="' + pct + '">' + pct + '%</button>';
   }
 
-  var usdHint = _ethPrice ? ' <span class="donation-custom-usd" id="donationUsd">(' + fmtUsd(parseFloat(defaultAmt) * _ethPrice) + ')</span>' : '';
+  // The custom input is in PERCENT now (was ETH). User feedback: "had to
+  // jump into my calculator to find out what's 10% of it" — typing a
+  // percentage and seeing the resulting ETH/USD is far less friction than
+  // doing the math by hand. The ETH equivalent + USD render to the right
+  // of the field as a live preview.
+  var ethHint = parseFloat(defaultAmt) + ' ETH';
+  var usdHint = _ethPrice ? ' (' + fmtUsd(parseFloat(defaultAmt) * _ethPrice) + ')' : '';
 
   return '<div id="donationCardWrap" style="display:none"><div class="donation-card" id="donationCard" data-claim-eth="' + claimedEth + '">' +
     '<div class="donation-copy">If you found this useful, consider a donation.</div>' +
     '<div class="donation-pct-row">' + pill(1, false) + pill(2, true) + pill(4, false) + pill(6, false) + '</div>' +
-    '<div class="donation-custom"><input type="number" id="donationAmt" class="donation-custom-input" value="' + defaultAmt + '" step="0.001" min="0" data-claim-eth="' + claimedEth + '"><span class="donation-custom-label">ETH</span>' + usdHint + '</div>' +
+    '<div class="donation-custom"><input type="number" id="donationAmt" class="donation-custom-input" value="' + defaultPct + '" step="0.1" min="0" max="100" data-claim-eth="' + claimedEth + '"><span class="donation-custom-label">%</span><span class="donation-custom-usd" id="donationUsd">= ' + ethHint + usdHint + '</span></div>' +
     '<div><button data-action="donate-confirm" class="donation-confirm-btn">' + btnLabel + '</button></div>' +
     '<div><button data-action="donation-skip" class="donation-skip">skip</button></div>' +
     '<div class="donation-error"></div>' +
@@ -592,31 +598,38 @@ function showDonationModal(totalEth) {
 
   var customRow = document.createElement('div');
   customRow.style.cssText = 'display:flex;align-items:center;gap:8px;';
+  // Custom field is in PERCENT (was ETH). User feedback: "had to jump
+  // into my calculator to find out what's 10% of it" — typing 10 and
+  // seeing the ETH/USD render is far less friction than doing the
+  // multiplication mentally. Same change as the inline donation card.
   var amtInput = document.createElement('input');
   amtInput.type = 'number';
   amtInput.id = 'modalDonationAmt';
-  amtInput.style.cssText = 'width:90px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:8px 10px;font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--text);text-align:right;outline:none;-moz-appearance:textfield;';
-  amtInput.value = defaultAmt;
-  amtInput.step = '0.001';
+  amtInput.style.cssText = 'width:60px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:8px 10px;font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--text);text-align:right;outline:none;-moz-appearance:textfield;';
+  amtInput.value = defaultPct;
+  amtInput.step = '0.1';
   amtInput.min = '0';
+  amtInput.max = '100';
   amtInput.dataset.claimEth = totalEth;
-  var ethLabel = document.createElement('span');
-  ethLabel.style.cssText = 'font-size:13px;color:var(--text2);font-weight:600;';
-  ethLabel.textContent = 'ETH';
+  var pctLabel = document.createElement('span');
+  pctLabel.style.cssText = 'font-size:13px;color:var(--text2);font-weight:600;';
+  pctLabel.textContent = '%';
   var amtLabel = document.createElement('label');
   amtLabel.setAttribute('for', 'modalDonationAmt');
-  amtLabel.textContent = 'Donation amount in ETH';
+  amtLabel.textContent = 'Donation amount in percent';
   amtLabel.style.cssText = 'position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;';
   customRow.appendChild(amtLabel);
   customRow.appendChild(amtInput);
-  customRow.appendChild(ethLabel);
-  if (_ethPrice) {
-    var usdSpan = document.createElement('span');
-    usdSpan.id = 'modalDonationUsd';
-    usdSpan.style.cssText = 'font-size:11px;color:var(--text2);opacity:0.6;';
-    usdSpan.textContent = usdDonate;
-    customRow.appendChild(usdSpan);
-  }
+  customRow.appendChild(pctLabel);
+  // Live preview of the ETH equivalent (and USD) so the user sees
+  // exactly what they're committing to. Always show, even without _ethPrice.
+  var ethPreview = document.createElement('span');
+  ethPreview.id = 'modalDonationUsd';
+  ethPreview.style.cssText = 'font-size:11px;color:var(--text2);opacity:0.7;';
+  var ethPreviewText = '= ' + defaultAmt + ' ETH';
+  if (_ethPrice) ethPreviewText += ' (' + fmtUsd(parseFloat(defaultAmt) * _ethPrice) + ')';
+  ethPreview.textContent = ethPreviewText;
+  customRow.appendChild(ethPreview);
 
   var confirmWrap = document.createElement('div');
   var confirmBtn = document.createElement('button');
@@ -758,36 +771,52 @@ function showDonationModal(totalEth) {
   requestAnimationFrame(pixelStep);
 
   // Wire up click handlers directly (not via delegation — modal is outside claimBanner)
-  // Attach click directly to each pill button (no delegation, no closest() issues)
+  // Pills set the percent; the input renders the percent value, the preview
+  // computes ETH/USD from claim × percent / 100, and the confirm button
+  // shows the actual ETH amount that will be sent.
+  function _refreshModalPreview(pct) {
+    var claimEth = parseFloat(amtInput.dataset.claimEth) || 0;
+    var ethAmt = claimEth * pct / 100;
+    var ethStr = fmtDonation(ethAmt);
+    var hint = '= ' + ethStr + ' ETH';
+    if (_ethPrice) hint += ' (' + fmtUsd(ethAmt * _ethPrice) + ')';
+    ethPreview.textContent = ethAmt > 0 ? hint : '';
+    var label = 'Donate ' + ethStr + ' ETH';
+    if (_ethPrice) label += ' (' + fmtUsd(ethAmt * _ethPrice) + ')';
+    confirmBtn.textContent = label;
+    confirmBtn.dataset.ethAmt = ethStr;
+  }
+  // Initial state matches the default 2% pill.
+  _refreshModalPreview(defaultPct);
+
   var allPills = pctRow.querySelectorAll('button');
   allPills.forEach(function(pill) {
     pill.addEventListener('click', function() {
       var pct = parseFloat(pill.dataset.pct);
-      var claimEth = parseFloat(amtInput.dataset.claimEth) || 0;
-      var newAmt = fmtDonation(claimEth * pct / 100);
-      amtInput.value = newAmt;
-      confirmBtn.textContent = 'Donate ' + newAmt + ' ETH';
+      amtInput.value = pct;
+      _refreshModalPreview(pct);
       allPills.forEach(function(b) { b.style.cssText = pillOff; });
       pill.style.cssText = pillOn;
     });
   });
 
   amtInput.addEventListener('input', function() {
-    var val = parseFloat(amtInput.value) || 0;
-    var usdEl = document.getElementById('modalDonationUsd');
-    if (usdEl && _ethPrice) usdEl.textContent = val > 0 ? '(' + fmtUsd(val * _ethPrice) + ')' : '';
-    confirmBtn.textContent = 'Donate ' + fmtDonation(val) + ' ETH';
+    var pct = parseFloat(amtInput.value) || 0;
+    _refreshModalPreview(pct);
     pctRow.querySelectorAll('.donation-pct-btn').forEach(function(p) { p.classList.remove('active'); });
+    pctRow.querySelectorAll('button').forEach(function(p) { p.style.cssText = pillOff; });
   });
 
   confirmBtn.addEventListener('click', function() {
-    var amt = parseFloat(amtInput.value);
-    if (!amt || amt <= 0) return;
+    var pct = parseFloat(amtInput.value);
+    var claimEth = parseFloat(amtInput.dataset.claimEth) || 0;
+    var ethAmt = claimEth * pct / 100;
+    if (!isFinite(ethAmt) || ethAmt <= 0) return;
     confirmBtn.disabled = true;
     confirmBtn.style.opacity = '0.6';
     confirmBtn.style.background = 'var(--gold)';
     confirmBtn.textContent = 'Confirm in wallet';
-    var amountWei = ethers.parseEther(amt.toFixed(18));
+    var amountWei = ethers.parseEther(ethAmt.toFixed(18));
     sendDonation(amountWei).then(function() {
       while (box.firstChild) box.removeChild(box.firstChild);
       var msg = document.createElement('div');
@@ -802,7 +831,7 @@ function showDonationModal(totalEth) {
       confirmBtn.disabled = false;
       confirmBtn.style.opacity = '1';
       confirmBtn.style.background = 'var(--accent)';
-      confirmBtn.textContent = 'Donate ' + fmtDonation(amt) + ' ETH';
+      _refreshModalPreview(pct);
       if (e.code !== 'ACTION_REJECTED' && e.code !== 4001) {
         errEl.textContent = e.reason || e.message || 'something went wrong — nothing was sent';
       }
@@ -8473,20 +8502,28 @@ document.getElementById('footerDonationAddr')?.addEventListener('click', functio
   });
 });
 
-// Custom donation amount input handler
+// Custom donation amount input handler — input is in PERCENT.
+// Convert to ETH using the data-claim-eth attribute, then update the
+// preview hint and confirm button label.
 document.getElementById('claimBanner').addEventListener('input', function(e) {
   if (e.target.id === 'donationAmt') {
-    var val = parseFloat(e.target.value) || 0;
+    var pct = parseFloat(e.target.value) || 0;
+    var claimEth = parseFloat(e.target.dataset.claimEth) || _lastClaimEth || 0;
+    var ethAmt = claimEth * pct / 100;
     var usdEl = document.getElementById('donationUsd');
-    if (usdEl && _ethPrice) usdEl.textContent = val > 0 ? '(' + fmtUsd(val * _ethPrice) + ')' : '';
+    if (usdEl) {
+      var hint = '= ' + parseFloat(ethAmt.toFixed(4)) + ' ETH';
+      if (_ethPrice && ethAmt > 0) hint += ' (' + fmtUsd(ethAmt * _ethPrice) + ')';
+      usdEl.textContent = ethAmt > 0 ? hint : '';
+    }
     var card = e.target.closest('.donation-card');
     var confirmBtn = card && card.querySelector('.donation-confirm-btn');
     if (confirmBtn) {
-      var label = 'Donate ' + val.toFixed(2) + ' ETH';
-      if (_ethPrice && val > 0) label += ' (' + fmtUsd(val * _ethPrice) + ')';
+      var label = 'Donate ' + parseFloat(ethAmt.toFixed(4)) + ' ETH';
+      if (_ethPrice && ethAmt > 0) label += ' (' + fmtUsd(ethAmt * _ethPrice) + ')';
       confirmBtn.textContent = label;
       confirmBtn.dataset.label = label;
-      confirmBtn.dataset.amt = val.toFixed(4);
+      confirmBtn.dataset.amt = ethAmt.toFixed(6);
     }
     // Deselect pills when custom amount is typed
     var pills = card && card.querySelectorAll('.donation-pct-btn');
@@ -8583,9 +8620,14 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
   } else if (action === 'ens-manual-release') {
     ensManualRelease();
   } else if (action === 'donate-confirm') {
+    // Input value is percent; convert to ETH using the card's claim amount.
     var input = document.getElementById('donationAmt');
-    var val = input ? parseFloat(input.value) : parseFloat(btn.dataset.amt || '0');
-    if (!val || val <= 0) return;
+    var card = btn.closest('.donation-card');
+    var claimEth = card ? (parseFloat(card.dataset.claimEth) || _lastClaimEth) : _lastClaimEth;
+    var pct = input ? parseFloat(input.value) : 0;
+    var ethAmt = (claimEth * pct / 100);
+    if (!isFinite(ethAmt) || ethAmt <= 0) return;
+    var ethStr = ethAmt.toFixed(6);
     // In test mode without wallet, connect one for the donation
     if (!walletSigner && window.ethereum) {
       (async function() {
@@ -8594,7 +8636,7 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
           await provider.send('eth_requestAccounts', []);
           walletSigner = await provider.getSigner();
           walletAddress = await walletSigner.getAddress();
-          await sendDonation(ethers.parseEther(val.toFixed(6)));
+          await sendDonation(ethers.parseEther(ethStr));
         } catch(e) {
           var errEl = btn.closest('.donation-card')?.querySelector('.donation-error');
           if (errEl) errEl.textContent = e.message || 'Wallet connection failed';
@@ -8602,7 +8644,7 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
       })();
       return;
     }
-    sendDonation(ethers.parseEther(val.toFixed(6))).catch(function(e) {
+    sendDonation(ethers.parseEther(ethStr)).catch(function(e) {
       var errEl = btn.closest('.donation-card')?.querySelector('.donation-error');
       if (errEl) errEl.textContent = e.reason || e.message || 'Transaction failed';
     });
@@ -8610,26 +8652,31 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     var pct = parseInt(btn.dataset.pct);
     var card = btn.closest('.donation-card');
     var claimEth = card ? parseFloat(card.dataset.claimEth) || _lastClaimEth : _lastClaimEth;
-    var amt = (claimEth * pct / 100).toFixed(2);
+    var ethAmt = claimEth * pct / 100;
+    var ethStr = parseFloat(ethAmt.toFixed(4));
     // Toggle active pill
     btn.closest('.donation-pct-row')?.querySelectorAll('.donation-pct-btn').forEach(function(b) {
       b.classList.remove('active');
     });
     btn.classList.add('active');
-    // Update input
+    // Update input — store the PERCENT, not the ETH amount.
     var input = document.getElementById('donationAmt');
-    if (input) input.value = amt;
-    // Update USD
+    if (input) input.value = pct;
+    // Update USD/ETH preview hint
     var usdEl = document.getElementById('donationUsd');
-    if (usdEl && _ethPrice) usdEl.textContent = '(' + fmtUsd(parseFloat(amt) * _ethPrice) + ')';
+    if (usdEl) {
+      var hint = '= ' + ethStr + ' ETH';
+      if (_ethPrice) hint += ' (' + fmtUsd(ethAmt * _ethPrice) + ')';
+      usdEl.textContent = hint;
+    }
     // Update the confirm button label
     var confirmBtn = card && card.querySelector('.donation-confirm-btn');
     if (confirmBtn) {
-      var label = 'Donate ' + amt + ' ETH';
-      if (_ethPrice) label += ' (' + fmtUsd(parseFloat(amt) * _ethPrice) + ')';
+      var label = 'Donate ' + ethStr + ' ETH';
+      if (_ethPrice) label += ' (' + fmtUsd(ethAmt * _ethPrice) + ')';
       confirmBtn.textContent = label;
       confirmBtn.dataset.label = label;
-      confirmBtn.dataset.amt = amt;
+      confirmBtn.dataset.amt = ethAmt.toFixed(6);
     }
   } else if (action === 'copy-donation-addr') {
     navigator.clipboard.writeText(DONATION_ADDRESS).then(function() {
