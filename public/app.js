@@ -3909,7 +3909,23 @@ async function checkUserBalances(overrideAddress) {
         v1EthT.balanceOf(checkAddr),
         v2EthT.balanceOf(checkAddr),
       ]);
-      if (bal === 0n && v1EthTBal === 0n && v2EthTBal === 0n) continue;
+      if (bal === 0n && v1EthTBal === 0n && v2EthTBal === 0n) {
+        // Both LockedAccounts AND both EtherTokens are 0 → user fully
+        // completed the 2-step claim (or was never a depositor). When the
+        // API still shows them as claimable (balance file refresh lags
+        // behind real-time withdrawals), without this flag the render
+        // would re-show Step 1 as active. Mark `claimed: true` so the
+        // card renders the "✓ Claimed" state with both buttons greyed
+        // out — same shape as the post-step-2 success path.
+        window._neufundLockedState[key] = {
+          claimed: true,
+          neuDue: 0n, neuBal: 0n, ethTBal: 0n,
+          lockedAccount, etherToken,
+          version: resolvedVersion,
+          balanceWei: 0n,
+        };
+        continue;
+      }
       // If LockedAccount is empty but ETH-T is held, route to that version's
       // EtherToken for the Step 2 unwrap. Prefer v2 if both are present
       // (extreme edge case; not seen in practice).
@@ -4368,11 +4384,23 @@ async function checkUserBalances(overrideAddress) {
             neuDueWei = BigInt(nfApi.neufund_neu_needed_wei);
             neuBalWei = nfApi.neufund_neu_balance_wei ? BigInt(nfApi.neufund_neu_balance_wei) : 0n;
           }
-          const hasNeu = neuDueWei !== undefined && neuBalWei >= neuDueWei;
-          const hasEthT = nfState && nfState.ethTBal > 0n;
+          // `claimed`: state-load detected both LockedAccount AND EtherToken
+          // balances are 0 → user finished the 2-step flow. The balance
+          // file may still list them (smart_refresh hasn't run yet), so
+          // we render the post-claim "✓ Claimed" state directly from
+          // wallet-side truth. hasEthT short-circuits when claimed=true
+          // so the active Step 2 branch doesn't fire.
+          const claimed = nfState && nfState.claimed === true;
+          const hasNeu = !claimed && neuDueWei !== undefined && neuBalWei >= neuDueWei;
+          const hasEthT = !claimed && nfState && nfState.ethTBal > 0n;
           const neuDueStr = neuDueWei !== undefined ? parseFloat(ethers.formatEther(neuDueWei)).toFixed(2) : '?';
 
-          if (hasEthT) {
+          if (claimed) {
+            // User fully claimed (Step 1 + Step 2 done; ETH-T is 0,
+            // LockedAccount is 0). Both buttons greyed; show ✓ Claimed.
+            actionBtn = `<button class="claim-btn" disabled style="opacity:0.35">Step 1: Unlocked</button><button class="claim-btn claimed" disabled style="opacity:0.35">✓ Claimed</button>`;
+            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:var(--green)">Done</span><span class="claim-card-meta-value" style="color:var(--green)">ETH withdrawn. The site index will catch up on the next refresh.</span></div>`;
+          } else if (hasEthT) {
             // Either step 1 was completed earlier and step 2 was never finished,
             // or the user has stranded ETH-T. Step 1 dimmed, Step 2 active.
             actionBtn = `<button class="claim-btn" disabled style="opacity:0.35">Step 1: Already unlocked</button><button class="claim-btn" id="claimBtn-${key}" data-action="neufund-withdraw-etht" data-key="${key}">Step 2: Withdraw ETH</button>`;
