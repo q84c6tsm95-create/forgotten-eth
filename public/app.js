@@ -4303,9 +4303,14 @@ async function checkUserBalances(overrideAddress) {
             actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="neufund-approve-and-unlock" data-key="${key}">Step 1: Unlock</button><button class="claim-btn" disabled style="opacity:0.35">Step 2: Withdraw ETH</button>`;
             stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:#facc15">Status</span><span class="claim-card-meta-value" style="color:#facc15">Step 1 burns ${neuDueStr} NEU and returns ETH-T. Step 2 unwraps ETH-T to ETH.</span></div>`;
           } else {
-            // No NEU — both buttons disabled, plus a clear blocker message.
-            actionBtn = `<button class="claim-btn" disabled style="opacity:0.5">Need ${neuDueStr} NEU</button><button class="claim-btn" disabled style="opacity:0.35">Step 2: Withdraw ETH</button>`;
-            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:var(--red)">Blocked</span><span class="claim-card-meta-value" style="color:var(--red)">You need ${neuDueStr} NEU tokens to unlock. Obtain NEU first.</span></div>`;
+            // No NEU. Show the exact deficit so the user knows what they need
+            // to unlock, plus the NEU token address for reference. Keep the
+            // copy short — judgement on whether/how to source NEU is on them.
+            const haveStr = nfState ? parseFloat(ethers.formatEther(nfState.neuBal)).toFixed(2) : '0';
+            const deficitStr = nfState ? parseFloat(ethers.formatEther(nfState.neuDue - nfState.neuBal)).toFixed(2) : '?';
+            const neuAddr = cfg.neufundLocked.neuToken;
+            actionBtn = `<button class="claim-btn" disabled style="opacity:0.5">Need ${deficitStr} more NEU</button><button class="claim-btn" disabled style="opacity:0.35">Step 2: Withdraw ETH</button>`;
+            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:var(--red)">NEU required</span><span class="claim-card-meta-value" style="color:var(--red)">You need ${neuDueStr} NEU to redeem ${fmtEth(ethAmount)} ETH. Wallet has ${haveStr}; short by ${deficitStr}.</span></div><div class="claim-card-meta-row"><span class="claim-card-meta-label">NEU token</span><span class="claim-card-meta-value"><a href="${etherscanAddr(neuAddr)}" target="_blank" rel="noopener noreferrer">${neuAddr}</a></span></div>`;
           }
           const lastTx = apiBalances[key]?.last_tx_date ? apiBalances[key] : null;
           html += `
