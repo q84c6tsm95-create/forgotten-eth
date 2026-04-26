@@ -4281,29 +4281,31 @@ async function checkUserBalances(overrideAddress) {
               <div class="claim-card-status" id="claimStatus-${key}"></div>
             </div>`;
         } else if (cfg.neufundLocked) {
-          // Neufund LockedAccount: 2-step withdrawal (approveAndCall + withdraw ETH-T)
+          // Neufund LockedAccount: 2-step withdrawal (approveAndCall + withdraw ETH-T).
+          // Per project UX rule: show all steps as buttons side-by-side with the
+          // active step highlighted and inactive ones dimmed (matches daoWithdraw,
+          // keeperdao patterns). After Step 1 confirms, the unlock function
+          // dims the step 1 button and promotes step 2 (transfers `id` and
+          // `data-action`).
           const nfState = window._neufundLockedState?.[key];
           let actionBtn, stepInfo;
           const hasNeu = nfState && nfState.neuBal >= nfState.neuDue;
           const hasEthT = nfState && nfState.ethTBal > 0n;
+          const neuDueStr = nfState ? parseFloat(ethers.formatEther(nfState.neuDue)).toFixed(2) : '?';
 
-          if (hasEthT && balance === 0n) {
-            // Already unlocked, just need to convert ETH-T to ETH
-            actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="neufund-withdraw-etht" data-key="${key}">Withdraw ETH</button>`;
-            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:var(--green)">Ready</span><span class="claim-card-meta-value" style="color:var(--green)">Already unlocked. Convert ETH-T to ETH.</span></div>`;
-          } else if (hasEthT) {
-            // Has both locked balance and ETH-T (partial state) — withdraw ETH-T first
-            actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="neufund-withdraw-etht" data-key="${key}">Step 2: Withdraw ETH</button>`;
-            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:var(--green)">Ready</span><span class="claim-card-meta-value" style="color:var(--green)">ETH-T ready. Convert to ETH.</span></div>`;
+          if (hasEthT) {
+            // Either step 1 was completed earlier and step 2 was never finished,
+            // or the user has stranded ETH-T. Step 1 dimmed, Step 2 active.
+            actionBtn = `<button class="claim-btn" disabled style="opacity:0.35">Step 1: Already unlocked</button><button class="claim-btn" id="claimBtn-${key}" data-action="neufund-withdraw-etht" data-key="${key}">Step 2: Withdraw ETH</button>`;
+            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:var(--green)">Ready</span><span class="claim-card-meta-value" style="color:var(--green)">ETH-T already in wallet — convert to ETH.</span></div>`;
           } else if (hasNeu) {
-            // Has NEU, ready to do approveAndCall (unlock in one tx)
-            actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="neufund-approve-and-unlock" data-key="${key}" style="background:var(--text2)">Step 1: Unlock</button>`;
-            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:#facc15">Status</span><span class="claim-card-meta-value" style="color:#facc15">2-step: unlock (burns NEU, returns ETH-T) → withdraw ETH.</span></div>`;
+            // Initial state: Step 1 active, Step 2 dimmed.
+            actionBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="neufund-approve-and-unlock" data-key="${key}">Step 1: Unlock</button><button class="claim-btn" disabled style="opacity:0.35">Step 2: Withdraw ETH</button>`;
+            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:#facc15">Status</span><span class="claim-card-meta-value" style="color:#facc15">Step 1 burns ${neuDueStr} NEU and returns ETH-T. Step 2 unwraps ETH-T to ETH.</span></div>`;
           } else {
-            // No NEU tokens
-            const neuDueStr = nfState ? ethers.formatEther(nfState.neuDue) : '?';
-            actionBtn = `<button class="claim-btn" id="claimBtn-${key}" disabled style="opacity:0.5">Need NEU tokens</button>`;
-            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:var(--red)">Blocked</span><span class="claim-card-meta-value" style="color:var(--red)">You need ${parseFloat(neuDueStr).toFixed(2)} NEU tokens to unlock. Obtain NEU first.</span></div>`;
+            // No NEU — both buttons disabled, plus a clear blocker message.
+            actionBtn = `<button class="claim-btn" disabled style="opacity:0.5">Need ${neuDueStr} NEU</button><button class="claim-btn" disabled style="opacity:0.35">Step 2: Withdraw ETH</button>`;
+            stepInfo = `<div class="claim-card-meta-row" style="margin-top:4px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)"><span class="claim-card-meta-label" style="color:var(--red)">Blocked</span><span class="claim-card-meta-value" style="color:var(--red)">You need ${neuDueStr} NEU tokens to unlock. Obtain NEU first.</span></div>`;
           }
           const lastTx = apiBalances[key]?.last_tx_date ? apiBalances[key] : null;
           html += `
@@ -5756,11 +5758,20 @@ async function neufundApproveAndUnlock(key) {
     btn.textContent = 'Pending...';
     statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash.slice(0, 18)}...</a>`;
     await tx.wait();
-    btn.textContent = 'Step 2: Withdraw ETH';
+    // Dim Step 1, promote Step 2 (matches daoWithdraw / keeperdao patterns).
+    btn.textContent = 'Step 1: Unlocked';
     btn.classList.remove('pending');
-    btn.disabled = false;
-    btn.dataset.action = 'neufund-withdraw-etht';
-    statusEl.innerHTML = `Unlocked! ETH-T in your wallet. <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View tx</a>. Now click "Step 2: Withdraw ETH".`;
+    btn.disabled = true;
+    btn.style.opacity = '0.35';
+    const step2Btn = btn.nextElementSibling;
+    if (step2Btn) {
+      step2Btn.disabled = false;
+      step2Btn.style.opacity = '1';
+      step2Btn.id = 'claimBtn-' + key;
+      step2Btn.dataset.action = 'neufund-withdraw-etht';
+      step2Btn.dataset.key = key;
+    }
+    statusEl.innerHTML = `Unlocked! ETH-T in your wallet. <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">View tx</a>. Click Step 2 to withdraw.`;
     window.va?.track?.('neufund_unlock_confirmed', { exchange: cfg.name, tx_hash: tx.hash });
   } catch (e) {
     btn.disabled = false;
