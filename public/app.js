@@ -3798,11 +3798,26 @@ async function checkUserBalances(overrideAddress) {
       // balanceContract lets a protocol read its balance from a sibling
       // address (e.g. OZ RefundVault holds the ETH, crowdsale receives the
       // claimRefund call). Falls back to cfg.contract when not set.
+      // For neufund_locked v2 entries, the API tells us which LockedAccount
+      // the user is on — use that override instead of the cfg default
+      // (which would point at v1 and return 0 for migrated users).
       try {
-        const balanceAddr = cfg.balanceContract || cfg.contract;
+        let balanceAddr = cfg.balanceContract || cfg.contract;
+        if (key === 'neufund_locked' && apiEntry.neufund_version === 'v2'
+            && apiEntry.neufund_locked_account) {
+          balanceAddr = apiEntry.neufund_locked_account;
+        }
         const contract = new ethers.Contract(balanceAddr, [cfg.balanceAbi], walletProvider);
         const result = await contract[cfg.balanceCall](...cfg.balanceArgs(checkAddr));
         const balance = cfg.balanceTransform ? cfg.balanceTransform(result) : result;
+        // RPC returned zero but API says the user has a balance — trust the
+        // API in this case. This catches: (a) post-migration v1 lookups
+        // returning 0 for v2-cohort users, (b) any timing skew where the
+        // RPC tip is older than the balance file. Without this fallback
+        // the protocol card silently disappears for those users.
+        if ((balance === 0n || balance === 0) && apiEntry.balance_wei && BigInt(apiEntry.balance_wei) > 0n) {
+          return { key, balance: BigInt(apiEntry.balance_wei) };
+        }
         return { key, balance };
       } catch (rpcErr) {
         // RPC failed: trust API balance as fallback
