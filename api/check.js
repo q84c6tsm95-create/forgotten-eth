@@ -152,6 +152,12 @@ export default async function handler(req, res) {
       let tokemakState = typeof val === 'object' && val.tk ? val.tk : null;
       let gnosisState = typeof val === 'object' && val.ga ? val.ga : null;
       let yearnShares = typeof val === 'object' && val.sw ? val.sw : null;
+      // Neufund v2: per-user version + contract addresses. v1 entries are
+      // unmarked and the frontend uses the default cfg.neufundLocked tuple.
+      let neufundVersion = typeof val === 'object' && val.nv ? val.nv : null;
+      let neufundLockedAccount = typeof val === 'object' && val.nc ? val.nc : null;
+      let neufundEtherToken = typeof val === 'object' && val.net ? val.net : null;
+      let neufundClaimable = typeof val === 'object' && 'ncl' in val ? val.ncl : null;
 
       if (itemsClaimed && itemsClaimed.size > 0) {
         if (deeds) {
@@ -212,6 +218,12 @@ export default async function handler(req, res) {
           })),
         } : {}),
         ...(yearnShares ? { yearn_shares_wei: yearnShares } : {}),
+        ...(neufundVersion ? {
+          neufund_version: neufundVersion,
+          neufund_locked_account: neufundLockedAccount,
+          neufund_ether_token: neufundEtherToken,
+          ...(neufundClaimable !== null ? { neufund_claimable: neufundClaimable } : {}),
+        } : {}),
       };
     }
   }

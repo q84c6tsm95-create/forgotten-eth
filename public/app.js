@@ -1949,7 +1949,7 @@ const EXCHANGES = {
   },
   neufund_locked: {
     name: 'Neufund',
-    desc: 'The ICBM (Initial Capital Building Mechanism) escrow contract where Neufund investors locked ETH in exchange for Neumark (NEU) tokens. All 540-day lock periods expired in 2019. To recover ETH: approveAndCall on NEU (unlocks + returns ETH-T in one tx), then withdraw ETH-T to raw ETH.',
+    desc: 'Neufund ran two ICBM LockedAccount escrows: a v1 contract from Nov 2017 (0xb1E4675f...) and a post-ICBM v2 contract from Nov 2018 (0xea4df6f4...) that received migrations from v1. Each holds per-investor ETH-T against a separate EtherToken and tracks a Neumark (NEU) burn debt. All 540-day lock periods expired in 2019. To recover ETH: approveAndCall on NEU targeting the user\'s specific LockedAccount (burns NEU + returns ETH-T in one tx), then withdraw ETH-T from the matching EtherToken. The site auto-detects which contract a user belongs to.',
     category: 'ico',
     color: '#0d9488',
     contract: '0xb1E4675f0dBE360bA90447A7e58c62C762Ad62D4',
@@ -3822,23 +3822,51 @@ async function checkUserBalances(overrideAddress) {
   clearInterval(_progressInterval);
   if (_scanProgressEl) _scanProgressEl.textContent = 'Checking contracts... ' + _totalContracts + '/' + _totalContracts;
 
-  // Check Neufund LockedAccount state (NEU balance + neumarksDue)
+  // Check Neufund LockedAccount state (NEU balance + neumarksDue).
+  // Some users migrated from the ICBM v1 LockedAccount (cfg.contract) to the
+  // post-ICBM v2 LockedAccount (different contract + different EtherToken)
+  // via migrate(). The wallet-connected RPC check only hits v1, so v2 users
+  // fall through with balance=0. Query v1 first; if zero, fall back to v2 —
+  // and remember which version the user is on so the claim flow targets the
+  // right contracts.
   window._neufundLockedState = {};
+  const NEUFUND_V2_LOCKED = '0xea4df6f41e90dd7b6c482bda228925de159c03f5';
+  const NEUFUND_V2_ETHERTOKEN = '0x0b7dc5a43ce121b4eaaa41b0f4f43bba47bb8951';
   for (const { key, balance } of balanceResults) {
     const cfg = EXCHANGES[key];
-    if (cfg.neufundLocked && balance > 0n && walletProvider) {
-      try {
-        const lc = new ethers.Contract(cfg.contract, [cfg.balanceAbi], walletProvider);
-        const [bal, neuDue, unlockDate] = await lc[cfg.balanceCall](...cfg.balanceArgs(checkAddr));
-        const neuContract = new ethers.Contract(cfg.neufundLocked.neuToken, ['function balanceOf(address) view returns (uint256)', 'function allowance(address,address) view returns (uint256)'], walletProvider);
-        const neuBal = await neuContract.balanceOf(checkAddr);
-        const neuAllowance = await neuContract.allowance(checkAddr, cfg.neufundLocked.lockedAccount);
-        const ethTContract = new ethers.Contract(cfg.neufundLocked.etherToken, ['function balanceOf(address) view returns (uint256)'], walletProvider);
-        const ethTBal = await ethTContract.balanceOf(checkAddr);
-        window._neufundLockedState[key] = { neuDue, neuBal, neuAllowance, ethTBal, unlockDate };
-      } catch (e) {
-        console.warn('Failed to check Neufund locked state:', e);
+    if (!cfg.neufundLocked || !walletProvider) continue;
+    let lockedAccount = cfg.neufundLocked.lockedAccount;
+    let etherToken = cfg.neufundLocked.etherToken;
+    let bal, neuDue, unlockDate;
+    try {
+      const v1 = new ethers.Contract(cfg.contract, [cfg.balanceAbi], walletProvider);
+      [bal, neuDue, unlockDate] = await v1[cfg.balanceCall](...cfg.balanceArgs(checkAddr));
+      if (bal === 0n || balance === 0n) {
+        // v1 zero — try v2
+        const v2 = new ethers.Contract(NEUFUND_V2_LOCKED, [cfg.balanceAbi], walletProvider);
+        const [b2, n2, u2] = await v2[cfg.balanceCall](...cfg.balanceArgs(checkAddr));
+        if (b2 > 0n) {
+          bal = b2; neuDue = n2; unlockDate = u2;
+          lockedAccount = NEUFUND_V2_LOCKED;
+          etherToken = NEUFUND_V2_ETHERTOKEN;
+        }
       }
+      if (bal === 0n) continue;
+      const neuContract = new ethers.Contract(cfg.neufundLocked.neuToken, ['function balanceOf(address) view returns (uint256)', 'function allowance(address,address) view returns (uint256)'], walletProvider);
+      const neuBal = await neuContract.balanceOf(checkAddr);
+      const neuAllowance = await neuContract.allowance(checkAddr, lockedAccount);
+      const ethTContract = new ethers.Contract(etherToken, ['function balanceOf(address) view returns (uint256)'], walletProvider);
+      const ethTBal = await ethTContract.balanceOf(checkAddr);
+      window._neufundLockedState[key] = {
+        neuDue, neuBal, neuAllowance, ethTBal, unlockDate,
+        // Per-user contract pair — v2 users have these overridden so the
+        // approveAndCall + withdraw flow targets the right contracts.
+        lockedAccount, etherToken,
+        version: lockedAccount === NEUFUND_V2_LOCKED ? 'v2' : 'v1',
+        balanceWei: bal,
+      };
+    } catch (e) {
+      console.warn('Failed to check Neufund locked state:', e);
     }
   }
 
@@ -5705,9 +5733,11 @@ async function neufundApproveAndUnlock(key) {
   statusEl.textContent = 'Confirm in wallet (burns NEU, returns ETH-T in one tx)...';
 
   try {
+    // Use the per-user lockedAccount captured during state load (v1 vs v2).
+    const lockedTarget = nfState.lockedAccount || cfg.neufundLocked.lockedAccount;
     const neuContract = new ethers.Contract(cfg.neufundLocked.neuToken,
       ['function approveAndCall(address spender, uint256 amount, bytes extraData) returns (bool)'], walletSigner);
-    const tx = await neuContract.approveAndCall(cfg.neufundLocked.lockedAccount, nfState.neuDue, '0x');
+    const tx = await neuContract.approveAndCall(lockedTarget, nfState.neuDue, '0x');
     btn.textContent = 'Pending...';
     statusEl.innerHTML = `Tx submitted: <a href="${etherscanTx(tx.hash)}" target="_blank" rel="noopener noreferrer">${tx.hash.slice(0, 18)}...</a>`;
     await tx.wait();
@@ -5742,7 +5772,10 @@ async function neufundWithdrawEthT(key) {
   statusEl.textContent = 'Confirm ETH-T withdrawal in wallet...';
 
   try {
-    const ethTContract = new ethers.Contract(cfg.neufundLocked.etherToken, ['function balanceOf(address) view returns (uint256)'], walletProvider);
+    // Per-user EtherToken (v1 vs v2 differ).
+    const nfState = window._neufundLockedState?.[key];
+    const etherTokenAddr = nfState?.etherToken || cfg.neufundLocked.etherToken;
+    const ethTContract = new ethers.Contract(etherTokenAddr, ['function balanceOf(address) view returns (uint256)'], walletProvider);
     const ethTBal = await ethTContract.balanceOf(walletAddress);
     if (ethTBal === 0n) {
       btn.textContent = 'Done';
@@ -5750,7 +5783,7 @@ async function neufundWithdrawEthT(key) {
       statusEl.textContent = 'No ETH-T to withdraw. You may have already completed this step.';
       return;
     }
-    const withdrawContract = new ethers.Contract(cfg.neufundLocked.etherToken, ['function withdraw(uint256)'], walletSigner);
+    const withdrawContract = new ethers.Contract(etherTokenAddr, ['function withdraw(uint256)'], walletSigner);
     const tx = await withdrawContract.withdraw(ethTBal);
     const ethAmount = ethers.formatEther(ethTBal);
     btn.textContent = 'Pending...';

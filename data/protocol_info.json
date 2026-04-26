@@ -190,10 +190,11 @@
   },
   "neufund_locked": {
     "name": "Neufund",
-    "desc": "The ICBM (Initial Capital Building Mechanism) escrow contract where Neufund investors locked ETH in exchange for Neumark (NEU) tokens. All 540-day lock periods expired in 2019. To recover ETH: approveAndCall on NEU (unlocks + returns ETH-T in one tx), then withdraw ETH-T to raw ETH.",
+    "desc": "Neufund's ICBM (Initial Capital Building Mechanism) ran two LockedAccount escrows: a v1 contract from November 2017 (0xb1E4675f...) and a post-ICBM v2 contract from November 2018 (0xea4df6f4...) that received migrations from v1 via migrate(). Each escrow holds per-investor ETH-T against a separate EtherToken (v1: 0xb59a226a..., v2: 0x0b7dc5a4...) and tracks a Neumark (NEU) burn debt to unlock. All 540-day lock periods expired in 2019. To recover ETH: approveAndCall on NEU targeting the user's specific LockedAccount (burns NEU + returns ETH-T in one tx), then withdraw ETH-T from the matching EtherToken. The site detects which contract a user belongs to and routes the claim accordingly — no user action needed beyond confirming the two transactions.",
     "category": "ico",
     "color": "#0d9488",
     "contract": "0xb1E4675f0dBE360bA90447A7e58c62C762Ad62D4",
+    "secondary_contract": "0xea4df6f41e90dd7b6c482bda228925de159c03f5",
     "deployed": "November 2017",
     "slug": "neufund-locked"
   },
