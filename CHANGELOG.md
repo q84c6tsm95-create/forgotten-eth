@@ -6,6 +6,13 @@ All protocol additions and notable changes to [Forgotten ETH](https://forgottene
 
 ## 🟢 April 2026
 
+### P4RTY DAO Vault — `+0.43 ETH` · 56 addresses
+> **Category:** Dividend Vault · **Contract:** [`0x9465A...E1ef878`](https://etherscan.io/address/0x9465A32618a9172b3c14d82cecdCa788dE1ef878) · **Added:** April 28
+
+2018 p4rty.io staking vault. P4RTY holders staked tokens into the DAO vault; ETH sent to the vault was distributed pro-rata as dividends. The old frontend is gone, but accumulated dividends are still a clean `withdraw()` call. Staked P4RTY itself stays in the vault — only dividend ETH is recovered here.
+
+---
+
 ### Aave v1 — `+941 ETH` · 3,509 addresses
 > **Category:** DeFi Lending · **Contract:** [`0x3a3A65...d37d08c04`](https://etherscan.io/address/0x3a3A65aAb0dd2A17E3F1947bA16138cd37d08c04) · **Added:** April 4
 
@@ -106,4 +113,4 @@ EtherToken wrapper + LockedAccount. Two claim paths:
 
 ---
 
-*For the full list of all 120 tracked contracts, see [`data/protocols.json`](data/protocols.json).*
+*For the full list of all 194 tracked contracts, see [`data/protocols.json`](data/protocols.json).*

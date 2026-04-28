@@ -1,6 +1,6 @@
 # Forgotten ETH
 
-Scan 183 defunct Ethereum contracts for withdrawable ETH. No frontend needed for most of these protocols anymore, no portfolio tracker indexes them.
+Scan 194 defunct Ethereum contracts for withdrawable ETH. No frontend needed for most of these protocols anymore, no portfolio tracker indexes them.
 
 **[forgotteneth.com](https://forgotteneth.com)** | **[forgotteneth.eth](https://etherscan.io/address/0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891)** | **[API](https://forgotteneth.com/api)**
 
@@ -29,7 +29,7 @@ Cloudflare WAF; bulk scraping will be blocked at the edge. See
 
 ETH gets stuck in old contracts when protocols shut down and their frontends go offline. The balances are still onchain but invisible to DeBank, Zapper, and other portfolio trackers. This tool indexes them and generates the withdrawal transaction.
 
-183 contracts. 165,921 ETH mapped. 536k addresses with claimable balance. 1,423 ETH already withdrawn by 445 unique claimers since launch.
+194 contracts. 157,648 ETH mapped. 553k addresses with claimable balance. 11,485 ETH already withdrawn by 556 unique claimers since launch.
 
 ## CLI
 
@@ -51,7 +51,7 @@ npm run check:address -- 0x... --rpc <url>        # custom RPC
 ## Web
 
 1. Paste address or connect wallet
-2. Scans all 183 contracts (API-first, RPC verification for connected wallets)
+2. Scans all 194 contracts (API-first, RPC verification for connected wallets)
 3. Click Withdraw — tx goes directly from the original contract to your wallet
 
 No custody. No intermediary contracts. No token approvals for standard withdrawals (The DAO, DigixDAO, and Neufund require token burns as part of their original contract design). Every withdrawal is reproducible on Etherscan.
@@ -79,6 +79,7 @@ Full list in [`data/protocols.json`](data/protocols.json).
 
 | Date | Protocol | ETH | Addresses | Notes |
 |------|----------|-----|-----------|-------|
+| Apr 28 | P4RTY DAO Vault | 0.43 | 56 | Staked P4RTY dividend vault, direct withdraw() |
 | Apr 15 | Celer Payment Channels | 151 | 1,551 | Unilateral intendWithdraw → 10k-block window → confirmWithdraw (OSP slice excluded) |
 | Apr 13 | GavCoin | 47 | 115 | 2015 bonding-curve ICO, per-user refund |
 | Apr 13 | Veil Ether | 57 | 376 | Veil prediction-market WETH escrow |

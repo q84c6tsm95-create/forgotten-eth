@@ -50,13 +50,13 @@ repo, use `https://api.github.com/repos/forgotteneth/forgotten-eth/contents/data
 
 ## About the project
 
-- **Coverage**: 163 defunct contracts, ~164,553 ETH still held on-chain
-  across ~532,000 unique addresses.
+- **Coverage**: 194 defunct contracts, ~157,648 ETH mapped across
+  ~553,000 unique addresses.
 - **Protocols include**: EtherDelta, IDEX and forks, the Fomo3D and
-  PoWH3D families, the original ENS auction registrar (deed releases),
-  DigixDAO, Augur v1, The DAO (WithdrawDAO), Neufund, NuCypher WorkLock,
-  Kyber FeeHandler, Tessera vaults, Bounties Network, 17 OZ
-  RefundableCrowdsale ICOs, and more.
+  PoWH3D families, P4RTY DAO Vault, the original ENS auction registrar
+  (deed releases), DigixDAO, Augur v1, The DAO (WithdrawDAO), Neufund,
+  NuCypher WorkLock, Kyber FeeHandler, Tessera vaults, Bounties Network,
+  Celer Payment Channels, 17 OZ RefundableCrowdsale ICOs, and more.
 - **No token, no fees, no signup.** Wallet-connect is read-only for
   the scan. Every withdrawal transaction is generated client-side and
   signed in the user's wallet — the server never sees a private key.

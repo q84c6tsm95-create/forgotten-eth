@@ -459,6 +459,15 @@
     "deployed": "February 2018",
     "slug": "powh3d"
   },
+  "p4rty_dao_vault": {
+    "name": "P4RTY DAO Vault",
+    "desc": "P4RTY DAO Vault was a 2018 dividend vault from p4rty.io. Users staked P4RTY tokens, and ETH sent to the vault was distributed pro-rata to stakers. The frontend is gone, but accumulated ETH dividends remain withdrawable via withdraw(); staked P4RTY itself is not unstaked by this vault.",
+    "category": "gambling",
+    "color": "#a855f7",
+    "contract": "0x9465A32618a9172b3c14d82cecdCa788dE1ef878",
+    "deployed": "August 2018",
+    "slug": "p4rty-dao-vault"
+  },
   "powm": {
     "name": "POWM",
     "desc": "Proof of Weak Math, deployed April 2018 during the first wave of P3D clones. Named as a jab at PoWL, an earlier clone with a coding error that broke its dividend math. Featured a 20% fee and briefly held over 4,000 ETH.",
