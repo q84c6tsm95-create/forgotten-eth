@@ -3614,7 +3614,7 @@ function buildClaimedCards(claimedBalances) {
         '</div>';
       }
       if (sorted.length > SHOW_INITIAL) {
-        itemsHtml += '<div style="text-align:center;margin:8px 0 4px"><button onclick="document.querySelectorAll(\'[data-claimed-hidden=' + cKey + ']\').forEach(function(e){e.style.display=\'flex\'});this.parentNode.remove()" style="background:var(--accent);color:#fff;border:none;padding:6px 18px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">Show all ' + sorted.length + ' claims</button></div>';
+        itemsHtml += '<div style="text-align:center;margin:8px 0 4px"><button data-action="claimed-show-all" data-key="' + esc(cKey) + '" style="background:var(--accent);color:#fff;border:none;padding:6px 18px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">Show all ' + sorted.length + ' claims</button></div>';
       }
       html += '<div class="claim-card claimed-card">' +
         '<div class="claim-card-header"><span class="claim-card-name">' + esc(cCfg.name) + '</span><span class="claim-card-amount">' + fmtEth(cEth) + ' ETH</span></div>' +
@@ -7719,7 +7719,7 @@ async function loadExchange(key) {
         await new Promise(r => setTimeout(r, 1500));
       } else {
         document.getElementById('loading-' + key).innerHTML =
-          `<p style="color:var(--text2)">Could not load data for ${esc(cfg.name)}. <a href="javascript:void(0)" onclick="loadExchange('${key}')" style="color:var(--accent)">Retry</a></p>`;
+          `<p style="color:var(--text2)">Could not load data for ${esc(cfg.name)}. <a href="#" data-action="retry-load-exchange" data-key="${esc(key)}" style="color:var(--accent)">Retry</a></p>`;
         return;
       }
     }
@@ -8737,6 +8737,15 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     btn.textContent = 'Watching!';
     btn.disabled = true;
     btn.style.opacity = '0.6';
+  } else if (action === 'claimed-show-all') {
+    var claimKey = btn.dataset.key || '';
+    document.querySelectorAll('[data-claimed-hidden]').forEach(function(el) {
+      if (el.getAttribute('data-claimed-hidden') === claimKey) el.style.display = 'flex';
+    });
+    if (btn.parentNode) btn.parentNode.remove();
+  } else if (action === 'retry-load-exchange') {
+    e.preventDefault();
+    loadExchange(btn.dataset.key);
   }
 });
 
@@ -8746,6 +8755,12 @@ function _faqToggle(q) {
   q.setAttribute('aria-expanded', String(isOpen));
 }
 document.addEventListener('click', function(e) {
+  var actionEl = e.target.closest && e.target.closest('[data-action="retry-load-exchange"]');
+  if (actionEl) {
+    e.preventDefault();
+    loadExchange(actionEl.dataset.key);
+    return;
+  }
   var q = e.target.closest('[data-faq-toggle]');
   if (!q) return;
   _faqToggle(q);
@@ -8865,4 +8880,3 @@ recheckWatchlist();
   }
   copyBtn.addEventListener('click', function(e) { e.preventDefault(); doCopy(); });
 })();
-

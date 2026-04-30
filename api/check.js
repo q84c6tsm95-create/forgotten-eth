@@ -95,7 +95,8 @@ export default async function handler(req, res) {
         claimedProtocols.add(r.protocol);
       } else {
         if (!claimedItems[r.protocol]) claimedItems[r.protocol] = new Set();
-        claimedItems[r.protocol].add(r.item_id);
+        claimedItems[r.protocol].add(String(r.item_id));
+        claimedItems[r.protocol].add(String(r.item_id).toLowerCase());
       }
       // Build claim details for the "Already Claimed" display
       const eth = parseFloat(r.amount_eth || 0);
@@ -123,6 +124,13 @@ export default async function handler(req, res) {
 
   const results = {};
   let totalClaimable = 0;
+  const isClaimedItem = (itemsClaimed, rawId, prefix = '') => {
+    if (!itemsClaimed || rawId === null || rawId === undefined) return false;
+    const id = String(rawId);
+    const lower = id.toLowerCase();
+    return itemsClaimed.has(id) || itemsClaimed.has(lower)
+      || (prefix ? itemsClaimed.has(`${prefix}:${id}`) || itemsClaimed.has(`${prefix}:${lower}`) : false);
+  };
 
   if (entry) {
     for (const [key, val] of Object.entries(entry)) {
@@ -151,6 +159,7 @@ export default async function handler(req, res) {
       let merkleTokens = typeof val === 'object' && val.mt ? val.mt : null;
       let tokemakState = typeof val === 'object' && val.tk ? val.tk : null;
       let gnosisState = typeof val === 'object' && val.ga ? val.ga : null;
+      let adoptionRequests = typeof val === 'object' && val.a ? val.a : null;
       let yearnShares = typeof val === 'object' && val.sw ? val.sw : null;
       // Neufund v2: per-user version + contract addresses. v1 entries are
       // unmarked and the frontend uses the default cfg.neufundLocked tuple.
@@ -168,23 +177,34 @@ export default async function handler(req, res) {
           balanceEth = deeds.reduce((s, d) => s + parseFloat(d.value_eth || 0), 0).toFixed(8);
         }
         if (bounties) {
-          bounties = bounties.filter(b => !itemsClaimed.has(String(b.id)));
+          bounties = bounties.filter(b => !isClaimedItem(itemsClaimed, b.id, 'bounty'));
           if (bounties.length === 0) continue;
           balanceEth = bounties.reduce((s, b) => s + parseFloat(b.eth || 0), 0).toFixed(8);
         }
         if (epochs) {
-          epochs = epochs.filter(e => !itemsClaimed.has(String(e.epoch)));
+          epochs = epochs.filter(e => !isClaimedItem(itemsClaimed, e.epoch, 'reward'));
           if (epochs.length === 0) continue;
           balanceEth = epochs.reduce((s, e) => s + parseFloat(e.eth || 0), 0).toFixed(8);
         }
         if (augurClaims) {
-          augurClaims = augurClaims.filter(c => !itemsClaimed.has(c.id || ''));
+          augurClaims = augurClaims.filter(c => !isClaimedItem(itemsClaimed, c.id || ''));
           if (augurClaims.length === 0) continue;
         }
         if (celerChannels) {
-          celerChannels = celerChannels.filter(c => !itemsClaimed.has(c.channel_id || ''));
+          celerChannels = celerChannels.filter(c => !isClaimedItem(itemsClaimed, c.channel_id || '', 'channel'));
           if (celerChannels.length === 0) continue;
           balanceEth = (celerChannels.reduce((s, c) => s + Number(BigInt(c.claimable_wei || '0')), 0) / 1e18).toFixed(8);
+        }
+        if (adoptionRequests) {
+          adoptionRequests = adoptionRequests.filter(r => !isClaimedItem(itemsClaimed, r.catId || r.cat_id || ''));
+          if (adoptionRequests.length === 0) continue;
+          balanceEth = adoptionRequests.reduce((s, r) => s + parseFloat(r.price_eth || 0), 0).toFixed(8);
+        }
+        if (gnosisState && Array.isArray(gnosisState.ar)) {
+          const auctionRefunds = gnosisState.ar.filter(r => !isClaimedItem(itemsClaimed, r.id, 'auction'));
+          if (auctionRefunds.length === 0) continue;
+          gnosisState = { ...gnosisState, ar: auctionRefunds };
+          balanceEth = auctionRefunds.reduce((s, r) => s + parseFloat(r.w || 0), 0).toFixed(8);
         }
       }
 
@@ -196,7 +216,7 @@ export default async function handler(req, res) {
         balance_wei: balanceWei,
         balance_eth: balanceEth,
         ...(deeds ? { deeds } : {}),
-        ...(typeof val === 'object' && val.a ? { adoption_requests: val.a } : {}),
+        ...(adoptionRequests ? { adoption_requests: adoptionRequests } : {}),
         ...(bounties ? { bounty_details: bounties } : {}),
         ...(nftDetails ? { nft_details: nftDetails } : {}),
         ...(nftAllowlisted !== null ? { allowlisted: nftAllowlisted } : {}),

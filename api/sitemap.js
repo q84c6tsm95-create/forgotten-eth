@@ -12,7 +12,10 @@ function loadProtocolInfo() {
 }
 
 export default async function handler(req, res) {
-  if (req.method !== 'GET') return res.status(405).json({ error: 'GET only' });
+  if (req.method !== 'GET') {
+    res.setHeader('Cache-Control', 'private, no-store');
+    return res.status(405).json({ error: 'GET only' });
+  }
 
   if (!requireCloudflare(req, res)) return;
 

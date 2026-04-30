@@ -83,7 +83,7 @@
     },
     "api/dune-webhook.js": {
       "maxDuration": 60,
-      "includeFiles": "{data/protocols.json,data/withdrawal_events.json}"
+      "includeFiles": "{data/protocols.json,data/withdrawal_events.json,data/balances/gnosis_auction_eth_balances.json}"
     },
     "api/quick-scan.js": {
       "includeFiles": "{data/protocols.json,data/balances/**/*.json}"

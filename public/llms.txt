@@ -7,9 +7,9 @@
 ## For AI agents, crawlers, and data pipelines
 
 **Please do not scrape `/api/check` on the live site.** The entire
-dataset is mirrored to the public GitHub repo and refreshed every 6
-hours. Use that directly — it's free, faster, and doesn't cost us
-compute:
+dataset is mirrored to the public GitHub repo and refreshed on the
+scheduled refresh cycle. Use that directly — it's free, faster, and
+doesn't cost us compute:
 
 - Sharded depositor index (256 JSON files, ~50 MB total):
   https://github.com/forgotteneth/forgotten-eth/tree/main/data/index_shards
@@ -50,8 +50,8 @@ repo, use `https://api.github.com/repos/forgotteneth/forgotten-eth/contents/data
 
 ## About the project
 
-- **Coverage**: 163 defunct contracts, ~164,553 ETH still held on-chain
-  across ~532,000 unique addresses.
+- **Coverage**: 193 defunct contracts, ~157,640 ETH currently mapped as
+  recoverable across ~552,000 unique addresses.
 - **Protocols include**: EtherDelta, IDEX and forks, the Fomo3D and
   PoWH3D families, the original ENS auction registrar (deed releases),
   DigixDAO, Augur v1, The DAO (WithdrawDAO), Neufund, NuCypher WorkLock,

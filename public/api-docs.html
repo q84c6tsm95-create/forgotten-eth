@@ -662,7 +662,7 @@
   </aside>
   <div class="api-content">
 
-  <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.8;">All endpoints are read-only <code class="inline-code" style="color:var(--accent-text);font-weight:700">GET</code> requests. Responses are <code class="inline-code" style="color:var(--accent-text);font-weight:700">JSON</code> with <code class="inline-code" style="color:var(--gold)">snake_case</code> keys. No authentication required. Data refreshes every 6 hours from onchain <code class="inline-code" style="color:var(--accent-text)">Multicall3</code> scans. Rate limits vary per endpoint (see each section). <code class="inline-code" style="color:var(--accent-text)">CORS *</code> enabled.</p>
+  <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.8;">All endpoints are read-only <code class="inline-code" style="color:var(--accent-text);font-weight:700">GET</code> requests. Responses are <code class="inline-code" style="color:var(--accent-text);font-weight:700">JSON</code> with <code class="inline-code" style="color:var(--gold)">snake_case</code> keys. No authentication required. Data refreshes on the scheduled refresh cycle from onchain <code class="inline-code" style="color:var(--accent-text)">Multicall3</code> scans. Rate limits vary per endpoint (see each section). <code class="inline-code" style="color:var(--accent-text)">CORS *</code> enabled.</p>
 
   <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;margin-bottom:12px;background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 var(--radius-lg) var(--radius-lg) 0;font-family:var(--font-mono);font-size:13px;">
     <span style="color:var(--text2);font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">Base URL</span>
@@ -681,7 +681,7 @@
       <li><code class="inline-code">data/index_shards/meta.json</code> &mdash; protocol metadata (contract address, coverage, scan date)</li>
       <li><code class="inline-code">data/index_shards/{prefix}.json</code> &mdash; 256 shards (<code class="inline-code">00.json</code>&hellip;<code class="inline-code">ff.json</code>), keyed by the first two hex chars of the lowercased address</li>
       <li>Each shard is a flat object: <code class="inline-code">{ "0x&lt;full address&gt;": { "&lt;protocol_key&gt;": "&lt;balance_eth&gt;" } }</code></li>
-      <li>Regenerated every refresh (every 6 hours)</li>
+      <li>Regenerated every scheduled refresh</li>
     </ul>
 
     <h3>Examples</h3>
@@ -746,8 +746,8 @@ print(shard.get(addr)) <span class="json-string"># { 'protocol_key': '0.123' } o
     <div class="code-block">
       <button class="copy-btn">Copy</button>
       <pre>{
-  <span class="json-key">"total_eth"</span>: <span class="json-number">157825.97</span>,
-  <span class="json-key">"contract_count"</span>: <span class="json-number">117</span>,
+  <span class="json-key">"total_eth"</span>: <span class="json-number">157640.24</span>,
+  <span class="json-key">"contract_count"</span>: <span class="json-number">193</span>,
   <span class="json-key">"contracts"</span>: {
     <span class="json-key">"etherdelta"</span>: {
       <span class="json-key">"contract"</span>: <span class="json-string">"0x8d12A197cB00D4747a1fe03395095ce2A5CC6819"</span>,
@@ -849,10 +849,13 @@ print(shard.get(addr)) <span class="json-string"># { 'protocol_key': '0.123' } o
     <div class="code-block">
       <button class="copy-btn">Copy</button>
       <pre>{
-  <span class="json-key">"total_eth"</span>: <span class="json-number">157825.97</span>,
-  <span class="json-key">"total_contract_eth"</span>: <span class="json-number">158786.81</span>,
-  <span class="json-key">"contract_count"</span>: <span class="json-number">117</span>,
-  <span class="json-key">"address_count"</span>: <span class="json-number">521145</span>
+  <span class="json-key">"total_eth"</span>: <span class="json-number">157640.24</span>,
+  <span class="json-key">"total_contract_eth"</span>: <span class="json-number">159064.22</span>,
+  <span class="json-key">"contract_count"</span>: <span class="json-number">193</span>,
+  <span class="json-key">"address_count"</span>: <span class="json-number">552886</span>,
+  <span class="json-key">"eth_claimed"</span>: <span class="json-number">11496.9</span>,
+  <span class="json-key">"unique_claimers"</span>: <span class="json-number">586</span>,
+  <span class="json-key">"peak_eth"</span>: <span class="json-number">169137.14</span>
 }</pre>
     </div>
 
@@ -1032,7 +1035,7 @@ print(shard.get(addr)) <span class="json-string"># { 'protocol_key': '0.123' } o
   <ul style="font-size:14px;margin-top:12px;padding-left:20px;">
     <li style="margin-bottom:8px;">All <code class="inline-code" style="color:var(--accent-text)">ETH</code> values are in ether (not wei) unless the field name ends in <code class="inline-code" style="color:var(--gold)">_wei</code>.</li>
     <li style="margin-bottom:8px;"><code class="inline-code" style="color:var(--accent-text)">coverage_pct</code> shows what fraction of depositors we've mapped. <code class="inline-code" style="color:var(--accent-text)">100%</code> means all known depositors are indexed.</li>
-    <li style="margin-bottom:8px;">Data refreshes every <code class="inline-code" style="color:var(--accent-text)">6 hours</code>. The <code class="inline-code" style="color:var(--gold)">scan_date</code> field shows when each contract was last scanned.</li>
+    <li style="margin-bottom:8px;">Data refreshes on the scheduled refresh cycle. The <code class="inline-code" style="color:var(--gold)">scan_date</code> field shows when each contract was last scanned.</li>
     <li style="margin-bottom:8px;">Per-address lookups are served from the <a href="#bulk-lookup" style="color:var(--accent)">sharded JSON index</a> on GitHub, not a live API. All endpoints below return aggregate data only.</li>
     <li style="margin-bottom:8px;">For protocol keys, see <code class="inline-code" style="color:var(--accent-text)">/data/protocols.json</code> or the <a href="/api/summary" style="color:var(--accent)">/api/summary</a> response.</li>
     <li style="margin-bottom:8px;">Static files under <code class="inline-code" style="color:var(--accent-text)">/data/</code> are not rate-limited and can be cached freely.</li>
@@ -1052,209 +1055,8 @@ print(shard.get(addr)) <span class="json-string"># { 'protocol_key': '0.123' } o
   <p class="footer-credit" style="margin-top:4px;font-size:11px"><a href="https://etherscan.io/address/0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891" target="_blank" rel="noopener noreferrer" style="color:var(--text2);text-decoration:none;font-family:var(--font-mono)">forgotteneth.eth</a></p>
 </footer>
 
-<script>
-/* ── Theme toggle (simplified — no pixel dissolve on docs page) ── */
-(function() {
-  var toggle = document.getElementById('themeToggle');
-  var corruptBtn = document.getElementById('corruptToggle');
-  var html = document.documentElement;
-  var saved = null;
-  try { saved = localStorage.getItem('theme'); } catch(e) {}
-
-  var current = saved || 'light';
-  var validThemes = ['light', 'dark', 'corrupt-light', 'corrupt-dark'];
-  if (validThemes.indexOf(current) === -1) current = 'light';
-
-  function applyTheme(t) {
-    if (t === 'light') html.removeAttribute('data-theme');
-    else html.setAttribute('data-theme', t);
-  }
-  applyTheme(current);
-
-  function isCorrupt() { return current === 'corrupt-light' || current === 'corrupt-dark'; }
-  function isDark() { return current === 'dark' || current === 'corrupt-dark'; }
-
-  function setToggleLabel() { toggle.textContent = isDark() ? '\u2600 Wake' : '\u263E Dream'; }
-  setToggleLabel();
-
-  toggle.addEventListener('click', function() {
-    var goingDark = !isDark();
-    if (isCorrupt()) {
-      current = goingDark ? 'corrupt-dark' : 'corrupt-light';
-    } else {
-      current = goingDark ? 'dark' : 'light';
-    }
-    applyTheme(current);
-    try { localStorage.setItem('theme', current); } catch(e) {}
-    setToggleLabel();
-  });
-
-  if (corruptBtn) {
-    corruptBtn.addEventListener('click', function() {
-      var wasCorrupt = isCorrupt();
-      if (wasCorrupt) {
-        current = isDark() ? 'dark' : 'light';
-      } else {
-        current = isDark() ? 'corrupt-dark' : 'corrupt-light';
-      }
-      applyTheme(current);
-      try { localStorage.setItem('theme', current); } catch(e) {}
-      setToggleLabel();
-      if (wasCorrupt) { if (window.stopCorruptCycle) window.stopCorruptCycle(); }
-      else { if (window.startCorruptCycle) setTimeout(window.startCorruptCycle, 100); }
-    });
-  }
-})();
-</script>
+<script src="/static-page-theme.js"></script>
 <script src="/corrupt.js"></script>
-<script>
-/* ── JSON syntax colorizer (matches static example styling) ── */
-function colorizeJson(json) {
-  var str = typeof json === 'string' ? json : JSON.stringify(json, null, 2);
-  // Escape HTML first
-  str = str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  // Colorize: keys, strings, numbers, booleans, null
-  str = str.replace(/"([^"]+)"(\s*:)/g, '<span class="json-key">"$1"</span>$2');
-  str = str.replace(/:\s*"([^"]*?)"/g, function(m, v) { return ': <span class="json-string">"' + v + '"</span>'; });
-  str = str.replace(/:\s*(-?\d+\.?\d*)/g, ': <span class="json-number">$1</span>');
-  str = str.replace(/:\s*(true|false)/g, ': <span class="json-bool">$1</span>');
-  str = str.replace(/:\s*(null)/g, ': <span class="json-null">$1</span>');
-  return str;
-}
-
-/* ── Try Summary ── */
-function trySummary() {
-  var el = document.getElementById('trySummaryResult');
-  var out = document.getElementById('trySummaryOutput');
-  var btn = document.getElementById('trySummaryBtn');
-  el.style.display = 'block';
-  btn.disabled = true;
-  btn.textContent = '...';
-  out.textContent = '';
-  fetch('/api/summary')
-    .then(function(r) { return r.json(); })
-    .then(function(d) { out.innerHTML = colorizeJson(d); btn.disabled = false; btn.textContent = 'Try it'; })
-    .catch(function(e) { out.textContent = 'Error: ' + e.message; btn.disabled = false; btn.textContent = 'Try it'; });
-}
-
-/* ── Try Table ── */
-function tryTable() {
-  var key = document.getElementById('tryExchange').value.trim().toLowerCase();
-  if (!key) { alert('Enter a protocol key (e.g. etherdelta)'); return; }
-  var el = document.getElementById('tryTableResult');
-  var out = document.getElementById('tryTableOutput');
-  var btn = document.getElementById('tryTableBtn');
-  el.style.display = 'block';
-  btn.disabled = true;
-  btn.textContent = '...';
-  out.textContent = '';
-  fetch('/api/table?exchange=' + encodeURIComponent(key))
-    .then(function(r) { return r.json(); })
-    .then(function(d) { out.innerHTML = colorizeJson(d); btn.disabled = false; btn.textContent = 'Try it'; })
-    .catch(function(e) { out.textContent = 'Error: ' + e.message; btn.disabled = false; btn.textContent = 'Try it'; });
-}
-document.getElementById('tryExchange').addEventListener('keydown', function(e) { if (e.key === 'Enter') tryTable(); });
-
-/* ── Try Claims ── */
-function tryClaims() {
-  var el = document.getElementById('tryClaimsResult');
-  var out = document.getElementById('tryClaimsOutput');
-  var btn = document.getElementById('tryClaimsBtn');
-  el.style.display = 'block';
-  btn.disabled = true;
-  btn.textContent = '...';
-  out.textContent = '';
-  fetch('/api/claims')
-    .then(function(r) { return r.json(); })
-    .then(function(d) { out.innerHTML = colorizeJson(d); btn.disabled = false; btn.textContent = 'Try it'; })
-    .catch(function(e) { out.textContent = 'Error: ' + e.message; btn.disabled = false; btn.textContent = 'Try it'; });
-}
-
-/* ── Code tabs ── */
-function switchTab(event, panelId) {
-  var container = event.target.closest('.code-tabs');
-  var buttons = container.querySelectorAll('.tab-btn');
-  var panels = container.querySelectorAll('.tab-panel');
-  for (var i = 0; i < buttons.length; i++) buttons[i].classList.remove('active');
-  for (var i = 0; i < panels.length; i++) panels[i].classList.remove('active');
-  event.target.classList.add('active');
-  document.getElementById(panelId).classList.add('active');
-}
-
-/* ── Copy buttons ── */
-function copyCode(btn) {
-  var block = btn.closest('.code-block');
-  var pre = block ? block.querySelector('pre') : btn.parentElement;
-  var text = pre.textContent || pre.innerText;
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(function() {
-      showCopied(btn);
-    }).catch(function() {
-      fallbackCopy(text, btn);
-    });
-  } else {
-    fallbackCopy(text, btn);
-  }
-}
-
-function fallbackCopy(text, btn) {
-  var ta = document.createElement('textarea');
-  ta.value = text;
-  ta.style.position = 'fixed';
-  ta.style.opacity = '0';
-  document.body.appendChild(ta);
-  ta.select();
-  try { document.execCommand('copy'); } catch(e) { /* ignore */ }
-  document.body.removeChild(ta);
-  showCopied(btn);
-}
-
-function showCopied(btn) {
-  btn.textContent = 'Copied';
-  btn.classList.add('copied');
-  setTimeout(function() {
-    btn.textContent = 'Copy';
-    btn.classList.remove('copied');
-  }, 1500);
-}
-
-/* ── Wire up all buttons (no inline onclick — blocked by CSP) ── */
-document.getElementById('trySummaryBtn').addEventListener('click', trySummary);
-document.getElementById('tryTableBtn').addEventListener('click', tryTable);
-document.getElementById('tryClaimsBtn').addEventListener('click', tryClaims);
-
-// Copy buttons
-document.querySelectorAll('.copy-btn').forEach(function(btn) {
-  btn.addEventListener('click', function() { copyCode(btn); });
-});
-
-// Tab buttons
-document.querySelectorAll('.tab-btn[data-tab]').forEach(function(btn) {
-  btn.addEventListener('click', function(e) { switchTab(e, btn.dataset.tab); });
-});
-
-/* ── Sidebar scroll spy ── */
-(function() {
-  var links = document.querySelectorAll('.api-sidebar a[href^="#"]');
-  if (!links.length) return;
-  var sections = [];
-  for (var i = 0; i < links.length; i++) {
-    var id = links[i].getAttribute('href').slice(1);
-    var el = document.getElementById(id);
-    if (el) sections.push({ el: el, link: links[i] });
-  }
-  function onScroll() {
-    var scrollY = window.scrollY + 80;
-    var active = null;
-    for (var i = sections.length - 1; i >= 0; i--) {
-      if (sections[i].el.offsetTop <= scrollY) { active = sections[i]; break; }
-    }
-    for (var i = 0; i < sections.length; i++) sections[i].link.classList.remove('active');
-    if (active) active.link.classList.add('active');
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-})();
-</script>
+<script src="/api-docs.js"></script>
 </body>
 </html>

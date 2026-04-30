@@ -10,8 +10,13 @@ let claimsCache = null;
 let claimsCacheExpiry = 0;
 
 export default async function handler(req, res) {
+  function errResp(code, body) {
+    res.setHeader('Cache-Control', 'private, no-store');
+    return res.status(code).json(body);
+  }
+
   if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return errResp(405, { error: 'Method not allowed' });
   }
 
   if (!requireCloudflare(req, res)) return;
@@ -19,7 +24,7 @@ export default async function handler(req, res) {
   const ip = getClientIP(req) || 'unknown';
   const allowed = await rateLimit(ip, 'total', 300, 60);
   if (!allowed) {
-    return res.status(429).json({ error: 'Rate limit exceeded. Try again in 1 minute.' });
+    return errResp(429, { error: 'Rate limit exceeded. Try again in 1 minute.' });
   }
 
   const ts = Date.now();
@@ -29,7 +34,7 @@ export default async function handler(req, res) {
       fileData = JSON.parse(raw);
       fileDataExpiry = ts + 300000; // re-read every 5 min
     } catch (e) {
-      if (!fileData) return res.status(500).json({ error: 'Total data not available' });
+      if (!fileData) return errResp(500, { error: 'Total data not available' });
     }
   }
 

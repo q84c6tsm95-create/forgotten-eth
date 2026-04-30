@@ -7,8 +7,13 @@ let cached = null;
 let cacheExpiry = 0;
 
 export default async function handler(req, res) {
+  function errResp(code, body) {
+    res.setHeader('Cache-Control', 'private, no-store');
+    return res.status(code).json(body);
+  }
+
   if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return errResp(405, { error: 'Method not allowed' });
   }
 
   if (!requireCloudflare(req, res)) return;
@@ -16,7 +21,7 @@ export default async function handler(req, res) {
   const ip = getClientIP(req) || 'unknown';
   const allowed = await rateLimit(ip, 'stats', 30, 60);
   if (!allowed) {
-    return res.status(429).json({ error: 'Rate limit exceeded. Try again in 1 minute.' });
+    return errResp(429, { error: 'Rate limit exceeded. Try again in 1 minute.' });
   }
 
   const now = Date.now();
@@ -51,6 +56,6 @@ export default async function handler(req, res) {
     return res.status(200).json(cached);
   } catch (e) {
     console.error('Stats query failed:', e.message);
-    return res.status(500).json({ error: 'Stats not available' });
+    return errResp(500, { error: 'Stats not available' });
   }
 }
