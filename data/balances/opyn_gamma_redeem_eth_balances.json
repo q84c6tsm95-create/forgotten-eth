@@ -5,7 +5,7 @@
   "total_eth_in_balances": 379.92709,
   "addresses_with_balance": 2430,
   "coverage_pct": 100.0,
-  "scan_date": "2026-04-29 14:39:23 UTC",
+  "scan_date": "2026-05-01 13:23:10 UTC",
   "description": "Opyn v2 Gamma Protocol expired oToken redemption pool. Holders of expired in-the-money WETH-collateralized oTokens can call Controller.operate([Redeem]) to claim their share of the underlying collateral. The protocol went silent in early 2022 \u2014 these are forgotten redemption claims.",
   "distribution": {
     "1_plus": 4,
@@ -476,16 +476,6 @@
       "balance_eth": 0.190298,
       "positions": [
         {
-          "otoken": "0xec3af9e241ade62baa620b40ffd61ee00328565d",
-          "amount": "1000000",
-          "payout_eth": 0.003023
-        },
-        {
-          "otoken": "0xbc006932b24011d315759f17cfc8745c9df48c82",
-          "amount": "1000000",
-          "payout_eth": 0.003997
-        },
-        {
           "otoken": "0xcdaaf722453c371352cc05414a7098afb117d09d",
           "amount": "100000000",
           "payout_eth": 0.027485
@@ -494,6 +484,16 @@
           "otoken": "0x6aa84ca14fbc0f15bf2075f02417b61bfbbb1da3",
           "amount": "200000000",
           "payout_eth": 0.155792
+        },
+        {
+          "otoken": "0xbc006932b24011d315759f17cfc8745c9df48c82",
+          "amount": "1000000",
+          "payout_eth": 0.003997
+        },
+        {
+          "otoken": "0xec3af9e241ade62baa620b40ffd61ee00328565d",
+          "amount": "1000000",
+          "payout_eth": 0.003023
         }
       ],
       "rank": 34
@@ -3597,14 +3597,14 @@
           "payout_eth": 0.025985
         },
         {
-          "otoken": "0xdda91599940a22996f167d5fd78ce516dcb49082",
-          "amount": "1000000",
-          "payout_eth": 0.003672
-        },
-        {
           "otoken": "0xcdaaf722453c371352cc05414a7098afb117d09d",
           "amount": "1000000",
           "payout_eth": 0.000275
+        },
+        {
+          "otoken": "0xdda91599940a22996f167d5fd78ce516dcb49082",
+          "amount": "1000000",
+          "payout_eth": 0.003672
         },
         {
           "otoken": "0x6933eb5986cfae7b63f38b0bd6cd94e8e463e7d0",
@@ -8019,14 +8019,14 @@
       "balance_eth": 0.011856,
       "positions": [
         {
-          "otoken": "0x090e2e96f1e5760819e0611618dfe53b32abb9e7",
-          "amount": "10000",
-          "payout_eth": 2.3e-05
-        },
-        {
           "otoken": "0x796091d1840a6bd9e6a6b65bf8ef3985d254c3df",
           "amount": "10000000",
           "payout_eth": 0.011833
+        },
+        {
+          "otoken": "0x090e2e96f1e5760819e0611618dfe53b32abb9e7",
+          "amount": "10000",
+          "payout_eth": 2.3e-05
         }
       ],
       "rank": 610
@@ -20304,6 +20304,19 @@
       "rank": 1554
     },
     {
+      "address": "0xfb747b6b9f0e2d879bdf2b335208096d3c03e715",
+      "balance_wei": "2629197746684737",
+      "balance_eth": 0.002629,
+      "positions": [
+        {
+          "otoken": "0x796091d1840a6bd9e6a6b65bf8ef3985d254c3df",
+          "amount": "2222000",
+          "payout_eth": 0.002629
+        }
+      ],
+      "rank": 1555
+    },
+    {
       "address": "0x8e65f34ff5925d3d43ad642bee84ac947583a939",
       "balance_wei": "2628585981837618",
       "balance_eth": 0.002629,
@@ -20322,19 +20335,6 @@
           "otoken": "0x5ee5b25dbff49dbdf4e2f04c6de65167a108ad95",
           "amount": "1228248",
           "payout_eth": 0.002151
-        }
-      ],
-      "rank": 1555
-    },
-    {
-      "address": "0xfb747b6b9f0e2d879bdf2b335208096d3c03e715",
-      "balance_wei": "2629197746684737",
-      "balance_eth": 0.002629,
-      "positions": [
-        {
-          "otoken": "0x796091d1840a6bd9e6a6b65bf8ef3985d254c3df",
-          "amount": "2222000",
-          "payout_eth": 0.002629
         }
       ],
       "rank": 1556
@@ -22620,14 +22620,14 @@
       "balance_eth": 0.002226,
       "positions": [
         {
-          "otoken": "0x0173ed12a4e3df92b94a88b97875239fcf80c6f2",
-          "amount": "1000000",
-          "payout_eth": 0.001042
-        },
-        {
           "otoken": "0x796091d1840a6bd9e6a6b65bf8ef3985d254c3df",
           "amount": "1000000",
           "payout_eth": 0.001183
+        },
+        {
+          "otoken": "0x0173ed12a4e3df92b94a88b97875239fcf80c6f2",
+          "amount": "1000000",
+          "payout_eth": 0.001042
         }
       ],
       "rank": 1732
@@ -24107,14 +24107,14 @@
       "balance_eth": 0.001415,
       "positions": [
         {
-          "otoken": "0x090e2e96f1e5760819e0611618dfe53b32abb9e7",
-          "amount": "100000",
-          "payout_eth": 0.000232
-        },
-        {
           "otoken": "0x796091d1840a6bd9e6a6b65bf8ef3985d254c3df",
           "amount": "1000000",
           "payout_eth": 0.001183
+        },
+        {
+          "otoken": "0x090e2e96f1e5760819e0611618dfe53b32abb9e7",
+          "amount": "100000",
+          "payout_eth": 0.000232
         }
       ],
       "rank": 1846
@@ -28956,19 +28956,6 @@
       "rank": 2218
     },
     {
-      "address": "0x48c902ef7793fdf060630773f7c23d1b991d77a3",
-      "balance_wei": "457453182165658",
-      "balance_eth": 0.000457,
-      "positions": [
-        {
-          "otoken": "0x5c5471e23e9fd38df4b02ab59af16cca86599d5b",
-          "amount": "690000",
-          "payout_eth": 0.000457
-        }
-      ],
-      "rank": 2219
-    },
-    {
       "address": "0x456d9fd81b1b5ee7cced435366e8032c93c1e04e",
       "balance_wei": "457021304086189",
       "balance_eth": 0.000457,
@@ -28976,6 +28963,19 @@
         {
           "otoken": "0x796091d1840a6bd9e6a6b65bf8ef3985d254c3df",
           "amount": "386240",
+          "payout_eth": 0.000457
+        }
+      ],
+      "rank": 2219
+    },
+    {
+      "address": "0x48c902ef7793fdf060630773f7c23d1b991d77a3",
+      "balance_wei": "457453182165658",
+      "balance_eth": 0.000457,
+      "positions": [
+        {
+          "otoken": "0x5c5471e23e9fd38df4b02ab59af16cca86599d5b",
+          "amount": "690000",
           "payout_eth": 0.000457
         }
       ],
@@ -30937,14 +30937,14 @@
       "balance_eth": 0.000127,
       "positions": [
         {
-          "otoken": "0x090e2e96f1e5760819e0611618dfe53b32abb9e7",
-          "amount": "10000",
-          "payout_eth": 2.3e-05
-        },
-        {
           "otoken": "0x0173ed12a4e3df92b94a88b97875239fcf80c6f2",
           "amount": "100000",
           "payout_eth": 0.000104
+        },
+        {
+          "otoken": "0x090e2e96f1e5760819e0611618dfe53b32abb9e7",
+          "amount": "10000",
+          "payout_eth": 2.3e-05
         }
       ],
       "rank": 2371

@@ -3487,6 +3487,18 @@ const EXCHANGES = {
     },
     withdrawCall: 'recover',
   },
+  presalepool_2018: {
+    name: 'PresalePool 2018',
+    desc: 'A 2018 ICO presale pooling contract built on the Cintix-style PresalePool template, used to aggregate ETH from many small contributors so the group could meet a presale\'s high minimum allocation. The underlying presale was cancelled and the project\'s multisig refunded the raised ETH back to the pool, which was then placed into Refund state. Most contributors withdrew during the original distribution window; a handful never returned to claim their share.',
+    category: 'ico',
+    color: '#8b5cf6',
+    contract: '0xf8f6e626af09b0455acd9162beb5a484724f25b5',
+    deployed: 'January 2018',
+    noWalletCheck: true,
+    withdrawAbi: 'function withdrawAll()',
+    withdrawArgs: () => [],
+    withdrawCall: 'withdrawAll',
+  },
 };
 
 // Per-tab state

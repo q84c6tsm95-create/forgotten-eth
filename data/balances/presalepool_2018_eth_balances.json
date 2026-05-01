@@ -1,0 +1,100 @@
+{
+  "contract": "0xf8f6e626af09b0455acd9162beb5a484724f25b5",
+  "balance_source": "eth",
+  "contract_eth_balance": 39.20082619,
+  "total_eth_in_balances": 39.20082619,
+  "addresses_with_balance": 10,
+  "coverage_pct": 100.0,
+  "scan_date": "2026-04-30 21:01:03 UTC",
+  "description": "Failed 2018 ICO presale pool currently in Refund state. Participants call withdrawAll() to claim their share. The pool was frozen after the underlying presale was cancelled and the multisig refunded the raised ETH for distribution.",
+  "meta": {
+    "presale_state": 3,
+    "state_label": "Refund",
+    "withdraw_selector": "0x853828b6",
+    "frozen_set": true,
+    "total_pool_eth": 549.99341244,
+    "total_withdrawn_eth": 1070.78599869
+  },
+  "balances": [
+    {
+      "address": "0x1c8586f3b0204e95e96c55df9ef5f82ff0bea7c9",
+      "balance_wei": "10001000000000000000",
+      "balance_eth": 10.001,
+      "share_wei": "10001000000000000000",
+      "withdrawn_wei": "0",
+      "rank": 1
+    },
+    {
+      "address": "0x20ecda6d6f096b55ae216b9dbdaab663f1166183",
+      "balance_wei": "10000000000000000000",
+      "balance_eth": 10.0,
+      "share_wei": "10000000000000000000",
+      "withdrawn_wei": "0",
+      "rank": 2
+    },
+    {
+      "address": "0x9ce48d2e0ed9525790b94778bb2cace5d0b62b63",
+      "balance_wei": "6500000000000000000",
+      "balance_eth": 6.5,
+      "share_wei": "6500000000000000000",
+      "withdrawn_wei": "0",
+      "rank": 3
+    },
+    {
+      "address": "0xce38d795511c7ff7095274339548977eb54ac069",
+      "balance_wei": "6370000000000000000",
+      "balance_eth": 6.37,
+      "share_wei": "6370000000000000000",
+      "withdrawn_wei": "0",
+      "rank": 4
+    },
+    {
+      "address": "0x5c29b52d1ba30fee4683700ca54040096ceda231",
+      "balance_wei": "2400000000000000000",
+      "balance_eth": 2.4,
+      "share_wei": "2400000000000000000",
+      "withdrawn_wei": "0",
+      "rank": 5
+    },
+    {
+      "address": "0x0adf0fbe6c0393446379b7df9ff25d3a77bf084e",
+      "balance_wei": "1450000000000000000",
+      "balance_eth": 1.45,
+      "share_wei": "1450000000000000000",
+      "withdrawn_wei": "0",
+      "rank": 6
+    },
+    {
+      "address": "0x6f09d341986a94402a61cbf0c5c8bdba04e0773b",
+      "balance_wei": "1250000000000000000",
+      "balance_eth": 1.25,
+      "share_wei": "1250000000000000000",
+      "withdrawn_wei": "0",
+      "rank": 7
+    },
+    {
+      "address": "0x7b62a3bfe7de353cb7817c7cf2039e17c49a1363",
+      "balance_wei": "1000000000000000000",
+      "balance_eth": 1.0,
+      "share_wei": "1000000000000000000",
+      "withdrawn_wei": "0",
+      "rank": 8
+    },
+    {
+      "address": "0x8299ea548346ab2a6ee6cb64548249aff2464244",
+      "balance_wei": "150000000000000000",
+      "balance_eth": 0.15,
+      "share_wei": "150000000000000000",
+      "withdrawn_wei": "0",
+      "rank": 9
+    },
+    {
+      "address": "0x0ac5a80dbfe5c1e92497421486ef648dd2ea620d",
+      "balance_wei": "79826190000000000",
+      "balance_eth": 0.07982619,
+      "share_wei": "79826190000000000",
+      "withdrawn_wei": "0",
+      "rank": 10
+    }
+  ]
+}
