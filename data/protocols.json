@@ -1567,5 +1567,77 @@
     "balance_source": "eth",
     "category": "ico",
     "balance_file": "presalepool_2018_eth_balances.json"
+  },
+  {
+    "key": "mcdex_perpetual",
+    "name": "MCDEX ETH-PERP",
+    "contract": "0x220a9f0dd581cbc58fcfb907de0454cbf3777f76",
+    "balance_source": "token",
+    "category": "defi",
+    "balance_file": "mcdex_perpetual_eth_balances.json"
+  },
+  {
+    "key": "quantfury_qdt",
+    "name": "Quantfury QDT",
+    "contract": "0xd18475521245a127a933a4fcaf99e8c45a416f7e",
+    "balance_source": "token",
+    "category": "token",
+    "balance_file": "quantfury_qdt_eth_balances.json"
+  },
+  {
+    "key": "monolith_tkn_holder",
+    "name": "Monolith TKN Holder",
+    "contract": "0x24f0bb6c9b2c3db66603fa0ec07ab0cf55cdd387",
+    "balance_source": "token",
+    "category": "token",
+    "balance_file": "monolith_tkn_holder_eth_balances.json"
+  },
+  {
+    "key": "eks",
+    "name": "EKS",
+    "contract": "0xe01e2a3ceafa8233021fc759e5a69863558326b6",
+    "balance_source": "eth",
+    "category": "token",
+    "balance_file": "eks_eth_balances.json"
+  },
+  {
+    "key": "tweetmarket",
+    "name": "TweetMarket",
+    "contract": "0xe14ab3ee81abe340b45bb26b1b166a7d2df22585",
+    "balance_source": "eth",
+    "category": "other",
+    "balance_file": "tweetmarket_eth_balances.json"
+  },
+  {
+    "key": "treasure",
+    "name": "Treasure",
+    "contract": "0x25a06d4e1f804ce62cf11b091180a5c84980d93a",
+    "balance_source": "token",
+    "category": "token",
+    "balance_file": "treasure_eth_balances.json"
+  },
+  {
+    "key": "celer_ethpool",
+    "name": "Celer EthPool",
+    "contract": "0x44e081cac2406a4efe165178c2a4d77f7a7854d4",
+    "balance_source": "eth",
+    "category": "defi",
+    "balance_file": "celer_ethpool_eth_balances.json"
+  },
+  {
+    "key": "staking_eth_rewards",
+    "name": "ETH Staking Rewards",
+    "contract": "0xa383c8390adbcd387db93babdf3f30308391bd57",
+    "balance_source": "token",
+    "category": "defi",
+    "balance_file": "staking_eth_rewards_eth_balances.json"
+  },
+  {
+    "key": "meme_limited_collections",
+    "name": "Meme Limited Collections",
+    "contract": "0x1d90d50d5dd04fa7c8bef89aa5872f0701be7982",
+    "balance_source": "token",
+    "category": "nft",
+    "balance_file": "meme_limited_collections_eth_balances.json"
   }
 ]

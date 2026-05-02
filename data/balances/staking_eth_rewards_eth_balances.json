@@ -1,0 +1,105 @@
+{
+  "contract": "0xa383c8390adbcd387db93babdf3f30308391bd57",
+  "balance_source": "token",
+  "contract_eth_balance": 59.67229268,
+  "total_eth_in_balances": 54.83908503,
+  "addresses_with_balance": 10,
+  "coverage_pct": 91.9,
+  "scan_date": "2026-05-02 13:30:50 UTC",
+  "description": "Legacy stakers can call receiveReward(address(0)) to collect pending native ETH rewards.",
+  "meta": {
+    "total_remaining_rewards_wei": "59672292679858311575"
+  },
+  "balances": [
+    {
+      "address": "0x75fc2794f721b250bfef5b0a67b5de9d9f7e69ca",
+      "balance_wei": "27412577342416514772",
+      "balance_eth": 27.412577342416515,
+      "current_reward_wei": "27412577342416514772",
+      "next_term_reward_wei": "0",
+      "staked_wei": "2284025200000000000000000",
+      "rank": 1
+    },
+    {
+      "address": "0x8daf3609d490be7b7e7fa600f73fe3fffa4353c0",
+      "balance_wei": "27412577342416514772",
+      "balance_eth": 27.412577342416515,
+      "current_reward_wei": "27412577342416514772",
+      "next_term_reward_wei": "0",
+      "staked_wei": "2283968600000000000000000",
+      "rank": 2
+    },
+    {
+      "address": "0x6061ec66b8db452f254716e565038a74d49cb9c1",
+      "balance_wei": "5355013616996628",
+      "balance_eth": 0.005355013616996628,
+      "current_reward_wei": "5355013616996628",
+      "next_term_reward_wei": "0",
+      "staked_wei": "300000000000000000000000",
+      "rank": 3
+    },
+    {
+      "address": "0xd6defbfc00b1e478dc18c34de1a6663712f1212c",
+      "balance_wei": "2575184103657767",
+      "balance_eth": 0.002575184103657767,
+      "current_reward_wei": "2575184103657767",
+      "next_term_reward_wei": "0",
+      "staked_wei": "19168498352514077585712",
+      "rank": 4
+    },
+    {
+      "address": "0xaa13905714dc09e1c51926869ddf2f3f2f1f3133",
+      "balance_wei": "2374988074455506",
+      "balance_eth": 0.002374988074455506,
+      "current_reward_wei": "2374988074455506",
+      "next_term_reward_wei": "0",
+      "staked_wei": "372790861604504487944229",
+      "rank": 5
+    },
+    {
+      "address": "0xc2eb03292b42350e808cf859728017eb3a1945e6",
+      "balance_wei": "1087983821695220",
+      "balance_eth": 0.00108798382169522,
+      "current_reward_wei": "1087983821695220",
+      "next_term_reward_wei": "0",
+      "staked_wei": "879061714364377922692",
+      "rank": 6
+    },
+    {
+      "address": "0x5cdad381c6f52788e6607936f675f8fc550aebd3",
+      "balance_wei": "995390917099318",
+      "balance_eth": 0.000995390917099318,
+      "current_reward_wei": "995390917099318",
+      "next_term_reward_wei": "0",
+      "staked_wei": "350200000000000000000",
+      "rank": 7
+    },
+    {
+      "address": "0x1ebb73f5f47bcc3d7dc1dabf7284875e3ae40e07",
+      "balance_wei": "748670091493504",
+      "balance_eth": 0.000748670091493504,
+      "current_reward_wei": "748670091493504",
+      "next_term_reward_wei": "0",
+      "staked_wei": "148750000000000000000",
+      "rank": 8
+    },
+    {
+      "address": "0x5689e3e4242dcd8f3be70a08c693b8135656ddf5",
+      "balance_wei": "736209322846409",
+      "balance_eth": 0.000736209322846409,
+      "current_reward_wei": "736209322846409",
+      "next_term_reward_wei": "0",
+      "staked_wei": "7153600000000000000000",
+      "rank": 9
+    },
+    {
+      "address": "0x92353d9186a1d02be280f55c8a563762a9edc100",
+      "balance_wei": "56908834486074",
+      "balance_eth": 5.6908834486074e-05,
+      "current_reward_wei": "56908834486074",
+      "next_term_reward_wei": "0",
+      "staked_wei": "496400000000000000000",
+      "rank": 10
+    }
+  ]
+}

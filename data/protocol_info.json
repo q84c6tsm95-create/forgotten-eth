@@ -1726,5 +1726,83 @@
     "contract": "0xf8f6e626af09b0455acd9162beb5a484724f25b5",
     "deployed": "January 2018",
     "slug": "presalepool-2018"
+  },
+  "mcdex_perpetual": {
+    "name": "MCDEX ETH-PERP",
+    "desc": "MCDEX's early ETH-PERP perpetual market entered settled mode after the original trading UI disappeared. Traders with positive settlement margin can still call settle() directly on the market contract to receive their remaining ETH collateral.",
+    "category": "defi",
+    "color": "#2563eb",
+    "contract": "0x220a9f0dd581cbc58fcfb907de0454cbf3777f76",
+    "deployed": "February 2020",
+    "slug": "mcdex-perpetual"
+  },
+  "quantfury_qdt": {
+    "name": "Quantfury QDT",
+    "desc": "Quantfury's QDT contract keeps an ETH payout pool backing outstanding QDT tokens. Holders can still redeem their remaining QDT for ETH through the public sellTokens(uint256) function.",
+    "category": "token",
+    "color": "#0f766e",
+    "contract": "0xd18475521245a127a933a4fcaf99e8c45a416f7e",
+    "deployed": "September 2018",
+    "slug": "quantfury-qdt"
+  },
+  "monolith_tkn_holder": {
+    "name": "Monolith TKN Holder",
+    "desc": "The Monolith TKN token can still burn TKN against the legacy Token Holder contract to claim its proportional ETH backing. The old wallet and project frontend no longer surface this path for dormant holders.",
+    "category": "token",
+    "color": "#334155",
+    "contract": "0x24f0bb6c9b2c3db66603fa0ec07ab0cf55cdd387",
+    "deployed": "May 2017",
+    "slug": "monolith-tkn-holder"
+  },
+  "eks": {
+    "name": "EKS",
+    "desc": "EKS is a PoWH-style dividend token contract. Holders with remaining tokens or dividends can still exit through the contract's public exit() path, which sells their tokens and withdraws accrued ETH.",
+    "category": "token",
+    "color": "#7c3aed",
+    "contract": "0xe01e2a3ceafa8233021fc759e5a69863558326b6",
+    "deployed": "February 2018"
+  },
+  "tweetmarket": {
+    "name": "TweetMarket",
+    "desc": "TweetMarket accepted ETH-backed bids on tweet IDs in 2020. The site is gone, but current high bidders can still recover locked bids after the lockup period by calling cancel(tweetID) for each active bid.",
+    "category": "other",
+    "color": "#0284c7",
+    "contract": "0xe14ab3ee81abe340b45bb26b1b166a7d2df22585",
+    "deployed": "November 2020"
+  },
+  "treasure": {
+    "name": "Treasure",
+    "desc": "Treasure is a PoWH-style token with separate dividend and sale-withdraw accounting. Holders can claim dividends, sell tokens, and then withdraw the ETH credited by the sale path through the legacy contract.",
+    "category": "token",
+    "color": "#ca8a04",
+    "contract": "0x25a06d4e1f804ce62cf11b091180a5c84980d93a",
+    "deployed": "January 2019"
+  },
+  "celer_ethpool": {
+    "name": "Celer EthPool",
+    "desc": "Celer's early EthPool wrapper accepted native ETH and tracked balances internally. The old CelerPay interface is retired, but holders can still call withdraw(uint256) to unwrap their remaining ETH balance.",
+    "category": "defi",
+    "color": "#0891b2",
+    "contract": "0x44e081cac2406a4efe165178c2a4d77f7a7854d4",
+    "deployed": "February 2019",
+    "slug": "celer-ethpool"
+  },
+  "staking_eth_rewards": {
+    "name": "ETH Staking Rewards",
+    "desc": "This legacy staking contract accrued native ETH rewards for token stakers. Stakers with remaining accounting balances can call receiveReward(address(0)) to collect their pending ETH reward without unstaking first.",
+    "category": "defi",
+    "color": "#16a34a",
+    "contract": "0xa383c8390adbcd387db93babdf3f30308391bd57",
+    "deployed": "September 2020",
+    "slug": "staking-eth-rewards"
+  },
+  "meme_limited_collections": {
+    "name": "Meme Limited Collections",
+    "desc": "Meme Limited Collections split marketplace and pool fees into per-recipient pending withdrawal balances. Artists and controllers with old accrued fees can still call withdrawFee() to receive their ETH.",
+    "category": "nft",
+    "color": "#db2777",
+    "contract": "0x1d90d50d5dd04fa7c8bef89aa5872f0701be7982",
+    "deployed": "September 2020",
+    "slug": "meme-limited-collections"
   }
 }

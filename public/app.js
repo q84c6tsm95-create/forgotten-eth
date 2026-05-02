@@ -3499,6 +3499,131 @@ const EXCHANGES = {
     withdrawArgs: () => [],
     withdrawCall: 'withdrawAll',
   },
+  mcdex_perpetual: {
+    name: 'MCDEX ETH-PERP',
+    desc: 'MCDEX\'s early ETH-PERP market entered settled mode after the original trading UI disappeared. Traders with positive settlement margin can still call settle() directly to receive their remaining ETH collateral.',
+    category: 'defi',
+    color: '#2563eb',
+    contract: '0x220a9f0dd581cbc58fcfb907de0454cbf3777f76',
+    deployed: 'February 2020',
+    noWalletCheck: true,
+    withdrawAbi: 'function settle()',
+    withdrawArgs: () => [],
+    withdrawCall: 'settle',
+  },
+  quantfury_qdt: {
+    name: 'Quantfury QDT',
+    desc: 'Quantfury\'s QDT contract keeps an ETH payout pool backing outstanding QDT tokens. Holders can still redeem remaining QDT for ETH through sellTokens(uint256).',
+    category: 'token',
+    color: '#0f766e',
+    contract: '0xd18475521245a127a933a4fcaf99e8c45a416f7e',
+    deployed: 'September 2018',
+    noWalletCheck: true,
+    withdrawAbi: 'function sellTokens(uint256 tokenAmount)',
+    withdrawArgs: () => {
+      const api = window._lastApiBalances?.quantfury_qdt;
+      if (!api?.token_balance_wei) throw new Error('Missing QDT token balance — refresh and try again');
+      return [BigInt(api.token_balance_wei)];
+    },
+    withdrawCall: 'sellTokens',
+  },
+  monolith_tkn_holder: {
+    name: 'Monolith TKN Holder',
+    desc: 'The Monolith TKN token can still burn TKN against the legacy Token Holder contract to claim its proportional ETH backing. The old wallet and project frontend no longer surface this path for dormant holders.',
+    category: 'token',
+    color: '#334155',
+    contract: '0xaaaf91d9b90df800df4f55c205fd6989c977e73a',
+    deployed: 'May 2017',
+    noWalletCheck: true,
+    withdrawAbi: 'function burn(uint256 amount)',
+    withdrawArgs: () => {
+      const api = window._lastApiBalances?.monolith_tkn_holder;
+      if (!api?.token_balance_wei) throw new Error('Missing TKN balance — refresh and try again');
+      return [BigInt(api.token_balance_wei)];
+    },
+    withdrawCall: 'burn',
+  },
+  eks: {
+    name: 'EKS',
+    desc: 'EKS is a PoWH-style dividend token contract. Holders with remaining tokens or dividends can still exit through the public exit() path, which sells their tokens and withdraws accrued ETH.',
+    category: 'token',
+    color: '#7c3aed',
+    contract: '0xe01e2a3ceafa8233021fc759e5a69863558326b6',
+    deployed: 'February 2018',
+    noWalletCheck: true,
+    withdrawAbi: 'function withdraw()',
+    withdrawArgs: () => [],
+    withdrawCall: 'withdraw',
+    exitAbi: 'function exit()',
+    exitArgs: () => [],
+    exitCall: 'exit',
+  },
+  tweetmarket: {
+    name: 'TweetMarket',
+    desc: 'TweetMarket accepted ETH-backed bids on tweet IDs in 2020. The site is gone, but current high bidders can still recover locked bids after the lockup period by calling cancel(tweetID) for each active bid.',
+    category: 'other',
+    color: '#0284c7',
+    contract: '0xe14ab3ee81abe340b45bb26b1b166a7d2df22585',
+    deployed: 'November 2020',
+    noWalletCheck: true,
+    tweetMarketMulti: true,
+    withdrawAbi: 'function cancel(uint256 tweetID)',
+    withdrawArgs: () => [],
+    withdrawCall: 'cancel',
+  },
+  treasure: {
+    name: 'Treasure',
+    desc: 'Treasure is a PoWH-style token with separate dividend and sale-withdraw accounting. Holders can claim dividends, sell tokens, and then withdraw ETH credited by the sale path through the legacy contract.',
+    category: 'token',
+    color: '#ca8a04',
+    contract: '0x25a06d4e1f804ce62cf11b091180a5c84980d93a',
+    deployed: 'January 2019',
+    noWalletCheck: true,
+    treasureWithdraw: true,
+    withdrawAbi: 'function withdraw()',
+    withdrawArgs: () => [],
+    withdrawCall: 'withdraw',
+    exitAbi: 'function exit()',
+    exitArgs: () => [],
+    exitCall: 'exit',
+    sellingWithdrawAbi: 'function sellingWithdraw()',
+  },
+  celer_ethpool: {
+    name: 'Celer EthPool',
+    desc: 'Celer\'s early EthPool wrapper accepted native ETH and tracked balances internally. The old CelerPay interface is retired, but holders can still call withdraw(uint256) to unwrap their remaining ETH balance.',
+    category: 'defi',
+    color: '#0891b2',
+    contract: '0x44e081cac2406a4efe165178c2a4d77f7a7854d4',
+    deployed: 'February 2019',
+    noWalletCheck: true,
+    withdrawAbi: 'function withdraw(uint256 amount)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'withdraw',
+  },
+  staking_eth_rewards: {
+    name: 'ETH Staking Rewards',
+    desc: 'This legacy staking contract accrued native ETH rewards for token stakers. Stakers with remaining accounting balances can call receiveReward(address(0)) to collect pending ETH without unstaking first.',
+    category: 'defi',
+    color: '#16a34a',
+    contract: '0xa383c8390adbcd387db93babdf3f30308391bd57',
+    deployed: 'September 2020',
+    noWalletCheck: true,
+    withdrawAbi: 'function receiveReward(address token) returns (uint256 rewards)',
+    withdrawArgs: () => [ZERO_ADDR],
+    withdrawCall: 'receiveReward',
+  },
+  meme_limited_collections: {
+    name: 'Meme Limited Collections',
+    desc: 'Meme Limited Collections split marketplace and pool fees into per-recipient pending withdrawal balances. Artists and controllers with old accrued fees can still call withdrawFee() to receive their ETH.',
+    category: 'nft',
+    color: '#db2777',
+    contract: '0x1d90d50d5dd04fa7c8bef89aa5872f0701be7982',
+    deployed: 'September 2020',
+    noWalletCheck: true,
+    withdrawAbi: 'function withdrawFee()',
+    withdrawArgs: () => [],
+    withdrawCall: 'withdrawFee',
+  },
 };
 
 // Per-tab state
@@ -4672,6 +4797,52 @@ async function checkUserBalances(overrideAddress) {
               ${stepInfo}
               <div class="claim-card-actions">
                 ${actionBtn}
+              </div>
+              <div class="claim-card-status" id="claimStatus-${key}"></div>
+            </div>`;
+        } else if (cfg.tweetMarketMulti) {
+          const tweetBids = apiBalances[key]?.tweetmarket_bids || [];
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
+              </div>
+              <div class="claim-card-meta">
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Function</span><span class="claim-card-meta-value">cancel(tweetID) per current bid</span></div>
+              </div>`;
+          if (tweetBids.length > 0) {
+            for (const bid of tweetBids) {
+              html += `<div class="claim-row" style="margin:4px 16px;border-left:2px solid var(--accent);padding:6px 12px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:13px">Tweet #${esc(String(bid.tweet_id))}<span style="color:var(--text2);font-size:12px"> · ${fmtEth(bid.eth)} ETH</span></span>
+                <button class="claim-btn" data-action="tweetmarket-cancel" data-key="${key}" data-tweet-id="${esc(String(bid.tweet_id))}">Cancel</button>
+              </div>`;
+            }
+          } else {
+            html += `<div style="margin:8px 16px;font-size:12px;color:var(--text2)">Bid IDs not available. <a href="${etherscanAddr(cfg.contract)}#writeContract" target="_blank" rel="noopener noreferrer">Use Etherscan</a> to call cancel(tweetID) with your current bid ID.</div>`;
+          }
+          html += `<div class="claim-card-status" id="claimStatus-${key}"></div></div>`;
+        } else if (cfg.treasureWithdraw) {
+          const apiTreasure = apiBalances[key] || {};
+          const dividendsEth = parseFloat(apiTreasure.dividend_eth || '0') || 0;
+          const saleEth = parseFloat(apiTreasure.sale_eth || '0') || 0;
+          const pendingSaleEth = parseFloat(apiTreasure.pending_sale_eth || '0') || 0;
+          html += `
+            <div class="claim-card">
+              <div class="claim-card-header">
+                <span class="claim-card-name">${esc(cfg.name)}</span>
+                <span class="claim-card-amount">${fmtEth(ethAmount)} ETH</span>
+              </div>
+              <div class="claim-card-meta" id="claimDetails-${key}">
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Contract</span><span class="claim-card-meta-value"><a href="${etherscanAddr(cfg.contract)}" target="_blank" rel="noopener noreferrer">${cfg.contract}</a></span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Dividend estimate</span><span class="claim-card-meta-value">${fmtEth(dividendsEth)} ETH</span></div>
+                <div class="claim-card-meta-row"><span class="claim-card-meta-label">Token sale estimate</span><span class="claim-card-meta-value">${fmtEth(saleEth)} ETH</span></div>
+                ${pendingSaleEth > 0 ? `<div class="claim-card-meta-row"><span class="claim-card-meta-label">Already sold</span><span class="claim-card-meta-value">${fmtEth(pendingSaleEth)} ETH ready for sellingWithdraw()</span></div>` : ''}
+              </div>
+              <div class="claim-card-actions">
+                <button class="claim-btn" id="treasureExitBtn-${key}" data-action="treasure-exit" data-key="${key}">Step 1: Sell + withdraw dividends</button>
+                <button class="claim-btn" id="treasureSaleBtn-${key}" data-action="treasure-selling-withdraw" data-key="${key}"${pendingSaleEth > 0 ? '' : ' disabled style="opacity:0.35"'}>Step 2: Withdraw sale ETH</button>
               </div>
               <div class="claim-card-status" id="claimStatus-${key}"></div>
             </div>`;
@@ -6422,6 +6593,108 @@ async function claimExit(key) {
     } else {
       console.error('Exit error:', e);
       statusEl.textContent = 'Failed. Try again.';
+    }
+  }
+}
+
+// ─── TweetMarket / Treasure custom recovery paths ───
+
+async function tweetMarketCancel(key, tweetId, btn) {
+  const cfg = EXCHANGES[key];
+  const statusEl = document.getElementById('claimStatus-' + key);
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+  if (!walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  btn.disabled = true;
+  btn.classList.add('pending');
+  btn.textContent = 'Canceling...';
+  try {
+    const contract = new ethers.Contract(cfg.contract, [cfg.withdrawAbi], walletSigner);
+    const tx = await contract.cancel(BigInt(tweetId));
+    statusEl.textContent = 'Waiting for confirmation...';
+    await tx.wait();
+    btn.textContent = '\u2713 Canceled';
+    btn.classList.remove('pending');
+    btn.classList.add('claimed');
+    btn.disabled = true;
+    const bid = (window._lastApiBalances?.[key]?.tweetmarket_bids || []).find(b => String(b.tweet_id) === String(tweetId));
+    buildRecoveredStatus(statusEl, 'Recovered from tweet #' + tweetId, bid?.eth || '0', 'ETH', tx.hash);
+    showDonationModal(parseFloat(bid?.eth || '0'));
+  } catch (e) {
+    btn.disabled = false;
+    btn.classList.remove('pending');
+    btn.textContent = 'Cancel';
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      statusEl.textContent = 'Rejected';
+    } else {
+      statusEl.textContent = 'Cancel failed: ' + (e.shortMessage || e.reason || e.message || 'Unknown error').slice(0, 150);
+    }
+  }
+}
+
+async function treasureExit(key) {
+  const cfg = EXCHANGES[key];
+  const btn = document.getElementById('treasureExitBtn-' + key);
+  const saleBtn = document.getElementById('treasureSaleBtn-' + key);
+  const statusEl = document.getElementById('claimStatus-' + key);
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+  if (!walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  btn.disabled = true;
+  btn.classList.add('pending');
+  btn.textContent = 'Selling...';
+  try {
+    const contract = new ethers.Contract(cfg.contract, [cfg.exitAbi], walletSigner);
+    const tx = await contract.exit();
+    statusEl.textContent = 'Waiting for confirmation...';
+    await tx.wait();
+    btn.textContent = 'Step 1: Done';
+    btn.classList.remove('pending');
+    btn.style.opacity = '0.35';
+    if (saleBtn) {
+      saleBtn.disabled = false;
+      saleBtn.style.opacity = '1';
+    }
+    statusEl.textContent = 'Sale credited. Click Step 2 to withdraw the sale ETH.';
+  } catch (e) {
+    btn.disabled = false;
+    btn.classList.remove('pending');
+    btn.textContent = 'Step 1: Sell + withdraw dividends';
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      statusEl.textContent = 'Rejected';
+    } else {
+      statusEl.textContent = 'Treasure exit failed: ' + (e.shortMessage || e.reason || e.message || 'Unknown error').slice(0, 150);
+    }
+  }
+}
+
+async function treasureSellingWithdraw(key) {
+  const cfg = EXCHANGES[key];
+  const btn = document.getElementById('treasureSaleBtn-' + key);
+  const statusEl = document.getElementById('claimStatus-' + key);
+  if (!await checkNetwork()) { showInlineError('networkWarn', 'Please switch to Ethereum Mainnet.', 0); document.getElementById('networkWarn').classList.add('visible'); return; }
+  if (!walletSigner) { showInlineError('walletError', 'Please connect your wallet first.'); return; }
+  btn.disabled = true;
+  btn.classList.add('pending');
+  btn.textContent = 'Withdrawing...';
+  try {
+    const contract = new ethers.Contract(cfg.contract, [cfg.sellingWithdrawAbi], walletSigner);
+    const tx = await contract.sellingWithdraw();
+    statusEl.textContent = 'Waiting for confirmation...';
+    await tx.wait();
+    btn.textContent = '\u2713 Claimed';
+    btn.classList.remove('pending');
+    btn.classList.add('claimed');
+    btn.disabled = true;
+    buildRecoveredStatus(statusEl, 'Recovered', ethers.formatEther(userBalances[key] || 0n), 'ETH', tx.hash);
+    showDonationModal(parseFloat(ethers.formatEther(userBalances[key] || 0n)));
+    userBalances[key] = 0n;
+  } catch (e) {
+    btn.disabled = false;
+    btn.classList.remove('pending');
+    btn.textContent = 'Step 2: Withdraw sale ETH';
+    if (e.code === 'ACTION_REJECTED' || e.code === 4001) {
+      statusEl.textContent = 'Rejected';
+    } else {
+      statusEl.textContent = 'Sale withdraw failed: ' + (e.shortMessage || e.reason || e.message || 'Unknown error').slice(0, 150);
     }
   }
 }
@@ -8611,6 +8884,12 @@ document.getElementById('claimBanner').addEventListener('click', function(e) {
     switcheoAnnounce(btn.dataset.key);
   } else if (action === 'switcheo-withdraw') {
     switcheoWithdraw(btn.dataset.key);
+  } else if (action === 'tweetmarket-cancel') {
+    tweetMarketCancel(btn.dataset.key, btn.dataset.tweetId, btn);
+  } else if (action === 'treasure-exit') {
+    treasureExit(btn.dataset.key);
+  } else if (action === 'treasure-selling-withdraw') {
+    treasureSellingWithdraw(btn.dataset.key);
   } else if (action === 'gnosis-claim') {
     gnosisClaim(btn.dataset.key, parseInt(btn.dataset.auctionIdx), btn);
   } else if (action === 'mesa-request') {

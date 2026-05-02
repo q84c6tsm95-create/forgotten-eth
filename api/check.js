@@ -165,6 +165,9 @@ export default async function handler(req, res) {
       let gnosisState = typeof val === 'object' && val.ga ? val.ga : null;
       let adoptionRequests = typeof val === 'object' && val.a ? val.a : null;
       let yearnShares = typeof val === 'object' && val.sw ? val.sw : null;
+      let score70TokenBalanceWei = typeof val === 'object' && val.tbw ? val.tbw : null;
+      let tweetmarketBids = typeof val === 'object' && val.tmb ? val.tmb : null;
+      let treasureState = typeof val === 'object' && val.trs ? val.trs : null;
       // Neufund v2: per-user version + contract addresses. v1 entries are
       // unmarked and the frontend uses the default cfg.neufundLocked tuple.
       let neufundVersion = typeof val === 'object' && val.nv ? val.nv : null;
@@ -235,6 +238,28 @@ export default async function handler(req, res) {
         ...(merkleIndex !== null ? { merkle_index: merkleIndex } : {}),
         ...(merkleTokens ? { merkle_tokens: merkleTokens } : {}),
         ...(tokemakState ? { tokemak_ready: tokemakState.r === true, tokemak_requested_eth: tokemakState.p } : {}),
+        ...(score70TokenBalanceWei ? { token_balance_wei: score70TokenBalanceWei } : {}),
+        ...(tweetmarketBids ? {
+          tweetmarket_bids: tweetmarketBids.map(b => ({
+            tweet_id: b.id,
+            wei: b.w,
+            eth: b.e,
+            last_tx_hash: b.tx,
+            last_tx_date: b.t,
+          }))
+        } : {}),
+        ...(treasureState ? {
+          token_balance_wei: treasureState.tbw,
+          dividend_wei: treasureState.dw,
+          dividend_eth: treasureState.de,
+          pending_sale_wei: treasureState.psw,
+          pending_sale_eth: treasureState.pse,
+          sale_wei: treasureState.sw,
+          sale_eth: treasureState.se,
+          raw_sale_wei: treasureState.rsw,
+          raw_sale_eth: treasureState.rse,
+          sale_estimate_ok: treasureState.ok,
+        } : {}),
         ...(gnosisState ? {
           gnosis_user_id: gnosisState.uid,
           gnosis_auction_refunds: (gnosisState.ar || []).map(r => ({
