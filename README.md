@@ -1,6 +1,6 @@
 # Forgotten ETH
 
-Scan 193 defunct Ethereum contracts for withdrawable ETH. No frontend needed for most of these protocols anymore, no portfolio tracker indexes them.
+Scan 203 defunct Ethereum contracts for withdrawable ETH. No frontend needed for most of these protocols anymore, no portfolio tracker indexes them.
 
 **[forgotteneth.com](https://forgotteneth.com)** | **[forgotten-eth.eth](https://etherscan.io/address/0x95a708aAAB1D336bB60EF2F40212672F4cf65736)** | **[API](https://forgotteneth.com/api)**
 
@@ -29,7 +29,7 @@ Cloudflare WAF; bulk scraping will be blocked at the edge. See
 
 ETH gets stuck in old contracts when protocols shut down and their frontends go offline. The balances are still onchain but invisible to DeBank, Zapper, and other portfolio trackers. This tool indexes them and generates the withdrawal transaction.
 
-193 contracts. 157,640 ETH mapped. 552k addresses with claimable balance. 11,497 ETH already withdrawn by 586 unique claimers since launch.
+203 contracts. 157,428 ETH mapped. 561k addresses with claimable balance. 13,237 ETH already withdrawn by 601 unique claimers since launch.
 
 ## CLI
 
@@ -51,7 +51,7 @@ npm run check:address -- 0x... --rpc <url>        # custom RPC
 ## Web
 
 1. Paste address or connect wallet
-2. Scans all 193 contracts (API-first, RPC verification for connected wallets)
+2. Scans all 203 contracts (API-first, RPC verification for connected wallets)
 3. Click Withdraw — tx goes directly from the original contract to your wallet
 
 No custody. No intermediary contracts. No token approvals for standard withdrawals (The DAO, DigixDAO, and Neufund require token burns as part of their original contract design). Every withdrawal is reproducible on Etherscan.
@@ -79,6 +79,7 @@ Full list in [`data/protocols.json`](data/protocols.json).
 
 | Date | Protocol | ETH | Addresses | Notes |
 |------|----------|-----|-----------|-------|
+| May 2 | Score70 recovery batch | 1,510 | 10,099 | MCDEX Perpetual, Quantfury QDT, Monolith TKN Holder, EKS, TweetMarket, Treasure, Celer EthPool, ETH Staking Rewards, Meme Limited Collections. Dune enumeration + local reth verification; contract-holder rows with reverting withdrawal calls excluded. |
 | Apr 15 | Celer Payment Channels | 151 | 1,551 | Unilateral intendWithdraw → 10k-block window → confirmWithdraw (OSP slice excluded) |
 | Apr 13 | GavCoin | 47 | 115 | 2015 bonding-curve ICO, per-user refund |
 | Apr 13 | Veil Ether | 57 | 376 | Veil prediction-market WETH escrow |
