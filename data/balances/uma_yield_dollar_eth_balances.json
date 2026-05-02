@@ -5,7 +5,7 @@
   "total_eth_in_balances": 266.735523,
   "addresses_with_balance": 185,
   "coverage_pct": 99.64,
-  "scan_date": "2026-05-01 13:22:36 UTC",
+  "scan_date": "2026-05-02 08:49:53 UTC",
   "description": "UMA ExpiringMultiParty (EMP) contracts held WETH as collateral for synthetic tokens. After expiry, sponsors call settleExpired() to reclaim excess collateral. The UMA v1 frontend no longer supports these contracts \u2014 remaining WETH is claimable directly onchain.",
   "distribution": {
     "1_plus": 15,
@@ -13,15 +13,15 @@
     "0.01_to_0.1": 38,
     "under_0.01": 102
   },
-  "canonical_emp": "0xeaa081a9fad4607cdf046fea7d4bf3dfef533282",
+  "canonical_emp": "0xfa3aa7ee08399a4ce0b4921c85ab7d645ccac669",
   "factory_contract": "0xddfc7e3b4531158acf4c7a5d2c3cd3bb8c189413",
   "emp_contracts": [
-    "0xeaa081a9fad4607cdf046fea7d4bf3dfef533282",
+    "0xfa3aa7ee08399a4ce0b4921c85ab7d645ccac669",
     "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
+    "0x516f595978d87b67401dab7afd8555c3d28a3af4",
     "0xe1ee8d4c5dba1c221840c08f6cf42154435b9d52",
     "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
-    "0x516f595978d87b67401dab7afd8555c3d28a3af4",
-    "0xfa3aa7ee08399a4ce0b4921c85ab7d645ccac669"
+    "0xeaa081a9fad4607cdf046fea7d4bf3dfef533282"
   ],
   "uma_emp_multi": true,
   "balances": [
@@ -2119,14 +2119,14 @@
       "balance_eth": 0.001029,
       "positions": [
         {
-          "emp": "0xeaa081a9fad4607cdf046fea7d4bf3dfef533282",
-          "claimable_eth": 0.000539,
+          "emp": "0x516f595978d87b67401dab7afd8555c3d28a3af4",
+          "claimable_eth": 0.00049,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
         },
         {
-          "emp": "0x516f595978d87b67401dab7afd8555c3d28a3af4",
-          "claimable_eth": 0.00049,
+          "emp": "0xeaa081a9fad4607cdf046fea7d4bf3dfef533282",
+          "claimable_eth": 0.000539,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
         }

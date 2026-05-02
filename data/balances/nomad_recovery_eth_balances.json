@@ -3,16 +3,16 @@
   "balance_source": "token",
   "contract_eth_balance": 100.664,
   "total_eth_in_balances": 48.49634011,
-  "addresses_with_balance": 590,
+  "addresses_with_balance": 589,
   "coverage_pct": 48.18,
-  "scan_date": "2026-05-01 13:23:28 UTC",
+  "scan_date": "2026-05-02 08:50:44 UTC",
   "distribution": {
     ">=100": 0,
     "10-100": 2,
     "1-10": 5,
     "0.1-1": 31,
     "0.01-0.1": 54,
-    "<0.01": 498
+    "<0.01": 497
   },
   "isMultiAssetNft": true,
   "affectedAssets": [
@@ -9563,22 +9563,6 @@
           "decimals": 6,
           "amount": 2.977837,
           "amount_wei": 2977837
-        }
-      ]
-    },
-    {
-      "address": "0xc5f6b52bdabce080a68b49e80ea264699c174882",
-      "balance_eth": 0.0,
-      "balance_wei": "0",
-      "allowlisted": true,
-      "nft_details": [
-        {
-          "nft_id": 246,
-          "asset_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-          "asset_symbol": "USDC",
-          "decimals": 6,
-          "amount": 4.611097,
-          "amount_wei": 4611097
         }
       ]
     },
