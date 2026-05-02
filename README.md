@@ -2,7 +2,7 @@
 
 Scan 193 defunct Ethereum contracts for withdrawable ETH. No frontend needed for most of these protocols anymore, no portfolio tracker indexes them.
 
-**[forgotteneth.com](https://forgotteneth.com)** | **[Donations](https://etherscan.io/address/0x95a708aAAB1D336bB60EF2F40212672F4cf65736)** | **[API](https://forgotteneth.com/api)**
+**[forgotteneth.com](https://forgotteneth.com)** | **[forgotten-eth.eth](https://etherscan.io/address/0x95a708aAAB1D336bB60EF2F40212672F4cf65736)** | **[API](https://forgotteneth.com/api)**
 
 ## For AI agents, crawlers, and data pipelines
 

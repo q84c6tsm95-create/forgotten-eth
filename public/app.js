@@ -525,12 +525,12 @@ function showDonationModal(totalEth) {
   midRow.style.cssText = 'margin-bottom:16px;';
   var addrRow = document.createElement('button');
   addrRow.type = 'button';
-  addrRow.setAttribute('aria-label', 'Copy donation address 0x95a7…5736');
+  addrRow.setAttribute('aria-label', 'Copy donation address forgotten-eth.eth');
   addrRow.style.cssText = 'font-size:13px;color:var(--text2);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;background:none;border:none;padding:0;font-family:inherit;';
   addrRow.title = 'Click to copy address';
   var supportText = document.createTextNode('If this helped, you can send a bit back to ');
   var ensName = document.createElement('span');
-  ensName.textContent = '0x95a7…5736';
+  ensName.textContent = 'forgotten-eth.eth';
   ensName.style.cssText = 'color:var(--accent-text);font-weight:600;font-family:var(--font-mono);transition:color 0.15s;';
   var copyIcon = document.createElement('span');
   copyIcon.style.cssText = 'opacity:0.5;display:inline-flex;transition:opacity 0.15s;';
@@ -562,7 +562,7 @@ function showDonationModal(totalEth) {
       ensName.style.color = 'var(--green)';
       copyIcon.style.opacity = '0';
       setTimeout(function() {
-        ensName.textContent = '0x95a7…5736';
+        ensName.textContent = 'forgotten-eth.eth';
         ensName.style.color = 'var(--accent-text)';
         copyIcon.style.opacity = '0.5';
       }, 1500);
