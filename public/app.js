@@ -361,7 +361,7 @@ async function getEthPrice() {
 function fmtUsd(v) { return '$' + parseFloat(v).toLocaleString('en', {minimumFractionDigits: 0, maximumFractionDigits: 0}); }
 
 // Donation flow
-const DONATION_ADDRESS = '0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891';
+const DONATION_ADDRESS = '0x95a708aAAB1D336bB60EF2F40212672F4cf65736';
 
 async function sendDonation(amountWei) {
   if (!walletSigner) { throw new Error('Please connect your wallet first.'); }
@@ -525,12 +525,12 @@ function showDonationModal(totalEth) {
   midRow.style.cssText = 'margin-bottom:16px;';
   var addrRow = document.createElement('button');
   addrRow.type = 'button';
-  addrRow.setAttribute('aria-label', 'Copy donation address forgotteneth.eth');
+  addrRow.setAttribute('aria-label', 'Copy donation address 0x95a7…5736');
   addrRow.style.cssText = 'font-size:13px;color:var(--text2);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;background:none;border:none;padding:0;font-family:inherit;';
   addrRow.title = 'Click to copy address';
   var supportText = document.createTextNode('If this helped, you can send a bit back to ');
   var ensName = document.createElement('span');
-  ensName.textContent = 'forgotteneth.eth';
+  ensName.textContent = '0x95a7…5736';
   ensName.style.cssText = 'color:var(--accent-text);font-weight:600;font-family:var(--font-mono);transition:color 0.15s;';
   var copyIcon = document.createElement('span');
   copyIcon.style.cssText = 'opacity:0.5;display:inline-flex;transition:opacity 0.15s;';
@@ -562,7 +562,7 @@ function showDonationModal(totalEth) {
       ensName.style.color = 'var(--green)';
       copyIcon.style.opacity = '0';
       setTimeout(function() {
-        ensName.textContent = 'forgotteneth.eth';
+        ensName.textContent = '0x95a7…5736';
         ensName.style.color = 'var(--accent-text)';
         copyIcon.style.opacity = '0.5';
       }, 1500);
@@ -9135,7 +9135,7 @@ recheckWatchlist();
 (function() {
   var copyBtn = document.getElementById('copyDonation');
   if (!copyBtn) return;
-  var addr = '0xAE7d7C366F7Ebc2b58E17D0Fb3Aa9C870ea77891';
+  var addr = '0x95a708aAAB1D336bB60EF2F40212672F4cf65736';
   var svgHTML = copyBtn.innerHTML; // save original SVG
   function doCopy() {
     var ta = document.createElement('textarea');
