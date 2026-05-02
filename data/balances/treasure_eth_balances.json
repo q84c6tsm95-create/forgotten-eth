@@ -2,16 +2,19 @@
   "contract": "0x25a06d4e1f804ce62cf11b091180a5c84980d93a",
   "balance_source": "token",
   "contract_eth_balance": 98.27947063,
-  "total_eth_in_balances": 98.27947063,
-  "addresses_with_balance": 216,
+  "total_eth_in_balances": 98.27855932,
+  "addresses_with_balance": 213,
   "coverage_pct": 100.0,
-  "scan_date": "2026-05-02 13:32:31 UTC",
+  "scan_date": "2026-05-02 14:51:01 UTC",
   "description": "Treasure holders claim dividends, sell tokens with exit(), then call sellingWithdraw() for sale proceeds.",
   "meta": {
     "sale_values_scaled_to_pool": true,
     "raw_sale_total_wei": "101640367589199453220",
     "sale_budget_wei": "69338616811040647158",
-    "fixed_dividend_and_pending_sale_wei": "28940853820066620894"
+    "fixed_dividend_and_pending_sale_wei": "28940853820066620894",
+    "excluded_unwithdrawable_rows": 3,
+    "excluded_unwithdrawable_eth": 0.000911312543,
+    "verification_failure_source": "data/.scan_state/score70_verification_failures.json"
   },
   "balances": [
     {
@@ -2287,22 +2290,6 @@
       "rank": 142
     },
     {
-      "address": "0x25adc73857c0612a41e60cdf6951789f005fac4c",
-      "token_balance_wei": "2387098782331397147",
-      "dividend_wei": "261831037672188",
-      "dividend_eth": "0.000209464830137750",
-      "pending_sale_wei": "0",
-      "pending_sale_eth": "0.000000000000000000",
-      "raw_sale_wei": "735927604890589",
-      "raw_sale_eth": "0.000735927604890589",
-      "sale_estimate_ok": true,
-      "sale_wei": "502046612054931",
-      "sale_eth": "0.000502046612054931",
-      "balance_wei": "711511442192681",
-      "balance_eth": 0.000711511442192681,
-      "rank": 143
-    },
-    {
       "address": "0x6d749b401b85e2854daef9610e6d70903502d426",
       "token_balance_wei": "2000000000000000000",
       "dividend_wei": "219371765936273",
@@ -2397,22 +2384,6 @@
       "balance_wei": "298065600852901",
       "balance_eth": 0.000298065600852901,
       "rank": 149
-    },
-    {
-      "address": "0x39c6848b9d33514d40274cf253105ff2fe38f900",
-      "token_balance_wei": "950000000000000000",
-      "dividend_wei": "0",
-      "dividend_eth": "0.000000000000000000",
-      "pending_sale_wei": "0",
-      "pending_sale_eth": "0.000000000000000000",
-      "raw_sale_wei": "292879393875000",
-      "raw_sale_eth": "0.000292879393875000",
-      "sale_estimate_ok": true,
-      "sale_wei": "199801048987021",
-      "sale_eth": "0.000199801048987021",
-      "balance_wei": "199801048987021",
-      "balance_eth": 0.000199801048987021,
-      "rank": 150
     },
     {
       "address": "0x961ee89a175e2b108034c9124c3f5da0d92790ef",
@@ -3453,22 +3424,6 @@
       "balance_wei": "293378008556",
       "balance_eth": 2.93378008556e-07,
       "rank": 215
-    },
-    {
-      "address": "0x9f0a1bcd44f522318900e70a2617c0056378bb2d",
-      "token_balance_wei": "326167385975",
-      "dividend_wei": "65381531",
-      "dividend_eth": "0.000000000052305224",
-      "pending_sale_wei": "0",
-      "pending_sale_eth": "0.000000000000000000",
-      "raw_sale_wei": "0",
-      "raw_sale_eth": "0.000000000000000000",
-      "sale_estimate_ok": false,
-      "sale_wei": "0",
-      "sale_eth": "0.000000000000000000",
-      "balance_wei": "52305224",
-      "balance_eth": 5.2305224e-11,
-      "rank": 216
     }
   ]
 }

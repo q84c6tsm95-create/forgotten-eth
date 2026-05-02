@@ -2,11 +2,16 @@
   "contract": "0xe01e2a3ceafa8233021fc759e5a69863558326b6",
   "balance_source": "eth",
   "contract_eth_balance": 105.49299604,
-  "total_eth_in_balances": 95.03321024,
-  "addresses_with_balance": 362,
+  "total_eth_in_balances": 95.03316727,
+  "addresses_with_balance": 358,
   "coverage_pct": 90.08,
-  "scan_date": "2026-05-02 13:30:49 UTC",
+  "scan_date": "2026-05-02 14:51:01 UTC",
   "description": "EKS holders can call exit() to sell remaining tokens and withdraw accrued dividends.",
+  "meta": {
+    "excluded_unwithdrawable_rows": 4,
+    "excluded_unwithdrawable_eth": 4.2970924e-05,
+    "verification_failure_source": "data/.scan_state/score70_verification_failures.json"
+  },
   "balances": [
     {
       "address": "0x21935251e90364885d59750d17f1c132ad1bcacb",
@@ -2943,15 +2948,6 @@
       "rank": 327
     },
     {
-      "address": "0x7a5c4caf90e9211d7d474918f764ebdc2f9ec1a3",
-      "balance_wei": "42970924160508",
-      "balance_eth": 4.2970924160508e-05,
-      "token_balance_wei": "28329112959160",
-      "dividend_wei": "17474722497264",
-      "sale_wei": "25496201663244",
-      "rank": 328
-    },
-    {
       "address": "0xdcffc26fa5c3c12d507ab789aa21e89761e18dd2",
       "balance_wei": "36582297067501",
       "balance_eth": 3.6582297067501e-05,
@@ -3213,24 +3209,6 @@
       "rank": 357
     },
     {
-      "address": "0x87d641600c7962ab5cd87802b15b97ade5b73b2a",
-      "balance_wei": "2",
-      "balance_eth": 2e-18,
-      "token_balance_wei": "1",
-      "dividend_wei": "1",
-      "sale_wei": "1",
-      "rank": 358
-    },
-    {
-      "address": "0xd51c2abd2dbe8b79b3987372b3cf9d3c90beb7b6",
-      "balance_wei": "2",
-      "balance_eth": 2e-18,
-      "token_balance_wei": "2",
-      "dividend_wei": "0",
-      "sale_wei": "2",
-      "rank": 359
-    },
-    {
       "address": "0xc30bcf2c51e267ae90256c59d72ad18b6172403b",
       "balance_wei": "1",
       "balance_eth": 1e-18,
@@ -3256,15 +3234,6 @@
       "dividend_wei": "0",
       "sale_wei": "1",
       "rank": 362
-    },
-    {
-      "address": "0x87495b2fe9b5785e21ea742802de3ea8f20c38be",
-      "balance_wei": "1",
-      "balance_eth": 1e-18,
-      "token_balance_wei": "1",
-      "dividend_wei": "0",
-      "sale_wei": "1",
-      "rank": 363
     }
   ]
 }

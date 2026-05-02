@@ -2,15 +2,18 @@
   "contract": "0xd18475521245a127a933a4fcaf99e8c45a416f7e",
   "balance_source": "token",
   "contract_eth_balance": 460.19999529,
-  "total_eth_in_balances": 449.90653644,
-  "addresses_with_balance": 1028,
-  "coverage_pct": 97.76,
-  "scan_date": "2026-05-02 13:30:38 UTC",
+  "total_eth_in_balances": 449.62483006,
+  "addresses_with_balance": 1005,
+  "coverage_pct": 97.7,
+  "scan_date": "2026-05-02 14:51:01 UTC",
   "description": "QDT holders can call sellTokens(tokenAmount) to redeem ETH from the payout pool.",
   "meta": {
     "token_price_wei": "5090042",
     "owner_excluded": "0x79eb80d95da726f628b630839c256602a2acaf2e",
-    "dune_cache": "/home/syf/claude/forgotteneth/data/.scan_state/score70_quantfury_qdt_candidates.json"
+    "dune_cache": "/home/syf/claude/forgotteneth/data/.scan_state/score70_quantfury_qdt_candidates.json",
+    "excluded_unwithdrawable_rows": 23,
+    "excluded_unwithdrawable_eth": 0.28170638551,
+    "verification_failure_source": "data/.scan_state/score70_verification_failures.json"
   },
   "balances": [
     {
@@ -1750,13 +1753,6 @@
       "rank": 248
     },
     {
-      "address": "0x54762cbe7674925f806b64bca70b8fc43960d53a",
-      "balance_wei": "76565352403761600",
-      "balance_eth": 0.0765653524037616,
-      "token_balance_wei": "15042184800",
-      "rank": 249
-    },
-    {
       "address": "0xf9bec2045f7e4c05caa27b1976e843bf193c9509",
       "balance_wei": "75423742875268582",
       "balance_eth": 0.07542374287526858,
@@ -1918,13 +1914,6 @@
       "rank": 272
     },
     {
-      "address": "0x960f48afa042146444d4e3253afd8e693e865ed7",
-      "balance_wei": "63406731341414826",
-      "balance_eth": 0.06340673134141482,
-      "token_balance_wei": "12457015353",
-      "rank": 273
-    },
-    {
       "address": "0x7df7a77c48cfbdfbea6af5487097111452a3e6ca",
       "balance_wei": "63097969383514742",
       "balance_eth": 0.06309796938351474,
@@ -1944,13 +1933,6 @@
       "balance_eth": 0.06201514976886113,
       "token_balance_wei": "12183622408",
       "rank": 276
-    },
-    {
-      "address": "0x507c54914ca6cf2d4d833307d0357b8c2d148a0d",
-      "balance_wei": "61914151363802352",
-      "balance_eth": 0.06191415136380235,
-      "token_balance_wei": "12163780056",
-      "rank": 277
     },
     {
       "address": "0x9773588bb554173ccb16a3d25659ba0776fdd483",
@@ -2084,13 +2066,6 @@
       "balance_eth": 0.053789202819658134,
       "token_balance_wei": "10567536146",
       "rank": 296
-    },
-    {
-      "address": "0x000000000004444c5dc75cb358380d2e3de08a90",
-      "balance_wei": "53226893556926450",
-      "balance_eth": 0.05322689355692645,
-      "token_balance_wei": "10457063725",
-      "rank": 297
     },
     {
       "address": "0xdd1420e1b6451b350ce058cd7614099ce1116217",
@@ -2679,13 +2654,6 @@
       "balance_eth": 0.025579204674427352,
       "token_balance_wei": "5025342556",
       "rank": 381
-    },
-    {
-      "address": "0x8d12a197cb00d4747a1fe03395095ce2a5cc6819",
-      "balance_wei": "25450218668341526",
-      "balance_eth": 0.025450218668341525,
-      "token_balance_wei": "5000001703",
-      "rank": 382
     },
     {
       "address": "0xf9f3e6fc00db012056c48e61a6fbca691c4bf162",
@@ -6272,13 +6240,6 @@
       "rank": 894
     },
     {
-      "address": "0xfed884fd5ca79daef979f74b47915604341d675b",
-      "balance_wei": "319096025850668",
-      "balance_eth": 0.000319096025850668,
-      "token_balance_wei": "62690254",
-      "rank": 895
-    },
-    {
       "address": "0x763c460f1c44debe1d5fc16e66911b84abee277c",
       "balance_wei": "305552859480512",
       "balance_eth": 0.000305552859480512,
@@ -6307,13 +6268,6 @@
       "rank": 899
     },
     {
-      "address": "0xefa473b33e40d78bafc6b1b11a9befee6296ebe1",
-      "balance_wei": "290140538067200",
-      "balance_eth": 0.0002901405380672,
-      "token_balance_wei": "57001600",
-      "rank": 900
-    },
-    {
       "address": "0xe9880ec1e8256aa2b2a2bd71ed9091b27f59b4e5",
       "balance_wei": "285661234936654",
       "balance_eth": 0.000285661234936654,
@@ -6326,13 +6280,6 @@
       "balance_eth": 0.000271124436377636,
       "token_balance_wei": "53265658",
       "rank": 902
-    },
-    {
-      "address": "0xbbcec987e4c189fcbab0a2534c77b3ba89229f11",
-      "balance_wei": "268474636863066",
-      "balance_eth": 0.000268474636863066,
-      "token_balance_wei": "52745073",
-      "rank": 903
     },
     {
       "address": "0x9d6b911199b891c55a93e4bc635bf59e33d002d8",
@@ -6510,25 +6457,11 @@
       "rank": 928
     },
     {
-      "address": "0x95c4f5b83aa70810d4f142d58e5f7242bd891cb0",
-      "balance_wei": "66242539554048",
-      "balance_eth": 6.6242539554048e-05,
-      "token_balance_wei": "13014144",
-      "rank": 929
-    },
-    {
       "address": "0x0e70d7e8dbed8d892537fcb132636d65f0e71d63",
       "balance_wei": "64781722950258",
       "balance_eth": 6.4781722950258e-05,
       "token_balance_wei": "12727149",
       "rank": 930
-    },
-    {
-      "address": "0x00000000009e50a7ddb7a7b0e2ee6604fd120e49",
-      "balance_wei": "59401823418526",
-      "balance_eth": 5.9401823418526e-05,
-      "token_balance_wei": "11670203",
-      "rank": 931
     },
     {
       "address": "0x0e331a293bb22e93e2e5e417d84d755ae185da02",
@@ -6557,13 +6490,6 @@
       "balance_eth": 4.6319372019916e-05,
       "token_balance_wei": "9099998",
       "rank": 935
-    },
-    {
-      "address": "0x81463b0f960f247f704377661ec81c1fd65b5128",
-      "balance_wei": "45510391284688",
-      "balance_eth": 4.5510391284688e-05,
-      "token_balance_wei": "8941064",
-      "rank": 936
     },
     {
       "address": "0x441c447128d9cf78f7b5540adf9aa793146db398",
@@ -6615,13 +6541,6 @@
       "rank": 943
     },
     {
-      "address": "0x4d5401b9e9dcd7c9097e1df036c3afafc35d604f",
-      "balance_wei": "29674323874876",
-      "balance_eth": 2.9674323874876e-05,
-      "token_balance_wei": "5829878",
-      "rank": 944
-    },
-    {
       "address": "0x147f2d9c8e04e54fee50d42b36445f18e55b8d22",
       "balance_wei": "27746618078594",
       "balance_eth": 2.7746618078594e-05,
@@ -6650,13 +6569,6 @@
       "rank": 948
     },
     {
-      "address": "0xcfd59c0f530db36eea8ccbfe744f01fe3556925e",
-      "balance_wei": "22461815801548",
-      "balance_eth": 2.2461815801548e-05,
-      "token_balance_wei": "4412894",
-      "rank": 949
-    },
-    {
       "address": "0x8cf6d3eb74da9e339a38f193e3fb267000ee9cdf",
       "balance_wei": "20720680404734",
       "balance_eth": 2.0720680404734e-05,
@@ -6669,13 +6581,6 @@
       "balance_eth": 2.0554103690242e-05,
       "token_balance_wei": "4038101",
       "rank": 951
-    },
-    {
-      "address": "0xd71a021ca27a74cc3e668ab33e9b49ed5bf67c09",
-      "balance_wei": "19890092441216",
-      "balance_eth": 1.9890092441216e-05,
-      "token_balance_wei": "3907648",
-      "rank": 952
     },
     {
       "address": "0x0ac0a666ece6c5eee85b60a6c73a66d353680b74",
@@ -6711,20 +6616,6 @@
       "balance_eth": 1.3507795668298e-05,
       "token_balance_wei": "2653769",
       "rank": 957
-    },
-    {
-      "address": "0x752b133f3625a310d0442ca760b49af4029fce89",
-      "balance_wei": "10422105317016",
-      "balance_eth": 1.0422105317016e-05,
-      "token_balance_wei": "2047548",
-      "rank": 958
-    },
-    {
-      "address": "0xce9fc4b2c1365ca715f934ab6c01bdb7e0d61e9d",
-      "balance_wei": "7776347295794",
-      "balance_eth": 7.776347295794e-06,
-      "token_balance_wei": "1527757",
-      "rank": 959
     },
     {
       "address": "0x7d5fbea748cfa681fe1500b7e7eb45d50ee838b5",
@@ -6809,13 +6700,6 @@
       "balance_eth": 3.736813613964e-06,
       "token_balance_wei": "734142",
       "rank": 971
-    },
-    {
-      "address": "0x0a2fe77634a925fbb598c4dcd1798befa96f4176",
-      "balance_wei": "3478850285404",
-      "balance_eth": 3.478850285404e-06,
-      "token_balance_wei": "683462",
-      "rank": 972
     },
     {
       "address": "0x6239765e523cc38403f9375a3547eaf0f19181d8",
@@ -6930,13 +6814,6 @@
       "rank": 988
     },
     {
-      "address": "0xe5fb5bd3656b8e094c95b9a803339f2e6752a583",
-      "balance_wei": "314727476944",
-      "balance_eth": 3.14727476944e-07,
-      "token_balance_wei": "61832",
-      "rank": 989
-    },
-    {
       "address": "0x983e3660c0be01991785f80f266a84b911ab59b0",
       "balance_wei": "280578385166",
       "balance_eth": 2.80578385166e-07,
@@ -6970,13 +6847,6 @@
       "balance_eth": 1.39976155e-07,
       "token_balance_wei": "27500",
       "rank": 994
-    },
-    {
-      "address": "0x90cbe4bdd538d6e9b379bff5fe72c3d67a521de5",
-      "balance_wei": "111273408162",
-      "balance_eth": 1.11273408162e-07,
-      "token_balance_wei": "21861",
-      "rank": 995
     },
     {
       "address": "0x721bd7ea7cc17ecf88503b1e7f54532246dd6348",
@@ -7014,13 +6884,6 @@
       "rank": 1000
     },
     {
-      "address": "0xad213ae0b710c7bc6c915984d91bad008b2d3221",
-      "balance_wei": "32545728548",
-      "balance_eth": 3.2545728548e-08,
-      "token_balance_wei": "6394",
-      "rank": 1001
-    },
-    {
       "address": "0x64022b5ce38aa93bb340d7d78eec8febbf42b859",
       "balance_wei": "31756772038",
       "balance_eth": 3.1756772038e-08,
@@ -7056,13 +6919,6 @@
       "rank": 1006
     },
     {
-      "address": "0xd0a67cb08be17475f4315a04c5f0be3e200ef66c",
-      "balance_wei": "9579459044",
-      "balance_eth": 9.579459044e-09,
-      "token_balance_wei": "1882",
-      "rank": 1007
-    },
-    {
       "address": "0xadebe12fd6e08b5e7235ec07912f838db7aa3265",
       "balance_wei": "8271318250",
       "balance_eth": 8.27131825e-09,
@@ -7096,13 +6952,6 @@
       "balance_eth": 9.46747812e-10,
       "token_balance_wei": "186",
       "rank": 1012
-    },
-    {
-      "address": "0x00000000500e2fece27a7600435d0c48d64e0c00",
-      "balance_wei": "376663108",
-      "balance_eth": 3.76663108e-10,
-      "token_balance_wei": "74",
-      "rank": 1013
     },
     {
       "address": "0x6162834e8ab15479eb68cc980d5be2bcc6ef65c9",
@@ -7145,13 +6994,6 @@
       "balance_eth": 1.98511638e-10,
       "token_balance_wei": "39",
       "rank": 1019
-    },
-    {
-      "address": "0x00000000a991c429ee2ec6df19d40fe0c80088b8",
-      "balance_wei": "183241512",
-      "balance_eth": 1.83241512e-10,
-      "token_balance_wei": "36",
-      "rank": 1020
     },
     {
       "address": "0x42e213a3ad048e899b89ea8cb11d21bc97b84748",
