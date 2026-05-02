@@ -88,6 +88,7 @@ export default async function handler(req, res) {
   let claimedProtocols = new Set();   // protocols fully claimed (item_id IS NULL)
   let claimedItems = {};              // protocol → Set of claimed item_ids
   let claimedDetails = {};            // protocol → { total_eth, last_tx, last_claimed, count }
+  let claimsFilterDegraded = false;
   try {
     const { rows } = await sql`SELECT protocol, item_id, amount_eth, tx_hash, claimed_at FROM claimed_addresses WHERE address = ${normalized}`;
     for (const r of rows) {
@@ -118,8 +119,11 @@ export default async function handler(req, res) {
         }
       }
     }
-  } catch {
-    // DB down — fall back to shard data only (no regression)
+  } catch (e) {
+    // DB down — fall back to shard data only, but disclose degraded claim
+    // filtering so monitors can detect possible stale claimable results.
+    claimsFilterDegraded = true;
+    console.error('claimed_addresses lookup failed:', e.message || 'unknown');
   }
 
   const results = {};
@@ -299,6 +303,9 @@ export default async function handler(req, res) {
     }
   } catch (e) { /* silent — file may not exist yet */ }
 
+  if (claimsFilterDegraded) {
+    res.setHeader('X-Claims-Filter-Degraded', '1');
+  }
   return res.status(200).json({
     address,
     checked_at: new Date().toISOString(),
@@ -311,6 +318,7 @@ export default async function handler(req, res) {
       total_claimed_eth: totalClaimedEth.toFixed(6),
     } : {}),
     coverage,
+    ...(claimsFilterDegraded ? { claims_filter_degraded: true } : {}),
     ...(recognition ? { recognition } : {}),
   });
 }
