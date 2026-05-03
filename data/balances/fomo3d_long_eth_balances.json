@@ -1,37 +1,41 @@
 {
   "contract": "0xA62142888ABa8370742bE823c1782D17A0389Da1",
   "balance_source": "eth",
-  "contract_eth_balance": 1118.71080727,
-  "total_eth_in_balances": 1117.43975939,
+  "contract_eth_balance": 1118.296613,
+  "total_eth_in_balances": 1117.025566,
   "addresses_with_balance": 15239,
   "coverage_pct": 99.89,
   "scan_date": "2026-04-03 13:24:06 UTC",
   "description": "ETH balances in defunct Fomo3D Long contract",
   "distribution": {
+    ">=100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
     "10-100 ETH": {
       "count": 6,
-      "total_eth": 139.61841595303554
+      "total_eth": 139.618416
     },
     "1-10 ETH": {
       "count": 144,
-      "total_eth": 286.9043221815818
+      "total_eth": 286.90432
     },
     "0.1-1 ETH": {
-      "count": 1793,
-      "total_eth": 483.2003591154055
+      "count": 1792,
+      "total_eth": 482.787869
     },
     "0.01-0.1 ETH": {
-      "count": 5147,
-      "total_eth": 187.52448990452532
+      "count": 5149,
+      "total_eth": 187.573166
     },
     "<0.01 ETH": {
-      "count": 8149,
-      "total_eth": 20.144752501347448
+      "count": 8148,
+      "total_eth": 20.141761
     }
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
   "total_addresses_scanned": 25552,
-  "last_event_refresh": "2026-04-29 11:13:16 UTC",
+  "last_event_refresh": "2026-05-03 21:02:58 UTC",
   "balances": [
     {
       "rank": 1,
@@ -2804,12 +2808,6 @@
       "address": "0x81ceb8e18ab0f6b3a55e857e5292919e41be6e2e",
       "balance_wei": "412843291046726696",
       "balance_eth": 0.4128432910467267
-    },
-    {
-      "rank": 463,
-      "address": "0x0267e8dc152f5f3cff7e5befbb7dccc5d4b4cb17",
-      "balance_wei": "412500814823299538",
-      "balance_eth": 0.41250081482329953
     },
     {
       "rank": 464,
@@ -64328,12 +64326,6 @@
       "address": "0xae76509d6b38cebb72b7b40dac700807947f9b67",
       "balance_wei": "1693445893981531",
       "balance_eth": 0.001693445893981531
-    },
-    {
-      "rank": 10719,
-      "address": "0x0c65ce088aa040d3ad3a12af4d03d3b1d2ad8607",
-      "balance_wei": "1693071351786922",
-      "balance_eth": 0.001693071351786922
     },
     {
       "rank": 10720,
