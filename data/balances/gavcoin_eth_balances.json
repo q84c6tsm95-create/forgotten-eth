@@ -5,7 +5,7 @@
   "total_eth_in_balances": 18.64298609,
   "addresses_with_balance": 115,
   "coverage_pct": 45.36,
-  "scan_date": "2026-05-02 16:18:01 UTC",
+  "scan_date": "2026-05-03 04:17:59 UTC",
   "description": "GavCoin 2015 bonding curve. refund(price, units) requires BOTH balance >= units AND receipt[price].units >= units. Each user may have multiple receipts at different prices from incremental buyins; this scan greedy-refunds price-descending against live balanceOf to compute the max claimable per address. Tokens that moved via transfer() leave receipts orphaned at the sender (receipt > balance, partly unrefundable) and unrefundable on the recipient (balance > 0, no receipt). Reconstructed via Buyin/Refund event replay from block 350000.",
   "distribution": {
     ">=10 ETH": 0,

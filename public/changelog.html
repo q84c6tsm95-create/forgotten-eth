@@ -667,8 +667,8 @@
     <div class="changelog-entry">
       <span class="changelog-date">May 2</span>
       <div class="changelog-body">
-        <div class="changelog-name">Score70 recovery batch <span class="changelog-tag">+1,510 ETH</span></div>
-        <div class="changelog-desc">Added nine old-contract recovery candidates from the score70 review: MCDEX Perpetual, Quantfury QDT, Monolith TKN Holder, EKS, TweetMarket, Treasure, Celer EthPool, ETH Staking Rewards, and Meme Limited Collections.</div>
+        <div class="changelog-name">Nine legacy recovery contracts <span class="changelog-tag">+1,510 ETH</span></div>
+        <div class="changelog-desc">Added nine verified old-contract recovery paths, including MCDEX Perpetual, Quantfury QDT, Monolith TKN Holder, Celer EthPool, and several smaller legacy reward or refund contracts.</div>
       </div>
     </div>
 
@@ -678,7 +678,7 @@
       <span class="changelog-date">Apr 30</span>
       <div class="changelog-body">
         <div class="changelog-name"><a href="/presalepool-2018">PresalePool 2018</a> <span class="changelog-tag">+39 ETH</span></div>
-        <div class="changelog-desc">A 2018 ICO presale pool built on the Cintix-style PresalePool template — the same crowdpooling pattern that aggregated thousands of ETH for early ICOs whose minimum allocations were too high for individual contributors. The underlying presale was cancelled and the project's multisig refunded the raised ETH back to the pool, which was then placed into Refund state. Most of the 38 contributors withdrew during the original distribution window; 10 addresses never returned and still hold proportional shares totaling 39.20 ETH (one share is 10 ETH). The contract is unpaused and the participant set is frozen — claim is one call to withdrawAll() with no arguments, no token approvals, and no time locks. Identifying detail: balances() does not zero on withdraw, so live claimable equals balance minus cumulative paid-out; pre-integration verification reconciled the share-vs-onchain math (39.20 ETH each side) and Tenderly-simulated a withdrawal end-to-end.</div>
+        <div class="changelog-desc">A 2018 ICO presale pool was refunded after the underlying sale was cancelled. Most contributors withdrew during the original refund window; 10 addresses never returned and still have 39.20 ETH claimable through the unpaused withdrawAll() path.</div>
       </div>
     </div>
 
@@ -686,7 +686,7 @@
       <span class="changelog-date">Apr 23</span>
       <div class="changelog-body">
         <div class="changelog-name"><a href="/metadrop-webaverse">Metadrop: Webaverse</a> <span class="changelog-tag">+134 ETH</span></div>
-        <div class="changelog-desc">In August 2022, Metadrop ran a sealed-bid uniform-price auction for the Webaverse metaverse NFT collection (7,870 items). Bidders above the clearing price won NFTs; the difference between their bid and the clearing price is refundable via a merkle-gated claim. Webaverse went dormant late 2023 and metadrop.com shut down. 90 bidders holding 134.15 ETH have never claimed their refund. The on-chain merkle root is frozen and matching proofs were reconstructed from archived Metadrop frontend JS bundles (Wayback Machine) after the live API went offline — each proof verified against the root and simulated claim-by-claim on a fork before integration. Claim is one call: claimRefund(refundAmount, proof).</div>
+        <div class="changelog-desc">Webaverse bidders who paid above the final Metadrop auction clearing price can claim the difference back through a frozen merkle refund root. 90 addresses still have 134.15 ETH unclaimed.</div>
       </div>
     </div>
 
@@ -694,7 +694,7 @@
       <span class="changelog-date">Apr 23</span>
       <div class="changelog-body">
         <div class="changelog-name"><a href="/metadrop-anata">Metadrop: Anata</a> <span class="changelog-tag">+197 ETH</span></div>
-        <div class="changelog-desc">In April 2022, Metadrop ran a sealed-bid uniform-price auction for the Anata NFT collection (1,920 items). Bidders above the clearing price won NFTs; the difference between their bid and the clearing price is refundable via a merkle-gated claim. Metadrop shut down its frontend shortly after. 120 bidders holding 197.33 ETH have never claimed their refund. The on-chain merkle root is frozen and matching proofs were reconstructed from archived Metadrop frontend JS bundles (Wayback Machine) after the live API went offline — each proof verified against the root and simulated claim-by-claim on a fork before integration. Claim is one call: claimRefund(refundAmount, proof).</div>
+        <div class="changelog-desc">Anata bidders who paid above the final Metadrop auction clearing price can claim the difference back through a frozen merkle refund root. 120 addresses still have 197.33 ETH unclaimed.</div>
       </div>
     </div>
 
@@ -702,7 +702,7 @@
       <span class="changelog-date">Apr 23</span>
       <div class="changelog-body">
         <div class="changelog-name"><a href="/x2y2-presale">X2Y2 Presale</a> <span class="changelog-tag">+28 WETH</span></div>
-        <div class="changelog-desc">Alongside the February 2022 X2Y2 launch, a signer-gated presale sold 1,000 staking shares at 1.5 ETH each (1,500 ETH raised). Presale participants earned a proportional share of marketplace WETH fees directed to this contract over a one-year staking window. Staking ended February 2023 and the x2y2.io frontend went offline. The contract is unpaused and immutable — 202 presale participants who still hold their X2Y2 token share can claim 27.54 WETH of pending rewards via harvest() at any time. Depositors who already called withdraw() fully-claimed their X2Y2 tokens and forfeited future harvests by design; the remaining 121 WETH is stranded in the reward-accounting math and requires the X2Y2 admin multisig (same 2-of-3 Safe as Fee Sharing) to sweep.</div>
+        <div class="changelog-desc">X2Y2 presale participants earned WETH rewards over the first staking year. The frontend is offline, but the immutable contract still lets 202 addresses with remaining token shares claim 27.54 WETH through harvest().</div>
       </div>
     </div>
 
