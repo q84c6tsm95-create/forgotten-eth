@@ -1756,7 +1756,7 @@
   },
   "eks": {
     "name": "EKS",
-    "desc": "EKS is a PoWH-style dividend token contract. Holders with remaining tokens or dividends can still exit through the contract's public exit() path, which sells their tokens and withdraws accrued ETH.",
+    "desc": "EKS contract, a PoWH-style dividend token. Holders with remaining tokens or dividends can still exit through the contract's public exit() path, which sells their tokens and withdraws accrued ETH.",
     "category": "token",
     "color": "#7c3aed",
     "contract": "0xe01e2a3ceafa8233021fc759e5a69863558326b6",
@@ -1812,5 +1812,13 @@
     "color": "#fb923c",
     "contract": "0x49128CF8ABE9071ee24540a296b5DED3F9D50443",
     "deployed": "March 2022"
+  },
+  "feg_feth": {
+    "name": "FEG Wrapped ETH",
+    "desc": "FEG ecosystem's reflection-style ETH wrapper deployed in 2020. Holders deposit ETH and receive fETH (1:1 minus 1% fee); the reflection accounting redistributes part of every deposit/withdraw fee to remaining holders, while the rest accumulates in feesAccrued \u2014 permanently locked, with no function to redeem. The FEG team migrated focus to BSC and never operated an Ethereum-side UI for fETH redemption (Defillama lists Fegex Ethereum TVL = 0). The contract remains live: any holder can call withdraw(amount) for 99% of their fETH balance as ETH.",
+    "category": "token",
+    "color": "#10b981",
+    "contract": "0xf786c34106762ab4eeb45a51b42a62470e9d5332",
+    "deployed": "September 2020"
   }
 }

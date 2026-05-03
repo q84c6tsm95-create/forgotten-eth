@@ -371,7 +371,16 @@ async function sendDonation(amountWei) {
 
   var tx = await walletSigner.sendTransaction({ to: DONATION_ADDRESS, value: amountWei });
   window.va?.track?.('donation_sent', { amount_eth: ethers.formatEther(amountWei), tx_hash: tx.hash });
-  logEvent('claim_confirmed', { address: walletAddress, contract: 'donation', amount_eth: parseFloat(ethers.formatEther(amountWei)), tx_hash: tx.hash });
+  var receipt = await tx.wait();
+  if (!receipt || receipt.status !== 1) { throw new Error('Donation transaction failed'); }
+  logEvent('claim_confirmed', {
+    address: walletAddress,
+    contract: 'donation',
+    amount_eth: parseFloat(ethers.formatEther(amountWei)),
+    tx_hash: tx.hash,
+    block_num: Number(receipt.blockNumber || 0),
+    extra: { via_site: true, mined: true },
+  });
 }
 
 let _lastClaimEth = 0;
@@ -3545,7 +3554,7 @@ const EXCHANGES = {
   },
   eks: {
     name: 'EKS',
-    desc: 'EKS is a PoWH-style dividend token contract. Holders with remaining tokens or dividends can still exit through the public exit() path, which sells their tokens and withdraws accrued ETH.',
+    desc: 'EKS contract, a PoWH-style dividend token. Holders with remaining tokens or dividends can still exit through the public exit() path, which sells their tokens and withdraws accrued ETH.',
     category: 'token',
     color: '#7c3aed',
     contract: '0xe01e2a3ceafa8233021fc759e5a69863558326b6',
@@ -3637,6 +3646,20 @@ const EXCHANGES = {
     withdrawAbi: 'function withdrawAvailableBalance()',
     withdrawArgs: () => [],
     withdrawCall: 'withdrawAvailableBalance',
+  },
+  feg_feth: {
+    name: 'FEG Wrapped ETH',
+    desc: 'FEG ecosystem ETH wrapper from 2020 — a reflection-style token where deposits and withdrawals each take a 1% fee, with most fees permanently locked in the contract by design. The FEG team migrated focus to BSC and never operated an Ethereum-side UI for fETH redemption (Defillama lists Fegex Ethereum TVL = 0). Holders call withdraw(amount) to receive 99% of their fETH balance as ETH. Note: holders that are smart contracts without payable receive() will revert because withdraw() uses transfer() (2300 gas).',
+    category: 'token',
+    color: '#10b981',
+    contract: '0xf786c34106762ab4eeb45a51b42a62470e9d5332',
+    deployed: 'September 2020',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: 'function withdraw(uint256 amount)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'withdraw',
   },
 };
 
@@ -5134,7 +5157,9 @@ async function checkUserBalances(overrideAddress) {
           const wArgs = cfg.withdrawArgs(balance, walletAddress);
           const argsDisplay = wArgs.length > 0 ? wArgs.map(a => typeof a === 'bigint' ? a.toString() + ' wei (' + ethers.formatEther(a) + ' ETH)' : String(a)).join(', ') : 'none';
           const funcSig = cfg.withdrawAbi.replace('function ', '');
-          const exitBtn = cfg.exitAbi ? `<button class="claim-btn" id="exitBtn-${key}" data-action="claim-exit" data-key="${key}" style="background:var(--text2)">Exit (sell + withdraw)</button>` : '';
+          const withdrawBtn = `<button class="claim-btn" id="claimBtn-${key}" data-action="claim-eth" data-key="${key}">${cfg.exitAbi ? 'Withdraw dividends only' : 'Withdraw'}</button>`;
+          const exitBtn = cfg.exitAbi ? `<button class="claim-btn" id="exitBtn-${key}" data-action="claim-exit" data-key="${key}">Exit (sell + withdraw)</button>` : '';
+          const claimActions = cfg.exitAbi ? `${exitBtn}${withdrawBtn}` : withdrawBtn;
           const lastTx = apiBalances[key]?.last_tx_date ? apiBalances[key] : null;
           const adoptionReqs = apiBalances[key]?.adoption_requests;
           const unit = cfg.returnsWeth ? 'WETH' : 'ETH';
@@ -5165,7 +5190,7 @@ async function checkUserBalances(overrideAddress) {
           }
           html += `
               <div class="claim-card-actions">
-                <button class="claim-btn" id="claimBtn-${key}" data-action="claim-eth" data-key="${key}">Withdraw</button>${exitBtn}
+                ${claimActions}
               </div>
               <div class="claim-card-status" id="claimStatus-${key}"></div>
             </div>`;
