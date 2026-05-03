@@ -3624,6 +3624,20 @@ const EXCHANGES = {
     withdrawArgs: () => [],
     withdrawCall: 'withdrawFee',
   },
+  foundation_feth: {
+    name: 'Foundation FETH',
+    desc: 'Foundation was an NFT marketplace launched in 2021 where bidders deposited ETH into FETH (the marketplace\'s escrow wrapper) before placing offers. Foundation officially shut the platform offline on April 27, 2026 with no recovery UI for idle FETH balances. The contracts remain live and unpaused; every lockup has now expired, so a single withdrawAvailableBalance() call returns the holder\'s entire balance as ETH.',
+    category: 'nft',
+    color: '#fb923c',
+    contract: '0x49128CF8ABE9071ee24540a296b5DED3F9D50443',
+    deployed: 'March 2022',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: 'function withdrawAvailableBalance()',
+    withdrawArgs: () => [],
+    withdrawCall: 'withdrawAvailableBalance',
+  },
 };
 
 // Per-tab state
