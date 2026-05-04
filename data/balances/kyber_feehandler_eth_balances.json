@@ -1,36 +1,18 @@
 {
   "contract": "0xd3d2b5643e506c6d9b7099e9116d7aaa941114fe",
   "balance_source": "token",
-  "contract_eth_balance": 88.736743,
+  "contract_eth_balance": 88.73674278,
   "total_eth_in_balances": 61.664353,
   "addresses_with_balance": 1595,
   "coverage_pct": 69.49,
-  "scan_date": "2026-05-04 10:17:15 UTC",
+  "scan_date": "2026-05-04 16:17:17 UTC",
   "distribution": {
-    ">=100 ETH": {
-      "count": 0,
-      "total_eth": 0.0
-    },
-    "10-100 ETH": {
-      "count": 1,
-      "total_eth": 35.144151
-    },
-    "1-10 ETH": {
-      "count": 2,
-      "total_eth": 5.151066
-    },
-    "0.1-1 ETH": {
-      "count": 43,
-      "total_eth": 9.654939
-    },
-    "0.01-0.1 ETH": {
-      "count": 296,
-      "total_eth": 8.41549
-    },
-    "<0.01 ETH": {
-      "count": 1253,
-      "total_eth": 3.298707
-    }
+    ">0 ETH": 1253,
+    ">0.01 ETH": 296,
+    ">0.1 ETH": 43,
+    ">1 ETH": 2,
+    ">10 ETH": 1,
+    ">100 ETH": 0
   },
   "last_event_refresh": "2026-05-04 11:23:07 UTC",
   "balances": [
