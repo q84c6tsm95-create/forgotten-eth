@@ -1,24 +1,36 @@
 {
   "contract": "0x0cba81ba02c58a4c2c160fdd2e7411ad9cdf5dbe",
   "balance_source": "eth",
-  "contract_eth_balance": 197.33,
-  "total_eth_in_balances": 197.33,
-  "addresses_with_balance": 120,
+  "contract_eth_balance": 194.18,
+  "total_eth_in_balances": 194.18,
+  "addresses_with_balance": 119,
   "coverage_pct": 100.0,
   "scan_date": "2026-04-23 22:16:09 UTC",
   "description": "Anata NFT Metadrop sealed-bid auction. Unclaimed bidder refunds.",
   "distribution": {
-    "10+ ETH": {
+    ">=100 ETH": {
+      "count": 0,
+      "total_eth": 0.0
+    },
+    "10-100 ETH": {
       "count": 3,
       "total_eth": 34.05
     },
     "1-10 ETH": {
-      "count": 43,
-      "total_eth": 129.32000000000002
+      "count": 42,
+      "total_eth": 126.17
     },
     "0.1-1 ETH": {
       "count": 74,
       "total_eth": 33.96
+    },
+    "0.01-0.1 ETH": {
+      "count": 0,
+      "total_eth": 0.0
+    },
+    "<0.01 ETH": {
+      "count": 0,
+      "total_eth": 0.0
     }
   },
   "meta": {
@@ -328,26 +340,6 @@
         "0xf8f67359dd438f95d4747fba41f619c57c30552033bbd4b91e483e50c01bdf3c"
       ],
       "rank": 15
-    },
-    {
-      "address": "0x361d4da8936c19100cc7643faefbad2632f7e321",
-      "balance_wei": "3150000000000000000",
-      "balance_eth": 3.15,
-      "merkle_proof": [
-        "0x4643204b7ceba333f827f6240b8ee8e7b0b2cfb895f8bd58a354178f39d9d800",
-        "0xd98e2eee9c62a1a2da3b0ee50c7e50ddec1ab334c046e2bc607a466b2c8f28ed",
-        "0x8bc5039c948aa574bd3b4e4d1981e391b15b3bcd8d1925749e6f89394b94bd30",
-        "0x3fbd0e5e3b3430d93815fdfdcec07b317bec4d3140371ac6ea4f0e9db31012aa",
-        "0x9d3192e8b10f48907eb12939e22281d348d4974982a662c92e7047b65e965a45",
-        "0x1c22d457501a9a5ee3d8d0aeb5e7dda0bf72ba3c9b0c8f60254779ac489bec3a",
-        "0xa267afa76c424e9a6e94178880f23e0d5a3f5ec2f0759f7d6ac72f7463ca03d3",
-        "0xdcf02835fdc208537bd5709f183716d8ca631696682cd63bff248f4b959e5e5a",
-        "0x41022f927ae0f715fd11527b85c932afe7858408ab63acb2c6739a9badaa8e93",
-        "0xa0e44f487d707ebd91af1cbab7beedf59a2f30655ef835b5a8d83c4cf07ae617",
-        "0xa8b4b0128841991330afb7ec62a27f11ac1e33cfe0889367ab759751c667531a",
-        "0xf8f67359dd438f95d4747fba41f619c57c30552033bbd4b91e483e50c01bdf3c"
-      ],
-      "rank": 16
     },
     {
       "address": "0x874f7034482acc3d9c8b442ba9b422e8d29aa3a3",
@@ -2420,5 +2412,6 @@
       ],
       "rank": 120
     }
-  ]
+  ],
+  "last_event_refresh": "2026-05-04 13:23:08 UTC"
 }

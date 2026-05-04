@@ -3,11 +3,11 @@
   "balance_source": "token",
   "contract_eth_balance": 81914.89353817,
   "total_eth_in_balances": 81914.87280661,
-  "addresses_with_balance": 4849,
+  "addresses_with_balance": 4850,
   "coverage_pct": 100.0,
-  "scan_date": "2026-05-03 18:53:39 UTC",
+  "scan_date": "2026-05-04 10:18:01 UTC",
   "distribution": {
-    ">0 ETH": 938,
+    ">0 ETH": 939,
     ">0.01 ETH": 815,
     ">0.1 ETH": 928,
     ">1 ETH": 1428,
@@ -574,8 +574,8 @@
     },
     {
       "address": "0xe1ecadb5fec254c2c893c230b935db30b8fff0db",
-      "balance_wei": "101461448013347503892",
-      "balance_eth": 101.46144801
+      "balance_wei": "101461448003462818593",
+      "balance_eth": 101.461448
     },
     {
       "address": "0x579c94b909b94270a84002a9d7d57958f4bec9b4",
@@ -24261,6 +24261,11 @@
       "address": "0x87370c29bf6904ae84459de1e0240561ddfc4fcc",
       "balance_wei": "1000000000000",
       "balance_eth": 1e-06
+    },
+    {
+      "address": "0x0a4a8c99eec158662c387bd05c7f56046c9dec95",
+      "balance_wei": "9884685299",
+      "balance_eth": 1e-08
     }
   ]
 }

@@ -5,15 +5,35 @@
   "name": "BigToken (BTK)",
   "description": "OZ RefundableCrowdsale \u2014 BigToken (BTK). ETH stored in sibling RefundVault.",
   "scan_date": "2026-04-07 12:06:41 UTC",
-  "contract_eth_balance": "6.4064455",
+  "contract_eth_balance": 4.406446,
   "total_addresses_scanned": 49,
-  "addresses_with_balance": 2,
-  "total_eth_in_balances": 6.4064455,
+  "addresses_with_balance": 1,
+  "total_eth_in_balances": 4.406446,
   "coverage_pct": 100.0,
   "distribution": {
+    ">=100 ETH": {
+      "count": 0,
+      "total_eth": 0.0
+    },
+    "10-100 ETH": {
+      "count": 0,
+      "total_eth": 0.0
+    },
     "1-10 ETH": {
-      "count": 2,
-      "total_eth": 6.4064455
+      "count": 1,
+      "total_eth": 4.406446
+    },
+    "0.1-1 ETH": {
+      "count": 0,
+      "total_eth": 0.0
+    },
+    "0.01-0.1 ETH": {
+      "count": 0,
+      "total_eth": 0.0
+    },
+    "<0.01 ETH": {
+      "count": 0,
+      "total_eth": 0.0
     }
   },
   "balances": [
@@ -22,12 +42,7 @@
       "address": "0xf7a39243678edd4a3d75954ae6b23a041b418b9d",
       "balance_wei": "4406445500000000000",
       "balance_eth": "4.406445500000000237"
-    },
-    {
-      "rank": 2,
-      "address": "0xe619bfe676eabd1b8faf15fa709570f162d87a68",
-      "balance_wei": "2000000000000000000",
-      "balance_eth": "2.000000000000000000"
     }
-  ]
+  ],
+  "last_event_refresh": "2026-05-03 23:23:08 UTC"
 }

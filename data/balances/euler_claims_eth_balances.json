@@ -2,35 +2,16 @@
   "contract": "0xbc8021015db2ca0599e0692d63ae6b91564cf026",
   "balance_source": "weth",
   "contract_eth_balance": 149.441528,
-  "total_eth_in_balances": 149.129032,
-  "addresses_with_balance": 1607,
+  "total_eth_in_balances": 149.12903166,
+  "addresses_with_balance": 1636,
   "coverage_pct": 99.79,
-  "scan_date": "2026-05-03 18:58:21 UTC",
+  "scan_date": "2026-05-04 10:17:15 UTC",
   "distribution": {
-    ">=100 ETH": {
-      "count": 0,
-      "total_eth": 0.0
-    },
-    "10-100 ETH": {
-      "count": 6,
-      "total_eth": 99.911071
-    },
-    "1-10 ETH": {
-      "count": 8,
-      "total_eth": 22.888941
-    },
-    "0.1-1 ETH": {
-      "count": 52,
-      "total_eth": 17.197048
-    },
-    "0.01-0.1 ETH": {
-      "count": 198,
-      "total_eth": 6.652055
-    },
-    "<0.01 ETH": {
-      "count": 1343,
-      "total_eth": 2.479905
-    }
+    ">=10 ETH": 6,
+    "1-10 ETH": 8,
+    "0.1-1 ETH": 52,
+    "0.01-0.1 ETH": 198,
+    "<0.01 ETH": 1372
   },
   "meta": {
     "terms_hash": "0x427a506ff6e15bd1b7e4e93da52c8ec95f6af1279618a2f076946e83d8294996",
@@ -57192,6 +57173,5 @@
       ],
       "rank": 1636
     }
-  ],
-  "last_event_refresh": "2026-05-03 21:02:57 UTC"
+  ]
 }
