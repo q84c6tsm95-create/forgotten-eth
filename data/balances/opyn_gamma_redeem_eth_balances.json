@@ -1,17 +1,37 @@
 {
   "contract": "0x4ccc2339f87f6c59c6893e1a678c2266ca58dc72",
   "balance_source": "weth",
-  "contract_eth_balance": 379.92709,
-  "total_eth_in_balances": 379.92709,
-  "addresses_with_balance": 2430,
+  "contract_eth_balance": 379.91624,
+  "total_eth_in_balances": 379.91624,
+  "addresses_with_balance": 2427,
   "coverage_pct": 100.0,
   "scan_date": "2026-05-05 10:17:56 UTC",
   "description": "Opyn v2 Gamma Protocol expired oToken redemption pool. Holders of expired in-the-money WETH-collateralized oTokens can call Controller.operate([Redeem]) to claim their share of the underlying collateral. The protocol went silent in early 2022 \u2014 these are forgotten redemption claims.",
   "distribution": {
-    "1_plus": 4,
-    "0.1_to_1": 95,
-    "0.01_to_0.1": 995,
-    "under_0.01": 1336
+    ">=100 ETH": {
+      "count": 1,
+      "total_eth": 324.292557
+    },
+    "10-100 ETH": {
+      "count": 0,
+      "total_eth": 0.0
+    },
+    "1-10 ETH": {
+      "count": 3,
+      "total_eth": 13.593297
+    },
+    "0.1-1 ETH": {
+      "count": 95,
+      "total_eth": 17.808385
+    },
+    "0.01-0.1 ETH": {
+      "count": 995,
+      "total_eth": 20.68948
+    },
+    "<0.01 ETH": {
+      "count": 1333,
+      "total_eth": 3.532521
+    }
   },
   "pool_contract": "0x5934807cc0654d46755ebd2848840b616256c6ef",
   "opyn_redeem": true,
@@ -18133,19 +18153,6 @@
       "rank": 1387
     },
     {
-      "address": "0x344b1e4ac175f16d3ba40a688ca928e3768e275a",
-      "balance_wei": "4579205796431114",
-      "balance_eth": 0.004579,
-      "positions": [
-        {
-          "otoken": "0x796091d1840a6bd9e6a6b65bf8ef3985d254c3df",
-          "amount": "3870000",
-          "payout_eth": 0.004579
-        }
-      ],
-      "rank": 1388
-    },
-    {
       "address": "0x1e2756d52aea6ec47e7a759e6261bf6afe3390d0",
       "balance_wei": "4534874644485694",
       "balance_eth": 0.004535,
@@ -19028,19 +19035,6 @@
         }
       ],
       "rank": 1456
-    },
-    {
-      "address": "0xbda0136ea391e24a938793972726f8763150c7c3",
-      "balance_wei": "3668097666391848",
-      "balance_eth": 0.003668,
-      "positions": [
-        {
-          "otoken": "0x796091d1840a6bd9e6a6b65bf8ef3985d254c3df",
-          "amount": "3100000",
-          "payout_eth": 0.003668
-        }
-      ],
-      "rank": 1457
     },
     {
       "address": "0x04e294283fb6c2974b59d15a0bc347f8d4d4bdcd",
@@ -20364,19 +20358,6 @@
         }
       ],
       "rank": 1558
-    },
-    {
-      "address": "0x70ddb5abf21202602b57f4860ee1262a594a0086",
-      "balance_wei": "2603166085826473",
-      "balance_eth": 0.002603,
-      "positions": [
-        {
-          "otoken": "0x796091d1840a6bd9e6a6b65bf8ef3985d254c3df",
-          "amount": "2200000",
-          "payout_eth": 0.002603
-        }
-      ],
-      "rank": 1559
     },
     {
       "address": "0xa8f9f80886a9387688d281c01274a1f7568e9637",
@@ -31716,5 +31697,6 @@
       ],
       "rank": 2430
     }
-  ]
+  ],
+  "last_event_refresh": "2026-05-05 16:23:07 UTC"
 }
