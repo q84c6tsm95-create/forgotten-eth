@@ -1825,5 +1825,59 @@
     "contract": "0xf786c34106762ab4eeb45a51b42a62470e9d5332",
     "deployed": "September 2020",
     "slug": "feg-feth"
+  },
+  "futurists": {
+    "name": "Futurists Auction Splitter",
+    "desc": "Foundation's \"Futurists\" 2021 NFT auction proceeds went into an OpenZeppelin PaymentSplitter with 4 hardcoded shareholders (97% / 1% / 1% / 1% shares). Each shareholder can call release(account) at any time to receive their pro-rata cut of the contract's ETH; the function is permissionless so anyone (including a bot) can trigger payment to a registered shareholder.",
+    "category": "nft",
+    "color": "#9333ea",
+    "contract": "0xa46ed7080f0094306d354b9d22e084f1dfb1b074",
+    "deployed": "February 2021",
+    "slug": "futurists"
+  },
+  "weth10": {
+    "name": "WETH10",
+    "desc": "Andre Cronje's 2020 WETH10 wrapper \u2014 proposed successor to canonical WETH9 with simpler interface and gas optimizations. Never reached significant adoption. Holders can call withdraw(uint256) to burn their WETH10 and receive ETH 1:1.",
+    "category": "token",
+    "color": "#0891b2",
+    "contract": "0xbc5cef436eadacadfa8dafb63088f09f21dea7e9",
+    "deployed": "September 2020",
+    "slug": "weth10"
+  },
+  "micro_eth": {
+    "name": "MicroETH",
+    "desc": "MicroETH (\u03bcETH) is a 2018 ETH wrapper with 6 decimals: 1 \u03bcETH = 1e-6 ETH. Holders can call withdraw(uint256) to burn \u03bcETH and receive ETH at the fixed 1:1e-6 ratio. Note: contract holders without payable receive() will revert because withdraw uses transfer (2300 gas).",
+    "category": "token",
+    "color": "#84cc16",
+    "contract": "0xbb7be7cc5abb65d3a29d7982236481ddf4f10b09",
+    "deployed": "February 2018",
+    "slug": "micro-eth"
+  },
+  "confinale_token": {
+    "name": "Confinale Token",
+    "desc": "Confinale 2018-era ETH-pegged wrapper. Holders call withdraw(amount) to burn tokens and receive ETH at 1:1.",
+    "category": "token",
+    "color": "#fb7185",
+    "contract": "0x629178c9a55cc30e3cccf21a94f77920aefce5ce",
+    "deployed": "June 2018",
+    "slug": "confinale-token"
+  },
+  "opyn_crab_v2": {
+    "name": "Opyn Crab Strategy V2",
+    "desc": "Opyn's Squeeth Crab Strategy V2 was a delta-neutral USD-Squeeth-on-ETH yield product. The strategy entered a shutdown state (no recent deposits/withdrawals); each crab token is now redeemable for a proportional share of contract ETH via withdrawShutdown(uint256). Single-step, permissionless.",
+    "category": "defi",
+    "color": "#f59e0b",
+    "contract": "0x3b960e47784150f5a63777201ee2b15253d713e8",
+    "deployed": "June 2022",
+    "slug": "opyn-crab-v2"
+  },
+  "collective_canvas": {
+    "name": "Collective Canvas",
+    "desc": "Collaborative on-chain generative art project from 2021. Each minted layer earns a share of all subsequent mint fees via a tier-based formula. Each NFT owner can call withdraw(tokenId, amount) to claim their accumulated ETH share \u2014 must be the current owner of the tokenId.",
+    "category": "nft",
+    "color": "#06b6d4",
+    "contract": "0x3a56ab63c7ef4f07fe353beb132e0fd5ad270ca0",
+    "deployed": "2021",
+    "slug": "collective-canvas"
   }
 }

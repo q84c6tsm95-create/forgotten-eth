@@ -1,0 +1,4013 @@
+{
+  "contract": "0x3a56ab63c7ef4f07fe353beb132e0fd5ad270ca0",
+  "balance_source": "token",
+  "contract_eth_balance": 65.10774303,
+  "total_eth_in_balances": 65.10774303,
+  "addresses_with_balance": 273,
+  "coverage_pct": 100.0,
+  "scan_date": "2026-05-05 16:07:20 UTC",
+  "description": "Collective Canvas per-NFT mint-fee escrow. NFT owner calls withdraw(tokenId, amount) to claim accumulated ETH share for each owned tokenId.",
+  "meta": {
+    "candidate_source": "layerCount + balanceOfToken + ownerOf",
+    "multi_item": true,
+    "ratio_note": "Per-token: balanceOfToken(tid)"
+  },
+  "balances": [
+    {
+      "address": "0x1964f9cffa39ce77611b44dddd21a22290a5283c",
+      "balance_wei": "2732530746165134564",
+      "balance_eth": 2.7325307461651347,
+      "collective_canvas_items": [
+        {
+          "token_id": 398,
+          "wei": 571438944871605482
+        },
+        {
+          "token_id": 438,
+          "wei": 474405784142529900
+        },
+        {
+          "token_id": 446,
+          "wei": 454989052027470047
+        },
+        {
+          "token_id": 457,
+          "wei": 428334528365917775
+        },
+        {
+          "token_id": 464,
+          "wei": 411363086573119175
+        },
+        {
+          "token_id": 472,
+          "wei": 391999350184492185
+        }
+      ],
+      "rank": 1
+    },
+    {
+      "address": "0xaf62d4322e35323da92a562c0e9a5568b3b30229",
+      "balance_wei": "2261078477046294409",
+      "balance_eth": 2.2610784770462944,
+      "collective_canvas_items": [
+        {
+          "token_id": 513,
+          "wei": 292688849960145518
+        },
+        {
+          "token_id": 517,
+          "wei": 283005002274873726
+        },
+        {
+          "token_id": 544,
+          "wei": 217649732640928756
+        },
+        {
+          "token_id": 572,
+          "wei": 149925771792814437
+        },
+        {
+          "token_id": 573,
+          "wei": 147496452421086689
+        },
+        {
+          "token_id": 577,
+          "wei": 137821350744966858
+        },
+        {
+          "token_id": 581,
+          "wei": 128171723888425981
+        },
+        {
+          "token_id": 583,
+          "wei": 123309917731152017
+        },
+        {
+          "token_id": 589,
+          "wei": 108823861397548534
+        },
+        {
+          "token_id": 590,
+          "wei": 106423861397548534
+        },
+        {
+          "token_id": 591,
+          "wei": 103987313174198281
+        },
+        {
+          "token_id": 593,
+          "wei": 99126550219000251
+        },
+        {
+          "token_id": 595,
+          "wei": 94282139727530937
+        },
+        {
+          "token_id": 596,
+          "wei": 91866032344980602
+        },
+        {
+          "token_id": 597,
+          "wei": 89453972043473065
+        },
+        {
+          "token_id": 598,
+          "wei": 87045945287620223
+        }
+      ],
+      "rank": 2
+    },
+    {
+      "address": "0x42c8df348150519a6e8dfca862a0d0f04c6b6020",
+      "balance_wei": "2090892579711760715",
+      "balance_eth": 2.0908925797117606,
+      "collective_canvas_items": [
+        {
+          "token_id": 202,
+          "wei": 1049152231576555170
+        },
+        {
+          "token_id": 205,
+          "wei": 1041740348135205545
+        }
+      ],
+      "rank": 3
+    },
+    {
+      "address": "0x5d3f81ad171616571bf3119a3120e392b914fd7c",
+      "balance_wei": "1635034561004641324",
+      "balance_eth": 1.6350345610046413,
+      "collective_canvas_items": [
+        {
+          "token_id": 295,
+          "wei": 169260733709564529
+        },
+        {
+          "token_id": 330,
+          "wei": 171686265624458146
+        },
+        {
+          "token_id": 465,
+          "wei": 408937280121506272
+        },
+        {
+          "token_id": 516,
+          "wei": 285418928773906608
+        },
+        {
+          "token_id": 543,
+          "wei": 220076203229164050
+        },
+        {
+          "token_id": 554,
+          "wei": 193453481873048052
+        },
+        {
+          "token_id": 557,
+          "wei": 186201667672993667
+        }
+      ],
+      "rank": 4
+    },
+    {
+      "address": "0xac53cf218896369b3b852611b19669ebf8d5991c",
+      "balance_wei": "1578037796899836954",
+      "balance_eth": 1.578037796899837,
+      "collective_canvas_items": [
+        {
+          "token_id": 2,
+          "wei": 1578037796899836954
+        }
+      ],
+      "rank": 5
+    },
+    {
+      "address": "0x3376bbe8bb5df32ae90a1614a9f68284d3cec862",
+      "balance_wei": "1525058043320083377",
+      "balance_eth": 1.5250580433200833,
+      "collective_canvas_items": [
+        {
+          "token_id": 15,
+          "wei": 1525058043320083377
+        }
+      ],
+      "rank": 6
+    },
+    {
+      "address": "0x0d09c3bd6270e90ca9ce846e2f35056627ddbd56",
+      "balance_wei": "1514041531452178322",
+      "balance_eth": 1.5140415314521782,
+      "collective_canvas_items": [
+        {
+          "token_id": 19,
+          "wei": 1514041531452178322
+        }
+      ],
+      "rank": 7
+    },
+    {
+      "address": "0x883d7047531ad33b297dc810209af28ac1f919e0",
+      "balance_wei": "1508212960023606894",
+      "balance_eth": 1.508212960023607,
+      "collective_canvas_items": [
+        {
+          "token_id": 21,
+          "wei": 1508212960023606894
+        }
+      ],
+      "rank": 8
+    },
+    {
+      "address": "0x3d9456ad6463a77bd77123cb4836e463030bfab4",
+      "balance_wei": "1498809797968270927",
+      "balance_eth": 1.4988097979682709,
+      "collective_canvas_items": [
+        {
+          "token_id": 24,
+          "wei": 1498809797968270927
+        }
+      ],
+      "rank": 9
+    },
+    {
+      "address": "0x4bf2f2c602ba9af336847c0958b2ad350e8c0f85",
+      "balance_wei": "1450034374045285179",
+      "balance_eth": 1.4500343740452852,
+      "collective_canvas_items": [
+        {
+          "token_id": 42,
+          "wei": 1450034374045285179
+        }
+      ],
+      "rank": 10
+    },
+    {
+      "address": "0x467f873828f3367e823ac13b597da7af904f8ad1",
+      "balance_wei": "1441139981175233934",
+      "balance_eth": 1.441139981175234,
+      "collective_canvas_items": [
+        {
+          "token_id": 323,
+          "wei": 164422533640769383
+        },
+        {
+          "token_id": 569,
+          "wei": 157197166597659328
+        },
+        {
+          "token_id": 570,
+          "wei": 154797166597659328
+        },
+        {
+          "token_id": 574,
+          "wei": 145071365313072752
+        },
+        {
+          "token_id": 578,
+          "wei": 135413046246696962
+        },
+        {
+          "token_id": 582,
+          "wei": 125738734197704332
+        },
+        {
+          "token_id": 584,
+          "wei": 120885260196905442
+        },
+        {
+          "token_id": 586,
+          "wei": 116048365123832896
+        },
+        {
+          "token_id": 587,
+          "wei": 113636099365740903
+        },
+        {
+          "token_id": 588,
+          "wei": 111227936100434781
+        },
+        {
+          "token_id": 594,
+          "wei": 96702307794757827
+        }
+      ],
+      "rank": 11
+    },
+    {
+      "address": "0xb542e081b86150483745687fe768c28f4ba141e7",
+      "balance_wei": "1408163777464043494",
+      "balance_eth": 1.4081637774640434,
+      "collective_canvas_items": [
+        {
+          "token_id": 58,
+          "wei": 1408163777464043494
+        }
+      ],
+      "rank": 12
+    },
+    {
+      "address": "0x0763ff2333e953cdc4313700e9a4bb0a2a1f89ce",
+      "balance_wei": "1403323099497941800",
+      "balance_eth": 1.4033230994979418,
+      "collective_canvas_items": [
+        {
+          "token_id": 60,
+          "wei": 1403323099497941800
+        }
+      ],
+      "rank": 13
+    },
+    {
+      "address": "0x865c2f85c9fea1c6ac7f53de07554d68cb92ed88",
+      "balance_wei": "1356987769246443754",
+      "balance_eth": 1.3569877692464438,
+      "collective_canvas_items": [
+        {
+          "token_id": 78,
+          "wei": 1356987769246443754
+        }
+      ],
+      "rank": 14
+    },
+    {
+      "address": "0x08797952462b82db639ddbfdef2ab1718ffa7676",
+      "balance_wei": "1352157389499608311",
+      "balance_eth": 1.3521573894996084,
+      "collective_canvas_items": [
+        {
+          "token_id": 80,
+          "wei": 1352157389499608311
+        }
+      ],
+      "rank": 15
+    },
+    {
+      "address": "0xf97664376416e9379f2354db444bfe3f00b6936b",
+      "balance_wei": "1349490722832941645",
+      "balance_eth": 1.3494907228329416,
+      "collective_canvas_items": [
+        {
+          "token_id": 81,
+          "wei": 1349490722832941645
+        }
+      ],
+      "rank": 16
+    },
+    {
+      "address": "0xa56268c56983fd7f3892a3677ced8c1b27750dd1",
+      "balance_wei": "1346856576491478231",
+      "balance_eth": 1.3468565764914782,
+      "collective_canvas_items": [
+        {
+          "token_id": 82,
+          "wei": 1346856576491478231
+        }
+      ],
+      "rank": 17
+    },
+    {
+      "address": "0x17768cfd6030e2b65eb5086e34a512fde5dc1f1f",
+      "balance_wei": "1346166313969013478",
+      "balance_eth": 1.3461663139690134,
+      "collective_canvas_items": [
+        {
+          "token_id": 115,
+          "wei": 1263924375359189582
+        },
+        {
+          "token_id": 313,
+          "wei": 82241938609823896
+        }
+      ],
+      "rank": 18
+    },
+    {
+      "address": "0x515f30fd59545b4d8575de8e7c0bd546f9396803",
+      "balance_wei": "1344254166852924015",
+      "balance_eth": 1.344254166852924,
+      "collective_canvas_items": [
+        {
+          "token_id": 83,
+          "wei": 1344254166852924015
+        }
+      ],
+      "rank": 19
+    },
+    {
+      "address": "0xf476f6c0c97d088c3a1ec2a076218c22edfe018d",
+      "balance_wei": "1336629933903930465",
+      "balance_eth": 1.3366299339039305,
+      "collective_canvas_items": [
+        {
+          "token_id": 86,
+          "wei": 1336629933903930465
+        }
+      ],
+      "rank": 20
+    },
+    {
+      "address": "0xc8cc2e8e70177a47ed57aa4b9bbc600dec375109",
+      "balance_wei": "1315376662042094596",
+      "balance_eth": 1.3153766620420946,
+      "collective_canvas_items": [
+        {
+          "token_id": 331,
+          "wei": 734252898677752577
+        },
+        {
+          "token_id": 394,
+          "wei": 581123763364342019
+        }
+      ],
+      "rank": 21
+    },
+    {
+      "address": "0xa7269c74294e399d700a58be9f035b652dd67e48",
+      "balance_wei": "1236558437923456143",
+      "balance_eth": 1.2365584379234562,
+      "collective_canvas_items": [
+        {
+          "token_id": 126,
+          "wei": 1236558437923456143
+        }
+      ],
+      "rank": 22
+    },
+    {
+      "address": "0xc0e5e14bdecd9ed6954a9e14c74e97cebd91bb94",
+      "balance_wei": "1167212851887993125",
+      "balance_eth": 1.1672128518879932,
+      "collective_canvas_items": [
+        {
+          "token_id": 154,
+          "wei": 1167212851887993125
+        }
+      ],
+      "rank": 23
+    },
+    {
+      "address": "0x662d5d79849113a5403af776210307a7c82a5267",
+      "balance_wei": "1145026812618682084",
+      "balance_eth": 1.145026812618682,
+      "collective_canvas_items": [
+        {
+          "token_id": 163,
+          "wei": 1145026812618682084
+        }
+      ],
+      "rank": 24
+    },
+    {
+      "address": "0xc84350bce9259d11f7518564520c9d3d6dde3871",
+      "balance_wei": "1142539007740633304",
+      "balance_eth": 1.1425390077406332,
+      "collective_canvas_items": [
+        {
+          "token_id": 164,
+          "wei": 1142539007740633304
+        }
+      ],
+      "rank": 25
+    },
+    {
+      "address": "0x2c870e531c2fd6a306837fbe971fe5528dcba84b",
+      "balance_wei": "1045875682262899172",
+      "balance_eth": 1.0458756822628992,
+      "collective_canvas_items": [
+        {
+          "token_id": 388,
+          "wei": 595713451903693745
+        },
+        {
+          "token_id": 448,
+          "wei": 450162230359205427
+        }
+      ],
+      "rank": 26
+    },
+    {
+      "address": "0x523ff3e142f822e2158f3802d9bcb6f28977441e",
+      "balance_wei": "1003515747170977020",
+      "balance_eth": 1.003515747170977,
+      "collective_canvas_items": [
+        {
+          "token_id": 246,
+          "wei": 19336806489690035
+        },
+        {
+          "token_id": 276,
+          "wei": 166839494771511432
+        },
+        {
+          "token_id": 329,
+          "wei": 140233829081188695
+        },
+        {
+          "token_id": 332,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 340,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 364,
+          "wei": 186201667672993667
+        },
+        {
+          "token_id": 379,
+          "wei": 169260733709564529
+        },
+        {
+          "token_id": 397,
+          "wei": 152359338226380870
+        }
+      ],
+      "rank": 27
+    },
+    {
+      "address": "0xc724a19c2571059374370349792fa66c7a8e0058",
+      "balance_wei": "919030537221367281",
+      "balance_eth": 0.9190305372213673,
+      "collective_canvas_items": [
+        {
+          "token_id": 90,
+          "wei": 50768898903020022
+        },
+        {
+          "token_id": 227,
+          "wei": 82241938609823896
+        },
+        {
+          "token_id": 250,
+          "wei": 2422712933753943
+        },
+        {
+          "token_id": 265,
+          "wei": 111227936100434781
+        },
+        {
+          "token_id": 319,
+          "wei": 82241938609823896
+        },
+        {
+          "token_id": 342,
+          "wei": 79805998509990286
+        },
+        {
+          "token_id": 344,
+          "wei": 82241938609823896
+        },
+        {
+          "token_id": 411,
+          "wei": 82241938609823896
+        },
+        {
+          "token_id": 470,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 484,
+          "wei": 82241938609823896
+        },
+        {
+          "token_id": 565,
+          "wei": 166839494771511432
+        },
+        {
+          "token_id": 566,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 28
+    },
+    {
+      "address": "0x71cc25e270560ab31d5d2e15e5bf896ebfc4a640",
+      "balance_wei": "914830928566463448",
+      "balance_eth": 0.9148309285664634,
+      "collective_canvas_items": [
+        {
+          "token_id": 436,
+          "wei": 479233219019179534
+        },
+        {
+          "token_id": 454,
+          "wei": 435597709547283914
+        }
+      ],
+      "rank": 29
+    },
+    {
+      "address": "0xdc32a6424e57bd7322ec2063f1029093aec991c6",
+      "balance_wei": "856023519043589652",
+      "balance_eth": 0.8560235190435896,
+      "collective_canvas_items": [
+        {
+          "token_id": 281,
+          "wei": 856023519043589652
+        }
+      ],
+      "rank": 30
+    },
+    {
+      "address": "0x7928218f0fb4b127ea7c2f9af4191b02e5a6e935",
+      "balance_wei": "824273338080005540",
+      "balance_eth": 0.8242733380800056,
+      "collective_canvas_items": [
+        {
+          "token_id": 294,
+          "wei": 824273338080005540
+        }
+      ],
+      "rank": 31
+    },
+    {
+      "address": "0xefa56859a9e0f16011ef71811153c20db4576c85",
+      "balance_wei": "816975985257228990",
+      "balance_eth": 0.816975985257229,
+      "collective_canvas_items": [
+        {
+          "token_id": 297,
+          "wei": 816975985257228990
+        }
+      ],
+      "rank": 32
+    },
+    {
+      "address": "0xf75cdae837dacdee49d1e2b484957f309155cdd4",
+      "balance_wei": "761735459709411259",
+      "balance_eth": 0.7617354597094113,
+      "collective_canvas_items": [
+        {
+          "token_id": 245,
+          "wei": 82241938609823896
+        },
+        {
+          "token_id": 271,
+          "wei": 26594418876025743
+        },
+        {
+          "token_id": 273,
+          "wei": 19336806489690035
+        },
+        {
+          "token_id": 280,
+          "wei": 123309917731152017
+        },
+        {
+          "token_id": 296,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 310,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 324,
+          "wei": 82241938609823896
+        },
+        {
+          "token_id": 351,
+          "wei": 19336806489690035
+        },
+        {
+          "token_id": 354,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 360,
+          "wei": 19336806489690035
+        },
+        {
+          "token_id": 363,
+          "wei": 19336806489690035
+        },
+        {
+          "token_id": 371,
+          "wei": 19336806489690035
+        },
+        {
+          "token_id": 377,
+          "wei": 19336806489690035
+        },
+        {
+          "token_id": 385,
+          "wei": 67686726771260368
+        },
+        {
+          "token_id": 386,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 33
+    },
+    {
+      "address": "0x3616045e6d2b5f0f9412a3e69501c5b0369dc550",
+      "balance_wei": "717201544636856862",
+      "balance_eth": 0.7172015446368568,
+      "collective_canvas_items": [
+        {
+          "token_id": 338,
+          "wei": 717201544636856862
+        }
+      ],
+      "rank": 34
+    },
+    {
+      "address": "0x726cdc837384a7deb8bbea64beba2e7b4d7346c0",
+      "balance_wei": "673415070968040384",
+      "balance_eth": 0.6734150709680404,
+      "collective_canvas_items": [
+        {
+          "token_id": 356,
+          "wei": 673415070968040384
+        }
+      ],
+      "rank": 35
+    },
+    {
+      "address": "0x7b1c70cf10841bde56345f784fc49a8941d750c0",
+      "balance_wei": "655421156100006881",
+      "balance_eth": 0.6554211561000068,
+      "collective_canvas_items": [
+        {
+          "token_id": 535,
+          "wei": 239427185765016229
+        },
+        {
+          "token_id": 546,
+          "wei": 212810131874722486
+        },
+        {
+          "token_id": 550,
+          "wei": 203183838460268166
+        }
+      ],
+      "rank": 36
+    },
+    {
+      "address": "0x98d96e2d524b6f47eddd3661df74e5cc8f9f022d",
+      "balance_wei": "629684446834276738",
+      "balance_eth": 0.6296844468342767,
+      "collective_canvas_items": [
+        {
+          "token_id": 374,
+          "wei": 629684446834276738
+        }
+      ],
+      "rank": 37
+    },
+    {
+      "address": "0x849774734fd32e0d995b7435486b38372898941a",
+      "balance_wei": "607306008473184585",
+      "balance_eth": 0.6073060084731846,
+      "collective_canvas_items": [
+        {
+          "token_id": 209,
+          "wei": 440466513701673153
+        },
+        {
+          "token_id": 507,
+          "wei": 166839494771511432
+        }
+      ],
+      "rank": 38
+    },
+    {
+      "address": "0x3ea7c30e91720745a9e57527ec74863a507849af",
+      "balance_wei": "566632929834011498",
+      "balance_eth": 0.5666329298340115,
+      "collective_canvas_items": [
+        {
+          "token_id": 400,
+          "wei": 566632929834011498
+        }
+      ],
+      "rank": 39
+    },
+    {
+      "address": "0xc5c84134820491ac755385cda1f1c78fc00b4459",
+      "balance_wei": "522910015062557255",
+      "balance_eth": 0.5229100150625573,
+      "collective_canvas_items": [
+        {
+          "token_id": 418,
+          "wei": 522910015062557255
+        }
+      ],
+      "rank": 40
+    },
+    {
+      "address": "0x89ebcb7714bd0d2f33ce3a35c12dbeb7b94af169",
+      "balance_wei": "491399246818859157",
+      "balance_eth": 0.49139924681885916,
+      "collective_canvas_items": [
+        {
+          "token_id": 14,
+          "wei": 491399246818859157
+        }
+      ],
+      "rank": 41
+    },
+    {
+      "address": "0x334f3bca1535b7d41e90531e7ff11a150529c680",
+      "balance_wei": "457184079188632868",
+      "balance_eth": 0.45718407918863285,
+      "collective_canvas_items": [
+        {
+          "token_id": 61,
+          "wei": 14517679923999609
+        },
+        {
+          "token_id": 103,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 123,
+          "wei": 60463029533221228
+        },
+        {
+          "token_id": 137,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 207,
+          "wei": 55627677651060836
+        },
+        {
+          "token_id": 268,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 346,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 370,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 435,
+          "wei": 26594418876025743
+        },
+        {
+          "token_id": 512,
+          "wei": 82241938609823896
+        },
+        {
+          "token_id": 539,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 42
+    },
+    {
+      "address": "0x1034a34bf3f2f3aea04a72983dc46631b5e22323",
+      "balance_wei": "444990627836036397",
+      "balance_eth": 0.4449906278360364,
+      "collective_canvas_items": [
+        {
+          "token_id": 88,
+          "wei": 55627677651060836
+        },
+        {
+          "token_id": 119,
+          "wei": 60463029533221228
+        },
+        {
+          "token_id": 302,
+          "wei": 77374104822282645
+        },
+        {
+          "token_id": 321,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 444,
+          "wei": 82241938609823896
+        },
+        {
+          "token_id": 531,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 43
+    },
+    {
+      "address": "0xe38a7e70d0c469811a877e2a76a1d034adb5f3b4",
+      "balance_wei": "440243213310216885",
+      "balance_eth": 0.4402432133102169,
+      "collective_canvas_items": [
+        {
+          "token_id": 494,
+          "wei": 338688332568451036
+        },
+        {
+          "token_id": 592,
+          "wei": 101554880741765849
+        }
+      ],
+      "rank": 44
+    },
+    {
+      "address": "0x8d0172e88bd400884708318bac77bc69f76ae082",
+      "balance_wei": "425673283936822673",
+      "balance_eth": 0.4256732839368227,
+      "collective_canvas_items": [
+        {
+          "token_id": 477,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 504,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 528,
+          "wei": 256389406717174881
+        }
+      ],
+      "rank": 45
+    },
+    {
+      "address": "0x123008396bfdd64159998ce362b8d650ffd6f28b",
+      "balance_wei": "420809693049119480",
+      "balance_eth": 0.42080969304911947,
+      "collective_canvas_items": [
+        {
+          "token_id": 396,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 401,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 416,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 428,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 475,
+          "wei": 82241938609823896
+        }
+      ],
+      "rank": 46
+    },
+    {
+      "address": "0xc4a6d25334a3e578aa6c3d23d241587de7011f4a",
+      "balance_wei": "341117482366021886",
+      "balance_eth": 0.3411174823660219,
+      "collective_canvas_items": [
+        {
+          "token_id": 493,
+          "wei": 341117482366021886
+        }
+      ],
+      "rank": 47
+    },
+    {
+      "address": "0xc8748296a38d47f2f3d869b52949eb003fbe5ee5",
+      "balance_wei": "338567754439295584",
+      "balance_eth": 0.3385677544392956,
+      "collective_canvas_items": [
+        {
+          "token_id": 251,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 258,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 267,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 279,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 48
+    },
+    {
+      "address": "0x776f17e249aa24c4be327853a628ea18bbd59f26",
+      "balance_wei": "338567323862966264",
+      "balance_eth": 0.3385673238629663,
+      "collective_canvas_items": [
+        {
+          "token_id": 159,
+          "wei": 2422712933753943
+        },
+        {
+          "token_id": 253,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 366,
+          "wei": 169260733709564529
+        },
+        {
+          "token_id": 427,
+          "wei": 82241938609823896
+        }
+      ],
+      "rank": 49
+    },
+    {
+      "address": "0x400f18aa3fc67fca552e45d8e78b5921d60c99a3",
+      "balance_wei": "290260834395943184",
+      "balance_eth": 0.2902608343959432,
+      "collective_canvas_items": [
+        {
+          "token_id": 514,
+          "wei": 290260834395943184
+        }
+      ],
+      "rank": 50
+    },
+    {
+      "address": "0x1e78cd03cecedc1cd5a2400eb693bf1e81e7e75a",
+      "balance_wei": "273248046883762810",
+      "balance_eth": 0.2732480468837628,
+      "collective_canvas_items": [
+        {
+          "token_id": 266,
+          "wei": 169260733709564529
+        },
+        {
+          "token_id": 563,
+          "wei": 103987313174198281
+        }
+      ],
+      "rank": 51
+    },
+    {
+      "address": "0x68b6acb571ccca74a79f976fb359dfb339d13535",
+      "balance_wei": "270912871245749894",
+      "balance_eth": 0.2709128712457499,
+      "collective_canvas_items": [
+        {
+          "token_id": 522,
+          "wei": 270912871245749894
+        }
+      ],
+      "rank": 52
+    },
+    {
+      "address": "0xe684700ba51280da463c1aa0f46ee52098b87538",
+      "balance_wei": "266053267958782458",
+      "balance_eth": 0.2660532679587825,
+      "collective_canvas_items": [
+        {
+          "token_id": 524,
+          "wei": 266053267958782458
+        }
+      ],
+      "rank": 53
+    },
+    {
+      "address": "0x72774e2fe1992d5da8c6e9cef73fd2ab980c0b98",
+      "balance_wei": "253984869855171101",
+      "balance_eth": 0.2539848698551711,
+      "collective_canvas_items": [
+        {
+          "token_id": 529,
+          "wei": 253984869855171101
+        }
+      ],
+      "rank": 54
+    },
+    {
+      "address": "0x81f36a43113aa37b6a224c6b832607d85302d3b6",
+      "balance_wei": "246725815829471688",
+      "balance_eth": 0.2467258158294717,
+      "collective_canvas_items": [
+        {
+          "token_id": 307,
+          "wei": 82241938609823896
+        },
+        {
+          "token_id": 362,
+          "wei": 82241938609823896
+        },
+        {
+          "token_id": 399,
+          "wei": 82241938609823896
+        }
+      ],
+      "rank": 55
+    },
+    {
+      "address": "0xde47e0a1f6c6156814f096a90f131528be59b19e",
+      "balance_wei": "227271153178634634",
+      "balance_eth": 0.22727115317863464,
+      "collective_canvas_items": [
+        {
+          "token_id": 237,
+          "wei": 169260733709564529
+        },
+        {
+          "token_id": 391,
+          "wei": 19336806489690035
+        },
+        {
+          "token_id": 520,
+          "wei": 19336806489690035
+        },
+        {
+          "token_id": 530,
+          "wei": 19336806489690035
+        }
+      ],
+      "rank": 56
+    },
+    {
+      "address": "0xc4883f722494ecc68aad6c1260bc0bc8228086c0",
+      "balance_wei": "224942566809926929",
+      "balance_eth": 0.22494256680992694,
+      "collective_canvas_items": [
+        {
+          "token_id": 201,
+          "wei": 224942566809926929
+        }
+      ],
+      "rank": 57
+    },
+    {
+      "address": "0x0d8c6b01b6533aeb88788d719a751bcc1a4d6e54",
+      "balance_wei": "220160374481532842",
+      "balance_eth": 0.22016037448153283,
+      "collective_canvas_items": [
+        {
+          "token_id": 254,
+          "wei": 55627677651060836
+        },
+        {
+          "token_id": 257,
+          "wei": 60463029533221228
+        },
+        {
+          "token_id": 334,
+          "wei": 9713864343713441
+        },
+        {
+          "token_id": 336,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 430,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 58
+    },
+    {
+      "address": "0xa991bbb00541a43d94e653de5042c3859a84da27",
+      "balance_wei": "198309854399666888",
+      "balance_eth": 0.1983098543996669,
+      "collective_canvas_items": [
+        {
+          "token_id": 552,
+          "wei": 198309854399666888
+        }
+      ],
+      "rank": 59
+    },
+    {
+      "address": "0x870727673af0b5c68d1b940dea139752d96bbc60",
+      "balance_wei": "195838852198675267",
+      "balance_eth": 0.19583885219867528,
+      "collective_canvas_items": [
+        {
+          "token_id": 242,
+          "wei": 77374104822282645
+        },
+        {
+          "token_id": 585,
+          "wei": 118464747376392622
+        }
+      ],
+      "rank": 60
+    },
+    {
+      "address": "0x64dfbc47b0c65d99b108f0698bcbfc4420e69a9d",
+      "balance_wei": "193453481873048052",
+      "balance_eth": 0.19345348187304806,
+      "collective_canvas_items": [
+        {
+          "token_id": 439,
+          "wei": 193453481873048052
+        }
+      ],
+      "rank": 61
+    },
+    {
+      "address": "0xc4907769994047cd5cf24513cfe9f10b0d1be2ea",
+      "balance_wei": "191065921362925961",
+      "balance_eth": 0.19106592136292597,
+      "collective_canvas_items": [
+        {
+          "token_id": 286,
+          "wei": 53196305102041229
+        },
+        {
+          "token_id": 347,
+          "wei": 55627677651060836
+        },
+        {
+          "token_id": 382,
+          "wei": 82241938609823896
+        }
+      ],
+      "rank": 62
+    },
+    {
+      "address": "0xb95515212d39aed9b8e4da62a2e2e31cf7ac03d7",
+      "balance_wei": "191031860251426431",
+      "balance_eth": 0.19103186025142643,
+      "collective_canvas_items": [
+        {
+          "token_id": 118,
+          "wei": 191031860251426431
+        }
+      ],
+      "rank": 63
+    },
+    {
+      "address": "0x0833fa07c47c8831cbb52afe5a7091593e949761",
+      "balance_wei": "191031860251426431",
+      "balance_eth": 0.19103186025142643,
+      "collective_canvas_items": [
+        {
+          "token_id": 555,
+          "wei": 191031860251426431
+        }
+      ],
+      "rank": 64
+    },
+    {
+      "address": "0x425941e8da90e0a5bdcae83c28cfaa9f482a4154",
+      "balance_wei": "178988772141418466",
+      "balance_eth": 0.17898877214141848,
+      "collective_canvas_items": [
+        {
+          "token_id": 228,
+          "wei": 178988772141418466
+        }
+      ],
+      "rank": 65
+    },
+    {
+      "address": "0x72c4472c53ef8228a7033cefc5246e43097ce8ea",
+      "balance_wei": "178988772141418466",
+      "balance_eth": 0.17898877214141848,
+      "collective_canvas_items": [
+        {
+          "token_id": 560,
+          "wei": 178988772141418466
+        }
+      ],
+      "rank": 66
+    },
+    {
+      "address": "0x65ea84baff276562ad3e70ef39d635beee281f83",
+      "balance_wei": "169283877219647792",
+      "balance_eth": 0.1692838772196478,
+      "collective_canvas_items": [
+        {
+          "token_id": 157,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 405,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 67
+    },
+    {
+      "address": "0x04b8f47b01a0f9ec4bf8c61bf4f94ac90b4c13e5",
+      "balance_wei": "166961931922649663",
+      "balance_eth": 0.16696193192264966,
+      "collective_canvas_items": [
+        {
+          "token_id": 182,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 187,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 190,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 193,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 195,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 212,
+          "wei": 53196305102041229
+        },
+        {
+          "token_id": 213,
+          "wei": 53196305102041229
+        }
+      ],
+      "rank": 68
+    },
+    {
+      "address": "0xa96bc0778183bacfc154aa321edb8a6a277799e1",
+      "balance_wei": "166883877219647792",
+      "balance_eth": 0.16688387721964779,
+      "collective_canvas_items": [
+        {
+          "token_id": 284,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 390,
+          "wei": 82241938609823896
+        }
+      ],
+      "rank": 69
+    },
+    {
+      "address": "0x8f8b87875a48c742efd64c2a7f466b600b856d4c",
+      "balance_wei": "162009835228070971",
+      "balance_eth": 0.16200983522807097,
+      "collective_canvas_items": [
+        {
+          "token_id": 567,
+          "wei": 162009835228070971
+        }
+      ],
+      "rank": 70
+    },
+    {
+      "address": "0xf656bdad9ed8fa2af6f46ed7cea4f285ea68fe0d",
+      "balance_wei": "137838243711865125",
+      "balance_eth": 0.13783824371186512,
+      "collective_canvas_items": [
+        {
+          "token_id": 229,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 235,
+          "wei": 53196305102041229
+        }
+      ],
+      "rank": 71
+    },
+    {
+      "address": "0x1db8c87636d7c583814c3c0a07dccc8daa2e22f6",
+      "balance_wei": "130659119315996481",
+      "balance_eth": 0.13065911931599647,
+      "collective_canvas_items": [
+        {
+          "token_id": 206,
+          "wei": 14517679923999609
+        },
+        {
+          "token_id": 214,
+          "wei": 14517679923999609
+        },
+        {
+          "token_id": 355,
+          "wei": 14517679923999609
+        },
+        {
+          "token_id": 485,
+          "wei": 14517679923999609
+        },
+        {
+          "token_id": 498,
+          "wei": 14517679923999609
+        },
+        {
+          "token_id": 501,
+          "wei": 14517679923999609
+        },
+        {
+          "token_id": 505,
+          "wei": 14517679923999609
+        },
+        {
+          "token_id": 508,
+          "wei": 14517679923999609
+        },
+        {
+          "token_id": 510,
+          "wei": 14517679923999609
+        }
+      ],
+      "rank": 72
+    },
+    {
+      "address": "0x8b5b9a7a17bc143913f29dd40a07f0b2962653f7",
+      "balance_wei": "120926059066442456",
+      "balance_eth": 0.12092605906644245,
+      "collective_canvas_items": [
+        {
+          "token_id": 451,
+          "wei": 60463029533221228
+        },
+        {
+          "token_id": 482,
+          "wei": 60463029533221228
+        }
+      ],
+      "rank": 73
+    },
+    {
+      "address": "0x2df79f42c403cf743c7e37edda50cc553d23a0f2",
+      "balance_wei": "118464747376392622",
+      "balance_eth": 0.11846474737639262,
+      "collective_canvas_items": [
+        {
+          "token_id": 412,
+          "wei": 118464747376392622
+        }
+      ],
+      "rank": 74
+    },
+    {
+      "address": "0xbd67ea50825eae3099f046ce4347b2b2c1c45508",
+      "balance_wei": "116342496540284468",
+      "balance_eth": 0.11634249654028447,
+      "collective_canvas_items": [
+        {
+          "token_id": 225,
+          "wei": 9713864343713441
+        },
+        {
+          "token_id": 233,
+          "wei": 9713864343713441
+        },
+        {
+          "token_id": 239,
+          "wei": 9713864343713441
+        },
+        {
+          "token_id": 240,
+          "wei": 9713864343713441
+        },
+        {
+          "token_id": 249,
+          "wei": 9713864343713441
+        },
+        {
+          "token_id": 269,
+          "wei": 9713864343713441
+        },
+        {
+          "token_id": 287,
+          "wei": 9713864343713441
+        },
+        {
+          "token_id": 300,
+          "wei": 48345446134290381
+        }
+      ],
+      "rank": 75
+    },
+    {
+      "address": "0x17e32fdb2c47b2e46245e3ad25228cd3faff230f",
+      "balance_wei": "116126059066442456",
+      "balance_eth": 0.11612605906644245,
+      "collective_canvas_items": [
+        {
+          "token_id": 211,
+          "wei": 58063029533221228
+        },
+        {
+          "token_id": 218,
+          "wei": 58063029533221228
+        }
+      ],
+      "rank": 76
+    },
+    {
+      "address": "0xf9254b18d16b1b8f4a2d1d536dcd8d8857b6c1fa",
+      "balance_wei": "116072739496150545",
+      "balance_eth": 0.11607273949615055,
+      "collective_canvas_items": [
+        {
+          "token_id": 270,
+          "wei": 38690913165383515
+        },
+        {
+          "token_id": 376,
+          "wei": 38690913165383515
+        },
+        {
+          "token_id": 380,
+          "wei": 38690913165383515
+        }
+      ],
+      "rank": 77
+    },
+    {
+      "address": "0xcea7d5ef7434555f22d548dffcaaf75479fc331a",
+      "balance_wei": "116072739496150545",
+      "balance_eth": 0.11607273949615055,
+      "collective_canvas_items": [
+        {
+          "token_id": 311,
+          "wei": 38690913165383515
+        },
+        {
+          "token_id": 314,
+          "wei": 38690913165383515
+        },
+        {
+          "token_id": 320,
+          "wei": 38690913165383515
+        }
+      ],
+      "rank": 78
+    },
+    {
+      "address": "0xc01a7742c40ec01fd2836838eadde46f9d0b0099",
+      "balance_wei": "113636099365740903",
+      "balance_eth": 0.1136360993657409,
+      "collective_canvas_items": [
+        {
+          "token_id": 417,
+          "wei": 113636099365740903
+        }
+      ],
+      "rank": 79
+    },
+    {
+      "address": "0x4d72a61647afdecd607df768f08e0bdbf4abc85a",
+      "balance_wei": "111227936100434781",
+      "balance_eth": 0.11122793610043478,
+      "collective_canvas_items": [
+        {
+          "token_id": 325,
+          "wei": 111227936100434781
+        }
+      ],
+      "rank": 80
+    },
+    {
+      "address": "0x5ba8da22179962fdc4c9d33c1830d43b0029f7d9",
+      "balance_wei": "94279248426604037",
+      "balance_eth": 0.09427924842660404,
+      "collective_canvas_items": [
+        {
+          "token_id": 282,
+          "wei": 43510349523584015
+        },
+        {
+          "token_id": 420,
+          "wei": 50768898903020022
+        }
+      ],
+      "rank": 81
+    },
+    {
+      "address": "0x468d65e4c12a6bbe49f8b4bc22e73e241f2a215c",
+      "balance_wei": "87064651543577839",
+      "balance_eth": 0.08706465154357784,
+      "collective_canvas_items": [
+        {
+          "token_id": 252,
+          "wei": 84641938609823896
+        },
+        {
+          "token_id": 476,
+          "wei": 2422712933753943
+        }
+      ],
+      "rank": 82
+    },
+    {
+      "address": "0x7de05e4e3108f969f441ade075d9435fd2aff0ff",
+      "balance_wei": "84641938609823896",
+      "balance_eth": 0.0846419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 11,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 83
+    },
+    {
+      "address": "0xa399a08a2c6473dddbe87e8ad57000122e586f12",
+      "balance_wei": "84641938609823896",
+      "balance_eth": 0.0846419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 70,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 84
+    },
+    {
+      "address": "0xaffaf00ca01772d27b503dcf0b935daecd57345b",
+      "balance_wei": "84641938609823896",
+      "balance_eth": 0.0846419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 194,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 85
+    },
+    {
+      "address": "0x36d06c5d0a64007577802b2201e33cc87553a23c",
+      "balance_wei": "84641938609823896",
+      "balance_eth": 0.0846419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 197,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 86
+    },
+    {
+      "address": "0x0a8ef7a45560b4d43023b0d3e1968060f6a04d65",
+      "balance_wei": "84641938609823896",
+      "balance_eth": 0.0846419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 198,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 87
+    },
+    {
+      "address": "0x76149d87a6ba9ea3c864d0643210e71393dd7777",
+      "balance_wei": "84641938609823896",
+      "balance_eth": 0.0846419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 215,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 88
+    },
+    {
+      "address": "0x001f0e8d5eb2fbf14003492a61d2d20da451571c",
+      "balance_wei": "84641938609823896",
+      "balance_eth": 0.0846419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 231,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 89
+    },
+    {
+      "address": "0x3c6031abbce790224f27a472ddede3e28a252024",
+      "balance_wei": "84641938609823896",
+      "balance_eth": 0.0846419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 234,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 90
+    },
+    {
+      "address": "0xaa23c358db8fe8be88d6a6eb8728e73d7cb42ad7",
+      "balance_wei": "84641938609823896",
+      "balance_eth": 0.0846419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 247,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 91
+    },
+    {
+      "address": "0x64b2d3371a6736d74f6d896d027b8eec2490e8ba",
+      "balance_wei": "84641938609823896",
+      "balance_eth": 0.0846419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 309,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 92
+    },
+    {
+      "address": "0xe64568853841c387c25676611b4b0cf3a64fbd9e",
+      "balance_wei": "84641938609823896",
+      "balance_eth": 0.0846419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 317,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 93
+    },
+    {
+      "address": "0x2b934b6a9a3fa95c8447f4f16b4350d271dc446a",
+      "balance_wei": "84641938609823896",
+      "balance_eth": 0.0846419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 326,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 94
+    },
+    {
+      "address": "0xf7b67bdbb74ecec49e0bbb294249607d609c0e81",
+      "balance_wei": "84641938609823896",
+      "balance_eth": 0.0846419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 348,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 95
+    },
+    {
+      "address": "0x2ccf8a67fe50bccb6a36b0814463818c75cabeea",
+      "balance_wei": "84641938609823896",
+      "balance_eth": 0.0846419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 421,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 96
+    },
+    {
+      "address": "0xf9ffa8c735b29abd3623e70c84c0a3beed5562dc",
+      "balance_wei": "84641938609823896",
+      "balance_eth": 0.0846419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 424,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 97
+    },
+    {
+      "address": "0xfff20c5f76c9a388ae3b71f66e00fc26391cb4d2",
+      "balance_wei": "84641938609823896",
+      "balance_eth": 0.0846419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 499,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 98
+    },
+    {
+      "address": "0xdf0f511695e60604352481e890edabedfd77279c",
+      "balance_wei": "84641938609823896",
+      "balance_eth": 0.0846419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 599,
+          "wei": 84641938609823896
+        }
+      ],
+      "rank": 99
+    },
+    {
+      "address": "0x86c76089c372478b2a943a91d1499703d68d870f",
+      "balance_wei": "84616847104551945",
+      "balance_eth": 0.08461684710455195,
+      "collective_canvas_items": [
+        {
+          "token_id": 615,
+          "wei": 45925933939168430
+        },
+        {
+          "token_id": 618,
+          "wei": 38690913165383515
+        }
+      ],
+      "rank": 100
+    },
+    {
+      "address": "0x95b9b364fec724a26b38d940d4c4862516ec0b3c",
+      "balance_wei": "82241938609823896",
+      "balance_eth": 0.0822419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 69,
+          "wei": 82241938609823896
+        }
+      ],
+      "rank": 101
+    },
+    {
+      "address": "0x58084e0b82208bb1baa8a78c2eb661abf4b4ad5d",
+      "balance_wei": "82241938609823896",
+      "balance_eth": 0.0822419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 244,
+          "wei": 82241938609823896
+        }
+      ],
+      "rank": 102
+    },
+    {
+      "address": "0xe50b97b7578454925b65c150e00935ab2866710e",
+      "balance_wei": "82241938609823896",
+      "balance_eth": 0.0822419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 278,
+          "wei": 82241938609823896
+        }
+      ],
+      "rank": 103
+    },
+    {
+      "address": "0x7c7562fbf561859333ed41ddb408b2081279d8b8",
+      "balance_wei": "82241938609823896",
+      "balance_eth": 0.0822419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 384,
+          "wei": 82241938609823896
+        }
+      ],
+      "rank": 104
+    },
+    {
+      "address": "0xeaa614f30c5ff2726a65388feb7eb75e9450dd13",
+      "balance_wei": "82241938609823896",
+      "balance_eth": 0.0822419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 406,
+          "wei": 82241938609823896
+        }
+      ],
+      "rank": 105
+    },
+    {
+      "address": "0xbbdb2127a2faf424ec6f05553b6832e59f7f4f99",
+      "balance_wei": "82241938609823896",
+      "balance_eth": 0.0822419386098239,
+      "collective_canvas_items": [
+        {
+          "token_id": 549,
+          "wei": 82241938609823896
+        }
+      ],
+      "rank": 106
+    },
+    {
+      "address": "0x3fc20ab0b295bf84aac393ada0d9aa41019b9336",
+      "balance_wei": "79805998509990286",
+      "balance_eth": 0.07980599850999029,
+      "collective_canvas_items": [
+        {
+          "token_id": 601,
+          "wei": 79805998509990286
+        }
+      ],
+      "rank": 107
+    },
+    {
+      "address": "0x3f8238eefb55edfbe939cff9299d3d5e27207b40",
+      "balance_wei": "77381826330767030",
+      "balance_eth": 0.07738182633076703,
+      "collective_canvas_items": [
+        {
+          "token_id": 413,
+          "wei": 38690913165383515
+        },
+        {
+          "token_id": 551,
+          "wei": 38690913165383515
+        }
+      ],
+      "rank": 108
+    },
+    {
+      "address": "0x39856eccd7a9d94ce129aacae702ebf97ed36296",
+      "balance_wei": "77374104822282645",
+      "balance_eth": 0.07737410482228264,
+      "collective_canvas_items": [
+        {
+          "token_id": 495,
+          "wei": 77374104822282645
+        }
+      ],
+      "rank": 109
+    },
+    {
+      "address": "0x24422361687270c1ac2dd3f336e1bc130849617b",
+      "balance_wei": "77374104822282645",
+      "balance_eth": 0.07737410482228264,
+      "collective_canvas_items": [
+        {
+          "token_id": 602,
+          "wei": 77374104822282645
+        }
+      ],
+      "rank": 110
+    },
+    {
+      "address": "0xeb0082deff73b13ed6add4c868ab4111b8f83c70",
+      "balance_wei": "70102568355418783",
+      "balance_eth": 0.07010256835541878,
+      "collective_canvas_items": [
+        {
+          "token_id": 100,
+          "wei": 70102568355418783
+        }
+      ],
+      "rank": 111
+    },
+    {
+      "address": "0xcc7011921df599cbad83777106a267e340474693",
+      "balance_wei": "70102568355418783",
+      "balance_eth": 0.07010256835541878,
+      "collective_canvas_items": [
+        {
+          "token_id": 138,
+          "wei": 70102568355418783
+        }
+      ],
+      "rank": 112
+    },
+    {
+      "address": "0x2e7296ebc57fcf7c0b112d2a46062017be2b1792",
+      "balance_wei": "70102568355418783",
+      "balance_eth": 0.07010256835541878,
+      "collective_canvas_items": [
+        {
+          "token_id": 605,
+          "wei": 70102568355418783
+        }
+      ],
+      "rank": 113
+    },
+    {
+      "address": "0xd178d2c271a17c0461eeb5e43759a6c0562fb5bb",
+      "balance_wei": "67741541994774277",
+      "balance_eth": 0.06774154199477428,
+      "collective_canvas_items": [
+        {
+          "token_id": 210,
+          "wei": 55627677651060836
+        },
+        {
+          "token_id": 367,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 114
+    },
+    {
+      "address": "0x9bddcb89c321588d2b4b609c24cd44bc50d73241",
+      "balance_wei": "67686726771260368",
+      "balance_eth": 0.06768672677126036,
+      "collective_canvas_items": [
+        {
+          "token_id": 1,
+          "wei": 67686726771260368
+        }
+      ],
+      "rank": 115
+    },
+    {
+      "address": "0x9d8cad2c91b3bfda773ee7bf6ddb47a8984d51ef",
+      "balance_wei": "67686726771260368",
+      "balance_eth": 0.06768672677126036,
+      "collective_canvas_items": [
+        {
+          "token_id": 606,
+          "wei": 67686726771260368
+        }
+      ],
+      "rank": 116
+    },
+    {
+      "address": "0x30a2a8ce4570ad2fe019dacd5f33253bfa6dcb00",
+      "balance_wei": "65310169445754670",
+      "balance_eth": 0.06531016944575467,
+      "collective_canvas_items": [
+        {
+          "token_id": 200,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 487,
+          "wei": 53196305102041229
+        }
+      ],
+      "rank": 117
+    },
+    {
+      "address": "0x5f943bb347f797b74564df318e55442f820cc9a0",
+      "balance_wei": "65274865156762840",
+      "balance_eth": 0.06527486515676284,
+      "collective_canvas_items": [
+        {
+          "token_id": 94,
+          "wei": 65274865156762840
+        }
+      ],
+      "rank": 118
+    },
+    {
+      "address": "0xd132ce389da84378e5941bcfae5615730bf7ac3c",
+      "balance_wei": "65274865156762840",
+      "balance_eth": 0.06527486515676284,
+      "collective_canvas_items": [
+        {
+          "token_id": 128,
+          "wei": 65274865156762840
+        }
+      ],
+      "rank": 119
+    },
+    {
+      "address": "0xb707827ec1ccdc69e4ecfd0eb4547fa5005ba3e3",
+      "balance_wei": "62866970419920735",
+      "balance_eth": 0.06286697041992073,
+      "collective_canvas_items": [
+        {
+          "token_id": 158,
+          "wei": 62866970419920735
+        }
+      ],
+      "rank": 120
+    },
+    {
+      "address": "0xb616cd18fd700fb042219008da9a5bd577f167c6",
+      "balance_wei": "62866970419920735",
+      "balance_eth": 0.06286697041992073,
+      "collective_canvas_items": [
+        {
+          "token_id": 459,
+          "wei": 62866970419920735
+        }
+      ],
+      "rank": 121
+    },
+    {
+      "address": "0x2a4aa0c965e7903b230036169803d00c886c0d11",
+      "balance_wei": "62866970419920735",
+      "balance_eth": 0.06286697041992073,
+      "collective_canvas_items": [
+        {
+          "token_id": 608,
+          "wei": 62866970419920735
+        }
+      ],
+      "rank": 122
+    },
+    {
+      "address": "0x63bf83c11c50627f44119336a3c2f616b7c65228",
+      "balance_wei": "60516447917843086",
+      "balance_eth": 0.06051644791784309,
+      "collective_canvas_items": [
+        {
+          "token_id": 104,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 432,
+          "wei": 2422712933753943
+        },
+        {
+          "token_id": 467,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 534,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 625,
+          "wei": 21752141952948820
+        }
+      ],
+      "rank": 123
+    },
+    {
+      "address": "0xd7a0e9e952bde41be1fdae1dad0aba1f84239079",
+      "balance_wei": "60463029533221228",
+      "balance_eth": 0.060463029533221226,
+      "collective_canvas_items": [
+        {
+          "token_id": 304,
+          "wei": 60463029533221228
+        }
+      ],
+      "rank": 124
+    },
+    {
+      "address": "0x0992337cfda93586abbd4ad88e8a56cb325516da",
+      "balance_wei": "60463029533221228",
+      "balance_eth": 0.060463029533221226,
+      "collective_canvas_items": [
+        {
+          "token_id": 315,
+          "wei": 60463029533221228
+        }
+      ],
+      "rank": 125
+    },
+    {
+      "address": "0xa914e260f0ed28266373b160a24bb5201e36c50d",
+      "balance_wei": "60463029533221228",
+      "balance_eth": 0.060463029533221226,
+      "collective_canvas_items": [
+        {
+          "token_id": 483,
+          "wei": 60463029533221228
+        }
+      ],
+      "rank": 126
+    },
+    {
+      "address": "0xfee026defeda09cabc2675da52c0c16001651488",
+      "balance_wei": "60463029533221228",
+      "balance_eth": 0.060463029533221226,
+      "collective_canvas_items": [
+        {
+          "token_id": 542,
+          "wei": 60463029533221228
+        }
+      ],
+      "rank": 127
+    },
+    {
+      "address": "0xddd3d71b342dfcba4b2e1882a123028c8bb9ecaf",
+      "balance_wei": "60463029533221228",
+      "balance_eth": 0.060463029533221226,
+      "collective_canvas_items": [
+        {
+          "token_id": 575,
+          "wei": 60463029533221228
+        }
+      ],
+      "rank": 128
+    },
+    {
+      "address": "0xebd6b8d700787e19d077897dc82d28b68e733d47",
+      "balance_wei": "60463029533221228",
+      "balance_eth": 0.060463029533221226,
+      "collective_canvas_items": [
+        {
+          "token_id": 609,
+          "wei": 60463029533221228
+        }
+      ],
+      "rank": 129
+    },
+    {
+      "address": "0x06785ecf13d69af6e4a4277b0bc2eaffbfca9e46",
+      "balance_wei": "58063029533221228",
+      "balance_eth": 0.058063029533221226,
+      "collective_canvas_items": [
+        {
+          "token_id": 285,
+          "wei": 58063029533221228
+        }
+      ],
+      "rank": 130
+    },
+    {
+      "address": "0xb0aed242ab508d7c7fdacbf23362245ecc43797b",
+      "balance_wei": "58063029533221228",
+      "balance_eth": 0.058063029533221226,
+      "collective_canvas_items": [
+        {
+          "token_id": 610,
+          "wei": 58063029533221228
+        }
+      ],
+      "rank": 131
+    },
+    {
+      "address": "0x2fc6d870fa99482af537d12bb642235933eea358",
+      "balance_wei": "55627677651060836",
+      "balance_eth": 0.05562767765106084,
+      "collective_canvas_items": [
+        {
+          "token_id": 216,
+          "wei": 55627677651060836
+        }
+      ],
+      "rank": 132
+    },
+    {
+      "address": "0xa4f5f51bd119df4bc450d9d9b9a45b56ec9e2087",
+      "balance_wei": "55627677651060836",
+      "balance_eth": 0.05562767765106084,
+      "collective_canvas_items": [
+        {
+          "token_id": 299,
+          "wei": 55627677651060836
+        }
+      ],
+      "rank": 133
+    },
+    {
+      "address": "0x17aeb2b0b9f8bd9a04168dd427b97ab42e7914d1",
+      "balance_wei": "55627677651060836",
+      "balance_eth": 0.05562767765106084,
+      "collective_canvas_items": [
+        {
+          "token_id": 357,
+          "wei": 55627677651060836
+        }
+      ],
+      "rank": 134
+    },
+    {
+      "address": "0x5a3f6cfde43723b2a91717af3b938391952ab770",
+      "balance_wei": "55627677651060836",
+      "balance_eth": 0.05562767765106084,
+      "collective_canvas_items": [
+        {
+          "token_id": 361,
+          "wei": 55627677651060836
+        }
+      ],
+      "rank": 135
+    },
+    {
+      "address": "0x3def0038d0493b2ba32b45193e99673c901cc3bf",
+      "balance_wei": "55627677651060836",
+      "balance_eth": 0.05562767765106084,
+      "collective_canvas_items": [
+        {
+          "token_id": 375,
+          "wei": 55627677651060836
+        }
+      ],
+      "rank": 136
+    },
+    {
+      "address": "0x39f22f6a412b929c683bf9dde854cf931d16769c",
+      "balance_wei": "55627677651060836",
+      "balance_eth": 0.05562767765106084,
+      "collective_canvas_items": [
+        {
+          "token_id": 414,
+          "wei": 55627677651060836
+        }
+      ],
+      "rank": 137
+    },
+    {
+      "address": "0x0238f4cf925fae09d78808e05e1805c092e07a03",
+      "balance_wei": "53196305102041229",
+      "balance_eth": 0.05319630510204123,
+      "collective_canvas_items": [
+        {
+          "token_id": 322,
+          "wei": 53196305102041229
+        }
+      ],
+      "rank": 138
+    },
+    {
+      "address": "0xea24573d229728fe23dc8d33875a6bdf5c739338",
+      "balance_wei": "53196305102041229",
+      "balance_eth": 0.05319630510204123,
+      "collective_canvas_items": [
+        {
+          "token_id": 562,
+          "wei": 53196305102041229
+        }
+      ],
+      "rank": 139
+    },
+    {
+      "address": "0x6b9c53cb5bc9e5bf03e18a59b640f1f63020b9e1",
+      "balance_wei": "53196305102041229",
+      "balance_eth": 0.05319630510204123,
+      "collective_canvas_items": [
+        {
+          "token_id": 612,
+          "wei": 53196305102041229
+        }
+      ],
+      "rank": 140
+    },
+    {
+      "address": "0xaa2f1afc79855bc11686a1a50013c1cedfeb52a9",
+      "balance_wei": "50804777509096956",
+      "balance_eth": 0.050804777509096954,
+      "collective_canvas_items": [
+        {
+          "token_id": 8,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 129,
+          "wei": 38690913165383515
+        }
+      ],
+      "rank": 141
+    },
+    {
+      "address": "0x8e987cbfd0b8af69c93ea544db8b8efdd4aba0de",
+      "balance_wei": "50787477323093511",
+      "balance_eth": 0.05078747732309351,
+      "collective_canvas_items": [
+        {
+          "token_id": 445,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 541,
+          "wei": 19336806489690035
+        },
+        {
+          "token_id": 547,
+          "wei": 19336806489690035
+        }
+      ],
+      "rank": 142
+    },
+    {
+      "address": "0xe87e27b23c0e54591e0ecb21006442a9dd7f0fd7",
+      "balance_wei": "50768898903020022",
+      "balance_eth": 0.05076889890302002,
+      "collective_canvas_items": [
+        {
+          "token_id": 256,
+          "wei": 50768898903020022
+        }
+      ],
+      "rank": 143
+    },
+    {
+      "address": "0x2ccb59acd48133bc84658019e32622d5eed91ddc",
+      "balance_wei": "50768898903020022",
+      "balance_eth": 0.05076889890302002,
+      "collective_canvas_items": [
+        {
+          "token_id": 327,
+          "wei": 50768898903020022
+        }
+      ],
+      "rank": 144
+    },
+    {
+      "address": "0x92b5136533bf6e254c9a5d7cbab609c2942569a9",
+      "balance_wei": "50768898903020022",
+      "balance_eth": 0.05076889890302002,
+      "collective_canvas_items": [
+        {
+          "token_id": 613,
+          "wei": 50768898903020022
+        }
+      ],
+      "rank": 145
+    },
+    {
+      "address": "0x5bcca951a87ca38bfa0e54a015ce7c009d97f7e0",
+      "balance_wei": "48345446134290381",
+      "balance_eth": 0.04834544613429038,
+      "collective_canvas_items": [
+        {
+          "token_id": 614,
+          "wei": 48345446134290381
+        }
+      ],
+      "rank": 146
+    },
+    {
+      "address": "0x02887853986fdb5c321b04549bc50c79c7aa60fc",
+      "balance_wei": "43564535177116917",
+      "balance_eth": 0.04356453517711692,
+      "collective_canvas_items": [
+        {
+          "token_id": 87,
+          "wei": 19336806489690035
+        },
+        {
+          "token_id": 395,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 611,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 147
+    },
+    {
+      "address": "0x49e25392188e2a1d01fcf44e149232f4c33a137e",
+      "balance_wei": "43510349523584015",
+      "balance_eth": 0.04351034952358401,
+      "collective_canvas_items": [
+        {
+          "token_id": 7,
+          "wei": 43510349523584015
+        }
+      ],
+      "rank": 148
+    },
+    {
+      "address": "0x9606c3b8f8d0d29a9feefd30fc4536792a2bb383",
+      "balance_wei": "43510349523584015",
+      "balance_eth": 0.04351034952358401,
+      "collective_canvas_items": [
+        {
+          "token_id": 616,
+          "wei": 43510349523584015
+        }
+      ],
+      "rank": 149
+    },
+    {
+      "address": "0xbbcb8bf8cb0d00fe6da7c741a6d947863df2d411",
+      "balance_wei": "41098680155674777",
+      "balance_eth": 0.04109868015567478,
+      "collective_canvas_items": [
+        {
+          "token_id": 350,
+          "wei": 41098680155674777
+        }
+      ],
+      "rank": 150
+    },
+    {
+      "address": "0xa5cadab8ceb54833dce3abb7a35fe019e1b6be80",
+      "balance_wei": "41098680155674777",
+      "balance_eth": 0.04109868015567478,
+      "collective_canvas_items": [
+        {
+          "token_id": 617,
+          "wei": 41098680155674777
+        }
+      ],
+      "rank": 151
+    },
+    {
+      "address": "0xbfa43bf6e9fb6d5cc253ff23c31f2b86a739bb98",
+      "balance_wei": "38708283219739184",
+      "balance_eth": 0.03870828321973918,
+      "collective_canvas_items": [
+        {
+          "token_id": 110,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 272,
+          "wei": 26594418876025743
+        }
+      ],
+      "rank": 152
+    },
+    {
+      "address": "0x01b6b6ca6cee322bcbc33e95dcb677b429fa33a4",
+      "balance_wei": "38690913165383515",
+      "balance_eth": 0.03869091316538351,
+      "collective_canvas_items": [
+        {
+          "token_id": 116,
+          "wei": 38690913165383515
+        }
+      ],
+      "rank": 153
+    },
+    {
+      "address": "0x8046f1a06478a151027b501caa65e841d87ec876",
+      "balance_wei": "38690913165383515",
+      "balance_eth": 0.03869091316538351,
+      "collective_canvas_items": [
+        {
+          "token_id": 298,
+          "wei": 38690913165383515
+        }
+      ],
+      "rank": 154
+    },
+    {
+      "address": "0x13b37d355cdf1eacefa26a56d6c754ddd0c9e699",
+      "balance_wei": "38690913165383515",
+      "balance_eth": 0.03869091316538351,
+      "collective_canvas_items": [
+        {
+          "token_id": 306,
+          "wei": 38690913165383515
+        }
+      ],
+      "rank": 155
+    },
+    {
+      "address": "0xbd87e1e513fcc7719318bc268b8fc4079a2c14a0",
+      "balance_wei": "38690913165383515",
+      "balance_eth": 0.03869091316538351,
+      "collective_canvas_items": [
+        {
+          "token_id": 447,
+          "wei": 38690913165383515
+        }
+      ],
+      "rank": 156
+    },
+    {
+      "address": "0xa4aa358ca74881ea0560b574860508b98556cec1",
+      "balance_wei": "36341593031140323",
+      "balance_eth": 0.036341593031140325,
+      "collective_canvas_items": [
+        {
+          "token_id": 50,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 72,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 73,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 157
+    },
+    {
+      "address": "0xc62184ac04a0610147bd890ba32d1918b67e017c",
+      "balance_wei": "36341593031140323",
+      "balance_eth": 0.036341593031140325,
+      "collective_canvas_items": [
+        {
+          "token_id": 303,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 341,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 345,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 158
+    },
+    {
+      "address": "0x4c7f0ed8166ff912bf1c0bd30d697810638eab80",
+      "balance_wei": "36287035944058798",
+      "balance_eth": 0.0362870359440588,
+      "collective_canvas_items": [
+        {
+          "token_id": 619,
+          "wei": 36287035944058798
+        }
+      ],
+      "rank": 159
+    },
+    {
+      "address": "0xcb62a9e0c9561886e18d066cd8b980bc882b45c6",
+      "balance_wei": "36285206296662261",
+      "balance_eth": 0.03628520629666226,
+      "collective_canvas_items": [
+        {
+          "token_id": 33,
+          "wei": 24171341952948820
+        },
+        {
+          "token_id": 41,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 160
+    },
+    {
+      "address": "0x5e8a927093a4465f2fffb466f0594bfb2e04c204",
+      "balance_wei": "33887035944058798",
+      "balance_eth": 0.0338870359440588,
+      "collective_canvas_items": [
+        {
+          "token_id": 40,
+          "wei": 33887035944058798
+        }
+      ],
+      "rank": 161
+    },
+    {
+      "address": "0xbcc250c5ce3c9ad6366697b2d276411368d29f0f",
+      "balance_wei": "33887035944058798",
+      "balance_eth": 0.0338870359440588,
+      "collective_canvas_items": [
+        {
+          "token_id": 76,
+          "wei": 33887035944058798
+        }
+      ],
+      "rank": 162
+    },
+    {
+      "address": "0x6c6cd46976ea4a5cb759e2ad58cbee20d3ce907b",
+      "balance_wei": "33887035944058798",
+      "balance_eth": 0.0338870359440588,
+      "collective_canvas_items": [
+        {
+          "token_id": 620,
+          "wei": 33887035944058798
+        }
+      ],
+      "rank": 163
+    },
+    {
+      "address": "0xba96e41505ab8f5148ad4a95c29ae7fceb3fe213",
+      "balance_wei": "31452253335363146",
+      "balance_eth": 0.031452253335363146,
+      "collective_canvas_items": [
+        {
+          "token_id": 106,
+          "wei": 31452253335363146
+        }
+      ],
+      "rank": 164
+    },
+    {
+      "address": "0x9622d5dbc6986bb119c9e43a3bcfb8e2178cd61b",
+      "balance_wei": "31443003160101128",
+      "balance_eth": 0.03144300316010113,
+      "collective_canvas_items": [
+        {
+          "token_id": 627,
+          "wei": 16925323236101519
+        },
+        {
+          "token_id": 628,
+          "wei": 14517679923999609
+        }
+      ],
+      "rank": 165
+    },
+    {
+      "address": "0x3711d58d6f3d8ed419a9d8e5267a2082b1daf267",
+      "balance_wei": "29039187579814960",
+      "balance_eth": 0.02903918757981496,
+      "collective_canvas_items": [
+        {
+          "token_id": 68,
+          "wei": 16925323236101519
+        },
+        {
+          "token_id": 580,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 166
+    },
+    {
+      "address": "0x4555cbc05d168f29c933677c71f8c1f1cf59fa69",
+      "balance_wei": "29035359847999218",
+      "balance_eth": 0.02903535984799922,
+      "collective_canvas_items": [
+        {
+          "token_id": 18,
+          "wei": 14517679923999609
+        },
+        {
+          "token_id": 56,
+          "wei": 14517679923999609
+        }
+      ],
+      "rank": 167
+    },
+    {
+      "address": "0x4eb26e227fe8fc2326b1918c997d24f248a9d33e",
+      "balance_wei": "29021385168160574",
+      "balance_eth": 0.029021385168160573,
+      "collective_canvas_items": [
+        {
+          "token_id": 622,
+          "wei": 29021385168160574
+        }
+      ],
+      "rank": 168
+    },
+    {
+      "address": "0x871b71c168e5b25e0f1aefcc58fdb7b863bf10e9",
+      "balance_wei": "26631544267713050",
+      "balance_eth": 0.02663154426771305,
+      "collective_canvas_items": [
+        {
+          "token_id": 318,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 387,
+          "wei": 14517679923999609
+        }
+      ],
+      "rank": 169
+    },
+    {
+      "address": "0xe75b05cf7f73c2808c711d38488cc8e0186d259e",
+      "balance_wei": "26594418876025743",
+      "balance_eth": 0.026594418876025743,
+      "collective_canvas_items": [
+        {
+          "token_id": 184,
+          "wei": 26594418876025743
+        }
+      ],
+      "rank": 170
+    },
+    {
+      "address": "0x4abcd9fc6af7cb4b3788201df1380d054b45d19d",
+      "balance_wei": "26594418876025743",
+      "balance_eth": 0.026594418876025743,
+      "collective_canvas_items": [
+        {
+          "token_id": 521,
+          "wei": 26594418876025743
+        }
+      ],
+      "rank": 171
+    },
+    {
+      "address": "0x34978faf3a9f469da7248d1365ddf69ac099588c",
+      "balance_wei": "26594418876025743",
+      "balance_eth": 0.026594418876025743,
+      "collective_canvas_items": [
+        {
+          "token_id": 623,
+          "wei": 26594418876025743
+        }
+      ],
+      "rank": 172
+    },
+    {
+      "address": "0xc4a0eabb8f01729cf4d3313064a7dad3a3579657",
+      "balance_wei": "24227728687426882",
+      "balance_eth": 0.024227728687426883,
+      "collective_canvas_items": [
+        {
+          "token_id": 112,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 383,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 173
+    },
+    {
+      "address": "0x620c13335d13f6193272469025a6a778c688dac4",
+      "balance_wei": "24227728687426882",
+      "balance_eth": 0.024227728687426883,
+      "collective_canvas_items": [
+        {
+          "token_id": 359,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 368,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 174
+    },
+    {
+      "address": "0x761f0c8f8bf79a6230312c3b83e8173645a5ef51",
+      "balance_wei": "24227728687426882",
+      "balance_eth": 0.024227728687426883,
+      "collective_canvas_items": [
+        {
+          "token_id": 456,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 463,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 175
+    },
+    {
+      "address": "0x89cef12d052d8edf4e516431750640eaecde6d89",
+      "balance_wei": "24227728687426882",
+      "balance_eth": 0.024227728687426883,
+      "collective_canvas_items": [
+        {
+          "token_id": 458,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 466,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 176
+    },
+    {
+      "address": "0xe0e128f89c57139a1e75edbce12d9e4ef2f35245",
+      "balance_wei": "24227728687426882",
+      "balance_eth": 0.024227728687426883,
+      "collective_canvas_items": [
+        {
+          "token_id": 469,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 518,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 177
+    },
+    {
+      "address": "0x82e8fbaf53698d5913bb10e97caf718da1e4afbf",
+      "balance_wei": "24171341952948820",
+      "balance_eth": 0.02417134195294882,
+      "collective_canvas_items": [
+        {
+          "token_id": 624,
+          "wei": 24171341952948820
+        }
+      ],
+      "rank": 178
+    },
+    {
+      "address": "0xa257a9eabe4c4f987ce103a39883558bd4b70d73",
+      "balance_wei": "21752141952948820",
+      "balance_eth": 0.02175214195294882,
+      "collective_canvas_items": [
+        {
+          "token_id": 136,
+          "wei": 21752141952948820
+        }
+      ],
+      "rank": 179
+    },
+    {
+      "address": "0x32c409b9d0bcec8f27101672060e981738e2e5bf",
+      "balance_wei": "19427728687426882",
+      "balance_eth": 0.01942772868742688,
+      "collective_canvas_items": [
+        {
+          "token_id": 180,
+          "wei": 9713864343713441
+        },
+        {
+          "token_id": 189,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 180
+    },
+    {
+      "address": "0xc02f7b6866cf1004a716d4b5325883d03bb0dc52",
+      "balance_wei": "19427728687426882",
+      "balance_eth": 0.01942772868742688,
+      "collective_canvas_items": [
+        {
+          "token_id": 496,
+          "wei": 9713864343713441
+        },
+        {
+          "token_id": 500,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 181
+    },
+    {
+      "address": "0x7d2c0c8170a875907357c2bedd011458bf229e26",
+      "balance_wei": "19336806489690035",
+      "balance_eth": 0.019336806489690037,
+      "collective_canvas_items": [
+        {
+          "token_id": 89,
+          "wei": 19336806489690035
+        }
+      ],
+      "rank": 182
+    },
+    {
+      "address": "0x81c34002cde41b2c7029679149628552e8a7580c",
+      "balance_wei": "19336806489690035",
+      "balance_eth": 0.019336806489690037,
+      "collective_canvas_items": [
+        {
+          "token_id": 107,
+          "wei": 19336806489690035
+        }
+      ],
+      "rank": 183
+    },
+    {
+      "address": "0x684a71496f176afc70858ada2ea5da1adbb58764",
+      "balance_wei": "19336806489690035",
+      "balance_eth": 0.019336806489690037,
+      "collective_canvas_items": [
+        {
+          "token_id": 114,
+          "wei": 19336806489690035
+        }
+      ],
+      "rank": 184
+    },
+    {
+      "address": "0x47afd4fa3ecf9c6182cfa549875c29024c848c1c",
+      "balance_wei": "19336806489690035",
+      "balance_eth": 0.019336806489690037,
+      "collective_canvas_items": [
+        {
+          "token_id": 333,
+          "wei": 19336806489690035
+        }
+      ],
+      "rank": 185
+    },
+    {
+      "address": "0xf4a9647909bcc237e34849dceb242dc0a7ae94d7",
+      "balance_wei": "19336806489690035",
+      "balance_eth": 0.019336806489690037,
+      "collective_canvas_items": [
+        {
+          "token_id": 455,
+          "wei": 19336806489690035
+        }
+      ],
+      "rank": 186
+    },
+    {
+      "address": "0xcad23f11826ce1c42036714f079eeb528f05dec6",
+      "balance_wei": "19336806489690035",
+      "balance_eth": 0.019336806489690037,
+      "collective_canvas_items": [
+        {
+          "token_id": 488,
+          "wei": 19336806489690035
+        }
+      ],
+      "rank": 187
+    },
+    {
+      "address": "0x52627bd8f3326cab81f9c8d277f50738ec97e5fa",
+      "balance_wei": "19336806489690035",
+      "balance_eth": 0.019336806489690037,
+      "collective_canvas_items": [
+        {
+          "token_id": 626,
+          "wei": 19336806489690035
+        }
+      ],
+      "rank": 188
+    },
+    {
+      "address": "0xb56496838bdc5ccea8eb7dcd364d1475f78f45bd",
+      "balance_wei": "16925323236101519",
+      "balance_eth": 0.01692532323610152,
+      "collective_canvas_items": [
+        {
+          "token_id": 192,
+          "wei": 16925323236101519
+        }
+      ],
+      "rank": 189
+    },
+    {
+      "address": "0xbc5ef4fb7b20e37c67372d129c7b5c0902ac6083",
+      "balance_wei": "14536577277467384",
+      "balance_eth": 0.014536577277467384,
+      "collective_canvas_items": [
+        {
+          "token_id": 429,
+          "wei": 12113864343713441
+        },
+        {
+          "token_id": 461,
+          "wei": 2422712933753943
+        }
+      ],
+      "rank": 190
+    },
+    {
+      "address": "0x9bf0800193825e3389b14eb69abde07dd932b6ac",
+      "balance_wei": "14517679923999609",
+      "balance_eth": 0.01451767992399961,
+      "collective_canvas_items": [
+        {
+          "token_id": 34,
+          "wei": 14517679923999609
+        }
+      ],
+      "rank": 191
+    },
+    {
+      "address": "0xc45cf83e7e06e655409ae2407ba9a5a9d9972f1e",
+      "balance_wei": "14517679923999609",
+      "balance_eth": 0.01451767992399961,
+      "collective_canvas_items": [
+        {
+          "token_id": 120,
+          "wei": 14517679923999609
+        }
+      ],
+      "rank": 192
+    },
+    {
+      "address": "0x70a5d38b135482c89cf540bc27cf5c282c73c35c",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 30,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 193
+    },
+    {
+      "address": "0x2cb15ac889d591a1c55a200387f2248423a3df9b",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 31,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 194
+    },
+    {
+      "address": "0x844ec6e39b3fac83a40c183332f1ba4ff3dcfb8d",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 36,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 195
+    },
+    {
+      "address": "0x82f402847051bddaab0f5d4b481417281837c424",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 38,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 196
+    },
+    {
+      "address": "0x63421ae93c44f5f3f58b7e3ad1245e955db49897",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 44,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 197
+    },
+    {
+      "address": "0x7233581a7380acd4510dc5ffbdf9bbba348da1cd",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 52,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 198
+    },
+    {
+      "address": "0x44bf6f5b5a5884e748fc87e10ddc4b6eb3c027c7",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 64,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 199
+    },
+    {
+      "address": "0x650051fa564f6c772aac48ecc2c53050b6337799",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 66,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 200
+    },
+    {
+      "address": "0x2098c28eeca9018cdffea2ecc5f3e2907ed29bca",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 91,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 201
+    },
+    {
+      "address": "0x31521da48656a97160c0311cc507399bc2b35617",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 99,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 202
+    },
+    {
+      "address": "0xe332de3c84c305698675a73f366061941c78e3b4",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 101,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 203
+    },
+    {
+      "address": "0xd70f7b8f8a7cfa7edb3a3e129027292f770a852a",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 124,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 204
+    },
+    {
+      "address": "0x34350713c829884a06de6d0124d99506d5e0236e",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 133,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 205
+    },
+    {
+      "address": "0x7905ad171d49ae497eca5e0eab40a3a4533b5eb2",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 141,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 206
+    },
+    {
+      "address": "0x84d96968235a6a60d4f7bfaa77112bcf02e739ca",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 143,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 207
+    },
+    {
+      "address": "0xc868147d1e00bcc4663fdb99aa8e9dbdedd39ccf",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 144,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 208
+    },
+    {
+      "address": "0x2d00230789c97bd77862255298fcf38147d436a4",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 145,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 209
+    },
+    {
+      "address": "0x000000000000000000000000000000000000dead",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 148,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 210
+    },
+    {
+      "address": "0x79d16570483afc8c749216bfc0b8abf759ead7c4",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 152,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 211
+    },
+    {
+      "address": "0xc3d696c268503df52781e32085110c562f40333d",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 155,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 212
+    },
+    {
+      "address": "0xed0ebc6b8e441d768f727351069dec679e4e82b3",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 167,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 213
+    },
+    {
+      "address": "0x95ba2f511b6d4062952154edc5889f4a7289634d",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 171,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 214
+    },
+    {
+      "address": "0x5c108a3889101991e47b7c9ab47dc7c5c6de583b",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 173,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 215
+    },
+    {
+      "address": "0x838ed32f2f1bb4d50ff19a8b1391bc31478caf5d",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 186,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 216
+    },
+    {
+      "address": "0x5e07ec797f7318c519ac239f540d061787a941f2",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 203,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 217
+    },
+    {
+      "address": "0x8aa417273f30d8a7127973668d340b8d80f9926b",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 264,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 218
+    },
+    {
+      "address": "0x9d6695f4b4d7365df3cb83dff098601a4a163db5",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 277,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 219
+    },
+    {
+      "address": "0xfce761b176cf360354c92b0efa89cde18cc00c7d",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 291,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 220
+    },
+    {
+      "address": "0x9f4663f4fdf0ee306473afb37a62ca2354cc89db",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 292,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 221
+    },
+    {
+      "address": "0x52f94835120334f9a8b29d9e8701e042f7281a82",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 349,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 222
+    },
+    {
+      "address": "0x4c7a992f0fab3d39f586e06dbee3f925de147d74",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 352,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 223
+    },
+    {
+      "address": "0x674092069ac4f1e6ec911af630eb3ca05dfd08f9",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 381,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 224
+    },
+    {
+      "address": "0xf097e871810ed267631df1148b470a85ee064366",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 393,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 225
+    },
+    {
+      "address": "0xecb51997578300b52584d8c88853fd07582f7b59",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 403,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 226
+    },
+    {
+      "address": "0xe09662c1c04d99c5933c430239f8d8d575dd663b",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 408,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 227
+    },
+    {
+      "address": "0x241eaf77f937ca370087af456f9572ab64ebc2fd",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 434,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 228
+    },
+    {
+      "address": "0x271a20481843e0244678c5ea0983e74a2285dcea",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 473,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 229
+    },
+    {
+      "address": "0x597ddaf79527d46a3d838ed4b06bb37ebba8fc87",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 478,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 230
+    },
+    {
+      "address": "0x9a3d54080b4063e5d00612349bfe31d7a4253bcd",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 480,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 231
+    },
+    {
+      "address": "0x5d38109c9b8671a3bbb7b98eee6f221c19dd0a92",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 489,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 232
+    },
+    {
+      "address": "0x7c32a22c824d2db82b00a30ea4ff973a632b1659",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 490,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 233
+    },
+    {
+      "address": "0x7695ca0cf85193d8e044fd6262421d342c6978b8",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 506,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 234
+    },
+    {
+      "address": "0xc0ab088ddfbe20a850ad57053be4e485bd74b798",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 511,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 235
+    },
+    {
+      "address": "0xa357f162fe9c383edeee81fbc905c4bc7fca166f",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 532,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 236
+    },
+    {
+      "address": "0xb66e39960aa3e1f0e3ca4a7fb1214641358e7694",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 556,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 237
+    },
+    {
+      "address": "0x3fbfa00d744829b82826c430dc3086a493bb8758",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 561,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 238
+    },
+    {
+      "address": "0x6cd1a4e69f093b78f9d1de5b5d5cbc17ae965bcb",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 568,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 239
+    },
+    {
+      "address": "0x1d1ba082e0f432e40da07bf6cfaf85706205a85e",
+      "balance_wei": "12113864343713441",
+      "balance_eth": 0.012113864343713442,
+      "collective_canvas_items": [
+        {
+          "token_id": 629,
+          "wei": 12113864343713441
+        }
+      ],
+      "rank": 240
+    },
+    {
+      "address": "0x267cf54fad92df2a1a8f5e2af961667b0b353211",
+      "balance_wei": "11641531452178322",
+      "balance_eth": 0.011641531452178323,
+      "collective_canvas_items": [
+        {
+          "token_id": 20,
+          "wei": 11641531452178322
+        }
+      ],
+      "rank": 241
+    },
+    {
+      "address": "0xceee0436975a057dd4b68f8a5555d6dbcb6c1c13",
+      "balance_wei": "9713864343713441",
+      "balance_eth": 0.00971386434371344,
+      "collective_canvas_items": [
+        {
+          "token_id": 37,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 242
+    },
+    {
+      "address": "0xfa23b55345c7237b7eee52db975e8a72b840bc1a",
+      "balance_wei": "9713864343713441",
+      "balance_eth": 0.00971386434371344,
+      "collective_canvas_items": [
+        {
+          "token_id": 47,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 243
+    },
+    {
+      "address": "0x784c881d4ef4e44cc4b47d7b603f2dc696c55f7b",
+      "balance_wei": "9713864343713441",
+      "balance_eth": 0.00971386434371344,
+      "collective_canvas_items": [
+        {
+          "token_id": 74,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 244
+    },
+    {
+      "address": "0x74dc1b9c18ff98a227a2fd3b74c0884eb53c23fe",
+      "balance_wei": "9713864343713441",
+      "balance_eth": 0.00971386434371344,
+      "collective_canvas_items": [
+        {
+          "token_id": 75,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 245
+    },
+    {
+      "address": "0x6852f5405bf6da785a1511440c88f98870e17e71",
+      "balance_wei": "9713864343713441",
+      "balance_eth": 0.00971386434371344,
+      "collective_canvas_items": [
+        {
+          "token_id": 105,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 246
+    },
+    {
+      "address": "0xaa773302a1da511a11667f68927a272ae60482ae",
+      "balance_wei": "9713864343713441",
+      "balance_eth": 0.00971386434371344,
+      "collective_canvas_items": [
+        {
+          "token_id": 208,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 247
+    },
+    {
+      "address": "0x3bc823047283e6cc4c6f4b4ab2550e4b85a20664",
+      "balance_wei": "9713864343713441",
+      "balance_eth": 0.00971386434371344,
+      "collective_canvas_items": [
+        {
+          "token_id": 223,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 248
+    },
+    {
+      "address": "0x402795bb4cf2298265c39b22fa0abf4077ed7c22",
+      "balance_wei": "9713864343713441",
+      "balance_eth": 0.00971386434371344,
+      "collective_canvas_items": [
+        {
+          "token_id": 255,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 249
+    },
+    {
+      "address": "0xcf2b7c6bc98bfe0d6138a25a3b6162b51f75e05d",
+      "balance_wei": "9713864343713441",
+      "balance_eth": 0.00971386434371344,
+      "collective_canvas_items": [
+        {
+          "token_id": 261,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 250
+    },
+    {
+      "address": "0xa51b7d35376809156528108e6c2e2f200a24fd42",
+      "balance_wei": "9713864343713441",
+      "balance_eth": 0.00971386434371344,
+      "collective_canvas_items": [
+        {
+          "token_id": 288,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 251
+    },
+    {
+      "address": "0x6e90cd428b731b9ece2a2405c096a9e1902780ac",
+      "balance_wei": "9713864343713441",
+      "balance_eth": 0.00971386434371344,
+      "collective_canvas_items": [
+        {
+          "token_id": 358,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 252
+    },
+    {
+      "address": "0x3ae08ab3421f90758d13f4260bf01a35d8fe169f",
+      "balance_wei": "9713864343713441",
+      "balance_eth": 0.00971386434371344,
+      "collective_canvas_items": [
+        {
+          "token_id": 471,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 253
+    },
+    {
+      "address": "0xb609927c4d413b9075b07c62ada9dfe73abf90eb",
+      "balance_wei": "9713864343713441",
+      "balance_eth": 0.00971386434371344,
+      "collective_canvas_items": [
+        {
+          "token_id": 486,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 254
+    },
+    {
+      "address": "0x2e33ed49cb2f648e28286064bd4f81cbfd378432",
+      "balance_wei": "9713864343713441",
+      "balance_eth": 0.00971386434371344,
+      "collective_canvas_items": [
+        {
+          "token_id": 527,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 255
+    },
+    {
+      "address": "0x23d55d51f26838aa0c908de1f9efdcc30cace76f",
+      "balance_wei": "9713864343713441",
+      "balance_eth": 0.00971386434371344,
+      "collective_canvas_items": [
+        {
+          "token_id": 553,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 256
+    },
+    {
+      "address": "0x40ebc0c97d33150deb21d4633ae5a7f8491b80de",
+      "balance_wei": "9713864343713441",
+      "balance_eth": 0.00971386434371344,
+      "collective_canvas_items": [
+        {
+          "token_id": 571,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 257
+    },
+    {
+      "address": "0x7a65f74a499a0f564cc856e134c908e082bd5e4d",
+      "balance_wei": "9713864343713441",
+      "balance_eth": 0.00971386434371344,
+      "collective_canvas_items": [
+        {
+          "token_id": 630,
+          "wei": 9713864343713441
+        }
+      ],
+      "rank": 258
+    },
+    {
+      "address": "0xa52e9067c0151b5beebb0df0e8af75469c9a9f42",
+      "balance_wei": "7279632964949575",
+      "balance_eth": 0.007279632964949575,
+      "collective_canvas_items": [
+        {
+          "token_id": 631,
+          "wei": 7279632964949575
+        }
+      ],
+      "rank": 259
+    },
+    {
+      "address": "0x328809a567b87b6123462c3062e8438bbb75c1c5",
+      "balance_wei": "4849253218114132",
+      "balance_eth": 0.004849253218114132,
+      "collective_canvas_items": [
+        {
+          "token_id": 632,
+          "wei": 4849253218114132
+        }
+      ],
+      "rank": 260
+    },
+    {
+      "address": "0x1cbbc4e224ac7b830d4bfa50b3d80fd5fb1ad674",
+      "balance_wei": "2422712933753943",
+      "balance_eth": 0.002422712933753943,
+      "collective_canvas_items": [
+        {
+          "token_id": 10,
+          "wei": 2422712933753943
+        }
+      ],
+      "rank": 261
+    },
+    {
+      "address": "0x906ee0c8b6057953a7eaf935247a21f57fb4fafb",
+      "balance_wei": "2422712933753943",
+      "balance_eth": 0.002422712933753943,
+      "collective_canvas_items": [
+        {
+          "token_id": 46,
+          "wei": 2422712933753943
+        }
+      ],
+      "rank": 262
+    },
+    {
+      "address": "0xa556a5a50d2c786617263414878214a9159d1433",
+      "balance_wei": "2422712933753943",
+      "balance_eth": 0.002422712933753943,
+      "collective_canvas_items": [
+        {
+          "token_id": 57,
+          "wei": 2422712933753943
+        }
+      ],
+      "rank": 263
+    },
+    {
+      "address": "0x988511dc1b80b40223012c63d41c80217e53da7c",
+      "balance_wei": "2422712933753943",
+      "balance_eth": 0.002422712933753943,
+      "collective_canvas_items": [
+        {
+          "token_id": 117,
+          "wei": 2422712933753943
+        }
+      ],
+      "rank": 264
+    },
+    {
+      "address": "0xa22a769cbe67a53a83d26095b4b66489969fdd19",
+      "balance_wei": "2422712933753943",
+      "balance_eth": 0.002422712933753943,
+      "collective_canvas_items": [
+        {
+          "token_id": 130,
+          "wei": 2422712933753943
+        }
+      ],
+      "rank": 265
+    },
+    {
+      "address": "0xcc03c4ca24abab228b79fc6f98834a6e5638336a",
+      "balance_wei": "2422712933753943",
+      "balance_eth": 0.002422712933753943,
+      "collective_canvas_items": [
+        {
+          "token_id": 134,
+          "wei": 2422712933753943
+        }
+      ],
+      "rank": 266
+    },
+    {
+      "address": "0x5844c14a05d215f5eee19875e74eb6b09e9c3923",
+      "balance_wei": "2422712933753943",
+      "balance_eth": 0.002422712933753943,
+      "collective_canvas_items": [
+        {
+          "token_id": 139,
+          "wei": 2422712933753943
+        }
+      ],
+      "rank": 267
+    },
+    {
+      "address": "0x8fa737374a28011dfddb17d13c1f0a5ce11b2444",
+      "balance_wei": "2422712933753943",
+      "balance_eth": 0.002422712933753943,
+      "collective_canvas_items": [
+        {
+          "token_id": 188,
+          "wei": 2422712933753943
+        }
+      ],
+      "rank": 268
+    },
+    {
+      "address": "0xae6cfe01b85467da5a291c2545b250afa8cdf757",
+      "balance_wei": "2422712933753943",
+      "balance_eth": 0.002422712933753943,
+      "collective_canvas_items": [
+        {
+          "token_id": 283,
+          "wei": 2422712933753943
+        }
+      ],
+      "rank": 269
+    },
+    {
+      "address": "0x29cfee3953a95a04f78725cf8a83943571441393",
+      "balance_wei": "2422712933753943",
+      "balance_eth": 0.002422712933753943,
+      "collective_canvas_items": [
+        {
+          "token_id": 515,
+          "wei": 2422712933753943
+        }
+      ],
+      "rank": 270
+    },
+    {
+      "address": "0xeb284b9b393e017f5bc6d79fa3580e919a27d471",
+      "balance_wei": "2422712933753943",
+      "balance_eth": 0.002422712933753943,
+      "collective_canvas_items": [
+        {
+          "token_id": 603,
+          "wei": 2422712933753943
+        }
+      ],
+      "rank": 271
+    },
+    {
+      "address": "0x45ed6cbab2284e6699bd0804abdf432b62ff6d9a",
+      "balance_wei": "2422712933753943",
+      "balance_eth": 0.002422712933753943,
+      "collective_canvas_items": [
+        {
+          "token_id": 633,
+          "wei": 2422712933753943
+        }
+      ],
+      "rank": 272
+    },
+    {
+      "address": "0x522a651be9b866a7716939ea16e4fd7060ce49c3",
+      "balance_wei": "10000000000000",
+      "balance_eth": 1e-05,
+      "collective_canvas_items": [
+        {
+          "token_id": 67,
+          "wei": 10000000000000
+        }
+      ],
+      "rank": 273
+    }
+  ]
+}

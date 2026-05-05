@@ -1655,5 +1655,54 @@
     "balance_source": "token",
     "category": "token",
     "balance_file": "feg_feth_eth_balances.json"
+  },
+  {
+    "key": "futurists",
+    "name": "Futurists Auction Splitter",
+    "contract": "0xa46ed7080f0094306d354b9d22e084f1dfb1b074",
+    "balance_source": "token",
+    "category": "nft",
+    "balance_file": "futurists_eth_balances.json"
+  },
+  {
+    "key": "weth10",
+    "name": "WETH10",
+    "contract": "0xbc5cef436eadacadfa8dafb63088f09f21dea7e9",
+    "balance_source": "token",
+    "category": "token",
+    "balance_file": "weth10_eth_balances.json"
+  },
+  {
+    "key": "micro_eth",
+    "name": "MicroETH",
+    "contract": "0xbb7be7cc5abb65d3a29d7982236481ddf4f10b09",
+    "balance_source": "token",
+    "category": "token",
+    "balance_file": "micro_eth_eth_balances.json"
+  },
+  {
+    "key": "confinale_token",
+    "name": "Confinale Token",
+    "contract": "0x629178c9a55cc30e3cccf21a94f77920aefce5ce",
+    "balance_source": "token",
+    "category": "token",
+    "balance_file": "confinale_token_eth_balances.json"
+  },
+  {
+    "key": "opyn_crab_v2",
+    "name": "Opyn Crab Strategy V2",
+    "contract": "0x3b960e47784150f5a63777201ee2b15253d713e8",
+    "balance_source": "token",
+    "category": "defi",
+    "balance_file": "opyn_crab_v2_eth_balances.json"
+  },
+  {
+    "key": "collective_canvas",
+    "name": "Collective Canvas",
+    "contract": "0x3a56ab63c7ef4f07fe353beb132e0fd5ad270ca0",
+    "balance_source": "token",
+    "category": "nft",
+    "balance_file": "collective_canvas_eth_balances.json",
+    "multi_step": true
   }
 ]

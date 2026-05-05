@@ -3661,6 +3661,102 @@ const EXCHANGES = {
     withdrawArgs: (amount) => [amount],
     withdrawCall: 'withdraw',
   },
+  futurists: {
+    name: 'Futurists Auction Splitter',
+    desc: 'Foundation\'s "Futurists" 2021 NFT auction proceeds went into an OpenZeppelin PaymentSplitter with 4 hardcoded shareholders (97/1/1/1 shares). Each shareholder can call release(account) to receive their pro-rata cut; the function is permissionless so anyone can trigger payment to a registered shareholder.',
+    category: 'nft',
+    color: '#9333ea',
+    contract: '0xa46ed7080f0094306d354b9d22e084f1dfb1b074',
+    deployed: 'February 2021',
+    balanceAbi: 'function releasable(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'releasable',
+    withdrawAbi: 'function release(address account)',
+    withdrawArgs: (_amount, user) => [user],
+    withdrawCall: 'release',
+  },
+  weth10: {
+    name: 'WETH10',
+    desc: 'Andre Cronje\'s 2020 WETH10 wrapper — proposed successor to canonical WETH9. Never reached significant adoption. Holders call withdraw(uint256) to burn WETH10 and receive ETH 1:1.',
+    category: 'token',
+    color: '#0891b2',
+    contract: '0xbc5cef436eadacadfa8dafb63088f09f21dea7e9',
+    deployed: 'September 2020',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: 'function withdraw(uint256 value)',
+    withdrawArgs: (amount) => [amount],
+    withdrawCall: 'withdraw',
+  },
+  micro_eth: {
+    name: 'MicroETH',
+    desc: 'MicroETH (μETH) is a 2018 ETH wrapper at the 1:1e-6 ratio. Holders call withdraw(uint256 ueth) to burn μETH and receive ETH at the fixed ratio. Note: contract holders without payable receive() will revert because withdraw uses transfer (2300 gas).',
+    category: 'token',
+    color: '#84cc16',
+    contract: '0xbb7be7cc5abb65d3a29d7982236481ddf4f10b09',
+    deployed: 'February 2018',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    balanceTransform: (result) => result / 1000000n,
+    withdrawAbi: 'function withdraw(uint256 ueth)',
+    withdrawArgs: (_amount) => {
+      const api = window._lastApiBalances?.micro_eth;
+      if (!api?.ueth_balance_wei) throw new Error('Missing μETH balance — refresh and try again');
+      return [BigInt(api.ueth_balance_wei)];
+    },
+    withdrawCall: 'withdraw',
+  },
+  confinale_token: {
+    name: 'Confinale Token',
+    desc: 'Confinale 2018-era ETH-pegged wrapper. Holders call withdraw(uint256 _AmountConf) to burn tokens and receive a proportional ETH share (balanceOf × contract.balance / totalSupply).',
+    category: 'token',
+    color: '#fb7185',
+    contract: '0x629178c9a55cc30e3cccf21a94f77920aefce5ce',
+    deployed: 'June 2018',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: 'function withdraw(uint256 _AmountConf)',
+    withdrawArgs: (_amount) => {
+      const api = window._lastApiBalances?.confinale_token;
+      if (!api?.conf_balance_wei) throw new Error('Missing CONF balance — refresh and try again');
+      return [BigInt(api.conf_balance_wei)];
+    },
+    withdrawCall: 'withdraw',
+  },
+  opyn_crab_v2: {
+    name: 'Opyn Crab Strategy V2',
+    desc: 'Opyn\'s Squeeth Crab Strategy V2 was a delta-neutral yield product. The strategy entered a shutdown state; each crab token is now redeemable for a proportional share of contract ETH via withdrawShutdown(uint256 _crabAmount). Single-step, permissionless.',
+    category: 'defi',
+    color: '#f59e0b',
+    contract: '0x3b960e47784150f5a63777201ee2b15253d713e8',
+    deployed: 'June 2022',
+    balanceAbi: 'function balanceOf(address) view returns (uint256)',
+    balanceArgs: (user) => [user],
+    balanceCall: 'balanceOf',
+    withdrawAbi: 'function withdrawShutdown(uint256 _crabAmount)',
+    withdrawArgs: (_amount) => {
+      const api = window._lastApiBalances?.opyn_crab_v2;
+      if (!api?.crab_balance_wei) throw new Error('Missing crab balance — refresh and try again');
+      return [BigInt(api.crab_balance_wei)];
+    },
+    withdrawCall: 'withdrawShutdown',
+  },
+  collective_canvas: {
+    name: 'Collective Canvas',
+    desc: 'Collaborative on-chain generative art project from 2021. Each minted layer earns a share of all subsequent mint fees. NFT owner calls withdraw(tokenId, amount) to claim their accumulated ETH share for each owned tokenId.',
+    category: 'nft',
+    color: '#06b6d4',
+    contract: '0x3a56ab63c7ef4f07fe353beb132e0fd5ad270ca0',
+    deployed: '2021',
+    noWalletCheck: true,
+    collectiveCanvasMulti: true,
+    withdrawAbi: 'function withdraw(uint256 tokenId, uint256 amount)',
+    withdrawArgs: (_amount, _user, tokenId, amount) => [tokenId, amount],
+    withdrawCall: 'withdraw',
+  },
 };
 
 // Per-tab state

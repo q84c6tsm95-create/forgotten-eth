@@ -1,0 +1,136 @@
+{
+  "contract": "0xbb7be7cc5abb65d3a29d7982236481ddf4f10b09",
+  "balance_source": "token",
+  "contract_eth_balance": 20.65377554,
+  "total_eth_in_balances": 5.53476273,
+  "addresses_with_balance": 17,
+  "coverage_pct": 26.8,
+  "scan_date": "2026-05-05 16:03:46 UTC",
+  "description": "MicroETH (\u03bcETH) wrapper at 1:1e-6 ratio. Holders call withdraw(uint256 ueth) to burn \u03bcETH for ETH. Note: contract holders without payable receive() will revert because withdraw uses transfer (2300 gas).",
+  "meta": {
+    "candidate_source": "Transfer event participants",
+    "skipped_contract_holders": 23,
+    "ratio_note": "balance_eth = balanceOf / 1e6 (\u03bcETH\u2192ETH conversion)"
+  },
+  "balances": [
+    {
+      "address": "0x84f15eef55e50f0f9b983f0cb0e30531883351a4",
+      "balance_wei": "4925000000000000000",
+      "balance_eth": 4.925,
+      "ueth_balance_wei": "4925000000000000000000000",
+      "rank": 1
+    },
+    {
+      "address": "0x60afa2c15f771cdfabd3c95b4e8dad9d5e852baf",
+      "balance_wei": "177330850267245820",
+      "balance_eth": 0.17733085026724582,
+      "ueth_balance_wei": "177330850267245820087897",
+      "rank": 2
+    },
+    {
+      "address": "0x4ac29f990aa21098b97990d8852cfc4239503547",
+      "balance_wei": "93153635180446977",
+      "balance_eth": 0.09315363518044698,
+      "ueth_balance_wei": "93153635180446977542520",
+      "rank": 3
+    },
+    {
+      "address": "0x5b327003dbf1826ae6fb72fffe9830c1a50ab4c5",
+      "balance_wei": "75000000000000000",
+      "balance_eth": 0.075,
+      "ueth_balance_wei": "75000000000000000000000",
+      "rank": 4
+    },
+    {
+      "address": "0xf8d14de3f933bbefcac6964be9182fbc7b91ad66",
+      "balance_wei": "55556000000000000",
+      "balance_eth": 0.055556,
+      "ueth_balance_wei": "55556000000000000000000",
+      "rank": 5
+    },
+    {
+      "address": "0xf7463e7335033586683ac1f3df3080a0b38babe9",
+      "balance_wei": "50000000000000000",
+      "balance_eth": 0.05,
+      "ueth_balance_wei": "50000000000000000000000",
+      "rank": 6
+    },
+    {
+      "address": "0xb4e1f7f8003bfe8c9ea39a8637106f50dbb80add",
+      "balance_wei": "44444000000000000",
+      "balance_eth": 0.044444,
+      "ueth_balance_wei": "44444000000000000000000",
+      "rank": 7
+    },
+    {
+      "address": "0x7491236d56f1318bde6ea535341de784507dc862",
+      "balance_wei": "42069000000000000",
+      "balance_eth": 0.042069,
+      "ueth_balance_wei": "42069000000000000000000",
+      "rank": 8
+    },
+    {
+      "address": "0xa6d791b21b4a26ccc8b506592cdbf898026f0346",
+      "balance_wei": "29765415825242329",
+      "balance_eth": 0.02976541582524233,
+      "ueth_balance_wei": "29765415825242329350437",
+      "rank": 9
+    },
+    {
+      "address": "0x16c975d21c3e7bb2191d7e77bc50c573aaf5efc5",
+      "balance_wei": "20000000000000000",
+      "balance_eth": 0.02,
+      "ueth_balance_wei": "20000000000000000000000",
+      "rank": 10
+    },
+    {
+      "address": "0xdf58e818d0af38c8f353f4490b708d5f0b27c536",
+      "balance_wei": "11000000000000000",
+      "balance_eth": 0.011,
+      "ueth_balance_wei": "11000000000000000000000",
+      "rank": 11
+    },
+    {
+      "address": "0x6757de187474115eaacb9070d330cdc0df78726f",
+      "balance_wei": "9000000000000000",
+      "balance_eth": 0.009,
+      "ueth_balance_wei": "9000000000000000000000",
+      "rank": 12
+    },
+    {
+      "address": "0x16590fc840c195742d61dd160c19f3825e820c59",
+      "balance_wei": "1000000000000000",
+      "balance_eth": 0.001,
+      "ueth_balance_wei": "1000000000000000000000",
+      "rank": 13
+    },
+    {
+      "address": "0x8edd586ac9ad0e4fea921448b11530b2f06879c8",
+      "balance_wei": "995811836458523",
+      "balance_eth": 0.000995811836458523,
+      "ueth_balance_wei": "995811836458523608189",
+      "rank": 14
+    },
+    {
+      "address": "0x25fcdd792631b4f2adec48f2099c219e3b3324da",
+      "balance_wei": "249340872300225",
+      "balance_eth": 0.000249340872300225,
+      "ueth_balance_wei": "249340872300225401983",
+      "rank": 15
+    },
+    {
+      "address": "0xe39158e7e888d7c293b32fabc75e5e3db2572047",
+      "balance_wei": "198672504985065",
+      "balance_eth": 0.000198672504985065,
+      "ueth_balance_wei": "198672504985065421607",
+      "rank": 16
+    },
+    {
+      "address": "0xbc6b31a4e3817fdfbba9d7258be9a925af94c744",
+      "balance_wei": "585747",
+      "balance_eth": 5.85747e-13,
+      "ueth_balance_wei": "585747896738",
+      "rank": 17
+    }
+  ]
+}
