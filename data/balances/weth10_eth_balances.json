@@ -1,10 +1,10 @@
 {
   "contract": "0xbc5cef436eadacadfa8dafb63088f09f21dea7e9",
   "balance_source": "token",
-  "contract_eth_balance": 7.65727885,
-  "total_eth_in_balances": 7.59327885,
-  "addresses_with_balance": 122,
-  "coverage_pct": 99.16,
+  "contract_eth_balance": 7.561201,
+  "total_eth_in_balances": 7.497201,
+  "addresses_with_balance": 121,
+  "coverage_pct": 99.15,
   "scan_date": "2026-05-05 16:03:45 UTC",
   "description": "Andre Cronje's WETH10 wrapper. Holders call withdraw(uint256) to burn WETH10 and receive ETH 1:1.",
   "meta": {
@@ -151,9 +151,10 @@
     },
     {
       "address": "0x8133a5dcba30387e88b8dd3b782797ae00defcc0",
-      "balance_wei": "96077827214527698",
-      "balance_eth": 0.09607782721452769,
-      "rank": 24
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "rank": 24,
+      "claimed": true
     },
     {
       "address": "0xebaca45c63ba3981b083064a8dcf5d2999430bd6",
@@ -620,55 +621,55 @@
     {
       "address": "0xf105663b1e93fa86b773b90736d476fc202c0c69",
       "balance_wei": "99038581025244",
-      "balance_eth": 9.9038581025244e-05,
+      "balance_eth": 0.000099038581025244,
       "rank": 103
     },
     {
       "address": "0x7b4e9914c7f8189ce89f1e24a7f5729e936b01cb",
       "balance_wei": "29335620190451",
-      "balance_eth": 2.9335620190451e-05,
+      "balance_eth": 0.000029335620190451,
       "rank": 104
     },
     {
       "address": "0xf3807d235ce501ffc6f01439e7a5bebb0c16a9f7",
       "balance_wei": "26917022646270",
-      "balance_eth": 2.691702264627e-05,
+      "balance_eth": 0.00002691702264627,
       "rank": 105
     },
     {
       "address": "0xcaf83fc2f79d12b6884346972706b120cdaf067e",
       "balance_wei": "26059213570660",
-      "balance_eth": 2.605921357066e-05,
+      "balance_eth": 0.00002605921357066,
       "rank": 106
     },
     {
       "address": "0x43e49723be3b1a4e08968de64fd7149abd68c49f",
       "balance_wei": "10005000000000",
-      "balance_eth": 1.0005e-05,
+      "balance_eth": 0.000010005,
       "rank": 107
     },
     {
       "address": "0xfbaf885b8c2f74f989b38573e0a4d8b429cb841f",
       "balance_wei": "563012016237",
-      "balance_eth": 5.63012016237e-07,
+      "balance_eth": 5.63012016237e-7,
       "rank": 108
     },
     {
       "address": "0x565fd2e1eae8a8edf557c439af01e5b2e3b7e126",
       "balance_wei": "23934246505",
-      "balance_eth": 2.3934246505e-08,
+      "balance_eth": 2.3934246505e-8,
       "rank": 109
     },
     {
       "address": "0xce1b3019a0252b97a1234ea759d10344a060c9ab",
       "balance_wei": "19469325935",
-      "balance_eth": 1.9469325935e-08,
+      "balance_eth": 1.9469325935e-8,
       "rank": 110
     },
     {
       "address": "0xe6ea6de4a06ad97bf2655cfca63f9fc8e772173e",
       "balance_wei": "1000000000",
-      "balance_eth": 1e-09,
+      "balance_eth": 1e-9,
       "rank": 111
     },
     {
@@ -743,5 +744,6 @@
       "balance_eth": 1e-18,
       "rank": 123
     }
-  ]
+  ],
+  "last_event_refresh": "2026-08-03 11:34:31 UTC"
 }

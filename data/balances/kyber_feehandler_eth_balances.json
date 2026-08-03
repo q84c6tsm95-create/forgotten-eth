@@ -1,20 +1,38 @@
 {
   "contract": "0xd3d2b5643e506c6d9b7099e9116d7aaa941114fe",
   "balance_source": "token",
-  "contract_eth_balance": 87.86285633,
-  "total_eth_in_balances": 60.86229,
-  "addresses_with_balance": 1580,
-  "coverage_pct": 69.27,
+  "contract_eth_balance": 87.508901,
+  "total_eth_in_balances": 60.508335,
+  "addresses_with_balance": 1576,
+  "coverage_pct": 69.15,
   "scan_date": "2026-07-09 16:26:19 UTC",
   "distribution": {
-    ">0 ETH": 1250,
-    ">0.01 ETH": 292,
-    ">0.1 ETH": 40,
-    ">1 ETH": 2,
-    ">10 ETH": 1,
-    ">100 ETH": 0
+    ">=100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
+    "10-100 ETH": {
+      "count": 1,
+      "total_eth": 35.144151
+    },
+    "1-10 ETH": {
+      "count": 2,
+      "total_eth": 5.151066
+    },
+    "0.1-1 ETH": {
+      "count": 38,
+      "total_eth": 8.616761
+    },
+    "0.01-0.1 ETH": {
+      "count": 292,
+      "total_eth": 8.350712
+    },
+    "<0.01 ETH": {
+      "count": 1243,
+      "total_eth": 3.245645
+    }
   },
-  "last_event_refresh": "2026-06-26 06:23:05 UTC",
+  "last_event_refresh": "2026-08-03 11:34:31 UTC",
   "balances": [
     {
       "address": "0xde63aef60307655405835da74ba02ce4db1a42fb",
@@ -398,12 +416,8 @@
     },
     {
       "address": "0x82d8d99955e38239d865a9dd0d44ef5dd06ba99c",
-      "balance_eth": 0.238377,
+      "balance_eth": 0.135699,
       "epoch_details": [
-        {
-          "epoch": 1,
-          "eth": 0.102678
-        },
         {
           "epoch": 2,
           "eth": 0.063152
@@ -413,7 +427,7 @@
           "eth": 0.072547
         }
       ],
-      "balance_wei": "238377000000000000",
+      "balance_wei": "135698999999999984",
       "rank": 12
     },
     {
@@ -538,26 +552,14 @@
     },
     {
       "address": "0x6bb740b57627123ecb2debe195ea5b225b4f9ad8",
-      "balance_eth": 0.188223,
+      "balance_eth": 0.044051,
       "epoch_details": [
-        {
-          "epoch": 7,
-          "eth": 0.042918
-        },
-        {
-          "epoch": 8,
-          "eth": 0.035975
-        },
         {
           "epoch": 9,
           "eth": 0.044051
-        },
-        {
-          "epoch": 10,
-          "eth": 0.065279
         }
       ],
-      "balance_wei": "188223000000000000",
+      "balance_wei": "44051000000000000",
       "rank": 20
     },
     {
@@ -844,18 +846,14 @@
     },
     {
       "address": "0x2a1049062c6cfd69bd38fbaf3b0559df1dbbc92c",
-      "balance_eth": 0.124527,
+      "balance_eth": 0.051557,
       "epoch_details": [
-        {
-          "epoch": 1,
-          "eth": 0.07297
-        },
         {
           "epoch": 3,
           "eth": 0.051557
         }
       ],
-      "balance_wei": "124527000000000000",
+      "balance_wei": "51557000000000000",
       "rank": 34
     },
     {
@@ -4084,15 +4082,11 @@
     },
     {
       "address": "0x7fd8a3e656c90a0e3cd703e4ba46aa4c9d9e84fb",
-      "balance_eth": 0.018345,
-      "epoch_details": [
-        {
-          "epoch": 1,
-          "eth": 0.018345
-        }
-      ],
-      "balance_wei": "18345000000000000",
-      "rank": 203
+      "balance_eth": 0,
+      "epoch_details": [],
+      "balance_wei": "0",
+      "rank": 203,
+      "claimed": true
     },
     {
       "address": "0xe404e744347324ac1b6965f56a55ef0b806e1a9b",
@@ -5476,15 +5470,11 @@
     },
     {
       "address": "0xe5b8d74c9ebc33cef1911f646211ca52213fa793",
-      "balance_eth": 0.01232,
-      "epoch_details": [
-        {
-          "epoch": 2,
-          "eth": 0.01232
-        }
-      ],
-      "balance_wei": "12320000000000000",
-      "rank": 300
+      "balance_eth": 0,
+      "epoch_details": [],
+      "balance_wei": "0",
+      "rank": 300,
+      "claimed": true
     },
     {
       "address": "0xca0b43613e6639ced88c5e55780ec422cb5ec8bb",
@@ -8082,18 +8072,14 @@
     },
     {
       "address": "0xbdbfdf3e82fc9d2be1352e252ab1ce2287fc2122",
-      "balance_eth": 0.006397,
+      "balance_eth": 0.003521,
       "epoch_details": [
-        {
-          "epoch": 8,
-          "eth": 0.002876
-        },
         {
           "epoch": 9,
           "eth": 0.003521
         }
       ],
-      "balance_wei": "6397000000000000",
+      "balance_wei": "3521000000000000",
       "rank": 487
     },
     {
@@ -19364,15 +19350,11 @@
     },
     {
       "address": "0x6d28ec87c9ef089adbf6e9c948a582a032937786",
-      "balance_eth": 0.000429,
-      "epoch_details": [
-        {
-          "epoch": 1,
-          "eth": 0.000429
-        }
-      ],
-      "balance_wei": "429000000000000",
-      "rank": 1358
+      "balance_eth": 0,
+      "epoch_details": [],
+      "balance_wei": "0",
+      "rank": 1358,
+      "claimed": true
     },
     {
       "address": "0xb1932b300e74fe3ae889fae8d0cfde1ec6888943",
@@ -20824,15 +20806,11 @@
     },
     {
       "address": "0x89340ec9eb3d49f2a7beedcee821e8f599e911d2",
-      "balance_eth": 0.000165,
-      "epoch_details": [
-        {
-          "epoch": 1,
-          "eth": 0.000165
-        }
-      ],
-      "balance_wei": "165000000000000",
-      "rank": 1475
+      "balance_eth": 0,
+      "epoch_details": [],
+      "balance_wei": "0",
+      "rank": 1475,
+      "claimed": true
     },
     {
       "address": "0xd3a545fe2cfaf7fd82f830cb845b7d2ec6eae855",

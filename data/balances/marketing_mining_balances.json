@@ -3,9 +3,9 @@
   "balance_source": "token",
   "contract_eth_balance": 0.0,
   "total_eth_in_balances": 0.0,
-  "addresses_with_balance": 23,
+  "addresses_with_balance": 22,
   "coverage_pct": 0.0,
-  "scan_date": "2026-07-09 16:35:38 UTC",
+  "scan_date": "2026-07-17 19:48:38 UTC",
   "description": "Current userInfo(pid,user) balances for MarketingMining per-pool token withdrawals. Candidate set from corrected Dune Deposit/Withdraw log reconstruction; current RPC state filters already-withdrawn positions.",
   "meta": {
     "candidate_source": "Dune query 7675864 / execution 01KTK9D5KJF1XDEQQK706ZA801",
@@ -13,7 +13,7 @@
     "pool_tokens": {
       "0": {
         "pid": 0,
-        "token_amount_raw": "5999900000",
+        "token_amount_raw": "0",
         "token_address": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
         "symbol": "WBTC",
         "decimals": 8,
@@ -21,7 +21,7 @@
       },
       "1": {
         "pid": 1,
-        "token_amount_raw": "1523405898938311367990",
+        "token_amount_raw": "23415898938311367990",
         "token_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         "symbol": "WETH",
         "decimals": 18,
@@ -105,10 +105,9 @@
       "MUSE": "316538722165780302112",
       "RARI": "1000410000000000000004",
       "MEME": "2000000",
-      "WBTC": "5999900000",
-      "WETH": "1523405898938311367990",
       "USDT": "2123211003",
       "WHALE": "12807282",
+      "WETH": "23415898938311367990",
       "MANA": "81000000000000000000",
       "NFTX": "10000000000000000",
       "SAND": "71000000000000000000"
@@ -189,35 +188,6 @@
           "amount_raw": "269277302249994560868",
           "amount": "269.277302249994560868",
           "item_id": "pid:3"
-        }
-      ]
-    },
-    {
-      "address": "0x13e252df0cafe34116cec052177b7540afc75f76",
-      "balance_eth": 0.0,
-      "balance_wei": "0",
-      "token_balances": {
-        "WBTC": "5999900000",
-        "WETH": "1499990000000000000000"
-      },
-      "marketing_mining_items": [
-        {
-          "pid": 0,
-          "token_address": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
-          "symbol": "WBTC",
-          "decimals": 8,
-          "amount_raw": "5999900000",
-          "amount": "59.999",
-          "item_id": "pid:0"
-        },
-        {
-          "pid": 1,
-          "token_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-          "symbol": "WETH",
-          "decimals": 18,
-          "amount_raw": "1499990000000000000000",
-          "amount": "1499.99",
-          "item_id": "pid:1"
         }
       ]
     },

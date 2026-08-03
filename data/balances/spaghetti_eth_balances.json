@@ -1,19 +1,39 @@
 {
   "contract": "0x4547a86ca6a84b9d60dc57af908472074de7af5f",
   "balance_source": "weth",
-  "contract_eth_balance": 70.97388664,
-  "total_eth_in_balances": 75.973886,
-  "addresses_with_balance": 14,
-  "coverage_pct": 107.04,
+  "contract_eth_balance": 48.566876,
+  "total_eth_in_balances": 48.566875,
+  "addresses_with_balance": 13,
+  "coverage_pct": 100,
   "scan_date": "2026-04-10 22:41:35 UTC",
   "description": "Spaghetti Money launched in August 2020 during DeFi Summer as a yield farm fork. Users staked WETH to earn PASTA tokens. The project went defunct within days. All staked WETH remains fully withdrawable via exit().",
   "distribution": {
-    "1_plus": 7,
-    "0.1_to_1": 5,
-    "0.01_to_0.1": 3,
-    "under_0.01": 0
+    ">=100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
+    "10-100 ETH": {
+      "count": 1,
+      "total_eth": 34.928883
+    },
+    "1-10 ETH": {
+      "count": 4,
+      "total_eth": 12
+    },
+    "0.1-1 ETH": {
+      "count": 5,
+      "total_eth": 1.491024
+    },
+    "0.01-0.1 ETH": {
+      "count": 3,
+      "total_eth": 0.146968
+    },
+    "<0.01 ETH": {
+      "count": 0,
+      "total_eth": 0
+    }
   },
-  "last_event_refresh": "2026-07-09T16:24:38Z",
+  "last_event_refresh": "2026-08-03 11:34:31 UTC",
   "balances": [
     {
       "address": "0xd294b6700a785fa37723bec86dfbdb7d278e1e54",
@@ -23,9 +43,10 @@
     },
     {
       "address": "0x72515452db16e9cdc1e6f1841fc6e07fab81c195",
-      "balance_wei": "22407011076968590879",
-      "balance_eth": 22.407011,
-      "rank": 2
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "rank": 2,
+      "claimed": true
     },
     {
       "address": "0x2c086b63a4f480dbd24fbb6ba0e8971e344e96e8",

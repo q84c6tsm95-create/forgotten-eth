@@ -1,32 +1,36 @@
 {
   "contract": "0x50cb61afa3f023d17276dcfb35abf85c710d1cff",
   "balance_source": "eth",
-  "contract_eth_balance": 81.46627833,
-  "total_eth_in_balances": 81.41434393,
-  "addresses_with_balance": 166,
+  "contract_eth_balance": 80.195378,
+  "total_eth_in_balances": 80.143444,
+  "addresses_with_balance": 164,
   "coverage_pct": 99.94,
   "scan_date": "2026-06-21 01:41:19 UTC",
   "description": "ETH balances in defunct Ethfinex Trustless v2 contract",
   "distribution": {
+    ">=100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
     "10-100 ETH": {
       "count": 2,
-      "total_eth": 42.160799999999995
+      "total_eth": 42.1608
     },
     "1-10 ETH": {
-      "count": 8,
-      "total_eth": 25.64473875118887
+      "count": 7,
+      "total_eth": 24.644738
     },
     "0.1-1 ETH": {
-      "count": 37,
-      "total_eth": 12.00201709662319
+      "count": 36,
+      "total_eth": 11.731118
     },
     "0.01-0.1 ETH": {
       "count": 39,
-      "total_eth": 1.516987478248642
+      "total_eth": 1.516987
     },
     "<0.01 ETH": {
       "count": 80,
-      "total_eth": 0.08980060257796904
+      "total_eth": 0.089799
     }
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
@@ -92,23 +96,24 @@
       "rank": 8,
       "address": "0x077bfef5850539a4a8b550ce2618afe9aa2214e9",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0,
+      "balance_eth": 1,
       "last_tx_date": "2020-03",
       "last_tx_hash": "0xe65bab77df43b6cad28a6a25046a62ae0c58a7d5d9aee31bf49e249227361aa0"
     },
     {
       "rank": 9,
       "address": "0x5e7b645d5bf86750cb1913122ba8a8545e2a9fd1",
-      "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "last_tx_date": "2020-02",
-      "last_tx_hash": "0x5e13fa0328ea591851c89cdc0a22fc313436870af5b0231fbf7ae14f1471ae83"
+      "last_tx_hash": "0x5e13fa0328ea591851c89cdc0a22fc313436870af5b0231fbf7ae14f1471ae83",
+      "claimed": true
     },
     {
       "rank": 10,
       "address": "0x9d11b1e1445b017902e561ceb201f009b3d53a42",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0,
+      "balance_eth": 1,
       "last_tx_date": "2019-10",
       "last_tx_hash": "0xf5ba59a00138e365460950a2e71062e3ed15f54f96275535ecc3da2d3aa86568"
     },
@@ -235,10 +240,11 @@
     {
       "rank": 26,
       "address": "0x133d93566f9699b3af46fe150daa8a67a9563ed6",
-      "balance_wei": "270900000000000000",
-      "balance_eth": 0.2709,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "last_tx_date": "2020-02",
-      "last_tx_hash": "0x1d204a51fd1ec178d904a9906d3fe7fb950d82abf8016f8ca9759fa5086a5b2a"
+      "last_tx_hash": "0x1d204a51fd1ec178d904a9906d3fe7fb950d82abf8016f8ca9759fa5086a5b2a",
+      "claimed": true
     },
     {
       "rank": 27,
@@ -1092,7 +1098,7 @@
       "rank": 133,
       "address": "0x49b61b0b725be7ee97361318ea6711f5ccf55ed3",
       "balance_wei": "99370000000000",
-      "balance_eth": 9.937e-05,
+      "balance_eth": 0.00009937,
       "last_tx_date": "2019-09",
       "last_tx_hash": "0x12decb8f3f51d4f809f83c2053681aecb475c780ee253561a500e23300bfd535"
     },
@@ -1100,7 +1106,7 @@
       "rank": 134,
       "address": "0xb3328c95fd4b3aa42053a1c7cf77f2d176e0b321",
       "balance_wei": "94175000000000",
-      "balance_eth": 9.4175e-05,
+      "balance_eth": 0.000094175,
       "last_tx_date": "2020-06",
       "last_tx_hash": "0xb6c93affcc23f4adde6256b8ef265a8bdbfb0d6cf66b63f97523680c78590316"
     },
@@ -1108,7 +1114,7 @@
       "rank": 135,
       "address": "0xad177f46c4a9cddb25f0c1efaac45a7cdf82a914",
       "balance_wei": "82098296169198",
-      "balance_eth": 8.2098296169198e-05,
+      "balance_eth": 0.000082098296169198,
       "last_tx_date": "2020-02",
       "last_tx_hash": "0xca3a65487d71eb22beb4737a24fa831bfe5f7daf88a43ddf66d68ae6db65f236"
     },
@@ -1116,7 +1122,7 @@
       "rank": 136,
       "address": "0x9128881dde84231bfc0d5c7de6e231b9fc2ff936",
       "balance_wei": "75000000000000",
-      "balance_eth": 7.5e-05,
+      "balance_eth": 0.000075,
       "last_tx_date": "2019-11",
       "last_tx_hash": "0x4ab173f791c73eb1e3909ebaf6656cbe5643387be9fbfae0e891bdb99ff0316c"
     },
@@ -1124,7 +1130,7 @@
       "rank": 137,
       "address": "0x3e3742b6b7c0add19eb155c72eacbb6bfc8958dc",
       "balance_wei": "68530000000000",
-      "balance_eth": 6.853e-05,
+      "balance_eth": 0.00006853,
       "last_tx_date": "2019-08",
       "last_tx_hash": "0x7c198c5da1286a93eb73f22e07765dd49c3be56e76a8d9f7ca59e6cc4c3bd6be"
     },
@@ -1132,7 +1138,7 @@
       "rank": 138,
       "address": "0x8751561ba6ef62877163c7ab3788975f3632a63e",
       "balance_wei": "62500000000000",
-      "balance_eth": 6.25e-05,
+      "balance_eth": 0.0000625,
       "last_tx_date": "2019-11",
       "last_tx_hash": "0x0e998374cbb426696f483f617268f2cf29797208be90b5e5332f67ed89748a63"
     },
@@ -1140,7 +1146,7 @@
       "rank": 139,
       "address": "0xeb9e581a4f9d15d2fe0fac52496a782e7348ed36",
       "balance_wei": "61472572041189",
-      "balance_eth": 6.1472572041189e-05,
+      "balance_eth": 0.000061472572041189,
       "last_tx_date": "2020-02",
       "last_tx_hash": "0x9527772f8f1646a490f14bbdfef7fe3ad2a4e10ba237ab8e29e913b77dcb43ae"
     },
@@ -1148,7 +1154,7 @@
       "rank": 140,
       "address": "0xf8c40b2285e7633045896f1dffc3f3c1f262d758",
       "balance_wei": "35174000000000",
-      "balance_eth": 3.5174e-05,
+      "balance_eth": 0.000035174,
       "last_tx_date": "2019-08",
       "last_tx_hash": "0x080ac67cc0afb1141b164ea4284fa79dbbc9e2d58092b40975829eb0eafac2d6"
     },
@@ -1156,7 +1162,7 @@
       "rank": 141,
       "address": "0x1b230ac24e85861a659073aefe54da1f581987b8",
       "balance_wei": "28092000000004",
-      "balance_eth": 2.8092000000004e-05,
+      "balance_eth": 0.000028092000000004,
       "last_tx_date": "2020-01",
       "last_tx_hash": "0x11621389cc1889d4c1347c9aa4905e33ea602f32391fb48d751c7311db3cfafa"
     },
@@ -1164,7 +1170,7 @@
       "rank": 142,
       "address": "0xcd5f8fa45e0ca0937f86006b9ee8fe1eedee5fc4",
       "balance_wei": "22042084560221",
-      "balance_eth": 2.2042084560221e-05,
+      "balance_eth": 0.000022042084560221,
       "last_tx_date": "2019-08",
       "last_tx_hash": "0x6a1b065336b34eb7c82dd59ba670588007e2438792c32445e354881321b975ce"
     },
@@ -1172,7 +1178,7 @@
       "rank": 143,
       "address": "0x97fd1ce8a0876c1c6a0ad784ccf75a95168cc6ed",
       "balance_wei": "18294000000000",
-      "balance_eth": 1.8294e-05,
+      "balance_eth": 0.000018294,
       "last_tx_date": "2019-09",
       "last_tx_hash": "0xb8c37db52bcef896daeee75dda63fdcb5529d08fabb496bb12ca877f2899ca99"
     },
@@ -1180,7 +1186,7 @@
       "rank": 144,
       "address": "0x578cdea91e751ff843757159a62a69ba19542b46",
       "balance_wei": "17308000000000",
-      "balance_eth": 1.7308e-05,
+      "balance_eth": 0.000017308,
       "last_tx_date": "2019-10",
       "last_tx_hash": "0x2c6bed690c9536578ac81c60f557e854916839dcb614f65e798f2ea8bf0d32d8"
     },
@@ -1188,7 +1194,7 @@
       "rank": 145,
       "address": "0x9eec0b5bd8a48047f0dcc61e98b4b92951480f98",
       "balance_wei": "11800000000000",
-      "balance_eth": 1.18e-05,
+      "balance_eth": 0.0000118,
       "last_tx_date": "2020-05",
       "last_tx_hash": "0x0b067cb7e31df7707eba2b45b7bfee33c5bda425ca1d2bc4cab3da695febacde"
     },
@@ -1196,7 +1202,7 @@
       "rank": 146,
       "address": "0x14d06788090769f669427b6aea1c0240d2321f34",
       "balance_wei": "11708100000002",
-      "balance_eth": 1.1708100000002e-05,
+      "balance_eth": 0.000011708100000002,
       "last_tx_date": "2020-06",
       "last_tx_hash": "0x9ca0b540ed14f6ab8bf370ec796779018b8242246c9ffc8437380be7d97742fc"
     },
@@ -1204,7 +1210,7 @@
       "rank": 147,
       "address": "0x08724e55d71b19df96f56b656ad466c5bcf6c395",
       "balance_wei": "10995347969925",
-      "balance_eth": 1.0995347969925e-05,
+      "balance_eth": 0.000010995347969925,
       "last_tx_date": "2019-10",
       "last_tx_hash": "0x4dd3f1c865ca11b72b8fd95f64f661734d35db13fba5a248f9c2facfbc585523"
     },
@@ -1212,7 +1218,7 @@
       "rank": 148,
       "address": "0x8ecc379c8d744142aff3ea80caf53e3e57779ebd",
       "balance_wei": "9114000000000",
-      "balance_eth": 9.114e-06,
+      "balance_eth": 0.000009114,
       "last_tx_date": "2020-05",
       "last_tx_hash": "0xf562f4a4cbd1c2c15d420f37b1b666a0013d9acbcf6d547e5667d3097464f287"
     },
@@ -1220,7 +1226,7 @@
       "rank": 149,
       "address": "0x9cb106867cba13f491e20995e9e1a354092575c0",
       "balance_wei": "7355000000000",
-      "balance_eth": 7.355e-06,
+      "balance_eth": 0.000007355,
       "last_tx_date": "2020-04",
       "last_tx_hash": "0xccb958993ec64f5280201d6d479938260b4b83eb53ed47453f14c2715fc9faca"
     },
@@ -1228,7 +1234,7 @@
       "rank": 150,
       "address": "0x73e60cd967e957bc6e074f93320ffa1d52697d5b",
       "balance_wei": "5129000000000",
-      "balance_eth": 5.129e-06,
+      "balance_eth": 0.000005129,
       "last_tx_date": "2019-10",
       "last_tx_hash": "0x8853bba3162c5dd3cdf872374c44f5447d0da3c214e077c3228ffb7285109f45"
     },
@@ -1236,7 +1242,7 @@
       "rank": 151,
       "address": "0xe67d5069e5a27adc5a1cbb592c4ad55305c46206",
       "balance_wei": "4685000000000",
-      "balance_eth": 4.685e-06,
+      "balance_eth": 0.000004685,
       "last_tx_date": "2020-01",
       "last_tx_hash": "0xb0e27d49006b8cee41222c1fe1529f8148e87e81f81dfbe559ad699756da4d4e"
     },
@@ -1244,7 +1250,7 @@
       "rank": 152,
       "address": "0xa4cee0880a2a5f3571caef488b52b32230f749d6",
       "balance_wei": "4395000000000",
-      "balance_eth": 4.395e-06,
+      "balance_eth": 0.000004395,
       "last_tx_date": "2019-11",
       "last_tx_hash": "0xb6df4d1745ddd7f0030618d8be090ec8dd2b363234e2862e4fcc16cacfdb949b"
     },
@@ -1252,7 +1258,7 @@
       "rank": 153,
       "address": "0xb6c02081e95b84c5afa75ef9595f84a9ed43ecd4",
       "balance_wei": "4101000000000",
-      "balance_eth": 4.101e-06,
+      "balance_eth": 0.000004101,
       "last_tx_date": "2019-10",
       "last_tx_hash": "0x76cd9305588a155862c0999091d22ab5ac0fce9c5110af625350469f20befbf5"
     },
@@ -1260,7 +1266,7 @@
       "rank": 154,
       "address": "0x0d7ed20562345cd4de0cda733cc4f572245e896a",
       "balance_wei": "3850000000000",
-      "balance_eth": 3.85e-06,
+      "balance_eth": 0.00000385,
       "last_tx_date": "2020-02",
       "last_tx_hash": "0xec0e37ea8c38cc50bae1eaa8cc0a508153504278c221be1b9c5d19b4603c6f71"
     },
@@ -1268,7 +1274,7 @@
       "rank": 155,
       "address": "0xc4df36754341f6eac693492e700475746fbb2fb8",
       "balance_wei": "3725000000012",
-      "balance_eth": 3.725000000012e-06,
+      "balance_eth": 0.000003725000000012,
       "last_tx_date": "2020-05",
       "last_tx_hash": "0x2f6985c36b218453171166da98d59207b5c670aa37b234c5aa5e9ecaf0afa23c"
     },
@@ -1276,7 +1282,7 @@
       "rank": 156,
       "address": "0x7efbb13383757ca1f581dd5e20cb2e9f24448608",
       "balance_wei": "3719100000000",
-      "balance_eth": 3.7191e-06,
+      "balance_eth": 0.0000037191,
       "last_tx_date": "2019-09",
       "last_tx_hash": "0x0b8b1126daa18d4379e6707a32972c49d2ebbef662d53815bce0a92df64f5166"
     },
@@ -1284,7 +1290,7 @@
       "rank": 157,
       "address": "0x2c4469d16a86989c15741fb13ad583166ef0895a",
       "balance_wei": "3250000000000",
-      "balance_eth": 3.25e-06,
+      "balance_eth": 0.00000325,
       "last_tx_date": "2020-05",
       "last_tx_hash": "0x3b36027024cb0ccb2d3aa82c651aeddc2eabeeffea4b5a2e9f37fced133499c8"
     },
@@ -1292,7 +1298,7 @@
       "rank": 158,
       "address": "0x1940fd2aca290eb910602ff0d5b3bc709a2d904a",
       "balance_wei": "3017700000000",
-      "balance_eth": 3.0177e-06,
+      "balance_eth": 0.0000030177,
       "last_tx_date": "2019-09",
       "last_tx_hash": "0xa6a244f551d8ec5c4a298feac602e95d6d85b8eb5db188a388953d57f258cf7a"
     },
@@ -1300,7 +1306,7 @@
       "rank": 159,
       "address": "0xba94e9f0643d1fb76a95be188d5d2585b042a9b1",
       "balance_wei": "1488000000000",
-      "balance_eth": 1.488e-06,
+      "balance_eth": 0.000001488,
       "last_tx_date": "2019-10",
       "last_tx_hash": "0xd7faad40c8563c541faa41806e60134638bb0899180705b5ba695655a63a4d9d"
     },
@@ -1308,7 +1314,7 @@
       "rank": 160,
       "address": "0xd548fab243ec01490e225ecc449d80e70be8b5e5",
       "balance_wei": "134100000000",
-      "balance_eth": 1.341e-07,
+      "balance_eth": 1.341e-7,
       "last_tx_date": "2019-09",
       "last_tx_hash": "0xce2178df0d505d3c7c1230145939395bbe590e49189ad106ffe734a297ede3c1"
     },
@@ -1316,7 +1322,7 @@
       "rank": 161,
       "address": "0x13a57b2b74688642b610370920ad6f642b368d64",
       "balance_wei": "100000000000",
-      "balance_eth": 1e-07,
+      "balance_eth": 1e-7,
       "last_tx_date": "2020-01",
       "last_tx_hash": "0x2e0146f33563ad42ce9bd1823663a802698f8ffe1904deac593df1a340abf896"
     },
@@ -1360,5 +1366,6 @@
       "last_tx_date": "2020-01",
       "last_tx_hash": "0xfc68fe21aa33dace4bf303c625a43d60526b59cf2df8bb619c7f92f0a5223787"
     }
-  ]
+  ],
+  "last_event_refresh": "2026-08-03 11:34:31 UTC"
 }

@@ -4,11 +4,11 @@
   "token_checked": "0x0000000000000000000000000000000000000000",
   "description": "ETH balances in defunct FoMo3D Lightning contract",
   "scan_date": "2026-04-03 13:29:11 UTC",
-  "contract_eth_balance": 7.467644,
+  "contract_eth_balance": 7.352062,
   "total_addresses_scanned": 893,
-  "addresses_with_balance": 363,
-  "total_eth_in_balances": 4.847185,
-  "coverage_pct": 64.91,
+  "addresses_with_balance": 359,
+  "total_eth_in_balances": 4.723759,
+  "coverage_pct": 64.25,
   "distribution": {
     ">=100 ETH": {
       "count": 0,
@@ -23,16 +23,16 @@
       "total_eth": 1.444892
     },
     "0.1-1 ETH": {
-      "count": 8,
-      "total_eth": 1.135264
+      "count": 7,
+      "total_eth": 1.0215
     },
     "0.01-0.1 ETH": {
       "count": 54,
       "total_eth": 2.021869
     },
     "<0.01 ETH": {
-      "count": 300,
-      "total_eth": 0.245157
+      "count": 297,
+      "total_eth": 0.235495
     }
   },
   "balances": [
@@ -69,8 +69,9 @@
     {
       "rank": 6,
       "address": "0x46624A0E6fBc59Be75DbD1d473C6104152965270",
-      "balance_wei": "113764115786343437",
-      "balance_eth": "0.113764115786343434"
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 7,
@@ -705,8 +706,9 @@
     {
       "rank": 111,
       "address": "0x72a9BCd0396C118D3b3D5D7C6B65AAf6Ba37C364",
-      "balance_wei": "975985651872219",
-      "balance_eth": "0.000975985651872219"
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 112,
@@ -735,8 +737,9 @@
     {
       "rank": 116,
       "address": "0x61DC1653Ad51bE547a2AF8a9b411f51B129Daf66",
-      "balance_wei": "842062585460500",
-      "balance_eth": "0.000842062585460500"
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 117,
@@ -2215,5 +2218,5 @@
       "balance_eth": "0.000007500000000010"
     }
   ],
-  "last_event_refresh": "2026-05-09 10:23:10 UTC"
+  "last_event_refresh": "2026-08-03 11:34:31 UTC"
 }

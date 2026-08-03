@@ -4,27 +4,35 @@
   "token_checked": "0x0000000000000000000000000000000000000000",
   "description": "ETH balances in defunct LYNIA contract",
   "scan_date": "2026-03-19 00:36:07 UTC",
-  "contract_eth_balance": "8.44672905134263486",
+  "contract_eth_balance": 8.446564,
   "total_addresses_scanned": 444,
-  "addresses_with_balance": 424,
-  "total_eth_in_balances": 8.019627111250502,
+  "addresses_with_balance": 423,
+  "total_eth_in_balances": 8.019462,
   "coverage_pct": 94.94,
   "distribution": {
+    ">=100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
+    "10-100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
     "1-10 ETH": {
       "count": 1,
-      "total_eth": 5.321467233263241
+      "total_eth": 5.321467
     },
     "0.1-1 ETH": {
       "count": 7,
-      "total_eth": 1.4829901245945238
+      "total_eth": 1.48299
     },
     "0.01-0.1 ETH": {
       "count": 33,
-      "total_eth": 1.0313186533449308
+      "total_eth": 1.03132
     },
     "<0.01 ETH": {
-      "count": 383,
-      "total_eth": 0.18385110004779706
+      "count": 382,
+      "total_eth": 0.183688
     }
   },
   "balances": [
@@ -757,8 +765,9 @@
     {
       "rank": 122,
       "address": "0xe6844521eb2932646d44a8ef0494b17abecd0d10",
-      "balance_wei": "165089880882576",
-      "balance_eth": "0.000165089880882576"
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 123,
@@ -2572,5 +2581,6 @@
       "balance_wei": "8263348158",
       "balance_eth": "0.000000008263348158"
     }
-  ]
+  ],
+  "last_event_refresh": "2026-08-03 11:34:31 UTC"
 }

@@ -1,9 +1,9 @@
 {
   "contract": "0xDd9fd6b6F8f7ea932997992bbE67EabB3e316f3C",
   "balance_source": "eth",
-  "contract_eth_balance": 3391.03168384,
-  "total_eth_in_balances": 3390.40425868,
-  "addresses_with_balance": 64910,
+  "contract_eth_balance": 3391.030984,
+  "total_eth_in_balances": 3390.403559,
+  "addresses_with_balance": 64909,
   "coverage_pct": 99.98,
   "scan_date": "2026-03-31 21:55:21 UTC",
   "description": "ETH balances in defunct Last Winner contract",
@@ -29,13 +29,13 @@
       "total_eth": 1070.341546
     },
     "<0.01 ETH": {
-      "count": 26810,
-      "total_eth": 93.305481
+      "count": 26809,
+      "total_eth": 93.30478
     }
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
   "total_addresses_scanned": 101573,
-  "last_event_refresh": "2026-06-28 10:53:44 UTC",
+  "last_event_refresh": "2026-08-03 11:34:31 UTC",
   "balances": [
     {
       "rank": 1,
@@ -345257,8 +345257,9 @@
     {
       "rank": 64922,
       "address": "0x2a5e59e7eef8c6ebad934cc109469e10934dbf99",
-      "balance_wei": "699806051823346",
-      "balance_eth": 0.000699806051823346
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 64923,

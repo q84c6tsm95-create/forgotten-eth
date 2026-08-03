@@ -1,10 +1,10 @@
 {
   "contract": "0xf786c34106762ab4eeb45a51b42a62470e9d5332",
   "balance_source": "token",
-  "contract_eth_balance": 403.347041,
-  "total_eth_in_balances": 46.356857,
-  "addresses_with_balance": 4003,
-  "coverage_pct": 11.49,
+  "contract_eth_balance": 403.30443,
+  "total_eth_in_balances": 46.314245,
+  "addresses_with_balance": 3999,
+  "coverage_pct": 11.48,
   "scan_date": "2026-05-03 16:16:44 UTC",
   "description": "FEG Wrapped ETH. Holders call withdraw(amt) for 99% of their balance as ETH (1% reflection fee). Contract eth_getBalance over-states user-claimable by ~7× because feesAccrued (0.9% of every deposit + 7/8 of every withdraw fee + voluntary burns) is permanently stranded by design — no function exists to redeem it.",
   "meta": {
@@ -1403,10 +1403,11 @@
     },
     {
       "address": "0x2f3503aa11e148aecc86ace99de236caedee8105",
-      "balance_wei": "26258577009159762",
-      "balance_eth": 0.02625857700915976,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "fETH_balance_wei": "26523815160767437",
-      "rank": 199
+      "rank": 199,
+      "claimed": true
     },
     {
       "address": "0xd3c7af12cd74aae0a50313b512373820adfe1e0a",
@@ -2510,10 +2511,11 @@
     },
     {
       "address": "0x525b5328e33db5cd5b2b453eb220b47f9c9d5409",
-      "balance_wei": "9886577031962179",
-      "balance_eth": 0.009886577031962178,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "fETH_balance_wei": "9986441446426444",
-      "rank": 358
+      "rank": 358,
+      "claimed": true
     },
     {
       "address": "0x92f22c8a84b9dd64b6df00048ec0baa187f03bc2",
@@ -3448,10 +3450,11 @@
     },
     {
       "address": "0xc3e08c94bdef2bc933c71a4c0a50ddb43460f466",
-      "balance_wei": "5383102182745972",
-      "balance_eth": 0.005383102182745972,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "fETH_balance_wei": "5437476952268659",
-      "rank": 492
+      "rank": 492,
+      "claimed": true
     },
     {
       "address": "0x1a8dc68c6f6a03c1a442847fcf3cdc665f71f615",
@@ -6116,10 +6119,11 @@
     },
     {
       "address": "0x5dad7936a3991f73714c2d51c261c6fe83d2daa8",
-      "balance_wei": "1083101396868991",
-      "balance_eth": 0.001083101396868991,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "fETH_balance_wei": "1094041815019183",
-      "rank": 873
+      "rank": 873,
+      "claimed": true
     },
     {
       "address": "0xfdf80e91c29dafc87137f77e6ba1680b3129ffc0",
@@ -28257,5 +28261,5 @@
       "rank": 4037
     }
   ],
-  "last_event_refresh": "2026-06-25 09:23:05 UTC"
+  "last_event_refresh": "2026-08-03 11:34:31 UTC"
 }

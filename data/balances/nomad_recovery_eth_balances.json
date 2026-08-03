@@ -1,18 +1,36 @@
 {
   "contract": "0xa4B86BcbB18639D8e708d6163a0c734aFcDB770c",
   "balance_source": "token",
-  "contract_eth_balance": 100.647194,
-  "total_eth_in_balances": 48.47953337,
-  "addresses_with_balance": 586,
-  "coverage_pct": 48.17,
+  "contract_eth_balance": 97.889451,
+  "total_eth_in_balances": 45.72179,
+  "addresses_with_balance": 172,
+  "coverage_pct": 46.71,
   "scan_date": "2026-07-09 16:27:54 UTC",
   "distribution": {
-    ">=100": 0,
-    "10-100": 2,
-    "1-10": 5,
-    "0.1-1": 31,
-    "0.01-0.1": 53,
-    "<0.01": 495
+    ">=100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
+    "10-100 ETH": {
+      "count": 2,
+      "total_eth": 22.639
+    },
+    "1-10 ETH": {
+      "count": 4,
+      "total_eth": 10.14104
+    },
+    "0.1-1 ETH": {
+      "count": 30,
+      "total_eth": 10.841623
+    },
+    "0.01-0.1 ETH": {
+      "count": 52,
+      "total_eth": 1.81734
+    },
+    "<0.01 ETH": {
+      "count": 84,
+      "total_eth": 0.28279
+    }
   },
   "isMultiAssetNft": true,
   "affectedAssets": [
@@ -42,7 +60,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 11.578539198729404,
-          "amount_wei": 11578539198729403126
+          "amount_wei": 11578539198729402000
         }
       ]
     },
@@ -74,7 +92,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 11.060461022887418,
-          "amount_wei": 11060461022887418719
+          "amount_wei": 11060461022887418000
         }
       ]
     },
@@ -98,25 +116,17 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 6.149318877983031,
-          "amount_wei": 6149318877983031281
+          "amount_wei": 6149318877983031000
         }
       ]
     },
     {
       "address": "0xb863e3d6b0e94ae659c7700af3ed9e4440b5319a",
-      "balance_eth": 2.3379417965972618,
-      "balance_wei": "2337941796597261806",
+      "balance_eth": 0,
+      "balance_wei": "0",
       "allowlisted": true,
-      "nft_details": [
-        {
-          "nft_id": 939,
-          "asset_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "asset_symbol": "WETH",
-          "decimals": 18,
-          "amount": 2.3379417965972618,
-          "amount_wei": 2337941796597261806
-        }
-      ]
+      "nft_details": [],
+      "claimed": true
     },
     {
       "address": "0x9b77872189eb112489562fa3e11759bfda6f5cc4",
@@ -130,7 +140,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 1.6968931737795672,
-          "amount_wei": 1696893173779567165
+          "amount_wei": 1696893173779567000
         }
       ]
     },
@@ -162,7 +172,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 1.1990464745340037,
-          "amount_wei": 1199046474534003732
+          "amount_wei": 1199046474534003700
         }
       ]
     },
@@ -178,7 +188,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 1.0957816181057916,
-          "amount_wei": 1095781618105791587
+          "amount_wei": 1095781618105791600
         },
         {
           "nft_id": 1129,
@@ -202,7 +212,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.8662335870557847,
-          "amount_wei": 866233587055784664
+          "amount_wei": 866233587055784700
         }
       ]
     },
@@ -218,7 +228,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.7984690179201057,
-          "amount_wei": 798469017920105698
+          "amount_wei": 798469017920105700
         }
       ]
     },
@@ -234,7 +244,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 246.63132951133497,
-          "amount_wei": 246631329511334958773
+          "amount_wei": 246631329511334970000
         },
         {
           "nft_id": 1113,
@@ -258,7 +268,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.7668958165617871,
-          "amount_wei": 766895816561787096
+          "amount_wei": 766895816561787100
         }
       ]
     },
@@ -274,7 +284,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.7541747439020299,
-          "amount_wei": 754174743902029851
+          "amount_wei": 754174743902029800
         }
       ]
     },
@@ -290,7 +300,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.7404107154471831,
-          "amount_wei": 740410715447183050
+          "amount_wei": 740410715447183100
         },
         {
           "nft_id": 627,
@@ -314,7 +324,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.6317896421120517,
-          "amount_wei": 631789642112051738
+          "amount_wei": 631789642112051700
         },
         {
           "nft_id": 538,
@@ -338,7 +348,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.5839376392405873,
-          "amount_wei": 583937639240587335
+          "amount_wei": 583937639240587400
         }
       ]
     },
@@ -354,7 +364,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.5803268054042031,
-          "amount_wei": 580326805404203151
+          "amount_wei": 580326805404203100
         }
       ]
     },
@@ -402,7 +412,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.42683133529376915,
-          "amount_wei": 426831335293769157
+          "amount_wei": 426831335293769150
         }
       ]
     },
@@ -426,7 +436,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.03586444056762628,
-          "amount_wei": 35864440567626274
+          "amount_wei": 35864440567626270
         },
         {
           "nft_id": 1353,
@@ -434,7 +444,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.3774120366365173,
-          "amount_wei": 377412036636517311
+          "amount_wei": 377412036636517300
         }
       ]
     },
@@ -458,33 +468,17 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.4037465818469962,
-          "amount_wei": 403746581846996194
+          "amount_wei": 403746581846996200
         }
       ]
     },
     {
       "address": "0x4b30dee67379906859397d0f5b82d7ae883ce3b6",
-      "balance_eth": 0.3918359953230328,
-      "balance_wei": "391835995323032862",
+      "balance_eth": 0,
+      "balance_wei": "0",
       "allowlisted": true,
-      "nft_details": [
-        {
-          "nft_id": 1172,
-          "asset_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "asset_symbol": "WETH",
-          "decimals": 18,
-          "amount": 0.39183599532303287,
-          "amount_wei": 391835995323032862
-        },
-        {
-          "nft_id": 1173,
-          "asset_address": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
-          "asset_symbol": "WBTC",
-          "decimals": 8,
-          "amount": 0.15927399,
-          "amount_wei": 15927399
-        }
-      ]
+      "nft_details": [],
+      "claimed": true
     },
     {
       "address": "0xbd97dc84798ed8590ebda226c9c0d446f962c1e0",
@@ -498,7 +492,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.27832821186228646,
-          "amount_wei": 278328211862286433
+          "amount_wei": 278328211862286430
         },
         {
           "nft_id": 390,
@@ -546,7 +540,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 18.162964108071073,
-          "amount_wei": 18162964108071073787
+          "amount_wei": 18162964108071074000
         },
         {
           "nft_id": 1185,
@@ -554,7 +548,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.1416364151804868,
-          "amount_wei": 141636415180486814
+          "amount_wei": 141636415180486820
         },
         {
           "nft_id": 1186,
@@ -602,7 +596,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 85.92625041638489,
-          "amount_wei": 85926250416384894387
+          "amount_wei": 85926250416384900000
         },
         {
           "nft_id": 1192,
@@ -610,7 +604,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.13516656876322702,
-          "amount_wei": 135166568763227031
+          "amount_wei": 135166568763227020
         }
       ]
     },
@@ -626,7 +620,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.2573006811984346,
-          "amount_wei": 257300681198434550
+          "amount_wei": 257300681198434560
         }
       ]
     },
@@ -642,7 +636,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.24320360163493318,
-          "amount_wei": 243203601634933173
+          "amount_wei": 243203601634933200
         },
         {
           "nft_id": 437,
@@ -674,7 +668,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.16823243277467653,
-          "amount_wei": 168232432774676531
+          "amount_wei": 168232432774676540
         },
         {
           "nft_id": 1023,
@@ -682,7 +676,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.06569267011224156,
-          "amount_wei": 65692670112241554
+          "amount_wei": 65692670112241550
         }
       ]
     },
@@ -698,7 +692,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.2262524307123564,
-          "amount_wei": 226252430712356394
+          "amount_wei": 226252430712356380
         },
         {
           "nft_id": 684,
@@ -730,7 +724,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.2102639185998859,
-          "amount_wei": 210263918599885922
+          "amount_wei": 210263918599885920
         },
         {
           "nft_id": 1286,
@@ -754,7 +748,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.20039137903134152,
-          "amount_wei": 200391379031341522
+          "amount_wei": 200391379031341540
         },
         {
           "nft_id": 1240,
@@ -778,7 +772,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.18590856171157658,
-          "amount_wei": 185908561711576576
+          "amount_wei": 185908561711576580
         },
         {
           "nft_id": 978,
@@ -802,7 +796,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.17923898719688922,
-          "amount_wei": 179238987196889219
+          "amount_wei": 179238987196889200
         }
       ]
     },
@@ -818,7 +812,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.15902083106024395,
-          "amount_wei": 159020831060243959
+          "amount_wei": 159020831060243970
         }
       ]
     },
@@ -834,7 +828,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.1504369933932912,
-          "amount_wei": 150436993393291186
+          "amount_wei": 150436993393291200
         },
         {
           "nft_id": 1371,
@@ -858,7 +852,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.13834899763880762,
-          "amount_wei": 138348997638807622
+          "amount_wei": 138348997638807620
         }
       ]
     },
@@ -882,7 +876,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.1369251383475629,
-          "amount_wei": 136925138347562907
+          "amount_wei": 136925138347562910
         }
       ]
     },
@@ -906,7 +900,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.1265547303218316,
-          "amount_wei": 126554730321831582
+          "amount_wei": 126554730321831580
         }
       ]
     },
@@ -954,7 +948,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.11498698693093395,
-          "amount_wei": 114986986930933956
+          "amount_wei": 114986986930933950
         }
       ]
     },
@@ -970,7 +964,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.10505188102563544,
-          "amount_wei": 105051881025635444
+          "amount_wei": 105051881025635440
         }
       ]
     },
@@ -986,7 +980,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.08696290175042855,
-          "amount_wei": 86962901750428551
+          "amount_wei": 86962901750428540
         }
       ]
     },
@@ -1010,7 +1004,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.08608818725720865,
-          "amount_wei": 86088187257208659
+          "amount_wei": 86088187257208660
         },
         {
           "nft_id": 815,
@@ -1034,7 +1028,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.08123487669476569,
-          "amount_wei": 81234876694765683
+          "amount_wei": 81234876694765680
         }
       ]
     },
@@ -1050,7 +1044,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.0805192704472668,
-          "amount_wei": 80519270447266803
+          "amount_wei": 80519270447266800
         }
       ]
     },
@@ -1066,7 +1060,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.07548743918119477,
-          "amount_wei": 75487439181194776
+          "amount_wei": 75487439181194780
         }
       ]
     },
@@ -1082,7 +1076,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.07035269322956988,
-          "amount_wei": 70352693229569879
+          "amount_wei": 70352693229569880
         },
         {
           "nft_id": 998,
@@ -1106,7 +1100,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.06274821353535182,
-          "amount_wei": 62748213535351809
+          "amount_wei": 62748213535351810
         }
       ]
     },
@@ -1130,7 +1124,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.06055281839760044,
-          "amount_wei": 60552818397600441
+          "amount_wei": 60552818397600440
         }
       ]
     },
@@ -1146,7 +1140,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.05414629249183867,
-          "amount_wei": 54146292491838672
+          "amount_wei": 54146292491838670
         },
         {
           "nft_id": 1086,
@@ -1170,7 +1164,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.05397471205524211,
-          "amount_wei": 53974712055242109
+          "amount_wei": 53974712055242110
         }
       ]
     },
@@ -1186,7 +1180,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.05344030896558625,
-          "amount_wei": 53440308965586247
+          "amount_wei": 53440308965586250
         }
       ]
     },
@@ -1202,7 +1196,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.05340664157093793,
-          "amount_wei": 53406641570937927
+          "amount_wei": 53406641570937930
         }
       ]
     },
@@ -1218,7 +1212,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.053228204379301834,
-          "amount_wei": 53228204379301835
+          "amount_wei": 53228204379301830
         }
       ]
     },
@@ -1234,7 +1228,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.049938698803377174,
-          "amount_wei": 49938698803377175
+          "amount_wei": 49938698803377176
         },
         {
           "nft_id": 1381,
@@ -1274,7 +1268,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.04157410146827513,
-          "amount_wei": 41574101468275127
+          "amount_wei": 41574101468275130
         },
         {
           "nft_id": 714,
@@ -1298,7 +1292,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.037461656584875956,
-          "amount_wei": 37461656584875959
+          "amount_wei": 37461656584875960
         }
       ]
     },
@@ -1330,7 +1324,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.03472800481303006,
-          "amount_wei": 34728004813030061
+          "amount_wei": 34728004813030060
         }
       ]
     },
@@ -1378,7 +1372,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.03127680314221767,
-          "amount_wei": 31276803142217665
+          "amount_wei": 31276803142217664
         }
       ]
     },
@@ -1394,7 +1388,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.030204147945713248,
-          "amount_wei": 30204147945713247
+          "amount_wei": 30204147945713250
         }
       ]
     },
@@ -1418,7 +1412,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.029393342220291614,
-          "amount_wei": 29393342220291614
+          "amount_wei": 29393342220291616
         }
       ]
     },
@@ -1458,7 +1452,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.02927081144964985,
-          "amount_wei": 29270811449649851
+          "amount_wei": 29270811449649852
         },
         {
           "nft_id": 1314,
@@ -1490,7 +1484,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.028687494993978827,
-          "amount_wei": 28687494993978826
+          "amount_wei": 28687494993978824
         }
       ]
     },
@@ -1506,7 +1500,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.027788960662104848,
-          "amount_wei": 27788960662104848
+          "amount_wei": 27788960662104850
         }
       ]
     },
@@ -1522,7 +1516,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.027518980221210704,
-          "amount_wei": 27518980221210706
+          "amount_wei": 27518980221210704
         }
       ]
     },
@@ -1538,7 +1532,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.027254557572448986,
-          "amount_wei": 27254557572448986
+          "amount_wei": 27254557572448984
         }
       ]
     },
@@ -1554,7 +1548,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.026720154482793124,
-          "amount_wei": 26720154482793123
+          "amount_wei": 26720154482793124
         }
       ]
     },
@@ -1594,7 +1588,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.024846369897074203,
-          "amount_wei": 24846369897074202
+          "amount_wei": 24846369897074200
         }
       ]
     },
@@ -1610,7 +1604,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.024405411466062125,
-          "amount_wei": 24405411466062125
+          "amount_wei": 24405411466062124
         },
         {
           "nft_id": 420,
@@ -1634,7 +1628,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.022995836244466914,
-          "amount_wei": 22995836244466914
+          "amount_wei": 22995836244466910
         }
       ]
     },
@@ -1656,19 +1650,11 @@
     },
     {
       "address": "0xe37f9cc9ab6af24c88aa12d8ff41d2a0ae19db47",
-      "balance_eth": 0.021376123586234495,
-      "balance_wei": "21376123586234498",
+      "balance_eth": 0,
+      "balance_wei": "0",
       "allowlisted": true,
-      "nft_details": [
-        {
-          "nft_id": 1034,
-          "asset_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "asset_symbol": "WETH",
-          "decimals": 18,
-          "amount": 0.0213761235862345,
-          "amount_wei": 21376123586234498
-        }
-      ]
+      "nft_details": [],
+      "claimed": true
     },
     {
       "address": "0x1a9c2fd5239d069de0803c1da55e74511fb71cab",
@@ -1682,7 +1668,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.02102181433779266,
-          "amount_wei": 21021814337792662
+          "amount_wei": 21021814337792664
         }
       ]
     },
@@ -1698,7 +1684,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.019483629378620283,
-          "amount_wei": 19483629378620283
+          "amount_wei": 19483629378620284
         }
       ]
     },
@@ -1730,7 +1716,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.018505766405676912,
-          "amount_wei": 18505766405676911
+          "amount_wei": 18505766405676910
         }
       ]
     },
@@ -1754,7 +1740,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.018063359959156543,
-          "amount_wei": 18063359959156542
+          "amount_wei": 18063359959156544
         }
       ]
     },
@@ -1786,7 +1772,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.016457317228115043,
-          "amount_wei": 16457317228115043
+          "amount_wei": 16457317228115044
         }
       ]
     },
@@ -1802,7 +1788,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.014188017954121083,
-          "amount_wei": 14188017954121083
+          "amount_wei": 14188017954121084
         }
       ]
     },
@@ -1866,7 +1852,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.011486994412152764,
-          "amount_wei": 11486994412152763
+          "amount_wei": 11486994412152764
         }
       ]
     },
@@ -1882,7 +1868,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.011325698548589709,
-          "amount_wei": 11325698548589709
+          "amount_wei": 11325698548589708
         }
       ]
     },
@@ -1914,7 +1900,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.01076595759541306,
-          "amount_wei": 10765957595413061
+          "amount_wei": 10765957595413060
         }
       ]
     },
@@ -1930,7 +1916,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.010687794591572422,
-          "amount_wei": 10687794591572421
+          "amount_wei": 10687794591572420
         }
       ]
     },
@@ -1970,7 +1956,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.009720792068323873,
-          "amount_wei": 9720792068323873
+          "amount_wei": 9720792068323872
         },
         {
           "nft_id": 694,
@@ -1986,7 +1972,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 4.937896234760357,
-          "amount_wei": 4937896234760357175
+          "amount_wei": 4937896234760357000
         }
       ]
     },
@@ -2018,7 +2004,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.009532768762921657,
-          "amount_wei": 9532768762921657
+          "amount_wei": 9532768762921656
         }
       ]
     },
@@ -2034,7 +2020,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.009437938830623417,
-          "amount_wei": 9437938830623417
+          "amount_wei": 9437938830623416
         }
       ]
     },
@@ -2066,7 +2052,7 @@
           "asset_symbol": "WETH",
           "decimals": 18,
           "amount": 0.00913261118555468,
-          "amount_wei": 9132611185554679
+          "amount_wei": 9132611185554680
         },
         {
           "nft_id": 252,
@@ -2272,19 +2258,11 @@
     },
     {
       "address": "0x54fbc298d201efad57b40e336c04c84f7d01b7bd",
-      "balance_eth": 0.006589292613198986,
-      "balance_wei": "6589292613198986",
+      "balance_eth": 0,
+      "balance_wei": "0",
       "allowlisted": true,
-      "nft_details": [
-        {
-          "nft_id": 726,
-          "asset_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-          "asset_symbol": "WETH",
-          "decimals": 18,
-          "amount": 0.006589292613198986,
-          "amount_wei": 6589292613198986
-        }
-      ]
+      "nft_details": [],
+      "claimed": true
     },
     {
       "address": "0x84dcc39b1559a96798e8f94c35e2445a11ac3627",
@@ -2578,7 +2556,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 14.724565522181514,
-          "amount_wei": 14724565522181513309
+          "amount_wei": 14724565522181513000
         },
         {
           "nft_id": 601,
@@ -2650,7 +2628,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 0.20752088826841,
-          "amount_wei": 207520888268409996
+          "amount_wei": 207520888268410000
         },
         {
           "nft_id": 845,
@@ -2722,7 +2700,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 7.755613455581938,
-          "amount_wei": 7755613455581937773
+          "amount_wei": 7755613455581938000
         },
         {
           "nft_id": 707,
@@ -3568,7 +3546,7 @@
     },
     {
       "address": "0xdf34765257b5d3ce333747ce3c4737321d9bf9a4",
-      "balance_eth": 3.7701195447662e-05,
+      "balance_eth": 0.000037701195447662,
       "balance_wei": "37701195447662",
       "allowlisted": true,
       "nft_details": [
@@ -3578,21 +3556,21 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 0.35549817191845073,
-          "amount_wei": 355498171918450719
+          "amount_wei": 355498171918450700
         },
         {
           "nft_id": 1487,
           "asset_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "asset_symbol": "WETH",
           "decimals": 18,
-          "amount": 3.7701195447662e-05,
+          "amount": 0.000037701195447662,
           "amount_wei": 37701195447662
         }
       ]
     },
     {
       "address": "0x5a33b47507e5225fcd7df11de06c84680ea5db87",
-      "balance_eth": 3.372895788423e-06,
+      "balance_eth": 0.000003372895788423,
       "balance_wei": "3372895788423",
       "allowlisted": true,
       "nft_details": [
@@ -3601,7 +3579,7 @@
           "asset_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "asset_symbol": "WETH",
           "decimals": 18,
-          "amount": 8.01604634483e-07,
+          "amount": 8.01604634483e-7,
           "amount_wei": 801604634483
         },
         {
@@ -3609,7 +3587,7 @@
           "asset_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "asset_symbol": "WETH",
           "decimals": 18,
-          "amount": 2.57129115394e-06,
+          "amount": 0.00000257129115394,
           "amount_wei": 2571291153940
         },
         {
@@ -3634,7 +3612,7 @@
     },
     {
       "address": "0x0133ac1fa47d334cf0c3e940b51e3cb9922ee8ee",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -3650,7 +3628,7 @@
     },
     {
       "address": "0x0251a94286c3a2cfebefd2558b916b7a6c180476",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -3666,7 +3644,7 @@
     },
     {
       "address": "0x0254a387d40d8712e418c3e8f11c1cc87f7e017b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -3682,7 +3660,7 @@
     },
     {
       "address": "0x02b9f2947f65377d7600783c62b0faa23f4f8114",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -3698,7 +3676,7 @@
     },
     {
       "address": "0x0346562bcf427797cce8e3a2ba12808240c6d644",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -3722,7 +3700,7 @@
     },
     {
       "address": "0x034d9a3be87fb71f4709f47f17893ce417a08357",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -3738,7 +3716,7 @@
     },
     {
       "address": "0x03c1bb0c6129464bf63ca1430aa3c523978ff70d",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -3754,7 +3732,7 @@
     },
     {
       "address": "0x03f7924ca4aee66e0e8d808f58da51e4abafc8ba",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -3770,7 +3748,7 @@
     },
     {
       "address": "0x047589c0b1e7a8498d27997415ab5e1f793263a5",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -3786,7 +3764,7 @@
     },
     {
       "address": "0x05b5952da949f25368a5473d3d59b5ac73fad486",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -3802,7 +3780,7 @@
     },
     {
       "address": "0x063ee592f57d9d0762b35d316c4b71fba01302c8",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -3818,7 +3796,7 @@
     },
     {
       "address": "0x068a32d3ebb7481ecbc226fc6d3b1fff25f9e825",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -3834,7 +3812,7 @@
     },
     {
       "address": "0x0725754aec5ad525bf08d1e30b47b3209d2967ed",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -3850,7 +3828,7 @@
     },
     {
       "address": "0x07ac816d88643a7140cba1624980a0c5e12e7a18",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -3866,7 +3844,7 @@
     },
     {
       "address": "0x083e958db271a5ba105c0878a94507fe37f25446",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -3882,7 +3860,7 @@
     },
     {
       "address": "0x09a76bd0c5e8c358c01de1ac6a2510e9f85b7539",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -3898,7 +3876,7 @@
     },
     {
       "address": "0x0a335391047f06bd67af434314614b39c70499eb",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -3914,7 +3892,7 @@
     },
     {
       "address": "0x0a5eddb9257a871d59735d5c54170fb72aea55b1",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -3940,13 +3918,13 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 477.4875183029325,
-          "amount_wei": 477487518302932469544
+          "amount_wei": 477487518302932500000
         }
       ]
     },
     {
       "address": "0x0af065833d434347633821964ba8447178b22a54",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -3962,7 +3940,7 @@
     },
     {
       "address": "0x0b1a1e1176b2aa3f9947c5648cd7ccda4adc172a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -3978,7 +3956,7 @@
     },
     {
       "address": "0x0b95b4e660e2a902dc769db85ce1f10eb1008433",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -3994,7 +3972,7 @@
     },
     {
       "address": "0x0c66f4319dee51b256ea57591aa998501044ee62",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4010,7 +3988,7 @@
     },
     {
       "address": "0x0d0f05a48838dd7994aa24626a343436846a340c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4026,7 +4004,7 @@
     },
     {
       "address": "0x10fda64463deb4ecf24d6739a3a2181710e02790",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4042,7 +4020,7 @@
     },
     {
       "address": "0x11d13d3778930fc0dd5098940c00b24fc0db608a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -4058,7 +4036,7 @@
     },
     {
       "address": "0x129e81dad8cfaeecee130309b39b5f22215062ed",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4074,7 +4052,7 @@
     },
     {
       "address": "0x132d05658b236472d604baf3cf394618de9123ad",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4090,7 +4068,7 @@
     },
     {
       "address": "0x13b36e9da5f0f37c29b04bcdbf349531219bd7ac",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4106,7 +4084,7 @@
     },
     {
       "address": "0x13dd92b90aa4385327a0791f31d7156beebf2c6d",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4122,7 +4100,7 @@
     },
     {
       "address": "0x14c6b6dc436b2f7010992e1f142260d9f210e3d2",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4138,7 +4116,7 @@
     },
     {
       "address": "0x150be62edddd543452545e502bcaf6800bcaf2d6",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -4154,7 +4132,7 @@
     },
     {
       "address": "0x153d85ef7f2dd9e53002bbe3a656674842e34b5b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4170,7 +4148,7 @@
     },
     {
       "address": "0x1546b970afc85bb7448b2c50504be0c4640408dd",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4194,7 +4172,7 @@
     },
     {
       "address": "0x16c5d5ef8e8d41ad626ecb0d2f7b8179f4ae856e",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4218,7 +4196,7 @@
     },
     {
       "address": "0x16faf36b378bb424bbf56d76a1b009c727218fc5",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4234,7 +4212,7 @@
     },
     {
       "address": "0x1774041e36f2790d3176daa59d400c04b9f57e6c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4250,7 +4228,7 @@
     },
     {
       "address": "0x17cbb089cf487cb1a3cfd00606dec10e565d4483",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4266,7 +4244,7 @@
     },
     {
       "address": "0x17cdc471a1f2fd24713ea96b02bc16d0f0d054c4",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -4282,7 +4260,7 @@
     },
     {
       "address": "0x18398b19a438ec73845e417298055b1599212039",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -4298,7 +4276,7 @@
     },
     {
       "address": "0x18461b9cfdcfd7371734a3cad04c2a0979e5e981",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4314,7 +4292,7 @@
     },
     {
       "address": "0x184c651478aff7daef6493525ec38973e32de4c3",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4338,7 +4316,7 @@
     },
     {
       "address": "0x1a4204cb46137f0acb9816a67f295dcabbac3250",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4354,7 +4332,7 @@
     },
     {
       "address": "0x1a68a88432925ad8aaf43ee36301e3c83a7e20c4",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4370,7 +4348,7 @@
     },
     {
       "address": "0x1a7eb3e51e29c59295544a41ab36156f9fa6a5d5",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4386,7 +4364,7 @@
     },
     {
       "address": "0x1c0ec596303ce6666f5a4d24c29e78cf881cb5d3",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4402,7 +4380,7 @@
     },
     {
       "address": "0x1c8c0c14689ce4f3f314d3f92b8699c6ff2a6276",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4418,7 +4396,7 @@
     },
     {
       "address": "0x1cd396623ec64e45be3a81f7847cebd996066383",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4434,7 +4412,7 @@
     },
     {
       "address": "0x1d608491ca3042fb1f7c3144fa25d59e4a0e7e1a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4450,7 +4428,7 @@
     },
     {
       "address": "0x1d7289cd06071bcf4e06eeb84460889c7528bd9e",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4466,7 +4444,7 @@
     },
     {
       "address": "0x1e9eac619067f5df13090155e4785a61cbe1f132",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4484,7 +4462,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 40.45086856867808,
-          "amount_wei": 40450868568678083977
+          "amount_wei": 40450868568678080000
         },
         {
           "nft_id": 302,
@@ -4498,7 +4476,7 @@
     },
     {
       "address": "0x1ea573d67551947be7cae8b8a39bec5213287bbf",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4514,7 +4492,7 @@
     },
     {
       "address": "0x1f2d193b652df0b403319e16a80059096c6b18b3",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4532,13 +4510,13 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 0.7919987246326068,
-          "amount_wei": 791998724632606787
+          "amount_wei": 791998724632606800
         }
       ]
     },
     {
       "address": "0x1ff3441a2ada69c39a30f5891b919981d1e0e45f",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4554,7 +4532,7 @@
     },
     {
       "address": "0x201b856fe2d5539cbd325cd2c491ca75e4dfa2e7",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -4570,7 +4548,7 @@
     },
     {
       "address": "0x2089749d85924ea1a9a06edc1b0d2b5583b25dfe",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4586,7 +4564,7 @@
     },
     {
       "address": "0x22c72c69633b7e0bb0f4a62debf2fcf3db1e10ab",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4602,7 +4580,7 @@
     },
     {
       "address": "0x23b4ac45b0916e7116f3cc5ab5d792dbebbd2d27",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4666,7 +4644,7 @@
     },
     {
       "address": "0x23ee1b558b6745e3092244592503d2e515bc41d0",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4682,7 +4660,7 @@
     },
     {
       "address": "0x241a3a3fecb9612464795cb1067717689c14d90c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4789,7 +4767,7 @@
     },
     {
       "address": "0x24fc2aa4569de8baa58f8ff586d3fe3d22ccb07e",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4805,7 +4783,7 @@
     },
     {
       "address": "0x2597ac3b5529d125427052a42462b0239b2918c8",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4821,7 +4799,7 @@
     },
     {
       "address": "0x25bdff966b9725ccd1d1424aed1be4e28f4eb675",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4837,7 +4815,7 @@
     },
     {
       "address": "0x25fb8461cb16990c74655a96a7f2195aaef2766c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4853,7 +4831,7 @@
     },
     {
       "address": "0x2698b76a9f726967753dda672d4de27ea897afb3",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4869,7 +4847,7 @@
     },
     {
       "address": "0x269e9e332a7648ffbe0312205144e7a0e79fa948",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4885,7 +4863,7 @@
     },
     {
       "address": "0x2710f2cdb4c921bd166bf58c8bff9697e97eb5b1",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4909,7 +4887,7 @@
     },
     {
       "address": "0x2800b279e11e268d9d74af01c551a9c52eab1be3",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4925,7 +4903,7 @@
     },
     {
       "address": "0x2850c13d0e24793f5b6ef4766f30a3f745c0a8b9",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4941,7 +4919,7 @@
     },
     {
       "address": "0x2941de336786e81a2e527d7745757cde4be82d18",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4958,7 +4936,7 @@
     },
     {
       "address": "0x29efcb334f89b2098f3346e0d7f3856158105135",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4974,7 +4952,7 @@
     },
     {
       "address": "0x29fa84db074abd26a9c7c8af9fe07635c03878ec",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -4998,7 +4976,7 @@
     },
     {
       "address": "0x2a03278590cd1962de28f9abc855cf3774fe3eb6",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5014,7 +4992,7 @@
     },
     {
       "address": "0x2b185c762f6fb49a07116ec06b238b58fe2bec53",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5024,7 +5002,7 @@
           "asset_symbol": "FRAX",
           "decimals": 18,
           "amount": 0.44420150978498263,
-          "amount_wei": 444201509784982644
+          "amount_wei": 444201509784982660
         },
         {
           "nft_id": 1448,
@@ -5032,7 +5010,7 @@
           "asset_symbol": "FRAX",
           "decimals": 18,
           "amount": 0.16577985742110035,
-          "amount_wei": 165779857421100339
+          "amount_wei": 165779857421100350
         },
         {
           "nft_id": 1450,
@@ -5048,14 +5026,14 @@
           "asset_symbol": "FRAX",
           "decimals": 18,
           "amount": 0.09090229835490336,
-          "amount_wei": 90902298354903361
+          "amount_wei": 90902298354903360
         },
         {
           "nft_id": 1464,
           "asset_address": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
           "asset_symbol": "WBTC",
           "decimals": 8,
-          "amount": 1.09e-06,
+          "amount": 0.00000109,
           "amount_wei": 109
         },
         {
@@ -5078,7 +5056,7 @@
     },
     {
       "address": "0x2c68122d41442a5f9f1024d0450e3571fb220735",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5110,7 +5088,7 @@
     },
     {
       "address": "0x2cb05e93854c3fd0ca3b80305970e295b96f38db",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5126,7 +5104,7 @@
     },
     {
       "address": "0x2d4f3efe587e0efb415bd7b5c554141d97b0fa98",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5142,7 +5120,7 @@
     },
     {
       "address": "0x2dabd1c849b5adc1fb421e043ba53be6bb2aec62",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -5158,7 +5136,7 @@
     },
     {
       "address": "0x2e6e21188cda157bbaf6f86b63a18be204a346ad",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5174,7 +5152,7 @@
     },
     {
       "address": "0x2f0d5918af0d12631df3fd45270ac3153c48f38b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5190,7 +5168,7 @@
     },
     {
       "address": "0x2f87ea9fbff1d9eaefc5549a0cc4cfc150e7d0d4",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5206,7 +5184,7 @@
     },
     {
       "address": "0x309471398adfa2b136970583ad0db66294f035e3",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -5222,7 +5200,7 @@
     },
     {
       "address": "0x317d875ca3b9f8d14f960486c0d1d1913be74e90",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5238,7 +5216,7 @@
     },
     {
       "address": "0x31fd9680937b26cd4ba89390b1f3d472768aedb4",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5262,7 +5240,7 @@
     },
     {
       "address": "0x3275379e856794ea4d7e9b5aba529842cce5af6b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5278,7 +5256,7 @@
     },
     {
       "address": "0x327b516405b9b2b4a23cd9df7c9935cb0be877e7",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5294,7 +5272,7 @@
     },
     {
       "address": "0x32c60f98fba68cbbb279f3f9a2b2eb500ff32d61",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5310,7 +5288,7 @@
     },
     {
       "address": "0x33a62b4f5c3d73c087cdca89290b8d25c2b6557d",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5326,7 +5304,7 @@
     },
     {
       "address": "0x33a7a9d626d8fa71db2b107fe219245425a347fc",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5342,7 +5320,7 @@
     },
     {
       "address": "0x3522b690eb07a991a5ca405ab2d8b465d4cc5b10",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5358,7 +5336,7 @@
     },
     {
       "address": "0x36aa48077e1e9186f98e62068258b00f491a229b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5374,7 +5352,7 @@
     },
     {
       "address": "0x36c9e304e843d50252f710aa6e337a67ee773116",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5390,7 +5368,7 @@
     },
     {
       "address": "0x375961e2ffd0b8b77527db297a22270c26a7e46d",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5406,7 +5384,7 @@
     },
     {
       "address": "0x37771e063e175d42258c6e48161b4686937e3857",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5422,7 +5400,7 @@
     },
     {
       "address": "0x3777b5e94059adde594073b0c5177ea082fb1941",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5438,7 +5416,7 @@
     },
     {
       "address": "0x37ec14e9ce9a51a58fd3597308909873ca53d67c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -5462,7 +5440,7 @@
     },
     {
       "address": "0x38e3960464c85364b9d7903c92e4e4d7da1d3af8",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5480,13 +5458,13 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 0.49846877573438764,
-          "amount_wei": 498468775734387626
+          "amount_wei": 498468775734387650
         }
       ]
     },
     {
       "address": "0x399077125e2a12689092a87513bd062075f0ecf6",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5502,23 +5480,15 @@
     },
     {
       "address": "0x3b34d0edcaa44cf2124f84dca06589789ae8abe3",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
-      "nft_details": [
-        {
-          "nft_id": 1316,
-          "asset_address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
-          "asset_symbol": "USDT",
-          "decimals": 6,
-          "amount": 11.126712,
-          "amount_wei": 11126712
-        }
-      ]
+      "nft_details": [],
+      "claimed": true
     },
     {
       "address": "0x3da5eb3ee6cd1565a50958d41bc2d42618f8c270",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5534,7 +5504,7 @@
     },
     {
       "address": "0x3f65f5e444bf66ff4eed895a0ae77dce9cae985b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5550,7 +5520,7 @@
     },
     {
       "address": "0x3f8793d2a0ec69f0bae47140886039a4dc63a960",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5566,7 +5536,7 @@
     },
     {
       "address": "0x3fbe5008330a9d6960104771e0ae35930f310dd4",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -5582,7 +5552,7 @@
     },
     {
       "address": "0x400fe5b0afc58f0fda15bf409791e5876c8780cc",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5598,7 +5568,7 @@
     },
     {
       "address": "0x405325d04f7ca9e744b8bfd9cec1497a631e333b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5614,7 +5584,7 @@
     },
     {
       "address": "0x4120dcbf632a9938fb45cd745363ec79e446f6c4",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5638,7 +5608,7 @@
     },
     {
       "address": "0x428053a28207493669c549701e908e71d98a3f07",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5654,7 +5624,7 @@
     },
     {
       "address": "0x434adb0f05e3954560753bf501ba6849436a5afc",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -5670,7 +5640,7 @@
     },
     {
       "address": "0x439fc347a360d0c9fda70f9f4f2558b78c5f27ab",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -5686,7 +5656,7 @@
     },
     {
       "address": "0x443cdc256ab36178d8fdad94b754a3cdfa9e4856",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5702,7 +5672,7 @@
     },
     {
       "address": "0x451d001e3cf403d42e6c9ed5d2b7818a618a1119",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5718,7 +5688,7 @@
     },
     {
       "address": "0x4533d0efc36630ba31a7c2cc2713b77906915820",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5734,7 +5704,7 @@
     },
     {
       "address": "0x46683e62d890e8b4e49c7260ecc31eae60b416ec",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5750,7 +5720,7 @@
     },
     {
       "address": "0x4718e39351c975cfe59ec3d8bd9f3ebf6526d696",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5766,7 +5736,7 @@
     },
     {
       "address": "0x4833e92dae27bd70a3c34db68d95fc85b40b88b7",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5782,7 +5752,7 @@
     },
     {
       "address": "0x4aa3819578909329e872db6b1c7cecd9e7ae95d9",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5798,7 +5768,7 @@
     },
     {
       "address": "0x4ba68123a0ffb26c58ba863b28403611a2d87c3f",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5814,7 +5784,7 @@
     },
     {
       "address": "0x4bc0ae26936561cb32b26dada4c2fb0577054100",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5838,23 +5808,15 @@
     },
     {
       "address": "0x4c4b46abe88f996d1b3b4a8fa41876535675ef1e",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
-      "nft_details": [
-        {
-          "nft_id": 207,
-          "asset_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-          "asset_symbol": "USDC",
-          "decimals": 6,
-          "amount": 4.777346,
-          "amount_wei": 4777346
-        }
-      ]
+      "nft_details": [],
+      "claimed": true
     },
     {
       "address": "0x4c91530e626c23fd17469e8aa6e9ccf8f26c5a08",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5870,7 +5832,7 @@
     },
     {
       "address": "0x4f2ea9733c82da4468463a2164bc2358ca3b4360",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5886,7 +5848,7 @@
     },
     {
       "address": "0x4f49c34759b7e888ce77de9dd34fec63d63495cc",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5902,7 +5864,7 @@
     },
     {
       "address": "0x4f4c3a3ab3423866849b986b60eb53df2e8602e4",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5918,7 +5880,7 @@
     },
     {
       "address": "0x508e33a2a997971ded64697b778221f2163df972",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -5934,7 +5896,7 @@
     },
     {
       "address": "0x516ecb717cd46ab54e6fa7e40dc1c76882bcc13b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5950,7 +5912,7 @@
     },
     {
       "address": "0x5180db0237291a6449dda9ed33ad90a38787621c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -5968,7 +5930,7 @@
           "asset_symbol": "FRAX",
           "decimals": 18,
           "amount": 1716.9881283397997,
-          "amount_wei": 1716988128339799753542
+          "amount_wei": 1.7169881283397998e+21
         },
         {
           "nft_id": 1073,
@@ -5984,13 +5946,13 @@
           "asset_symbol": "FXS",
           "decimals": 18,
           "amount": 10.998553932985798,
-          "amount_wei": 10998553932985798266
+          "amount_wei": 10998553932985799000
         }
       ]
     },
     {
       "address": "0x51aaa901e7e9dd308d027daec278864a0373134f",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6038,7 +6000,7 @@
     },
     {
       "address": "0x51d7193812b5b70e5e30df5c18ac2062c5f51c5e",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6054,7 +6016,7 @@
     },
     {
       "address": "0x529e6e188adb441bd5815ffd0f46bac2b4352ea3",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -6070,7 +6032,7 @@
     },
     {
       "address": "0x53104287d6e767ad4f74367dc56ec5c5a5175cdd",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6080,7 +6042,7 @@
           "asset_symbol": "FRAX",
           "decimals": 18,
           "amount": 5.358461091865897,
-          "amount_wei": 5358461091865897292
+          "amount_wei": 5358461091865897000
         },
         {
           "nft_id": 59,
@@ -6088,7 +6050,7 @@
           "asset_symbol": "FRAX",
           "decimals": 18,
           "amount": 20.723255349233032,
-          "amount_wei": 20723255349233031212
+          "amount_wei": 20723255349233033000
         },
         {
           "nft_id": 193,
@@ -6118,7 +6080,7 @@
     },
     {
       "address": "0x5464204ab93bf4e2d698875a59c8f4e988888888",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6134,7 +6096,7 @@
     },
     {
       "address": "0x548856debe034d2cb87b0e0c403f0b8b5e38d051",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6150,7 +6112,7 @@
     },
     {
       "address": "0x54fc3ba9183c877e33113b98a12f2611c5c3b100",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6166,7 +6128,7 @@
     },
     {
       "address": "0x5565206609e7ff4dcd7c19fe8319961c432734fc",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6182,7 +6144,7 @@
     },
     {
       "address": "0x560bc874e12f4100785a5a4c6ecabe7abbf9784c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6198,7 +6160,7 @@
     },
     {
       "address": "0x572032a876224a8ff33c8fb77748bba8a2d8c975",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6208,13 +6170,13 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 1.7952705376720908,
-          "amount_wei": 1795270537672090805
+          "amount_wei": 1795270537672091000
         }
       ]
     },
     {
       "address": "0x57404015b5b7ba7b8af4eb1464182f9cbb3a9ea5",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6230,7 +6192,7 @@
     },
     {
       "address": "0x581d17083f6ff69bbccdd9afba2b84171678cd2c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -6248,13 +6210,13 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 1.7913552882970731,
-          "amount_wei": 1791355288297073171
+          "amount_wei": 1791355288297073200
         }
       ]
     },
     {
       "address": "0x5827d67a7a0958436c9b5908bf6b589efb46ec05",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6270,7 +6232,7 @@
     },
     {
       "address": "0x583924a6dfa73f20d7cee1f067f56afeccdda38c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6288,13 +6250,13 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 0.7274733286071497,
-          "amount_wei": 727473328607149710
+          "amount_wei": 727473328607149700
         }
       ]
     },
     {
       "address": "0x58e2c444194ea415efe13779aa006dc36a41c842",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6310,7 +6272,7 @@
     },
     {
       "address": "0x59430c911f12e942ec630b5b3ebbe88be7d80f22",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6326,7 +6288,7 @@
     },
     {
       "address": "0x59a8621ac56712bdf42a8a9cacc4f8cb12f63e04",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6342,7 +6304,7 @@
     },
     {
       "address": "0x5a5db0626a96a5190efaa8408d4884860d57c3a8",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6358,7 +6320,7 @@
     },
     {
       "address": "0x5aacca4f56f11a5d819d2dd2ded0ff2f003836f3",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6374,7 +6336,7 @@
     },
     {
       "address": "0x5ad0d19b7f00544e9c923b71cbe482cb90eddffa",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6390,7 +6352,7 @@
     },
     {
       "address": "0x5af860fd7b2866f766450b4caa4167b89f1569da",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6406,7 +6368,7 @@
     },
     {
       "address": "0x5b1aa687371f5f34600a4899918723d26d8521c6",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6422,7 +6384,7 @@
     },
     {
       "address": "0x5b6c6fa53532772320b2924702e45e874f1663ec",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6438,7 +6400,7 @@
     },
     {
       "address": "0x5b7a9478d9f3cbff0f6a471090fe45cec42e7e8e",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6454,7 +6416,7 @@
     },
     {
       "address": "0x5d94af988b8e4783752f1fd84cde988b7e94bc0a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6470,7 +6432,7 @@
     },
     {
       "address": "0x5dc018f3759fd10d00047405aba436fc11d0189b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6486,7 +6448,7 @@
     },
     {
       "address": "0x5e35994dfb6b2494428d1919b15b7fd3a7de0c3a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6502,7 +6464,7 @@
     },
     {
       "address": "0x5f1712359bb12e46c573430475eac61d6bfd5d8b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6518,7 +6480,7 @@
     },
     {
       "address": "0x5f45b03ecff80eb6b4d5829661fd49a241f06a33",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6534,7 +6496,7 @@
     },
     {
       "address": "0x60b1f0766399e7b2596472e521722aad8c02ffcb",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6550,7 +6512,7 @@
     },
     {
       "address": "0x611eae57ee15b4e8d8d8fb8beb3a94c288a759f0",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6566,7 +6528,7 @@
     },
     {
       "address": "0x6179a66b05f6426e7260eec44abdf702ae435516",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6584,7 +6546,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 1.091924842854745,
-          "amount_wei": 1091924842854745062
+          "amount_wei": 1091924842854745100
         },
         {
           "nft_id": 1260,
@@ -6598,7 +6560,7 @@
     },
     {
       "address": "0x62284b7f2b80c3a2196442a3913694bbf30a6f0a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6614,7 +6576,7 @@
     },
     {
       "address": "0x62494bd8fc21e4ffbf9315ee8a5c76052580226c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6630,7 +6592,7 @@
     },
     {
       "address": "0x62c0c8a0456a977aa007326bb9d8cc1e9d3cc082",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6646,7 +6608,7 @@
     },
     {
       "address": "0x62ec0097652326474ee187d0676c6ca7bef71852",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -6662,7 +6624,7 @@
     },
     {
       "address": "0x639fa1f482457cbacc10d8f68a095a2082695d12",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6678,7 +6640,7 @@
     },
     {
       "address": "0x646cb1dc3bfe9b349adaf37bc3a500791259d8a6",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6694,7 +6656,7 @@
     },
     {
       "address": "0x655552b438d13027bd46dee323f301b37ab56c36",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6710,7 +6672,7 @@
     },
     {
       "address": "0x6594eda986c6c7cfe6ab06ca2c56882585f477ff",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6736,13 +6698,13 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 5.584635725890869,
-          "amount_wei": 5584635725890868734
+          "amount_wei": 5584635725890868000
         }
       ]
     },
     {
       "address": "0x65b3626de3c01fd20ad06b34ceb8881b20e0514f",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -6758,7 +6720,7 @@
     },
     {
       "address": "0x667eeb11e3adfc2f3a8e30c2787f74a2760eccfe",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6782,7 +6744,7 @@
     },
     {
       "address": "0x667ff148b40829f1d224a1d76ad943e901885c38",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6800,13 +6762,13 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 0.4610627888275413,
-          "amount_wei": 461062788827541309
+          "amount_wei": 461062788827541300
         }
       ]
     },
     {
       "address": "0x67d0e4d1957de64dbec2a815871bc36579615790",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6822,23 +6784,15 @@
     },
     {
       "address": "0x67d832d19645a61442fd7967f9ec9fe42bf271a6",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
-      "nft_details": [
-        {
-          "nft_id": 1325,
-          "asset_address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
-          "asset_symbol": "USDT",
-          "decimals": 6,
-          "amount": 2.699363,
-          "amount_wei": 2699363
-        }
-      ]
+      "nft_details": [],
+      "claimed": true
     },
     {
       "address": "0x67f4f314c58a89ba0a3e837872ed6da570266813",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6854,7 +6808,7 @@
     },
     {
       "address": "0x680f285d68b7a6641fcc4d7d609cce1e9bdb3bba",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6878,7 +6832,7 @@
     },
     {
       "address": "0x69b979dcc81d2ca4a814ca8b7da947e7e89a6c55",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6894,7 +6848,7 @@
     },
     {
       "address": "0x6a1083fe242460f0f1197ee10d9ed3f0054aa7d1",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6910,7 +6864,7 @@
     },
     {
       "address": "0x6aab319f36c0c4d1acfce04508f9871ae7a1cdf2",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6926,7 +6880,7 @@
     },
     {
       "address": "0x6bec0bca2f15876f675f2c38958ff986551e4db1",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6942,7 +6896,7 @@
     },
     {
       "address": "0x6c7c332a090c8d2085857cf3220ea01c6d45a723",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6958,7 +6912,7 @@
     },
     {
       "address": "0x6ca055ebcda2209012a9984bc4895d8637499fa6",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6974,7 +6928,7 @@
     },
     {
       "address": "0x6cd75372311bb7e0f2234df68acbdd15a82cc053",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -6990,31 +6944,15 @@
     },
     {
       "address": "0x6d18ee9d1a7a2aedce06578282803636d81e0b35",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
-      "nft_details": [
-        {
-          "nft_id": 577,
-          "asset_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-          "asset_symbol": "USDC",
-          "decimals": 6,
-          "amount": 6.628415,
-          "amount_wei": 6628415
-        },
-        {
-          "nft_id": 578,
-          "asset_address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
-          "asset_symbol": "USDT",
-          "decimals": 6,
-          "amount": 4.602257,
-          "amount_wei": 4602257
-        }
-      ]
+      "nft_details": [],
+      "claimed": true
     },
     {
       "address": "0x6d2c2d57d49b015847a4a48ebb143138a5d7a455",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7030,7 +6968,7 @@
     },
     {
       "address": "0x6dda1ec506630cb9e2e6872f40b1c3a591699915",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -7054,7 +6992,7 @@
     },
     {
       "address": "0x6e4de06303632466ac324cc89accf43e1c9d7959",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7070,7 +7008,7 @@
     },
     {
       "address": "0x6e55239d7d508fdbe14cad49f330a4e243046c04",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7086,7 +7024,7 @@
     },
     {
       "address": "0x6e9a88971e957abb41bae4e2677cae258f0c1e76",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7102,7 +7040,7 @@
     },
     {
       "address": "0x6e9e0dbc526005018446b5f3787b88f2602a14e0",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7118,7 +7056,7 @@
     },
     {
       "address": "0x6ef9bb653d722e76925b7f933099a8e6911327b2",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7134,7 +7072,7 @@
     },
     {
       "address": "0x6f1d13763c581dbef3842595a2aa5b7b9e7ae4ab",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7152,7 +7090,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 6.082014835738655,
-          "amount_wei": 6082014835738655364
+          "amount_wei": 6082014835738656000
         },
         {
           "nft_id": 893,
@@ -7166,7 +7104,7 @@
     },
     {
       "address": "0x6f2bbbdf4e93aa39d36933d28ac2b1253a17aa85",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7182,7 +7120,7 @@
     },
     {
       "address": "0x6f413b49673d2f918cde926256ab1b7191a87287",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7198,7 +7136,7 @@
     },
     {
       "address": "0x6f5be60aa250493fcde1befd2ba96229c13f2da8",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7214,7 +7152,7 @@
     },
     {
       "address": "0x704ee58ff8a4c4b79d2d38d3724409f5ff352566",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7230,7 +7168,7 @@
     },
     {
       "address": "0x705ab5b823d692f4d6a5ec6c31e6dbb6684bcf22",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7246,7 +7184,7 @@
     },
     {
       "address": "0x70dc4b974f128d9a39af35ae5f8b72ca6b7056f0",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7262,7 +7200,7 @@
     },
     {
       "address": "0x71abba53768a3d8fab89ff22aba855d36aaf0147",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7278,7 +7216,7 @@
     },
     {
       "address": "0x721866627125c2418844d78ccf8754a765200dad",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7310,7 +7248,7 @@
     },
     {
       "address": "0x72555bec8a54b57641b042cad3f7febf15028df2",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7320,7 +7258,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 85.62134703935736,
-          "amount_wei": 85621347039357360267
+          "amount_wei": 85621347039357350000
         },
         {
           "nft_id": 438,
@@ -7334,7 +7272,7 @@
     },
     {
       "address": "0x7470f735544ce7bb694db1148c8519d3b114ed8a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7350,7 +7288,7 @@
     },
     {
       "address": "0x74a46eae0ef759312f21afc2447e2a4989e51770",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7366,7 +7304,7 @@
     },
     {
       "address": "0x75ae3bcfba2caf0248e14b8c74195cb1e0c93b7a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7382,7 +7320,7 @@
     },
     {
       "address": "0x7680f91d3d3a5f451a6387ba802661d96f78dd8f",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7398,7 +7336,7 @@
     },
     {
       "address": "0x76f8e0b4023449502e5a733d504e99e53ec9b537",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7414,7 +7352,7 @@
     },
     {
       "address": "0x77a7019ff74b3831be654b03d9b5655d973d641c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7430,7 +7368,7 @@
     },
     {
       "address": "0x77cfc8b0cc717ca5f99007572d00b53d776c78de",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -7446,7 +7384,7 @@
     },
     {
       "address": "0x7822b0e0d4d53c7ed7e35c247d9464f2f23daea4",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7462,7 +7400,7 @@
     },
     {
       "address": "0x78af8a02f613fdca627855631765be8c6eaad8b7",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -7478,7 +7416,7 @@
     },
     {
       "address": "0x78d59a77d492cdbc8dc752367b79ee3520787bf2",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7494,7 +7432,7 @@
     },
     {
       "address": "0x79320de2e3a2d1b644f655d990dc5a51cc91d74b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7510,7 +7448,7 @@
     },
     {
       "address": "0x79d6b65b48651d4d03cbe42ca0b55c567593e67f",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7526,7 +7464,7 @@
     },
     {
       "address": "0x7b12e2c21806e232845122a4bfdb3cb3d002f80f",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7536,7 +7474,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 0.8668061302947903,
-          "amount_wei": 866806130294790269
+          "amount_wei": 866806130294790300
         },
         {
           "nft_id": 1091,
@@ -7558,7 +7496,7 @@
     },
     {
       "address": "0x7c33b126119aeb4a999d704f0dc87c4ad6d4940e",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7574,7 +7512,7 @@
     },
     {
       "address": "0x7cbff5b9e6cb68188b2df874f723deb064baa914",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7590,7 +7528,7 @@
     },
     {
       "address": "0x7ccd105ba6bbf12e465f15312b39098bfc87a50f",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7606,7 +7544,7 @@
     },
     {
       "address": "0x7d207d34481c8d2a6a01c07a69d8c4dffd534e4a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7622,7 +7560,7 @@
     },
     {
       "address": "0x7e02ded00b1e5257fe6d4f9a5b58ccda83955078",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7638,7 +7576,7 @@
     },
     {
       "address": "0x7e2dba7b75475dc11ab73a81252de3cba85222bc",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -7654,7 +7592,7 @@
     },
     {
       "address": "0x7ee136128a88561b703b917557130f4242900306",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7670,7 +7608,7 @@
     },
     {
       "address": "0x7fa95d99804fe5a46a42be0dce279b850e1cd6ba",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7702,7 +7640,7 @@
     },
     {
       "address": "0x7fc542bb59469155b31e3aa4347f6ceb8f23d519",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7718,7 +7656,7 @@
     },
     {
       "address": "0x80e46246e765f301fcb6940906eb86760e25e079",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7734,7 +7672,7 @@
     },
     {
       "address": "0x8155fdec473a36f5fcf7db89892be7f4cccd92f2",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7750,7 +7688,7 @@
     },
     {
       "address": "0x8189ca95335af50a0c9490547186008a6d7747da",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7776,13 +7714,13 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 30.815937145295376,
-          "amount_wei": 30815937145295376337
+          "amount_wei": 30815937145295376000
         }
       ]
     },
     {
       "address": "0x819fd305473f8ba3d1962681abfddff554d45897",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -7792,7 +7730,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 3.533585507130447,
-          "amount_wei": 3533585507130447038
+          "amount_wei": 3533585507130447000
         },
         {
           "nft_id": 910,
@@ -7806,7 +7744,7 @@
     },
     {
       "address": "0x82fcd7cd3151b0ab9e4c00629f123d45ad17fa73",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7822,7 +7760,7 @@
     },
     {
       "address": "0x8654ce7e1f04291f66f05108f0525df9cef6b0c8",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7838,7 +7776,7 @@
     },
     {
       "address": "0x876cc318e329879f807f43e93bdad916e3b52441",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7862,7 +7800,7 @@
     },
     {
       "address": "0x878b72f77601bc01e45ac949c20f4a75c09f97bd",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7878,7 +7816,7 @@
     },
     {
       "address": "0x882657826c60043cac02d7359743db64932f5c98",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7894,7 +7832,7 @@
     },
     {
       "address": "0x890f4a8b98d90fea91eb29f193b640ceb2461761",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7910,7 +7848,7 @@
     },
     {
       "address": "0x8938892193fddab15f113459e91e1c4ab1f052a4",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7920,13 +7858,13 @@
           "asset_symbol": "FRAX",
           "decimals": 18,
           "amount": 271.2834293652276,
-          "amount_wei": 271283429365227632196
+          "amount_wei": 271283429365227620000
         }
       ]
     },
     {
       "address": "0x8b3c2636435e0997d360a7d99d78896c43f66e1b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7942,7 +7880,7 @@
     },
     {
       "address": "0x8b6e7c1a343efd9c7d1e9e06cdae24d5a664def3",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7958,7 +7896,7 @@
     },
     {
       "address": "0x8bc6b3fd67be8d0ad383b71e6f6b1fbafe0716e8",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7974,7 +7912,7 @@
     },
     {
       "address": "0x8d354807f14fd6f006ac959ab4a2a9c13fa5484a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -7990,7 +7928,7 @@
     },
     {
       "address": "0x8d76d09aea577dbdc45ded2259586e22b1b8edcf",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8006,7 +7944,7 @@
     },
     {
       "address": "0x8e13649613b774ab67d1c1edfc22a2202270fd81",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8022,7 +7960,7 @@
     },
     {
       "address": "0x8e1488d23678f081caecf59055da92f24128535c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8038,7 +7976,7 @@
     },
     {
       "address": "0x8ef7110844bb81bed559213bdb6fae8e550f164a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8054,7 +7992,7 @@
     },
     {
       "address": "0x8f32188b684ae7fc0734e393ff5a3e7f803e5f10",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8070,7 +8008,7 @@
     },
     {
       "address": "0x8f5ac5101df394eb744ae23f05149a79a4ba07c1",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8086,7 +8024,7 @@
     },
     {
       "address": "0x90763cf0ceb2d3ea37702d69db885e498eee14fb",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8102,7 +8040,7 @@
     },
     {
       "address": "0x9087eb5efafd064c322c23f51c851b23236b675e",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8118,7 +8056,7 @@
     },
     {
       "address": "0x90c5e75d2b73a7349c8be0fc6e60ee228a35f313",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8134,7 +8072,7 @@
     },
     {
       "address": "0x90e34f5df30f0510d32bb5e35816a2204e241feb",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8150,7 +8088,7 @@
     },
     {
       "address": "0x90eefef678e14e2db237640c887fe1981e9f500b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8166,7 +8104,7 @@
     },
     {
       "address": "0x90f5253caa51201087d179d977711fb0caba58ef",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8182,7 +8120,7 @@
     },
     {
       "address": "0x9172fd7d0a6d855677629bc822647ab55e64aaba",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8198,7 +8136,7 @@
     },
     {
       "address": "0x922f02a89a28e63b3198b85004e685abc32ac41a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -8214,7 +8152,7 @@
     },
     {
       "address": "0x9267dd3ef3cb82f5e2c1cfe70de16fbd33f32680",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8230,7 +8168,7 @@
     },
     {
       "address": "0x93208ff8d7abba4d871626a5a31643e08d52a18a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8246,7 +8184,7 @@
     },
     {
       "address": "0x94692800a06c21f515c3f7656800f9e435345682",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8262,7 +8200,7 @@
     },
     {
       "address": "0x9627cc3d60df611cb826405fc6cd739a6573476a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -8278,7 +8216,7 @@
     },
     {
       "address": "0x97031e925daafd03f9c326e61da61b19fdc02f07",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -8294,7 +8232,7 @@
     },
     {
       "address": "0x9713422f45bf4a053b23fa36b4d6bbb7ac403995",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8310,7 +8248,7 @@
     },
     {
       "address": "0x97b14a44d4f7b40bff651e3f8f92d04ecd74ecf1",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8326,7 +8264,7 @@
     },
     {
       "address": "0x97f83e0ded9650429504f78fa025602b5dde728a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8342,7 +8280,7 @@
     },
     {
       "address": "0x9915609ddbc2c6fa1584fe4e67dbd715606ec3f1",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8358,7 +8296,7 @@
     },
     {
       "address": "0x9a1e402d39cb2d49cf23e6767c6458126ea24631",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8374,7 +8312,7 @@
     },
     {
       "address": "0x9aee2d0bd98743a6b603468dd5f1661e94f2273e",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8390,7 +8328,7 @@
     },
     {
       "address": "0x9b94f182ff8a2f72a52aa7f41a400c2a26e7a612",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8406,7 +8344,7 @@
     },
     {
       "address": "0x9c38378f786b04d0d9f104c3e33492691456ba44",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8422,7 +8360,7 @@
     },
     {
       "address": "0x9cbf099ff424979439dfba03f00b5961784c06ce",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8438,7 +8376,7 @@
     },
     {
       "address": "0x9cc0c6860e0362293b0d576dac9cd93215fa0b8c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8448,13 +8386,13 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 0.8510524977762852,
-          "amount_wei": 851052497776285205
+          "amount_wei": 851052497776285200
         }
       ]
     },
     {
       "address": "0x9d1b457d6f672b2b54598c80175e91a2dcd075df",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8470,7 +8408,7 @@
     },
     {
       "address": "0x9db4cd190570b060c4367566fca0669e52dfd436",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8486,7 +8424,7 @@
     },
     {
       "address": "0x9dc369d3de964e5ecc7c2ad987faaa1e168a2fff",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8502,7 +8440,7 @@
     },
     {
       "address": "0x9e9633f847579a2f9e544867b5cae4b3ec1699ba",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8520,13 +8458,13 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 24.836643840500837,
-          "amount_wei": 24836643840500838911
+          "amount_wei": 24836643840500840000
         }
       ]
     },
     {
       "address": "0x9fcb7c4b76fdaa3c904ebc403cbdb51f2bbc88d7",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8542,7 +8480,7 @@
     },
     {
       "address": "0xa00a04f37bc6b04806878c2790d66c79ffdf20ef",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8574,7 +8512,7 @@
     },
     {
       "address": "0xa2cea8e8284c764a8b0e22b6097faf6e1a0a31c4",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8590,7 +8528,7 @@
     },
     {
       "address": "0xa2e17e5dbca419792e3e3a91a340ca66ae2b4f6f",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8606,7 +8544,7 @@
     },
     {
       "address": "0xa571ad28d9ae6b2423a27a0163301fc9409a2d32",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8622,7 +8560,7 @@
     },
     {
       "address": "0xa5d20094cf1bc45b6ff1eb3b5a828865c1e8d583",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8638,7 +8576,7 @@
     },
     {
       "address": "0xa637c9d5827d5cd9e3a9d8675f1d0c338ddf1d39",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8654,7 +8592,7 @@
     },
     {
       "address": "0xa68638f739f454c8c46ce6afbe27478e7368000a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8670,7 +8608,7 @@
     },
     {
       "address": "0xa6c7a72034f4df2e42e8711bf47c66d6e1a3795b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8686,7 +8624,7 @@
     },
     {
       "address": "0xa709f05606a95d75af8d8a3e36dedc0ae74f598b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8702,7 +8640,7 @@
     },
     {
       "address": "0xa8c4e3ce1743d0f2a6c227548c982a7c40569940",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8718,7 +8656,7 @@
     },
     {
       "address": "0xa8c610f35857141d107856397263e165a947cb40",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8734,7 +8672,7 @@
     },
     {
       "address": "0xa8e06b6171c353406ac1a919d5559b38e0f70dbe",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8750,7 +8688,7 @@
     },
     {
       "address": "0xa98c42662a3d6a4cee8d0e0983a9800a843cce74",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8766,7 +8704,7 @@
     },
     {
       "address": "0xa9e1338f4bc3c99246b08cd28a61e4ffbb06fb70",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -8782,7 +8720,7 @@
     },
     {
       "address": "0xab9efe58fda10e6f92b0dc52546b12e77c78e503",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8798,7 +8736,7 @@
     },
     {
       "address": "0xaba8575aa4a62d3f52c54d7aaf2bc6938932505d",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8814,7 +8752,7 @@
     },
     {
       "address": "0xac2eea2e32af733c4e7e3564422447dc7c5c938d",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8830,7 +8768,7 @@
     },
     {
       "address": "0xacd0cf5e6c5962ce64baa41deaa05206ddd9366c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8846,7 +8784,7 @@
     },
     {
       "address": "0xad6825582c44ef201925551ca0da41ef2bf0c948",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8862,7 +8800,7 @@
     },
     {
       "address": "0xae66f023f3bd067f2c58e25b225eded462f9c99c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8879,7 +8817,7 @@
     },
     {
       "address": "0xaeba2a06aa569fbde86b6caa9c7e92ee843506b4",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8895,7 +8833,7 @@
     },
     {
       "address": "0xafa5039f3330af767b8d8bde552666c5b2910cc2",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -8911,7 +8849,7 @@
     },
     {
       "address": "0xafea69a7f761be7b359b0f5daed8afff8ebca4fe",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8927,23 +8865,15 @@
     },
     {
       "address": "0xb26da2730f0ae66e9d33d5c819e8d6a4d8d4918c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
-      "nft_details": [
-        {
-          "nft_id": 721,
-          "asset_address": "0x6b175474e89094c44da98b954eedeac495271d0f",
-          "asset_symbol": "DAI",
-          "decimals": 18,
-          "amount": 10.263945827284596,
-          "amount_wei": 10263945827284596227
-        }
-      ]
+      "nft_details": [],
+      "claimed": true
     },
     {
       "address": "0xb2832e2381dfc220238016d0c68d81ded989de52",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8959,7 +8889,7 @@
     },
     {
       "address": "0xb29cc8a719333d423757fbfc1591fcf13686d8a1",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8969,7 +8899,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 7.611468346240671,
-          "amount_wei": 7611468346240671530
+          "amount_wei": 7611468346240672000
         },
         {
           "nft_id": 397,
@@ -8983,7 +8913,7 @@
     },
     {
       "address": "0xb347a88e0eb141b0f144e19cc3c2f14e31972dec",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -8999,7 +8929,7 @@
     },
     {
       "address": "0xb3a65d7d53d1b7a859cab77882f079a93dd56a28",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9016,7 +8946,7 @@
     },
     {
       "address": "0xb3c65f34f898eb03395c2003fdc2b37bb7d771e5",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -9032,7 +8962,7 @@
     },
     {
       "address": "0xb3d933825636cda0b2f58b3db92a70f7fa646fae",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9048,7 +8978,7 @@
     },
     {
       "address": "0xb412b96dbe138da98be8e475f632e1a8f0037748",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9064,7 +8994,7 @@
     },
     {
       "address": "0xb5ab290e152290b6bd5bdb04e23236d3f9d4aaec",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9080,7 +9010,7 @@
     },
     {
       "address": "0xb7d8ddecee44a9f0d5136830c50ed7397fb41614",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9096,7 +9026,7 @@
     },
     {
       "address": "0xb8155967c5f33faee568266d8f80b638fadb9bed",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9124,7 +9054,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 12619.303744608189,
-          "amount_wei": 12619303744608189412870,
+          "amount_wei": 1.261930374460819e+22,
           "claimed": true
         },
         {
@@ -9140,7 +9070,7 @@
     },
     {
       "address": "0xb95aaf370c7d9badc069bab898ce97550e5b1c3d",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9156,7 +9086,7 @@
     },
     {
       "address": "0xb9e5ac939789e2203d93a4872898862d8db4b16e",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -9172,7 +9102,7 @@
     },
     {
       "address": "0xba1347eab403faed265e906634a6d5962d1e68dd",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9188,7 +9118,7 @@
     },
     {
       "address": "0xbb5e5352fc859b1753db47282be9520ab6aa8b22",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -9204,7 +9134,7 @@
     },
     {
       "address": "0xbb6a0fbe1f1d4d7d3df73efa4dc2888f6dce1736",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9220,7 +9150,7 @@
     },
     {
       "address": "0xbbb7b32a5e384829fa67e200041d64e4dd8a6105",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9236,7 +9166,7 @@
     },
     {
       "address": "0xbbd2e42613e09be9bbc8bd07d4b23d551da70050",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9252,7 +9182,7 @@
     },
     {
       "address": "0xbbfc74f1f4acf3b67675ccb6e48bcdcdd355d43b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9268,7 +9198,7 @@
     },
     {
       "address": "0xbc9294648841bb94322342846432ed443d150a8f",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9284,7 +9214,7 @@
     },
     {
       "address": "0xbd9382dfd0fef5490b92620bb083a880470224c2",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -9300,7 +9230,7 @@
     },
     {
       "address": "0xbf705a542801f6448bfdfaa0acc5ff95ef766180",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9316,7 +9246,7 @@
     },
     {
       "address": "0xc0ef6a98b03afa42e2f86062c5f3b1ec69962b88",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9332,7 +9262,7 @@
     },
     {
       "address": "0xc1a3257ad792796b83f575664195d0b805e235ed",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9348,7 +9278,7 @@
     },
     {
       "address": "0xc21c23e7f54bd5350236e4d68d01e2c3d95f7447",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9364,7 +9294,7 @@
     },
     {
       "address": "0xc239876bdf21a9746b2da99622e323c53dd24740",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -9380,7 +9310,7 @@
     },
     {
       "address": "0xc24c629ca86b29bc9b0995c99f942b757f64bd9b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9396,7 +9326,7 @@
     },
     {
       "address": "0xc265ba4d9ed33620978b03235fc9f5aa026da275",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9414,13 +9344,13 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 4207.049342264671,
-          "amount_wei": 4207049342264671364221
+          "amount_wei": 4.207049342264671e+21
         }
       ]
     },
     {
       "address": "0xc365ac82514b60103e4370dc3cdd597fa36e9ad6",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -9436,7 +9366,7 @@
     },
     {
       "address": "0xc365bbd18b9900b378021f05121e61a560e74754",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9452,7 +9382,7 @@
     },
     {
       "address": "0xc3746825f13c07dcd7e6fdb9c0c80a9affb18952",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9468,7 +9398,7 @@
     },
     {
       "address": "0xc5f6b52bdabce080a68b49e80ea264699c174882",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9485,7 +9415,7 @@
     },
     {
       "address": "0xc6571c2fb66825f13b7751b1c334810d397618eb",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9494,14 +9424,14 @@
           "asset_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
           "asset_symbol": "USDC",
           "decimals": 6,
-          "amount": 1e-06,
+          "amount": 0.000001,
           "amount_wei": 1
         }
       ]
     },
     {
       "address": "0xc84437233ded534dc103ce7d13129a749134a155",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9519,7 +9449,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 18.841403111677888,
-          "amount_wei": 18841403111677888095
+          "amount_wei": 18841403111677886000
         },
         {
           "nft_id": 299,
@@ -9527,7 +9457,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 9.331827012859332,
-          "amount_wei": 9331827012859331368
+          "amount_wei": 9331827012859330000
         },
         {
           "nft_id": 306,
@@ -9535,7 +9465,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 49.32322435447057,
-          "amount_wei": 49323224354470571221
+          "amount_wei": 49323224354470570000
         },
         {
           "nft_id": 316,
@@ -9565,7 +9495,7 @@
     },
     {
       "address": "0xc89a761d1a596e41d8fffe2a79cda93cf6dce028",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9582,7 +9512,7 @@
     },
     {
       "address": "0xc8ce7848553be879c4a874b02ded36b5ce99ef37",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9598,7 +9528,7 @@
     },
     {
       "address": "0xc99b9d4bbb924e3dec23db4a65cadd250845e8db",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9615,7 +9545,7 @@
     },
     {
       "address": "0xc9f7113042615ce4796f8cbbfa6f42170d908e05",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9631,7 +9561,7 @@
     },
     {
       "address": "0xcb211a172dcff6551d5a1cbffe8c544500a6a2f4",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9647,7 +9577,7 @@
     },
     {
       "address": "0xcb2d194d2485e7a25fddee573d8d9e92ee33403c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9663,7 +9593,7 @@
     },
     {
       "address": "0xcbd56a71a02fa7aa01bf1c94c0aeb2828bebdc0a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -9679,7 +9609,7 @@
     },
     {
       "address": "0xcc28b3605cd8563e712d07067e2b105eaf9d836d",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9711,7 +9641,7 @@
     },
     {
       "address": "0xccb8e090fe070945cc0131a075b6e1ea8f208812",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9727,7 +9657,7 @@
     },
     {
       "address": "0xcd5b7447e3178a071c3db861c0ba5fa2348802b1",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9743,7 +9673,7 @@
     },
     {
       "address": "0xcf1347dad4dd90fa73448d191950639c657ff0e2",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -9759,7 +9689,7 @@
     },
     {
       "address": "0xcf221dd92fa622a86603422941eedc1a0363c9b6",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9775,7 +9705,7 @@
     },
     {
       "address": "0xd01a2311ca001241502394d25bc08b0ad8cd2229",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9791,7 +9721,7 @@
     },
     {
       "address": "0xd0fefd9167a62ef5f25467da425726e24414a554",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9807,7 +9737,7 @@
     },
     {
       "address": "0xd193b31a7304d02d876e427cf7e17c8cf28463e7",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9823,7 +9753,7 @@
     },
     {
       "address": "0xd2b954a0635096ddaadd7ff1d5a182198f02fcae",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9840,7 +9770,7 @@
     },
     {
       "address": "0xd2dff7007586be8f2e6cb84de65190b81adf6a9b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9856,7 +9786,7 @@
     },
     {
       "address": "0xd34d65fdcdc725f00772f15f915d12b7de9b0a51",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9872,7 +9802,7 @@
     },
     {
       "address": "0xd437e1ea46f0cc331b19f3c1b0e1235aaa463bff",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9888,7 +9818,7 @@
     },
     {
       "address": "0xd43eea8e73957c7632afe43ee154ad4a79d98181",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9904,7 +9834,7 @@
     },
     {
       "address": "0xd44040939b229af0d2800b7d5c9751a6e9e039e5",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9920,7 +9850,7 @@
     },
     {
       "address": "0xd68dd3b26c0c33386f284f43eb8e131697d514e5",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9936,7 +9866,7 @@
     },
     {
       "address": "0xd68ef5d07c3d59b126c5c5b1c99b83d5eef32a74",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9952,7 +9882,7 @@
     },
     {
       "address": "0xd91432ea17a0b4ff2c28af958d4b175353c7c730",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9962,14 +9892,14 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 745.9534923520428,
-          "amount_wei": 745953492352042801114,
+          "amount_wei": 745953492352042800000,
           "claimed": true
         }
       ]
     },
     {
       "address": "0xd945290b5bad30dcfd118a48390b754f5f1f29c3",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -9985,7 +9915,7 @@
     },
     {
       "address": "0xd9a1715a3a097b2931e54ac60879c9e48f6ade80",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10001,7 +9931,7 @@
     },
     {
       "address": "0xd9f0df0cb351e9d1dd946b08191ea48b8e767d82",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -10017,7 +9947,7 @@
     },
     {
       "address": "0xdc92f3e0f38690c32feeb0fc86a88813e8fb8501",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10033,7 +9963,7 @@
     },
     {
       "address": "0xdcdbd2b5ca6430b2456850cbd2c164413852381a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -10049,7 +9979,7 @@
     },
     {
       "address": "0xdd385b4680b27e356cc616146d13e5be590e03e0",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10065,7 +9995,7 @@
     },
     {
       "address": "0xde78cc14f623313f2fde1715d5f42996ea6bd151",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10081,7 +10011,7 @@
     },
     {
       "address": "0xdf0944d413f83abeba6bc23891bc183bb9d6a77b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -10099,7 +10029,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 28.427988440301167,
-          "amount_wei": 28427988440301167579
+          "amount_wei": 28427988440301167000
         },
         {
           "nft_id": 80,
@@ -10113,7 +10043,7 @@
     },
     {
       "address": "0xdf632ea5ba8283488aae8538e17a2f802243a61a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10123,13 +10053,13 @@
           "asset_symbol": "?",
           "decimals": 18,
           "amount": 219.95466925479917,
-          "amount_wei": 219954669254799164690
+          "amount_wei": 219954669254799160000
         }
       ]
     },
     {
       "address": "0xdf827222166a0cf7a17a287236eef6881b9e754a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10145,7 +10075,7 @@
     },
     {
       "address": "0xdfa88867425116ced464f7a4e4312b4ce38b5508",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10161,7 +10091,7 @@
     },
     {
       "address": "0xdfc1761378205ba1a149382d402bcd3ba8f0710e",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10177,7 +10107,7 @@
     },
     {
       "address": "0xdffd1a7993bf2339a3867e86bd5b3eea82c46de1",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10193,7 +10123,7 @@
     },
     {
       "address": "0xe0b2add5c2d094008d014369ab6bc5c42cf3acad",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10209,7 +10139,7 @@
     },
     {
       "address": "0xe183b94cb3a4718279640c7027ffade73b62cfd9",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10225,7 +10155,7 @@
     },
     {
       "address": "0xe25e53e6de6f744ff6aa4e89fb99cb90439e5db0",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10241,7 +10171,7 @@
     },
     {
       "address": "0xe28835248578980ce980845981afe8759a45756c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10257,7 +10187,7 @@
     },
     {
       "address": "0xe56b8925a911599f84b38bd10eb9cc2a0421e0fa",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10273,7 +10203,7 @@
     },
     {
       "address": "0xe63a591115677fd7a75c7a64e463de6b8d600c04",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10289,7 +10219,7 @@
     },
     {
       "address": "0xe6c1182f5b4a10a603aa9fe3d385c62228330c93",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10305,7 +10235,7 @@
     },
     {
       "address": "0xe77d66dfe9aa625fdbaf8df80fd54e7d827215d6",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10321,23 +10251,15 @@
     },
     {
       "address": "0xe924d3860c3eadb4c11eb52a3d8d5798e13c080e",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
-      "nft_details": [
-        {
-          "nft_id": 18,
-          "asset_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-          "asset_symbol": "USDC",
-          "decimals": 6,
-          "amount": 14.308467,
-          "amount_wei": 14308467
-        }
-      ]
+      "nft_details": [],
+      "claimed": true
     },
     {
       "address": "0xea1a0e9e61ed07c5568749ae65dd6016e26d21a2",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10353,7 +10275,7 @@
     },
     {
       "address": "0xea85c80805f36a65d96f6d360d02dfb3ebe18280",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10369,7 +10291,7 @@
     },
     {
       "address": "0xeab23c1e3776fad145e2e3dc56bcf739f6e0a393",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -10385,7 +10307,7 @@
     },
     {
       "address": "0xeb3c8b9732f972c0cdb7ccb5e814ceb122eba14d",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10401,7 +10323,7 @@
     },
     {
       "address": "0xec9935578f91e21d72e5de89c48dee82b3dd45dc",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10425,7 +10347,7 @@
     },
     {
       "address": "0xedb00b721230a9f8bc874ebe981db0d86c3e845a",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10441,7 +10363,7 @@
     },
     {
       "address": "0xef217e2b540bfc4d52e4a46ad7bef9d59a264f83",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10465,7 +10387,7 @@
     },
     {
       "address": "0xf000ffdf9e35284a2cf7572cfa1b80b75e3e7ab6",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10481,7 +10403,7 @@
     },
     {
       "address": "0xf056761c07b714f38d3e580172d9cc627067fd47",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10497,7 +10419,7 @@
     },
     {
       "address": "0xf111b3badd9ff13fb3ac0c05d2f74e2ff0eeb536",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10513,7 +10435,7 @@
     },
     {
       "address": "0xf11c4a899b6a95a78331e48ce8ee690b97484a12",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -10529,7 +10451,7 @@
     },
     {
       "address": "0xf19aeb0f2d0f53e6e2f015a7c531f6c271858ba4",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10545,7 +10467,7 @@
     },
     {
       "address": "0xf1b31919020701f41a693e030aef30ea7f8e6bf9",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10561,7 +10483,7 @@
     },
     {
       "address": "0xf1b6106ea7894e2a51886eb2cff6389f8ad5208b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10577,7 +10499,7 @@
     },
     {
       "address": "0xf2a3d0e3336dcce72a0b17b5766dad55a91b9d77",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10593,7 +10515,7 @@
     },
     {
       "address": "0xf2d11b31904370fca59b7243002933d61e21a013",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10603,13 +10525,13 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 2.1087868866056185,
-          "amount_wei": 2108786886605618709
+          "amount_wei": 2108786886605618700
         }
       ]
     },
     {
       "address": "0xf2f2f61382749cdaa500c3cb8e2de43511aa9901",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10625,7 +10547,7 @@
     },
     {
       "address": "0xf2fb604ee60cf5da9c25dea003a9a297b8517b35",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10641,7 +10563,7 @@
     },
     {
       "address": "0xf307c89fa0b2acf171f27ddab75641a9fa7683eb",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10657,7 +10579,7 @@
     },
     {
       "address": "0xf41939922947f7c93cfa77364b35c6e85e53aef3",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10673,7 +10595,7 @@
     },
     {
       "address": "0xf469890d1447e155037d41b36069032b89dd6bcf",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -10689,7 +10611,7 @@
     },
     {
       "address": "0xf472e73c9c509cac924135bae08d98a3882a5a49",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -10713,7 +10635,7 @@
     },
     {
       "address": "0xf518aedca55d6c165135c42f22ec8c018f642aec",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10729,7 +10651,7 @@
     },
     {
       "address": "0xf5b1c6d34ce0060f5b6fd6d23bbafcfce44a8ce5",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10745,7 +10667,7 @@
     },
     {
       "address": "0xf5bd94e6d52b827728904a699f64f3f853463118",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10761,7 +10683,7 @@
     },
     {
       "address": "0xf7b8bfb1c2d7185bd804584d15104b71b695840c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10777,7 +10699,7 @@
     },
     {
       "address": "0xf7c7ca163ddfe69218377ab7086bdfc9a50f4e1e",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10787,7 +10709,7 @@
           "asset_symbol": "DAI",
           "decimals": 18,
           "amount": 1.4961814767471042,
-          "amount_wei": 1496181476747104184
+          "amount_wei": 1496181476747104300
         },
         {
           "nft_id": 273,
@@ -10809,7 +10731,7 @@
     },
     {
       "address": "0xf7fa59348684087a721d91e4ee034145cf1767c7",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10825,7 +10747,7 @@
     },
     {
       "address": "0xf84975c731e88bd46c7017887b66c8e62efce9a3",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10842,7 +10764,7 @@
     },
     {
       "address": "0xf86da60ad672eba60647de02a737d1cd509e7f72",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10858,7 +10780,7 @@
     },
     {
       "address": "0xf8a6a71d07eb75d7c2e81e94499d756bb15098d4",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -10874,7 +10796,7 @@
     },
     {
       "address": "0xf90457665e5737738ba15b538d77dad72684b897",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10890,7 +10812,7 @@
     },
     {
       "address": "0xf99cf6bfbe6a00747902197b2bafbd7365e464d4",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10906,7 +10828,7 @@
     },
     {
       "address": "0xfa187102558833fd159d978213cc460c531aac5c",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -10922,7 +10844,7 @@
     },
     {
       "address": "0xfb1720b27ca71a5b9be54dddcf0a454298f7420b",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10938,7 +10860,7 @@
     },
     {
       "address": "0xfbf2d411dad48e92f94a02592fc77d9295479714",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10978,7 +10900,7 @@
     },
     {
       "address": "0xfc55a72ec00ea3595ba5119882c7e7adb52985ca",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -10994,7 +10916,7 @@
     },
     {
       "address": "0xfe1be4ff032e8fd79a0da29fc7928a5030bd15d6",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": true,
       "nft_details": [
@@ -11010,7 +10932,7 @@
     },
     {
       "address": "0xfed8f74ede75ea6936c232e75598d7b13ebe1989",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "balance_wei": "0",
       "allowlisted": false,
       "nft_details": [
@@ -11024,5 +10946,6 @@
         }
       ]
     }
-  ]
+  ],
+  "last_event_refresh": "2026-08-03 11:34:31 UTC"
 }

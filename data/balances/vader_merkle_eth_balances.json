@@ -1,19 +1,19 @@
 {
   "contract": "0xf5644345a5a9dc14076b58802dc908b83e62b0e1",
   "balance_source": "weth",
-  "contract_eth_balance": 227.59667569,
-  "total_eth_in_balances": 226.09834929,
-  "addresses_with_balance": 7015,
+  "contract_eth_balance": 227.589673,
+  "total_eth_in_balances": 226.091346,
+  "addresses_with_balance": 7014,
   "coverage_pct": 99.34,
   "scan_date": "2026-07-09 16:26:16 UTC",
   "distribution": {
     ">=100 ETH": {
       "count": 0,
-      "total_eth": 0.0
+      "total_eth": 0
     },
     "10-100 ETH": {
       "count": 0,
-      "total_eth": 0.0
+      "total_eth": 0
     },
     "1-10 ETH": {
       "count": 35,
@@ -28,8 +28,8 @@
       "total_eth": 34.285619
     },
     "<0.01 ETH": {
-      "count": 5639,
-      "total_eth": 10.84168
+      "count": 5638,
+      "total_eth": 10.834685
     }
   },
   "token": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -33789,8 +33789,8 @@
     },
     {
       "address": "0x38daea6f17e4308b0da9647db9ca6d84a3a7e195",
-      "balance_eth": 0.00700301,
-      "balance_wei": "7003008449392780",
+      "balance_eth": 0,
+      "balance_wei": "0",
       "merkle_proof": [
         "0x24fe81e463e164229fd378a1ce96d14c73b65e4ceba653a0c3ccf697ba749119",
         "0x318be4a23a0efebbb65f849c372ff2af0995d2d41b52b4acbdaa9e892ea7d46e",
@@ -33805,7 +33805,8 @@
         "0x5f8d7cf67680e48420552a7c84d09acf754ba9f40f245f2c972da12b0c47c1f3",
         "0x5a2c44f3bf65f94306a634666c3dcaa5c75c81e1df6eb613c80e066d96376195",
         "0x83f9f7b5f4cd54d48c39acf53dc5f25add6163f19f3dfec1c6beefc5e1640503"
-      ]
+      ],
+      "claimed": true
     },
     {
       "address": "0x61137cd02fe9b8f8155cc74a8c0b21d44de80c35",
@@ -131560,7 +131561,7 @@
     },
     {
       "address": "0xba97be26a446b24a4ddea13da2714db9ea5bcc0d",
-      "balance_eth": 9.986e-05,
+      "balance_eth": 0.00009986,
       "balance_wei": "99856137032705",
       "merkle_proof": [
         "0x11abb429e2f4aa23cbc2d0bd717be27493349ce4761a8f2da8c1fa825aa9503c",
@@ -131580,7 +131581,7 @@
     },
     {
       "address": "0xdbeddfe35cd0d6e4c08d07485aa64cfce7205953",
-      "balance_eth": 9.983e-05,
+      "balance_eth": 0.00009983,
       "balance_wei": "99826863394115",
       "merkle_proof": [
         "0x7ad5dd846d8ce56209aa210feb9963d0244286484d4efab7119c177070abe767",
@@ -131600,7 +131601,7 @@
     },
     {
       "address": "0xf5bf3d130033f2167a6f86401229eed4682581c0",
-      "balance_eth": 9.919e-05,
+      "balance_eth": 0.00009919,
       "balance_wei": "99193936903587",
       "merkle_proof": [
         "0x23c055e4b9f3a71e322ab3fff0059b8dc0baa3356d98d2c72fa77e354d85356a",
@@ -131620,7 +131621,7 @@
     },
     {
       "address": "0xa7dbc03541babfb1ad3dcc06824e0f4f2aa8bc75",
-      "balance_eth": 9.902e-05,
+      "balance_eth": 0.00009902,
       "balance_wei": "99023946391901",
       "merkle_proof": [
         "0x1fb7f7ad123d74b87130cc49278b69e8f48f3e0782e1b1f1de9face64270a813",
@@ -131640,7 +131641,7 @@
     },
     {
       "address": "0xec12a6fa5a3761f82c8902d185aa435f1daadcae",
-      "balance_eth": 9.867e-05,
+      "balance_eth": 0.00009867,
       "balance_wei": "98666065229979",
       "merkle_proof": [
         "0xcb35e4a2fd93c0a977eac1f2355750f2a30c43e63a05b91d705c92495f4a5ab0",
@@ -131660,7 +131661,7 @@
     },
     {
       "address": "0x239be9e7090f9e2ffac5ab47f72c5216e53a8c79",
-      "balance_eth": 9.862e-05,
+      "balance_eth": 0.00009862,
       "balance_wei": "98615138635573",
       "merkle_proof": [
         "0x1ede4dfdb040944df15875b2b9b47717f53c4d8195859589b919727917454ffa",
@@ -131680,7 +131681,7 @@
     },
     {
       "address": "0xa1846a0aab0eb4202059eff991206730b6252922",
-      "balance_eth": 9.847e-05,
+      "balance_eth": 0.00009847,
       "balance_wei": "98470860162896",
       "merkle_proof": [
         "0x4a6a1d1789fc3bbc90459cbea334b0e553e3f8186e2e402e7d670a4dc0ff9c39",
@@ -131700,7 +131701,7 @@
     },
     {
       "address": "0x8398dc1993496709cc48e51acbb8a85c74855614",
-      "balance_eth": 9.847e-05,
+      "balance_eth": 0.00009847,
       "balance_wei": "98465992116244",
       "merkle_proof": [
         "0x9eca11331429ff380015a50247fd444039a18ed4235a9eeb1cc77817a390d36a",
@@ -131720,7 +131721,7 @@
     },
     {
       "address": "0x1fc5887c496ab57d91da2a4515a9248892c1a4d5",
-      "balance_eth": 9.846e-05,
+      "balance_eth": 0.00009846,
       "balance_wei": "98459399175363",
       "merkle_proof": [
         "0x44b4905e913b4aa454a2f8cb2c208f773fafe59d5b114857debbb958e0b9566c",
@@ -131740,7 +131741,7 @@
     },
     {
       "address": "0xa57a98295ef8d32ad722c512a89a7e2bf8ab8564",
-      "balance_eth": 9.844e-05,
+      "balance_eth": 0.00009844,
       "balance_wei": "98443728190857",
       "merkle_proof": [
         "0x6ceeda75139dffd5379912ae88c51f2840624646a8e12b053381bcd6dd57c773",
@@ -131760,7 +131761,7 @@
     },
     {
       "address": "0xaea8888fc1939e31cff37726398ca02061f522af",
-      "balance_eth": 9.814e-05,
+      "balance_eth": 0.00009814,
       "balance_wei": "98141161123275",
       "merkle_proof": [
         "0x6319527c50ab7f5c730eb5e81a282343179fdc7af59214fc2e9390fd4e7a7bca",
@@ -131780,7 +131781,7 @@
     },
     {
       "address": "0x441c3cb3a900c3fd8ceaa8605dad6f9dd88a52a2",
-      "balance_eth": 9.807e-05,
+      "balance_eth": 0.00009807,
       "balance_wei": "98071402675909",
       "merkle_proof": [
         "0x476b71c1ac8e57704bd6561c6f4ac9c4f1090457aa0608298563190aca4f4459",
@@ -131800,7 +131801,7 @@
     },
     {
       "address": "0xf2cdab63d17519b779e3a0821b0fb584d352b938",
-      "balance_eth": 9.788e-05,
+      "balance_eth": 0.00009788,
       "balance_wei": "97881856729952",
       "merkle_proof": [
         "0xc3d8d06cda6908259998c56030743896d747d5df49c6a24c99e8fa352c64b224",
@@ -131820,7 +131821,7 @@
     },
     {
       "address": "0x8bc8e9944fa3624223dd3a351a8e3b3e49f1962d",
-      "balance_eth": 9.752e-05,
+      "balance_eth": 0.00009752,
       "balance_wei": "97516739663227",
       "merkle_proof": [
         "0x84526b9b013e992c6a9e6700978319e7ce0cf73defbb14cb8a49ba41f33c4f82",
@@ -131840,7 +131841,7 @@
     },
     {
       "address": "0xe907554c919387ca6515e762568b978b748c32a6",
-      "balance_eth": 9.731e-05,
+      "balance_eth": 0.00009731,
       "balance_wei": "97312840618578",
       "merkle_proof": [
         "0x6a07d5c1e4f97b6d44acc29006d51492184dfc28fadd13f1211648ad68cb0493",
@@ -131860,7 +131861,7 @@
     },
     {
       "address": "0x2210ec353618abaf9e730b26bbd45df66991cbb6",
-      "balance_eth": 9.73e-05,
+      "balance_eth": 0.0000973,
       "balance_wei": "97296217247412",
       "merkle_proof": [
         "0x560710943490771c5358c1158153f37b138e185892130420aef0b241a685eb78",
@@ -131880,7 +131881,7 @@
     },
     {
       "address": "0x0027d53a9785282f519d97da7e1bdb82cfa21ce6",
-      "balance_eth": 9.702e-05,
+      "balance_eth": 0.00009702,
       "balance_wei": "97020796543725",
       "merkle_proof": [
         "0x483d90e087d213459f8022e38653f4e8b2b1c45da3d8a5d34820b69c4654414d",
@@ -131900,7 +131901,7 @@
     },
     {
       "address": "0x20d34f89a733c10de874e065257065584045f738",
-      "balance_eth": 9.697e-05,
+      "balance_eth": 0.00009697,
       "balance_wei": "96971415080767",
       "merkle_proof": [
         "0xb8a8ea2dae56b58eb878c58bea88291819994610e6b091db45131ad1c23146f7",
@@ -131920,7 +131921,7 @@
     },
     {
       "address": "0xa58a96bbb562c936124272133b3fed4680ec2d7e",
-      "balance_eth": 9.585e-05,
+      "balance_eth": 0.00009585,
       "balance_wei": "95850851049838",
       "merkle_proof": [
         "0xb96cfb61f681cf1b79d3fc146c5b93a7029470fc12885d1d40e864214304b08a",
@@ -131940,7 +131941,7 @@
     },
     {
       "address": "0x5af89e0ef2534f8f7d1a73245a38c5878bda7c19",
-      "balance_eth": 9.576e-05,
+      "balance_eth": 0.00009576,
       "balance_wei": "95763180674735",
       "merkle_proof": [
         "0x1d137d348f6688361ca03cfa5f6d0a1381d5bc4a0fc45de9d2b8bf4ad5bb23f5",
@@ -131960,7 +131961,7 @@
     },
     {
       "address": "0x0b2926069945889bdb14e986c2c81404236f541f",
-      "balance_eth": 9.552e-05,
+      "balance_eth": 0.00009552,
       "balance_wei": "95523545997917",
       "merkle_proof": [
         "0xd659bc417b21800ba793f1d0f41494927f8d18ec07a0c49cc42302ba45037e4d",
@@ -131980,7 +131981,7 @@
     },
     {
       "address": "0x211b1c5132a1f31833a7b014abd936fff47803f2",
-      "balance_eth": 9.548e-05,
+      "balance_eth": 0.00009548,
       "balance_wei": "95481272978140",
       "merkle_proof": [
         "0xdb0b57558803580ed9c84edfcc081a1556c1c7c11a6c2bb99080f600566ad953",
@@ -132000,7 +132001,7 @@
     },
     {
       "address": "0xc8d7899f22bc4995c8176e3f2a5ba3f5e87d95e5",
-      "balance_eth": 9.53e-05,
+      "balance_eth": 0.0000953,
       "balance_wei": "95301027685372",
       "merkle_proof": [
         "0x419ef635c779baf130e964891f5f7d83edb9f52c44d3cdd17cc73d38dd11a371",
@@ -132020,7 +132021,7 @@
     },
     {
       "address": "0xcfbe78cc232f2a362fb606cd8344337230cc8c2b",
-      "balance_eth": 9.472e-05,
+      "balance_eth": 0.00009472,
       "balance_wei": "94716192788156",
       "merkle_proof": [
         "0x6de9c6768753c51b80cf226f9571b1c8451e63c81f93b67ddcf5b3505070fc0c",
@@ -132040,7 +132041,7 @@
     },
     {
       "address": "0xca6c799d2f142c3414245c9fc5a7acd841ec9b1e",
-      "balance_eth": 9.454e-05,
+      "balance_eth": 0.00009454,
       "balance_wei": "94539982981789",
       "merkle_proof": [
         "0xaf9b5a39e6a9c3e2aada1e2b5c5a96413858081e456c78e6263f88b9fc3ce42c",
@@ -132060,7 +132061,7 @@
     },
     {
       "address": "0x53b5b2c7cf436767cb19e31edca853c8f74b0a0a",
-      "balance_eth": 9.431e-05,
+      "balance_eth": 0.00009431,
       "balance_wei": "94309389782747",
       "merkle_proof": [
         "0xcd6f161cd18c416da5d9bb1f13a09e0b097a38f20cc941d44ffd4b95aa7cf91a",
@@ -132080,7 +132081,7 @@
     },
     {
       "address": "0x168b8e89f34195c2884d8100a5e7af72e5a373a7",
-      "balance_eth": 9.366e-05,
+      "balance_eth": 0.00009366,
       "balance_wei": "93658573365876",
       "merkle_proof": [
         "0x3da082c32fa331345d62eaede07864ccc0855f29a2f49d3f0631b00492bab748",
@@ -132100,7 +132101,7 @@
     },
     {
       "address": "0x3e63b595b0b6c6fdd0d8d74258b21128d4415e17",
-      "balance_eth": 9.319e-05,
+      "balance_eth": 0.00009319,
       "balance_wei": "93191400871266",
       "merkle_proof": [
         "0x5d7f5f3d08a63a5997fbd214f3523d5998dfb932ce34e521fbfc01995bfb9e14",
@@ -132120,7 +132121,7 @@
     },
     {
       "address": "0x2c4cb69c5af21c8b73e107d70e4f8d4abc2e8d87",
-      "balance_eth": 9.319e-05,
+      "balance_eth": 0.00009319,
       "balance_wei": "93185853881191",
       "merkle_proof": [
         "0x6074d20cfac8d2917ef28173001580008425d5950c8b4f55e8e43927eff817d2",
@@ -132140,7 +132141,7 @@
     },
     {
       "address": "0x1c28cb17695ebf1cbb0e37df429b46bc605e0a48",
-      "balance_eth": 9.302e-05,
+      "balance_eth": 0.00009302,
       "balance_wei": "93024488222893",
       "merkle_proof": [
         "0xff52b3a33b700ec97ff1e9598ac16b6f5efb27a89ff3807340f235090909325e",
@@ -132160,7 +132161,7 @@
     },
     {
       "address": "0xcb3b252ba4acd2d0f1d77a93f085e915300e9120",
-      "balance_eth": 9.274e-05,
+      "balance_eth": 0.00009274,
       "balance_wei": "92740949338696",
       "merkle_proof": [
         "0x7dac9837c7413e69c92d3a3ce59907432c6258f47e07a36263b5c83bf6fadd5c",
@@ -132180,7 +132181,7 @@
     },
     {
       "address": "0xb317be55a875719e3cf06f3b5ebb594655205323",
-      "balance_eth": 9.241e-05,
+      "balance_eth": 0.00009241,
       "balance_wei": "92413659757152",
       "merkle_proof": [
         "0x1471c537392a0438e1a203d77756201099cbd55c504110bcdf3402e8838f90db",
@@ -132200,7 +132201,7 @@
     },
     {
       "address": "0x9c9964733479a6e0758d97a7b89dce81c20b19d7",
-      "balance_eth": 9.213e-05,
+      "balance_eth": 0.00009213,
       "balance_wei": "92131087393335",
       "merkle_proof": [
         "0xff036dcd02d8ce742368c02b83d3e9465ec82b9bf29fa05edd03b9678f10894e",
@@ -132220,7 +132221,7 @@
     },
     {
       "address": "0xbeaf354c01b4fef52c9fde8e867d2aec23a50c02",
-      "balance_eth": 9.172e-05,
+      "balance_eth": 0.00009172,
       "balance_wei": "91716014888560",
       "merkle_proof": [
         "0x549a353e7b04b4b49b6c24cf973018ed3d8b1d4ebec0e83502b4aab67db07a92",
@@ -132240,7 +132241,7 @@
     },
     {
       "address": "0x39a404b5de3e91ad918c1dce6856fbdb20929288",
-      "balance_eth": 9.038e-05,
+      "balance_eth": 0.00009038,
       "balance_wei": "90379970444183",
       "merkle_proof": [
         "0x5d60b497a56e02639811304111b3a73501e80e5912a315ebcb7a86cffcb6a030",
@@ -132260,7 +132261,7 @@
     },
     {
       "address": "0x74f6737fffcc2381fb2b5ebef89bc2c5280d3aa4",
-      "balance_eth": 9.019e-05,
+      "balance_eth": 0.00009019,
       "balance_wei": "90189226077959",
       "merkle_proof": [
         "0x87e7f98ffbda019ed66d2a4df99f45f949eedc5cdb4c28b269643e35e68eeffb",
@@ -132280,7 +132281,7 @@
     },
     {
       "address": "0x9a1811f3ee2f4f1eead43d0f39893067d5859ba1",
-      "balance_eth": 8.938e-05,
+      "balance_eth": 0.00008938,
       "balance_wei": "89383649332633",
       "merkle_proof": [
         "0x9e7d2f58a6cb82ad7d7a2e9c47f31dce76f2d499a5f26bfbd18a810151eb8fcd",
@@ -132300,7 +132301,7 @@
     },
     {
       "address": "0x2e64e22583902b4cf5806221780aab13e31bf165",
-      "balance_eth": 8.935e-05,
+      "balance_eth": 0.00008935,
       "balance_wei": "89346083850022",
       "merkle_proof": [
         "0x511850b442492ec8fa32aefc7eefdc4f811b420a774afc1fd186849b2235fd34",
@@ -132320,7 +132321,7 @@
     },
     {
       "address": "0x27f212da09dc719db5f85f3844ab0a25210954fd",
-      "balance_eth": 8.887e-05,
+      "balance_eth": 0.00008887,
       "balance_wei": "88866978008896",
       "merkle_proof": [
         "0xd78c0fbae8a7f87e18fa43658dd98582e66fc7b04316ac1e452230b68c009e6a",
@@ -132340,7 +132341,7 @@
     },
     {
       "address": "0xb64cc5a615947044839ab7dfe7ebae4406fec33a",
-      "balance_eth": 8.885e-05,
+      "balance_eth": 0.00008885,
       "balance_wei": "88852013330114",
       "merkle_proof": [
         "0x7651bfd950af1033bf676222470eb2277633b26109a2110197e2e3113541f4af",
@@ -132360,7 +132361,7 @@
     },
     {
       "address": "0xfc588e2291fe2645422e6208c80ec12eb1d76b61",
-      "balance_eth": 8.877e-05,
+      "balance_eth": 0.00008877,
       "balance_wei": "88768765754235",
       "merkle_proof": [
         "0xe8d8afa400ad59c2502d464f84a9507747162b99b5fefbf0ad8c3ebc43373e49",
@@ -132380,7 +132381,7 @@
     },
     {
       "address": "0x249cb8fe45e4c55078291947914326d585e0f606",
-      "balance_eth": 8.855e-05,
+      "balance_eth": 0.00008855,
       "balance_wei": "88546561577004",
       "merkle_proof": [
         "0x5d4caf8898ea11a55da7292551894a87aba36b39c8f4089d729612a228167969",
@@ -132400,7 +132401,7 @@
     },
     {
       "address": "0x6de72804c32fbc47ba4207938fc4a4b6d39486e7",
-      "balance_eth": 8.848e-05,
+      "balance_eth": 0.00008848,
       "balance_wei": "88479252158886",
       "merkle_proof": [
         "0x3150b811c3800ad4b4cb261143a84ad9b1907f40d6bba8552700e3eebe7bb050",
@@ -132420,7 +132421,7 @@
     },
     {
       "address": "0x928ee52c3e4e2f2cdd54b2c6f8d2c506b5ca3221",
-      "balance_eth": 8.826e-05,
+      "balance_eth": 0.00008826,
       "balance_wei": "88263683022425",
       "merkle_proof": [
         "0xcddd2c64a3f8437c1e6125d9760efc628ea43e0f8893a34b1d2db76e2f14d09f",
@@ -132440,7 +132441,7 @@
     },
     {
       "address": "0x3657d9aaa6c3334ce926e8e05b70ad7ed6328a06",
-      "balance_eth": 8.818e-05,
+      "balance_eth": 0.00008818,
       "balance_wei": "88175580921155",
       "merkle_proof": [
         "0x4b3a1b46254b6e521ade214764c2ab11be8e580786fb6cf96629f1f81b6f9474",
@@ -132460,7 +132461,7 @@
     },
     {
       "address": "0x2c7b2dd7e5d312bb922496fec2c490fba995ca24",
-      "balance_eth": 8.818e-05,
+      "balance_eth": 0.00008818,
       "balance_wei": "88175580921155",
       "merkle_proof": [
         "0xb6902a57cde43995d22716fd614fc486b38cc477c0e61b8452d2ab2fcd69acf9",
@@ -132480,7 +132481,7 @@
     },
     {
       "address": "0x28bc289b5062f38a61a5be384c78d684c27b50d9",
-      "balance_eth": 8.818e-05,
+      "balance_eth": 0.00008818,
       "balance_wei": "88175580921155",
       "merkle_proof": [
         "0x5d0305cef0d20ff238145ca9a2d61baa1cecf028e07007e1059e4cd65eaa30cf",
@@ -132500,7 +132501,7 @@
     },
     {
       "address": "0x95e4ac227b2821700a7a251f3fd4c337db93df9d",
-      "balance_eth": 8.804e-05,
+      "balance_eth": 0.00008804,
       "balance_wei": "88035596636551",
       "merkle_proof": [
         "0x3b97b25e2abccdcb12821cd1bd9be2fb44ed24899dd112457cced24c88f5ceb1",
@@ -132520,7 +132521,7 @@
     },
     {
       "address": "0x8fd94e784c5a2cd072a78f83a979c13460ceac7e",
-      "balance_eth": 8.744e-05,
+      "balance_eth": 0.00008744,
       "balance_wei": "87440336743910",
       "merkle_proof": [
         "0x2cb955a4254167a14d038c7bcf80bbe4ed53febf329f535cd358190295829d54",
@@ -132540,7 +132541,7 @@
     },
     {
       "address": "0x045ecdf52363e1d6296c00e13b898342db208f29",
-      "balance_eth": 8.741e-05,
+      "balance_eth": 0.00008741,
       "balance_wei": "87410172874875",
       "merkle_proof": [
         "0xeb27d8f5870fce7279f5d671f306515cfcf1bbdb03f4dbceaaebd14e657ec172",
@@ -132560,7 +132561,7 @@
     },
     {
       "address": "0x270ef964c8bf63600c38f11b0808c24863c38749",
-      "balance_eth": 8.728e-05,
+      "balance_eth": 0.00008728,
       "balance_wei": "87277556517380",
       "merkle_proof": [
         "0xdaf18411e5815de20eea886a769026012457c9c2eed66c2650c6a1e0f3854729",
@@ -132580,7 +132581,7 @@
     },
     {
       "address": "0x06c112ccdee855e420a3dc16b9f08800168f33a6",
-      "balance_eth": 8.718e-05,
+      "balance_eth": 0.00008718,
       "balance_wei": "87177537680029",
       "merkle_proof": [
         "0x90de9e9892c1aaccedf5b783e65609c96ee40450d12ce4ba438f20c9a60c985e",
@@ -132600,7 +132601,7 @@
     },
     {
       "address": "0x4cfbcc1434c74a1ba2dff5d396b63d4e61055dd0",
-      "balance_eth": 8.717e-05,
+      "balance_eth": 0.00008717,
       "balance_wei": "87174784568752",
       "merkle_proof": [
         "0xfd74f2bf6c7041331626ed2db430c0d308240328aab41c8f88dd48b24da14fe7",
@@ -132620,7 +132621,7 @@
     },
     {
       "address": "0x5c0d17287ebe197bfe3fbdc50de4dba6443834b3",
-      "balance_eth": 8.663e-05,
+      "balance_eth": 0.00008663,
       "balance_wei": "86631797991309",
       "merkle_proof": [
         "0x226a587f78bc9966d0da50d337b8aa92f2c5a727c74b37a789be56d9404e7659",
@@ -132640,7 +132641,7 @@
     },
     {
       "address": "0x2848fbc57dcd83467c42166b6ed938444f6041e2",
-      "balance_eth": 8.629e-05,
+      "balance_eth": 0.00008629,
       "balance_wei": "86290938532813",
       "merkle_proof": [
         "0x43ce6c8bc52fdd7233708afae5bda8c25a595528e736a568db89446ead7f514a",
@@ -132660,7 +132661,7 @@
     },
     {
       "address": "0x951c35ad8e4ed80ce0cc38b0cfcf3c07fcb05812",
-      "balance_eth": 8.612e-05,
+      "balance_eth": 0.00008612,
       "balance_wei": "86118150699661",
       "merkle_proof": [
         "0x9da246bc586077ba1e8fe171432fa4d69d17096f614af7008a88fa87e1189dcd",
@@ -132680,7 +132681,7 @@
     },
     {
       "address": "0x15bbf1a590b9c34830bd3a5071c1945f25a5a08c",
-      "balance_eth": 8.611e-05,
+      "balance_eth": 0.00008611,
       "balance_wei": "86114002483521",
       "merkle_proof": [
         "0x0853d2feb1fbe7d3714f9b046e861506715d6c5155274a1923b9bee9e67e7739",
@@ -132700,7 +132701,7 @@
     },
     {
       "address": "0x0fd2002d7b4c5ea5cce82ca74e5ee4d66ff7ae9b",
-      "balance_eth": 8.602e-05,
+      "balance_eth": 0.00008602,
       "balance_wei": "86016748781602",
       "merkle_proof": [
         "0x7b9261c2905c6e4850c2cc2c31cba0a09a8dfba8c60265546e526bb3e8e9b90f",
@@ -132720,7 +132721,7 @@
     },
     {
       "address": "0x090615676bef88ec7a11b9db99306e3b7fa48787",
-      "balance_eth": 8.589e-05,
+      "balance_eth": 0.00008589,
       "balance_wei": "85885108814314",
       "merkle_proof": [
         "0x8e8e55931a468a06a51802338fc12f91013416fa92f9c4433097aaade441f349",
@@ -132740,7 +132741,7 @@
     },
     {
       "address": "0xd62707f513f4b472d0badd922d74c49e06d9e7c7",
-      "balance_eth": 8.557e-05,
+      "balance_eth": 0.00008557,
       "balance_wei": "85573730459472",
       "merkle_proof": [
         "0x35947cdecf38c1fea2588022ebf35f92ebdcc46192beb3d11568153593597782",
@@ -132760,7 +132761,7 @@
     },
     {
       "address": "0xc949dbb1c9f754c0e70d20fcc675007f97471e17",
-      "balance_eth": 8.527e-05,
+      "balance_eth": 0.00008527,
       "balance_wei": "85271506636887",
       "merkle_proof": [
         "0xc514c6f4849276597c4192964f8b30261842892a12745400f36dd5cc8ab9e4f0",
@@ -132780,7 +132781,7 @@
     },
     {
       "address": "0x37e6310bff48d1fe8b3fb249ea994fedc001ed64",
-      "balance_eth": 8.523e-05,
+      "balance_eth": 0.00008523,
       "balance_wei": "85228065805153",
       "merkle_proof": [
         "0x094ea544fe3f647ecba33fb39b2027c341fbb19eaffe696103533af55360b2c8",
@@ -132800,7 +132801,7 @@
     },
     {
       "address": "0xb8840f902bb366d64709ec3178194efa72745226",
-      "balance_eth": 8.487e-05,
+      "balance_eth": 0.00008487,
       "balance_wei": "84867781678565",
       "merkle_proof": [
         "0xba0e0e80bbd4924dd10db74161a15303222070021ac9fc31dd049ac81ae60ffa",
@@ -132820,7 +132821,7 @@
     },
     {
       "address": "0x0777237d35fb45434d2108998af73d7370f07267",
-      "balance_eth": 8.468e-05,
+      "balance_eth": 0.00008468,
       "balance_wei": "84678406618808",
       "merkle_proof": [
         "0x60f1fe2e6fe55eed846e9c4d5e64efc0013b6340ca1d47048952fd2224139012",
@@ -132840,7 +132841,7 @@
     },
     {
       "address": "0x0c061b8782be5f2bc2b6d2efb8d4466a6b96e378",
-      "balance_eth": 8.457e-05,
+      "balance_eth": 0.00008457,
       "balance_wei": "84571963434473",
       "merkle_proof": [
         "0x40eee1e48a8457a9b973e7ca30d19a72ac819a59248d3d936c17f5eb54530f8c",
@@ -132860,7 +132861,7 @@
     },
     {
       "address": "0x3813c887e78f02e0cefc845b87974761e6f6c5b9",
-      "balance_eth": 8.446e-05,
+      "balance_eth": 0.00008446,
       "balance_wei": "84464123760882",
       "merkle_proof": [
         "0x7ad315d7c5864b301f62327501d77d7b6d6ed2ed2a7ea168431be193813a0d2b",
@@ -132880,7 +132881,7 @@
     },
     {
       "address": "0x9c2d7d38cc1bcf36aca03b9a98af758ebb7a4ad3",
-      "balance_eth": 8.444e-05,
+      "balance_eth": 0.00008444,
       "balance_wei": "84435016575719",
       "merkle_proof": [
         "0x016e69987af78ab858b9b371322d983efa1cb1fa0f7b1e4c45ade3b470285f2c",
@@ -132900,7 +132901,7 @@
     },
     {
       "address": "0x16585030ea5cddc708755ed086593d4774c4b4ec",
-      "balance_eth": 8.441e-05,
+      "balance_eth": 0.00008441,
       "balance_wei": "84406594271010",
       "merkle_proof": [
         "0xfdb35ee21fca7dd12d3d4f541e1bf5be706126001f1cbc4816b3943bd2f19b00",
@@ -132920,7 +132921,7 @@
     },
     {
       "address": "0x59df47d473117c8f215aaaa74212c29666e060d4",
-      "balance_eth": 8.44e-05,
+      "balance_eth": 0.0000844,
       "balance_wei": "84396181960588",
       "merkle_proof": [
         "0x6fda6efc50e4b66c5c361b632113b28771e7221b2b49d29219af17f3c1f92c62",
@@ -132940,7 +132941,7 @@
     },
     {
       "address": "0x71a9771dafd0d2d9ddd60c49baff3c9ad7215405",
-      "balance_eth": 8.395e-05,
+      "balance_eth": 0.00008395,
       "balance_wei": "83948979311928",
       "merkle_proof": [
         "0x4c1182164212c0377678b7ac7591515b91d64e14eb8508ca77583b0c70abb4c0",
@@ -132960,7 +132961,7 @@
     },
     {
       "address": "0xd4975c748dc6653cfb394d53161724070b983dba",
-      "balance_eth": 8.376e-05,
+      "balance_eth": 0.00008376,
       "balance_wei": "83757609968067",
       "merkle_proof": [
         "0x7f9ae03d81fd682516924e10d538fca4f2376b5aa33e06cbf078389b6a01ea86",
@@ -132980,7 +132981,7 @@
     },
     {
       "address": "0x2f3be53cf8eae455fba9a8f38436cd8ed087c9a6",
-      "balance_eth": 8.334e-05,
+      "balance_eth": 0.00008334,
       "balance_wei": "83336190063374",
       "merkle_proof": [
         "0x1c3754ffc8eab34f3326575d7cf7f2ea5e11c569860330aa1b3d131b5217c779",
@@ -133000,7 +133001,7 @@
     },
     {
       "address": "0x964cc732531b8e7420732f4e78f3b3264a47e669",
-      "balance_eth": 8.216e-05,
+      "balance_eth": 0.00008216,
       "balance_wei": "82164069851006",
       "merkle_proof": [
         "0x54288fd20a31414a5dc8e392c73824d1ec114bd59abe5c871a3a6a85cbc98c11",
@@ -133020,7 +133021,7 @@
     },
     {
       "address": "0xe4c31d8c315231935fbbed1effea194ade2e7f76",
-      "balance_eth": 8.2e-05,
+      "balance_eth": 0.000082,
       "balance_wei": "82003290256674",
       "merkle_proof": [
         "0x88b6c74ebda59f46dba7f158f03fdb57793970e3833827020f755230df05a326",
@@ -133040,7 +133041,7 @@
     },
     {
       "address": "0xc47761adbe5cd8bc5809f3073155da5b4dcbac83",
-      "balance_eth": 8.185e-05,
+      "balance_eth": 0.00008185,
       "balance_wei": "81848131553840",
       "merkle_proof": [
         "0x17fc0e461a0d07206e57ccb0221792f2acf57c044063b050dc103da2b9e02e91",
@@ -133060,7 +133061,7 @@
     },
     {
       "address": "0xba0f1d51e25ba6dc4afd47eda192f5e627c8c791",
-      "balance_eth": 8.177e-05,
+      "balance_eth": 0.00008177,
       "balance_wei": "81765541180807",
       "merkle_proof": [
         "0x0b162662edda415ff2e47365193b569505e4554009bc5a32f88d73a9908b08a9",
@@ -133080,7 +133081,7 @@
     },
     {
       "address": "0x324507cdc3807a94b65416374874734d64bb9872",
-      "balance_eth": 8.131e-05,
+      "balance_eth": 0.00008131,
       "balance_wei": "81310930528662",
       "merkle_proof": [
         "0xb71fabe4a430cad0e71aa462c5a80a2d2e7aa10269ff993c54446f06cd4dc1bc",
@@ -133100,7 +133101,7 @@
     },
     {
       "address": "0xa278a70e6a8387ae318650c70f396371c5693bf7",
-      "balance_eth": 8.094e-05,
+      "balance_eth": 0.00008094,
       "balance_wei": "80939700238778",
       "merkle_proof": [
         "0x1cb3ee6e05158f93208b79aea6088f3dc7b8c551a6e421d9d8e8f8897a38881e",
@@ -133120,7 +133121,7 @@
     },
     {
       "address": "0x1f0908057037df5adc254e9d9406960447347751",
-      "balance_eth": 8.083e-05,
+      "balance_eth": 0.00008083,
       "balance_wei": "80827615844392",
       "merkle_proof": [
         "0xad80e1cabf96a8120a72ba0a7146c4373c7604b23840787ab42cafb35137a253",
@@ -133140,7 +133141,7 @@
     },
     {
       "address": "0x005d29bacc5b7de577b5207d1058b45840860aae",
-      "balance_eth": 8.083e-05,
+      "balance_eth": 0.00008083,
       "balance_wei": "80827615844392",
       "merkle_proof": [
         "0x25e0c04e4cb8d2737435b6ae3dcc6218685e61f04fbf2e4fc74d12de3ab50621",
@@ -133160,7 +133161,7 @@
     },
     {
       "address": "0x4f1363cfc8db723c250b5989a7d1b9523e3ea43e",
-      "balance_eth": 8.06e-05,
+      "balance_eth": 0.0000806,
       "balance_wei": "80602353923448",
       "merkle_proof": [
         "0x2fb1874f19c5c4f44e06c62ae5606344e301d84aad45c3e87083b6bee84cb8cf",
@@ -133180,7 +133181,7 @@
     },
     {
       "address": "0x1a2e52b033e08914d2a8c34e8882359a1ae7eb46",
-      "balance_eth": 8.034e-05,
+      "balance_eth": 0.00008034,
       "balance_wei": "80344057406077",
       "merkle_proof": [
         "0xa312511c5f6a12a5d183036a53ad378418d4ae28e5b5e7d4fc84a03468f307fb",
@@ -133200,7 +133201,7 @@
     },
     {
       "address": "0x75d020fd3802bf8b8e95041a1a663d4209d00287",
-      "balance_eth": 7.944e-05,
+      "balance_eth": 0.00007944,
       "balance_wei": "79442888996987",
       "merkle_proof": [
         "0xe9121dcb564ba115b16b705071c6227de9d5647db286c15934702ad1c2140f95",
@@ -133220,7 +133221,7 @@
     },
     {
       "address": "0xa330be9645d406b1899d5ab6c20cda5d13dfd9ce",
-      "balance_eth": 7.919e-05,
+      "balance_eth": 0.00007919,
       "balance_wei": "79188722728132",
       "merkle_proof": [
         "0x5b8ae9b14b241a2ee7b59421f8f7a75367c0527f5abd15c8dc42d33c2986a5d6",
@@ -133240,7 +133241,7 @@
     },
     {
       "address": "0x3c59fdaa17f1d964e0de5289912fe40fc7293b01",
-      "balance_eth": 7.899e-05,
+      "balance_eth": 0.00007899,
       "balance_wei": "78985204781514",
       "merkle_proof": [
         "0xb2d2c614035e39dcf60e4bed5cf2d76ca342d3f4a4bba4d1685ca0ff3acd6142",
@@ -133260,7 +133261,7 @@
     },
     {
       "address": "0xbe64d8e29f28d16ad10a6a8a56b2caceac4dbcbb",
-      "balance_eth": 7.875e-05,
+      "balance_eth": 0.00007875,
       "balance_wei": "78750658366404",
       "merkle_proof": [
         "0x9920133a2f79510aa88b023eafecb7e59d1fbcd5f0f6bd7b16e0e392bb6582b8",
@@ -133280,7 +133281,7 @@
     },
     {
       "address": "0x4f9c16d1790629cbb8aa7bf8bad1f5dccf63e07c",
-      "balance_eth": 7.863e-05,
+      "balance_eth": 0.00007863,
       "balance_wei": "78628225979307",
       "merkle_proof": [
         "0xc2c5a694bde4eb877b803b9c965f530132d627c0f7a008224550ef3988e6ecbc",
@@ -133300,7 +133301,7 @@
     },
     {
       "address": "0x423939296767d4d3e95cafe2ffd43a94a39ec650",
-      "balance_eth": 7.856e-05,
+      "balance_eth": 0.00007856,
       "balance_wei": "78559431616502",
       "merkle_proof": [
         "0x86be84a01565342d9778ec0df93579dac17c4c0a8261dcb7d659ce0a7ad6630a",
@@ -133320,7 +133321,7 @@
     },
     {
       "address": "0xcafc28d8dd76b3321a34a828470eb66f76b157d1",
-      "balance_eth": 7.794e-05,
+      "balance_eth": 0.00007794,
       "balance_wei": "77935799691258",
       "merkle_proof": [
         "0xa722f3812bb0e549c3baf95e229ad2f9b6fc826a6c35002575d0a3b565de7f9f",
@@ -133340,7 +133341,7 @@
     },
     {
       "address": "0x9189b3207bddc7f4dd608c886cc3a2f70a2b0ce7",
-      "balance_eth": 7.762e-05,
+      "balance_eth": 0.00007762,
       "balance_wei": "77617786479169",
       "merkle_proof": [
         "0xf0f40b68ed4765479468b6012671e1e800eba10fe545e75b74d6a731fcfc669e",
@@ -133360,7 +133361,7 @@
     },
     {
       "address": "0xd5c82ae19e4469d9700ce64a1e310e1a5defeaf2",
-      "balance_eth": 7.761e-05,
+      "balance_eth": 0.00007761,
       "balance_wei": "77607512611701",
       "merkle_proof": [
         "0x23d5c3619953f8fcf4a56d8239d9842ea4e99f4bcc16a2c67bba8cea098a9c9c",
@@ -133380,7 +133381,7 @@
     },
     {
       "address": "0xcb594bc1a0026b5ee7601bfe4d0fed06cba7296e",
-      "balance_eth": 7.758e-05,
+      "balance_eth": 0.00007758,
       "balance_wei": "77582702701771",
       "merkle_proof": [
         "0xcd3adb734fdbba657a715ea3361f85ef684a511572a46bc114bc47df847336db",
@@ -133400,7 +133401,7 @@
     },
     {
       "address": "0xc9000423dc1082e23c80820291ac0acc64d5c44d",
-      "balance_eth": 7.755e-05,
+      "balance_eth": 0.00007755,
       "balance_wei": "77547348505004",
       "merkle_proof": [
         "0x43dd8f7459a4c2b9ce21b7d1961749a20e9e9670d27d04ffc1300062d85b16c9",
@@ -133420,7 +133421,7 @@
     },
     {
       "address": "0xab752b9bda554d043185591b4b0b4f7bfa280670",
-      "balance_eth": 7.755e-05,
+      "balance_eth": 0.00007755,
       "balance_wei": "77547348505004",
       "merkle_proof": [
         "0x1aa01c14b76f2f109db8d33ee854c9098ee89dd1663a28d65db0cf25ad36040d",
@@ -133440,7 +133441,7 @@
     },
     {
       "address": "0xbc147973709a9f8f25b5f45021cab1ea030d3885",
-      "balance_eth": 7.74e-05,
+      "balance_eth": 0.0000774,
       "balance_wei": "77400961141623",
       "merkle_proof": [
         "0x3242578610e74a0da966c6ac5fdf8b1a17a07def07dc829dd751428da2d3d317",
@@ -133460,7 +133461,7 @@
     },
     {
       "address": "0x0040daac32d83c78546ae36da42a496b28ab09e1",
-      "balance_eth": 7.717e-05,
+      "balance_eth": 0.00007717,
       "balance_wei": "77172430897337",
       "merkle_proof": [
         "0xd1c7e256308dbe3bfac5d8fdcddf567ba414016d1293d293c0fef77c2e36e05b",
@@ -133480,7 +133481,7 @@
     },
     {
       "address": "0x5a1004801fecb1e77d6f3b3cb20176e7ec419619",
-      "balance_eth": 7.671e-05,
+      "balance_eth": 0.00007671,
       "balance_wei": "76713351961571",
       "merkle_proof": [
         "0x2ba45dcee7485001558ee1c2234fa180e28079119ead378a513a3227cc47dc07",
@@ -133500,7 +133501,7 @@
     },
     {
       "address": "0x870856d10bff4308fb549b3fef00163112c0bf3b",
-      "balance_eth": 7.657e-05,
+      "balance_eth": 0.00007657,
       "balance_wei": "76570924666495",
       "merkle_proof": [
         "0xc591a7e4ddd746ac8c2729e6ee225584dce817a1022fcff8c891a2dcc2e81711",
@@ -133520,7 +133521,7 @@
     },
     {
       "address": "0x2ee32536e38057ea2d17ed43cccd9c48fa8e80a6",
-      "balance_eth": 7.633e-05,
+      "balance_eth": 0.00007633,
       "balance_wei": "76330899456909",
       "merkle_proof": [
         "0x4d09ada5d9f05c10466b192d95c59887c20f9d25c313f0d3d0ce761aa5ce94f4",
@@ -133540,7 +133541,7 @@
     },
     {
       "address": "0x62ea4eff0398ba0da40344fedbc8692fcea3ab7e",
-      "balance_eth": 7.611e-05,
+      "balance_eth": 0.00007611,
       "balance_wei": "76111675275427",
       "merkle_proof": [
         "0x07da4d95f194c168a4998a00b26bfdb688e12eff25f04073b33890af766c9d68",
@@ -133560,7 +133561,7 @@
     },
     {
       "address": "0x7631ba9262434b2270431f79ec99d6fadef33ea1",
-      "balance_eth": 7.594e-05,
+      "balance_eth": 0.00007594,
       "balance_wei": "75941166219363",
       "merkle_proof": [
         "0x819f6bffd6cd2ff24424d1d2b355dbe1ab72b0bd5d102cc52fe247b3441e6d8c",
@@ -133580,7 +133581,7 @@
     },
     {
       "address": "0x142f5aa531b69b10b04a7a53cb9f318d894bd4a4",
-      "balance_eth": 7.584e-05,
+      "balance_eth": 0.00007584,
       "balance_wei": "75838899336099",
       "merkle_proof": [
         "0x05d34872f97ae3adca4407bb1923f0f7d5987ddc8e5370c679ec6ea3e64b68c9",
@@ -133600,7 +133601,7 @@
     },
     {
       "address": "0xacbe4b6956611fcaaefbe5dde0f8353021041720",
-      "balance_eth": 7.568e-05,
+      "balance_eth": 0.00007568,
       "balance_wei": "75684040290658",
       "merkle_proof": [
         "0xfc23dce13d363f387826ae92a0c2d93ab7507a89264464bed0146067d5be2c44",
@@ -133620,7 +133621,7 @@
     },
     {
       "address": "0x78c0a25ccc21604b3d117100de7c9523f53236c7",
-      "balance_eth": 7.533e-05,
+      "balance_eth": 0.00007533,
       "balance_wei": "75326040832483",
       "merkle_proof": [
         "0x63d89efed282ff53ef6beb78aaede0fdb48a6931842bfbb1e762783a1992bf32",
@@ -133640,7 +133641,7 @@
     },
     {
       "address": "0x01844fd4dcab575923c3272fde677777c7ae5af4",
-      "balance_eth": 7.471e-05,
+      "balance_eth": 0.00007471,
       "balance_wei": "74705010022554",
       "merkle_proof": [
         "0x4088565a69bafbe9add72be53603989e0cbb030e6e8d10bd6fbf314fd2ce407a",
@@ -133660,7 +133661,7 @@
     },
     {
       "address": "0x996ccf7f0b68fcc4c318911d37d01a2ae8793a73",
-      "balance_eth": 7.466e-05,
+      "balance_eth": 0.00007466,
       "balance_wei": "74658561253940",
       "merkle_proof": [
         "0x3692dd622d5ed5d33ca8ef9e0b8a78df6f5ff9977516770a1239401380390b5a",
@@ -133680,7 +133681,7 @@
     },
     {
       "address": "0x2755852fd15305c7c3b8138e1da757e5e5f597ee",
-      "balance_eth": 7.439e-05,
+      "balance_eth": 0.00007439,
       "balance_wei": "74388915937030",
       "merkle_proof": [
         "0x98c53b0167a2ec8589954aa5a8a37d4ce62ec6a90d01048417392548c280ff02",
@@ -133700,7 +133701,7 @@
     },
     {
       "address": "0xa016c8210c1015df69c7c52c8864cf8f71ea7450",
-      "balance_eth": 7.408e-05,
+      "balance_eth": 0.00007408,
       "balance_wei": "74077016456560",
       "merkle_proof": [
         "0xef4f34273fbae7df5e83181e97c68a4a4b8010947ad6cf47ad391cfe3bd1c47b",
@@ -133720,7 +133721,7 @@
     },
     {
       "address": "0x8837a2b99492130b0311442938a8c531455c2634",
-      "balance_eth": 7.359e-05,
+      "balance_eth": 0.00007359,
       "balance_wei": "73588213083067",
       "merkle_proof": [
         "0xad1d89f8dedad4958db7e055db19852f5bda0aed9fe4be9b8e0d8a74ef9dc5e9",
@@ -133740,7 +133741,7 @@
     },
     {
       "address": "0xf68755c0b63a5d9e21a1814f0775e0652e112f72",
-      "balance_eth": 7.35e-05,
+      "balance_eth": 0.0000735,
       "balance_wei": "73501288509867",
       "merkle_proof": [
         "0xd8e134ad736e7e2669a449ffb45402ec9209d73192bd8af2d813c548c886eaef",
@@ -133760,7 +133761,7 @@
     },
     {
       "address": "0x5589d29d104ee65b23d12dd4ec3a6b20a1027091",
-      "balance_eth": 7.348e-05,
+      "balance_eth": 0.00007348,
       "balance_wei": "73479650805284",
       "merkle_proof": [
         "0xd7f292365047162af931d01973cfef1793e8ff26e96e42595d2482d5ccbec88f",
@@ -133780,7 +133781,7 @@
     },
     {
       "address": "0xb8346a83b2b558c3e1e9196f27b876ed541b53f4",
-      "balance_eth": 7.348e-05,
+      "balance_eth": 0.00007348,
       "balance_wei": "73479650767629",
       "merkle_proof": [
         "0xaf218e15f39a7c23311c72ac5abc3db2d2ecb336cc58ce98fef92d46288f72bd",
@@ -133800,7 +133801,7 @@
     },
     {
       "address": "0x1c64a4d63a63dc5b6b383170485eea693fe0ac5e",
-      "balance_eth": 7.348e-05,
+      "balance_eth": 0.00007348,
       "balance_wei": "73479650767629",
       "merkle_proof": [
         "0xcf5b768acc671a5a5839c79c307986e4391dfd5848bfe324f482eb23b6902070",
@@ -133820,7 +133821,7 @@
     },
     {
       "address": "0xb2c4ba3d374edd207932c462a7bd8266208c7b23",
-      "balance_eth": 7.348e-05,
+      "balance_eth": 0.00007348,
       "balance_wei": "73479650767629",
       "merkle_proof": [
         "0x3968096540760a235ff493dd782b7a0e521233356195cf55307c42361418161f",
@@ -133840,7 +133841,7 @@
     },
     {
       "address": "0x6eefdd891ae129c7c332918a3c16f9d4d8942c57",
-      "balance_eth": 7.348e-05,
+      "balance_eth": 0.00007348,
       "balance_wei": "73479650767629",
       "merkle_proof": [
         "0x531702af133e707acb63f43377283ea0765673b1624783bc9a4f40abde714b85",
@@ -133860,7 +133861,7 @@
     },
     {
       "address": "0xa6db8e9683579d16d0c67721bf7cddd0305a4172",
-      "balance_eth": 7.348e-05,
+      "balance_eth": 0.00007348,
       "balance_wei": "73479650767629",
       "merkle_proof": [
         "0x21ab6eec67e9ea9c3d3763c1cc074ca06db517af624a96a6679ae30d9c8a37f6",
@@ -133880,7 +133881,7 @@
     },
     {
       "address": "0xb41cde2a31f506878a86fa00930b46ce28832142",
-      "balance_eth": 7.348e-05,
+      "balance_eth": 0.00007348,
       "balance_wei": "73479650767629",
       "merkle_proof": [
         "0xbd287c86d66566d1413a1835dad559ac403b30d397c976bc57e896aa71882ab1",
@@ -133900,7 +133901,7 @@
     },
     {
       "address": "0x4721adf3c1118d4b8a7e3208b23f9c7fa34b6f9f",
-      "balance_eth": 7.348e-05,
+      "balance_eth": 0.00007348,
       "balance_wei": "73479650767629",
       "merkle_proof": [
         "0x34359dd967227979a6819614d205a0726e801b182bc7c8e741b2bf54870cdcfb",
@@ -133920,7 +133921,7 @@
     },
     {
       "address": "0x41b441af1c5fe043a86d3d1b9dd2ae3bf7343b1c",
-      "balance_eth": 7.348e-05,
+      "balance_eth": 0.00007348,
       "balance_wei": "73479650767629",
       "merkle_proof": [
         "0x52d25558c6607b1af51d50f35d17d53660df9ab62caced00d5f683a7fe56a1aa",
@@ -133940,7 +133941,7 @@
     },
     {
       "address": "0xbfc8ae1a7e13912c6447a129ae57b7f11a4f05b8",
-      "balance_eth": 7.348e-05,
+      "balance_eth": 0.00007348,
       "balance_wei": "73479650767629",
       "merkle_proof": [
         "0x3cd869f3487c0acab121393da980ca9b6a5529eed1b018b7c4dc362d75b5f9d6",
@@ -133960,7 +133961,7 @@
     },
     {
       "address": "0xc2a9195d0f41b5f35844c43963e82aa06d450984",
-      "balance_eth": 7.348e-05,
+      "balance_eth": 0.00007348,
       "balance_wei": "73479650767629",
       "merkle_proof": [
         "0xd2b9ad0c05dd0ead2287bc2c123a6bf8ac9bcea902b1f9280aa2602a6f8abbcf",
@@ -133980,7 +133981,7 @@
     },
     {
       "address": "0xe25bcdb54b7d52a03a0b37353ce11e904777017b",
-      "balance_eth": 7.348e-05,
+      "balance_eth": 0.00007348,
       "balance_wei": "73479650767629",
       "merkle_proof": [
         "0x654d5c01bfa1d66a45b42866ffba29baad37072c72a165e1f13f1377cc09fa5c",
@@ -134000,7 +134001,7 @@
     },
     {
       "address": "0xc4489f02fa87b38be3063cf72fb0a432c5e9180f",
-      "balance_eth": 7.255e-05,
+      "balance_eth": 0.00007255,
       "balance_wei": "72553018885228",
       "merkle_proof": [
         "0xaf1f38b3e7b6606faf2a9da00c108d14f49d44b5c87bc942844884274d0aff10",
@@ -134020,7 +134021,7 @@
     },
     {
       "address": "0xd5f741f92795fa0e0cbdd7d7725b124d10f67184",
-      "balance_eth": 7.226e-05,
+      "balance_eth": 0.00007226,
       "balance_wei": "72255859669397",
       "merkle_proof": [
         "0x3976a4380398b57777bfd0cbe0cad9eb4feae6a200a89584bd72510580c03c79",
@@ -134040,7 +134041,7 @@
     },
     {
       "address": "0xf33b8200631e5ddcda4d96de1b808ee41f985dd5",
-      "balance_eth": 7.216e-05,
+      "balance_eth": 0.00007216,
       "balance_wei": "72157175511461",
       "merkle_proof": [
         "0x2add04520d2143dd5d02d5387622d26a57fce95285a821d6ec51bc4d4bee01de",
@@ -134060,7 +134061,7 @@
     },
     {
       "address": "0xab45d3dd2f01643120143d559f5084c6b8278d07",
-      "balance_eth": 7.187e-05,
+      "balance_eth": 0.00007187,
       "balance_wei": "71873751476484",
       "merkle_proof": [
         "0x4bd3117f0be9d923131a7ce28b80cdec6eacfea76cf35a058b4c23f2a5e19290",
@@ -134080,7 +134081,7 @@
     },
     {
       "address": "0x0f32d873418547909afeeb4260bfb17d155ecba8",
-      "balance_eth": 7.15e-05,
+      "balance_eth": 0.0000715,
       "balance_wei": "71497967996310",
       "merkle_proof": [
         "0x35861a10ba25cf7f45eb1ae4b3d19a6d61fee5a8230572c1e343eb744b05e3af",
@@ -134100,7 +134101,7 @@
     },
     {
       "address": "0x60910cc9d65c9a753e9e04e59b8163f451567a62",
-      "balance_eth": 7.14e-05,
+      "balance_eth": 0.0000714,
       "balance_wei": "71402142272950",
       "merkle_proof": [
         "0xec148f5b09330897f083d034f96417a592fef0435b6fa90e0b991d8b0f313b23",
@@ -134120,7 +134121,7 @@
     },
     {
       "address": "0x499d0cb574b5116b9daa349f5dfe8dacb2b9cb42",
-      "balance_eth": 7.124e-05,
+      "balance_eth": 0.00007124,
       "balance_wei": "71238670625052",
       "merkle_proof": [
         "0xce70b383f66c846a27ea12fd1cb801a7c96ac4bd3aa8c84786fdd85df8c90dc5",
@@ -134140,7 +134141,7 @@
     },
     {
       "address": "0x55f7a0335c6be76a6957b7ecf0921c1bc7b65c8e",
-      "balance_eth": 7.074e-05,
+      "balance_eth": 0.00007074,
       "balance_wei": "70738188547673",
       "merkle_proof": [
         "0x6e4274286dab8c2fff8081a5ace97b662cec6dbbd34965537fe6995350e35d86",
@@ -134160,7 +134161,7 @@
     },
     {
       "address": "0xa4d35a17a5b8fe538d966c072db68f9e97bdd4c1",
-      "balance_eth": 7.056e-05,
+      "balance_eth": 0.00007056,
       "balance_wei": "70557879554523",
       "merkle_proof": [
         "0x5517bf54f1de79bfc932bdde587740c8852781850f4c82781986dfd30ff9893a",
@@ -134180,7 +134181,7 @@
     },
     {
       "address": "0xf05e2be68e8d74e469c6fe13f2a3e2f887d5bfd8",
-      "balance_eth": 7.048e-05,
+      "balance_eth": 0.00007048,
       "balance_wei": "70481162454602",
       "merkle_proof": [
         "0x299b90ce8b75d178c1b364f34e0125dbfa168f778459c7470aaa82a4b1d9c80a",
@@ -134200,7 +134201,7 @@
     },
     {
       "address": "0xd511f7d8738e519820f4e4194bddb253c1ce517b",
-      "balance_eth": 7.036e-05,
+      "balance_eth": 0.00007036,
       "balance_wei": "70360526030785",
       "merkle_proof": [
         "0x78e3b0b9845536b53a5fa2fa2e9145962334ecadf1092a2eb35ddc63f2a95aaa",
@@ -134220,7 +134221,7 @@
     },
     {
       "address": "0x8b66ea7ac8d1f3023662225bee605782f70e0a1b",
-      "balance_eth": 6.981e-05,
+      "balance_eth": 0.00006981,
       "balance_wei": "69805668229247",
       "merkle_proof": [
         "0xa55b2cbd83a4fa0562a8c0d1f45e1cc9d7e84e0c8becc3e55195b51ebacdb6d4",
@@ -134240,7 +134241,7 @@
     },
     {
       "address": "0x191ec940b5bd2cf86fd26fa8e989f123dcff5d7d",
-      "balance_eth": 6.975e-05,
+      "balance_eth": 0.00006975,
       "balance_wei": "69748063177943",
       "merkle_proof": [
         "0x5e0bfb8736ff798398d07b181ace5b9df0b828e3a61625f55a9545dc4fe00b09",
@@ -134260,7 +134261,7 @@
     },
     {
       "address": "0x62532e7f6c31f028234dee17e30ead8d8991d528",
-      "balance_eth": 6.944e-05,
+      "balance_eth": 0.00006944,
       "balance_wei": "69435300117279",
       "merkle_proof": [
         "0xbbeff72c55cc1d5c66df2ddf104ef269c53cf6c342252d0c094b04326ca0efea",
@@ -134280,7 +134281,7 @@
     },
     {
       "address": "0x17d662e39206be111481521a0b2c5ab7733e6d1c",
-      "balance_eth": 6.939e-05,
+      "balance_eth": 0.00006939,
       "balance_wei": "69392336392665",
       "merkle_proof": [
         "0xa4fe44b8926feac71129c5c8e9d5223a51219ed10ed88414a6a857d428fb080d",
@@ -134300,7 +134301,7 @@
     },
     {
       "address": "0xb0de1e32aeaa57bc87c2153e983127dcbc3ab81d",
-      "balance_eth": 6.908e-05,
+      "balance_eth": 0.00006908,
       "balance_wei": "69076857597781",
       "merkle_proof": [
         "0x7d4d60b2fc539b097e8d54d66f581ce44d095994cb065c4d9ce96e9962548fb3",
@@ -134320,7 +134321,7 @@
     },
     {
       "address": "0x37adfe6ec3c394619426df67f06a2a82c4243ffb",
-      "balance_eth": 6.868e-05,
+      "balance_eth": 0.00006868,
       "balance_wei": "68679831227093",
       "merkle_proof": [
         "0x11d4e0f89f4a02270afd7f189d194a249b8c23fcd0bc144ba81a6f8362bade77",
@@ -134340,7 +134341,7 @@
     },
     {
       "address": "0x3f5962af7b79cc71e0e00485ee211e6b7d76a48f",
-      "balance_eth": 6.814e-05,
+      "balance_eth": 0.00006814,
       "balance_wei": "68144552684064",
       "merkle_proof": [
         "0xf7fbaaf916ec1147e0341b1558c5e4287ba560bdeb8b8fb3aa7fb8e57458749c",
@@ -134360,7 +134361,7 @@
     },
     {
       "address": "0x5077a2438fb798baf659af07976c98cd0b01b38f",
-      "balance_eth": 6.806e-05,
+      "balance_eth": 0.00006806,
       "balance_wei": "68059738589543",
       "merkle_proof": [
         "0x3cb3d41b8183868e066976cb063b182d43700dd9a6f5b3e2e7788e0ede71c275",
@@ -134380,7 +134381,7 @@
     },
     {
       "address": "0xba074a2c0975ccb32f421cdb3c8ab0c9c50592ab",
-      "balance_eth": 6.8e-05,
+      "balance_eth": 0.000068,
       "balance_wei": "68000693521068",
       "merkle_proof": [
         "0x6a1b13d8784fa9673741c419cf5a3fd670cb1f4e74f519b35af59795f2eb0e21",
@@ -134400,7 +134401,7 @@
     },
     {
       "address": "0xe7d279f63246ce07f568e276aeb10f0f2e17093b",
-      "balance_eth": 6.787e-05,
+      "balance_eth": 0.00006787,
       "balance_wei": "67874034732829",
       "merkle_proof": [
         "0x4c0d42ab94c3eb547feb9e5efecf8282ad9f744fcd56047e62aede3659aea06d",
@@ -134420,7 +134421,7 @@
     },
     {
       "address": "0xf95ad2bcac81872b96c9108406ecfd0c615b2968",
-      "balance_eth": 6.785e-05,
+      "balance_eth": 0.00006785,
       "balance_wei": "67848968501948",
       "merkle_proof": [
         "0x2607d46573ac946861b70c86a6e1be5a1f011b0a37ab43029904e1bfcf5d3d4b",
@@ -134440,7 +134441,7 @@
     },
     {
       "address": "0x92432eb2a2d88800fdad85891d313ea7aaddde5c",
-      "balance_eth": 6.723e-05,
+      "balance_eth": 0.00006723,
       "balance_wei": "67233880452380",
       "merkle_proof": [
         "0x6d614a13ec39c1520992aa416d9a6a19f92af0db39923e2d345b40dbe49bf4a7",
@@ -134460,7 +134461,7 @@
     },
     {
       "address": "0x12f7199b14597b12e4507b981947ba185b15a669",
-      "balance_eth": 6.673e-05,
+      "balance_eth": 0.00006673,
       "balance_wei": "66726287379316",
       "merkle_proof": [
         "0xb56913ad54047978ee6da5ed1989ab7265e916e556e8ed26e3032eaef864feed",
@@ -134480,7 +134481,7 @@
     },
     {
       "address": "0xa0d62c5aae756310aff06621b6750250cb7902bb",
-      "balance_eth": 6.645e-05,
+      "balance_eth": 0.00006645,
       "balance_wei": "66445434152506",
       "merkle_proof": [
         "0x91059b76391528532ae6054524ce780bfcfe452c1e8657855daab7ad48e18433",
@@ -134500,7 +134501,7 @@
     },
     {
       "address": "0xd8b260d5d722c7910a1fd0f9e6cc7bee62e84ca9",
-      "balance_eth": 6.637e-05,
+      "balance_eth": 0.00006637,
       "balance_wei": "66369987374561",
       "merkle_proof": [
         "0x757c7848abcae7dcc8a9e47379cef7bab8338e97f89ed9a18f24f0d96a52f000",
@@ -134520,7 +134521,7 @@
     },
     {
       "address": "0x8bdd955c363b0114c5c5686a81e993aab48e7209",
-      "balance_eth": 6.628e-05,
+      "balance_eth": 0.00006628,
       "balance_wei": "66282742107372",
       "merkle_proof": [
         "0xcf0af94ab375dee7f399bce1258c5f8df84f5dff72bd7668832c24c2a5ff7a2c",
@@ -134540,7 +134541,7 @@
     },
     {
       "address": "0xd29d2811fedefebe05f7de2ef9a92858665f7b2e",
-      "balance_eth": 6.613e-05,
+      "balance_eth": 0.00006613,
       "balance_wei": "66131685690866",
       "merkle_proof": [
         "0x0b539ff33b252ce6d3be9602d6a2dc84b9b10d9d8b87d07e90feae03da74c498",
@@ -134560,7 +134561,7 @@
     },
     {
       "address": "0xe11e46fdf13e5ceb09c3a059fb9d06a4f16a1ac2",
-      "balance_eth": 6.593e-05,
+      "balance_eth": 0.00006593,
       "balance_wei": "65925592266259",
       "merkle_proof": [
         "0x85f00abf95e9a4824dbaed1abbd1b9c8001a822fda00f9980971a93adfd61090",
@@ -134580,7 +134581,7 @@
     },
     {
       "address": "0xcf48340dfab2f903e8813d57180ceb84b1eb2905",
-      "balance_eth": 6.529e-05,
+      "balance_eth": 0.00006529,
       "balance_wei": "65291710887720",
       "merkle_proof": [
         "0x20ee60655c0961594a5b077cb32eeeb1f28874e5deaa96ce4cb5a79a53a5cfa7",
@@ -134600,7 +134601,7 @@
     },
     {
       "address": "0x0baa94700a5059e526179f5a5358a59afbcd2673",
-      "balance_eth": 6.505e-05,
+      "balance_eth": 0.00006505,
       "balance_wei": "65051270406410",
       "merkle_proof": [
         "0x740d89f63e245c4839c921ca068b3078ebe324fd92c0db94509a3ff70fea503e",
@@ -134620,7 +134621,7 @@
     },
     {
       "address": "0xa16c7a99a893a9353a2cbeb5df0273a06057e5d1",
-      "balance_eth": 6.487e-05,
+      "balance_eth": 0.00006487,
       "balance_wei": "64867041877577",
       "merkle_proof": [
         "0xccc91e2e9c63958450c249c3dc982e3c5cc92e3e32982ca8eed89060287925a9",
@@ -134640,7 +134641,7 @@
     },
     {
       "address": "0xfb184ed1c4f2f337d0ed1b1238bf75aafb20554e",
-      "balance_eth": 6.458e-05,
+      "balance_eth": 0.00006458,
       "balance_wei": "64582933164907",
       "merkle_proof": [
         "0x66c95fb500dc797e530c1ac7c7d3f7fa337dc6a7d710346b9939a1eb8b49e9bf",
@@ -134660,7 +134661,7 @@
     },
     {
       "address": "0x87c5023c44f6c6e75109035a292089ddc2a14e02",
-      "balance_eth": 6.446e-05,
+      "balance_eth": 0.00006446,
       "balance_wei": "64458162837226",
       "merkle_proof": [
         "0x713b3af18f5467467a1454b7ff2ee4212fcf1dab65fc8a2e8d622f764ba82f9c",
@@ -134680,7 +134681,7 @@
     },
     {
       "address": "0x7a34a0ee1e378d7cbbcdda32a948e2c8f3700117",
-      "balance_eth": 6.416e-05,
+      "balance_eth": 0.00006416,
       "balance_wei": "64156129331950",
       "merkle_proof": [
         "0x6998069619dba7456ae23a820e88d38a92e6242e3b7e7a83476497e44882ca9f",
@@ -134700,7 +134701,7 @@
     },
     {
       "address": "0xd10a732f092f684df9b295a293d0bffa058c3810",
-      "balance_eth": 6.364e-05,
+      "balance_eth": 0.00006364,
       "balance_wei": "63637910765973",
       "merkle_proof": [
         "0xf3edf4bc09024076b6b156d0d26bf21851cb07209efa9ea79dd2ef66976d1109",
@@ -134720,7 +134721,7 @@
     },
     {
       "address": "0x5cb32b3cda071dd29638a449b8274bab8a3df782",
-      "balance_eth": 6.305e-05,
+      "balance_eth": 0.00006305,
       "balance_wei": "63054209740998",
       "merkle_proof": [
         "0x06ca2098c9a9864e509fd898efb9378ae671e25711d1fb7b8d67678e33d945a6",
@@ -134740,7 +134741,7 @@
     },
     {
       "address": "0x2313f39d23d1c8d31844ae9a7b0b106090cf1ea8",
-      "balance_eth": 6.172e-05,
+      "balance_eth": 0.00006172,
       "balance_wei": "61718773961496",
       "merkle_proof": [
         "0x2e0d2de199c1de2c869abc5683a2cf8be0038abc5ae00c3a232ecddbb84a68c4",
@@ -134760,7 +134761,7 @@
     },
     {
       "address": "0x20eabfe65aa2c1bc7674c7f5deaa522ab0a04ca8",
-      "balance_eth": 6.148e-05,
+      "balance_eth": 0.00006148,
       "balance_wei": "61477711739733",
       "merkle_proof": [
         "0x30b6df94bdbaf87754903f718210d7b784505cf96cddccbb446d902fbef982d1",
@@ -134780,7 +134781,7 @@
     },
     {
       "address": "0xe1baf6db6406ab1e29995bff5cf362d8f984995a",
-      "balance_eth": 6.123e-05,
+      "balance_eth": 0.00006123,
       "balance_wei": "61233042303908",
       "merkle_proof": [
         "0x57aa6c9a3503b95ff67a2a71cdd79510ff180ad9d6e8eddfda48dee5ebb70f9e",
@@ -134800,7 +134801,7 @@
     },
     {
       "address": "0x5b44a61cab741f98cb442ca68f157ebdfa1670bf",
-      "balance_eth": 6.123e-05,
+      "balance_eth": 0.00006123,
       "balance_wei": "61233042303908",
       "merkle_proof": [
         "0x3c34924b531f3868daa3f91c289248b90bbbd71fabfe52574bea7d5b37c98625",
@@ -134820,7 +134821,7 @@
     },
     {
       "address": "0x287104b78da8a1a9c6f41a1284410299f4da2d95",
-      "balance_eth": 6.083e-05,
+      "balance_eth": 0.00006083,
       "balance_wei": "60833888605866",
       "merkle_proof": [
         "0x7c152783d02519f0d528a69868560d47776535a4c463b7b9424c664b33cd1cbe",
@@ -134840,7 +134841,7 @@
     },
     {
       "address": "0x0c027db3d7049e0cc075321baf81155bb847e311",
-      "balance_eth": 6.061e-05,
+      "balance_eth": 0.00006061,
       "balance_wei": "60608234602413",
       "merkle_proof": [
         "0x9cabe5e8102d0bb9c6ee2751f90cc8922e5af57e6fd9a839b439d08bd70d9fd4",
@@ -134860,7 +134861,7 @@
     },
     {
       "address": "0x94cb9eb9c4efd5c03f1efdde906f534befc1e696",
-      "balance_eth": 6.028e-05,
+      "balance_eth": 0.00006028,
       "balance_wei": "60283686734456",
       "merkle_proof": [
         "0x920d7bf6cf62908e533e811eb7b223e69c906ad013b4303d6faf34565a2184af",
@@ -134880,7 +134881,7 @@
     },
     {
       "address": "0x6c84017ff06b3cd43c90ff5533ee516a6418c083",
-      "balance_eth": 6.027e-05,
+      "balance_eth": 0.00006027,
       "balance_wei": "60269770688333",
       "merkle_proof": [
         "0xe0417340c768bc3c796f585cfef51655bc7897cddfb8a727da5b80f34a3c5bd5",
@@ -134900,7 +134901,7 @@
     },
     {
       "address": "0x9f6d8d7c57e989fedf1d50d9cf66c91def446405",
-      "balance_eth": 6.027e-05,
+      "balance_eth": 0.00006027,
       "balance_wei": "60270130267957",
       "merkle_proof": [
         "0xafbf7e31c4042d2de1d6e3621fac1c0121000f3409ca7bd68bb2b7f082bb1b0a",
@@ -134920,7 +134921,7 @@
     },
     {
       "address": "0x7c5156091271668b047a97842c79ed44dc0e60e6",
-      "balance_eth": 6.012e-05,
+      "balance_eth": 0.00006012,
       "balance_wei": "60116519631615",
       "merkle_proof": [
         "0x99aea47100423348ddfa40a6b87cd0274afea5db0eb293ec2a62f39e8a1a8363",
@@ -134940,7 +134941,7 @@
     },
     {
       "address": "0xfbf7ad08cd71d6c802f20cf6f12b2461f8623697",
-      "balance_eth": 5.968e-05,
+      "balance_eth": 0.00005968,
       "balance_wei": "59677449261963",
       "merkle_proof": [
         "0x8e448c5788d6df5f02e532cb036eedbe6d28367fd90bf2b24660f5693d494419",
@@ -134960,7 +134961,7 @@
     },
     {
       "address": "0x73f46779a6aa3bdd63d775383ab70313ee696819",
-      "balance_eth": 5.936e-05,
+      "balance_eth": 0.00005936,
       "balance_wei": "59359770986759",
       "merkle_proof": [
         "0xab98703440e61c6318e8c1706abcbce1f482e6a1a09b63a9448d72ea32e745cc",
@@ -134980,7 +134981,7 @@
     },
     {
       "address": "0x30c264706ce52ea3d7d642bb69ef67c6f963f2aa",
-      "balance_eth": 5.932e-05,
+      "balance_eth": 0.00005932,
       "balance_wei": "59315156456867",
       "merkle_proof": [
         "0xa83a4b8212581b9aaae964fad2b3f5a6f94cb2a62bca94371efa02b2c0a87600",
@@ -135000,7 +135001,7 @@
     },
     {
       "address": "0xeb8eb4f7e991b7403b61f6d5037e3c12671802a4",
-      "balance_eth": 5.878e-05,
+      "balance_eth": 0.00005878,
       "balance_wei": "58783720614103",
       "merkle_proof": [
         "0xbb1f54368bd1608a0ef5acb1e635bfc38b110301cbde9153f17bd7b669c87745",
@@ -135020,7 +135021,7 @@
     },
     {
       "address": "0xd68f76c36c49d844cc1e6b4cf111cf23f44fc8ba",
-      "balance_eth": 5.838e-05,
+      "balance_eth": 0.00005838,
       "balance_wei": "58382060787716",
       "merkle_proof": [
         "0x0e63475dc56ed4b69260da7817313d21c1e622050bb5831a548189af1037ca17",
@@ -135040,7 +135041,7 @@
     },
     {
       "address": "0x9e54166a6cc0c92e0437b7851f600b2c5b216758",
-      "balance_eth": 5.805e-05,
+      "balance_eth": 0.00005805,
       "balance_wei": "58048924106427",
       "merkle_proof": [
         "0xf2f38592096903b8c73230ba9c1e68c3c744cac803404c652f1c7a6632de3916",
@@ -135060,7 +135061,7 @@
     },
     {
       "address": "0x905be70e9800c67b2c9bae2b0216a3e816dd23fc",
-      "balance_eth": 5.805e-05,
+      "balance_eth": 0.00005805,
       "balance_wei": "58048924106427",
       "merkle_proof": [
         "0x8a0b8f310c1af6289e56cca4206d46c995306555c68813fe0f233aaf6ba1e9f2",
@@ -135080,7 +135081,7 @@
     },
     {
       "address": "0xcd73679a1b8abae1439d6f1feb0616d57faed48c",
-      "balance_eth": 5.805e-05,
+      "balance_eth": 0.00005805,
       "balance_wei": "58048924106427",
       "merkle_proof": [
         "0x10ab232b1f1bbb537f487f4001ebe77711f7e992257b3a35a08f5af126fd3e43",
@@ -135100,7 +135101,7 @@
     },
     {
       "address": "0x8a0465a7879acf1d3c018f8c5a3130898085af3d",
-      "balance_eth": 5.805e-05,
+      "balance_eth": 0.00005805,
       "balance_wei": "58048924106427",
       "merkle_proof": [
         "0xf349c9f27ccfaac0ea4a9788e9b37652fbbdb06507cffdf54ab1079b508f667c",
@@ -135120,7 +135121,7 @@
     },
     {
       "address": "0x6244b10f44feeec3747ea69f5521c651c876bc6b",
-      "balance_eth": 5.805e-05,
+      "balance_eth": 0.00005805,
       "balance_wei": "58048924106427",
       "merkle_proof": [
         "0x3ef3231b1fd4ae6182965ffe56dab194b8ea04c4ad0796af65764972dcbcfe0f",
@@ -135140,7 +135141,7 @@
     },
     {
       "address": "0x0b780f3aeb195bbaa85cd00a6ef2e054881749d5",
-      "balance_eth": 5.805e-05,
+      "balance_eth": 0.00005805,
       "balance_wei": "58048924106427",
       "merkle_proof": [
         "0xc91c533a7ff9d6ee22d1513159de82054e331634cfa3872f6ace295db730fd83",
@@ -135160,7 +135161,7 @@
     },
     {
       "address": "0x8496d48b07a6349c0276f078e1bd24521ac8c2c7",
-      "balance_eth": 5.805e-05,
+      "balance_eth": 0.00005805,
       "balance_wei": "58048924106427",
       "merkle_proof": [
         "0x9607dbc1802e1108dab1fe86063d5f8951651d9e7708cc717b9b1cce10fcd28b",
@@ -135180,7 +135181,7 @@
     },
     {
       "address": "0x9b7c1a38aadd35b545e09e507fc6f2e7716b5df7",
-      "balance_eth": 5.805e-05,
+      "balance_eth": 0.00005805,
       "balance_wei": "58048924106427",
       "merkle_proof": [
         "0x0b75c651a0b7001c02d03be5ac1f4feafce4d8cb8a28d8fbdec0604033b2b3be",
@@ -135200,7 +135201,7 @@
     },
     {
       "address": "0x43e1eed4e4d2f9aae98ebc6b03a7988466a59a2e",
-      "balance_eth": 5.805e-05,
+      "balance_eth": 0.00005805,
       "balance_wei": "58048924106427",
       "merkle_proof": [
         "0xe6cf5a2a924ff194553e480bba35ac1c83a1d6793129b621b8f7cd0ed5e85bb5",
@@ -135220,7 +135221,7 @@
     },
     {
       "address": "0xb0e042db37b5d9d90a059b749cca33ad9adb7237",
-      "balance_eth": 5.778e-05,
+      "balance_eth": 0.00005778,
       "balance_wei": "57782773757300",
       "merkle_proof": [
         "0x1682bbadf055bbe384fb38fa5ed00597500f7505dfff7be4917b8a36a0fda251",
@@ -135240,7 +135241,7 @@
     },
     {
       "address": "0x3204c61ba8caf557d4d4d271be20321697079478",
-      "balance_eth": 5.694e-05,
+      "balance_eth": 0.00005694,
       "balance_wei": "56938159979255",
       "merkle_proof": [
         "0x382b24b0e35952d64888162e48ee2e4a6c21ebfbe14990fb4045829705473540",
@@ -135260,7 +135261,7 @@
     },
     {
       "address": "0x3f73ddb0f105591186ca245bcd00c6167777ca3b",
-      "balance_eth": 5.686e-05,
+      "balance_eth": 0.00005686,
       "balance_wei": "56855100236323",
       "merkle_proof": [
         "0x4c6c5868d3b1d3315aff507391ca9ccb1c4d6856c8054a58bd2f8d127ac30d65",
@@ -135280,7 +135281,7 @@
     },
     {
       "address": "0x5cf053ca3a06bee8cad5bc4c660c4bfe6538e614",
-      "balance_eth": 5.615e-05,
+      "balance_eth": 0.00005615,
       "balance_wei": "56145015225014",
       "merkle_proof": [
         "0x2d4e482b0bf1d7b79fe65508eb7472cbf3991ddc1b0d5d8687fbf623f800c283",
@@ -135300,7 +135301,7 @@
     },
     {
       "address": "0x3d30332544d69a360a34029cee3c1ac781079393",
-      "balance_eth": 5.61e-05,
+      "balance_eth": 0.0000561,
       "balance_wei": "56095297053689",
       "merkle_proof": [
         "0x0f3f56b9e8bb1adf1f05541f13c16f2148e84137e5c28f78cc335b91d1524b04",
@@ -135320,7 +135321,7 @@
     },
     {
       "address": "0xe054536fc1b9c94159ebb988bb1a8441f0d6d328",
-      "balance_eth": 5.607e-05,
+      "balance_eth": 0.00005607,
       "balance_wei": "56073795150604",
       "merkle_proof": [
         "0x3191643385a2d9795986dd7bb45b9ac2da682bd808097718f3fc1aedd70a03fb",
@@ -135340,7 +135341,7 @@
     },
     {
       "address": "0x6049546769380eaa5f98428e903aef20d0f47371",
-      "balance_eth": 5.583e-05,
+      "balance_eth": 0.00005583,
       "balance_wei": "55831831982586",
       "merkle_proof": [
         "0x2887bc60140d747a9449fea6c49df18ce1019345a85b975aaa870f4542e9acfa",
@@ -135360,7 +135361,7 @@
     },
     {
       "address": "0x47f2525ae14b5852d9f092e1bbfcd75ce29ad3ee",
-      "balance_eth": 5.582e-05,
+      "balance_eth": 0.00005582,
       "balance_wei": "55821831057408",
       "merkle_proof": [
         "0x41277e1f9318d173716d2a6f30940373afd29871d2953dac26df8b29a871fc52",
@@ -135380,7 +135381,7 @@
     },
     {
       "address": "0x0685fd9d045d9c086b6ef01f621a398e2d35a1dc",
-      "balance_eth": 5.562e-05,
+      "balance_eth": 0.00005562,
       "balance_wei": "55617845231562",
       "merkle_proof": [
         "0x161d9ba38ce35c10dc7e6dd73832c59042b490b3a2ba5c78b1ff759c41fc28c4",
@@ -135400,7 +135401,7 @@
     },
     {
       "address": "0xc2d508752ec1c07dfa26cb134b2318e87f8c78a6",
-      "balance_eth": 5.557e-05,
+      "balance_eth": 0.00005557,
       "balance_wei": "55565044527662",
       "merkle_proof": [
         "0xeba090046012392ef40476bee044568388f7d76e049c39902d1ccbecc39a8aac",
@@ -135420,7 +135421,7 @@
     },
     {
       "address": "0x1af9a9318e56d7696da35b010b0ac9635f8f8af3",
-      "balance_eth": 5.553e-05,
+      "balance_eth": 0.00005553,
       "balance_wei": "55533921820735",
       "merkle_proof": [
         "0x46532dda2e701a865e58815ec369e9f7e9c572f25428b1ed78174a1cc19e3b40",
@@ -135440,7 +135441,7 @@
     },
     {
       "address": "0x525396b7fc921d3c7e6b4b175bc05cc42b360cdf",
-      "balance_eth": 5.511e-05,
+      "balance_eth": 0.00005511,
       "balance_wei": "55109738075721",
       "merkle_proof": [
         "0x411f9b8754a31b60af4df5a65fe87a3556a8418a9016c30ea626d87e1f5ef851",
@@ -135460,7 +135461,7 @@
     },
     {
       "address": "0x7c7a835ddedfb2fdaf64b7e364e928d5cdb160d8",
-      "balance_eth": 5.485e-05,
+      "balance_eth": 0.00005485,
       "balance_wei": "54847909967009",
       "merkle_proof": [
         "0x875d1660e25ae861eaae227c20eaec33d0da99e3b31ffd251852b378fa02a806",
@@ -135480,7 +135481,7 @@
     },
     {
       "address": "0x68583ddca69424433580ff9733a03e322b3f590a",
-      "balance_eth": 5.473e-05,
+      "balance_eth": 0.00005473,
       "balance_wei": "54731177835497",
       "merkle_proof": [
         "0xb054d461aa23c69ac2e8ad69ed0b0412af67e5e07887f51b09e77765e06e4584",
@@ -135500,7 +135501,7 @@
     },
     {
       "address": "0x051b1a2b64ac80bd3af6334fc2355ea2433592c9",
-      "balance_eth": 5.462e-05,
+      "balance_eth": 0.00005462,
       "balance_wei": "54624318708964",
       "merkle_proof": [
         "0x55dd16f913eb1ce64e0f2e076dd263fd1c16b512deac66aa2ec9ccd64a2ec744",
@@ -135520,7 +135521,7 @@
     },
     {
       "address": "0x8c2c025e34d85d4f792775d57df34ac20e1d464a",
-      "balance_eth": 5.436e-05,
+      "balance_eth": 0.00005436,
       "balance_wei": "54359586353427",
       "merkle_proof": [
         "0xa8349d33da642247c9b13977a5448439d58676a3d17ecf9df6dd71c815c37093",
@@ -135540,7 +135541,7 @@
     },
     {
       "address": "0x0e2d74756e5eee37888ad760042f0108d07adad1",
-      "balance_eth": 5.393e-05,
+      "balance_eth": 0.00005393,
       "balance_wei": "53932412682148",
       "merkle_proof": [
         "0x29f4854f5a8934dea6f2756eab6db13e2cb1b0e7e516506bb8e5f4da594ec028",
@@ -135560,7 +135561,7 @@
     },
     {
       "address": "0x4d5510edb11a78bc8cacba9bd5163708ff4e7a9b",
-      "balance_eth": 5.385e-05,
+      "balance_eth": 0.00005385,
       "balance_wei": "53849983832189",
       "merkle_proof": [
         "0x0f94003e1c76c35d9f908d32214856c1f51b02dac1cf7ffe184b2a13b98ef220",
@@ -135580,7 +135581,7 @@
     },
     {
       "address": "0x2bde13ac4c6dd333471186b93ab009f4c7aca6b4",
-      "balance_eth": 5.346e-05,
+      "balance_eth": 0.00005346,
       "balance_wei": "53458040210988",
       "merkle_proof": [
         "0x9a35deeca22144a16f7b482d1a9fa75eac55f0e7d18fe44fb919365d7d065a4d",
@@ -135600,7 +135601,7 @@
     },
     {
       "address": "0x1c71350a55b714061d08cdc6d0217f1bdb540dc2",
-      "balance_eth": 5.26e-05,
+      "balance_eth": 0.0000526,
       "balance_wei": "52599637547985",
       "merkle_proof": [
         "0xcb5c89b82ef79e61a9a5371776717b7c4d2b023acc3e284f3e7b66c46d85c415",
@@ -135620,7 +135621,7 @@
     },
     {
       "address": "0xa4f86fecea3e61734b99c7b52fa6d0e02b440f71",
-      "balance_eth": 5.212e-05,
+      "balance_eth": 0.00005212,
       "balance_wei": "52119302012170",
       "merkle_proof": [
         "0xff540e7eb5ffe38247913b07cea4d467a8cb9010d50c490707b9b522997ea435",
@@ -135640,7 +135641,7 @@
     },
     {
       "address": "0xe82212d40ed46355ea91f205b91b81e619f1cdf5",
-      "balance_eth": 5.204e-05,
+      "balance_eth": 0.00005204,
       "balance_wei": "52039780090450",
       "merkle_proof": [
         "0x5235f9df76d4b5cbbeec98953befc164f04095dbcc8467b2901b730105a51bbb",
@@ -135660,7 +135661,7 @@
     },
     {
       "address": "0x74073f27b00555d9f244e2aa7f02215fb8324854",
-      "balance_eth": 5.16e-05,
+      "balance_eth": 0.0000516,
       "balance_wei": "51595128508110",
       "merkle_proof": [
         "0x08bcac9ff97951a7c1db989b5ea674776ac2f80944f0deaacd373716db6c219e",
@@ -135680,7 +135681,7 @@
     },
     {
       "address": "0x552fc9c7ebd030e8dd108732cdbb57395472eff3",
-      "balance_eth": 5.089e-05,
+      "balance_eth": 0.00005089,
       "balance_wei": "50890504889739",
       "merkle_proof": [
         "0x88bb2aca762a172ed06c92ab21a9da9fe05aa630d5c2908868444d98b3394583",
@@ -135700,7 +135701,7 @@
     },
     {
       "address": "0x4a761193e88c963579c072df83e4de7e58f6df35",
-      "balance_eth": 5.024e-05,
+      "balance_eth": 0.00005024,
       "balance_wei": "50237716057185",
       "merkle_proof": [
         "0xfce857c42c584af00194671366cd75f5d0e809c23e4a08026acb8c573e714165",
@@ -135720,7 +135721,7 @@
     },
     {
       "address": "0x07e06a74e5644ac3759faa76180c79d9de5674fc",
-      "balance_eth": 5.009e-05,
+      "balance_eth": 0.00005009,
       "balance_wei": "50091568507332",
       "merkle_proof": [
         "0x6f9a6159892a90f45616dc2bf2c949671ec31e2febc6feea893d61884615216a",
@@ -135740,7 +135741,7 @@
     },
     {
       "address": "0xe518d6f8c99d44a59a542c6ad579e0e0292173e3",
-      "balance_eth": 4.979e-05,
+      "balance_eth": 0.00004979,
       "balance_wei": "49785250905299",
       "merkle_proof": [
         "0xe1d43311202748bd06a0ba001179d904578ba19bbd929b9dd9b51779df4cce7d",
@@ -135760,7 +135761,7 @@
     },
     {
       "address": "0x672f10051cd2222b8db502c0446bd905e0ac2bf8",
-      "balance_eth": 4.943e-05,
+      "balance_eth": 0.00004943,
       "balance_wei": "49430740713581",
       "merkle_proof": [
         "0xc87bb56e7a6cab6c5a94bfff86964032b375ad72e182ecc47d83004522090d61",
@@ -135780,7 +135781,7 @@
     },
     {
       "address": "0xc5b1641930fe2f6ac5dca7a4e7c05aa0e866d25d",
-      "balance_eth": 4.918e-05,
+      "balance_eth": 0.00004918,
       "balance_wei": "49176943164011",
       "merkle_proof": [
         "0x56a648f2b8cdcd564d2a1fa08cd7dbb4e45ddad05d57feb2d4fd57e8b75fd072",
@@ -135800,7 +135801,7 @@
     },
     {
       "address": "0x111d4a0174040ed44fc00a30397290a50b9389a9",
-      "balance_eth": 4.872e-05,
+      "balance_eth": 0.00004872,
       "balance_wei": "48719330797278",
       "merkle_proof": [
         "0xbe3d2f4a6b595eb653ee278b40820e78bec9e2ef05ec7d05ea849ec3d94178a2",
@@ -135820,7 +135821,7 @@
     },
     {
       "address": "0x1382ddb8429df2681e0cf7b1fb99f83400244915",
-      "balance_eth": 4.872e-05,
+      "balance_eth": 0.00004872,
       "balance_wei": "48718307996811",
       "merkle_proof": [
         "0x3369f6faf505d8bc3b5c6f1590b7dd4871ffc956eac9cbbe1823613af2c9bc35",
@@ -135840,7 +135841,7 @@
     },
     {
       "address": "0x7b6ff273c29f2c6bae5b36d3bcbc0f7be9826597",
-      "balance_eth": 4.819e-05,
+      "balance_eth": 0.00004819,
       "balance_wei": "48187072937646",
       "merkle_proof": [
         "0xed52108c9fff6de77dd3a8e25c2694ec36c64672841eaef3bf5035b6bd3f9efe",
@@ -135860,7 +135861,7 @@
     },
     {
       "address": "0x7a2036a53758273ed9856338603de886147113af",
-      "balance_eth": 4.777e-05,
+      "balance_eth": 0.00004777,
       "balance_wei": "47771941751675",
       "merkle_proof": [
         "0x6a7e953d03e10a22d9cc7a01c5c127312b4dd6a6d9ee2f72dd96dc3f1cb17b07",
@@ -135880,7 +135881,7 @@
     },
     {
       "address": "0x701e0745006fa4ab003697493944662a0000c750",
-      "balance_eth": 4.777e-05,
+      "balance_eth": 0.00004777,
       "balance_wei": "47771648986932",
       "merkle_proof": [
         "0xe3c166b889f45f3ddec59be11d5c71b8dd20ec496da3a71d719e86b0e9eaaee4",
@@ -135900,7 +135901,7 @@
     },
     {
       "address": "0x97b2a20b115444f725fe2f2c1fe586b31d9b3ce7",
-      "balance_eth": 4.759e-05,
+      "balance_eth": 0.00004759,
       "balance_wei": "47592085810199",
       "merkle_proof": [
         "0xcbbfa2037d05b857708abc46118a15bb920f24318a08ba8354b0c19564ef9099",
@@ -135920,7 +135921,7 @@
     },
     {
       "address": "0x40a8c2751c6b9047d6049f45d9184807d7b32015",
-      "balance_eth": 4.729e-05,
+      "balance_eth": 0.00004729,
       "balance_wei": "47294735275250",
       "merkle_proof": [
         "0xb365adb9fbad192fc6ca1fb71929b5d3ff9f47dcf2ac5d34a82bef24ff0bcbbf",
@@ -135940,7 +135941,7 @@
     },
     {
       "address": "0x45e364d880b6e88f53a2aac723354c6e06642461",
-      "balance_eth": 4.713e-05,
+      "balance_eth": 0.00004713,
       "balance_wei": "47131145836549",
       "merkle_proof": [
         "0xb9045c4e37e6a8557051d7098837c6a957e7266ff23c6959f784b91fb017e8bf",
@@ -135960,7 +135961,7 @@
     },
     {
       "address": "0x6c55b741bc3d933c8d7c587f9b53ec3ff39fd1fe",
-      "balance_eth": 4.691e-05,
+      "balance_eth": 0.00004691,
       "balance_wei": "46912354069391",
       "merkle_proof": [
         "0x2e5d678bfaaa96c539eea0646aca99318a11b566161ec55f1a977efbfc575d9f",
@@ -135980,7 +135981,7 @@
     },
     {
       "address": "0xd81fe6994c8ca430d2baaa16245defc24c7de49e",
-      "balance_eth": 4.579e-05,
+      "balance_eth": 0.00004579,
       "balance_wei": "45794806760117",
       "merkle_proof": [
         "0x68a2144242e65727e232739ae368132f610278ac61948d1d5b24e3a3fb115fe4",
@@ -136000,7 +136001,7 @@
     },
     {
       "address": "0xa9beae91758803a98800d335b4d8f42b6bf36411",
-      "balance_eth": 4.518e-05,
+      "balance_eth": 0.00004518,
       "balance_wei": "45176967168043",
       "merkle_proof": [
         "0xdd36b4638d8f6cc1bdb51c36238bfd0464fcdd11598e87452cba05241458360d",
@@ -136020,7 +136021,7 @@
     },
     {
       "address": "0x4abba310f8feda375cbe8c077feb4c0729e2bdf1",
-      "balance_eth": 4.47e-05,
+      "balance_eth": 0.0000447,
       "balance_wei": "44695459129426",
       "merkle_proof": [
         "0x78c2a1e0fda2792ab7a47a9ea3d9d42d7ee7c20671468581ba9b2fdaaf84164b",
@@ -136040,7 +136041,7 @@
     },
     {
       "address": "0x9f13ff65e53dadebed454d6ba2bafee3129be72b",
-      "balance_eth": 4.411e-05,
+      "balance_eth": 0.00004411,
       "balance_wei": "44113922986391",
       "merkle_proof": [
         "0x304b18bbb8f157c55b5de3b9279f70198128aa1d29c43b776b3c95db5d33b54f",
@@ -136060,7 +136061,7 @@
     },
     {
       "address": "0x141ab96c1ef5738ea9ccb58c80e6f97304ef7784",
-      "balance_eth": 4.409e-05,
+      "balance_eth": 0.00004409,
       "balance_wei": "44087790460577",
       "merkle_proof": [
         "0xb0c7a658401c2b200962cda08f06cc888b1f0c112399144e638634f1eb1c4cf0",
@@ -136080,7 +136081,7 @@
     },
     {
       "address": "0x259c16218ffc69d6d79246ef1e4dfa9f3294e8b1",
-      "balance_eth": 4.409e-05,
+      "balance_eth": 0.00004409,
       "balance_wei": "44087790460577",
       "merkle_proof": [
         "0x03bb6a6d53ae01c23bb50b4a992c5236c06e82331c782bea555ecd583d6a3497",
@@ -136100,7 +136101,7 @@
     },
     {
       "address": "0xbf0541a0e7998568680990c28a78b51f8f23b531",
-      "balance_eth": 4.348e-05,
+      "balance_eth": 0.00004348,
       "balance_wei": "43476584724966",
       "merkle_proof": [
         "0xc4aa083a6eeb0c893c7beb2078f5aa89b40114495fb011cba9dccb963165c5ba",
@@ -136120,7 +136121,7 @@
     },
     {
       "address": "0xc84c53278dcc09727bf29b274a16cd46c20c4f1e",
-      "balance_eth": 4.326e-05,
+      "balance_eth": 0.00004326,
       "balance_wei": "43257173846676",
       "merkle_proof": [
         "0xfb924f6719b0f8aeb7743f7e375055e0cfd3e0a52235d503d8d2f152a87fbb93",
@@ -136140,7 +136141,7 @@
     },
     {
       "address": "0x213438e4cb7272a3cefa4ab135eb5456eb2123cc",
-      "balance_eth": 4.295e-05,
+      "balance_eth": 0.00004295,
       "balance_wei": "42946180472086",
       "merkle_proof": [
         "0xeee075fe665c9c26b21575ba4bea37e6ca494bd48e5637a037454557e48efa3e",
@@ -136160,7 +136161,7 @@
     },
     {
       "address": "0x1194568f214c889af44944f22a9cb2b9b85e3545",
-      "balance_eth": 4.238e-05,
+      "balance_eth": 0.00004238,
       "balance_wei": "42384240931501",
       "merkle_proof": [
         "0x70afc130f63b1c983ba0208e4afd546d8a24a99dbdb7456e931a5ed86143ea52",
@@ -136180,7 +136181,7 @@
     },
     {
       "address": "0xaadb3149f3c1c39ab96db69054708f2ce434ffb8",
-      "balance_eth": 4.222e-05,
+      "balance_eth": 0.00004222,
       "balance_wei": "42224663970291",
       "merkle_proof": [
         "0x11202c05edaee8d77c06ae78d6f8b9542dbb2694ef8b559e13ae9f3b7927fa6d",
@@ -136200,7 +136201,7 @@
     },
     {
       "address": "0xf4e08c22fc9dda3c654fef5b8f303334c46fccde",
-      "balance_eth": 4.152e-05,
+      "balance_eth": 0.00004152,
       "balance_wei": "41519379022396",
       "merkle_proof": [
         "0x8887a69ffae6ff1431068e3fe212bacb0ef45ae3df1ad6ff3146a96c08627540",
@@ -136220,7 +136221,7 @@
     },
     {
       "address": "0x9e70da8be38da820e0def2496b6b82ac4ae6cf95",
-      "balance_eth": 4.139e-05,
+      "balance_eth": 0.00004139,
       "balance_wei": "41389955683525",
       "merkle_proof": [
         "0xf8ed2973d22202e593029fb7ddd1d251d1e9b09c27b1273c68b6c0896d461c8b",
@@ -136240,7 +136241,7 @@
     },
     {
       "address": "0xad86e882c48992ec490102f540995dc444d278f7",
-      "balance_eth": 4.135e-05,
+      "balance_eth": 0.00004135,
       "balance_wei": "41348634468530",
       "merkle_proof": [
         "0xb2ab8162ae24d3ad9f853c9b12a176d571d8b83abafdf4efb8e9e21aa65ddf0e",
@@ -136260,7 +136261,7 @@
     },
     {
       "address": "0x2a6462fa476aca1fd887ca5fe00f53a99e5af708",
-      "balance_eth": 4.131e-05,
+      "balance_eth": 0.00004131,
       "balance_wei": "41309865284968",
       "merkle_proof": [
         "0x3bd70ee111bab19e29ad8d9e9f5f5acbdedf462c7c357180f590257649ff46b8",
@@ -136280,7 +136281,7 @@
     },
     {
       "address": "0xaf9390ae0c19975a8062638b6bd0c24f35694a7c",
-      "balance_eth": 4.099e-05,
+      "balance_eth": 0.00004099,
       "balance_wei": "40985383660250",
       "merkle_proof": [
         "0x2c83cf47dd4d74d00491fea68b46f751d375c5907e46bd992f2d6fe1fbcd3d1a",
@@ -136300,7 +136301,7 @@
     },
     {
       "address": "0x8cc9e2efb650ce33efe57299721ee09bc6c15a5d",
-      "balance_eth": 4.041e-05,
+      "balance_eth": 0.00004041,
       "balance_wei": "40413807922196",
       "merkle_proof": [
         "0x662e39750321930f396d858232ca8f9df1605877b996004c6c807ddf3b8d12d7",
@@ -136320,7 +136321,7 @@
     },
     {
       "address": "0x70603e0f4dd4cfa6ffc025900d5f83df868e86b5",
-      "balance_eth": 4.033e-05,
+      "balance_eth": 0.00004033,
       "balance_wei": "40330681322872",
       "merkle_proof": [
         "0xc7c1589ccaff4a2abf7e204d468c5a53b6ff305508872274cc06d105721238ea",
@@ -136340,7 +136341,7 @@
     },
     {
       "address": "0xa2afdaaefa9dc33758dd8fbc72581f80c9c1bf44",
-      "balance_eth": 4.029e-05,
+      "balance_eth": 0.00004029,
       "balance_wei": "40293835142252",
       "merkle_proof": [
         "0xc76114e88a76b4ac4c4a89c5fb26b758c468dba6284ac43231ad64008ee761a1",
@@ -136360,7 +136361,7 @@
     },
     {
       "address": "0xf195a5032b38df4254654f601e4d7bee5e9d4923",
-      "balance_eth": 4.029e-05,
+      "balance_eth": 0.00004029,
       "balance_wei": "40287564591312",
       "merkle_proof": [
         "0xf747b7d9f4b6504dbb82cd8ed6899ee59be5e9a5dd51e63c0ad833fd700ca5d3",
@@ -136380,7 +136381,7 @@
     },
     {
       "address": "0xeed960ce7c3299eab5dc263ed056c04410600638",
-      "balance_eth": 3.994e-05,
+      "balance_eth": 0.00003994,
       "balance_wei": "39939610979008",
       "merkle_proof": [
         "0xae5b9a9539750debfbfc9c2d337a670cdf4c567bacfa34d11617cb4ecc886c38",
@@ -136400,7 +136401,7 @@
     },
     {
       "address": "0xa6c019921022805c541ad5a8229d7f68a2279789",
-      "balance_eth": 3.99e-05,
+      "balance_eth": 0.0000399,
       "balance_wei": "39899450366822",
       "merkle_proof": [
         "0xf74a92c26926c52126a0612d73840c3a8cb3a468e6fbbddb28aef6611882917c",
@@ -136420,7 +136421,7 @@
     },
     {
       "address": "0xb668322fb933fb002e800db947a5fe43d2e37d02",
-      "balance_eth": 3.958e-05,
+      "balance_eth": 0.00003958,
       "balance_wei": "39584377906633",
       "merkle_proof": [
         "0xd7c4a7ed2be26dbaf053794cbd3a7ba845c55d5190b80be4d2de9232e3177b2d",
@@ -136440,7 +136441,7 @@
     },
     {
       "address": "0x8a1ff3b7121db3eef0aa172ea1b6767ba79f74c0",
-      "balance_eth": 3.861e-05,
+      "balance_eth": 0.00003861,
       "balance_wei": "38608611860615",
       "merkle_proof": [
         "0x90a816f7937f052909462714a8c7ab44aced4967f95b978eaa5edc47ad1bb8e8",
@@ -136460,7 +136461,7 @@
     },
     {
       "address": "0x93f1bb7cf9538d3b60bd4ddba18ba70259a6dded",
-      "balance_eth": 3.861e-05,
+      "balance_eth": 0.00003861,
       "balance_wei": "38608679112729",
       "merkle_proof": [
         "0x22c456c7ad0ef665d5dca841776c98c283c1dcbe18705a6af45052bc09a5d6e3",
@@ -136477,7 +136478,7 @@
     },
     {
       "address": "0xb4eb7863a8c619182a2f99a8cc533d2946d2f77a",
-      "balance_eth": 3.856e-05,
+      "balance_eth": 0.00003856,
       "balance_wei": "38564511977194",
       "merkle_proof": [
         "0xf830881b8e8f5b5914b3e8bca685c5514c78d3dc535c1b2f57bbb20d38666d35",
@@ -136497,7 +136498,7 @@
     },
     {
       "address": "0x528edb7d36c909f8b47f2c954c4b121939c23eb7",
-      "balance_eth": 3.84e-05,
+      "balance_eth": 0.0000384,
       "balance_wei": "38396508373985",
       "merkle_proof": [
         "0x3fe46ceea4ac6b25df7ae98fe252cf82489052142f2f7d594edf59d6221fa8b9",
@@ -136517,7 +136518,7 @@
     },
     {
       "address": "0x0f42c1e9d4d825cff75702e077d64e2eaf67c84d",
-      "balance_eth": 3.756e-05,
+      "balance_eth": 0.00003756,
       "balance_wei": "37559715523582",
       "merkle_proof": [
         "0x0668b27b5b07e905afab3f83aa48088bcf21ddd5b06932256ff3b05b80359dcf",
@@ -136537,7 +136538,7 @@
     },
     {
       "address": "0xc8a3902ffa77af0e400ea944d79a3ba56ac3eb5a",
-      "balance_eth": 3.753e-05,
+      "balance_eth": 0.00003753,
       "balance_wei": "37527075454044",
       "merkle_proof": [
         "0xfeb9a119f02760980e8b1f7f87a4dcf8b545f2bd3add8f2c42e7fedb708e7286",
@@ -136557,7 +136558,7 @@
     },
     {
       "address": "0xb01eeaca6af22a4f221ef0a19f566dad29791875",
-      "balance_eth": 3.733e-05,
+      "balance_eth": 0.00003733,
       "balance_wei": "37325458200432",
       "merkle_proof": [
         "0xe5bd0591bbb20dc9e43e2c37a2135805182d338fd38d8c9fcc5865eaadff90b1",
@@ -136577,7 +136578,7 @@
     },
     {
       "address": "0xfb32e42b60a88a0f1ae463abd7cd875f167fd47a",
-      "balance_eth": 3.73e-05,
+      "balance_eth": 0.0000373,
       "balance_wei": "37296993248223",
       "merkle_proof": [
         "0x9f77cc5ef8543bd3a56c444f4500056eed60172001015949d5f22308df385a4b",
@@ -136597,7 +136598,7 @@
     },
     {
       "address": "0x21d1a3455f6620c4588554025370cccb9d24f68c",
-      "balance_eth": 3.724e-05,
+      "balance_eth": 0.00003724,
       "balance_wei": "37237546624087",
       "merkle_proof": [
         "0x18fe054ba2bcc2559c9453f8b3925919dabdcd2ab98497cd3de74c504ab89467",
@@ -136617,7 +136618,7 @@
     },
     {
       "address": "0x3643eb410a1f5b8231b41a64a5f4b4ab341b305f",
-      "balance_eth": 3.674e-05,
+      "balance_eth": 0.00003674,
       "balance_wei": "36739825383814",
       "merkle_proof": [
         "0x82e01de4e9d09f5093b16fcdf87158a64a6a9f7a567529c6aae056b38e785c92",
@@ -136637,7 +136638,7 @@
     },
     {
       "address": "0x99ae41f806104060461da298d43ee1b05b61ece4",
-      "balance_eth": 3.674e-05,
+      "balance_eth": 0.00003674,
       "balance_wei": "36739825383814",
       "merkle_proof": [
         "0xc02b9aa8650dee04645a983ae653623263ed0f7584990c99cad70afedee1a704",
@@ -136657,7 +136658,7 @@
     },
     {
       "address": "0xb8a890c312965d8096c1a04dad92820930f6b0da",
-      "balance_eth": 3.654e-05,
+      "balance_eth": 0.00003654,
       "balance_wei": "36542522868947",
       "merkle_proof": [
         "0x2758d7249ec343fae388ef6931cceaeb65b5ad9228a6223913e56d3e81c6ee09",
@@ -136677,7 +136678,7 @@
     },
     {
       "address": "0x4741a47cca6113e9a5dcd445cab9be8b64cf7204",
-      "balance_eth": 3.618e-05,
+      "balance_eth": 0.00003618,
       "balance_wei": "36176179806320",
       "merkle_proof": [
         "0xc10efef81dc3d1d7b3f0f32d32b2c020c9389141dd31d81fada87ef19370aa96",
@@ -136697,7 +136698,7 @@
     },
     {
       "address": "0xcddc10f5cf5e53b12322f4cabb1f3ed4ccc49251",
-      "balance_eth": 3.59e-05,
+      "balance_eth": 0.0000359,
       "balance_wei": "35903899024379",
       "merkle_proof": [
         "0x96304502afcf15d85d6c389a10a982c060e1e62e7ad7f8f60ab1fcd5df6e230e",
@@ -136717,7 +136718,7 @@
     },
     {
       "address": "0x6623bb5796762c1a02e295be2598c5e16cfa4041",
-      "balance_eth": 3.566e-05,
+      "balance_eth": 0.00003566,
       "balance_wei": "35658847747094",
       "merkle_proof": [
         "0x2c600b034e42cf260a7d9656113ac814bb153c44741c26a46b9ce0f687211160",
@@ -136737,7 +136738,7 @@
     },
     {
       "address": "0x4fb6917879ae8023e9ac5bcc17e22ca41be09c85",
-      "balance_eth": 3.539e-05,
+      "balance_eth": 0.00003539,
       "balance_wei": "35392008437837",
       "merkle_proof": [
         "0x2462ff60ef37144afa073113d12bc6d26e553a66b95a1b78ca1aae94a3aa545d",
@@ -136757,7 +136758,7 @@
     },
     {
       "address": "0x373fff342f15a3b0bbca144638b2d53f99ebd172",
-      "balance_eth": 3.537e-05,
+      "balance_eth": 0.00003537,
       "balance_wei": "35368804449235",
       "merkle_proof": [
         "0x07d7a7f2aace4d7d9cbb180417b5954e866e0d0e8e65544d59615f5b2706ba8e",
@@ -136777,7 +136778,7 @@
     },
     {
       "address": "0x7f594cf111dadb003812729054050239101b4621",
-      "balance_eth": 3.535e-05,
+      "balance_eth": 0.00003535,
       "balance_wei": "35346246204362",
       "merkle_proof": [
         "0x119b6b2139b479d6b2806edd3ba66a6175ee495823a34a38f565ca9d3408f9e8",
@@ -136797,7 +136798,7 @@
     },
     {
       "address": "0xf9eed568673c9f08c6f5dd5ae7eed18235dc0c1a",
-      "balance_eth": 3.511e-05,
+      "balance_eth": 0.00003511,
       "balance_wei": "35107811350999",
       "merkle_proof": [
         "0x12afa763efb948c750d0f3b44ac74b63a00c3329140ed592a32e5de7536aa7ec",
@@ -136817,7 +136818,7 @@
     },
     {
       "address": "0x16cfa23c9ee98eadbdd926b7b43a99fa7af458a5",
-      "balance_eth": 3.418e-05,
+      "balance_eth": 0.00003418,
       "balance_wei": "34176482485427",
       "merkle_proof": [
         "0xd7d614ff1ce0a692796f2c35694afcb98ed8dd1fd8655ea8cec4ef7636bf18d4",
@@ -136837,7 +136838,7 @@
     },
     {
       "address": "0xa2394193f34521358021b6c1bbeb5dee244a2d93",
-      "balance_eth": 3.372e-05,
+      "balance_eth": 0.00003372,
       "balance_wei": "33717835969591",
       "merkle_proof": [
         "0x4f750a22d710dbbcce9a4a9f1d501af2b6b587953d8e6889058041f38e66b450",
@@ -136857,7 +136858,7 @@
     },
     {
       "address": "0x2685df3aa517a3d640e4338375aa3b3b763876fe",
-      "balance_eth": 3.317e-05,
+      "balance_eth": 0.00003317,
       "balance_wei": "33172117777419",
       "merkle_proof": [
         "0x911896ae6ca1f7f46798904dba3a1de0e5500bb299bf57f8d251afaa85a5fd4f",
@@ -136877,7 +136878,7 @@
     },
     {
       "address": "0x307926a2dbee980ec548913957c80b9d42f08833",
-      "balance_eth": 3.316e-05,
+      "balance_eth": 0.00003316,
       "balance_wei": "33160196972692",
       "merkle_proof": [
         "0x8dcae99d75b155a8c09c40bf8bb5bbf06f782255550995a22ab47c3d653c1d1f",
@@ -136897,7 +136898,7 @@
     },
     {
       "address": "0x634c183df8b22f8ebeb0e9e1ef4673384315e6c2",
-      "balance_eth": 3.307e-05,
+      "balance_eth": 0.00003307,
       "balance_wei": "33065842845433",
       "merkle_proof": [
         "0x5bb762b144d71663246370fab92333232440d5bf5703f8a6cbfd339d7318a370",
@@ -136917,7 +136918,7 @@
     },
     {
       "address": "0xf857a1ff51409cb6968fc5bb6ad3b88a202efd20",
-      "balance_eth": 3.3e-05,
+      "balance_eth": 0.000033,
       "balance_wei": "33000848460985",
       "merkle_proof": [
         "0x022262eac50c10bb2dc61c42bde3358fe36d7ce182bd686fd08b3d8bd4eaa2e0",
@@ -136937,7 +136938,7 @@
     },
     {
       "address": "0xd5c79dde27ce2ad4c2cd2e219076901cd897bcf5",
-      "balance_eth": 3.242e-05,
+      "balance_eth": 0.00003242,
       "balance_wei": "32418160040467",
       "merkle_proof": [
         "0xbea7e580bd0c10feb839d676acbb29a0d648d222a3e6f7caf2d2efbda2a74053",
@@ -136957,7 +136958,7 @@
     },
     {
       "address": "0x10e7d26a02bd124250ea00c41dcd16fc791ccd78",
-      "balance_eth": 3.233e-05,
+      "balance_eth": 0.00003233,
       "balance_wei": "32330544146577",
       "merkle_proof": [
         "0x718c06a7bc56d02ac8de3d5c2eabbd4eddd40e9a2c0a586889d663a9ad950669",
@@ -136977,7 +136978,7 @@
     },
     {
       "address": "0x2ce65338f6d796891afb2d4b44b08caa28074746",
-      "balance_eth": 3.15e-05,
+      "balance_eth": 0.0000315,
       "balance_wei": "31504356196668",
       "merkle_proof": [
         "0xe71fe987fd6cb11c05383975f5f85f4fda621f319118423a8e8463a2349ee0ed",
@@ -136997,7 +136998,7 @@
     },
     {
       "address": "0x39581aa22e4e8db4092bb25bccb19e97029287a3",
-      "balance_eth": 3.127e-05,
+      "balance_eth": 0.00003127,
       "balance_wei": "31273465554482",
       "merkle_proof": [
         "0x84b560b0bcb09b2b2c904a39f1dd1246b691919a0e7e358e462d4d4ee2a79949",
@@ -137017,7 +137018,7 @@
     },
     {
       "address": "0x9e11bad533adf2be95bc7fb4977abdfabc6dc6fe",
-      "balance_eth": 2.939e-05,
+      "balance_eth": 0.00002939,
       "balance_wei": "29391860307051",
       "merkle_proof": [
         "0x1995ad243105e0184936d05abc9d1dc41b3734ade2f35a43d03755f1c319a15f",
@@ -137037,7 +137038,7 @@
     },
     {
       "address": "0x28ca0b78f181810508bcdb12a576cb6d4719b5ab",
-      "balance_eth": 2.894e-05,
+      "balance_eth": 0.00002894,
       "balance_wei": "28940220392976",
       "merkle_proof": [
         "0x1970f15c9725b4a22c216dd8c3dcfc69b1e1dee49e4698b06ffef1788966c52f",
@@ -137057,7 +137058,7 @@
     },
     {
       "address": "0xea71cb097180c527a9ad9417ff4cf1baa5280d05",
-      "balance_eth": 2.866e-05,
+      "balance_eth": 0.00002866,
       "balance_wei": "28658710360137",
       "merkle_proof": [
         "0x786336bc98ebdf6b8baa6c9cfad66e91b8adf09754d60b5842c66fe1c695b736",
@@ -137077,7 +137078,7 @@
     },
     {
       "address": "0x36250e5281137b74b256ef5db0e06cd194e89f3b",
-      "balance_eth": 2.757e-05,
+      "balance_eth": 0.00002757,
       "balance_wei": "27567995785974",
       "merkle_proof": [
         "0x13d759b05642f18bec915e76c4183400e355e33e4165ff97facb223a5a41ae1d",
@@ -137097,7 +137098,7 @@
     },
     {
       "address": "0x7f5d899658033cf18ed5f10a6a7c45ed31ec9eea",
-      "balance_eth": 2.687e-05,
+      "balance_eth": 0.00002687,
       "balance_wei": "26866858913014",
       "merkle_proof": [
         "0x7ffb89598f5da6b90d6620fc84989d292a796fe958f5bc174e6545ebee18e5db",
@@ -137117,7 +137118,7 @@
     },
     {
       "address": "0x7f0b1df94ffefb1b656f31b73dacc3cd1d504877",
-      "balance_eth": 2.677e-05,
+      "balance_eth": 0.00002677,
       "balance_wei": "26767328612992",
       "merkle_proof": [
         "0xc225a7ca688dfeac92f3e90bc6d33d3116caf52c749df6e63b857688ef076dce",
@@ -137137,7 +137138,7 @@
     },
     {
       "address": "0xef7f4f06c9c5d6364c9c37c7bc6e34df4ed743a0",
-      "balance_eth": 2.675e-05,
+      "balance_eth": 0.00002675,
       "balance_wei": "26753835234226",
       "merkle_proof": [
         "0x3c69b8e4d3eed123b6010eb8c46c66403d1804bba53ef209e2b1c44973797e72",
@@ -137157,7 +137158,7 @@
     },
     {
       "address": "0xeab660ae080bddfc66fe76310fb08cbeb33f1367",
-      "balance_eth": 2.674e-05,
+      "balance_eth": 0.00002674,
       "balance_wei": "26737669908478",
       "merkle_proof": [
         "0x42bd425968c8c3654ecde9d8fed3ced35e692add2cace9f81afd58987ee587a7",
@@ -137177,7 +137178,7 @@
     },
     {
       "address": "0x83480f75666e17ea0a90b784e1390a91d2b0f248",
-      "balance_eth": 2.668e-05,
+      "balance_eth": 0.00002668,
       "balance_wei": "26676287885721",
       "merkle_proof": [
         "0x5c65058883380c3111ab0dd78593cfe4145b5586731cbe70e21730afc0c52038",
@@ -137197,7 +137198,7 @@
     },
     {
       "address": "0x8b3edcaf8f8959341b86d1deda238ba650e74a66",
-      "balance_eth": 2.664e-05,
+      "balance_eth": 0.00002664,
       "balance_wei": "26637913328287",
       "merkle_proof": [
         "0x5394f666f8493de00a72c7121a228b815ae29c28b3ecdf67ca762f1b415115f0",
@@ -137217,7 +137218,7 @@
     },
     {
       "address": "0xf94a405fd1b848476615b9a80ccfc48a180c22c1",
-      "balance_eth": 2.657e-05,
+      "balance_eth": 0.00002657,
       "balance_wei": "26565409086357",
       "merkle_proof": [
         "0x1efc367f808e8c6ff7cf19eff11e8289be75cf2744db043d181d553d142369a3",
@@ -137237,7 +137238,7 @@
     },
     {
       "address": "0x54c0d8c861df8e52b7719c032054a6da66af6d19",
-      "balance_eth": 2.626e-05,
+      "balance_eth": 0.00002626,
       "balance_wei": "26255005535191",
       "merkle_proof": [
         "0x88c287bf94b2dff899859931b6726198e6fdc751480ee181122eb6469cfdfb1e",
@@ -137257,7 +137258,7 @@
     },
     {
       "address": "0x532a41eff541304a7dd1ea3a71a360a03beadba3",
-      "balance_eth": 2.619e-05,
+      "balance_eth": 0.00002619,
       "balance_wei": "26186312843568",
       "merkle_proof": [
         "0x5bd3b5b62b8db54bc9888f0905b2974417ce3b31aed201f46d6c140bbe30756d",
@@ -137277,7 +137278,7 @@
     },
     {
       "address": "0x64063f09aad49e597d99a273f98f75f4a8d75416",
-      "balance_eth": 2.596e-05,
+      "balance_eth": 0.00002596,
       "balance_wei": "25955811240941",
       "merkle_proof": [
         "0x49aaf4d60543877987d4e697270bdd56e8eef165c7eef4610795d5755b545216",
@@ -137297,7 +137298,7 @@
     },
     {
       "address": "0x6685e04501e44553c257414aa49ac164469c4461",
-      "balance_eth": 2.572e-05,
+      "balance_eth": 0.00002572,
       "balance_wei": "25717877768670",
       "merkle_proof": [
         "0x16adde8af779074555d07f6de72b18b90beba2b1ddcbcf91bee6df77cca9988e",
@@ -137317,7 +137318,7 @@
     },
     {
       "address": "0xc581e99c8aa9b73561863e6c8ab6e0a72a50eb02",
-      "balance_eth": 2.503e-05,
+      "balance_eth": 0.00002503,
       "balance_wei": "25028821252044",
       "merkle_proof": [
         "0x4f1fbed5586e99882744bb45fd8367091c7b4b4cd9df6c8f74603ddb15fb9408",
@@ -137337,7 +137338,7 @@
     },
     {
       "address": "0x1267eafce4b17b7e92e6dd914168d3373ea15c10",
-      "balance_eth": 2.48e-05,
+      "balance_eth": 0.0000248,
       "balance_wei": "24798759228106",
       "merkle_proof": [
         "0xb6130acb2bd3395d35c3de37eb37b98eb3778ac49f8f6e048f1a65b60643a37d",
@@ -137357,7 +137358,7 @@
     },
     {
       "address": "0x7ff5ba5bae4a69988b992f2a5deb44a3d273e034",
-      "balance_eth": 2.425e-05,
+      "balance_eth": 0.00002425,
       "balance_wei": "24248284753317",
       "merkle_proof": [
         "0xc25e1b7d574c69ef257fc18984ea6d83a814e3b33f946b515b0a687ce8f18bde",
@@ -137377,7 +137378,7 @@
     },
     {
       "address": "0x0a3d775a8e532cc6e9b6c8b4f50abc2e5eb4cdce",
-      "balance_eth": 2.399e-05,
+      "balance_eth": 0.00002399,
       "balance_wei": "23993288321258",
       "merkle_proof": [
         "0x17707f93827ccd3049714ac40dd180476e1ae2acb17172b91ceaa1d50a35cb87",
@@ -137397,7 +137398,7 @@
     },
     {
       "address": "0x84414e21dac14fa08d1b66a6ca66642d5e1b2f61",
-      "balance_eth": 2.393e-05,
+      "balance_eth": 0.00002393,
       "balance_wei": "23927532008447",
       "merkle_proof": [
         "0xe4060a04415a6932f27bbf54be46cfc01a739e238b2749dbfa509bcc544a0a4e",
@@ -137417,7 +137418,7 @@
     },
     {
       "address": "0x40c69a4b704ec8d58bc80b0c3eddbacfc453d2af",
-      "balance_eth": 2.334e-05,
+      "balance_eth": 0.00002334,
       "balance_wei": "23337684202268",
       "merkle_proof": [
         "0xc05b4b2bbacc8e1974361a93ff7590ae05f2160491b10b8caf9ca4fffe944fb0",
@@ -137437,7 +137438,7 @@
     },
     {
       "address": "0x4bd013a82e339ecb3be886456e2e97cb4d89cb2d",
-      "balance_eth": 2.316e-05,
+      "balance_eth": 0.00002316,
       "balance_wei": "23161662556731",
       "merkle_proof": [
         "0xe0e0dba128e807606c4300fabf8b2a27444db822843db04970880736f4fec07f",
@@ -137457,7 +137458,7 @@
     },
     {
       "address": "0xc146a672c85b408a9a7bc00f74ad567b7684134c",
-      "balance_eth": 2.308e-05,
+      "balance_eth": 0.00002308,
       "balance_wei": "23075922238241",
       "merkle_proof": [
         "0x5961398129e9639bcb55904bebc596251cd907d3fa9f7ef542a50aa1af3cf3bc",
@@ -137477,7 +137478,7 @@
     },
     {
       "address": "0x6d106a768039220ab00f51fd13aabcf2efa39ae7",
-      "balance_eth": 2.295e-05,
+      "balance_eth": 0.00002295,
       "balance_wei": "22953005845631",
       "merkle_proof": [
         "0xb0aaa513f592364bc76228eff29483d765bbb64c26039546804897007ed6c1da",
@@ -137497,7 +137498,7 @@
     },
     {
       "address": "0x4d477f1aabcfc2fc3fc9b802e861c013e0123ad9",
-      "balance_eth": 2.28e-05,
+      "balance_eth": 0.0000228,
       "balance_wei": "22804264990344",
       "merkle_proof": [
         "0x0bd6cabc56e18c5998761ecedff70e92e0004e95dceb41ed94c80f1c286b1f8b",
@@ -137517,7 +137518,7 @@
     },
     {
       "address": "0x3156fd35934a0a14c68535cf9a10f9d3a4edf2bb",
-      "balance_eth": 2.246e-05,
+      "balance_eth": 0.00002246,
       "balance_wei": "22456331947612",
       "merkle_proof": [
         "0x93071d214c8dc1155c722d1a07c2c28d2f895a499946c03726974c6d79fb3128",
@@ -137537,7 +137538,7 @@
     },
     {
       "address": "0x946f751752b3484fbfd5d6ef8a7535224a42bee7",
-      "balance_eth": 2.139e-05,
+      "balance_eth": 0.00002139,
       "balance_wei": "21387874774125",
       "merkle_proof": [
         "0x0debadf1a742521047c5f073cd80baaf6959284dfa6f92298e541d4afa45655f",
@@ -137557,7 +137558,7 @@
     },
     {
       "address": "0xbbbab3233c6e07a95a9d35082b5323f19ac537dd",
-      "balance_eth": 1.998e-05,
+      "balance_eth": 0.00001998,
       "balance_wei": "19984820717476",
       "merkle_proof": [
         "0xd92d9cbd52aee2dd8ed8b48a7651cd769c30896ae244ceefebe9c68a13f90fca",
@@ -137577,7 +137578,7 @@
     },
     {
       "address": "0xec0a75e4c02c2ee8ad9afad1648ecced0598dd2a",
-      "balance_eth": 1.968e-05,
+      "balance_eth": 0.00001968,
       "balance_wei": "19684602154969",
       "merkle_proof": [
         "0x6687e2fbb3f0b80822472fb193f24a8162212af12d1887637d0b6278a3facdb3",
@@ -137597,7 +137598,7 @@
     },
     {
       "address": "0x3cf9ef236c545d42fc3452f3cfe8ee99c7b00a06",
-      "balance_eth": 1.961e-05,
+      "balance_eth": 0.00001961,
       "balance_wei": "19612781647885",
       "merkle_proof": [
         "0x26da72aacd34fa118188dc4017cdd3f9893c860683c1c99d9f4bc4a8b1f3efb3",
@@ -137617,7 +137618,7 @@
     },
     {
       "address": "0x2d1bdc590cb736097bc5577c8974e28dc48f5ecc",
-      "balance_eth": 1.948e-05,
+      "balance_eth": 0.00001948,
       "balance_wei": "19479083408963",
       "merkle_proof": [
         "0xa114fb8cd0b10da85fdb96b96d871d428ff06f4e497680d10beed1d010928fbe",
@@ -137637,7 +137638,7 @@
     },
     {
       "address": "0xf7f21d25df957b562521db5239638002cc66b7be",
-      "balance_eth": 1.939e-05,
+      "balance_eth": 0.00001939,
       "balance_wei": "19386837126251",
       "merkle_proof": [
         "0x242e7b3536f1d7a6cca775273ff205d2cac9928377770af1ce37bd22100857fa",
@@ -137657,7 +137658,7 @@
     },
     {
       "address": "0x4a5471b01d60a0beedb88e9b5cffc2964d9fd0c8",
-      "balance_eth": 1.908e-05,
+      "balance_eth": 0.00001908,
       "balance_wei": "19079237108438",
       "merkle_proof": [
         "0x66202260e0ebb937106f5b7f0179b55a3308a7de833267b6743180b6eb8a143f",
@@ -137677,7 +137678,7 @@
     },
     {
       "address": "0x08bb070e8016b85b8dce322222c35a84a1c4d31a",
-      "balance_eth": 1.873e-05,
+      "balance_eth": 0.00001873,
       "balance_wei": "18726153639897",
       "merkle_proof": [
         "0x90b47635415507193fa0a2a1c8e2a7c4c833d89caf28d96e624a051afb4e26bb",
@@ -137697,7 +137698,7 @@
     },
     {
       "address": "0x1726a6e26e17b78f59f0936950dbbd702ecb9216",
-      "balance_eth": 1.803e-05,
+      "balance_eth": 0.00001803,
       "balance_wei": "18027586265431",
       "merkle_proof": [
         "0x4de898fd70850262276cfaf33d16bb7a71d7ab60753eaacead011f8a84050f76",
@@ -137717,7 +137718,7 @@
     },
     {
       "address": "0x5c11996ae56dcc6437b6f65fcc5b12825cdb52c3",
-      "balance_eth": 1.659e-05,
+      "balance_eth": 0.00001659,
       "balance_wei": "16585281168296",
       "merkle_proof": [
         "0xdcbae557a164ebad03decf32569027e1e0b24228d11e536752e912b09a3b778f",
@@ -137737,7 +137738,7 @@
     },
     {
       "address": "0x56033028242043074466468746078f6a0ede4281",
-      "balance_eth": 1.655e-05,
+      "balance_eth": 0.00001655,
       "balance_wei": "16549086306147",
       "merkle_proof": [
         "0xd5dd5345ccd66e824852fef935681021ded2b34efbea9ee78d1753bc06f6fc10",
@@ -137757,7 +137758,7 @@
     },
     {
       "address": "0xd6527a8fb85143638ec3064c2ce1670b95f8e40a",
-      "balance_eth": 1.617e-05,
+      "balance_eth": 0.00001617,
       "balance_wei": "16165523168878",
       "merkle_proof": [
         "0x81c1072ff752de2954e06cdfbc49276b8c30d64ef32de2dabbd2f8be5841f823",
@@ -137777,7 +137778,7 @@
     },
     {
       "address": "0xf24432be80fa9501289dfbd84fe6144dffb2dac7",
-      "balance_eth": 1.613e-05,
+      "balance_eth": 0.00001613,
       "balance_wei": "16129553506565",
       "merkle_proof": [
         "0x80f9e97573e5f7761adf5633cfb0ddce8fbe0476c78e728226a12878528185d3",
@@ -137797,7 +137798,7 @@
     },
     {
       "address": "0xa2e44aaa427806badd5cb7a41b3bef09bdb490d5",
-      "balance_eth": 1.598e-05,
+      "balance_eth": 0.00001598,
       "balance_wei": "15978207840604",
       "merkle_proof": [
         "0xe3dba62b21d3e145dfbe89a3839d70222a5d7998789e8839841c7104ff7638ce",
@@ -137817,7 +137818,7 @@
     },
     {
       "address": "0x22417af9bdc1c4c6411914ab7f699a448f0a11ec",
-      "balance_eth": 1.58e-05,
+      "balance_eth": 0.0000158,
       "balance_wei": "15798124915040",
       "merkle_proof": [
         "0xf2bda002bcf0df62beb64a2277aebfb28d85d0382e27343a8680d98383da7c48",
@@ -137837,7 +137838,7 @@
     },
     {
       "address": "0x651cfaa25be5294c459ea7d6439c6ebbf29960ce",
-      "balance_eth": 1.543e-05,
+      "balance_eth": 0.00001543,
       "balance_wei": "15431922352495",
       "merkle_proof": [
         "0x247c2847a2afaf4a8614efe146f4094803e4db948b19f7ee9511629ee076634f",
@@ -137857,7 +137858,7 @@
     },
     {
       "address": "0x45f63319e223ae89538d37e4646ebf2da35579f0",
-      "balance_eth": 1.483e-05,
+      "balance_eth": 0.00001483,
       "balance_wei": "14834354867104",
       "merkle_proof": [
         "0x6d0ab48d05816bc49d69bf96e88e723cd52f8f1ca9cb034fbb8d3634a0c0b73d",
@@ -137877,7 +137878,7 @@
     },
     {
       "address": "0x2cf661e14a4c1646c329369cab25e1bd607fe8a2",
-      "balance_eth": 1.47e-05,
+      "balance_eth": 0.0000147,
       "balance_wei": "14695930153525",
       "merkle_proof": [
         "0xd940647c5e1b4e98c6ed8c368dc44014275418cb36b238b33b2e23ddc9264d51",
@@ -137897,7 +137898,7 @@
     },
     {
       "address": "0xa6b00826635788e7922640d1ec9b4573b742cfda",
-      "balance_eth": 1.47e-05,
+      "balance_eth": 0.0000147,
       "balance_wei": "14695930153525",
       "merkle_proof": [
         "0x6a167929c49069aae28fd6cb15d06d70426d4e9f946d553f7c50eb24cfaf4b69",
@@ -137917,7 +137918,7 @@
     },
     {
       "address": "0x3a2760d2575e79d3019e0c9fd69ae34d384d92e3",
-      "balance_eth": 1.438e-05,
+      "balance_eth": 0.00001438,
       "balance_wei": "14377516563155",
       "merkle_proof": [
         "0x0f0e573d421d2c27e271e8200e9efd42fc74ff73a4852878f6e5c92c2bbeca2f",
@@ -137937,7 +137938,7 @@
     },
     {
       "address": "0x2062f8ba3eca68658c7d9ee9e6677a449975b715",
-      "balance_eth": 1.435e-05,
+      "balance_eth": 0.00001435,
       "balance_wei": "14346259473425",
       "merkle_proof": [
         "0xad52029e6ad286a5fc2e5945f4c7739457475006e2d9835d6bd516b137288dee",
@@ -137957,7 +137958,7 @@
     },
     {
       "address": "0xdafce2e0b4872d7b1a92d0786d5402d6b9fe4132",
-      "balance_eth": 1.428e-05,
+      "balance_eth": 0.00001428,
       "balance_wei": "14282902403114",
       "merkle_proof": [
         "0xe4efac4607cd02c66d32287aaa43b7ff5e90ca8280a9da20583afc2e5e2ef4ed",
@@ -137977,7 +137978,7 @@
     },
     {
       "address": "0x5fe245e31203ee1c09cf8528ee92bc5f95c4cca6",
-      "balance_eth": 1.396e-05,
+      "balance_eth": 0.00001396,
       "balance_wei": "13958522730900",
       "merkle_proof": [
         "0x606375562b2bd9a62a0c8fe14b04d97dc9d7af96cb8e313e98f597ff49c8bfae",
@@ -137997,7 +137998,7 @@
     },
     {
       "address": "0xa705ff6ebc702c667de165f2d581aae8db9929c6",
-      "balance_eth": 1.347e-05,
+      "balance_eth": 0.00001347,
       "balance_wei": "13465771924608",
       "merkle_proof": [
         "0x5038730068f3ff86de157d94b9dc5a54d046374dafa9a946ac65aae2a19e91ce",
@@ -138017,7 +138018,7 @@
     },
     {
       "address": "0x9871f59eb8718d7c8681d76c30815b85516e9629",
-      "balance_eth": 1.338e-05,
+      "balance_eth": 0.00001338,
       "balance_wei": "13375452348329",
       "merkle_proof": [
         "0xf2b072dbecf347dbfff6d1bbec1cb1e736de3474b2ebfeffb159facbf8a13f2c",
@@ -138037,7 +138038,7 @@
     },
     {
       "address": "0xfc0d5322aab75ff6757cecdc816c8a1b80bf82e8",
-      "balance_eth": 1.315e-05,
+      "balance_eth": 0.00001315,
       "balance_wei": "13154592917965",
       "merkle_proof": [
         "0x925232ed641b60f6331ba386aa36689cc274a7445f298d0a35655c4c2376982f",
@@ -138057,7 +138058,7 @@
     },
     {
       "address": "0xbb21a486628c343a6b15d761b9e146ef3d64db3f",
-      "balance_eth": 1.268e-05,
+      "balance_eth": 0.00001268,
       "balance_wei": "12680804711980",
       "merkle_proof": [
         "0xd9d5a714f751336f33abc72f44278aec0a925c2978f6ca5a5d9fcbc04f96e161",
@@ -138077,7 +138078,7 @@
     },
     {
       "address": "0x47d03c83e33ed125146e27d7735571cfe6ce784e",
-      "balance_eth": 1.253e-05,
+      "balance_eth": 0.00001253,
       "balance_wei": "12527450135827",
       "merkle_proof": [
         "0xccee3ed73582cd7967e4c7f580a685db1740ac8312ffeac18639b72ba8d75568",
@@ -138097,7 +138098,7 @@
     },
     {
       "address": "0x5b77f89cb3c1a11d27086216f3666a2703af0e2f",
-      "balance_eth": 1.252e-05,
+      "balance_eth": 0.00001252,
       "balance_wei": "12521329026470",
       "merkle_proof": [
         "0x86b3681249779843f2bc7ce0edbc0628cfd7f13a21fa367abe6f38ad9c7d61e5",
@@ -138117,7 +138118,7 @@
     },
     {
       "address": "0xaef6a32537175f2b94641213e06d7ebb82ed8833",
-      "balance_eth": 1.115e-05,
+      "balance_eth": 0.00001115,
       "balance_wei": "11145102789753",
       "merkle_proof": [
         "0xa1bd8b3333a6fe003718143cdd7f0d03fae0d748964288dcb769ef019b2ee651",
@@ -138137,7 +138138,7 @@
     },
     {
       "address": "0x827b9aada3d9a1e313a1f323be63d82bdb15d617",
-      "balance_eth": 1.085e-05,
+      "balance_eth": 0.00001085,
       "balance_wei": "10846226051201",
       "merkle_proof": [
         "0x5297308c97dbf1c89188bec04cbe7b657a7d0328ca0bf7e1661801ec89b434bb",
@@ -138157,7 +138158,7 @@
     },
     {
       "address": "0x8ff1f482e9b7643f7fbcc924779fd5c372371b93",
-      "balance_eth": 1.071e-05,
+      "balance_eth": 0.00001071,
       "balance_wei": "10707416375714",
       "merkle_proof": [
         "0xf05d9779646ae27b6ced28e2b4c65ed9e8c756c3c2ead90977556091a0fa47a2",
@@ -138177,7 +138178,7 @@
     },
     {
       "address": "0x3aebe8d0a1e9bc80ef4938f66f08899b8d1b0163",
-      "balance_eth": 1.042e-05,
+      "balance_eth": 0.00001042,
       "balance_wei": "10420317961115",
       "merkle_proof": [
         "0xd958d793f748e0fee0fe962bd99ec79d094c6c4bd9be62f4cfc967200e215028",
@@ -138197,7 +138198,7 @@
     },
     {
       "address": "0x387bc1e168062599b60f63732f793226b7af0816",
-      "balance_eth": 9.91e-06,
+      "balance_eth": 0.00000991,
       "balance_wei": "9911300347531",
       "merkle_proof": [
         "0xa856bc93ab42a9087fd9e8b6e4fe513b27bcaacd974a6999d8aae643f9aec0d7",
@@ -138217,7 +138218,7 @@
     },
     {
       "address": "0xd360ecb91406717ad13c4fae757b69b417e2af6b",
-      "balance_eth": 9.81e-06,
+      "balance_eth": 0.00000981,
       "balance_wei": "9810782531541",
       "merkle_proof": [
         "0xcf632a4c34fa9997be67c5a730d2340fd570a2a6a417016ad234576a969fc32e",
@@ -138237,7 +138238,7 @@
     },
     {
       "address": "0x76c855d0e87dcc27235a1644e143caad690826e0",
-      "balance_eth": 9.77e-06,
+      "balance_eth": 0.00000977,
       "balance_wei": "9770965911630",
       "merkle_proof": [
         "0x27b8a4cc8c7b746eba6b9a015ec3eb408a2bdeebdf8660cef08c324f69bd184b",
@@ -138257,7 +138258,7 @@
     },
     {
       "address": "0xa1e613b9cd83d7ad5b0ea5bd60a7dc9d85054fba",
-      "balance_eth": 9e-06,
+      "balance_eth": 0.000009,
       "balance_wei": "8995492426580",
       "merkle_proof": [
         "0x1a08a5b13b1478f552bde1ac98296a9cd3958e4fcdeda6768e3c46c2849d6403",
@@ -138277,7 +138278,7 @@
     },
     {
       "address": "0x125d56136804c1d97447a5e58c7d0d5164401d53",
-      "balance_eth": 8.86e-06,
+      "balance_eth": 0.00000886,
       "balance_wei": "8861249539603",
       "merkle_proof": [
         "0x758360c9afde42b0d0457f32aeef64a9ee789b5ef0ffdc850847de7bf19fd022",
@@ -138297,7 +138298,7 @@
     },
     {
       "address": "0x8c128f336b479b142429a5f351af225457a987fa",
-      "balance_eth": 8.82e-06,
+      "balance_eth": 0.00000882,
       "balance_wei": "8817558092115",
       "merkle_proof": [
         "0x992f249707a1f146ffeabedfef77926e94b93deb835eeb2ca9da1376a49add37",
@@ -138317,7 +138318,7 @@
     },
     {
       "address": "0x22d7e24976df4c218bdc469c1cb569807d17e15c",
-      "balance_eth": 8.69e-06,
+      "balance_eth": 0.00000869,
       "balance_wei": "8685303032560",
       "merkle_proof": [
         "0x62cfb0a17366f3cb8ad8b319084f9d84dacfbc1137997bf9dbf432f3a7077ce9",
@@ -138337,7 +138338,7 @@
     },
     {
       "address": "0x2345309023caa644088591b92091e29fde8d31bb",
-      "balance_eth": 8.45e-06,
+      "balance_eth": 0.00000845,
       "balance_wei": "8450159838277",
       "merkle_proof": [
         "0xb6ac2738da900184f033a6342ad16a4d7f80bcf79d39077d84e712eb64ec0d9b",
@@ -138357,7 +138358,7 @@
     },
     {
       "address": "0x26c95b8ddb7096ac9276fc10858f3fac143c52c3",
-      "balance_eth": 8.41e-06,
+      "balance_eth": 0.00000841,
       "balance_wei": "8413642373561",
       "merkle_proof": [
         "0x240160f18b97fec3fe6214e0bb6f8143f932760504262d10bd78abaecedcb12c",
@@ -138377,7 +138378,7 @@
     },
     {
       "address": "0x2a54f3e64ffb6accf9c14b3ba82d8da5e96c8375",
-      "balance_eth": 8.4e-06,
+      "balance_eth": 0.0000084,
       "balance_wei": "8398652616285",
       "merkle_proof": [
         "0x21c7220b933db80ef0ac6e3745b6d0580f43c7862199f7aa32f2ac43bddb30bc",
@@ -138397,7 +138398,7 @@
     },
     {
       "address": "0xb261a9577063f57ebdc7663ee2c30bb9d0162deb",
-      "balance_eth": 8.38e-06,
+      "balance_eth": 0.00000838,
       "balance_wei": "8384836428744",
       "merkle_proof": [
         "0x0cca52af499276541f6451ea59526f0eb4dc4ec14cd36e9a95b51e70ec6bc7d1",
@@ -138417,7 +138418,7 @@
     },
     {
       "address": "0xd0622aa573723ac67e28a438f8ab942417f18bfc",
-      "balance_eth": 8.18e-06,
+      "balance_eth": 0.00000818,
       "balance_wei": "8182719930344",
       "merkle_proof": [
         "0xa29335b90885e91a7a707181a716cee03b1fa8f42fd4ac7d627dcaf07997b29d",
@@ -138437,7 +138438,7 @@
     },
     {
       "address": "0x6b99a6c6081068aa46a420fdb6cfbe906320fa2d",
-      "balance_eth": 8.04e-06,
+      "balance_eth": 0.00000804,
       "balance_wei": "8038445976598",
       "merkle_proof": [
         "0x6da327392f3f6a74dd74fb5977be27482768ef940e7366b44364ab94f15b438a",
@@ -138457,7 +138458,7 @@
     },
     {
       "address": "0x6e7dabca3e44a916ca2ea1cbdbbe502b1d4a00e2",
-      "balance_eth": 7.85e-06,
+      "balance_eth": 0.00000785,
       "balance_wei": "7852216792713",
       "merkle_proof": [
         "0x0938664477205f9108a793f161ced08d44cd5082f5de9fd941db64a2257bed57",
@@ -138477,7 +138478,7 @@
     },
     {
       "address": "0x62bb1c5a8eb50ee56da168bcb00e7bebc9d4c3a1",
-      "balance_eth": 7.75e-06,
+      "balance_eth": 0.00000775,
       "balance_wei": "7754734850500",
       "merkle_proof": [
         "0xe5fc334a8bb89e66ef5424fc1e4191fc6eb774256354c5b5c6c0307b9ffe3e58",
@@ -138497,7 +138498,7 @@
     },
     {
       "address": "0xfd4fd7e00f9ebd266f3c9214a60ecd90fa9555f6",
-      "balance_eth": 7.75e-06,
+      "balance_eth": 0.00000775,
       "balance_wei": "7746349826596",
       "merkle_proof": [
         "0xd53954636da79b1f8bd764b68fb7484002988cf07fdb5ca339fd5a1260d479c0",
@@ -138517,7 +138518,7 @@
     },
     {
       "address": "0xe7b2383116e8a5a7a98e8eab1a07cf5f19698f98",
-      "balance_eth": 7.75e-06,
+      "balance_eth": 0.00000775,
       "balance_wei": "7754734850500",
       "merkle_proof": [
         "0x741ec918b1aa237ffd74c5a7aa3c0b38ca249faba265592e0ddff78cc634a8a6",
@@ -138537,7 +138538,7 @@
     },
     {
       "address": "0x1fdae3f85cc0c2a15177ef71b8e7f44b76811d06",
-      "balance_eth": 7.75e-06,
+      "balance_eth": 0.00000775,
       "balance_wei": "7754734850500",
       "merkle_proof": [
         "0x8b805f4b628094b2377bc7c7efb78c5e77aecafd4f301dc92def789157b60c93",
@@ -138557,7 +138558,7 @@
     },
     {
       "address": "0xf6aa996263721c15d8a8dd81687342be8c3adf5d",
-      "balance_eth": 7.68e-06,
+      "balance_eth": 0.00000768,
       "balance_wei": "7677187501995",
       "merkle_proof": [
         "0x29f049e5623b7bb4776681a5e9c98b4ed729a945c25bf2e8b5b1e226e215b1ea",
@@ -138577,7 +138578,7 @@
     },
     {
       "address": "0x7c6e086dafada5443cca22f730f4a29a834fa5b0",
-      "balance_eth": 7.58e-06,
+      "balance_eth": 0.00000758,
       "balance_wei": "7579291486519",
       "merkle_proof": [
         "0xa59122a7426a606b5a08aa9f85458897bdb4ba77cfa5923a21fbe5de31e9f827",
@@ -138597,7 +138598,7 @@
     },
     {
       "address": "0xbf8dddb85a055133bbf3b52c60efe5b65f4ea074",
-      "balance_eth": 7.38e-06,
+      "balance_eth": 0.00000738,
       "balance_wei": "7381129594803",
       "merkle_proof": [
         "0x7c745efc2945b5e15504941abc8c3579228b56e22cc166b6d46d509231201ef4",
@@ -138617,7 +138618,7 @@
     },
     {
       "address": "0x9b532eee1af755b4fc041d7c98ac80c437a91486",
-      "balance_eth": 7.38e-06,
+      "balance_eth": 0.00000738,
       "balance_wei": "7377984270348",
       "merkle_proof": [
         "0x3db4149e11281b123557a63c86d374a385f42b36cbf4a788eed7f5f9001bf514",
@@ -138637,7 +138638,7 @@
     },
     {
       "address": "0x1f2552a43bfcb19520a316032c1b33809ff2cd03",
-      "balance_eth": 7.35e-06,
+      "balance_eth": 0.00000735,
       "balance_wei": "7347965076762",
       "merkle_proof": [
         "0x125af8e0603f494210586212f503aa7f73948b38fc852216aea3f7c25a6cc0c3",
@@ -138657,7 +138658,7 @@
     },
     {
       "address": "0xab5801a7d398351b8be11c439e05c5b3259aec9b",
-      "balance_eth": 7.35e-06,
+      "balance_eth": 0.00000735,
       "balance_wei": "7347965076762",
       "merkle_proof": [
         "0x0a65a5e23d3777c1d27878fbd93cd5364a317f0f01040b9680b2775f2a962c60",
@@ -138677,7 +138678,7 @@
     },
     {
       "address": "0x4862733b5fddfd35f35ea8ccf08f5045e57388b3",
-      "balance_eth": 7.35e-06,
+      "balance_eth": 0.00000735,
       "balance_wei": "7347965076762",
       "merkle_proof": [
         "0x24a89e43b942c76b29390c4c09e71c0d374a502591f137ee12cbe2bb18203855",
@@ -138697,7 +138698,7 @@
     },
     {
       "address": "0x62959d2c9d519c8ba3b93d17166a6a594d5f9467",
-      "balance_eth": 7.32e-06,
+      "balance_eth": 0.00000732,
       "balance_wei": "7321897325888",
       "merkle_proof": [
         "0xf1b8d08c3192d129974b6babbd053c74acf7726a21ecfc4ebc98758265f89402",
@@ -138717,7 +138718,7 @@
     },
     {
       "address": "0xd109cf60181d8faddcbb2d12f950220be6553142",
-      "balance_eth": 7.27e-06,
+      "balance_eth": 0.00000727,
       "balance_wei": "7274485425995",
       "merkle_proof": [
         "0x0d2f5fb73682804e085f6c3e97111734e9d5e17aad38d7a7413cd500bba79daf",
@@ -138737,7 +138738,7 @@
     },
     {
       "address": "0x8de756de275fa0f8125cb10263a0fee03278747f",
-      "balance_eth": 7.21e-06,
+      "balance_eth": 0.00000721,
       "balance_wei": "7214781743510",
       "merkle_proof": [
         "0xa4ee898d9fcd3c0901ee751d8b6986e4a7390a0d47fbd4d477dd7d8aadb9d927",
@@ -138757,7 +138758,7 @@
     },
     {
       "address": "0x41f709b49c337b468c2e88e012945a55702a2872",
-      "balance_eth": 7.19e-06,
+      "balance_eth": 0.00000719,
       "balance_wei": "7187044641582",
       "merkle_proof": [
         "0x67e7b611f6ab01dbdc6f0e0801bbdc0f9e89d83b82417d3958f6b94ed9345158",
@@ -138777,7 +138778,7 @@
     },
     {
       "address": "0x826122a9c5fd952689e2a2d0e0c93978d356892e",
-      "balance_eth": 7.09e-06,
+      "balance_eth": 0.00000709,
       "balance_wei": "7094265822834",
       "merkle_proof": [
         "0x573fa8ed3395a34f0367e045e298775b8f30f41e8160ffe23c3dccd54610da84",
@@ -138797,7 +138798,7 @@
     },
     {
       "address": "0x6d71aef9cfc52a4397b0c34fe71c4023a17259a8",
-      "balance_eth": 7.08e-06,
+      "balance_eth": 0.00000708,
       "balance_wei": "7078367341570",
       "merkle_proof": [
         "0xefa698c9306c5f89b425ad0c9600fbb7c7ef03449edc2d6324bed48a2e32ad08",
@@ -138817,7 +138818,7 @@
     },
     {
       "address": "0x5fbaaf7c1111f8dbc5351056a6e239f9c22a4ddc",
-      "balance_eth": 7.02e-06,
+      "balance_eth": 0.00000702,
       "balance_wei": "7017800891426",
       "merkle_proof": [
         "0x472e2b8ed72338d0a512101f07f0e669fc18d3863b7aded01f2579de6339f758",
@@ -138837,7 +138838,7 @@
     },
     {
       "address": "0x2c1bf7b1a5809a16da32a4598f860adc6a596d3c",
-      "balance_eth": 6.77e-06,
+      "balance_eth": 0.00000677,
       "balance_wei": "6772621511163",
       "merkle_proof": [
         "0xf111d1773dbbe30d768cdd46ccd64d0b58611e4b381c12560c32e4678dc441a3",
@@ -138857,7 +138858,7 @@
     },
     {
       "address": "0x8663bf46d0fdaa0fed3bcf590c0bbdab9a9c7db4",
-      "balance_eth": 6.47e-06,
+      "balance_eth": 0.00000647,
       "balance_wei": "6466209267551",
       "merkle_proof": [
         "0xb133f91f49b44008cbbd0ad98da7e371ab59cc39e28b2e928eac9ccc98c92ded",
@@ -138877,7 +138878,7 @@
     },
     {
       "address": "0x002a99690ab1989b7971db28cd4a7673e1e6f495",
-      "balance_eth": 6.43e-06,
+      "balance_eth": 0.00000643,
       "balance_wei": "6426277931198",
       "merkle_proof": [
         "0x1276fe3dbc5d20e595c94d9cebe407840d0658b9ca4a8c37390947ea1daf7eac",
@@ -138897,7 +138898,7 @@
     },
     {
       "address": "0x6e605c05db60e12380009f857adb0c1a88abeadd",
-      "balance_eth": 6.29e-06,
+      "balance_eth": 0.00000629,
       "balance_wei": "6291851928518",
       "merkle_proof": [
         "0x2ecff98212afa5d736bba327f65d6b164f2719f933f15bc6d75596be1e9c4ea3",
@@ -138917,7 +138918,7 @@
     },
     {
       "address": "0xf290d555445fd63f71010d115e2b92e20d5e21a4",
-      "balance_eth": 6.23e-06,
+      "balance_eth": 0.00000623,
       "balance_wei": "6229286091355",
       "merkle_proof": [
         "0xaf2fc14dd2cac274280c72d34f62b18e08eb3acbcfe69f7d77f050a8b989df0d",
@@ -138937,7 +138938,7 @@
     },
     {
       "address": "0x1438510406a9d66419dafc00a152abef43cbc235",
-      "balance_eth": 6.05e-06,
+      "balance_eth": 0.00000605,
       "balance_wei": "6052236869210",
       "merkle_proof": [
         "0xb098edfe8b27e899b99d47926f1b8f513f8c5d42eb1317f51874e437295eb750",
@@ -138957,7 +138958,7 @@
     },
     {
       "address": "0x3f9f67686db87cc230182f3b5a8a3eb86298b5da",
-      "balance_eth": 5.66e-06,
+      "balance_eth": 0.00000566,
       "balance_wei": "5657933109107",
       "merkle_proof": [
         "0xf3e981b9910baf33ce69e65d22ac945823296801fa0fafcb5aa03ce77580cfa4",
@@ -138977,7 +138978,7 @@
     },
     {
       "address": "0xa60aadf62907bf06dd714781d44bbd4c2d783259",
-      "balance_eth": 5.35e-06,
+      "balance_eth": 0.00000535,
       "balance_wei": "5350767046845",
       "merkle_proof": [
         "0xca3a34640c42d9880d70e07bda8e159c0a9b4b19a108ebc3c8ea740933af3f91",
@@ -138995,7 +138996,7 @@
     },
     {
       "address": "0xb384da90c40e2fec8ba965a3b37df46d3d6c14bf",
-      "balance_eth": 5.15e-06,
+      "balance_eth": 0.00000515,
       "balance_wei": "5150923518810",
       "merkle_proof": [
         "0x6dcaec6e85c7c894400afb96fab82cc1fdc2502318358d3ac3fdf0df164f7355",
@@ -139015,7 +139016,7 @@
     },
     {
       "address": "0x523534ee543d8fc52be60529c4484d6ee02639d8",
-      "balance_eth": 5.1e-06,
+      "balance_eth": 0.0000051,
       "balance_wei": "5097333680038",
       "merkle_proof": [
         "0x223bab4e015b87ada6a5d13818aea4ec9e0e4a363ba51c9c993e2efb719502f7",
@@ -139035,7 +139036,7 @@
     },
     {
       "address": "0xc4acc5648455a6dca9d833c4731dee614427f4bf",
-      "balance_eth": 4.95e-06,
+      "balance_eth": 0.00000495,
       "balance_wei": "4945213482878",
       "merkle_proof": [
         "0x42b24ae225abfb6378847d2e61dbdbc416c7a7caac4a31701a22451f3e64df31",
@@ -139055,7 +139056,7 @@
     },
     {
       "address": "0x467ce0980dcf834e477dc8d4dc9a960f42e2388c",
-      "balance_eth": 4.7e-06,
+      "balance_eth": 0.0000047,
       "balance_wei": "4695763420645",
       "merkle_proof": [
         "0xb55b1cd138d28c3f501a12c9417682b8ec1c9b8bfb23edde266ac0c4a50f1634",
@@ -139075,7 +139076,7 @@
     },
     {
       "address": "0x8f83331d1cc26484ea88b10ce1ef28f935872f23",
-      "balance_eth": 4.23e-06,
+      "balance_eth": 0.00000423,
       "balance_wei": "4228804911961",
       "merkle_proof": [
         "0xc2469d6393a12fb2761962d84ab2bb6e142a60385d4b11bdee16225b34995e62",
@@ -139095,7 +139096,7 @@
     },
     {
       "address": "0x7b66162866067d1b0dd6537f0fac445ff7f56c86",
-      "balance_eth": 4.12e-06,
+      "balance_eth": 0.00000412,
       "balance_wei": "4124298156607",
       "merkle_proof": [
         "0xcc2726fc90378cdc1798adb195c3843df855bc5d6302e12a06568d811f56490e",
@@ -139115,7 +139116,7 @@
     },
     {
       "address": "0xaf50ffd4f27b21966ec221286eec8742c8c48aed",
-      "balance_eth": 3.3e-06,
+      "balance_eth": 0.0000033,
       "balance_wei": "3296730263464",
       "merkle_proof": [
         "0xa47ae59674d3fb3866a166bc3468cddd129cf9aaff0d1db01493618a80d5fbd3",
@@ -139135,7 +139136,7 @@
     },
     {
       "address": "0x8f4d9943938bcf33315e668cd8d65543c4e39d98",
-      "balance_eth": 3.09e-06,
+      "balance_eth": 0.00000309,
       "balance_wei": "3086145332240",
       "merkle_proof": [
         "0xc09e5f8eabe755b6a9ca1f1d850bbe2c15a14b838aec7918b768dcdd6b7206db",
@@ -139155,7 +139156,7 @@
     },
     {
       "address": "0x87a7864f0a2a31a2edc86ab0f63a1d0019e73457",
-      "balance_eth": 3.09e-06,
+      "balance_eth": 0.00000309,
       "balance_wei": "3093222585629",
       "merkle_proof": [
         "0x78a3e2a928243e28cd40d71c0f78aac403e83ff37a601fcf403c695e5ca36898",
@@ -139175,7 +139176,7 @@
     },
     {
       "address": "0xa3822cffc5dae9af85e7d3f93d06695c516343d6",
-      "balance_eth": 2.97e-06,
+      "balance_eth": 0.00000297,
       "balance_wei": "2966103365892",
       "merkle_proof": [
         "0x6cbf3e1bb73782fc0d2b996e8f9368b52d75e104fe9c02b298f914c85a2855f3",
@@ -139195,7 +139196,7 @@
     },
     {
       "address": "0x59599c91e59b747d71e2b756dcc75f07eca7298c",
-      "balance_eth": 2.87e-06,
+      "balance_eth": 0.00000287,
       "balance_wei": "2869251894685",
       "merkle_proof": [
         "0xa875625883f73aaa0c77a6d77ff783df63bfed1e2d1c6db3b816cc2ace52c1bc",
@@ -139215,7 +139216,7 @@
     },
     {
       "address": "0x35341f497ff8a7d8e3148cda8fab645295cb8003",
-      "balance_eth": 2.85e-06,
+      "balance_eth": 0.00000285,
       "balance_wei": "2845989845112",
       "merkle_proof": [
         "0x16a38c48d3bdc566c54a5eacadd5156364ee88cdbf85a5bbe8410e506c112755",
@@ -139235,7 +139236,7 @@
     },
     {
       "address": "0x00000000500e2fece27a7600435d0c48d64e0c00",
-      "balance_eth": 2.71e-06,
+      "balance_eth": 0.00000271,
       "balance_wei": "2710920624672",
       "merkle_proof": [
         "0x58a6345d5147afcc41ea1d898dc33e452fc3781801bfc504ef9ffd93836f8410",
@@ -139255,7 +139256,7 @@
     },
     {
       "address": "0x89af492cdadb8e23ac61ee65aa49675b98171b05",
-      "balance_eth": 2.56e-06,
+      "balance_eth": 0.00000256,
       "balance_wei": "2563805716982",
       "merkle_proof": [
         "0x0897b0ab258616afad52248ce92350bb53efa0a625250c0d65fff0953e2ef957",
@@ -139275,7 +139276,7 @@
     },
     {
       "address": "0xa2dc3c3a03cc2d451c94f5b971c6130b0b9da50f",
-      "balance_eth": 2.17e-06,
+      "balance_eth": 0.00000217,
       "balance_wei": "2171790675604",
       "merkle_proof": [
         "0x7607266ba5c05a535caf7770a65ce7f6eb84604bc2f56cbf522e70e47453a0a6",
@@ -139295,7 +139296,7 @@
     },
     {
       "address": "0x43ba63b740a43f3b0641bb2210b0d11bae21e912",
-      "balance_eth": 2.08e-06,
+      "balance_eth": 0.00000208,
       "balance_wei": "2078108569842",
       "merkle_proof": [
         "0xbc7ef134c035a2145298657d4cdb5a355b43f8a3c9092942d981cfcbffe572f5",
@@ -139315,7 +139316,7 @@
     },
     {
       "address": "0x35a82985223ee64064e2c010828792d437077014",
-      "balance_eth": 1.84e-06,
+      "balance_eth": 0.00000184,
       "balance_wei": "1836059186621",
       "merkle_proof": [
         "0x7fccbcf9e0accf0e176bf912c75a3bad4c9e0ebb03f390b291d81a2e0edec89b",
@@ -139335,7 +139336,7 @@
     },
     {
       "address": "0x239591e58cd9b0757506d756121a9cd47fdd413e",
-      "balance_eth": 1.54e-06,
+      "balance_eth": 0.00000154,
       "balance_wei": "1542867117310",
       "merkle_proof": [
         "0x1025e463549ab224d8dc636e07c1c61bfcc997a46d3dc45e8b08ebf8eca177bd",
@@ -139355,7 +139356,7 @@
     },
     {
       "address": "0x8a843d866af9da4924b04854b02b9cbd525f37bb",
-      "balance_eth": 1.4e-06,
+      "balance_eth": 0.0000014,
       "balance_wei": "1395852273090",
       "merkle_proof": [
         "0x4f2cb88f61e8693264e102f38b406cfafcae8869acf57c74865d43ee4fe39e67",
@@ -139375,7 +139376,7 @@
     },
     {
       "address": "0x04b283ade1cf92e90a0bf7eb97d174d68db67fc1",
-      "balance_eth": 1.26e-06,
+      "balance_eth": 0.00000126,
       "balance_wei": "1255108277813",
       "merkle_proof": [
         "0x72d3113fa432081ce96c4196997f7e639d690c6d645431e41d2807a36dc64ac4",
@@ -139395,7 +139396,7 @@
     },
     {
       "address": "0x224e69025a2f705c8f31efb6694398f8fd09ac5c",
-      "balance_eth": 8.7e-07,
+      "balance_eth": 8.7e-7,
       "balance_wei": "868081098959",
       "merkle_proof": [
         "0xcc90918b1e0759b23c4433de357d1d5572f1f150e7c692b9e90ef2921d7bf985",
@@ -139415,7 +139416,7 @@
     },
     {
       "address": "0x31d33391f918bbd845beb0ef23cafeb74dc498e3",
-      "balance_eth": 7.8e-07,
+      "balance_eth": 7.8e-7,
       "balance_wei": "775473485050",
       "merkle_proof": [
         "0xc42cff8aac529c8dd23fd7dc7a4ac304512907ba467b7a23d70685b3a1718ca1",
@@ -139435,7 +139436,7 @@
     },
     {
       "address": "0xf8c9fa130afeeb2089f39bf9ee8d8926310fe6fd",
-      "balance_eth": 7.2e-07,
+      "balance_eth": 7.2e-7,
       "balance_wei": "716627560378",
       "merkle_proof": [
         "0x1f84a04936e4ea15a592605ebd5fc3043242de0e68037aef527cdb5ee5ddda9b",
@@ -139455,7 +139456,7 @@
     },
     {
       "address": "0x499e0e1af99b005c33e871c274e931fea1168f30",
-      "balance_eth": 6.5e-07,
+      "balance_eth": 6.5e-7,
       "balance_wei": "651757812597",
       "merkle_proof": [
         "0xd38d398e97215c346fc022e13f612fc778c874ffbd6dc15eaf026dbe79bac406",
@@ -139475,7 +139476,7 @@
     },
     {
       "address": "0xd7ac9bc807b634b57330e814d868beb28906f392",
-      "balance_eth": 6e-07,
+      "balance_eth": 6e-7,
       "balance_wei": "596875791956",
       "merkle_proof": [
         "0x234f30ebfd4d74cdc653ce62d6534395abc01a1aaedc4a4470fe9ac0d4f6df8f",
@@ -139495,7 +139496,7 @@
     },
     {
       "address": "0xe885408feafeb5b14bdf89ce84d0bb02333cfe9b",
-      "balance_eth": 5.7e-07,
+      "balance_eth": 5.7e-7,
       "balance_wei": "569608780864",
       "merkle_proof": [
         "0x79690e4addedace10c376a8177d9821889fb18b36cb7efcd663e1dce0bf81835",
@@ -139515,7 +139516,7 @@
     },
     {
       "address": "0x7a60014bf6c8024f8a16aa097d82f475f9f8516a",
-      "balance_eth": 5.6e-07,
+      "balance_eth": 5.6e-7,
       "balance_wei": "557386129428",
       "merkle_proof": [
         "0xeddea45cc372be557442e23f7b609b41312ccc65298d9b89aaec9350fff08fd3",
@@ -139535,7 +139536,7 @@
     },
     {
       "address": "0xd6bfd3430f4d0d2b878d4782ce8453b3d3de0571",
-      "balance_eth": 4.7e-07,
+      "balance_eth": 4.7e-7,
       "balance_wei": "473173127521",
       "merkle_proof": [
         "0x759456557831907be53d0d09dd22e970cc95090f473f3b7fbb6872ae9a10eb68",
@@ -139555,7 +139556,7 @@
     },
     {
       "address": "0xe0d2de208e581556093447500ff652ff8a5e0123",
-      "balance_eth": 4.3e-07,
+      "balance_eth": 4.3e-7,
       "balance_wei": "430874329892",
       "merkle_proof": [
         "0x04d3d2f851f52769dfcddc5d620ca6f461824151e743a3cf03042c1456211066",
@@ -139575,7 +139576,7 @@
     },
     {
       "address": "0xa9b9252a7c8bb9866782dac510dcb863b8ae3726",
-      "balance_eth": 3.1e-07,
+      "balance_eth": 3.1e-7,
       "balance_wei": "305203050933",
       "merkle_proof": [
         "0xccafae331c1aaa2b9273038df05de8cc1b380b8859f41daf0e97bcf9dc600b9f",
@@ -139595,7 +139596,7 @@
     },
     {
       "address": "0x1ff3330102eb859d86ffbe1ad0949c9661e00ee0",
-      "balance_eth": 2.5e-07,
+      "balance_eth": 2.5e-7,
       "balance_wei": "245616295043",
       "merkle_proof": [
         "0x417444ed608e5c544aba948a95d3a1b139319fdb8f42f5783bfa74a483691ea2",
@@ -139615,7 +139616,7 @@
     },
     {
       "address": "0xf7072d7cfd4c6d210708af32b09672b13b00c892",
-      "balance_eth": 2.5e-07,
+      "balance_eth": 2.5e-7,
       "balance_wei": "252850878300",
       "merkle_proof": [
         "0x372726fdd6f5d2999ab6cbe3ac53e28b4888086d13580e3cc6e8837740730880",
@@ -139635,7 +139636,7 @@
     },
     {
       "address": "0xf248e3a38bbbfa1a20fc6fcccb0a35af3e51d642",
-      "balance_eth": 2.4e-07,
+      "balance_eth": 2.4e-7,
       "balance_wei": "240239207034",
       "merkle_proof": [
         "0xb26c5fb1b73d57873db38539bbf0a040c2e1b2d754c40f1b2d19f2e69819fe0e",
@@ -139655,7 +139656,7 @@
     },
     {
       "address": "0x8588a6c17af8984553168a9a1172ac65e17d4786",
-      "balance_eth": 2.4e-07,
+      "balance_eth": 2.4e-7,
       "balance_wei": "239878651327",
       "merkle_proof": [
         "0xaa2874803113e02ea4c78a04672b40291fcfdb26e849cdb47af3a2e4be3c6f6c",
@@ -139675,7 +139676,7 @@
     },
     {
       "address": "0xd4589b6ca8d65e092a73f9eebff1d62d47c343e8",
-      "balance_eth": 2.3e-07,
+      "balance_eth": 2.3e-7,
       "balance_wei": "229295919056",
       "merkle_proof": [
         "0x2e335247a370becdf1e07e6bc4b5f2e939f699f09295b9c9aa42f2b6dac8981f",
@@ -139695,7 +139696,7 @@
     },
     {
       "address": "0xe1827d434538752ca08abd2c75d44e3522c772a5",
-      "balance_eth": 2.2e-07,
+      "balance_eth": 2.2e-7,
       "balance_wei": "220438952302",
       "merkle_proof": [
         "0xa4f1be7115feaebc2ea776d8cbac2297ea015838cb05411e85f4bb4aa4db47dc",
@@ -139715,7 +139716,7 @@
     },
     {
       "address": "0x9cab29b34d1606e869535fea17a6be56eb4e8006",
-      "balance_eth": 2e-07,
+      "balance_eth": 2e-7,
       "balance_wei": "199550316483",
       "merkle_proof": [
         "0x78a293e99a693c94432056cdc28ebd7d1e3d9b5aa4457985f3d8cee316399df9",
@@ -139735,7 +139736,7 @@
     },
     {
       "address": "0x98502c88dbd5eb1612f47e3ec36ef45023691483",
-      "balance_eth": 1.8e-07,
+      "balance_eth": 1.8e-7,
       "balance_wei": "179273886211",
       "merkle_proof": [
         "0x2df26319733cecff3d7fee3eed66f706c65a9b39145ba62a0d7c365d813801c6",
@@ -139755,7 +139756,7 @@
     },
     {
       "address": "0xec95e77ba9049e774f334310a79131dd1d276162",
-      "balance_eth": 1.8e-07,
+      "balance_eth": 1.8e-7,
       "balance_wei": "182889729025",
       "merkle_proof": [
         "0x352e098ceea6cb1ff742cd90fea09c6f67c6cbfdd4b9e565ac90eb8b7b6805c1",
@@ -139775,7 +139776,7 @@
     },
     {
       "address": "0x75e9f500b43664067bbfb53e76695ca6c01ef2bd",
-      "balance_eth": 1.6e-07,
+      "balance_eth": 1.6e-7,
       "balance_wei": "158716045658",
       "merkle_proof": [
         "0xf0dcbf9111980af6b6b415d3c269a067384d4c8faa2c3fcec1f90e4105d5df32",
@@ -139795,7 +139796,7 @@
     },
     {
       "address": "0xea7ad26d1b722518f7a9af4e75efaf8dfd042034",
-      "balance_eth": 1.6e-07,
+      "balance_eth": 1.6e-7,
       "balance_wei": "160667676797",
       "merkle_proof": [
         "0xcd1f170c6c18dcd0dec2addc418ec36e12d396e069d7c5fe09d9dbc42da7baa3",
@@ -139815,7 +139816,7 @@
     },
     {
       "address": "0xa4d1ad4325ef52b76495d52b79402e91961931d5",
-      "balance_eth": 1.6e-07,
+      "balance_eth": 1.6e-7,
       "balance_wei": "160667676797",
       "merkle_proof": [
         "0x9b45dab3dab2a570da0b5a4d75880bdfc0afc1274f0c1df586c402f52053150a",
@@ -139835,7 +139836,7 @@
     },
     {
       "address": "0xf135f46f6f9a4ff23b0b70aa9b613037937d7b5d",
-      "balance_eth": 1.6e-07,
+      "balance_eth": 1.6e-7,
       "balance_wei": "155094697010",
       "merkle_proof": [
         "0x10970cbdaa469ee52c4b2a4530d3e148b84f379cf076791886d1448f0dee1e0a",
@@ -139855,7 +139856,7 @@
     },
     {
       "address": "0x55c61fe2be9b08878df59904c7f27fe0a3c4cce7",
-      "balance_eth": 1.5e-07,
+      "balance_eth": 1.5e-7,
       "balance_wei": "146959301535",
       "merkle_proof": [
         "0xe39afa92d7829092811a63d9391c8b865890118c80b3ef844ea12328fcdc5b20",
@@ -139875,7 +139876,7 @@
     },
     {
       "address": "0x9521d81810d8294e0a9a7296178ed2eb981a63db",
-      "balance_eth": 1.5e-07,
+      "balance_eth": 1.5e-7,
       "balance_wei": "146959301535",
       "merkle_proof": [
         "0x433b205288cf4bee2ec62424912b5683de9fbd642e6682b1e98a7a50f7499161",
@@ -139895,7 +139896,7 @@
     },
     {
       "address": "0x5289bc1731dadf03639a1f0b786d43b55964c7e1",
-      "balance_eth": 1.5e-07,
+      "balance_eth": 1.5e-7,
       "balance_wei": "153963427331",
       "merkle_proof": [
         "0x0b518239051e21443e9d303957a8f295fe839964bd15103ac0f22034058974f4",
@@ -139915,7 +139916,7 @@
     },
     {
       "address": "0xabe2b1f5c30b9f429798c88f1b273a48ade353b1",
-      "balance_eth": 1.5e-07,
+      "balance_eth": 1.5e-7,
       "balance_wei": "146959301535",
       "merkle_proof": [
         "0x5862a7c561d4e87a4a50217869e7b9ed2e5b8489c643d8c23069d64f6aeeee3f",
@@ -139935,7 +139936,7 @@
     },
     {
       "address": "0x5d4263b9a96406b470b02e599e9cbace41745d1f",
-      "balance_eth": 1.4e-07,
+      "balance_eth": 1.4e-7,
       "balance_wei": "142155569366",
       "merkle_proof": [
         "0x0c9b8843692fa6bdadb63c0eb09929d0a678ccc57e24a38bc20d9797bda88dbc",
@@ -139955,7 +139956,7 @@
     },
     {
       "address": "0x18624615c67e3717f941fa6dc72d9ac6e8be87cd",
-      "balance_eth": 1.3e-07,
+      "balance_eth": 1.3e-7,
       "balance_wei": "130615369774",
       "merkle_proof": [
         "0x18d13048e1c1be905d468c85c1518442c64f66c3e6ac990e00cd6fe393d4b706",
@@ -139975,7 +139976,7 @@
     },
     {
       "address": "0x3e6e69c42b55b005826048a19d1acaab1f176ab6",
-      "balance_eth": 1.3e-07,
+      "balance_eth": 1.3e-7,
       "balance_wei": "129223656927",
       "merkle_proof": [
         "0x0ca618eb705531425dbec1d75c4cebca7e59e6eedfce65a8a6d1e99ebc03c7f5",
@@ -139995,7 +139996,7 @@
     },
     {
       "address": "0xa6c497a0176d6281621319ea85bff49791fa8fa1",
-      "balance_eth": 1.2e-07,
+      "balance_eth": 1.2e-7,
       "balance_wei": "120481434615",
       "merkle_proof": [
         "0xca51f56b7122984199d34fcd3ffa47e915201dedea0f4dd81607a739207638d9",
@@ -140015,7 +140016,7 @@
     },
     {
       "address": "0x00000000003b3cc22af3ae1eac0440bcee416b40",
-      "balance_eth": 1.1e-07,
+      "balance_eth": 1.1e-7,
       "balance_wei": "114699740697",
       "merkle_proof": [
         "0xa8510fdc8acc23b3c60608649d97ec65ea0ee22d66556df04c6718322af126bb",
@@ -140035,7 +140036,7 @@
     },
     {
       "address": "0x77624dc5069d280e7252483eaa5155ee85810d22",
-      "balance_eth": 1e-07,
+      "balance_eth": 1e-7,
       "balance_wei": "99582621791",
       "merkle_proof": [
         "0xaae25722111872fb4687190d5c02640911c72e3c85f5b8fc73cc0421e74111fb",
@@ -140055,7 +140056,7 @@
     },
     {
       "address": "0x508dd163a10fbd6d237f686a45cf2a6419b2ea31",
-      "balance_eth": 1e-07,
+      "balance_eth": 1e-7,
       "balance_wei": "97406891517",
       "merkle_proof": [
         "0x4d2e87ce494dabb5e703ddd4872903d1292764287884d4cd8f03f348918439e0",
@@ -140075,7 +140076,7 @@
     },
     {
       "address": "0x007933790a4f00000099e9001629d9fe7775b800",
-      "balance_eth": 1e-07,
+      "balance_eth": 1e-7,
       "balance_wei": "96328882970",
       "merkle_proof": [
         "0xb4f06366d17699eaa697698914c6d1fabb47cd4e9312c6cdd540e9de22b32c12",
@@ -140095,7 +140096,7 @@
     },
     {
       "address": "0x341f290c03897f1ce45e513fe397e4a9b61c0f53",
-      "balance_eth": 9e-08,
+      "balance_eth": 9e-8,
       "balance_wei": "90078504250",
       "merkle_proof": [
         "0x797c791521e1847ff4a6ec0a52446ade9f15074d8f1333216a7de3a4f36a644a",
@@ -140115,7 +140116,7 @@
     },
     {
       "address": "0x6d14841def9db1abaa1375cf3bdb9704d7a85acd",
-      "balance_eth": 8e-08,
+      "balance_eth": 8e-8,
       "balance_wei": "77547348505",
       "merkle_proof": [
         "0x3e7147a65fae21a08e85f1767b34d7fa74d4110fbbfe818dd4acff4f9d6fc3e1",
@@ -140135,7 +140136,7 @@
     },
     {
       "address": "0xd25fd01be744b276dbe4190cd11c14787a42a153",
-      "balance_eth": 8e-08,
+      "balance_eth": 8e-8,
       "balance_wei": "77547348505",
       "merkle_proof": [
         "0x44e90dca968b619210498c063246925855b67e3b04d14d76ac1ba63f6d355cd1",
@@ -140155,7 +140156,7 @@
     },
     {
       "address": "0x9305b9c99dd00e460eaca6fdd6e2799755e20f76",
-      "balance_eth": 7e-08,
+      "balance_eth": 7e-8,
       "balance_wei": "73479650767",
       "merkle_proof": [
         "0x871698dd1fb897919150d0e4270378343cf44b5acd78126200432eb0d8c0e543",
@@ -140175,7 +140176,7 @@
     },
     {
       "address": "0x3f5ce5fbfe3e9af3971dd833d26ba9b5c936f0be",
-      "balance_eth": 7e-08,
+      "balance_eth": 7e-8,
       "balance_wei": "73479650767",
       "merkle_proof": [
         "0xb84ca564cc2589b23ff7e78f64ac151b543c7601821513599771c2de4e13ee9d",
@@ -140195,7 +140196,7 @@
     },
     {
       "address": "0x7a3da69d2771cbf410957a7379f7d6a0cd0aea0c",
-      "balance_eth": 7e-08,
+      "balance_eth": 7e-8,
       "balance_wei": "73479650767",
       "merkle_proof": [
         "0x8bbea2c1b78b648a4d87d1724e870a4d159d4c6a384b7d847e3ed15b961677c8",
@@ -140215,7 +140216,7 @@
     },
     {
       "address": "0xbac4d7df91f2d7ef241234479ea126504b51136d",
-      "balance_eth": 7e-08,
+      "balance_eth": 7e-8,
       "balance_wei": "73479650767",
       "merkle_proof": [
         "0x6f2cdea10cadea56adec545e647f95cb99401d8812290386117d4e207423c24f",
@@ -140235,7 +140236,7 @@
     },
     {
       "address": "0x7ec5d10962a93e94464e50734bc83bce27a8437d",
-      "balance_eth": 7e-08,
+      "balance_eth": 7e-8,
       "balance_wei": "73479650767",
       "merkle_proof": [
         "0xaab8403366d76e1d63abe5e78f9ea3adacbba50b44a252e418838fd67caadc9e",
@@ -140253,5 +140254,6 @@
         "0x7c88558f8d37ef6f014de0021d54070b793018685ffa805cee26035d9579c041"
       ]
     }
-  ]
+  ],
+  "last_event_refresh": "2026-08-03 11:34:31 UTC"
 }

@@ -1,16 +1,24 @@
 {
   "contract": "0xd6c037be7fa60587e174db7a6710f7635d2971e7",
   "balance_source": "eth",
-  "contract_eth_balance": 94.051029,
-  "total_eth_in_balances": 89.776601,
-  "addresses_with_balance": 131,
-  "coverage_pct": 95.46,
+  "contract_eth_balance": 91.051029,
+  "total_eth_in_balances": 86.776601,
+  "addresses_with_balance": 130,
+  "coverage_pct": 95.31,
   "scan_date": "2026-07-12 01:42:18 UTC",
   "description": "ETH balances in defunct CryptoPhunks Marketplace contract",
   "distribution": {
+    ">=100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
+    "10-100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
     "1-10 ETH": {
-      "count": 20,
-      "total_eth": 51.33
+      "count": 19,
+      "total_eth": 48.33
     },
     "0.1-1 ETH": {
       "count": 69,
@@ -38,7 +46,7 @@
       "rank": 2,
       "address": "0x4b0c04667b1e0cace3a4c12afdc4583a8343e541",
       "balance_wei": "5000000000000000000",
-      "balance_eth": 5.0
+      "balance_eth": 5
     },
     {
       "rank": 3,
@@ -67,8 +75,9 @@
     {
       "rank": 7,
       "address": "0xce736576a5e598ab7603792abbd50578a3d0fba0",
-      "balance_wei": "3000000000000000000",
-      "balance_eth": 3.0
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 8,
@@ -80,31 +89,31 @@
       "rank": 9,
       "address": "0x20c7309a91af2d58a547add79904f9a70d0f8038",
       "balance_wei": "2000000000000000000",
-      "balance_eth": 2.0
+      "balance_eth": 2
     },
     {
       "rank": 10,
       "address": "0x52da194a9300f3f22e513f579f7a59f38025d85a",
       "balance_wei": "2000000000000000000",
-      "balance_eth": 2.0
+      "balance_eth": 2
     },
     {
       "rank": 11,
       "address": "0xa30994a58bcb71416ca95f6d4c414bed223d71dc",
       "balance_wei": "2000000000000000000",
-      "balance_eth": 2.0
+      "balance_eth": 2
     },
     {
       "rank": 12,
       "address": "0xe3bdbc570882c8bbce46decfb3d66c9b414ab2be",
       "balance_wei": "2000000000000000000",
-      "balance_eth": 2.0
+      "balance_eth": 2
     },
     {
       "rank": 13,
       "address": "0xe7b88ebca44e2adfd744af7911190ccc6dde2d64",
       "balance_wei": "2000000000000000000",
-      "balance_eth": 2.0
+      "balance_eth": 2
     },
     {
       "rank": 14,
@@ -146,7 +155,7 @@
       "rank": 20,
       "address": "0x4c5ced4225f89f98cadc19ba350de8eada3f40a6",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0
+      "balance_eth": 1
     },
     {
       "rank": 21,
@@ -806,13 +815,14 @@
       "rank": 130,
       "address": "0x1d33a67ef851ce6c3bfb6c793ff8b2155d52b690",
       "balance_wei": "10000000000000",
-      "balance_eth": 1e-05
+      "balance_eth": 0.00001
     },
     {
       "rank": 131,
       "address": "0xe706e8b77ca577d387e8f1710fbbc13395f769ef",
       "balance_wei": "1000000000000",
-      "balance_eth": 1e-06
+      "balance_eth": 0.000001
     }
-  ]
+  ],
+  "last_event_refresh": "2026-08-03 11:34:31 UTC"
 }

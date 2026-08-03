@@ -1,16 +1,36 @@
 {
   "contract": "0x19c10FFf96B80208f454034C046CCc4445Cd20ba",
   "balance_source": "eth",
-  "contract_eth_balance": 28.94524223,
-  "total_eth_in_balances": 28.2629,
-  "addresses_with_balance": 87,
-  "coverage_pct": 97.64,
+  "contract_eth_balance": 27.155242,
+  "total_eth_in_balances": 26.4729,
+  "addresses_with_balance": 81,
+  "coverage_pct": 97.49,
   "scan_date": "2026-07-12 01:42:31 UTC",
   "description": "ETH balances in defunct Age of Dinos contract",
   "distribution": {
+    ">=100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
+    "10-100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
+    "1-10 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
     "0.1-1 ETH": {
-      "count": 87,
-      "total_eth": 28.2629
+      "count": 81,
+      "total_eth": 26.4729
+    },
+    "0.01-0.1 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
+    "<0.01 ETH": {
+      "count": 0,
+      "total_eth": 0
     }
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
@@ -115,10 +135,11 @@
     {
       "rank": 13,
       "address": "0x87e5519b7d1b4b1ff93047c037d1a05724c774a1",
-      "balance_wei": "590000000000000000",
-      "balance_eth": 0.59,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "last_tx_date": "2024-01",
-      "last_tx_hash": "0x08c58165284e6a904f3bd4a5a2a26bb0a4bfbd8e31c343582d4f907f48c9a562"
+      "last_tx_hash": "0x08c58165284e6a904f3bd4a5a2a26bb0a4bfbd8e31c343582d4f907f48c9a562",
+      "claimed": true
     },
     {
       "rank": 14,
@@ -259,18 +280,20 @@
     {
       "rank": 31,
       "address": "0x5a81868992ffcf4200a85972c60151690af39006",
-      "balance_wei": "300000000000000000",
-      "balance_eth": 0.3,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "last_tx_date": "2024-01",
-      "last_tx_hash": "0x38862b4e70d3dd6cb96736732e1ed4478273e7b4c3792f3ce0f079122dff3851"
+      "last_tx_hash": "0x38862b4e70d3dd6cb96736732e1ed4478273e7b4c3792f3ce0f079122dff3851",
+      "claimed": true
     },
     {
       "rank": 32,
       "address": "0x62f833a46853572a1e24650ebe4d47bab445f096",
-      "balance_wei": "300000000000000000",
-      "balance_eth": 0.3,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "last_tx_date": "2024-01",
-      "last_tx_hash": "0xc294cd491c1b4d56418ad5fa8c3a04b2f902ad0952893a24d2b0059eb75b7723"
+      "last_tx_hash": "0xc294cd491c1b4d56418ad5fa8c3a04b2f902ad0952893a24d2b0059eb75b7723",
+      "claimed": true
     },
     {
       "rank": 33,
@@ -331,10 +354,11 @@
     {
       "rank": 40,
       "address": "0x0b92cf8078b3673796ebc2705c4bd2d71862dedb",
-      "balance_wei": "200000000000000000",
-      "balance_eth": 0.2,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "last_tx_date": "2024-01",
-      "last_tx_hash": "0x190b839aa07a692c3adea761435a023f63e14230e7bbb54ae040a0af0574ac40"
+      "last_tx_hash": "0x190b839aa07a692c3adea761435a023f63e14230e7bbb54ae040a0af0574ac40",
+      "claimed": true
     },
     {
       "rank": 41,
@@ -539,10 +563,11 @@
     {
       "rank": 66,
       "address": "0x7779097da3d58752053929a3a0d79d6e8c2acd77",
-      "balance_wei": "200000000000000000",
-      "balance_eth": 0.2,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "last_tx_date": "2024-01",
-      "last_tx_hash": "0x7c4ab348aa28d62e598a10a6da2db6e3b99684e58fd553e60287d2909be4b9e3"
+      "last_tx_hash": "0x7c4ab348aa28d62e598a10a6da2db6e3b99684e58fd553e60287d2909be4b9e3",
+      "claimed": true
     },
     {
       "rank": 67,
@@ -603,10 +628,11 @@
     {
       "rank": 74,
       "address": "0xac67db64e3fb218035b070ee017b9e93f9069ece",
-      "balance_wei": "200000000000000000",
-      "balance_eth": 0.2,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "last_tx_date": "2024-01",
-      "last_tx_hash": "0xa4ab47f453fa6da677c3332dd5a43680b2d1b2d9449de1632759a3f75bebb0f7"
+      "last_tx_hash": "0xa4ab47f453fa6da677c3332dd5a43680b2d1b2d9449de1632759a3f75bebb0f7",
+      "claimed": true
     },
     {
       "rank": 75,
@@ -712,5 +738,6 @@
       "last_tx_date": "2024-01",
       "last_tx_hash": "0x8aa16cc9639adb23d04ca3607e95946cc4e6ad1f94b83666c3bb72d89e37c64c"
     }
-  ]
+  ],
+  "last_event_refresh": "2026-08-03 11:34:28 UTC"
 }

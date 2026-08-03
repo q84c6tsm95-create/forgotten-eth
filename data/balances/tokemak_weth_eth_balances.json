@@ -1,17 +1,36 @@
 {
   "contract": "0xd3d13a578a53685b4ac36a1bab31912d2b2a2f36",
   "balance_source": "weth",
-  "contract_eth_balance": 276.15841144,
-  "total_eth_in_balances": 276.15841144,
-  "addresses_with_balance": 373,
-  "coverage_pct": 100.0,
+  "contract_eth_balance": 274.158411,
+  "total_eth_in_balances": 274.158411,
+  "addresses_with_balance": 367,
+  "coverage_pct": 100,
   "scan_date": "2026-07-09 16:26:21 UTC",
   "distribution": {
-    ">=10 ETH": 4,
-    "1-10 ETH": 43,
-    "0.1-1 ETH": 109,
-    "0.01-0.1 ETH": 133,
-    "<0.01 ETH": 84
+    ">=100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
+    "10-100 ETH": {
+      "count": 4,
+      "total_eth": 125
+    },
+    "1-10 ETH": {
+      "count": 41,
+      "total_eth": 118.253465
+    },
+    "0.1-1 ETH": {
+      "count": 109,
+      "total_eth": 26.368214
+    },
+    "0.01-0.1 ETH": {
+      "count": 133,
+      "total_eth": 4.33766
+    },
+    "<0.01 ETH": {
+      "count": 80,
+      "total_eth": 0.199075
+    }
   },
   "meta": {
     "manager": "0xa86e412109f77c45a3bc1c5870b880492fb86a14",
@@ -25,48 +44,48 @@
     {
       "address": "0x0fc3512f7c6bd54a69ed86578df0efdd0f578ab5",
       "balance_wei": "60000000000000000000",
-      "balance_eth": 60.0,
+      "balance_eth": 60,
       "rank": 1
     },
     {
       "address": "0x83dd92d42034b589e1f1279c7befe3582768bf4b",
       "balance_wei": "32000000000000000000",
-      "balance_eth": 32.0,
+      "balance_eth": 32,
       "pending_min_cycle": 376,
       "pending_amount_wei": "32000000000000000000",
-      "pending_amount_eth": 32.0,
+      "pending_amount_eth": 32,
       "ready": true,
       "rank": 2
     },
     {
       "address": "0x7a0e41c4a59cd265ed0e6102ae13f3b9640d8abe",
       "balance_wei": "18000000000000000000",
-      "balance_eth": 18.0,
+      "balance_eth": 18,
       "rank": 3
     },
     {
       "address": "0xfab9f85ec8cf3cdfabaf4ddcf53947abcb91a52b",
       "balance_wei": "15000000000000000000",
-      "balance_eth": 15.0,
+      "balance_eth": 15,
       "rank": 4
     },
     {
       "address": "0x55f16d70c738ad3f6be72c03dbab26fc535a5de1",
       "balance_wei": "9000000000000000000",
-      "balance_eth": 9.0,
+      "balance_eth": 9,
       "pending_min_cycle": 355,
       "pending_amount_wei": "9000000000000000000",
-      "pending_amount_eth": 9.0,
+      "pending_amount_eth": 9,
       "ready": true,
       "rank": 5
     },
     {
       "address": "0x64a3464686d90b15527591a4d925c81a3d35e9f9",
       "balance_wei": "8000000000000000000",
-      "balance_eth": 8.0,
+      "balance_eth": 8,
       "pending_min_cycle": 304,
       "pending_amount_wei": "8000000000000000000",
-      "pending_amount_eth": 8.0,
+      "pending_amount_eth": 8,
       "ready": true,
       "rank": 6
     },
@@ -99,7 +118,7 @@
     {
       "address": "0xe26a900a256ea0611d64c5ac0c2a6c1d225102a5",
       "balance_wei": "6000000000000000000",
-      "balance_eth": 6.0,
+      "balance_eth": 6,
       "rank": 10
     },
     {
@@ -111,13 +130,13 @@
     {
       "address": "0x0c7b2316a83115b8de6b6f1154fc37c6f52f4ee5",
       "balance_wei": "5000000000000000000",
-      "balance_eth": 5.0,
+      "balance_eth": 5,
       "rank": 12
     },
     {
       "address": "0x78e309a7a04c472560736db7c3bbd144bca23c0e",
       "balance_wei": "5000000000000000000",
-      "balance_eth": 5.0,
+      "balance_eth": 5,
       "pending_min_cycle": 113,
       "pending_amount_wei": "1000000000000000",
       "pending_amount_eth": 0.001,
@@ -127,23 +146,23 @@
     {
       "address": "0x2c9121705fba1b16655de8f472a3d172f3256069",
       "balance_wei": "4000000000000000000",
-      "balance_eth": 4.0,
+      "balance_eth": 4,
       "pending_min_cycle": 380,
       "pending_amount_wei": "4000000000000000000",
-      "pending_amount_eth": 4.0,
+      "pending_amount_eth": 4,
       "ready": true,
       "rank": 14
     },
     {
       "address": "0x2e68b622e031d2f21159747a0c9d6416535221a1",
       "balance_wei": "4000000000000000000",
-      "balance_eth": 4.0,
+      "balance_eth": 4,
       "rank": 15
     },
     {
       "address": "0x33c430e8288aa1d8bd987443f144ddfb6edc86ef",
       "balance_wei": "4000000000000000000",
-      "balance_eth": 4.0,
+      "balance_eth": 4,
       "rank": 16
     },
     {
@@ -165,13 +184,13 @@
     {
       "address": "0x6e92435076168c8805e8e2411c7dfea7e50c3bd2",
       "balance_wei": "3000000000000000000",
-      "balance_eth": 3.0,
+      "balance_eth": 3,
       "rank": 19
     },
     {
       "address": "0xf685b7fd0f4c3f6b26a03377a8b18fcce955da21",
       "balance_wei": "3000000000000000000",
-      "balance_eth": 3.0,
+      "balance_eth": 3,
       "rank": 20
     },
     {
@@ -187,35 +206,35 @@
     {
       "address": "0x0d041b9a156763523400e398d9aaae903f38477a",
       "balance_wei": "2000000000000000000",
-      "balance_eth": 2.0,
+      "balance_eth": 2,
       "rank": 22
     },
     {
       "address": "0x3c025267c935c84fbf4bf972729bdf4099b781f2",
       "balance_wei": "2000000000000000000",
-      "balance_eth": 2.0,
+      "balance_eth": 2,
       "pending_min_cycle": 270,
       "pending_amount_wei": "2000000000000000000",
-      "pending_amount_eth": 2.0,
+      "pending_amount_eth": 2,
       "ready": true,
       "rank": 23
     },
     {
       "address": "0x54a7a53d98b66938da57a1d6e28989a195de1344",
       "balance_wei": "2000000000000000000",
-      "balance_eth": 2.0,
+      "balance_eth": 2,
       "rank": 24
     },
     {
       "address": "0xceafa80cf923932e47f4ce4027faa49307a998ae",
       "balance_wei": "2000000000000000000",
-      "balance_eth": 2.0,
+      "balance_eth": 2,
       "rank": 25
     },
     {
       "address": "0xd5b45b38a93291db4a49e074b296751d92e94397",
       "balance_wei": "2000000000000000000",
-      "balance_eth": 2.0,
+      "balance_eth": 2,
       "rank": 26
     },
     {
@@ -272,115 +291,117 @@
     },
     {
       "address": "0x3324614199ca2a60487d228a96b9c58aa54a83af",
-      "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "pending_min_cycle": 239,
       "pending_amount_wei": "1000000000000000000",
-      "pending_amount_eth": 1.0,
+      "pending_amount_eth": 1,
       "ready": true,
-      "rank": 33
+      "rank": 33,
+      "claimed": true
     },
     {
       "address": "0x43bf4975aa6ea83a59696b0fcbce694774891c3a",
-      "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "pending_min_cycle": 346,
       "pending_amount_wei": "1000000000000000000",
-      "pending_amount_eth": 1.0,
+      "pending_amount_eth": 1,
       "ready": true,
-      "rank": 34
+      "rank": 34,
+      "claimed": true
     },
     {
       "address": "0x4c34ef78eadf3c2050f388e5e8753ea25e2b7a0c",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0,
+      "balance_eth": 1,
       "rank": 35
     },
     {
       "address": "0x4f2ba9f3cbfecd5f1fca46b352645c8c9e501c54",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0,
+      "balance_eth": 1,
       "rank": 36
     },
     {
       "address": "0x8b2420046b961fb5d1b852f9dccfba86b4429e67",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0,
+      "balance_eth": 1,
       "rank": 37
     },
     {
       "address": "0xa853629349e6b0939814fd82a9b98524b96a644a",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0,
+      "balance_eth": 1,
       "rank": 38
     },
     {
       "address": "0xa8d53fe31c982768d8d70ac66504ba890332cd6a",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0,
+      "balance_eth": 1,
       "pending_min_cycle": 217,
       "pending_amount_wei": "1000000000000000000",
-      "pending_amount_eth": 1.0,
+      "pending_amount_eth": 1,
       "ready": true,
       "rank": 39
     },
     {
       "address": "0xa8f6af28bfab672859acf31eca54c81a9cbbeb66",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0,
+      "balance_eth": 1,
       "pending_min_cycle": 157,
       "pending_amount_wei": "1000000000000000000",
-      "pending_amount_eth": 1.0,
+      "pending_amount_eth": 1,
       "ready": true,
       "rank": 40
     },
     {
       "address": "0xb594a32ee4a56830bf597014fc0a65303212946e",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0,
+      "balance_eth": 1,
       "rank": 41
     },
     {
       "address": "0xb59d48af11dfacb7e56d05996089ba23abd74407",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0,
+      "balance_eth": 1,
       "rank": 42
     },
     {
       "address": "0xb613db4e13ed468dfcf88d269a0af3d7a4df1ef5",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0,
+      "balance_eth": 1,
       "pending_min_cycle": 279,
       "pending_amount_wei": "1000000000000000000",
-      "pending_amount_eth": 1.0,
+      "pending_amount_eth": 1,
       "ready": true,
       "rank": 43
     },
     {
       "address": "0xb79362f5c550ce0cab86ac124ca67fb13d92e90a",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0,
+      "balance_eth": 1,
       "rank": 44
     },
     {
       "address": "0xcccb8c253e344d5dc607af9ca49a6697d2b88764",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0,
+      "balance_eth": 1,
       "rank": 45
     },
     {
       "address": "0xe7bb58d140d7c3e0b4c985e3a0577539e5bb322b",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0,
+      "balance_eth": 1,
       "rank": 46
     },
     {
       "address": "0xef81d6ff25b89a32ca3c2ccdd8c49ef68ee2b085",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0,
+      "balance_eth": 1,
       "pending_min_cycle": 224,
       "pending_amount_wei": "1000000000000000000",
-      "pending_amount_eth": 1.0,
+      "pending_amount_eth": 1,
       "ready": true,
       "rank": 47
     },
@@ -2517,120 +2538,121 @@
     {
       "address": "0x078219b1128ce545555a71088a4bcf3fd8ab39c3",
       "balance_wei": "78689000000000",
-      "balance_eth": 7.869e-05,
+      "balance_eth": 0.00007869,
       "rank": 357
     },
     {
       "address": "0xd1d7ac49b081d4540a4240c88ac0983f08ecf740",
       "balance_wei": "56268000000000",
-      "balance_eth": 5.627e-05,
+      "balance_eth": 0.00005627,
       "rank": 358
     },
     {
       "address": "0x1111777d97a92853892127b02bf32f560a3a8d28",
       "balance_wei": "25847050000000",
-      "balance_eth": 2.585e-05,
+      "balance_eth": 0.00002585,
       "rank": 359
     },
     {
       "address": "0x2537b58cfcd5157ea7b1ac9a01884e988fb6d1c5",
       "balance_wei": "15685804462093",
-      "balance_eth": 1.569e-05,
+      "balance_eth": 0.00001569,
       "rank": 360
     },
     {
       "address": "0x47e55d58995d6301de0ce51ff769eb5d161ae484",
       "balance_wei": "10000000000000",
-      "balance_eth": 1e-05,
+      "balance_eth": 0.00001,
       "rank": 361
     },
     {
       "address": "0x76b752e0978f73d499dd75b8a78fb5534a552a8d",
       "balance_wei": "10000000000000",
-      "balance_eth": 1e-05,
+      "balance_eth": 0.00001,
       "pending_min_cycle": 56,
       "pending_amount_wei": "9999900000000",
-      "pending_amount_eth": 1e-05,
+      "pending_amount_eth": 0.00001,
       "ready": true,
       "rank": 362
     },
     {
       "address": "0x7ee593ff863ef70fde9b0b41351dfbdebfb9ee4d",
       "balance_wei": "10000000000000",
-      "balance_eth": 1e-05,
+      "balance_eth": 0.00001,
       "rank": 363
     },
     {
       "address": "0xc5c5a5ffdc9c692165fd4cf62dd9314ce81be596",
       "balance_wei": "10000000000000",
-      "balance_eth": 1e-05,
+      "balance_eth": 0.00001,
       "rank": 364
     },
     {
       "address": "0xcc1fec6ec19d53470e26171b01be4e61b5c9f16e",
       "balance_wei": "9000000000000",
-      "balance_eth": 9e-06,
+      "balance_eth": 0.000009,
       "rank": 365
     },
     {
       "address": "0xb6e59ad3ead7d3a29349df35fbca6dd43b72eff7",
       "balance_wei": "5000000000000",
-      "balance_eth": 5e-06,
+      "balance_eth": 0.000005,
       "rank": 366
     },
     {
       "address": "0x12998c3f2f719dc1e6326d85b43a79d158cc5737",
       "balance_wei": "1000000000000",
-      "balance_eth": 1e-06,
+      "balance_eth": 0.000001,
       "rank": 367
     },
     {
       "address": "0x869e86a091b767de801db7fdd6caaf3c2e1807b3",
       "balance_wei": "1000000000000",
-      "balance_eth": 1e-06,
+      "balance_eth": 0.000001,
       "rank": 368
     },
     {
       "address": "0x1ee20e84da57e3dc01bf6fd366ccedc5349cd3cf",
       "balance_wei": "300000000000",
-      "balance_eth": 3e-07,
+      "balance_eth": 3e-7,
       "pending_min_cycle": 285,
       "pending_amount_wei": "100000000000",
-      "pending_amount_eth": 1e-07,
+      "pending_amount_eth": 1e-7,
       "ready": true,
       "rank": 369
     },
     {
       "address": "0x5e8b10f603bfd943cb1e360d5223d6a59b7e04c1",
       "balance_wei": "1",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "rank": 370
     },
     {
       "address": "0x63242a4ea82847b20e506b63b0e2e2eff0cc6cb0",
       "balance_wei": "1",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "rank": 371
     },
     {
       "address": "0x9bc513230b112490527eb6d07594ae9473c4c1ee",
       "balance_wei": "100000000",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "pending_min_cycle": 303,
       "pending_amount_wei": "100000000",
-      "pending_amount_eth": 0.0,
+      "pending_amount_eth": 0,
       "ready": true,
       "rank": 372
     },
     {
       "address": "0xd3eda2d7ff4534e131e559bdaa932102f2c3e260",
       "balance_wei": "345",
-      "balance_eth": 0.0,
+      "balance_eth": 0,
       "pending_min_cycle": 192,
       "pending_amount_wei": "345",
-      "pending_amount_eth": 0.0,
+      "pending_amount_eth": 0,
       "ready": true,
       "rank": 373
     }
-  ]
+  ],
+  "last_event_refresh": "2026-08-03 11:34:31 UTC"
 }

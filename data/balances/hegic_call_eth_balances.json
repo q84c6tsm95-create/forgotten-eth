@@ -1,13 +1,38 @@
 {
   "contract": "0xb9ed94c6d594b2517c4296e24a8c517ff133fb6d",
-  "contract_eth_balance": 80.548492,
-  "total_eth_in_balances": 80.54849218,
-  "addresses_with_balance": 18,
-  "coverage_pct": 100.0,
+  "contract_eth_balance": 80.036506,
+  "total_eth_in_balances": 80.036506,
+  "addresses_with_balance": 17,
+  "coverage_pct": 100,
   "scan_date": "2026-04-10 12:23:01 UTC",
   "balance_source": "weth",
-  "description": "Hegic CALL options v1 \u2014 LP tranches. withdrawWithoutHedge(trancheID) per ERC-721 tranche.",
-  "distribution": {},
+  "description": "Hegic CALL options v1 — LP tranches. withdrawWithoutHedge(trancheID) per ERC-721 tranche.",
+  "distribution": {
+    ">=100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
+    "10-100 ETH": {
+      "count": 1,
+      "total_eth": 77.73371
+    },
+    "1-10 ETH": {
+      "count": 1,
+      "total_eth": 1.0989
+    },
+    "0.1-1 ETH": {
+      "count": 3,
+      "total_eth": 1.045742
+    },
+    "0.01-0.1 ETH": {
+      "count": 4,
+      "total_eth": 0.141222
+    },
+    "<0.01 ETH": {
+      "count": 8,
+      "total_eth": 0.016932
+    }
+  },
   "balances": [
     {
       "address": "0xf15968a096fc8f47650001585d23bee819b5affb",
@@ -57,15 +82,16 @@
     },
     {
       "address": "0x9e9ddaae1bcfcb13f4f1720b561fed7eb0ad03e0",
-      "balance_wei": "511985707297321943",
-      "balance_eth": 0.511985707297322,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "tranche_details": [
         {
           "id": 47,
           "eth": 0.51198571,
           "hedged": false
         }
-      ]
+      ],
+      "claimed": true
     },
     {
       "address": "0xeb9d7174317679e7c49c4c7c1b0ad08033c43997",
@@ -214,11 +240,11 @@
     {
       "address": "0xe2b424053b9ebfcedf89ecb8bf2972974e98700c",
       "balance_wei": "57711337540945",
-      "balance_eth": 5.7711337540945e-05,
+      "balance_eth": 0.000057711337540945,
       "tranche_details": [
         {
           "id": 69,
-          "eth": 5.771e-05,
+          "eth": 0.00005771,
           "hedged": false
         }
       ]
@@ -226,14 +252,15 @@
     {
       "address": "0xd52522c38f2584e1043173de43f2ca42e2fd5632",
       "balance_wei": "15281637360552",
-      "balance_eth": 1.5281637360552e-05,
+      "balance_eth": 0.000015281637360552,
       "tranche_details": [
         {
           "id": 61,
-          "eth": 1.528e-05,
+          "eth": 0.00001528,
           "hedged": true
         }
       ]
     }
-  ]
+  ],
+  "last_event_refresh": "2026-08-03 11:34:31 UTC"
 }

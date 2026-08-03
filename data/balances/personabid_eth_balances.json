@@ -1,20 +1,36 @@
 {
   "contract": "0xDe5D4949F445650325c7C8739610c3A979C7a6db",
   "balance_source": "eth",
-  "contract_eth_balance": 17.3907,
-  "total_eth_in_balances": 17.6238,
-  "addresses_with_balance": 68,
-  "coverage_pct": 101.34,
+  "contract_eth_balance": 16.3707,
+  "total_eth_in_balances": 16.6038,
+  "addresses_with_balance": 64,
+  "coverage_pct": 101.42,
   "scan_date": "2026-07-06 08:11:53 UTC",
   "description": "ETH balances in defunct PersonaBid contract",
   "distribution": {
+    ">=100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
+    "10-100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
+    "1-10 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
     "0.1-1 ETH": {
-      "count": 63,
-      "total_eth": 17.2488
+      "count": 59,
+      "total_eth": 16.2288
     },
     "0.01-0.1 ETH": {
       "count": 5,
       "total_eth": 0.375
+    },
+    "<0.01 ETH": {
+      "count": 0,
+      "total_eth": 0
     }
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
@@ -47,10 +63,11 @@
     {
       "rank": 4,
       "address": "0x15b16eb2212336a44ecb169c49e5bd55f469410f",
-      "balance_wei": "290000000000000000",
-      "balance_eth": 0.29,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "last_tx_date": "2024-02",
-      "last_tx_hash": "0x3c9257ad651cc5c9fad5c4e92f381f05781e735bedc91ed83b454dc4d667e8ef"
+      "last_tx_hash": "0x3c9257ad651cc5c9fad5c4e92f381f05781e735bedc91ed83b454dc4d667e8ef",
+      "claimed": true
     },
     {
       "rank": 5,
@@ -175,10 +192,11 @@
     {
       "rank": 20,
       "address": "0x4ae4df5d4095021c70368c984f9e52566f78a9c7",
-      "balance_wei": "290000000000000000",
-      "balance_eth": 0.29,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "last_tx_date": "2024-02",
-      "last_tx_hash": "0xb2aaf500e34bd2c0527b46c6cbdd4361fd3c8d012191f8b8f9c2485aedacb343"
+      "last_tx_hash": "0xb2aaf500e34bd2c0527b46c6cbdd4361fd3c8d012191f8b8f9c2485aedacb343",
+      "claimed": true
     },
     {
       "rank": 21,
@@ -327,10 +345,11 @@
     {
       "rank": 39,
       "address": "0xc32e598e098038d638b15916a33d7899d4d804fa",
-      "balance_wei": "290000000000000000",
-      "balance_eth": 0.29,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "last_tx_date": "2024-02",
-      "last_tx_hash": "0x7ca9af84d89afac753f2e9dc759fb82d7720a3d9270b081afb12b1e292445501"
+      "last_tx_hash": "0x7ca9af84d89afac753f2e9dc759fb82d7720a3d9270b081afb12b1e292445501",
+      "claimed": true
     },
     {
       "rank": 40,
@@ -487,10 +506,11 @@
     {
       "rank": 59,
       "address": "0x7f94e30381aa6657c45833ec7fce2e493c1888ef",
-      "balance_wei": "150000000000000000",
-      "balance_eth": 0.15,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "last_tx_date": "2024-02",
-      "last_tx_hash": "0x74f2eef87fafb253be8acfaf906c94e75d473b90151b1602d37382ebed7980e9"
+      "last_tx_hash": "0x74f2eef87fafb253be8acfaf906c94e75d473b90151b1602d37382ebed7980e9",
+      "claimed": true
     },
     {
       "rank": 60,
@@ -564,5 +584,6 @@
       "last_tx_date": "2024-02",
       "last_tx_hash": "0xc1b8c5938b225053bd794592917b8d28912ce30702274701e033a6ca2473d649"
     }
-  ]
+  ],
+  "last_event_refresh": "2026-08-03 11:34:28 UTC"
 }
