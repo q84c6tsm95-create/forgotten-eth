@@ -1,16 +1,16 @@
 {
   "contract": "0xA2F987A546D4CD1c607Ee8141276876C26b72Bdf",
   "balance_source": "eth",
-  "contract_eth_balance": 814.33413748,
+  "contract_eth_balance": 815.75493566,
   "total_eth_in_balances": 234.12176234,
   "addresses_with_balance": 300,
-  "coverage_pct": 28.75,
-  "scan_date": "2026-07-11 13:05:39 UTC",
+  "coverage_pct": 28.7,
+  "scan_date": "2026-08-10 10:37:45 UTC",
   "description": "bETH (bonded ETH) holders on Ethereum for the Lido AnchorVault, redeemable 1:1 for stETH via withdraw(beth, version, recipient) \u2014 no approval needed (vault holds the bETH burner role). Amounts are stETH-denominated (~1:1 with ETH). Non-claimable holders (Wormhole bridge, exchanges, other contracts) are excluded.",
   "meta": {
     "token_checked": "0x707F9118e33A9B8998beA41dd0d46f38bb963FC8",
     "payout_token": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
-    "vault_steth_balance": 814.334137,
+    "vault_steth_balance": 815.754936,
     "beth_total_supply": 1086.4107814896952,
     "claim_function": "withdraw(uint256,uint256,address)"
   },

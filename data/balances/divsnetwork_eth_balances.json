@@ -1,10 +1,10 @@
 {
   "contract": "0x26e6c899b5a5dc1d4874d828fda515a7eb7baf00",
   "balance_source": "eth",
-  "contract_eth_balance": 4.951691,
-  "total_eth_in_balances": 4.996509,
-  "addresses_with_balance": 110,
-  "coverage_pct": 100.91,
+  "contract_eth_balance": 4.641146,
+  "total_eth_in_balances": 4.68596467,
+  "addresses_with_balance": 107,
+  "coverage_pct": 100.97,
   "scan_date": "2026-04-02 17:00:39 UTC",
   "description": "ETH balances in defunct DivsNetwork contract",
   "distribution": {
@@ -21,20 +21,21 @@
       "total_eth": 1.093373
     },
     "0.1-1 ETH": {
-      "count": 10,
-      "total_eth": 3.439724
+      "count": 9,
+      "total_eth": 3.129179
     },
     "0.01-0.1 ETH": {
       "count": 10,
       "total_eth": 0.437165
     },
     "<0.01 ETH": {
-      "count": 89,
-      "total_eth": 0.026246
+      "count": 88,
+      "total_eth": 0.026029
     }
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
   "total_addresses_scanned": 166,
+  "last_event_refresh": "2026-08-09T04:19:08Z",
   "balances": [
     {
       "rank": 1,
@@ -69,8 +70,9 @@
     {
       "rank": 6,
       "address": "0x45e25c3d5e5181c07118b3c33f1a01276e713193",
-      "balance_wei": "310544610914755739",
-      "balance_eth": 0.3105446109147557
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 7,
@@ -263,7 +265,8 @@
       "rank": 38,
       "address": "0x0b4b2c7c1edce11c26666d3465107f302ce9f560",
       "balance_wei": "217209091226449",
-      "balance_eth": 0.000217209091226449
+      "balance_eth": 0.000217209091226449,
+      "claimed": true
     },
     {
       "rank": 39,
@@ -317,7 +320,8 @@
       "rank": 47,
       "address": "0x1fec22b25e2200ca88d30b6ba1d8b5696b2b7d52",
       "balance_wei": "138286310011418",
-      "balance_eth": 0.000138286310011418
+      "balance_eth": 0.000138286310011418,
+      "claimed": true
     },
     {
       "rank": 48,
@@ -719,6 +723,5 @@
       "original_balance_eth": "7.361620202283964076",
       "original_balance_wei": "7361620202283963875"
     }
-  ],
-  "last_event_refresh": "2026-08-03 11:34:31 UTC"
+  ]
 }

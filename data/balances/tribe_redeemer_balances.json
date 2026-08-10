@@ -7,7 +7,7 @@
   "contract_token_balances": {
     "DAI": "1839948212156912171592639"
   },
-  "addresses_with_balance": 7510,
+  "addresses_with_balance": 0,
   "coverage_pct": 67.46,
   "balances": [
     {
@@ -1745,7 +1745,8 @@
       "tribe_balance_raw": "5354020739240012283097",
       "token_balances": {
         "DAI": "383109773484753093971"
-      }
+      },
+      "claimed": true
     },
     {
       "address": "0x99fc03cab9e2ef2ad507b57922aaad755bfabce2",
@@ -67608,9 +67609,10 @@
     "tribe_token": "0xc7283b66eb1eb5fb86327f08e1b5816b0720212b",
     "redeem_base": "25713572372247878144296009",
     "dai_balance": "1839948212156912171592639",
-    "min_dai_threshold": 1.0,
+    "min_dai_threshold": 1,
     "rate_dai_per_tribe": 0.07155552661141436,
-    "note": "Per-entry DAI is the holder's THEORETICAL claim (TRIBE \u00d7 rate). Sum across entries exceeds the contract's actual DAI cap; first-come-first-served on redemption. contract_token_balances is the actual cap."
+    "note": "Per-entry DAI is the holder's THEORETICAL claim (TRIBE × rate). Sum across entries exceeds the contract's actual DAI cap; first-come-first-served on redemption. contract_token_balances is the actual cap."
   },
-  "description": "Tribe DAO post-shutdown redemption. Each TRIBE token entitles the holder to a proportional share of the 4-token basket [stETH, LQTY, FOX, DAI]. Only DAI is tracked here for the v2 hero counter; other basket items still pay out on claim."
+  "description": "Tribe DAO post-shutdown redemption. Each TRIBE token entitles the holder to a proportional share of the 4-token basket [stETH, LQTY, FOX, DAI]. Only DAI is tracked here for the v2 hero counter; other basket items still pay out on claim.",
+  "last_event_refresh": "2026-08-06 14:23:05 UTC"
 }

@@ -1,18 +1,18 @@
 {
   "contract": "0x0b8d56c26d8cf16fe1bddf4967753503d974de06",
   "balance_source": "eth",
-  "contract_eth_balance": 41.103461,
-  "total_eth_in_balances": 18.6329861,
-  "addresses_with_balance": 114,
+  "contract_eth_balance": 41.104461,
+  "total_eth_in_balances": 18.63398609,
+  "addresses_with_balance": 115,
   "coverage_pct": 45.33,
-  "scan_date": "2026-07-09 16:27:50 UTC",
+  "scan_date": "2026-08-10 10:27:03 UTC",
   "description": "GavCoin 2015 bonding curve. refund(price, units) requires BOTH balance >= units AND receipt[price].units >= units. Each user may have multiple receipts at different prices from incremental buyins; this scan greedy-refunds price-descending against live balanceOf to compute the max claimable per address. Tokens that moved via transfer() leave receipts orphaned at the sender (receipt > balance, partly unrefundable) and unrefundable on the recipient (balance > 0, no receipt). Reconstructed via Buyin/Refund event replay from block 350000.",
   "distribution": {
     ">=10 ETH": 0,
     "1-10 ETH": 4,
     "0.1-1 ETH": 19,
     "0.01-0.1 ETH": 46,
-    "<0.01 ETH": 45
+    "<0.01 ETH": 46
   },
   "balances": [
     {
@@ -1476,6 +1476,20 @@
       "rank": 100
     },
     {
+      "address": "0x6d604742bf758c334aea15121807357ef6b6bdbd",
+      "balance_wei": "999986000000000",
+      "balance_eth": 0.000999986,
+      "token_balance": "38461",
+      "refund_breakdown": [
+        {
+          "price": "26000000000000000",
+          "units": "38461",
+          "wei": "999986000000000"
+        }
+      ],
+      "rank": 101
+    },
+    {
       "address": "0xeb5ab487124ca50cc354ce17556e0e861aa78c62",
       "balance_wei": "999810000000000",
       "balance_eth": 0.00099981,
@@ -1487,7 +1501,7 @@
           "wei": "999810000000000"
         }
       ],
-      "rank": 101
+      "rank": 102
     },
     {
       "address": "0x003bc3a66b0ccd172d67d51c9100ec3f83d8de8b",
@@ -1501,7 +1515,7 @@
           "wei": "500000000000000"
         }
       ],
-      "rank": 102
+      "rank": 103
     },
     {
       "address": "0x00130fa56c1260c30d03cd167b2dd65ea3e7e70d",
@@ -1515,7 +1529,7 @@
           "wei": "99981000000000"
         }
       ],
-      "rank": 103
+      "rank": 104
     },
     {
       "address": "0x004d7f0dc9c5cf9e68171ed800dda8e0e8c65776",
@@ -1529,7 +1543,7 @@
           "wei": "99981000000000"
         }
       ],
-      "rank": 104
+      "rank": 105
     },
     {
       "address": "0xeed67a55986ffe1ac3f7a05f1d13c2ba3b9e7000",
@@ -1543,7 +1557,7 @@
           "wei": "99981000000000"
         }
       ],
-      "rank": 105
+      "rank": 106
     },
     {
       "address": "0x8cbe38659606603c811315aed9a77ed42bd41f4d",
@@ -1557,7 +1571,7 @@
           "wei": "89481000000000"
         }
       ],
-      "rank": 106
+      "rank": 107
     },
     {
       "address": "0x551e06af1c492655bb9f15c9b12459386b5ce015",
@@ -1571,7 +1585,7 @@
           "wei": "10000000000000"
         }
       ],
-      "rank": 107
+      "rank": 108
     },
     {
       "address": "0x00c4fd7096091f97a4e891180b56a9f670d14ddd",
@@ -1585,7 +1599,7 @@
           "wei": "9996000000000"
         }
       ],
-      "rank": 108
+      "rank": 109
     },
     {
       "address": "0x5da9e94410a1241a76dfd182777e5983ae4f7a15",
@@ -1599,7 +1613,7 @@
           "wei": "1000000000000"
         }
       ],
-      "rank": 109
+      "rank": 110
     },
     {
       "address": "0x00fa5b65c2d7b7c181d9bfe2ee754f3037e6583c",
@@ -1613,7 +1627,7 @@
           "wei": "987000000000"
         }
       ],
-      "rank": 110
+      "rank": 111
     },
     {
       "address": "0xe5b39eaf749bd4e156e385a4c133d40446c4a055",
@@ -1627,7 +1641,7 @@
           "wei": "138000000000"
         }
       ],
-      "rank": 111
+      "rank": 112
     },
     {
       "address": "0x00ebc108c2d8fc65dff1ece619442016c616c836",
@@ -1641,7 +1655,7 @@
           "wei": "84000000000"
         }
       ],
-      "rank": 112
+      "rank": 113
     },
     {
       "address": "0xd20ce27f650598c2d790714b4f6a7222b8ddce22",
@@ -1655,7 +1669,7 @@
           "wei": "24000000000"
         }
       ],
-      "rank": 113
+      "rank": 114
     },
     {
       "address": "0xf228e528bdc9665d19497dd8541ecf4b20e13809",
@@ -1669,7 +1683,7 @@
           "wei": "11000000000"
         }
       ],
-      "rank": 114
+      "rank": 115
     }
   ]
 }

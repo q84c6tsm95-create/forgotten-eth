@@ -1,14 +1,14 @@
 {
   "contract": "0x229cc0a81a1d6b4a2fc1452b3bd166462216e3f3",
   "balance_source": "token",
-  "contract_eth_balance": 68.36128701,
-  "total_eth_in_balances": 50.87006233,
-  "addresses_with_balance": 746,
+  "contract_eth_balance": 68.14801424,
+  "total_eth_in_balances": 50.70743712,
+  "addresses_with_balance": 733,
   "coverage_pct": 74.41,
-  "scan_date": "2026-07-11 12:37:06 UTC",
+  "scan_date": "2026-08-10 10:37:18 UTC",
   "description": "PandaDAO Farewell refunds PANDA holders pro-rata from the farewell contract. Direct claim requires a Juicebox OperatorStore permission grant, then redeem(amount). Contract holders are excluded because redeem() requires msg.sender == tx.origin.",
   "distribution": {
-    ">0.01 ETH": 189,
+    ">0.01 ETH": 186,
     ">0.1 ETH": 59,
     ">1 ETH": 8,
     ">10 ETH": 1
@@ -17,10 +17,10 @@
     "panda_token": "0x3cBb7f5d7499Af626026E96a2f05df806F2200DC",
     "project_id": 409,
     "operator_permission_index": 3,
-    "excluded_contract_holders": 56,
-    "excluded_contract_token_wei": "7069391636625344855170556",
-    "excluded_contract_eth_wei": "17245173184834304560",
-    "source_total_supply_wei": "28023650760800673608831044"
+    "excluded_contract_holders": 58,
+    "excluded_contract_token_wei": "7048629453557311213015511",
+    "excluded_contract_eth_wei": "17194525624038763084",
+    "source_total_supply_wei": "27936222893630610008860795"
   },
   "token": "0x3cbb7f5d7499af626026e96a2f05df806f2200dc",
   "token_symbol": "PANDA",
@@ -28,7 +28,7 @@
   "balances": [
     {
       "address": "0x1409818af2db0a139b89621b438925460d3e3305",
-      "balance_wei": "12197070180332013485",
+      "balance_wei": "12197070180332013486",
       "balance_eth": 12.197070180332014,
       "token_balance_wei": "5000000000000000000000000",
       "token_symbol": "PANDA"
@@ -203,8 +203,8 @@
     },
     {
       "address": "0x1f081743a1198ae39263148ed5a92f213e786bba",
-      "balance_wei": "309150572906362591",
-      "balance_eth": 0.30915057290636255,
+      "balance_wei": "309150572906362592",
+      "balance_eth": 0.3091505729063626,
       "token_balance_wei": "126731488929560000000000",
       "token_symbol": "PANDA"
     },
@@ -493,13 +493,6 @@
       "balance_wei": "81174078440535698",
       "balance_eth": 0.0811740784405357,
       "token_balance_wei": "33276056151349487034781",
-      "token_symbol": "PANDA"
-    },
-    {
-      "address": "0x2ca4ad605ca875e2725356e53b43071c1e857cdc",
-      "balance_wei": "80236978875618672",
-      "balance_eth": 0.08023697887561868,
-      "token_balance_wei": "32891906699447457581089",
       "token_symbol": "PANDA"
     },
     {
@@ -986,13 +979,6 @@
       "token_symbol": "PANDA"
     },
     {
-      "address": "0x86d04b01806b0dab982e5944b923287c3f7b95ff",
-      "balance_wei": "26847625653848875",
-      "balance_eth": 0.026847625653848874,
-      "token_balance_wei": "11005768293905997380681",
-      "token_symbol": "PANDA"
-    },
-    {
       "address": "0xa96cb49ebf26834bf1d9d0fd5e4e9c997d4aaa6e",
       "balance_wei": "26833554396730429",
       "balance_eth": 0.02683355439673043,
@@ -1137,13 +1123,6 @@
       "balance_wei": "19535339877767326",
       "balance_eth": 0.019535339877767326,
       "token_balance_wei": "8008210000000000000000",
-      "token_symbol": "PANDA"
-    },
-    {
-      "address": "0xddedd31d99cc2a10425fc83eba473e6db47ae868",
-      "balance_wei": "19183861400115946",
-      "balance_eth": 0.019183861400115944,
-      "token_balance_wei": "7864126842137161325166",
       "token_symbol": "PANDA"
     },
     {
@@ -1378,13 +1357,6 @@
       "token_symbol": "PANDA"
     },
     {
-      "address": "0x5b79a99c9fd504aeb05ca75949fa17a1b6d851bf",
-      "balance_wei": "9471776351128997",
-      "balance_eth": 0.009471776351128997,
-      "token_balance_wei": "3882808006795927405602",
-      "token_symbol": "PANDA"
-    },
-    {
       "address": "0x5ed9d32e1071592c7a4ed0f371af5b3989b68224",
       "balance_wei": "9236067424147374",
       "balance_eth": 0.009236067424147374,
@@ -1455,13 +1427,6 @@
       "token_symbol": "PANDA"
     },
     {
-      "address": "0x066b18e2ebb24dfa7b4fe1882203eb88c20281ad",
-      "balance_wei": "7559426973945093",
-      "balance_eth": 0.007559426973945093,
-      "token_balance_wei": "3098870000000000000000",
-      "token_symbol": "PANDA"
-    },
-    {
       "address": "0x4b5f5be99422d0da17814e308ef333324520ecbf",
       "balance_wei": "7485707758028545",
       "balance_eth": 0.007485707758028545,
@@ -1490,10 +1455,10 @@
       "token_symbol": "PANDA"
     },
     {
-      "address": "0x43bb52af6f921c63879d0f5d99dbf30344cd0498",
-      "balance_wei": "6991413474850979",
-      "balance_eth": 0.006991413474850979,
-      "token_balance_wei": "2866021664007785489149",
+      "address": "0xcd6b980029e6e6e0733ac8ec3e02be9410d09799",
+      "balance_wei": "7101929136667441",
+      "balance_eth": 0.007101929136667441,
+      "token_balance_wei": "2911325847792294108170",
       "token_symbol": "PANDA"
     },
     {
@@ -1501,13 +1466,6 @@
       "balance_wei": "6915817809883860",
       "balance_eth": 0.00691581780988386,
       "token_balance_wei": "2835032392055813687382",
-      "token_symbol": "PANDA"
-    },
-    {
-      "address": "0xcd6b980029e6e6e0733ac8ec3e02be9410d09799",
-      "balance_wei": "6898244971753567",
-      "balance_eth": 0.006898244971753567,
-      "token_balance_wei": "2827828679250000000000",
       "token_symbol": "PANDA"
     },
     {
@@ -1728,13 +1686,6 @@
       "token_symbol": "PANDA"
     },
     {
-      "address": "0x1b4535700c272737d7848c0262526f0c781f2e0d",
-      "balance_wei": "3445758916761609",
-      "balance_eth": 0.003445758916761609,
-      "token_balance_wei": "1412535496564558465147",
-      "token_symbol": "PANDA"
-    },
-    {
       "address": "0x9555220d95143184d719074436e9c6e8345a5c20",
       "balance_wei": "3250923004770268",
       "balance_eth": 0.003250923004770268,
@@ -1767,13 +1718,6 @@
       "balance_wei": "2555458043957108",
       "balance_eth": 0.002555458043957108,
       "token_balance_wei": "1047570443629089390348",
-      "token_symbol": "PANDA"
-    },
-    {
-      "address": "0x3967662ee0a0e04184309b5a7dc5cb76708db394",
-      "balance_wei": "2501418454753277",
-      "balance_eth": 0.002501418454753277,
-      "token_balance_wei": "1025417751054207102334",
       "token_symbol": "PANDA"
     },
     {
@@ -1903,13 +1847,6 @@
       "token_symbol": "PANDA"
     },
     {
-      "address": "0xde81b5c4c5bf64273b775992fe4640861d8a4b8a",
-      "balance_wei": "1951716820665659",
-      "balance_eth": 0.001951716820665659,
-      "token_balance_wei": "800076080488918018308",
-      "token_symbol": "PANDA"
-    },
-    {
       "address": "0x33b4872bf656531d3db36807ae5940589352ed5e",
       "balance_wei": "1922278593950486",
       "balance_eth": 0.001922278593950486,
@@ -1956,13 +1893,6 @@
       "balance_wei": "1711077753746838",
       "balance_eth": 0.001711077753746838,
       "token_balance_wei": "701429822264194506832",
-      "token_symbol": "PANDA"
-    },
-    {
-      "address": "0x0b8243f94f237bfc47cc9b64e050804ca0f76f1c",
-      "balance_wei": "1703225889989433",
-      "balance_eth": 0.001703225889989433,
-      "token_balance_wei": "698211072334368625677",
       "token_symbol": "PANDA"
     },
     {
@@ -2351,13 +2281,6 @@
       "token_symbol": "PANDA"
     },
     {
-      "address": "0xe0063b310ee90805723bbae09b710e875ed9eff1",
-      "balance_wei": "1081443798662931",
-      "balance_eth": 0.001081443798662931,
-      "token_balance_wei": "443321134778243013072",
-      "token_symbol": "PANDA"
-    },
-    {
       "address": "0x5073fd9a6858baa5424229813a4a9e5e2bdbbcc1",
       "balance_wei": "1035107544183475",
       "balance_eth": 0.001035107544183475,
@@ -2407,13 +2330,6 @@
       "token_symbol": "PANDA"
     },
     {
-      "address": "0xbf533e50babc6a003909b0d273e8a16e2c1cec2f",
-      "balance_wei": "857733456129971",
-      "balance_eth": 0.000857733456129971,
-      "token_balance_wei": "351614544906481693377",
-      "token_symbol": "PANDA"
-    },
-    {
       "address": "0x7279e2c21174ae04724b7d40a09d5b5b6e371dd2",
       "balance_wei": "826168618367284",
       "balance_eth": 0.000826168618367284,
@@ -2453,13 +2369,6 @@
       "balance_wei": "543358499232714",
       "balance_eth": 0.000543358499232714,
       "token_balance_wei": "222741400680341112858",
-      "token_symbol": "PANDA"
-    },
-    {
-      "address": "0x811aef90f98a7b041f58a0634e7157a6364e0685",
-      "balance_wei": "500102687943356",
-      "balance_eth": 0.000500102687943356,
-      "token_balance_wei": "205009350831554804712",
       "token_symbol": "PANDA"
     },
     {
@@ -2540,13 +2449,6 @@
       "token_symbol": "PANDA"
     },
     {
-      "address": "0xc1fc8c404f73432078614256a9cf5829792cc017",
-      "balance_wei": "272599066649517",
-      "balance_eth": 0.000272599066649517,
-      "token_balance_wei": "111747765085868023994",
-      "token_symbol": "PANDA"
-    },
-    {
       "address": "0x8adc184dc7b27d591d66b9b80d21a56b18bf3f48",
       "balance_wei": "244856659114365",
       "balance_eth": 0.000244856659114365,
@@ -2621,13 +2523,6 @@
       "balance_wei": "243941403606640",
       "balance_eth": 0.00024394140360664,
       "token_balance_wei": "100000000000000000000",
-      "token_symbol": "PANDA"
-    },
-    {
-      "address": "0xc6ab0a8a10d81b6cdbf8dad82b533988fa7d16ba",
-      "balance_wei": "217878243948082",
-      "balance_eth": 0.000217878243948082,
-      "token_balance_wei": "89315811390269435035",
       "token_symbol": "PANDA"
     },
     {
@@ -2946,13 +2841,6 @@
       "token_symbol": "PANDA"
     },
     {
-      "address": "0x2d2ac6517235653ee1662c2a63d5cc560b6f5971",
-      "balance_wei": "11648376206752",
-      "balance_eth": 1.1648376206752e-05,
-      "token_balance_wei": "4775071404252358812",
-      "token_symbol": "PANDA"
-    },
-    {
       "address": "0x533a0ea2994fe49df6886f493231dcd161108e51",
       "balance_wei": "10645365112156",
       "balance_eth": 1.0645365112156e-05,
@@ -2985,6 +2873,13 @@
       "balance_wei": "7318242108199",
       "balance_eth": 7.318242108199e-06,
       "token_balance_wei": "3000000000000000000",
+      "token_symbol": "PANDA"
+    },
+    {
+      "address": "0x5aafc1f252d544f744d17a4e734afd6efc47ede4",
+      "balance_wei": "5432815051649",
+      "balance_eth": 5.432815051649e-06,
+      "token_balance_wei": "2227098381548205160",
       "token_symbol": "PANDA"
     },
     {
@@ -4724,6 +4619,13 @@
       "token_symbol": "PANDA"
     },
     {
+      "address": "0xc06ebbefd94032b85424d51906e2a335efae264b",
+      "balance_wei": "285937634297",
+      "balance_eth": 2.85937634297e-07,
+      "token_balance_wei": "117215704292010797",
+      "token_symbol": "PANDA"
+    },
+    {
       "address": "0xfa32d944657c2ca3194a19625d9e5be55f4e9101",
       "balance_wei": "283150323744",
       "balance_eth": 2.83150323744e-07,
@@ -5085,6 +4987,13 @@
       "balance_wei": "1215679",
       "balance_eth": 1.215679e-12,
       "token_balance_wei": "498348948871",
+      "token_symbol": "PANDA"
+    },
+    {
+      "address": "0x23f8e67318ebce8fdad04cdbf66b7a17c10d174d",
+      "balance_wei": "1158620",
+      "balance_eth": 1.15862e-12,
+      "token_balance_wei": "474958582824",
       "token_symbol": "PANDA"
     },
     {

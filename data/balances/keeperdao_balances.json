@@ -1,36 +1,17 @@
 {
   "contract": "0x35fFd6E268610E764fF6944d07760D0EFe5E40E5",
   "balance_source": "token",
-  "contract_eth_balance": 375.572841,
-  "total_eth_in_balances": 375.572841,
+  "contract_eth_balance": 375.5728412,
+  "total_eth_in_balances": 375.57284099,
   "addresses_with_balance": 294,
-  "coverage_pct": 100,
-  "scan_date": "2026-07-09 16:27:43 UTC",
+  "coverage_pct": 100.0,
+  "scan_date": "2026-08-10 10:26:59 UTC",
   "distribution": {
-    ">=100 ETH": {
-      "count": 1,
-      "total_eth": 100.220794
-    },
-    "10-100 ETH": {
-      "count": 8,
-      "total_eth": 171.882315
-    },
-    "1-10 ETH": {
-      "count": 29,
-      "total_eth": 70.143085
-    },
-    "0.1-1 ETH": {
-      "count": 90,
-      "total_eth": 29.318321
-    },
-    "0.01-0.1 ETH": {
-      "count": 89,
-      "total_eth": 3.79203
-    },
-    "<0.01 ETH": {
-      "count": 77,
-      "total_eth": 0.216297
-    }
+    ">=10 ETH": 9,
+    "1-10 ETH": 29,
+    "0.1-1 ETH": 90,
+    "0.01-0.1 ETH": 89,
+    "<0.01 ETH": 77
   },
   "meta": {
     "pool": "0x35fFd6E268610E764fF6944d07760D0EFe5E40E5",
@@ -38,9 +19,9 @@
     "kweth": "0xac19815455c2c438af8a8b4623f65f091364be10",
     "keth_rate": 1.0812470755538584,
     "kweth_rate": 1.0525297755583987,
-    "pool_eth_balance": 413.12643762662873,
+    "pool_eth_balance": 362.301834602364,
     "pool_weth_balance": 13.271006595845474,
-    "keth_supply": 382.08328786924915,
+    "keth_supply": 335.07774753219877,
     "kweth_supply": 12.608675691673241,
     "note": "Bundled ETH+WETH as single ETH bucket. Per-user eth_eq comes from LP.underlyingBalance() - authoritative. Users with both kETH and kwETH redeem each separately (2-step approve + withdraw per item)."
   },
@@ -64,25 +45,6 @@
       "rank": 1
     },
     {
-      "address": "0xeeb4094349f88c7e63cbb6d2810c57cc267caf57",
-      "balance_wei": "0",
-      "balance_eth": 0,
-      "keeperdao_items": [
-        {
-          "k_token": "keth",
-          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
-          "k_amount_wei": "47005540337050426674",
-          "k_amount": 47.00554033705043,
-          "eth_eq_wei": "50824603024264703093",
-          "eth_eq": 50.8246030242647,
-          "underlying": "ETH",
-          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
-        }
-      ],
-      "rank": 2,
-      "claimed": true
-    },
-    {
       "address": "0x4f43862527e878692d13f2d43f4c53aa3aa12623",
       "balance_wei": "47666142576188789282",
       "balance_eth": 47.66614258,
@@ -98,7 +60,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 3
+      "rank": 2
     },
     {
       "address": "0x34fcfd3e1f92659d0d91f514f66a8f32a6a5d31a",
@@ -116,7 +78,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 4
+      "rank": 3
     },
     {
       "address": "0xad8bd992465c7797371f08991b59461e9d762a79",
@@ -134,7 +96,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 5
+      "rank": 4
     },
     {
       "address": "0xdda212ac5bdf9a03e68e6e60040bd939e0a97eda",
@@ -152,11 +114,11 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 6
+      "rank": 5
     },
     {
       "address": "0xdc6e1af161eee89e148dc448a86ca3b2cb43fbf8",
-      "balance_wei": "12166643563853046541",
+      "balance_wei": "12166643563853046542",
       "balance_eth": 12.16664356,
       "keeperdao_items": [
         {
@@ -164,13 +126,13 @@
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
           "k_amount_wei": "11252417545379995726",
           "k_amount": 11.252417545379995,
-          "eth_eq_wei": "12166643563853046541",
+          "eth_eq_wei": "12166643563853046542",
           "eth_eq": 12.166643563853047,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 7
+      "rank": 6
     },
     {
       "address": "0x606c7c82c098e7074040a0b79409c0840fb5f607",
@@ -188,7 +150,7 @@
           "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
         }
       ],
-      "rank": 8
+      "rank": 7
     },
     {
       "address": "0x802ac1fe9b950fad44709e2c70787573d846ac8f",
@@ -206,7 +168,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 9
+      "rank": 8
     },
     {
       "address": "0xdbb2a9f44557f55b5b1c324488a6231b9154a06f",
@@ -224,7 +186,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 10
+      "rank": 9
     },
     {
       "address": "0x0bb26f71a2d1e1da4675d06c3246065933e17896",
@@ -242,7 +204,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 11
+      "rank": 10
     },
     {
       "address": "0xc640aa1dc536f8537485efb8a66128013041545c",
@@ -260,7 +222,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 12
+      "rank": 11
     },
     {
       "address": "0xf4babfbe86df26e1f282c3528dc4729b6e9f6d5b",
@@ -278,7 +240,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 13
+      "rank": 12
     },
     {
       "address": "0xd7f94d2c5a27a0c3338b542bfae783cc1ff3ab83",
@@ -289,14 +251,14 @@
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
           "k_amount_wei": "5000000000000000000",
-          "k_amount": 5,
+          "k_amount": 5.0,
           "eth_eq_wei": "5406235377769292187",
           "eth_eq": 5.406235377769292,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 14
+      "rank": 13
     },
     {
       "address": "0x63900455d188a7fa3c5258ac8f86f036f564489a",
@@ -314,7 +276,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 15
+      "rank": 14
     },
     {
       "address": "0xbfaec96105259600f66b45e889a872d5f5338dfa",
@@ -332,7 +294,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 16
+      "rank": 15
     },
     {
       "address": "0x841d4d014a52e17b6e2ce4b46991f7e972e93935",
@@ -350,7 +312,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 17
+      "rank": 16
     },
     {
       "address": "0xcec517adeb47599c940370b904732d7f7177491f",
@@ -368,7 +330,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 18
+      "rank": 17
     },
     {
       "address": "0x3493a9488e82e269b115199e2a8df9b6881b86bc",
@@ -386,7 +348,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 19
+      "rank": 18
     },
     {
       "address": "0xb0efeb4fbf7dd342d439414e70c3c009a086fafd",
@@ -404,7 +366,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 20
+      "rank": 19
     },
     {
       "address": "0xe31001b22f1a8926280b645d51e27cefb0e50e47",
@@ -422,7 +384,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 21
+      "rank": 20
     },
     {
       "address": "0xed02f16a57c32a08b55d923bf4690d200722f462",
@@ -440,7 +402,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 22
+      "rank": 21
     },
     {
       "address": "0x724f69285dabba9676c59bf6d8564f3f838c8721",
@@ -458,7 +420,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 23
+      "rank": 22
     },
     {
       "address": "0x925d6e75fe6ad4e272cb91619a020ba43a957c31",
@@ -476,7 +438,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 24
+      "rank": 23
     },
     {
       "address": "0xd5a41a4d39e886c0eb160c1a6046ec8f1ede878b",
@@ -494,7 +456,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 25
+      "rank": 24
     },
     {
       "address": "0x4b6279e95255e93f34714384f72537b0897bfca9",
@@ -512,7 +474,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 26
+      "rank": 25
     },
     {
       "address": "0xb0483b480070429ba6e7a8f64c97c9b899e4705f",
@@ -530,7 +492,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 27
+      "rank": 26
     },
     {
       "address": "0x590c17999baf7748113b5a7316184efe9b4751a6",
@@ -548,7 +510,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 28
+      "rank": 27
     },
     {
       "address": "0x12958035f5d05d4e8acda1264cca55937a4afae8",
@@ -566,7 +528,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 29
+      "rank": 28
     },
     {
       "address": "0xab95d2cd70a80469985fafe7457de81498211ed4",
@@ -584,7 +546,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 30
+      "rank": 29
     },
     {
       "address": "0x8dcd3ff96655348c2054c08e982a907691e72a1e",
@@ -602,7 +564,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 31
+      "rank": 30
     },
     {
       "address": "0x2388bc0e3097baee29c7fcfa1daf4151d7bfe690",
@@ -620,7 +582,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 32
+      "rank": 31
     },
     {
       "address": "0x7cc0ec6e5b074fb42114750c9748463c4ac6cd16",
@@ -638,7 +600,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 33
+      "rank": 32
     },
     {
       "address": "0x5a337f96ac355a7a8b36b4037e35bd3617a8fdb5",
@@ -656,7 +618,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 34
+      "rank": 33
     },
     {
       "address": "0xab34b26b34116a3e6ccb0833433a1d8a47cc67d2",
@@ -674,7 +636,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 35
+      "rank": 34
     },
     {
       "address": "0x2ad90658737cd1e324401de09f41ba104c34b959",
@@ -692,7 +654,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 36
+      "rank": 35
     },
     {
       "address": "0x2f959983c9a96cd901b0b6a5d07178933acdfa4d",
@@ -710,7 +672,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 37
+      "rank": 36
     },
     {
       "address": "0x769466611638b62b8ef5b79aa441afafafd93af6",
@@ -728,7 +690,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 38
+      "rank": 37
     },
     {
       "address": "0xd71c71899ef98ba3c95a831f08fa153ebf7d6e4f",
@@ -746,7 +708,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 39
+      "rank": 38
     },
     {
       "address": "0xd863693aa8601f87bce7fc0e64647aebae9829d8",
@@ -764,7 +726,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 40
+      "rank": 39
     },
     {
       "address": "0x4a0f68f9baad8b18bf0d4ccfebc287a96a59f915",
@@ -782,7 +744,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 41
+      "rank": 40
     },
     {
       "address": "0x5d3ff6875268ccc1ecd9a7363e303ce14b213b40",
@@ -800,7 +762,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 42
+      "rank": 41
     },
     {
       "address": "0x0f0e67e29bd911bb04e430d4a2c6bf6cb5ece77a",
@@ -818,7 +780,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 43
+      "rank": 42
     },
     {
       "address": "0x6ae9b6361dd35d7dde77a09e4bb96b4e2fa05ac3",
@@ -836,7 +798,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 44
+      "rank": 43
     },
     {
       "address": "0xb3a932432f3d5e5d8f586ea8905f15965b92ff24",
@@ -854,7 +816,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 45
+      "rank": 44
     },
     {
       "address": "0x51b3a21c89292e3b1e4be7659be7c435035a972f",
@@ -872,7 +834,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 46
+      "rank": 45
     },
     {
       "address": "0xefa1e3fc6a8f28012b98e433c26bc04e73d425fb",
@@ -890,7 +852,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 47
+      "rank": 46
     },
     {
       "address": "0xd4b950b67ec2ee0e08e791547a63f60410d9d8c2",
@@ -908,7 +870,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 48
+      "rank": 47
     },
     {
       "address": "0x26d67a0db9e68c5894064ec310a6c317d4c8b1d4",
@@ -926,7 +888,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 49
+      "rank": 48
     },
     {
       "address": "0x8949dea4d703fbd236acbeddff1728a42c4e6b2a",
@@ -944,7 +906,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 50
+      "rank": 49
     },
     {
       "address": "0x2379dd05b8ae7b799a583674136c348bb47a2c2c",
@@ -972,7 +934,7 @@
           "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
         }
       ],
-      "rank": 51
+      "rank": 50
     },
     {
       "address": "0x53627004393c652faf68c490e1f99770379c65e8",
@@ -990,7 +952,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 52
+      "rank": 51
     },
     {
       "address": "0xab3e5a900663ea8c573b8f893d540d331fbab9f5",
@@ -1008,7 +970,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 53
+      "rank": 52
     },
     {
       "address": "0x355e06a143225a7144d7db217d92feb44bbc8664",
@@ -1026,7 +988,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 54
+      "rank": 53
     },
     {
       "address": "0xc796df1f2eac8fa137735ef396fd061a837d8b2b",
@@ -1044,7 +1006,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 55
+      "rank": 54
     },
     {
       "address": "0x68cdd5d98f9de73f5c398a566a56058a3fb66463",
@@ -1062,7 +1024,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 56
+      "rank": 55
     },
     {
       "address": "0x8f308b3f43faaf7cd3174cf75ced7c09451fc44b",
@@ -1080,7 +1042,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 57
+      "rank": 56
     },
     {
       "address": "0xece59074f2a430185876505716b4ad8b54b3766a",
@@ -1098,7 +1060,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 58
+      "rank": 57
     },
     {
       "address": "0x732b0be0134863cf7ab130345eac5c354f7ecfb9",
@@ -1116,7 +1078,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 59
+      "rank": 58
     },
     {
       "address": "0x495833d72cb1c78c5f53e0fbafdbe18e012b2482",
@@ -1134,7 +1096,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 60
+      "rank": 59
     },
     {
       "address": "0x2c9470add32348eb27afa40ea981142a8918d816",
@@ -1152,7 +1114,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 61
+      "rank": 60
     },
     {
       "address": "0x7d36c503b281afce2b74fd555875fd09a8bae162",
@@ -1170,7 +1132,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 62
+      "rank": 61
     },
     {
       "address": "0xec2b1f83df21e602ec8eded8c223b1f74b2f605d",
@@ -1188,7 +1150,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 63
+      "rank": 62
     },
     {
       "address": "0xf2bef97376bd1279da6e4bbb76ecba2c7685d090",
@@ -1206,7 +1168,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 64
+      "rank": 63
     },
     {
       "address": "0xd1b59ea4671e1d3e6cbf5d6567d1c0ddb1e7dd11",
@@ -1224,7 +1186,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 65
+      "rank": 64
     },
     {
       "address": "0x74d4505d8bea5877d25c2cfd2aff395da5366d63",
@@ -1242,7 +1204,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 66
+      "rank": 65
     },
     {
       "address": "0x799950b1bee64101165df3c3ce01e8f60df75baa",
@@ -1260,7 +1222,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 67
+      "rank": 66
     },
     {
       "address": "0x62df5b399ba4e31b8a176eb741ed293477f3486c",
@@ -1278,7 +1240,7 @@
           "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
         }
       ],
-      "rank": 68
+      "rank": 67
     },
     {
       "address": "0xb3ac0a20b0157b4318fca69996030ada4db2f79a",
@@ -1296,7 +1258,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 69
+      "rank": 68
     },
     {
       "address": "0x3a60496c0c8e4a01c293a79bc88e2930cf940db3",
@@ -1314,7 +1276,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 70
+      "rank": 69
     },
     {
       "address": "0x300d5606f451785089816fb67a7ad052c5859b6a",
@@ -1332,7 +1294,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 71
+      "rank": 70
     },
     {
       "address": "0xb07707b55a05af09c3a22e5b5798bae4cc8d75dd",
@@ -1350,7 +1312,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 72
+      "rank": 71
     },
     {
       "address": "0x173218236b4781bb5c8f5e47ff4778514dc06d79",
@@ -1368,7 +1330,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 73
+      "rank": 72
     },
     {
       "address": "0xe41bc813a4db08bff5749f070f388feb2affdbf1",
@@ -1386,7 +1348,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 74
+      "rank": 73
     },
     {
       "address": "0xe7b4866ec488dc1d5130f960397754480de83491",
@@ -1404,7 +1366,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 75
+      "rank": 74
     },
     {
       "address": "0x84fef68dac5766380fa074bbf9b943e1e6fb86e4",
@@ -1422,7 +1384,7 @@
           "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
         }
       ],
-      "rank": 76
+      "rank": 75
     },
     {
       "address": "0x0ba9ffa26dda12a7bec51c9650b88a183bd38c33",
@@ -1440,7 +1402,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 77
+      "rank": 76
     },
     {
       "address": "0x45f0a6619ce819bd2ced8f5f8671826a09ce5277",
@@ -1458,7 +1420,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 78
+      "rank": 77
     },
     {
       "address": "0x0c938a2d436305b98633e60c0bae2b4dba455968",
@@ -1476,7 +1438,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 79
+      "rank": 78
     },
     {
       "address": "0x96914c4e5b6ff913522df06604f60a7b26930049",
@@ -1494,7 +1456,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 80
+      "rank": 79
     },
     {
       "address": "0x4271dcfe67126ae7319f3c2a2434d98e950d581a",
@@ -1512,7 +1474,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 81
+      "rank": 80
     },
     {
       "address": "0x870a9affe4e8ab81c9b2d23f8600d3bdf9d07cfd",
@@ -1530,7 +1492,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 82
+      "rank": 81
     },
     {
       "address": "0x433ee2f00ad7ff824b2fe74bace417afd2d86d31",
@@ -1548,7 +1510,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 83
+      "rank": 82
     },
     {
       "address": "0x3d730f7eaffe02459e8337cd76b3ee2da86fbfbf",
@@ -1566,7 +1528,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 84
+      "rank": 83
     },
     {
       "address": "0xced2f0dcb70757339f7072a3ffa08a4a73497435",
@@ -1584,7 +1546,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 85
+      "rank": 84
     },
     {
       "address": "0x5a9f97f760442b429ac396794f9b2d1911d939a9",
@@ -1602,7 +1564,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 86
+      "rank": 85
     },
     {
       "address": "0x286fa26540aa1c0c56bff14a0880e0525736dc37",
@@ -1620,7 +1582,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 87
+      "rank": 86
     },
     {
       "address": "0xeb64770efb8249233a2124f5f7edb0226d9516e5",
@@ -1638,7 +1600,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 88
+      "rank": 87
     },
     {
       "address": "0x105360064fb4371db6d8c61a659e639d3d42f06c",
@@ -1656,7 +1618,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 89
+      "rank": 88
     },
     {
       "address": "0xaa1f20fee38b71174d921eec2b801ab2cb67fef2",
@@ -1674,7 +1636,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 90
+      "rank": 89
     },
     {
       "address": "0xfa3afebe7550227eb947671ce0ea55101622ad6e",
@@ -1692,7 +1654,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 91
+      "rank": 90
     },
     {
       "address": "0xc5c124c515daecd1ae7b39ca95e49ef1864915fc",
@@ -1710,7 +1672,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 92
+      "rank": 91
     },
     {
       "address": "0x0e002dd36af1c3e0347d3c6472f2d4bdd852362c",
@@ -1728,7 +1690,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 93
+      "rank": 92
     },
     {
       "address": "0x47a9f342f472e28c5e60366cf76067921eddc29a",
@@ -1746,7 +1708,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 94
+      "rank": 93
     },
     {
       "address": "0xd4034ac5899e7e87e40d227bd055d8794e7c0ece",
@@ -1764,7 +1726,7 @@
           "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
         }
       ],
-      "rank": 95
+      "rank": 94
     },
     {
       "address": "0xf7c3c6ed8fb13529d959573a2b831ccc4bcad75e",
@@ -1782,7 +1744,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 96
+      "rank": 95
     },
     {
       "address": "0x474e8c560026495522c77b2bc137c296fff281c1",
@@ -1800,7 +1762,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 97
+      "rank": 96
     },
     {
       "address": "0x5439abacd98c1241c99e103fe6668dee81386d7f",
@@ -1818,7 +1780,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 98
+      "rank": 97
     },
     {
       "address": "0x7cffa3d22d97e34c51a4bf331171b07da23d036b",
@@ -1836,7 +1798,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 99
+      "rank": 98
     },
     {
       "address": "0x854776a3c11091d42f9e6c4c51abab65e4164b2b",
@@ -1854,7 +1816,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 100
+      "rank": 99
     },
     {
       "address": "0x7eb282f1701fd71c3d387ec96815c401bd851b8b",
@@ -1872,7 +1834,7 @@
           "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
         }
       ],
-      "rank": 101
+      "rank": 100
     },
     {
       "address": "0x79add7d7efbc20a14d03a1082faa172938fa15b3",
@@ -1890,7 +1852,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 102
+      "rank": 101
     },
     {
       "address": "0x31edc1d9d73b35f379b97831198f59ba05ea6d33",
@@ -1908,7 +1870,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 103
+      "rank": 102
     },
     {
       "address": "0x29687b1886f42cc43ce86881be9748840be3727e",
@@ -1926,7 +1888,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 104
+      "rank": 103
     },
     {
       "address": "0x06231e5926d13ea0851ece3b69cb2f3ca1d72e5b",
@@ -1954,7 +1916,7 @@
           "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
         }
       ],
-      "rank": 105
+      "rank": 104
     },
     {
       "address": "0x1a52ba41f4223e4167b09ca2ead2c350a06831e7",
@@ -1972,7 +1934,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 106
+      "rank": 105
     },
     {
       "address": "0x0ac9240875a2c67f3a7b00deb67b7034be5d5627",
@@ -1990,7 +1952,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 107
+      "rank": 106
     },
     {
       "address": "0xdd1a9bd209a435226f32636e9852b69dd12432e2",
@@ -2008,7 +1970,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 108
+      "rank": 107
     },
     {
       "address": "0x74b24e45b16eefff1fd06b00d8942b80d13b46d9",
@@ -2026,7 +1988,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 109
+      "rank": 108
     },
     {
       "address": "0x51fee03897bebc7877e76fdc4843e0584799466a",
@@ -2044,7 +2006,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 110
+      "rank": 109
     },
     {
       "address": "0x8ccf017d0ac8dc9933a9dec1e8540f763ce3aea8",
@@ -2062,7 +2024,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 111
+      "rank": 110
     },
     {
       "address": "0x640e8c6c58986c7c1070f4c4031ad15394405f66",
@@ -2080,7 +2042,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 112
+      "rank": 111
     },
     {
       "address": "0x09aeea1d6ed3e95a5e420aa815c26fe41ab79741",
@@ -2098,7 +2060,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 113
+      "rank": 112
     },
     {
       "address": "0xaed74a2a67cd05d54e74a0f86a2a3e0a8a8c6bf7",
@@ -2116,7 +2078,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 114
+      "rank": 113
     },
     {
       "address": "0xf5a8e355621e487c1e2f2d55f0070a084427661f",
@@ -2134,7 +2096,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 115
+      "rank": 114
     },
     {
       "address": "0x5ca0f55233543b659c8f2c1fc801b567b94a8b1a",
@@ -2152,7 +2114,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 116
+      "rank": 115
     },
     {
       "address": "0x76ce053ae76d4eda6fd3f24a001260e9232ad977",
@@ -2170,7 +2132,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 117
+      "rank": 116
     },
     {
       "address": "0x356da1ec172f07e0bb3150253d1225567868b5ca",
@@ -2188,7 +2150,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 118
+      "rank": 117
     },
     {
       "address": "0x94304bf6267ca3763a283b63b18afd5defde0e17",
@@ -2206,7 +2168,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 119
+      "rank": 118
     },
     {
       "address": "0x2bc79880f05ba1460ef2cc6b04b4ddf11bf43a94",
@@ -2224,7 +2186,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 120
+      "rank": 119
     },
     {
       "address": "0x9f87ac184c12746a67b878a41d3a2acf26adbe2b",
@@ -2242,7 +2204,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 121
+      "rank": 120
     },
     {
       "address": "0x15f75f25a3b2021eebd304bc4051c642e680307d",
@@ -2260,7 +2222,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 122
+      "rank": 121
     },
     {
       "address": "0xdf93282a22f1eedad5ed0e89bae22ea09fab7fa0",
@@ -2278,7 +2240,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 123
+      "rank": 122
     },
     {
       "address": "0xcb981399ea3b8cfd4f27ff4c78b1efeb87e72b26",
@@ -2296,7 +2258,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 124
+      "rank": 123
     },
     {
       "address": "0xd3432463cf264f4def759ca6f8843d47dd00b2fd",
@@ -2314,7 +2276,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 125
+      "rank": 124
     },
     {
       "address": "0x5fabf9d1f3dbc7577fce20d0a7dac2905f806a47",
@@ -2332,7 +2294,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 126
+      "rank": 125
     },
     {
       "address": "0xb4b7822307cc4fff4a2172d5315dbfd39e50a356",
@@ -2350,7 +2312,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 127
+      "rank": 126
     },
     {
       "address": "0xafd6537db3ac19b37ec6c6c744bb6b91eb476953",
@@ -2368,7 +2330,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 128
+      "rank": 127
     },
     {
       "address": "0xc7ab139f047b442838160489e1c889d7e0166f54",
@@ -2386,7 +2348,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 129
+      "rank": 128
     },
     {
       "address": "0xe1066fea9370c2b51591b3e3a153a044425c56ec",
@@ -2404,7 +2366,7 @@
           "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
         }
       ],
-      "rank": 130
+      "rank": 129
     },
     {
       "address": "0xe7ac5a3241069fd5a28f85fe6b75ff5a935a315d",
@@ -2422,7 +2384,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 131
+      "rank": 130
     },
     {
       "address": "0x1dd8ae3102eec14c3c98611caf70e8c9453ea98f",
@@ -2440,7 +2402,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 132
+      "rank": 131
     },
     {
       "address": "0xa96a65e325c9652202c432d4e87e66c21fb60d3b",
@@ -2458,7 +2420,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 133
+      "rank": 132
     },
     {
       "address": "0xaf0586cbe35d482b8e70893c71b7bc4ba319d9b5",
@@ -2476,7 +2438,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 134
+      "rank": 133
     },
     {
       "address": "0xd609abd5201f51d99ea14a841cd37232083ea3a2",
@@ -2494,7 +2456,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 135
+      "rank": 134
     },
     {
       "address": "0x59f8f98ef020647521def4f14a8db46ea0da1133",
@@ -2512,7 +2474,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 136
+      "rank": 135
     },
     {
       "address": "0x606add02c64d10428aabf1d195ca51d6e6537845",
@@ -2530,7 +2492,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 137
+      "rank": 136
     },
     {
       "address": "0xe5b485fb0ec167e8a6874aca9daa81ed16c66921",
@@ -2548,7 +2510,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 138
+      "rank": 137
     },
     {
       "address": "0x9e5dd96f9afd985fb917e16b4cb089dc78ba9d56",
@@ -2566,7 +2528,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 139
+      "rank": 138
     },
     {
       "address": "0x98470a4959ff07ae7d336bf905cfc9c71b70e4af",
@@ -2584,7 +2546,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 140
+      "rank": 139
     },
     {
       "address": "0x335d6db771f57ef47af3d291a85e0b43f7ca0092",
@@ -2602,11 +2564,11 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 141
+      "rank": 140
     },
     {
       "address": "0x248f8308ff7ea917a52756430bd28c1eb028f447",
-      "balance_wei": "76968268230748059",
+      "balance_wei": "76968268230748060",
       "balance_eth": 0.07696827,
       "keeperdao_items": [
         {
@@ -2614,13 +2576,13 @@
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
           "k_amount_wei": "71184718063927991",
           "k_amount": 0.071184718063928,
-          "eth_eq_wei": "76968268230748059",
+          "eth_eq_wei": "76968268230748060",
           "eth_eq": 0.07696826823074807,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 142
+      "rank": 141
     },
     {
       "address": "0xc50761cef3e28a6113875265966c8a19cb7956cf",
@@ -2638,7 +2600,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 143
+      "rank": 142
     },
     {
       "address": "0xdc106fdaa416a8cc8816081c5864b478d45fa063",
@@ -2656,7 +2618,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 144
+      "rank": 143
     },
     {
       "address": "0x98032b2b3469aa7a6a9575617cbc891d91b058fc",
@@ -2674,7 +2636,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 145
+      "rank": 144
     },
     {
       "address": "0xb404cd0840c8ec1af0fe1759d9a48a5e55ca151c",
@@ -2692,7 +2654,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 146
+      "rank": 145
     },
     {
       "address": "0xfb8e54c2f500efdf4fb06362bf92789655813cdc",
@@ -2710,7 +2672,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 147
+      "rank": 146
     },
     {
       "address": "0x4fa256f66080805cc392d3e50fc9c207a886c22a",
@@ -2728,7 +2690,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 148
+      "rank": 147
     },
     {
       "address": "0x74d15ea52f9747d00a4400eee33caeb7d23974c4",
@@ -2746,7 +2708,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 149
+      "rank": 148
     },
     {
       "address": "0xf27c504c6094ff413cce631390e2ad1160ed58c9",
@@ -2764,7 +2726,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 150
+      "rank": 149
     },
     {
       "address": "0x9e9e733aa715d9adf25e0be37630dc2936daba76",
@@ -2782,7 +2744,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 151
+      "rank": 150
     },
     {
       "address": "0x2a8600bbdaab254a2f8a8e00912799295c3dd601",
@@ -2800,7 +2762,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 152
+      "rank": 151
     },
     {
       "address": "0x505e20c0fb8252ca7ac21d54d5432eccd4f2d076",
@@ -2818,7 +2780,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 153
+      "rank": 152
     },
     {
       "address": "0x5853ed4f26a3fcea565b3fbc698bb19cdf6deb85",
@@ -2836,7 +2798,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 154
+      "rank": 153
     },
     {
       "address": "0x32b60985c5490397d200f91e624332d82597d649",
@@ -2854,7 +2816,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 155
+      "rank": 154
     },
     {
       "address": "0x0db4b723bed9e380fffe5ba94ede9ebd31503075",
@@ -2872,7 +2834,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 156
+      "rank": 155
     },
     {
       "address": "0x5999865518c9de250b820762130ff7a7119a4558",
@@ -2890,7 +2852,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 157
+      "rank": 156
     },
     {
       "address": "0x0b9ce057a387386f3ea3a549c85a5efe4fc76f5d",
@@ -2908,7 +2870,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 158
+      "rank": 157
     },
     {
       "address": "0xdd37bde1d74a63cb773b7ca8a15c4793f95ec43c",
@@ -2926,7 +2888,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 159
+      "rank": 158
     },
     {
       "address": "0x5009633ea9462d2a4d933956500c78f5f9405e8c",
@@ -2944,7 +2906,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 160
+      "rank": 159
     },
     {
       "address": "0xc350b306d4f21670317b1ca22416d9104320dcc6",
@@ -2962,7 +2924,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 161
+      "rank": 160
     },
     {
       "address": "0xf753a473bd93e59f865451a9a5238abee3bd37a6",
@@ -2980,7 +2942,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 162
+      "rank": 161
     },
     {
       "address": "0x86e18538ce2ebc086d76d8722945da30255b0477",
@@ -2998,7 +2960,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 163
+      "rank": 162
     },
     {
       "address": "0x8baecaac30c26fc00fad8ee9a0b54b8897d2462b",
@@ -3016,7 +2978,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 164
+      "rank": 163
     },
     {
       "address": "0x6362d241e89084391697424e40147ff7396fa760",
@@ -3034,7 +2996,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 165
+      "rank": 164
     },
     {
       "address": "0xce296b4779335f44555d05d4a231b60349c2e97a",
@@ -3052,7 +3014,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 166
+      "rank": 165
     },
     {
       "address": "0x820c46000a51aa4182a321bf318702ba19c2b7d7",
@@ -3070,7 +3032,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 167
+      "rank": 166
     },
     {
       "address": "0xc7a9ff55c1831822e7ee8fdeb572e14754a6ea68",
@@ -3088,7 +3050,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 168
+      "rank": 167
     },
     {
       "address": "0x8967986ca73d565eb5b9d4bdca7e263ed61e33e7",
@@ -3106,7 +3068,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 169
+      "rank": 168
     },
     {
       "address": "0xdf48e1769eecc8367df7dc3db98138fa10d1f396",
@@ -3124,7 +3086,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 170
+      "rank": 169
     },
     {
       "address": "0xef76b1510064eb56e3bcb05edb84b7e7ed108de4",
@@ -3142,7 +3104,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 171
+      "rank": 170
     },
     {
       "address": "0xced34d170df2790cbeb0743a67636228d5c45e62",
@@ -3160,7 +3122,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 172
+      "rank": 171
     },
     {
       "address": "0xa01486c07b3ab747722f69383dde42c924d043d3",
@@ -3178,7 +3140,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 173
+      "rank": 172
     },
     {
       "address": "0xeeede4cd48e6ec2160b8336e88db3e62a7eefe1f",
@@ -3196,7 +3158,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 174
+      "rank": 173
     },
     {
       "address": "0xa3ceca57e4bee224a7fe7aa46ae7f4418d54cf8d",
@@ -3214,7 +3176,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 175
+      "rank": 174
     },
     {
       "address": "0x714120f3dcaff119e82b923fb28f203249293907",
@@ -3232,7 +3194,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 176
+      "rank": 175
     },
     {
       "address": "0x5b20783f4baabd33bb53dd77c9b0459f5701e36a",
@@ -3250,7 +3212,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 177
+      "rank": 176
     },
     {
       "address": "0x7f285841c23b78d902650e897b94e927f789e28b",
@@ -3268,7 +3230,7 @@
           "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
         }
       ],
-      "rank": 178
+      "rank": 177
     },
     {
       "address": "0x6c3553e90aff3bda7e379c9875d67f9858c7bb5d",
@@ -3286,7 +3248,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 179
+      "rank": 178
     },
     {
       "address": "0x3ac46092ac3dadedc15cb79c4677c2fac14cc447",
@@ -3304,7 +3266,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 180
+      "rank": 179
     },
     {
       "address": "0x293e659d2d50baee7234d4f58d8dbf4ee7422852",
@@ -3322,7 +3284,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 181
+      "rank": 180
     },
     {
       "address": "0x8593b4a8179175e20a486acb36a1eeb1dd1b94ad",
@@ -3340,7 +3302,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 182
+      "rank": 181
     },
     {
       "address": "0x2a7ed01649b2b0c862dbd0f54e7396f17509e11d",
@@ -3358,7 +3320,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 183
+      "rank": 182
     },
     {
       "address": "0x8c052bd87c155fc577e0e2be6f97f471c11ab7c7",
@@ -3376,7 +3338,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 184
+      "rank": 183
     },
     {
       "address": "0x0178da1e23ce68bcf5af6671512c3438d6dfd223",
@@ -3394,7 +3356,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 185
+      "rank": 184
     },
     {
       "address": "0x2676afe6b00230bd764619c9fef61db36777fb06",
@@ -3412,7 +3374,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 186
+      "rank": 185
     },
     {
       "address": "0xe1df63759b4a2bda8f064ba2273ed8f01ba63268",
@@ -3430,7 +3392,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 187
+      "rank": 186
     },
     {
       "address": "0xd8aa8d33bec3d5e40e154bf4bf31c4e10dc19a6e",
@@ -3448,7 +3410,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 188
+      "rank": 187
     },
     {
       "address": "0x12363161666d532cecb688f764fb19a9cd3167a7",
@@ -3466,7 +3428,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 189
+      "rank": 188
     },
     {
       "address": "0x335e806c4610be1128650cac31263ae1959bddb5",
@@ -3484,7 +3446,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 190
+      "rank": 189
     },
     {
       "address": "0xad36ae0c0605d441d95e25e8a74e9a238bf47828",
@@ -3502,7 +3464,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 191
+      "rank": 190
     },
     {
       "address": "0x49e043522f92f1618606a8df73d79388704d8c2d",
@@ -3520,7 +3482,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 192
+      "rank": 191
     },
     {
       "address": "0x54393b75b90ec06ce33f741e4867905e2ac5e73c",
@@ -3538,7 +3500,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 193
+      "rank": 192
     },
     {
       "address": "0x53e26955f12b8bafdb6474a09975fdc3aaf59ea3",
@@ -3556,7 +3518,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 194
+      "rank": 193
     },
     {
       "address": "0xdb5802f5579b97be83bd48acad271187f7813148",
@@ -3574,7 +3536,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 195
+      "rank": 194
     },
     {
       "address": "0x5bd5ee83d72cdecbc4ba8ea9dd84bb1223c42893",
@@ -3592,7 +3554,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 196
+      "rank": 195
     },
     {
       "address": "0xbaf8c648aafbc33d8d2fae5dad9ee264151a1dff",
@@ -3610,7 +3572,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 197
+      "rank": 196
     },
     {
       "address": "0xfd4ae6a022a86b3c8d60a764bc3d35d80869b538",
@@ -3628,7 +3590,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 198
+      "rank": 197
     },
     {
       "address": "0xdb5bc817fd928218a4397b2dc89b293970787f6b",
@@ -3646,7 +3608,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 199
+      "rank": 198
     },
     {
       "address": "0x19ccf3e10f844f41ccf7542b0c4da16253766392",
@@ -3664,7 +3626,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 200
+      "rank": 199
     },
     {
       "address": "0xcb4bdc593f4176ab98265e22ab0cbe2673f5ad4c",
@@ -3682,7 +3644,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 201
+      "rank": 200
     },
     {
       "address": "0x0ba6d89c5ea7cb11861baf2608ec7a02bfa1a1ee",
@@ -3700,7 +3662,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 202
+      "rank": 201
     },
     {
       "address": "0x1b569b73d27ff6afa1bed4bf9096fc02fde717f5",
@@ -3718,7 +3680,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 203
+      "rank": 202
     },
     {
       "address": "0x945294c67752bd0a453975c04e3078c487a858df",
@@ -3736,7 +3698,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 204
+      "rank": 203
     },
     {
       "address": "0xddf48f62e07c2e9f689ae903255d090e9bb9d725",
@@ -3754,7 +3716,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 205
+      "rank": 204
     },
     {
       "address": "0x277a1b6f7066af5f378b26450d8f681ef9d1dc29",
@@ -3772,7 +3734,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 206
+      "rank": 205
     },
     {
       "address": "0xfba22623a465d0cf942e86a17b871d153af6461c",
@@ -3790,7 +3752,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 207
+      "rank": 206
     },
     {
       "address": "0xd21d49edcb5e314ecdac8bbeed3adf8e747cc317",
@@ -3808,7 +3770,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 208
+      "rank": 207
     },
     {
       "address": "0x92c794b7fcfd304aee4a7c18e7e1b66d882a9c6f",
@@ -3826,7 +3788,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 209
+      "rank": 208
     },
     {
       "address": "0x9bfbfeafc2775cc53acef3f78882a805d5eb7e62",
@@ -3844,7 +3806,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 210
+      "rank": 209
     },
     {
       "address": "0xebc491da49b6faa6f6df71db8b78078aef1dfad8",
@@ -3862,7 +3824,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 211
+      "rank": 210
     },
     {
       "address": "0x448e871a9911ab6d67350c85747e8d50df2c5318",
@@ -3880,7 +3842,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 212
+      "rank": 211
     },
     {
       "address": "0xa6856f038eb44ef63174b8b4ba90a49f02df5c87",
@@ -3898,7 +3860,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 213
+      "rank": 212
     },
     {
       "address": "0xbcd296fb0486976b8b8d6f1c45afb407633b5023",
@@ -3916,7 +3878,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 214
+      "rank": 213
     },
     {
       "address": "0x94cfa59314cf834ef6cabd7945300ef7d04ea885",
@@ -3934,7 +3896,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 215
+      "rank": 214
     },
     {
       "address": "0x0c42fa4328d33338e5b646ec2da7854c26206330",
@@ -3952,7 +3914,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 216
+      "rank": 215
     },
     {
       "address": "0xd7795b6b4a6952ca9811a7dac3f11c46c3b6bcde",
@@ -3970,7 +3932,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 217
+      "rank": 216
     },
     {
       "address": "0xed3a1a8bdb46fc47444d63c85d4ae29234b04bd1",
@@ -3988,7 +3950,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 218
+      "rank": 217
     },
     {
       "address": "0x5db3975d0a0215ef70a6723a9a8fb68fb1f8e223",
@@ -4006,7 +3968,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 219
+      "rank": 218
     },
     {
       "address": "0x0db6e6d82a25bc1289acd2054095c1a796d9c59d",
@@ -4024,7 +3986,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 220
+      "rank": 219
     },
     {
       "address": "0xe84b1b9593865cb14846908910bb4b9a85746770",
@@ -4042,7 +4004,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 221
+      "rank": 220
     },
     {
       "address": "0x66056a0ca413ac2d896ffbacf493c849311b7d32",
@@ -4060,7 +4022,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 222
+      "rank": 221
     },
     {
       "address": "0x21b70ef84e18b03d5e289cc0db416aae1ddfb22b",
@@ -4078,7 +4040,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 223
+      "rank": 222
     },
     {
       "address": "0x9e5488452bd4f5a28a43b39b9b7e0ba59aedbdfe",
@@ -4096,7 +4058,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 224
+      "rank": 223
     },
     {
       "address": "0x13e6e8d3c1ce51e08a522691062f5fa886962c69",
@@ -4114,7 +4076,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 225
+      "rank": 224
     },
     {
       "address": "0x1dc9ee19bc6ece2df030eb1f4f5d775e817d798d",
@@ -4132,7 +4094,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 226
+      "rank": 225
     },
     {
       "address": "0x7538eb6b4846f7a694ebe53429dd305ac10c2b4a",
@@ -4150,7 +4112,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 227
+      "rank": 226
     },
     {
       "address": "0x88418bff31b070d280a193f61aedd2867f70792a",
@@ -4168,7 +4130,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 228
+      "rank": 227
     },
     {
       "address": "0x743305cd8f7194f1fe86bdc956107b27148d8fde",
@@ -4186,7 +4148,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 229
+      "rank": 228
     },
     {
       "address": "0x97b59f79700d0dd59251123c05d32fb75487a841",
@@ -4204,7 +4166,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 230
+      "rank": 229
     },
     {
       "address": "0xe9dfa0901ac8c4f778fd2deae7ec98c605f68e64",
@@ -4222,7 +4184,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 231
+      "rank": 230
     },
     {
       "address": "0x355a0674dd5048e07a2223f58f67d74fa2c6b252",
@@ -4240,7 +4202,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 232
+      "rank": 231
     },
     {
       "address": "0x55ff197993a6d33eaac9a53305b2d0edd490b034",
@@ -4268,7 +4230,7 @@
           "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
         }
       ],
-      "rank": 233
+      "rank": 232
     },
     {
       "address": "0x23f1045ca09e9c3206851336a2a05d35bbc812d3",
@@ -4286,7 +4248,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 234
+      "rank": 233
     },
     {
       "address": "0x2e1493555dbdb58bb61589fbee718286d7e690ba",
@@ -4304,7 +4266,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 235
+      "rank": 234
     },
     {
       "address": "0xfb421d25590d5b06924756ba9efdd4b0c454c0f9",
@@ -4322,7 +4284,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 236
+      "rank": 235
     },
     {
       "address": "0xa8d7b03f69ed4b26de7f81e4be16c79a20df6606",
@@ -4340,7 +4302,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 237
+      "rank": 236
     },
     {
       "address": "0x878bce522c077c62cb1ad1e488c65c0a2e58fe9b",
@@ -4358,7 +4320,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 238
+      "rank": 237
     },
     {
       "address": "0x8a2dfb8b3d7a05679305d86a46fae4fcbf657f74",
@@ -4376,7 +4338,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 239
+      "rank": 238
     },
     {
       "address": "0x777e36cc8269d346cf30d79852fb9384d5ebd73f",
@@ -4394,7 +4356,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 240
+      "rank": 239
     },
     {
       "address": "0x08e5c5ba165f89a46ef6f139a69fa07e217c917c",
@@ -4412,7 +4374,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 241
+      "rank": 240
     },
     {
       "address": "0x8ffb6f5821552ed950146d132e1e96cacba253d0",
@@ -4430,7 +4392,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 242
+      "rank": 241
     },
     {
       "address": "0xc6fe1dd2a94379af454b6f966dce066b49bc5a3a",
@@ -4448,7 +4410,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 243
+      "rank": 242
     },
     {
       "address": "0x20398cd70e7fbfdee2501929bf775cecefd927d4",
@@ -4466,7 +4428,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 244
+      "rank": 243
     },
     {
       "address": "0x8d54824bc340bd715ede3559cfda7aa25ffafb78",
@@ -4484,7 +4446,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 245
+      "rank": 244
     },
     {
       "address": "0x61c8ec356be297d2f6fc87745e47a224c6abab5a",
@@ -4502,7 +4464,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 246
+      "rank": 245
     },
     {
       "address": "0x6d1105ba1b4effb4073e99df2c8ff17ebffff0a8",
@@ -4520,7 +4482,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 247
+      "rank": 246
     },
     {
       "address": "0x678fb21b9736e6c7da9f7d37a77ab766bb2519c7",
@@ -4538,7 +4500,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 248
+      "rank": 247
     },
     {
       "address": "0x0bfd9fc73c82be0558f3a651f10a8bd8c784f45e",
@@ -4556,7 +4518,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 249
+      "rank": 248
     },
     {
       "address": "0x0acf1b98ae3a2084b729797116b0f5ad8d86a3ee",
@@ -4574,7 +4536,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 250
+      "rank": 249
     },
     {
       "address": "0xc7d3dcd422ee14a5a69e8232d5c59eefa7333898",
@@ -4592,7 +4554,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 251
+      "rank": 250
     },
     {
       "address": "0x1b4274e01a59618b25b6aa88c9636307b507ca89",
@@ -4610,7 +4572,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 252
+      "rank": 251
     },
     {
       "address": "0xeabc5cc2be1169849fa7470768b05cefaf6346cd",
@@ -4628,7 +4590,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 253
+      "rank": 252
     },
     {
       "address": "0x694eb1136add5150c350d10c0cd7dc18d9d3eb30",
@@ -4646,7 +4608,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 254
+      "rank": 253
     },
     {
       "address": "0xf00d0a7d9b36aef74fddfa60a608e4770993aff4",
@@ -4664,7 +4626,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 255
+      "rank": 254
     },
     {
       "address": "0x0779ad44e918c2e771cf91cc05b5f4d6cf2edb03",
@@ -4682,7 +4644,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 256
+      "rank": 255
     },
     {
       "address": "0x480c896bd09d0ba7d4522f9349d8e10ef36686f8",
@@ -4700,7 +4662,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 257
+      "rank": 256
     },
     {
       "address": "0xf24f63889b16fb1a8edf0f0b4e84a661ba13e1cf",
@@ -4718,7 +4680,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 258
+      "rank": 257
     },
     {
       "address": "0xa928b7626d2e32f1f1c2d346848f21694aa4e02d",
@@ -4736,7 +4698,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 259
+      "rank": 258
     },
     {
       "address": "0x883ab2ae1bdda0531078b27dd45600193aba1f34",
@@ -4754,7 +4716,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 260
+      "rank": 259
     },
     {
       "address": "0x923d99e83e0a492fda01095885bb75a14479b68f",
@@ -4772,7 +4734,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 261
+      "rank": 260
     },
     {
       "address": "0x6fac5ca3a8a7f53385e87a1e7e683dd7486afc3b",
@@ -4790,7 +4752,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 262
+      "rank": 261
     },
     {
       "address": "0x2d9f9f7862a8e435d890f487a01ea15eceb6c6ef",
@@ -4808,7 +4770,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 263
+      "rank": 262
     },
     {
       "address": "0xd4e76294e4c02a4cc65f6ba92a7fb47a6e90f4dc",
@@ -4826,7 +4788,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 264
+      "rank": 263
     },
     {
       "address": "0x1dcc2c07df920d1d1964fe020eb27b93819fb8e0",
@@ -4844,7 +4806,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 265
+      "rank": 264
     },
     {
       "address": "0x915d26fa87d887e165d6573a77461f79a3de37ed",
@@ -4862,7 +4824,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 266
+      "rank": 265
     },
     {
       "address": "0x3b3053b42ff03d0d7c43e7d2f1bd3a78b009160a",
@@ -4880,7 +4842,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 267
+      "rank": 266
     },
     {
       "address": "0xad970b7c19fc4b05728109136655015de7feeb7e",
@@ -4898,7 +4860,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 268
+      "rank": 267
     },
     {
       "address": "0x34e2f73d877a299bb0abbf71f6bb9eb47da1fe50",
@@ -4916,7 +4878,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 269
+      "rank": 268
     },
     {
       "address": "0xcd1e8ae6d43ca88662ed69afe205fa2efc6a415f",
@@ -4934,7 +4896,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 270
+      "rank": 269
     },
     {
       "address": "0x3a0cca1a832644b60730e5d4c27947c5de609d62",
@@ -4952,7 +4914,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 271
+      "rank": 270
     },
     {
       "address": "0x9749fc1cc2c0a1a192a0bae614d9d4881c0e0bc8",
@@ -4970,7 +4932,7 @@
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 272
+      "rank": 271
     },
     {
       "address": "0x9aa51865ade30ff5a6b366e73d6b2077454e646a",
@@ -4981,14 +4943,14 @@
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
           "k_amount_wei": "97441925036312",
-          "k_amount": 0.000097441925036312,
+          "k_amount": 9.7441925036312e-05,
           "eth_eq_wei": "105358796481850",
           "eth_eq": 0.00010535879648185,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 273
+      "rank": 272
     },
     {
       "address": "0x42b9df65b219b3dd36ff330a4dd8f327a6ada990",
@@ -4999,14 +4961,14 @@
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
           "k_amount_wei": "97225149127333",
-          "k_amount": 0.000097225149127333,
+          "k_amount": 9.7225149127333e-05,
           "eth_eq_wei": "105124408164216",
           "eth_eq": 0.000105124408164216,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 274
+      "rank": 273
     },
     {
       "address": "0xedf7b675a2fe3c27efb263fb4c204a3f0fb17d46",
@@ -5017,14 +4979,14 @@
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
           "k_amount_wei": "97121885759207",
-          "k_amount": 0.000097121885759207,
+          "k_amount": 9.7121885759207e-05,
           "eth_eq_wei": "105012754949418",
           "eth_eq": 0.000105012754949418,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 275
+      "rank": 274
     },
     {
       "address": "0xa46208360297bb909ee0f36bb6b83239ebf4c21d",
@@ -5035,14 +4997,14 @@
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
           "k_amount_wei": "95140996833609",
-          "k_amount": 0.000095140996833609,
+          "k_amount": 9.5140996833609e-05,
           "eth_eq_wei": "102870924591618",
           "eth_eq": 0.000102870924591618,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 276
+      "rank": 275
     },
     {
       "address": "0x4c09d894399e3f8d6276c63fccf4d8e7e9a86268",
@@ -5053,14 +5015,14 @@
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
           "k_amount_wei": "94145838629508",
-          "k_amount": 0.000094145838629508,
+          "k_amount": 9.4145838629508e-05,
           "eth_eq_wei": "101794912693721",
           "eth_eq": 0.000101794912693721,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 277
+      "rank": 276
     },
     {
       "address": "0x5290d046f674c2fc9c6cf9905a0d19b39eba0a76",
@@ -5071,14 +5033,14 @@
           "k_token": "kweth",
           "k_address": "0xac19815455c2c438af8a8b4623f65f091364be10",
           "k_amount_wei": "96546106316018",
-          "k_amount": 0.000096546106316018,
+          "k_amount": 9.6546106316018e-05,
           "eth_eq_wei": "101617651611835",
           "eth_eq": 0.000101617651611835,
           "underlying": "WETH",
           "underlying_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
         }
       ],
-      "rank": 278
+      "rank": 277
     },
     {
       "address": "0xc19355f5a4aaaf31aa865ce1264e1cffeb68c171",
@@ -5089,9 +5051,27 @@
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
           "k_amount_wei": "93692328301365",
-          "k_amount": 0.000093692328301365,
+          "k_amount": 9.3692328301365e-05,
           "eth_eq_wei": "101304555977682",
           "eth_eq": 0.000101304555977682,
+          "underlying": "ETH",
+          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "rank": 278
+    },
+    {
+      "address": "0x099173acced65d93c5bb4506e0e3f81264047674",
+      "balance_wei": "75219454767121",
+      "balance_eth": 7.522e-05,
+      "keeperdao_items": [
+        {
+          "k_token": "keth",
+          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
+          "k_amount_wei": "69567313954205",
+          "k_amount": 6.9567313954205e-05,
+          "eth_eq_wei": "75219454767121",
+          "eth_eq": 7.5219454767121e-05,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
@@ -5099,17 +5079,17 @@
       "rank": 279
     },
     {
-      "address": "0x099173acced65d93c5bb4506e0e3f81264047674",
-      "balance_wei": "75219454767121",
-      "balance_eth": 0.00007522,
+      "address": "0xf7801b408c5e3d352e9d67ee2774ae82800bc2d7",
+      "balance_wei": "50294976240780",
+      "balance_eth": 5.029e-05,
       "keeperdao_items": [
         {
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
-          "k_amount_wei": "69567313954205",
-          "k_amount": 0.000069567313954205,
-          "eth_eq_wei": "75219454767121",
-          "eth_eq": 0.000075219454767121,
+          "k_amount_wei": "46515710773153",
+          "k_amount": 4.6515710773153e-05,
+          "eth_eq_wei": "50294976240780",
+          "eth_eq": 5.029497624078e-05,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
@@ -5117,17 +5097,17 @@
       "rank": 280
     },
     {
-      "address": "0xf7801b408c5e3d352e9d67ee2774ae82800bc2d7",
-      "balance_wei": "50294976240780",
-      "balance_eth": 0.00005029,
+      "address": "0xa512e549d68f15a9f23c1df98970e684301ac1e7",
+      "balance_wei": "50225163463672",
+      "balance_eth": 5.023e-05,
       "keeperdao_items": [
         {
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
-          "k_amount_wei": "46515710773153",
-          "k_amount": 0.000046515710773153,
-          "eth_eq_wei": "50294976240780",
-          "eth_eq": 0.00005029497624078,
+          "k_amount_wei": "46451143868246",
+          "k_amount": 4.6451143868246e-05,
+          "eth_eq_wei": "50225163463672",
+          "eth_eq": 5.0225163463672e-05,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
@@ -5135,17 +5115,17 @@
       "rank": 281
     },
     {
-      "address": "0xa512e549d68f15a9f23c1df98970e684301ac1e7",
-      "balance_wei": "50225163463672",
-      "balance_eth": 0.00005023,
+      "address": "0x17080b589cdcbd10ebeaa24cb0096f4bb29eb52b",
+      "balance_wei": "40258467964285",
+      "balance_eth": 4.026e-05,
       "keeperdao_items": [
         {
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
-          "k_amount_wei": "46451143868246",
-          "k_amount": 0.000046451143868246,
-          "eth_eq_wei": "50225163463672",
-          "eth_eq": 0.000050225163463672,
+          "k_amount_wei": "37233365873996",
+          "k_amount": 3.7233365873996e-05,
+          "eth_eq_wei": "40258467964285",
+          "eth_eq": 4.0258467964285e-05,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
@@ -5153,17 +5133,17 @@
       "rank": 282
     },
     {
-      "address": "0x17080b589cdcbd10ebeaa24cb0096f4bb29eb52b",
-      "balance_wei": "40258467964285",
-      "balance_eth": 0.00004026,
+      "address": "0xe8c85e71cfd86556997a498095dca847029defd0",
+      "balance_wei": "37268831031102",
+      "balance_eth": 3.727e-05,
       "keeperdao_items": [
         {
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
-          "k_amount_wei": "37233365873996",
-          "k_amount": 0.000037233365873996,
-          "eth_eq_wei": "40258467964285",
-          "eth_eq": 0.000040258467964285,
+          "k_amount_wei": "34468376260821",
+          "k_amount": 3.4468376260821e-05,
+          "eth_eq_wei": "37268831031102",
+          "eth_eq": 3.7268831031102e-05,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
@@ -5171,17 +5151,17 @@
       "rank": 283
     },
     {
-      "address": "0xe8c85e71cfd86556997a498095dca847029defd0",
-      "balance_wei": "37268831031102",
-      "balance_eth": 0.00003727,
+      "address": "0x8275a90029f67ea2f64ea9ba81b1c6903f0776b2",
+      "balance_wei": "36802448361625",
+      "balance_eth": 3.68e-05,
       "keeperdao_items": [
         {
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
-          "k_amount_wei": "34468376260821",
-          "k_amount": 0.000034468376260821,
-          "eth_eq_wei": "37268831031102",
-          "eth_eq": 0.000037268831031102,
+          "k_amount_wei": "34037038521259",
+          "k_amount": 3.4037038521259e-05,
+          "eth_eq_wei": "36802448361625",
+          "eth_eq": 3.6802448361625e-05,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
@@ -5189,17 +5169,17 @@
       "rank": 284
     },
     {
-      "address": "0x8275a90029f67ea2f64ea9ba81b1c6903f0776b2",
-      "balance_wei": "36802448361625",
-      "balance_eth": 0.0000368,
+      "address": "0xc706c813aa7a67817983d0f5562057ef5bf38d54",
+      "balance_wei": "21622887865571",
+      "balance_eth": 2.162e-05,
       "keeperdao_items": [
         {
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
-          "k_amount_wei": "34037038521259",
-          "k_amount": 0.000034037038521259,
-          "eth_eq_wei": "36802448361625",
-          "eth_eq": 0.000036802448361625,
+          "k_amount_wei": "19998100669540",
+          "k_amount": 1.999810066954e-05,
+          "eth_eq_wei": "21622887865571",
+          "eth_eq": 2.1622887865571e-05,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
@@ -5207,17 +5187,17 @@
       "rank": 285
     },
     {
-      "address": "0xc706c813aa7a67817983d0f5562057ef5bf38d54",
-      "balance_wei": "21622887865571",
-      "balance_eth": 0.00002162,
+      "address": "0x18960c91688c5ca0767c7bf2c80df5e679648256",
+      "balance_wei": "15215623893825",
+      "balance_eth": 1.522e-05,
       "keeperdao_items": [
         {
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
-          "k_amount_wei": "19998100669540",
-          "k_amount": 0.00001999810066954,
-          "eth_eq_wei": "21622887865571",
-          "eth_eq": 0.000021622887865571,
+          "k_amount_wei": "14072291373395",
+          "k_amount": 1.4072291373395e-05,
+          "eth_eq_wei": "15215623893825",
+          "eth_eq": 1.5215623893825e-05,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
@@ -5225,17 +5205,17 @@
       "rank": 286
     },
     {
-      "address": "0x18960c91688c5ca0767c7bf2c80df5e679648256",
-      "balance_wei": "15215623893825",
-      "balance_eth": 0.00001522,
+      "address": "0x82e4d78c6c62d461251fa5a1d4deb9f0fe378e30",
+      "balance_wei": "13417485027358",
+      "balance_eth": 1.342e-05,
       "keeperdao_items": [
         {
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
-          "k_amount_wei": "14072291373395",
-          "k_amount": 0.000014072291373395,
-          "eth_eq_wei": "15215623893825",
-          "eth_eq": 0.000015215623893825,
+          "k_amount_wei": "12409268270608",
+          "k_amount": 1.2409268270608e-05,
+          "eth_eq_wei": "13417485027358",
+          "eth_eq": 1.3417485027358e-05,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
@@ -5243,17 +5223,17 @@
       "rank": 287
     },
     {
-      "address": "0x82e4d78c6c62d461251fa5a1d4deb9f0fe378e30",
-      "balance_wei": "13417485027358",
-      "balance_eth": 0.00001342,
+      "address": "0xd97edc1d2fbb60a996461f9ce3c3777d35815e4e",
+      "balance_wei": "12724876500059",
+      "balance_eth": 1.272e-05,
       "keeperdao_items": [
         {
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
-          "k_amount_wei": "12409268270608",
-          "k_amount": 0.000012409268270608,
-          "eth_eq_wei": "13417485027358",
-          "eth_eq": 0.000013417485027358,
+          "k_amount_wei": "11768703738266",
+          "k_amount": 1.1768703738266e-05,
+          "eth_eq_wei": "12724876500059",
+          "eth_eq": 1.2724876500059e-05,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
@@ -5261,17 +5241,17 @@
       "rank": 288
     },
     {
-      "address": "0xd97edc1d2fbb60a996461f9ce3c3777d35815e4e",
-      "balance_wei": "12724876500059",
-      "balance_eth": 0.00001272,
+      "address": "0x0383143d0d61112615c124b64994bfc7e94d8e4d",
+      "balance_wei": "8601727154410",
+      "balance_eth": 8.6e-06,
       "keeperdao_items": [
         {
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
-          "k_amount_wei": "11768703738266",
-          "k_amount": 0.000011768703738266,
-          "eth_eq_wei": "12724876500059",
-          "eth_eq": 0.000012724876500059,
+          "k_amount_wei": "7955376110501",
+          "k_amount": 7.955376110501e-06,
+          "eth_eq_wei": "8601727154410",
+          "eth_eq": 8.60172715441e-06,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
@@ -5279,17 +5259,17 @@
       "rank": 289
     },
     {
-      "address": "0x0383143d0d61112615c124b64994bfc7e94d8e4d",
-      "balance_wei": "8601727154410",
-      "balance_eth": 0.0000086,
+      "address": "0xc85c1a16b06a8db1880ba0f54a265752df429692",
+      "balance_wei": "6592111801822",
+      "balance_eth": 6.59e-06,
       "keeperdao_items": [
         {
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
-          "k_amount_wei": "7955376110501",
-          "k_amount": 0.000007955376110501,
-          "eth_eq_wei": "8601727154410",
-          "eth_eq": 0.00000860172715441,
+          "k_amount_wei": "6096767289239",
+          "k_amount": 6.096767289239e-06,
+          "eth_eq_wei": "6592111801822",
+          "eth_eq": 6.592111801822e-06,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
@@ -5297,17 +5277,17 @@
       "rank": 290
     },
     {
-      "address": "0xc85c1a16b06a8db1880ba0f54a265752df429692",
-      "balance_wei": "6592111801822",
-      "balance_eth": 0.00000659,
+      "address": "0x7eca0c387b3d07d97f95e9ac3551f1760b8b6c54",
+      "balance_wei": "3182101446414",
+      "balance_eth": 3.18e-06,
       "keeperdao_items": [
         {
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
-          "k_amount_wei": "6096767289239",
-          "k_amount": 0.000006096767289239,
-          "eth_eq_wei": "6592111801822",
-          "eth_eq": 0.000006592111801822,
+          "k_amount_wei": "2942991956565",
+          "k_amount": 2.942991956565e-06,
+          "eth_eq_wei": "3182101446414",
+          "eth_eq": 3.182101446414e-06,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
@@ -5315,17 +5295,17 @@
       "rank": 291
     },
     {
-      "address": "0x7eca0c387b3d07d97f95e9ac3551f1760b8b6c54",
-      "balance_wei": "3182101446414",
-      "balance_eth": 0.00000318,
+      "address": "0xdd10664a1f77c915048908587e6961fbf9d0813e",
+      "balance_wei": "2928988831033",
+      "balance_eth": 2.93e-06,
       "keeperdao_items": [
         {
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
-          "k_amount_wei": "2942991956565",
-          "k_amount": 0.000002942991956565,
-          "eth_eq_wei": "3182101446414",
-          "eth_eq": 0.000003182101446414,
+          "k_amount_wei": "2708898731156",
+          "k_amount": 2.708898731156e-06,
+          "eth_eq_wei": "2928988831033",
+          "eth_eq": 2.928988831033e-06,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
@@ -5333,17 +5313,17 @@
       "rank": 292
     },
     {
-      "address": "0xdd10664a1f77c915048908587e6961fbf9d0813e",
-      "balance_wei": "2928988831033",
-      "balance_eth": 0.00000293,
+      "address": "0x15b8a4acd82326c4a4cd98fbb6f7ad2fc3101b1f",
+      "balance_wei": "1286038957020",
+      "balance_eth": 1.29e-06,
       "keeperdao_items": [
         {
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
-          "k_amount_wei": "2708898731156",
-          "k_amount": 0.000002708898731156,
-          "eth_eq_wei": "2928988831033",
-          "eth_eq": 0.000002928988831033,
+          "k_amount_wei": "1189403408432",
+          "k_amount": 1.189403408432e-06,
+          "eth_eq_wei": "1286038957020",
+          "eth_eq": 1.28603895702e-06,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
@@ -5351,41 +5331,22 @@
       "rank": 293
     },
     {
-      "address": "0x15b8a4acd82326c4a4cd98fbb6f7ad2fc3101b1f",
-      "balance_wei": "1286038957020",
-      "balance_eth": 0.00000129,
-      "keeperdao_items": [
-        {
-          "k_token": "keth",
-          "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
-          "k_amount_wei": "1189403408432",
-          "k_amount": 0.000001189403408432,
-          "eth_eq_wei": "1286038957020",
-          "eth_eq": 0.00000128603895702,
-          "underlying": "ETH",
-          "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
-        }
-      ],
-      "rank": 294
-    },
-    {
       "address": "0x544d2d796e165f0d4c626d1d15667a469a7bffe0",
       "balance_wei": "1142226545170",
-      "balance_eth": 0.00000114,
+      "balance_eth": 1.14e-06,
       "keeperdao_items": [
         {
           "k_token": "keth",
           "k_address": "0xc4c43c78fb32f2c7f8417af5af3b85f090f1d327",
           "k_amount_wei": "1056397349871",
-          "k_amount": 0.000001056397349871,
+          "k_amount": 1.056397349871e-06,
           "eth_eq_wei": "1142226545170",
-          "eth_eq": 0.00000114222654517,
+          "eth_eq": 1.14222654517e-06,
           "underlying": "ETH",
           "underlying_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         }
       ],
-      "rank": 295
+      "rank": 294
     }
-  ],
-  "last_event_refresh": "2026-08-03 11:34:31 UTC"
+  ]
 }

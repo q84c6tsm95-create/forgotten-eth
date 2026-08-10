@@ -1,9 +1,9 @@
 {
   "contract": "0x7ee7ca6e75de79e618e88bdf80d0b1db136b22d0",
   "balance_source": "eth",
-  "contract_eth_balance": 456.239698,
-  "total_eth_in_balances": 455.965193,
-  "addresses_with_balance": 2895,
+  "contract_eth_balance": 454.225669,
+  "total_eth_in_balances": 453.951114,
+  "addresses_with_balance": 2892,
   "coverage_pct": 99.94,
   "scan_date": "2026-07-12 01:42:32 UTC",
   "description": "ETH balances in defunct Switcheo BrokerV2 contract",
@@ -17,8 +17,8 @@
       "total_eth": 230.221095
     },
     "1-10 ETH": {
-      "count": 50,
-      "total_eth": 144.399206
+      "count": 49,
+      "total_eth": 142.399206
     },
     "0.1-1 ETH": {
       "count": 205,
@@ -29,12 +29,13 @@
       "total_eth": 19.372475
     },
     "<0.01 ETH": {
-      "count": 2084,
-      "total_eth": 2.758002
+      "count": 2082,
+      "total_eth": 2.743924
     }
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
   "total_addresses_scanned": 10106,
+  "last_event_refresh": "2026-08-07 09:23:05 UTC",
   "balances": [
     {
       "rank": 1,
@@ -244,7 +245,8 @@
       "rank": 35,
       "address": "0x73a74b1e90c8301813379d7b77a2cfbd90d8b277",
       "balance_wei": "2000000000000000000",
-      "balance_eth": 2
+      "balance_eth": 2,
+      "claimed": true
     },
     {
       "rank": 36,
@@ -5344,8 +5346,9 @@
     {
       "rank": 885,
       "address": "0xa1c78ed146a8693a8cf3d29385bc54cd3f145b4a",
-      "balance_wei": "8964400000000000",
-      "balance_eth": 0.0089644
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 886,
@@ -6473,7 +6476,8 @@
       "rank": 1073,
       "address": "0xea3961eaeb87a30b38cdac3783970dc13d0e94b2",
       "balance_wei": "5114657000000000",
-      "balance_eth": 0.005114657
+      "balance_eth": 0.005114657,
+      "claimed": true
     },
     {
       "rank": 1074,
@@ -17413,6 +17417,5 @@
       "balance_wei": "1",
       "balance_eth": 1e-18
     }
-  ],
-  "last_event_refresh": "2026-08-03 11:34:31 UTC"
+  ]
 }

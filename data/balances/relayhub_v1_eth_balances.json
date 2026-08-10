@@ -1,17 +1,17 @@
 {
   "contract": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
   "balance_source": "eth",
-  "contract_eth_balance": 514.69404505,
-  "total_eth_in_balances": 514.69404505,
+  "contract_eth_balance": 513.54725794,
+  "total_eth_in_balances": 513.54725794,
   "addresses_with_balance": 111,
   "coverage_pct": 100.0,
-  "scan_date": "2026-07-11 12:38:09 UTC",
+  "scan_date": "2026-08-10 10:37:20 UTC",
   "description": "OpenZeppelin's original meta-transaction relay hub (2019). Holds dApp deposits made via depositFor() and accumulated relay-operator fees. Withdraw via withdraw(amount, dest); msg.sender must equal the balance holder.",
   "meta": {
     "withdraw_signature": "withdraw(uint256,address)",
     "withdraw_recipient": "dest arg (caller can self-withdraw with dest=msg.sender)",
-    "contract_total_eth": 517.7940450470014,
-    "mapped_total_eth": 514.6940450470014,
+    "contract_total_eth": 516.647257938935,
+    "mapped_total_eth": 513.547257938935,
     "stake_unmapped_eth": 3.1
   },
   "balances": [
@@ -32,15 +32,6 @@
         "owner"
       ],
       "is_contract": false
-    },
-    {
-      "address": "0x16154f7e9de01e6b39dac3159805e9b1531ee3cf",
-      "balance_wei": "1263552413889212013",
-      "balance_eth": 1.2635524138892118,
-      "roles": [
-        "recipient"
-      ],
-      "is_contract": true
     },
     {
       "address": "0x6a343113c4e58b85585636855a364c12c83bb687",
@@ -133,6 +124,15 @@
       "is_contract": true
     },
     {
+      "address": "0x16154f7e9de01e6b39dac3159805e9b1531ee3cf",
+      "balance_wei": "181364411357767343",
+      "balance_eth": 0.18136441135776732,
+      "roles": [
+        "recipient"
+      ],
+      "is_contract": true
+    },
+    {
       "address": "0xf3f7e999fd26566fa02040d9cd6506ca83d7f9b3",
       "balance_wei": "130000000000000000",
       "balance_eth": 0.13,
@@ -173,15 +173,6 @@
       "address": "0xfca9e7387159d46516f59842fb6c6806e2a18d0a",
       "balance_wei": "100000000000000000",
       "balance_eth": 0.1,
-      "roles": [
-        "recipient"
-      ],
-      "is_contract": true
-    },
-    {
-      "address": "0x5cc3c71a77086875d5d56fb512faae93e8ac9b85",
-      "balance_wei": "87432181857787844",
-      "balance_eth": 0.08743218185778784,
       "roles": [
         "recipient"
       ],
@@ -308,6 +299,15 @@
       "address": "0xe8f0b0ef4ef717f951f113b9ef101a74858bfe7e",
       "balance_wei": "26906720495772365",
       "balance_eth": 0.026906720495772363,
+      "roles": [
+        "recipient"
+      ],
+      "is_contract": true
+    },
+    {
+      "address": "0x5cc3c71a77086875d5d56fb512faae93e8ac9b85",
+      "balance_wei": "22833076322884136",
+      "balance_eth": 0.022833076322884137,
       "roles": [
         "recipient"
       ],

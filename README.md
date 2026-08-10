@@ -6,10 +6,10 @@ Forgotten ETH indexes old Ethereum contracts that still owe users withdrawable E
 
 Current public index:
 
-- 285 tracked recovery contracts
-- 166,666.81 ETH mapped to claimable balances
-- 578,532 addresses with at least one mapped balance
-- 15,306.27 ETH already claimed by 8,746 wallets since launch
+- 290 tracked recovery contracts
+- 168,031.68 ETH mapped to claimable balances
+- 645,569 addresses with at least one mapped balance
+- 17,689.77 ETH already claimed by 9,579 wallets since launch
 
 Totals are generated from [`data/total.json`](data/total.json).
 

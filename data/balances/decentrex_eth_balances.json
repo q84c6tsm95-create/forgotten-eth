@@ -2,8 +2,8 @@
   "contract": "0xbf29685856fae1e228878dfb35b280c0adcc3b05",
   "balance_source": "eth",
   "contract_eth_balance": 33.105017,
-  "total_eth_in_balances": 33.105017,
-  "addresses_with_balance": 549,
+  "total_eth_in_balances": 33.10501709,
+  "addresses_with_balance": 548,
   "coverage_pct": 100,
   "scan_date": "2026-06-21 01:41:11 UTC",
   "description": "ETH balances in defunct Decentrex contract",
@@ -35,6 +35,7 @@
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
   "total_addresses_scanned": 1551,
+  "last_event_refresh": "2026-08-09T16:19:03Z",
   "balances": [
     {
       "rank": 1,
@@ -2111,7 +2112,8 @@
       "rank": 346,
       "address": "0xf1e65cd0b31fcb8713ac1902002b262d57c9da33",
       "balance_wei": "275211942976772",
-      "balance_eth": 0.000275211942976772
+      "balance_eth": 0.000275211942976772,
+      "claimed": true
     },
     {
       "rank": 347,
@@ -3337,6 +3339,5 @@
       "balance_wei": "1",
       "balance_eth": 1e-18
     }
-  ],
-  "last_event_refresh": "2026-06-22 15:23:05 UTC"
+  ]
 }

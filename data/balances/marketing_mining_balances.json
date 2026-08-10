@@ -5,7 +5,7 @@
   "total_eth_in_balances": 0.0,
   "addresses_with_balance": 22,
   "coverage_pct": 0.0,
-  "scan_date": "2026-07-17 19:48:38 UTC",
+  "scan_date": "2026-08-10 10:33:15 UTC",
   "description": "Current userInfo(pid,user) balances for MarketingMining per-pool token withdrawals. Candidate set from corrected Dune Deposit/Withdraw log reconstruction; current RPC state filters already-withdrawn positions.",
   "meta": {
     "candidate_source": "Dune query 7675864 / execution 01KTK9D5KJF1XDEQQK706ZA801",
@@ -112,6 +112,19 @@
       "NFTX": "10000000000000000",
       "SAND": "71000000000000000000"
     }
+  },
+  "contract_token_balances": {
+    "WBTC": "0",
+    "WETH": "100000000000",
+    "USDT": "2123211003",
+    "B20": "8195255591542600257644",
+    "MEME": "2000000",
+    "MUSE": "316538722165780302112",
+    "RARI": "1000410000000000000004",
+    "WHALE": "12807282",
+    "NFTX": "10000000000000000",
+    "MANA": "81000000000000000000",
+    "SAND": "71000000000000000000"
   },
   "balances": [
     {

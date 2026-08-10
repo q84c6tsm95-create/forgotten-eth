@@ -2557,5 +2557,32 @@
     "contract": "0x9abb7bddc43fa67c76a62d8c016513827f59be1b",
     "deployed": "2021",
     "slug": "pownft"
+  },
+  "dydx_solo": {
+    "name": "dYdX Solo Margin",
+    "desc": "dYdX's original Solo Margin contract launched in 2019 as an on-chain lending and margin-trading market for ETH, DAI and USDC. dYdX later moved trading to a StarkEx layer-2 and then to its own Cosmos chain, and the interface that spoke to Solo was retired along the way. The contract itself was never wound down: it still holds the WETH, USDC and DAI its suppliers deposited, all four markets remain solvent, and every supplier balance is still withdrawable by its owner. Balances are held in numbered sub-accounts rather than against a plain address, so one wallet can have several separate positions to recover.",
+    "category": "lending",
+    "color": "#6966ff",
+    "contract": "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e",
+    "deployed": "April 2019",
+    "slug": "dydx-solo"
+  },
+  "uniswap_airdrop": {
+    "name": "Uniswap UNI Airdrop",
+    "desc": "In September 2020 Uniswap distributed UNI to everyone who had used the protocol before that month, through a merkle distributor contract. Claiming requires a merkle proof, and the interface that served those proofs was removed years ago, so the remaining allocations became effectively unreachable even though the contract never expired and was never swept. Around 12.5 million UNI across roughly 31,000 addresses is still sitting in the distributor, claimable today by anyone holding one of those addresses.",
+    "category": "defi",
+    "color": "#ff007a",
+    "contract": "0x090D4613473dEE047c3f2706764f49E0821D256e",
+    "deployed": "September 2020",
+    "slug": "uniswap-airdrop"
+  },
+  "set_protocol": {
+    "name": "Set Protocol (TokenSets)",
+    "desc": "Set Protocol powered TokenSets, an automated portfolio product that ran from 2019 to 2021. Each strategy was an ERC-20 token backed by real collateral held in a shared vault, rebalanced by an on-chain manager. TokenSets shut down its front end and the strategies stopped rebalancing, but the vault still holds the collateral and redemption was never disabled: burning a Set token returns its underlying share, unwrapped straight back to ETH. Holdings are nested \u2014 a wallet holds a rebalancing Set, which holds a collateral Set, which is what actually owns the WETH in the vault.",
+    "category": "defi",
+    "color": "#00b0ff",
+    "contract": "0x5b67871c3a857de81a1ca0f9f7945e5670d986dc",
+    "deployed": "April 2019",
+    "slug": "set-protocol"
   }
 }

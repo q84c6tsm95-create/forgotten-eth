@@ -2,8 +2,8 @@
   "contract": "0x4c29d75cc423e8adaa3839892feb66977e295829",
   "balance_source": "eth",
   "contract_eth_balance": 15.76732109,
-  "total_eth_in_balances": 20.13627692,
-  "addresses_with_balance": 1180,
+  "total_eth_in_balances": 20.13625361,
+  "addresses_with_balance": 1176,
   "coverage_pct": 127.71,
   "scan_date": "2026-03-30 13:15:25 UTC",
   "description": "ETH balances in defunct POOH contract",
@@ -35,7 +35,7 @@
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
   "total_addresses_scanned": 1235,
-  "last_event_refresh": "2026-06-23 22:48:06 UTC",
+  "last_event_refresh": "2026-08-03T16:33:23Z",
   "balances": [
     {
       "rank": 1,
@@ -2310,7 +2310,7 @@
       "rank": 379,
       "address": "0xfd431071c238eddf77f1c049dcf7862d75c0cf19",
       "balance_wei": "29309575282446",
-      "balance_eth": 0.000029309575282446
+      "balance_eth": 0.000006007947698741
     },
     {
       "rank": 380,
@@ -3318,7 +3318,8 @@
       "rank": 547,
       "address": "0x9ca9f4a2c2b476b3279dc976dd3c15bb5b0cbfbf",
       "balance_wei": "102941633308",
-      "balance_eth": 1.02941633308e-7
+      "balance_eth": 1.02941633308e-7,
+      "claimed": true
     },
     {
       "rank": 548,
@@ -3672,7 +3673,8 @@
       "rank": 606,
       "address": "0x22db120459576ee9db8ba925568530e9e0f3d33c",
       "balance_wei": "88392303676",
-      "balance_eth": 8.8392303676e-8
+      "balance_eth": 8.8392303676e-8,
+      "claimed": true
     },
     {
       "rank": 607,
@@ -4608,7 +4610,8 @@
       "rank": 762,
       "address": "0x0496f936b387387e2a310aa412e33a8d12a664d7",
       "balance_wei": "54392175797",
-      "balance_eth": 5.4392175797e-8
+      "balance_eth": 5.4392175797e-8,
+      "claimed": true
     },
     {
       "rank": 763,
@@ -6654,7 +6657,8 @@
       "rank": 1103,
       "address": "0x14a544d46fd6bb6add792feaceb9800277dfdf31",
       "balance_wei": "5999786434",
-      "balance_eth": 5.999786434e-9
+      "balance_eth": 5.999786434e-9,
+      "claimed": true
     },
     {
       "rank": 1104,

@@ -1,10 +1,10 @@
 {
   "contract": "0x4d55f76ce2dbbae7b48661bef9bd144ce0c9091b",
   "balance_source": "eth",
-  "contract_eth_balance": 2510.802239,
-  "total_eth_in_balances": 2510.670119,
-  "addresses_with_balance": 2598,
-  "coverage_pct": 99.99,
+  "contract_eth_balance": 2480.25423855,
+  "total_eth_in_balances": 2561.19111855,
+  "addresses_with_balance": 2597,
+  "coverage_pct": 103.26,
   "scan_date": "2026-04-03 13:09:37 UTC",
   "description": "ETH balances in defunct EnclavesDEX contract",
   "distribution": {
@@ -35,7 +35,7 @@
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
   "total_addresses_scanned": 5340,
-  "last_event_refresh": "2026-08-03 11:34:31 UTC",
+  "last_event_refresh": "2026-08-06T04:18:51Z",
   "balances": [
     {
       "rank": 1,
@@ -95,7 +95,8 @@
       "rank": 9,
       "address": "0xa6eaf3f53e3c74da2a18a9fb602148a448e10492",
       "balance_wei": "30548000000000000000",
-      "balance_eth": 30.548
+      "balance_eth": 30.548,
+      "claimed": true
     },
     {
       "rank": 10,

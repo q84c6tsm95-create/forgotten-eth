@@ -1,9 +1,9 @@
 {
   "contract": "0x3b960e47784150f5a63777201ee2b15253d713e8",
   "balance_source": "token",
-  "contract_eth_balance": 100.12096,
-  "total_eth_in_balances": 100.307476,
-  "addresses_with_balance": 2427,
+  "contract_eth_balance": 100.079383,
+  "total_eth_in_balances": 100.265898,
+  "addresses_with_balance": 2419,
   "coverage_pct": 100.19,
   "scan_date": "2026-05-05 16:03:54 UTC",
   "description": "Opyn's Squeeth Crab Strategy V2 in shutdown state. Each crab token is redeemable for proportional ETH via withdrawShutdown(uint256 _crabAmount).",
@@ -3703,10 +3703,11 @@
     },
     {
       "address": "0x4cb11cc4ce988b40a6c20e798904199519a665fa",
-      "balance_wei": "11284326544893341",
-      "balance_eth": 0.011284326544893341,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "crab_balance_wei": "15586308959382811",
-      "rank": 519
+      "rank": 519,
+      "claimed": true
     },
     {
       "address": "0x654141c8763f799a64063f6f8eece3418426b067",
@@ -3898,10 +3899,11 @@
     },
     {
       "address": "0x64a25c477f0fa97d78fb759a60550007cd1192c6",
-      "balance_wei": "10661374635346932",
-      "balance_eth": 0.010661374635346933,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "crab_balance_wei": "14725865858024511",
-      "rank": 546
+      "rank": 546,
+      "claimed": true
     },
     {
       "address": "0xfa8cfaa45d446d662be05d26c2af19c0f7eccf98",
@@ -4523,10 +4525,11 @@
     },
     {
       "address": "0x6286af178499d6484a689008cb60ed403eea54ee",
-      "balance_wei": "8562128868825303",
-      "balance_eth": 0.008562128868825304,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "crab_balance_wei": "11826313725381776",
-      "rank": 634
+      "rank": 634,
+      "claimed": true
     },
     {
       "address": "0x4d9883713112750a76a680d6bb019c0fd298168f",
@@ -4956,10 +4959,11 @@
     },
     {
       "address": "0xfa4b47d26a8ec5b50c2d118c1d20058e7210512c",
-      "balance_wei": "6023341682032465",
-      "balance_eth": 0.006023341682032465,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "crab_balance_wei": "8319651514034940",
-      "rank": 695
+      "rank": 695,
+      "claimed": true
     },
     {
       "address": "0x4f17e2fe0b2688636282884066f2cbc8b741a1a8",
@@ -7654,10 +7658,11 @@
     },
     {
       "address": "0xca134036a65d3dcc9c241edee916a8e3bdd2f333",
-      "balance_wei": "1619699641232458",
-      "balance_eth": 0.001619699641232458,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "crab_balance_wei": "2237186147460004",
-      "rank": 1079
+      "rank": 1079,
+      "claimed": true
     },
     {
       "address": "0x4d29cc30f2e8f8f498b4303f810ca1ee26257b66",
@@ -8330,10 +8335,11 @@
     },
     {
       "address": "0x69a28644001eca50420ef6b5cb30d886936aedab",
-      "balance_wei": "1212265245446345",
-      "balance_eth": 0.001212265245446345,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "crab_balance_wei": "1674423420935075",
-      "rank": 1175
+      "rank": 1175,
+      "claimed": true
     },
     {
       "address": "0x4e6813e348a1ae46048ff48029ae49c4f9f50c59",
@@ -8435,10 +8441,11 @@
     },
     {
       "address": "0x134ade3f5e771f408bf7ab0a7aeff45364445bcd",
-      "balance_wei": "1195623850001216",
-      "balance_eth": 0.001195623850001216,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "crab_balance_wei": "1651437739876383",
-      "rank": 1190
+      "rank": 1190,
+      "claimed": true
     },
     {
       "address": "0xf34c9e370e43c2da7ba412b9711ed31dfd70021d",
@@ -9080,10 +9087,11 @@
     },
     {
       "address": "0xa1aaa143add0afc056ad50f115cac2a4128adf21",
-      "balance_wei": "1018974855561530",
-      "balance_eth": 0.00101897485556153,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "crab_balance_wei": "1407443931850042",
-      "rank": 1282
+      "rank": 1282,
+      "claimed": true
     },
     {
       "address": "0xfcf4a28b616fab313ad4e516e21359fb5a1f5a5d",
@@ -17840,5 +17848,5 @@
       "rank": 2532
     }
   ],
-  "last_event_refresh": "2026-08-03 11:34:30 UTC"
+  "last_event_refresh": "2026-08-09 19:23:05 UTC"
 }

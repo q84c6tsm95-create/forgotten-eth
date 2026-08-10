@@ -1,10 +1,10 @@
 {
   "contract": "0xDe5D4949F445650325c7C8739610c3A979C7a6db",
   "balance_source": "eth",
-  "contract_eth_balance": 16.3707,
+  "contract_eth_balance": 16.6607,
   "total_eth_in_balances": 16.6038,
   "addresses_with_balance": 64,
-  "coverage_pct": 101.42,
+  "coverage_pct": 99.66,
   "scan_date": "2026-07-06 08:11:53 UTC",
   "description": "ETH balances in defunct PersonaBid contract",
   "distribution": {
@@ -35,6 +35,7 @@
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
   "total_addresses_scanned": 18745,
+  "last_event_refresh": "2026-08-03 11:34:28 UTC",
   "balances": [
     {
       "rank": 1,
@@ -584,6 +585,5 @@
       "last_tx_date": "2024-02",
       "last_tx_hash": "0xc1b8c5938b225053bd794592917b8d28912ce30702274701e033a6ca2473d649"
     }
-  ],
-  "last_event_refresh": "2026-08-03 11:34:28 UTC"
+  ]
 }

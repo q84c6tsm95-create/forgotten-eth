@@ -1,10 +1,10 @@
 {
   "contract": "0xdb4837c9d84315abcde80a865f15178f86db3966",
   "balance_source": "eth",
-  "contract_eth_balance": 2.666477,
-  "total_eth_in_balances": 1.444403,
+  "contract_eth_balance": 2.69205251,
+  "total_eth_in_balances": 1.44440297,
   "addresses_with_balance": 148,
-  "coverage_pct": 54.17,
+  "coverage_pct": 53.65,
   "scan_date": "2026-03-18 14:33:16 UTC",
   "description": "ETH balances in defunct LOCKEDiN contract",
   "distribution": {
@@ -35,6 +35,7 @@
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
   "total_addresses_scanned": 159,
+  "last_event_refresh": "2026-08-03 11:34:30 UTC",
   "balances": [
     {
       "rank": 1,
@@ -931,6 +932,5 @@
       "balance_wei": "5167228",
       "balance_eth": 5.167228e-12
     }
-  ],
-  "last_event_refresh": "2026-08-03 11:34:30 UTC"
+  ]
 }

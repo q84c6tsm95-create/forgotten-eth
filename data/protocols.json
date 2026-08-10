@@ -2167,7 +2167,11 @@
       "MANA",
       "SAND"
     ],
-    "multi_step": true
+    "multi_step": true,
+    "peak_token_amounts": {
+      "WBTC": 59.999,
+      "USDT": 2123.211003
+    }
   },
   {
     "key": "pledge_deposit",
@@ -2364,5 +2368,41 @@
     "balance_source": "token",
     "category": "dex",
     "balance_file": "singularx_fund_eth_balances.json"
+  },
+  {
+    "key": "dydx_solo",
+    "name": "dYdX Solo Margin",
+    "contract": "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e",
+    "balance_source": "token",
+    "category": "lending",
+    "balance_file": "dydx_solo_eth_balances.json",
+    "payout_tokens": [
+      "WETH",
+      "USDC",
+      "DAI",
+      "SAI"
+    ]
+  },
+  {
+    "key": "uniswap_airdrop",
+    "name": "Uniswap UNI Airdrop",
+    "contract": "0x090D4613473dEE047c3f2706764f49E0821D256e",
+    "balance_source": "token",
+    "category": "defi",
+    "balance_file": "uniswap_airdrop_balances.json",
+    "payout_tokens": [
+      "UNI"
+    ]
+  },
+  {
+    "key": "set_protocol",
+    "name": "Set Protocol (TokenSets)",
+    "contract": "0x5b67871c3a857de81a1ca0f9f7945e5670d986dc",
+    "balance_source": "token",
+    "category": "defi",
+    "balance_file": "set_protocol_eth_balances.json",
+    "payout_tokens": [
+      "WETH"
+    ]
   }
 ]

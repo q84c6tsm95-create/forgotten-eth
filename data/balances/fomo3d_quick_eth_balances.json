@@ -1,10 +1,10 @@
 {
   "contract": "0x4e8ecf79ade5e2c49b9e30d795517a81e0bf00b8",
   "balance_source": "eth",
-  "contract_eth_balance": 84.43273,
-  "total_eth_in_balances": 76.317487,
-  "addresses_with_balance": 1835,
-  "coverage_pct": 90.39,
+  "contract_eth_balance": 84.29714,
+  "total_eth_in_balances": 76.230158,
+  "addresses_with_balance": 1832,
+  "coverage_pct": 90.43,
   "scan_date": "2026-07-12 01:42:16 UTC",
   "description": "ETH balances in defunct Fomo3D Quick contract",
   "distribution": {
@@ -25,16 +25,17 @@
       "total_eth": 34.357628
     },
     "0.01-0.1 ETH": {
-      "count": 464,
-      "total_eth": 18.373452
+      "count": 462,
+      "total_eth": 18.28854
     },
     "<0.01 ETH": {
-      "count": 1226,
-      "total_eth": 2.862315
+      "count": 1225,
+      "total_eth": 2.859898
     }
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
   "total_addresses_scanned": 5329,
+  "last_event_refresh": "2026-08-10 10:38:20 UTC",
   "balances": [
     {
       "rank": 1,
@@ -1743,8 +1744,9 @@
     {
       "rank": 285,
       "address": "0x3253df627d18e9e1895b1b8a8b1e6564ad45982c",
-      "balance_wei": "48261505595633522",
-      "balance_eth": 0.048261505595633525
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 286,
@@ -2067,8 +2069,9 @@
     {
       "rank": 339,
       "address": "0xe40e17d79c51da492e2f521edbb6e37ce2c8b86c",
-      "balance_wei": "36650195792229224",
-      "balance_eth": 0.03665019579222922
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 340,
@@ -6210,8 +6213,9 @@
     {
       "rank": 1029,
       "address": "0x8847a63408fe59291c4b2c356ceeb90e084165a6",
-      "balance_wei": "2416787910971340",
-      "balance_eth": 0.00241678791097134
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 1030,
@@ -11088,6 +11092,5 @@
       "balance_wei": "318008109690",
       "balance_eth": 3.1800810969e-7
     }
-  ],
-  "last_event_refresh": "2026-08-03 11:34:30 UTC"
+  ]
 }
