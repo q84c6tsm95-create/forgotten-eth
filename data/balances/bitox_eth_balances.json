@@ -3,7 +3,7 @@
   "balance_source": "eth",
   "contract_eth_balance": 2.24720309,
   "total_eth_in_balances": 2.24848141,
-  "addresses_with_balance": 148,
+  "addresses_with_balance": 147,
   "coverage_pct": 100.06,
   "scan_date": "2026-03-17 22:00:16 UTC",
   "description": "ETH balances in defunct Bitox contract",
@@ -23,7 +23,7 @@
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
   "total_addresses_scanned": 590,
-  "last_event_refresh": "2026-08-03T16:19:24Z",
+  "last_event_refresh": "2026-08-12T22:18:18Z",
   "balances": [
     {
       "rank": 1,
@@ -588,7 +588,8 @@
       "rank": 94,
       "address": "0x32a6c795edfd32208c3b8fc8c98e87d9b154d5f0",
       "balance_wei": "300000000000000",
-      "balance_eth": 0.0003
+      "balance_eth": 0.0003,
+      "claimed": true
     },
     {
       "rank": 95,

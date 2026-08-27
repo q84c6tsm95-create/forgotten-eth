@@ -1,9 +1,9 @@
 {
   "contract": "0xcb47c89cb17c10b719fc5ed9665bae157cac2cb1",
   "balance_source": "eth",
-  "contract_eth_balance": 72.965124,
-  "total_eth_in_balances": 72.828987,
-  "addresses_with_balance": 719,
+  "contract_eth_balance": 72.964492,
+  "total_eth_in_balances": 72.828355,
+  "addresses_with_balance": 718,
   "coverage_pct": 99.81,
   "scan_date": "2026-05-08 10:54:05 UTC",
   "description": "ETH balances in defunct FoMoJP contract",
@@ -29,8 +29,8 @@
       "total_eth": 12.115214
     },
     "<0.01 ETH": {
-      "count": 295,
-      "total_eth": 0.909914
+      "count": 294,
+      "total_eth": 0.909282
     }
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
@@ -3714,8 +3714,9 @@
     {
       "rank": 614,
       "address": "0x9741a82f601938e011597679849abb06bce59baf",
-      "balance_wei": "631936977975922",
-      "balance_eth": 0.000631936977975922
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 615,
@@ -4372,5 +4373,5 @@
       "balance_eth": 1.69200347393e-7
     }
   ],
-  "last_event_refresh": "2026-08-03 11:34:31 UTC"
+  "last_event_refresh": "2026-08-17 20:23:06 UTC"
 }

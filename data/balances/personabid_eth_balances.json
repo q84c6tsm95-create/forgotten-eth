@@ -1,9 +1,9 @@
 {
   "contract": "0xDe5D4949F445650325c7C8739610c3A979C7a6db",
   "balance_source": "eth",
-  "contract_eth_balance": 16.6607,
-  "total_eth_in_balances": 16.6038,
-  "addresses_with_balance": 64,
+  "contract_eth_balance": 16.5607,
+  "total_eth_in_balances": 16.5038,
+  "addresses_with_balance": 63,
   "coverage_pct": 99.66,
   "scan_date": "2026-07-06 08:11:53 UTC",
   "description": "ETH balances in defunct PersonaBid contract",
@@ -21,8 +21,8 @@
       "total_eth": 0
     },
     "0.1-1 ETH": {
-      "count": 59,
-      "total_eth": 16.2288
+      "count": 58,
+      "total_eth": 16.1288
     },
     "0.01-0.1 ETH": {
       "count": 5,
@@ -35,7 +35,7 @@
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
   "total_addresses_scanned": 18745,
-  "last_event_refresh": "2026-08-03 11:34:28 UTC",
+  "last_event_refresh": "2026-08-13 03:23:06 UTC",
   "balances": [
     {
       "rank": 1,
@@ -540,10 +540,11 @@
     {
       "rank": 63,
       "address": "0xefbb11e4b09d48a7ab524ad5bc300f121ace7e9e",
-      "balance_wei": "100000000000000000",
-      "balance_eth": 0.1,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "last_tx_date": "2024-02",
-      "last_tx_hash": "0x5d3a87d05013ea41d7bff7ccb5e49216d6fc81af14eeb6f5e605c21d1c951781"
+      "last_tx_hash": "0x5d3a87d05013ea41d7bff7ccb5e49216d6fc81af14eeb6f5e605c21d1c951781",
+      "claimed": true
     },
     {
       "rank": 64,

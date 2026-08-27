@@ -1,9 +1,9 @@
 {
   "contract": "0xf4c27b8b002389864ac214cb13bfeef4cc5c4e8d",
   "balance_source": "eth",
-  "contract_eth_balance": 43.538388,
-  "total_eth_in_balances": 43.544265,
-  "addresses_with_balance": 141,
+  "contract_eth_balance": 43.534604,
+  "total_eth_in_balances": 43.540481,
+  "addresses_with_balance": 140,
   "coverage_pct": 100.01,
   "scan_date": "2026-03-17 06:05:14 UTC",
   "description": "ETH balances in defunct ETHEN contract",
@@ -29,8 +29,8 @@
       "total_eth": 1.231055
     },
     "<0.01 ETH": {
-      "count": 92,
-      "total_eth": 0.166408
+      "count": 91,
+      "total_eth": 0.162625
     }
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
@@ -436,8 +436,9 @@
     {
       "rank": 67,
       "address": "0x57b00c981363c67b11e07eaa71364bf20e8025fe",
-      "balance_wei": "3784375000000000",
-      "balance_eth": 0.003784375
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 68,
@@ -890,5 +891,5 @@
       "balance_eth": 1e-18
     }
   ],
-  "last_event_refresh": "2026-08-09 17:23:05 UTC"
+  "last_event_refresh": "2026-08-11 19:23:06 UTC"
 }

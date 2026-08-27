@@ -4,23 +4,35 @@
   "token_checked": "0x0000000000000000000000000000000000000000",
   "description": "ETH balances in defunct DiamondDividend contract",
   "scan_date": "2026-03-19 20:32:19 UTC",
-  "contract_eth_balance": "8.595775493817649128",
+  "contract_eth_balance": 8.481723,
   "total_addresses_scanned": 175,
-  "addresses_with_balance": 157,
-  "total_eth_in_balances": 6.431150431179994,
-  "coverage_pct": 74.82,
+  "addresses_with_balance": 155,
+  "total_eth_in_balances": 6.397308,
+  "coverage_pct": 75.42,
   "distribution": {
+    ">=100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
+    "10-100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
+    "1-10 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
     "0.1-1 ETH": {
       "count": 18,
-      "total_eth": 4.464028883566815
+      "total_eth": 4.464028
     },
     "0.01-0.1 ETH": {
-      "count": 40,
-      "total_eth": 1.7981744597682638
+      "count": 39,
+      "total_eth": 1.773348
     },
     "<0.01 ETH": {
-      "count": 99,
-      "total_eth": 0.1689470878449105
+      "count": 98,
+      "total_eth": 0.159933
     }
   },
   "balances": [
@@ -273,8 +285,9 @@
     {
       "rank": 42,
       "address": "0x4a34b1b6b38257211e49a677c58bfd148c58fce9",
-      "balance_wei": "24828520870762915",
-      "balance_eth": "0.024828520870762916"
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 43,
@@ -393,8 +406,9 @@
     {
       "rank": 62,
       "address": "0xa8620ea28324913cf0f8b23bc533781572f2f82f",
-      "balance_wei": "9013578026208613",
-      "balance_eth": "0.009013578026208613"
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 63,
@@ -966,5 +980,6 @@
       "balance_wei": "373",
       "balance_eth": "0.000000000000000373"
     }
-  ]
+  ],
+  "last_event_refresh": "2026-08-10 21:23:06 UTC"
 }

@@ -1,17 +1,17 @@
 {
   "contract": "0xb529964f86fbf99a6aa67f72a27e59fa3fa4feac",
   "balance_source": "eth",
-  "contract_eth_balance": 21.63448273,
-  "total_eth_in_balances": 21.633617,
-  "addresses_with_balance": 97,
+  "contract_eth_balance": 21.63338273,
+  "total_eth_in_balances": 21.632517,
+  "addresses_with_balance": 96,
   "coverage_pct": 100.0,
-  "scan_date": "2026-08-10 10:26:17 UTC",
+  "scan_date": "2026-08-14 16:26:55 UTC",
   "description": "Opyn v1 ETH-collateralized oToken vaults. Vault owners deposited ETH as collateral to write options. After option expiry, vault owners can call redeemVaultBalance() on each oToken contract to reclaim their ETH collateral. The Opyn v1 protocol was superseded by Gamma (v2) in late 2020 and the frontend no longer supports v1.",
   "distribution": {
     "1_plus": 6,
     "0.1_to_1": 14,
     "0.01_to_0.1": 48,
-    "under_0.01": 29
+    "under_0.01": 28
   },
   "otoken_contracts": [
     "0x98cc3bd6af1880fcfda17ac477b2f612980e5e33",
@@ -1059,18 +1059,6 @@
       "rank": 83
     },
     {
-      "address": "0x25ba6badee1ba37df41d2cd23b45649ee7bb9c93",
-      "balance_wei": "1100000000000005",
-      "balance_eth": 0.0011,
-      "positions": [
-        {
-          "otoken": "0x4ba8c6ce0e855c051e65dfc37883360efaf7c82b",
-          "collateral_eth": 0.0011
-        }
-      ],
-      "rank": 84
-    },
-    {
       "address": "0xfe32a37f15ee4a4b59715530e5817d1322b9df80",
       "balance_wei": "892733103240405",
       "balance_eth": 0.000893,
@@ -1080,7 +1068,7 @@
           "collateral_eth": 0.000893
         }
       ],
-      "rank": 85
+      "rank": 84
     },
     {
       "address": "0xfc778fcf3a159f2ef4b9c32f2a05557597955520",
@@ -1092,7 +1080,7 @@
           "collateral_eth": 0.00075
         }
       ],
-      "rank": 86
+      "rank": 85
     },
     {
       "address": "0xabc04058e20c9cba4f360244648fedf30cebc3b4",
@@ -1108,7 +1096,7 @@
           "collateral_eth": 5e-05
         }
       ],
-      "rank": 87
+      "rank": 86
     },
     {
       "address": "0xab1b90932ab0243817b0eb2cea53919d8f249a1e",
@@ -1120,7 +1108,7 @@
           "collateral_eth": 0.0006
         }
       ],
-      "rank": 88
+      "rank": 87
     },
     {
       "address": "0x30904bfe0b4ed1946d86555a461b31ac30e43e19",
@@ -1132,7 +1120,7 @@
           "collateral_eth": 0.00045
         }
       ],
-      "rank": 89
+      "rank": 88
     },
     {
       "address": "0x2da2515c6a37d555121a263db04e1b452ee58c3f",
@@ -1144,7 +1132,7 @@
           "collateral_eth": 0.00045
         }
       ],
-      "rank": 90
+      "rank": 89
     },
     {
       "address": "0x4d8c0dc9f27b5956a4ff3729bb999a716884c1e4",
@@ -1156,7 +1144,7 @@
           "collateral_eth": 0.00025
         }
       ],
-      "rank": 91
+      "rank": 90
     },
     {
       "address": "0x855328ee5e94924cb83b267f25a513c2a2fc3e5e",
@@ -1168,7 +1156,7 @@
           "collateral_eth": 0.00022
         }
       ],
-      "rank": 92
+      "rank": 91
     },
     {
       "address": "0xa00c99f5f955552742f1089ded88abdc74e67bac",
@@ -1180,7 +1168,7 @@
           "collateral_eth": 0.0001
         }
       ],
-      "rank": 93
+      "rank": 92
     },
     {
       "address": "0x3586a4eb36cf07e76ee05b020596bbc2bf06ce63",
@@ -1192,7 +1180,7 @@
           "collateral_eth": 0.0001
         }
       ],
-      "rank": 94
+      "rank": 93
     },
     {
       "address": "0x3e33c96a17462d452cc01e22e7799cc7386ed699",
@@ -1204,7 +1192,7 @@
           "collateral_eth": 0.0001
         }
       ],
-      "rank": 95
+      "rank": 94
     },
     {
       "address": "0xe7be0540916eb95f63004694d97747c0ac29c409",
@@ -1216,7 +1204,7 @@
           "collateral_eth": 0.0001
         }
       ],
-      "rank": 96
+      "rank": 95
     },
     {
       "address": "0x78353498a7c2741d52de5ef45e58bd17148a6297",
@@ -1228,7 +1216,7 @@
           "collateral_eth": 0.0001
         }
       ],
-      "rank": 97
+      "rank": 96
     }
   ]
 }

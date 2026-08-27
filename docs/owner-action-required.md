@@ -120,9 +120,9 @@ These were REJECTED by prior sweeps because the parent project still had a live 
 | Live | Name | Address | Past verdict | New verdict | User-recoverable | Verification |
 |---:|---|---|---|---|---:|---|
 | 2,935.55 WETH | LooksRare FeeSharingSystem | `0xBcD7254A1D759EFA08eC7c3291B2E85c5dCC12ce` | REJECT | **PASS** | 615 WETH | wei-exact ✓ — top staker `harvest()` → +17.0167 WETH |
-| 213.88 ETH | EulerBeats v1 | `0x8754f54074400ce745a7ceddc928fb1b7e985ed6` | REJECT | **PASS** | ~155 ETH | wei-exact ✓ (prior 0.9837 ETH/print verified through PrintingPress wrapper) |
+| 213.88 ETH | EulerBeats v1 | `0x8754f54074400ce745a7ceddc928fb1b7e985ed6` | REJECT | **PASS — wrapper only** | ~155 ETH | wei-exact ✓ re-verified 2026-08-11 at head. **Do not call this contract directly** — see the deep-dive below. |
 | 372.97 ETH | SplitMain V1 | `0x2ed6c4b5da6378c7897ac67ba9e43102feb694ee` | REJECT | **PASS-mechanical** | ~344 ETH | 1,720 user `Withdrawal` events in last 1M blocks — confirmed active user-callable mechanism |
-| 85.24 ETH | EulerBeats v2 | `0xa98771a46dcb34b34cdad5355718f8a97c8e603e` | NEEDS-MORE | PASS-likely | ~85 ETH | `burnPrintEnabled=1`; 189 (addr,tokenId) holdings; needs seed↔tokenId reverse map |
+| 85.24 ETH | EulerBeats v2 | `0xa98771a46dcb34b34cdad5355718f8a97c8e603e` | NEEDS-MORE | PASS-likely | ~85 ETH | `burnPrintEnabled=1` (re-checked 2026-08-11); `burnPrint` clears the gate and fails only on seed validation. No wrapper — users call this contract directly. Still needs seed↔tokenId reverse map |
 | 5,130.08 ETH | TerminalV1 (Juicebox V1) | `0xd569d3cce55b71a8a3f3c418c329a66e5f714431` | REJECT | DEFER | n/a | Mechanically open but project-controversy risk; outreach-only |
 | 744.84 ETH | OxODashboardClaim | `0x02b15c47b4b516a22fd2d8b1fc662afb808a2169` | REJECT | NEEDS-OFFCHAIN | n/a | Merkle-gated; leaves not enumerable on-chain |
 | 551.10 ETH | BlackFortGenesisNFT | `0x6c3197c9f3954b682b0e64b520e6da5fe74fcf8b` | REJECT | REJECT (admin-only) | n/a | Reject stands — was wrongly classified as ponzi but is actually Type B (admin sweep) |
@@ -151,6 +151,79 @@ Wei-exact verification: top staker `0xa33f562b…1adf` (17.0167 WETH pending). `
 The 2,320 WETH delta between contract balance and pending sum is the stranded rewards-accumulator (same X2Y2 pattern: once distribution freezes, the rolling avg over-rewards early stakers; precision loss compounds; ~21% extra is dust permanently locked in the math).
 
 **Recommendation**: integrate as `looksrare_fees`, mirroring the `x2y2_fee_sharing` shape. `balance_source: "token"`, `noWalletCheck: true`, balance via `calculatePendingRewards`, withdraw via `harvest()`.
+
+### EulerBeats v1 — the wrapper is the user path (deep-dive)
+
+**This row is the easiest one in the document to misread, so read this before
+acting on it.** Looking at `EulerBeats` `0x8754f5…5ed6` on its own gives the
+wrong answer:
+
+```
+cast call 0x8754f5...5ed6 "burnPrint(uint256,uint256)" 1 0 --from <holder>
+  → execution reverted: Contract is disabled
+```
+
+`burnPrint` and `mint` both carry `onlyWhenEnabled`, and `_enabled` is a
+**private** bool with no getter (storage slot 7, currently `0x00`). The only
+setter is `setEnabled(bool) onlyOwner`. That is where "the project has to call
+`setEnabled(true)` first" comes from — and it is wrong.
+
+**`owner()` of EulerBeats is not a person. It is a contract**:
+`PrintingPress` `0x8cac485c30641ece09dbeb2b5245e24de4830f27` (verified source).
+Its `burnPrint` is `public nonReentrant` with **no owner gate**, and it flips the
+toggle inside the caller's own transaction:
+
+```solidity
+function burnPrint(uint256 seed, uint256 minimumSupply) public nonReentrant {
+    require(burnEnabled, "Burning is disabled");          // PrintingPress flag, currently TRUE
+    uint startBalance = address(this).balance;
+    IEulerBeats(EulerBeats).safeTransferFrom(msg.sender, address(this), tokenId, 1, hex"");
+    IEulerBeats(EulerBeats).setEnabled(true);             // <-- the wrapper does this, not the team
+    IEulerBeats(EulerBeats).burnPrint(seed, minimumSupply);
+    IEulerBeats(EulerBeats).setEnabled(false);
+    (bool ok, ) = msg.sender.call{value: address(this).balance.sub(startBalance)}("");
+    require(ok, "Refund payment failed");
+}
+```
+
+The EulerBeats contract is *deliberately* left disabled; the deploy comment says
+so outright: "To be functional, this must be set as the owner of the original
+EulerBeats contract, and the EulerBeats contract should be disabled. After that,
+this is the only way to print those fresh beats."
+
+**User path of record** (two txs, no project involvement):
+1. `EulerBeats.setApprovalForAll(0x8cac485c…0f27, true)`
+2. `PrintingPress.burnPrint(seed, 1)`
+
+**Wei-exact re-verification, 2026-08-11 at chain head** (`debug_traceCall` on the
+local archive node, state-override giving a fresh EOA 1 print of token
+`558681818883` + the operator approval, seed `8926004995`):
+
+```
+CALL  PrintingPress                       value=0
+  CALL  EulerBeats (safeTransferFrom)     value=0
+  CALL  EulerBeats (setEnabled true)      value=0
+  CALL  EulerBeats (burnPrint)            value=0
+    CALL  PrintingPress                   value=0.983700000 ETH   <- reserve pays out
+  CALL  EulerBeats (setEnabled false)     value=0
+  CALL  <holder>                          value=0.983700000 ETH   <- holder receives
+```
+
+No revert, no owner transaction. On-chain corroboration at the same block:
+`reserve() = 213.2586 ETH`, contract balance `213.3998 ETH`,
+`totalSupply(558681818883) = 34`, `getBurnPrice(34) = 0.9837 ETH` — the bonding
+curve and the trace agree exactly.
+
+**The real caveat is a live dependency, not an unlock.** `burnEnabled` on
+PrintingPress is owner-settable via `setBurnEnabled(bool)`, owner
+`0x0FCB8eCF48D327d8DA77A92e63BcE07ec17F636D`. It is `true` today, but the team can
+switch the path off at any time without touching EulerBeats itself. Any
+integration must read `PrintingPress.burnEnabled()` at refresh time and treat a
+`false` reading as "path closed", not as a data error.
+
+**Contract holders are also excluded**: the refund is a bare
+`msg.sender.call{value:}("")`, so the `0xfa21807e…f3ed` superholder (a contract
+that rejects ETH) reverts at the final step. EOA holders are unaffected.
 
 ### Why the disqualifier rule was wrong
 
@@ -184,7 +257,7 @@ These are older rejected cases from the bricked-contract scratchpad and score sw
 | 451.32 | MintedTokenCappedCrowdsaleExtv1 | `0xc9d7bd1fad7d5621dda20335818e9575ae07ea03` | Goal was reached; no `claimRefund()`; current multisig contract blocks withdrawal and owner can redirect to an EOA | Owner / TokenMarket operator |
 | 348.24 | DavyJones | `0xaba513097f04d637727fdcda0246636e0d5d6833` | No user ETH withdrawal path; public function swaps held ETH into token baskets and owner controls setup/leftover unwinds | Owner/project |
 | 304.81 | Custodian | `0xe5c405c5578d84c5231d3a9a29ef4374423fa0c2` | Whitelisted exchange/custodian flow, not public depositor withdrawal | Exchange/operator |
-| 295.00 | Kyber reserve contracts | `0x9149c59f087e891b659481ed665768a57247c79e`, `0x773a58c0ae122f56d6747bc1264f00174b3144c3` | `withdraw(token,amount,destination)` is operator/admin gated with approved destinations | Kyber reserve operators |
+| 196.95 | Kyber reserve (dormant) | `0x9149c59f087e891b659481ed665768a57247c79e` | Market-maker reserve inventory, **not user deposits** — there is no depositor cohort to make whole. `withdrawEther(uint,address)` is `onlyAdmin`; `withdraw(token,amount,destination)` is `onlyOperator` + pre-approved destinations. `tradeEnabled=false`, no logs in the last 30 days | Reserve operator (nothing for us to do) |
 | 286.77 | GuildBank | `0x83d0d842e6db3b020f384a2af11bd14787bec8e7` | ETH movement is owner/burner oriented, not a depositor claim path | Owner/burner role |
 | 245.95 | Miner | `0x64356f9e79957fa6d84564fa75f53028799c52de` | `userWithdraw` and `withdraw` are both admin-gated; ETH is operational pool from token swaps | Manager / `userWithdrawAddr` |
 | 193.59 | XifraICO2 | `0x7488451db91df618759b8af15e36f70c0fdd529e` | `withdrawICOFunds()` is permissionless but sends ETH to immutable `xifraWallet`, not investors | Project wallet |
@@ -195,6 +268,18 @@ These are older rejected cases from the bricked-contract scratchpad and score sw
 | 59.64 | ApeToken | `0x22ad3fab750fb53118e4d6aa85343056a736394b` | `claimPresale()` mints tokens only; developer-only `listOnUniswap()` can spend ETH | Developer |
 | 50.00 | EmCandyPool | `0x18639f44f946983bf3413d9b51322d05c29d269e` | Configured queue/admin flow, not public ETH refund | Project queue/admin |
 | 48.30 | RocketSmoothingPool | `0xd4e96ef8eee8678dbff4d535e033ed1a4f7605b7` | Candidate ETH-out functions are gated by `onlyLatestNetworkContract` | Rocket Pool network contract |
+
+> **Scope correction (2026-08-11).** The second Kyber reserve
+> `0x773a58c0ae122f56d6747bc1264f00174b3144c3` has been **removed from this
+> document entirely**. It is not stranded ETH by any reading: `tradeEnabled()` is
+> `true`, it emitted **580 logs in the last 30 days** with the most recent a few
+> minutes before this check, and its balance moves (the 117.75 ETH figure once
+> listed here is now 99.99 ETH — because it is trading). It is live
+> market-making inventory belonging to an operator who is self-evidently aware of
+> it. The remaining row above is kept only as a rejection record: a KyberReserve
+> holds the reserve manager's own capital, so even the dormant one has no user
+> cohort and no "unlock" that would return ETH to anybody but the operator.
+> Neither contract should ever appear in an outreach list.
 
 ### Blocked refund-vault family
 
@@ -228,7 +313,7 @@ These are older rejected cases from the bricked-contract scratchpad and score sw
 ### Outreach mechanics
 
 - Each contract's owner address is on Etherscan (call `owner()` or read storage slot).
-- Many owners will be findable via their public profiles (the contract names are well-known projects: PandaDAO, ForgottenRunes, EulerBeats, etc.).
+- Many owners will be findable via their public profiles (the contract names are well-known projects: PandaDAO, ForgottenRunes, etc.). EulerBeats is **not** an outreach target — its burn path is already open to holders through the PrintingPress wrapper.
 - Standardized template: "Your contract X holds Y ETH that's either user-claimable but paused, or owner-recoverable. We've verified the path on local archive node + Tenderly bundle simulation. Single-tx unblock."
 
 ## Methodology lessons

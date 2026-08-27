@@ -1,10 +1,10 @@
 {
   "contract": "0x9a2d163ab40f88c625fd475e807bbc3556566f80",
   "balance_source": "eth",
-  "contract_eth_balance": 857.4560227,
-  "total_eth_in_balances": 857.42373238,
-  "addresses_with_balance": 4826,
-  "coverage_pct": 100,
+  "contract_eth_balance": 855.096099,
+  "total_eth_in_balances": 857.059135,
+  "addresses_with_balance": 4823,
+  "coverage_pct": 100.23,
   "scan_date": "2026-06-21 01:41:11 UTC",
   "description": "ETH balances in defunct SingularX contract",
   "distribution": {
@@ -21,21 +21,21 @@
       "total_eth": 262.815243
     },
     "0.1-1 ETH": {
-      "count": 476,
-      "total_eth": 155.786021
+      "count": 475,
+      "total_eth": 155.42436
     },
     "0.01-0.1 ETH": {
       "count": 794,
       "total_eth": 30.091498
     },
     "<0.01 ETH": {
-      "count": 3436,
-      "total_eth": 3.584006
+      "count": 3432,
+      "total_eth": 3.581071
     }
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
   "total_addresses_scanned": 7319,
-  "last_event_refresh": "2026-08-03T16:35:04Z",
+  "last_event_refresh": "2026-08-13 09:23:05 UTC",
   "balances": [
     {
       "rank": 1,
@@ -1696,8 +1696,9 @@
     {
       "rank": 277,
       "address": "0x587e8b5f5ad65d81b4e8049bbe63c8e52bd6dec9",
-      "balance_wei": "361664000000000000",
-      "balance_eth": 0.361664
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 278,
@@ -14978,7 +14979,8 @@
       "rank": 2490,
       "address": "0x848ddc306cca2f89630fb759bf6ee0b77784cb84",
       "balance_wei": "724911532818049",
-      "balance_eth": 0.000724911532818049
+      "balance_eth": 0.000724911532818049,
+      "claimed": true
     },
     {
       "rank": 2491,
@@ -17307,7 +17309,8 @@
       "rank": 2878,
       "address": "0x72b6940553ee1c86cfe7951f97948db685b9ed48",
       "balance_wei": "498604149167658",
-      "balance_eth": 0.000498604149167658
+      "balance_eth": 0.000498604149167658,
+      "claimed": true
     },
     {
       "rank": 2879,

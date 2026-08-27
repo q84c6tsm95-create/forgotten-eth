@@ -1,10 +1,10 @@
 {
   "contract": "0x510f9a9642ac14ded91629a1aad552be4b24b5f0",
   "balance_source": "eth",
-  "contract_eth_balance": 20.312507,
-  "total_eth_in_balances": 28.418253,
-  "addresses_with_balance": 339,
-  "coverage_pct": 139.91,
+  "contract_eth_balance": 20.244416,
+  "total_eth_in_balances": 28.350012,
+  "addresses_with_balance": 338,
+  "coverage_pct": 140.04,
   "scan_date": "2026-03-30 13:15:31 UTC",
   "description": "ETH balances in defunct ETHPlatinum contract",
   "distribution": {
@@ -25,8 +25,8 @@
       "total_eth": 12.6348
     },
     "0.01-0.1 ETH": {
-      "count": 88,
-      "total_eth": 3.308271
+      "count": 87,
+      "total_eth": 3.24003
     },
     "<0.01 ETH": {
       "count": 207,
@@ -363,8 +363,9 @@
     {
       "rank": 55,
       "address": "0xf8962efd405aec2208f04cef791eb743ed398069",
-      "balance_wei": "68241274251613198",
-      "balance_eth": 0.0682412742516132
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 56,
@@ -2078,5 +2079,5 @@
       "balance_eth": 6.77764174e-10
     }
   ],
-  "last_event_refresh": "2026-08-03 11:34:31 UTC"
+  "last_event_refresh": "2026-08-14 09:23:07 UTC"
 }

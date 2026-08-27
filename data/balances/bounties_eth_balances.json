@@ -2,11 +2,11 @@
   "contract": "0x2af47a65da8cd66729b4209c22017d6a5c2d2400",
   "balance_source": "token",
   "scan_date": "2026-03-26 22:45:51 UTC",
-  "contract_eth_balance": 89.202304,
+  "contract_eth_balance": 88.752304,
   "total_addresses_scanned": 4555,
-  "addresses_with_balance": 188,
-  "total_eth_in_balances": 86.402304,
-  "coverage_pct": 96.86,
+  "addresses_with_balance": 187,
+  "total_eth_in_balances": 85.952304,
+  "coverage_pct": 96.85,
   "balances": [
     {
       "address": "0x0c54FcCd2e384b4BB6f2E405Bf5Cbc15a017AaFb",
@@ -989,38 +989,12 @@
     },
     {
       "address": "0x4331B095bC38Dc3bCE0A269682b5eBAefa252929",
-      "balance_wei": "450000000000000000",
-      "balance_eth": "0.450000000000000011",
-      "bounty_ids": [
-        40,
-        137,
-        138,
-        148,
-        211
-      ],
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "bounty_ids": [],
       "rank": 46,
-      "bounty_details": [
-        {
-          "id": 40,
-          "eth": 0.09
-        },
-        {
-          "id": 137,
-          "eth": 0.03
-        },
-        {
-          "id": 138,
-          "eth": 0.03
-        },
-        {
-          "id": 148,
-          "eth": 0.1
-        },
-        {
-          "id": 211,
-          "eth": 0.2
-        }
-      ]
+      "bounty_details": [],
+      "claimed": true
     },
     {
       "address": "0x8775A0489bd87c40cd40807B6A9eED145aB84E03",
@@ -3581,5 +3555,5 @@
       ]
     }
   ],
-  "last_event_refresh": "2026-08-03 11:34:31 UTC"
+  "last_event_refresh": "2026-08-19 18:23:06 UTC"
 }

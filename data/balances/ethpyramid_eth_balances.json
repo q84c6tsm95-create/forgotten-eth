@@ -4,27 +4,35 @@
   "token_checked": "0x0000000000000000000000000000000000000000",
   "description": "ETH balances in defunct EthPyramid contract",
   "scan_date": "2026-04-03 13:29:37 UTC",
-  "contract_eth_balance": "27.917524876128450287",
+  "contract_eth_balance": 27.843828,
   "total_addresses_scanned": 1616,
-  "addresses_with_balance": 417,
-  "total_eth_in_balances": 20.10740092352003,
-  "coverage_pct": 72.02,
+  "addresses_with_balance": 414,
+  "total_eth_in_balances": 20.033703,
+  "coverage_pct": 71.95,
   "distribution": {
+    ">=100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
+    "10-100 ETH": {
+      "count": 0,
+      "total_eth": 0
+    },
     "1-10 ETH": {
       "count": 2,
-      "total_eth": 5.20073683709494
+      "total_eth": 5.200737
     },
     "0.1-1 ETH": {
       "count": 34,
-      "total_eth": 7.903841867286465
+      "total_eth": 7.903844
     },
     "0.01-0.1 ETH": {
-      "count": 172,
-      "total_eth": 6.46801029181884
+      "count": 170,
+      "total_eth": 6.400593
     },
     "<0.01 ETH": {
-      "count": 209,
-      "total_eth": 0.5348119273198031
+      "count": 208,
+      "total_eth": 0.528532
     }
   },
   "balances": [
@@ -535,8 +543,9 @@
     {
       "rank": 85,
       "address": "0x4c5472116fe8fdc491428899aa7F3b2d8e631896",
-      "balance_wei": "49173089899262894",
-      "balance_eth": "0.049173089899262896"
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 86,
@@ -985,8 +994,9 @@
     {
       "rank": 160,
       "address": "0x524cB61B52414A8413E6edeC12891B11f71a711d",
-      "balance_wei": "18240084264873033",
-      "balance_eth": "0.018240084264873033"
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 161,
@@ -1423,8 +1433,9 @@
     {
       "rank": 233,
       "address": "0x4aE50051b8dc10d8501041e2EEa93341DB29B52c",
-      "balance_wei": "6284344482286268",
-      "balance_eth": "0.006284344482286268"
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "rank": 234,
@@ -2530,5 +2541,6 @@
       "balance_wei": "1",
       "balance_eth": "0.000000000000000001"
     }
-  ]
+  ],
+  "last_event_refresh": "2026-08-18 18:23:05 UTC"
 }

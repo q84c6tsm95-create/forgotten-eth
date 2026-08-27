@@ -1,19 +1,37 @@
 {
   "contract": "0x899f9a0440face1397a1ee1e3f6bf3580a6633d1",
   "balance_source": "token",
-  "contract_eth_balance": 206.25375278,
-  "total_eth_in_balances": 195.61891602,
+  "contract_eth_balance": 205.844624,
+  "total_eth_in_balances": 195.618916,
   "addresses_with_balance": 75,
-  "coverage_pct": 94.84,
-  "scan_date": "2026-08-10 10:26:45 UTC",
+  "coverage_pct": 95.03,
+  "scan_date": "2026-08-14 16:27:22 UTC",
   "description": "Delphi's 2017 token redemption contract lets DEL holders approve the redemption contract and call redeemTokens(uint256), burning DEL for native ETH at a fixed 1/2410 ETH per DEL rate.",
   "distribution": {
-    ">=100 ETH": 1,
-    "10-100 ETH": 0,
-    "1-10 ETH": 17,
-    "0.1-1 ETH": 28,
-    "0.01-0.1 ETH": 16,
-    "<0.01 ETH": 13
+    ">=100 ETH": {
+      "count": 1,
+      "total_eth": 134.004979
+    },
+    "10-100 ETH": {
+      "count": 0,
+      "total_eth": 0.0
+    },
+    "1-10 ETH": {
+      "count": 17,
+      "total_eth": 50.219089
+    },
+    "0.1-1 ETH": {
+      "count": 28,
+      "total_eth": 10.650082
+    },
+    "0.01-0.1 ETH": {
+      "count": 16,
+      "total_eth": 0.726209
+    },
+    "<0.01 ETH": {
+      "count": 13,
+      "total_eth": 0.018556
+    }
   },
   "meta": {
     "token": "0x02b9806a64cb05f02aa8dcc1c178b88159a61304",
@@ -553,5 +571,6 @@
       "token_balance_raw": "360000000000000",
       "token_symbol": "DEL"
     }
-  ]
+  ],
+  "last_event_refresh": "2026-08-16 02:23:05 UTC"
 }

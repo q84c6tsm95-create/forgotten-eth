@@ -5,7 +5,7 @@
   "total_eth_in_balances": 274.15681729,
   "addresses_with_balance": 370,
   "coverage_pct": 100.0,
-  "scan_date": "2026-08-10 10:26:16 UTC",
+  "scan_date": "2026-08-14 16:26:53 UTC",
   "distribution": {
     ">=10 ETH": 4,
     "1-10 ETH": 41,
@@ -1476,6 +1476,10 @@
       "address": "0x36c4e39f8f0d492e10a4885285ae90b55ea3d8db",
       "balance_wei": "35304936756278328",
       "balance_eth": 0.03530494,
+      "pending_min_cycle": 434,
+      "pending_amount_wei": "35304936756278328",
+      "pending_amount_eth": 0.03530494,
+      "ready": false,
       "rank": 204
     },
     {

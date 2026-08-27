@@ -1,9 +1,9 @@
 {
   "contract": "0xaA7427D8f17D87a28F5e1ba3aDBB270bAdbe1011",
   "balance_source": "eth",
-  "contract_eth_balance": 949.784207,
-  "total_eth_in_balances": 949.784207,
-  "addresses_with_balance": 346,
+  "contract_eth_balance": 931.490271,
+  "total_eth_in_balances": 931.490271,
+  "addresses_with_balance": 345,
   "coverage_pct": 100,
   "scan_date": "2026-06-21 01:41:19 UTC",
   "description": "ETH balances in defunct Ethfinex Trustless contract",
@@ -13,8 +13,8 @@
       "total_eth": 560.673464
     },
     "10-100 ETH": {
-      "count": 8,
-      "total_eth": 291.174297
+      "count": 7,
+      "total_eth": 272.880361
     },
     "1-10 ETH": {
       "count": 25,
@@ -93,10 +93,11 @@
     {
       "rank": 8,
       "address": "0x308c4a67eb1480e739cfc18d0fd8805c55dd8402",
-      "balance_wei": "18293935748238971444",
-      "balance_eth": 18.293935748238972,
+      "balance_wei": "0",
+      "balance_eth": 0,
       "last_tx_date": "2018-12",
-      "last_tx_hash": "0x912a298b53d17460e89edaf0853db3821f63903040a42c29782795cd8343740e"
+      "last_tx_hash": "0x912a298b53d17460e89edaf0853db3821f63903040a42c29782795cd8343740e",
+      "claimed": true
     },
     {
       "rank": 9,
@@ -2822,5 +2823,5 @@
       "last_tx_hash": "0x3ece93e2af75ba490126e973143567166effe7efca6eecb1b243cf7a6a0ef4e6"
     }
   ],
-  "last_event_refresh": "2026-08-05 13:23:05 UTC"
+  "last_event_refresh": "2026-08-18 05:23:05 UTC"
 }

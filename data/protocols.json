@@ -2404,5 +2404,14 @@
     "payout_tokens": [
       "WETH"
     ]
+  },
+  {
+    "key": "aimbot",
+    "name": "AimBot",
+    "contract": "0x0c48250eb1f29491f1efbeec0261eb556f0973c7",
+    "balance_source": "token",
+    "category": "token",
+    "balance_file": "aimbot_eth_balances.json",
+    "multi_step": true
   }
 ]

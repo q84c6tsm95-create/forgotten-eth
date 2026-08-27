@@ -1,17 +1,17 @@
 {
   "contract": "0xA2F987A546D4CD1c607Ee8141276876C26b72Bdf",
   "balance_source": "eth",
-  "contract_eth_balance": 815.75493566,
-  "total_eth_in_balances": 234.12176234,
-  "addresses_with_balance": 300,
-  "coverage_pct": 28.7,
-  "scan_date": "2026-08-10 10:37:45 UTC",
-  "description": "bETH (bonded ETH) holders on Ethereum for the Lido AnchorVault, redeemable 1:1 for stETH via withdraw(beth, version, recipient) \u2014 no approval needed (vault holds the bETH burner role). Amounts are stETH-denominated (~1:1 with ETH). Non-claimable holders (Wormhole bridge, exchanges, other contracts) are excluded.",
+  "contract_eth_balance": 815.86292,
+  "total_eth_in_balances": 233.985987,
+  "addresses_with_balance": 298,
+  "coverage_pct": 28.68,
+  "scan_date": "2026-08-14 16:38:30 UTC",
+  "description": "bETH (bonded ETH) holders on Ethereum for the Lido AnchorVault, redeemable 1:1 for stETH via withdraw(beth, version, recipient) — no approval needed (vault holds the bETH burner role). Amounts are stETH-denominated (~1:1 with ETH). Non-claimable holders (Wormhole bridge, exchanges, other contracts) are excluded.",
   "meta": {
     "token_checked": "0x707F9118e33A9B8998beA41dd0d46f38bb963FC8",
     "payout_token": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
-    "vault_steth_balance": 815.754936,
-    "beth_total_supply": 1086.4107814896952,
+    "vault_steth_balance": 815.90014,
+    "beth_total_supply": 1086.3122264896951,
     "claim_function": "withdraw(uint256,uint256,address)"
   },
   "balances": [
@@ -173,17 +173,17 @@
     {
       "address": "0x811b5da4f4355938e5ac89c9102fa5d9ad6eac95",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0
+      "balance_eth": 1
     },
     {
       "address": "0x01e68ea97ae3136db56fb22cd0ac44f51c6a27c8",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0
+      "balance_eth": 1
     },
     {
       "address": "0x7c912d504df9ab74082b05db80aa57df29ace11f",
       "balance_wei": "1000000000000000000",
-      "balance_eth": 1.0
+      "balance_eth": 1
     },
     {
       "address": "0x68366e5822d4659d2f2a1817eda54810f1fbec02",
@@ -661,11 +661,6 @@
       "balance_eth": 0.099548
     },
     {
-      "address": "0xdd974d0ad964cb688bdaa213f3a2bd18ce2006d7",
-      "balance_wei": "98554999999999999",
-      "balance_eth": 0.098555
-    },
-    {
       "address": "0x250632378e573c6be1ac2f97fcdf00515d0aa91b",
       "balance_wei": "96525000000000000",
       "balance_eth": 0.096525
@@ -837,8 +832,9 @@
     },
     {
       "address": "0xab6a2efb647bedf2776ba5a3f94afcaa3d855101",
-      "balance_wei": "37220000000000000",
-      "balance_eth": 0.03722
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "claimed": true
     },
     {
       "address": "0x6e37cd9f13245a552e35ad1ee65a1ff9b325dd4a",
@@ -1438,82 +1434,83 @@
     {
       "address": "0xa1bfdb3c373a4452676a68feda4ba98c481611a2",
       "balance_wei": "85000000000000",
-      "balance_eth": 8.5e-05
+      "balance_eth": 0.000085
     },
     {
       "address": "0x0a4d5590f3619b119e93c4e5fac9e983d6b63d75",
       "balance_wei": "83000000000000",
-      "balance_eth": 8.3e-05
+      "balance_eth": 0.000083
     },
     {
       "address": "0x9a7b7a6ffee647a6b137bd2d9532bb1d92aab8cb",
       "balance_wei": "27000000000000",
-      "balance_eth": 2.7e-05
+      "balance_eth": 0.000027
     },
     {
       "address": "0x8cc267eea0585f2b1c0c4aef864edbde13e45186",
       "balance_wei": "14999986333755",
-      "balance_eth": 1.4999986333755e-05
+      "balance_eth": 0.000014999986333755
     },
     {
       "address": "0x0fd845e234d0fc9bd661b69d78099d2fe8c6952a",
       "balance_wei": "12000000000000",
-      "balance_eth": 1.2e-05
+      "balance_eth": 0.000012
     },
     {
       "address": "0x430805b37bec4facd39f4bc77c12679a05781a01",
       "balance_wei": "11000000000000",
-      "balance_eth": 1.1e-05
+      "balance_eth": 0.000011
     },
     {
       "address": "0x10a61ad8032891d497e3e233d043d27126476ff4",
       "balance_wei": "10000000000000",
-      "balance_eth": 1e-05
+      "balance_eth": 0.00001
     },
     {
       "address": "0xece27b29e59550846cb9ac9117e103ed92c63504",
       "balance_wei": "7340883729409",
-      "balance_eth": 7.340883729409e-06
+      "balance_eth": 0.000007340883729409
     },
     {
       "address": "0xc9c6cc17a8fcd3bc25a127b5d08a3afada4b5044",
       "balance_wei": "7220000000000",
-      "balance_eth": 7.22e-06
+      "balance_eth": 0.00000722
     },
     {
       "address": "0xd465b039188dd054ab0eb5d46506871888bc49f3",
       "balance_wei": "4000000000000",
-      "balance_eth": 4e-06
+      "balance_eth": 0.000004
     },
     {
       "address": "0xa6fe554211e33433b510dfdbdc63fde85db74417",
       "balance_wei": "3000000000000",
-      "balance_eth": 3e-06
+      "balance_eth": 0.000003
     },
     {
       "address": "0x28060dcbf0ce053473434bef98cd4ea60941523a",
       "balance_wei": "990000000000",
-      "balance_eth": 9.9e-07
+      "balance_eth": 9.9e-7
     },
     {
       "address": "0x4314de05e64987ff389e6f14452b719fd1febf75",
       "balance_wei": "610000000000",
-      "balance_eth": 6.1e-07
+      "balance_eth": 6.1e-7
     },
     {
       "address": "0x4f82e73edb06d29ff62c91ec8f5ff06571bdeb29",
       "balance_wei": "26540928785",
-      "balance_eth": 2.6540928785e-08
+      "balance_eth": 2.6540928785e-8
     },
     {
       "address": "0xe66d9567958139ece7a95a683229a24798afaacc",
       "balance_wei": "10000000000",
-      "balance_eth": 1e-08
+      "balance_eth": 1e-8
     },
     {
       "address": "0x9e12b3685f14e7d9e599c576206fff5f6ad016ed",
       "balance_wei": "6",
       "balance_eth": 6e-18
     }
-  ]
+  ],
+  "last_event_refresh": "2026-08-16 15:23:05 UTC"
 }

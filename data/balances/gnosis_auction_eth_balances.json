@@ -5,7 +5,7 @@
   "total_eth_in_balances": 235.04652118,
   "addresses_with_balance": 97,
   "coverage_pct": 99.2,
-  "scan_date": "2026-08-10 10:37:45 UTC",
+  "scan_date": "2026-08-14 16:38:30 UTC",
   "description": "Gnosis EasyAuction unclaimed WETH refunds. Users placed bids (sellAmount WETH) that cleared below the auction price and were not filled; the WETH is refundable via claimFromParticipantOrder. The gnosis-auction UI is dead; the contract is immutable with no deadline. Per-user balance is the exact WETH refund from simulating claimFromParticipantOrder via eth_call.",
   "meta": {
     "claim_function": "claimFromParticipantOrder(uint256,bytes32[])",

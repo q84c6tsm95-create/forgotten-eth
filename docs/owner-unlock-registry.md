@@ -102,9 +102,8 @@ Not single-owner-key unlocks (governance, dead dependency, operator custody). Re
 | Custodian | [0xe5c4…a0c2](https://etherscan.io/address/0xe5c405c5578d84c5231d3a9a29ef4374423fa0c2) | 304.81 | operator `0xb2d3…f451` (storage) | Whitelisted custodian flow |
 | GuildBank | [0x83d0…c8e7](https://etherscan.io/address/0x83d0d842e6db3b020f384a2af11bd14787bec8e7) | 283.01 | owner `0xf2b8…500a` | Owner/burner-oriented, not depositor claim |
 | Miner | [0x6435…52de](https://etherscan.io/address/0x64356f9e79957fa6d84564fa75f53028799c52de) | 245.95 | owner `0x2aaf…a841` | `withdraw`/`userWithdraw` both admin-gated |
-| Kyber reserve A | [0x9149…c79e](https://etherscan.io/address/0x9149c59f087e891b659481ed665768a57247c79e) | 196.95 | admin `0xef94…c8a7` | `withdraw` operator-gated to approved destinations |
+| Kyber reserve (dormant) | [0x9149…c79e](https://etherscan.io/address/0x9149c59f087e891b659481ed665768a57247c79e) | 196.95 | admin `0xef94…c8a7` | Market-maker inventory, not user deposits — no depositor cohort exists. `tradeEnabled=false`. Record only; never outreach |
 | XifraICO2 | [0x7488…529e](https://etherscan.io/address/0x7488451db91df618759b8af15e36f70c0fdd529e) | 193.59 | fixed `xifraWallet` recipient | `withdrawICOFunds()` sends to immutable `xifraWallet` |
-| Kyber reserve B | [0x773a…44c3](https://etherscan.io/address/0x773a58c0ae122f56d6747bc1264f00174b3144c3) | 117.75 | admin `0x02ce…ba633` | As reserve A |
 | NativeOFT | [0x4f7a…b38e](https://etherscan.io/address/0x4f7a67464b5976d7547c860109e4432d50afb38e) | 68.59 | owner `0x707e…6bca` | LayerZero bridge wrapper; ETH backs OFT accounting |
 | ApeToken | [0x22ad…394b](https://etherscan.io/address/0x22ad3fab750fb53118e4d6aa85343056a736394b) | 59.64 | admin `0x22f6…760f` | `claimPresale()` mints tokens; only dev spends ETH |
 | EmCandyPool | [0x1863…269e](https://etherscan.io/address/0x18639f44f946983bf3413d9b51322d05c29d269e) | 50.00 | admin `0x06a6…e5ee` (storage) | Queue/admin flow, not public refund |

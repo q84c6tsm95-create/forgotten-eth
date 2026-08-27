@@ -1,27 +1,27 @@
 {
   "contract": "0xe1ee8d4c5dba1c221840c08f6cf42154435b9d52",
   "balance_source": "weth",
-  "contract_eth_balance": 267.58235661,
-  "total_eth_in_balances": 266.610492,
-  "addresses_with_balance": 185,
-  "coverage_pct": 99.64,
-  "scan_date": "2026-08-10 10:26:19 UTC",
+  "contract_eth_balance": 262.50738874,
+  "total_eth_in_balances": 261.535535,
+  "addresses_with_balance": 184,
+  "coverage_pct": 99.63,
+  "scan_date": "2026-08-14 16:26:56 UTC",
   "description": "UMA ExpiringMultiParty (EMP) contracts held WETH as collateral for synthetic tokens. After expiry, sponsors call settleExpired() to reclaim excess collateral. The UMA v1 frontend no longer supports these contracts \u2014 remaining WETH is claimable directly onchain.",
   "distribution": {
-    "1_plus": 15,
+    "1_plus": 14,
     "0.1_to_1": 29,
     "0.01_to_0.1": 38,
     "under_0.01": 103
   },
-  "canonical_emp": "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
+  "canonical_emp": "0xfa3aa7ee08399a4ce0b4921c85ab7d645ccac669",
   "factory_contract": "0xddfc7e3b4531158acf4c7a5d2c3cd3bb8c189413",
   "emp_contracts": [
-    "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
-    "0xeaa081a9fad4607cdf046fea7d4bf3dfef533282",
-    "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
-    "0x516f595978d87b67401dab7afd8555c3d28a3af4",
     "0xfa3aa7ee08399a4ce0b4921c85ab7d645ccac669",
-    "0xe1ee8d4c5dba1c221840c08f6cf42154435b9d52"
+    "0xe1ee8d4c5dba1c221840c08f6cf42154435b9d52",
+    "0xeaa081a9fad4607cdf046fea7d4bf3dfef533282",
+    "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
+    "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
+    "0x516f595978d87b67401dab7afd8555c3d28a3af4"
   ],
   "uma_emp_multi": true,
   "balances": [
@@ -102,20 +102,6 @@
       "rank": 5
     },
     {
-      "address": "0x8655392fb3a5d39b456115e2f85452b69e8a2d04",
-      "balance_wei": "5074957061494901672",
-      "balance_eth": 5.074957,
-      "positions": [
-        {
-          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
-          "claimable_eth": 5.074957,
-          "raw_collateral": "6333000000000000000",
-          "tokens_outstanding": "931504800000000000000"
-        }
-      ],
-      "rank": 6
-    },
-    {
       "address": "0xb0258532208959e2f4e890678c24fc8c29a6f414",
       "balance_wei": "2973425341356308972",
       "balance_eth": 2.973425,
@@ -127,7 +113,7 @@
           "tokens_outstanding": "775000000000000000000"
         }
       ],
-      "rank": 7
+      "rank": 6
     },
     {
       "address": "0xb547db62f54f55be59177a78250bfe0aa3d1180f",
@@ -135,19 +121,19 @@
       "balance_eth": 2.516828,
       "positions": [
         {
-          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
-          "claimable_eth": 0.849731,
-          "raw_collateral": "0",
-          "tokens_outstanding": "0"
-        },
-        {
           "emp": "0xe1ee8d4c5dba1c221840c08f6cf42154435b9d52",
           "claimable_eth": 1.667097,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
+        },
+        {
+          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
+          "claimable_eth": 0.849731,
+          "raw_collateral": "0",
+          "tokens_outstanding": "0"
         }
       ],
-      "rank": 8
+      "rank": 7
     },
     {
       "address": "0x7e1feb23c08bfe287f6d3350281029af0889502a",
@@ -167,7 +153,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 9
+      "rank": 8
     },
     {
       "address": "0x58dc922892db192612bd8eebe8f7f43e9cff269a",
@@ -187,7 +173,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 10
+      "rank": 9
     },
     {
       "address": "0x683a78ba1f6b25e29fbbc9cd1bfa29a51520de84",
@@ -207,7 +193,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 11
+      "rank": 10
     },
     {
       "address": "0xafab0803bbb480b133c1dc71c383acca925b71c5",
@@ -227,7 +213,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 12
+      "rank": 11
     },
     {
       "address": "0xe500e8b42851f3541744f8bb8373913b3586be15",
@@ -247,7 +233,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 13
+      "rank": 12
     },
     {
       "address": "0xf1ee1f3c5b4fc684d50b61c458341a73abd63b1d",
@@ -261,7 +247,7 @@
           "tokens_outstanding": "681592900000000000000"
         }
       ],
-      "rank": 14
+      "rank": 13
     },
     {
       "address": "0x7964f133d828eee2ed9f48f41bf2d867caafe902",
@@ -275,7 +261,7 @@
           "tokens_outstanding": "319929296059805550613"
         }
       ],
-      "rank": 15
+      "rank": 14
     },
     {
       "address": "0x6601bedd6bc70774810245fdef8a450205ce924c",
@@ -289,7 +275,7 @@
           "tokens_outstanding": "188405800000000000000"
         }
       ],
-      "rank": 16
+      "rank": 15
     },
     {
       "address": "0x3fdcf1ef8578312eed34ed5dc4c27f2dace7a659",
@@ -303,7 +289,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 17
+      "rank": 16
     },
     {
       "address": "0x7d6ba1a14a2729fa5927e5dd5342c15d586e3be8",
@@ -329,7 +315,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 18
+      "rank": 17
     },
     {
       "address": "0x58484d31a2dc3f84290ff7d50c5bf9d59c264cfb",
@@ -343,7 +329,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 19
+      "rank": 18
     },
     {
       "address": "0x2d381e0b7a50790269852882db59aa2b05ce50b7",
@@ -357,7 +343,7 @@
           "tokens_outstanding": "7462500000000000000"
         }
       ],
-      "rank": 20
+      "rank": 19
     },
     {
       "address": "0xe402e758fb2258527bb470bd5e0472553fe2799f",
@@ -371,7 +357,7 @@
           "tokens_outstanding": "241140632540470000000"
         }
       ],
-      "rank": 21
+      "rank": 20
     },
     {
       "address": "0x23473f57584b645db1e3a65c0d0908f6524948dc",
@@ -385,7 +371,7 @@
           "tokens_outstanding": "168000000000000000000"
         }
       ],
-      "rank": 22
+      "rank": 21
     },
     {
       "address": "0x3dec8615597d28b9c1bf177e3b30b3a444231261",
@@ -399,7 +385,7 @@
           "tokens_outstanding": "110000000000000000000"
         }
       ],
-      "rank": 23
+      "rank": 22
     },
     {
       "address": "0x9c1ead3dcebffc5efb5826b64ec63fdb7bf2dfc1",
@@ -419,7 +405,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 24
+      "rank": 23
     },
     {
       "address": "0x1eccd61c9fa53a8d2e823a26cd72a7efd7d0e92e",
@@ -433,7 +419,7 @@
           "tokens_outstanding": "100000000000000000000"
         }
       ],
-      "rank": 25
+      "rank": 24
     },
     {
       "address": "0x4b502a08bc54c05772b2c63469e366c2e78459ed",
@@ -447,7 +433,7 @@
           "tokens_outstanding": "111457800000000000000"
         }
       ],
-      "rank": 26
+      "rank": 25
     },
     {
       "address": "0xa69d317c00dfaf4b77e1d26f11c23913f837219a",
@@ -461,7 +447,7 @@
           "tokens_outstanding": "101000000000000000000"
         }
       ],
-      "rank": 27
+      "rank": 26
     },
     {
       "address": "0xc4c69760cad701b9280217fad51cb81bf7d5cd01",
@@ -481,7 +467,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 28
+      "rank": 27
     },
     {
       "address": "0xcbc306d7b7c6e711e0cf43e3a154ba473a79b382",
@@ -501,7 +487,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 29
+      "rank": 28
     },
     {
       "address": "0x134679b16a6e59a8d3417b4777accea0fe7937ea",
@@ -515,7 +501,7 @@
           "tokens_outstanding": "192639900000000000000"
         }
       ],
-      "rank": 30
+      "rank": 29
     },
     {
       "address": "0xe8700eefb99f9b2a0f5928b59860c262de1f13ff",
@@ -529,7 +515,7 @@
           "tokens_outstanding": "121964700000000000000"
         }
       ],
-      "rank": 31
+      "rank": 30
     },
     {
       "address": "0x7159ad356cddc87d82dbf0888896e3542f45de6b",
@@ -543,7 +529,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 32
+      "rank": 31
     },
     {
       "address": "0x522fac0d00edeaaf3b004b336301840e8fd4823e",
@@ -557,7 +543,7 @@
           "tokens_outstanding": "100007600000000000000"
         }
       ],
-      "rank": 33
+      "rank": 32
     },
     {
       "address": "0x6f3f5e5cf74fd4abddebc118b128eb6e290c483d",
@@ -577,7 +563,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 34
+      "rank": 33
     },
     {
       "address": "0x2ff36fdcfff6d30ddb9ff57b6620a61c79d389c8",
@@ -591,7 +577,7 @@
           "tokens_outstanding": "100000000000000000000"
         }
       ],
-      "rank": 35
+      "rank": 34
     },
     {
       "address": "0xb0796f5bba95dff18fb1de01d44e48d4d0df5118",
@@ -605,7 +591,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 36
+      "rank": 35
     },
     {
       "address": "0x37bf78fa8853cee7df39280e70e38f3e163e44c4",
@@ -619,7 +605,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 37
+      "rank": 36
     },
     {
       "address": "0x021daee385bd0acb6d72c05b03abc1bc81f64970",
@@ -639,7 +625,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 38
+      "rank": 37
     },
     {
       "address": "0xf0f32c3c8def7b43caa14fed5752abc5381c8374",
@@ -653,7 +639,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 39
+      "rank": 38
     },
     {
       "address": "0x65351180a6608c40cbbf0b6383478df57e572d55",
@@ -667,7 +653,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 40
+      "rank": 39
     },
     {
       "address": "0xd08217fae4dd5a66797091ac9ef8c42f85c263f1",
@@ -681,7 +667,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 41
+      "rank": 40
     },
     {
       "address": "0xc806a568ea0c7adc17b40962776116a645d4ff76",
@@ -695,7 +681,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 42
+      "rank": 41
     },
     {
       "address": "0x58eb8639ec045b98ab957191809015540691e020",
@@ -709,7 +695,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 43
+      "rank": 42
     },
     {
       "address": "0x5e065d534d1daaf9e6222afa1d09e7dac6cbd0f7",
@@ -723,7 +709,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 44
+      "rank": 43
     },
     {
       "address": "0x85d74963e011088e8facd733867cef9e92df5d1a",
@@ -737,7 +723,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 45
+      "rank": 44
     },
     {
       "address": "0xd2f574637898526fcddfb3d487cc73c957fa0268",
@@ -751,7 +737,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 46
+      "rank": 45
     },
     {
       "address": "0x12d7741b5e5fa714432f6ed7c155247ba68e79be",
@@ -765,7 +751,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 47
+      "rank": 46
     },
     {
       "address": "0x7f868e6262a46a27b9b990a01413cdf6d7b2d31c",
@@ -779,7 +765,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 48
+      "rank": 47
     },
     {
       "address": "0x84434e27bea0ef8da280ac30cad45e4f7c7f696b",
@@ -793,7 +779,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 49
+      "rank": 48
     },
     {
       "address": "0x11ededebf63bef0ea2d2d071bdf88f71543ec6fb",
@@ -807,7 +793,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 50
+      "rank": 49
     },
     {
       "address": "0x683ea972ffa19b7bad6d6be0440e0a8465dba71c",
@@ -821,7 +807,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 51
+      "rank": 50
     },
     {
       "address": "0x7eb9d67f9daea510399a1ee978b36e66626058d3",
@@ -835,7 +821,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 52
+      "rank": 51
     },
     {
       "address": "0x8b85d820e1eb1e641154c7bf01f91fdd966cc587",
@@ -849,7 +835,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 53
+      "rank": 52
     },
     {
       "address": "0x605acc13c07cb2de5261dc64d315857fde7d5c5c",
@@ -863,7 +849,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 54
+      "rank": 53
     },
     {
       "address": "0x71f12a5b0e60d2ff8a87fd34e7dcff3c10c914b0",
@@ -883,7 +869,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 55
+      "rank": 54
     },
     {
       "address": "0x152676c60b6e1c4e70e197444217ab9dc0737a1b",
@@ -891,19 +877,19 @@
       "balance_eth": 0.031743,
       "positions": [
         {
-          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
-          "claimable_eth": 0.021931,
-          "raw_collateral": "0",
-          "tokens_outstanding": "0"
-        },
-        {
           "emp": "0xe1ee8d4c5dba1c221840c08f6cf42154435b9d52",
           "claimable_eth": 0.009813,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
+        },
+        {
+          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
+          "claimable_eth": 0.021931,
+          "raw_collateral": "0",
+          "tokens_outstanding": "0"
         }
       ],
-      "rank": 56
+      "rank": 55
     },
     {
       "address": "0xdf2583eaef0ed1992e503f06e37392dc2e344f20",
@@ -917,7 +903,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 57
+      "rank": 56
     },
     {
       "address": "0xc1cad6df277106222dd45cf5b0300fbd4d1193d5",
@@ -925,19 +911,19 @@
       "balance_eth": 0.028987,
       "positions": [
         {
-          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
-          "claimable_eth": 0.020834,
-          "raw_collateral": "0",
-          "tokens_outstanding": "0"
-        },
-        {
           "emp": "0xe1ee8d4c5dba1c221840c08f6cf42154435b9d52",
           "claimable_eth": 0.008153,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
+        },
+        {
+          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
+          "claimable_eth": 0.020834,
+          "raw_collateral": "0",
+          "tokens_outstanding": "0"
         }
       ],
-      "rank": 58
+      "rank": 57
     },
     {
       "address": "0x0b9bd43964db50924f03a0a8110856859f8c503b",
@@ -951,7 +937,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 59
+      "rank": 58
     },
     {
       "address": "0xe6662ec7fc7c84231b29f0f0da6321673d100854",
@@ -965,7 +951,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 60
+      "rank": 59
     },
     {
       "address": "0x01b01c6fb158e55c83883219a533f1efd2abfdf4",
@@ -979,7 +965,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 61
+      "rank": 60
     },
     {
       "address": "0xadeeb9d09b8bcee10943198fb6f6a4229bab3675",
@@ -987,19 +973,19 @@
       "balance_eth": 0.023565,
       "positions": [
         {
-          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
-          "claimable_eth": 0.00042,
-          "raw_collateral": "0",
-          "tokens_outstanding": "0"
-        },
-        {
           "emp": "0xe1ee8d4c5dba1c221840c08f6cf42154435b9d52",
           "claimable_eth": 0.023145,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
+        },
+        {
+          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
+          "claimable_eth": 0.00042,
+          "raw_collateral": "0",
+          "tokens_outstanding": "0"
         }
       ],
-      "rank": 62
+      "rank": 61
     },
     {
       "address": "0x660dde55d0fc5bee6af206110940ed14e9580ce1",
@@ -1013,7 +999,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 63
+      "rank": 62
     },
     {
       "address": "0x64e78ba4baca646f77a6bf7bcbcc5a31fc066ef2",
@@ -1027,7 +1013,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 64
+      "rank": 63
     },
     {
       "address": "0xf4d9a2d0075e0f003410ae774456fbeeedd18c72",
@@ -1041,7 +1027,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 65
+      "rank": 64
     },
     {
       "address": "0xce1559448e21981911fac70d4ec0c02ca1eff39c",
@@ -1055,7 +1041,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 66
+      "rank": 65
     },
     {
       "address": "0x9ebc8ad4011c7f559743eb25705ccf5a9b58d0bc",
@@ -1069,7 +1055,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 67
+      "rank": 66
     },
     {
       "address": "0x36b9ab68d5999f060fe8db71e35c8b5201313178",
@@ -1083,7 +1069,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 68
+      "rank": 67
     },
     {
       "address": "0xb8f98d08f1a456d1ec9417e5eaf46fc2ede9c0a1",
@@ -1097,7 +1083,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 69
+      "rank": 68
     },
     {
       "address": "0x5254dfae39f3751bab2795698f5c0c80bee4d4cc",
@@ -1111,7 +1097,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 70
+      "rank": 69
     },
     {
       "address": "0xa513de61ca2698ab35db8db40eef40b9c0aea31a",
@@ -1125,7 +1111,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 71
+      "rank": 70
     },
     {
       "address": "0x2a1e54aa64cc38d5a5de48feaec0d0579f6869e7",
@@ -1139,7 +1125,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 72
+      "rank": 71
     },
     {
       "address": "0xf3ae3bbdeb2fb7f9c32fbb1f4fbdaf1150a1c5ce",
@@ -1153,7 +1139,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 73
+      "rank": 72
     },
     {
       "address": "0xcce41676a4624f4a1e33a787a59d6bf96e5067bc",
@@ -1167,7 +1153,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 74
+      "rank": 73
     },
     {
       "address": "0xa1efa0adecb7f5691605899d13285928ae025844",
@@ -1181,7 +1167,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 75
+      "rank": 74
     },
     {
       "address": "0x6b5c4a661527a6c0393897f490514c0a45360676",
@@ -1195,7 +1181,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 76
+      "rank": 75
     },
     {
       "address": "0x685cb69f9f634ef1bf590ad1b163ca0e4b5c5e4d",
@@ -1209,7 +1195,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 77
+      "rank": 76
     },
     {
       "address": "0xec005b6edba4eb0a230317921555bc8d548d8224",
@@ -1229,7 +1215,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 78
+      "rank": 77
     },
     {
       "address": "0xf307077dd0e27a382e93f2e3d13a9c6584582332",
@@ -1243,7 +1229,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 79
+      "rank": 78
     },
     {
       "address": "0xe1c9acd032155c289e55f504c07f269aab70d439",
@@ -1257,7 +1243,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 80
+      "rank": 79
     },
     {
       "address": "0xb0c7ad67ab0ce69a370973f6248713ab2e787849",
@@ -1271,7 +1257,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 81
+      "rank": 80
     },
     {
       "address": "0x80039dc3d5bb48ec4bd822c4e8828574fdcc51a6",
@@ -1279,19 +1265,19 @@
       "balance_eth": 0.01015,
       "positions": [
         {
-          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
-          "claimable_eth": 0.00374,
-          "raw_collateral": "0",
-          "tokens_outstanding": "0"
-        },
-        {
           "emp": "0xe1ee8d4c5dba1c221840c08f6cf42154435b9d52",
           "claimable_eth": 0.00641,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
+        },
+        {
+          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
+          "claimable_eth": 0.00374,
+          "raw_collateral": "0",
+          "tokens_outstanding": "0"
         }
       ],
-      "rank": 82
+      "rank": 81
     },
     {
       "address": "0x77573d89cf97468b6fab056acba93b88c069eda4",
@@ -1305,7 +1291,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 83
+      "rank": 82
     },
     {
       "address": "0x1c80a0487d4390cdfb01286beaab4e4af76c06fc",
@@ -1319,7 +1305,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 84
+      "rank": 83
     },
     {
       "address": "0xcee2a8ca6f188f1b358d64986904ad11983f8531",
@@ -1333,7 +1319,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 85
+      "rank": 84
     },
     {
       "address": "0xc5937e880b21560157e3a5c9e6f90a77005ab04c",
@@ -1347,7 +1333,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 86
+      "rank": 85
     },
     {
       "address": "0x7dc8d06f9987b6a39005cfcaa89fbe3cb1cffe44",
@@ -1361,7 +1347,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 87
+      "rank": 86
     },
     {
       "address": "0x823b92d6a4b2aed4b15675c7917c9f922ea8adad",
@@ -1375,7 +1361,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 88
+      "rank": 87
     },
     {
       "address": "0x5feddf388f844d00ed2774bea879c782405aecb1",
@@ -1389,7 +1375,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 89
+      "rank": 88
     },
     {
       "address": "0x4945c4f9a72ca6b86518758499005e280834003f",
@@ -1403,7 +1389,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 90
+      "rank": 89
     },
     {
       "address": "0x600141d78941e27c13157a2b36558c73512aa1ee",
@@ -1417,7 +1403,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 91
+      "rank": 90
     },
     {
       "address": "0x3cda30bd84db976bfabb64b622d74d38e78edfd3",
@@ -1431,7 +1417,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 92
+      "rank": 91
     },
     {
       "address": "0xd2833463c9b705c82aaaafe4dbbf4132f66549ef",
@@ -1445,7 +1431,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 93
+      "rank": 92
     },
     {
       "address": "0x408cc18223171849af784bf180e2cf3dc981365e",
@@ -1459,7 +1445,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 94
+      "rank": 93
     },
     {
       "address": "0xc7ca46dcc1ddaad78081b12f64bd61d9f0f2f22d",
@@ -1473,7 +1459,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 95
+      "rank": 94
     },
     {
       "address": "0xa311f7ca3eb2fb98123a807f9b8e4bbbdbdcb2ee",
@@ -1481,19 +1467,19 @@
       "balance_eth": 0.005082,
       "positions": [
         {
-          "emp": "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
-          "claimable_eth": 0.003965,
-          "raw_collateral": "0",
-          "tokens_outstanding": "0"
-        },
-        {
           "emp": "0xe1ee8d4c5dba1c221840c08f6cf42154435b9d52",
           "claimable_eth": 0.001117,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
+        },
+        {
+          "emp": "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
+          "claimable_eth": 0.003965,
+          "raw_collateral": "0",
+          "tokens_outstanding": "0"
         }
       ],
-      "rank": 96
+      "rank": 95
     },
     {
       "address": "0x311b2c13be86a9f038829a62665ea92ea40ac679",
@@ -1507,7 +1493,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 97
+      "rank": 96
     },
     {
       "address": "0x88b74128df7cb82eb7c2167e89946f83ffc907e9",
@@ -1521,7 +1507,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 98
+      "rank": 97
     },
     {
       "address": "0x8aeecde253dea7b92a35bcea4072fd5a42193113",
@@ -1535,7 +1521,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 99
+      "rank": 98
     },
     {
       "address": "0x37fa7c6b28fc5545d9523d6dbb329be7e1b9e7a0",
@@ -1549,7 +1535,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 100
+      "rank": 99
     },
     {
       "address": "0x16f037a3ddf53da1b047a926e1833219f0a8e1fc",
@@ -1557,19 +1543,19 @@
       "balance_eth": 0.004666,
       "positions": [
         {
-          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
-          "claimable_eth": 0.001598,
-          "raw_collateral": "0",
-          "tokens_outstanding": "0"
-        },
-        {
           "emp": "0xe1ee8d4c5dba1c221840c08f6cf42154435b9d52",
           "claimable_eth": 0.003068,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
+        },
+        {
+          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
+          "claimable_eth": 0.001598,
+          "raw_collateral": "0",
+          "tokens_outstanding": "0"
         }
       ],
-      "rank": 101
+      "rank": 100
     },
     {
       "address": "0x32e7e72cf27e324560c4bd7df7ea42c7a091d49a",
@@ -1583,7 +1569,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 102
+      "rank": 101
     },
     {
       "address": "0xc61f0667076521761fb365f52644572e92fd0c94",
@@ -1597,7 +1583,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 103
+      "rank": 102
     },
     {
       "address": "0xd38a82102951b82ab7884e64552538fbfe701bad",
@@ -1611,7 +1597,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 104
+      "rank": 103
     },
     {
       "address": "0xc785365dcce43c6fcc3912f3c1bd4edaaa3986f8",
@@ -1625,7 +1611,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 105
+      "rank": 104
     },
     {
       "address": "0xce83731fa5730454e7d3a054bf0ab1ec6e37e8aa",
@@ -1633,19 +1619,19 @@
       "balance_eth": 0.003,
       "positions": [
         {
-          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
-          "claimable_eth": 0.001158,
-          "raw_collateral": "0",
-          "tokens_outstanding": "0"
-        },
-        {
           "emp": "0xe1ee8d4c5dba1c221840c08f6cf42154435b9d52",
           "claimable_eth": 0.001843,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
+        },
+        {
+          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
+          "claimable_eth": 0.001158,
+          "raw_collateral": "0",
+          "tokens_outstanding": "0"
         }
       ],
-      "rank": 106
+      "rank": 105
     },
     {
       "address": "0x5656219a757c176539e87044e133db3984957c85",
@@ -1659,7 +1645,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 107
+      "rank": 106
     },
     {
       "address": "0x83ae9a0a2f5c649095e30539401430b23c4b28b7",
@@ -1673,7 +1659,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 108
+      "rank": 107
     },
     {
       "address": "0x0f9c7aae4a3db5d226371b4a68f8a47ee97fa757",
@@ -1687,7 +1673,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 109
+      "rank": 108
     },
     {
       "address": "0x62d78dcd939c4e5f3b9883757d996b127192498c",
@@ -1701,7 +1687,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 110
+      "rank": 109
     },
     {
       "address": "0xe5c3f63f8621b75fb6c4148180e265a75f5d2995",
@@ -1715,7 +1701,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 111
+      "rank": 110
     },
     {
       "address": "0xce3696f3b57db19e5ebe014aa2d5636e87f9f22d",
@@ -1729,7 +1715,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 112
+      "rank": 111
     },
     {
       "address": "0xecd19550e2505d1fe3a1a96896ae4f1c08b10a44",
@@ -1743,7 +1729,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 113
+      "rank": 112
     },
     {
       "address": "0x726efd49a6ee081781e1e5857dd1f75ede356618",
@@ -1763,7 +1749,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 114
+      "rank": 113
     },
     {
       "address": "0xc10aeee4b362b8483fc97c06b628e82f04068fa4",
@@ -1771,19 +1757,19 @@
       "balance_eth": 0.002326,
       "positions": [
         {
-          "emp": "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
-          "claimable_eth": 0.000357,
-          "raw_collateral": "0",
-          "tokens_outstanding": "0"
-        },
-        {
           "emp": "0xe1ee8d4c5dba1c221840c08f6cf42154435b9d52",
           "claimable_eth": 0.001969,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
+        },
+        {
+          "emp": "0xe4256c47a3b27a969f25de8bef44eca5f2552bd5",
+          "claimable_eth": 0.000357,
+          "raw_collateral": "0",
+          "tokens_outstanding": "0"
         }
       ],
-      "rank": 115
+      "rank": 114
     },
     {
       "address": "0x5ebdc5c097f9378c3113dc2f9e8b51246e641896",
@@ -1797,7 +1783,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 116
+      "rank": 115
     },
     {
       "address": "0xea5c279ac2868ea2286c2fe5a6ce89740649967c",
@@ -1811,7 +1797,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 117
+      "rank": 116
     },
     {
       "address": "0x525a502eea5599b03372851174d9a8dcebff68b6",
@@ -1819,19 +1805,19 @@
       "balance_eth": 0.002135,
       "positions": [
         {
-          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
-          "claimable_eth": 0.000177,
-          "raw_collateral": "0",
-          "tokens_outstanding": "0"
-        },
-        {
           "emp": "0xe1ee8d4c5dba1c221840c08f6cf42154435b9d52",
           "claimable_eth": 0.001958,
           "raw_collateral": "0",
           "tokens_outstanding": "0"
+        },
+        {
+          "emp": "0x3605ec11ba7bd208501cbb24cd890bc58d2dba56",
+          "claimable_eth": 0.000177,
+          "raw_collateral": "0",
+          "tokens_outstanding": "0"
         }
       ],
-      "rank": 118
+      "rank": 117
     },
     {
       "address": "0x230d31eec85f4063a405b0f95bde509c0d0a8b5d",
@@ -1845,7 +1831,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 119
+      "rank": 118
     },
     {
       "address": "0xd0dc07b98769f23a7bdbef15a35faa256cb65dcf",
@@ -1859,7 +1845,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 120
+      "rank": 119
     },
     {
       "address": "0x2319fc093bead97d0a5c329f09895031ca1ee955",
@@ -1873,7 +1859,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 121
+      "rank": 120
     },
     {
       "address": "0x181c2d506b4aad984e3a98f09ac8eaf895671599",
@@ -1887,7 +1873,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 122
+      "rank": 121
     },
     {
       "address": "0x915188a790dcdd06447244196694c9f8a7d2b4c0",
@@ -1901,7 +1887,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 123
+      "rank": 122
     },
     {
       "address": "0x6632eda2685eabfb7b3b45669cfa5441349485d3",
@@ -1915,7 +1901,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 124
+      "rank": 123
     },
     {
       "address": "0x41bc7d0687e6cea57fa26da78379dfdc5627c56d",
@@ -1929,7 +1915,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 125
+      "rank": 124
     },
     {
       "address": "0xeb91fbd00444fcb9078030933a9beab5a8c731fc",
@@ -1943,7 +1929,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 126
+      "rank": 125
     },
     {
       "address": "0xf7b10d603907658f690da534e9b7dbc4dab3e2d6",
@@ -1957,7 +1943,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 127
+      "rank": 126
     },
     {
       "address": "0xff2ba16fd74389907f4e9ad808ef6c6b25e7e5c5",
@@ -1971,7 +1957,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 128
+      "rank": 127
     },
     {
       "address": "0xdfa8ee9ff8798b37800f3ab18807273d7caaf1b6",
@@ -1985,7 +1971,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 129
+      "rank": 128
     },
     {
       "address": "0x2781a5ff0b93f8a5e42346dda40d15fa92438514",
@@ -1999,7 +1985,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 130
+      "rank": 129
     },
     {
       "address": "0x1fe063d56c4a59409302bddf5324df9de0d25b65",
@@ -2013,7 +1999,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 131
+      "rank": 130
     },
     {
       "address": "0x93c027865354e96a1e9ec69fc8253e6d49013f82",
@@ -2027,7 +2013,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 132
+      "rank": 131
     },
     {
       "address": "0x8a9d46d28003673cd4fe7a56ecfcfa2be6372e64",
@@ -2041,7 +2027,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 133
+      "rank": 132
     },
     {
       "address": "0x9983cfd319085687beafe27d288bab376209e88e",
@@ -2055,7 +2041,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 134
+      "rank": 133
     },
     {
       "address": "0xdb0db7bf65f3f6e6909a02f7f34ad0f669e5ec9e",
@@ -2069,7 +2055,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 135
+      "rank": 134
     },
     {
       "address": "0xf47c26277be32c4362d351badacae83f124e81e6",
@@ -2083,7 +2069,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 136
+      "rank": 135
     },
     {
       "address": "0x7833d456e033dc72bf43a6dc792645f7193f6c03",
@@ -2097,7 +2083,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 137
+      "rank": 136
     },
     {
       "address": "0x952c23f8f067a5e7e165ff0e42491f51d87dbc95",
@@ -2111,7 +2097,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 138
+      "rank": 137
     },
     {
       "address": "0x653d63e4f2d7112a19f5eb993890a3f27b48ada5",
@@ -2131,7 +2117,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 139
+      "rank": 138
     },
     {
       "address": "0x238b6d6e0bf4679edfd99a32aa8c0f2ee13f34be",
@@ -2145,7 +2131,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 140
+      "rank": 139
     },
     {
       "address": "0x34cef9d824e2e6bd5bbbdf75cd19d820884a4342",
@@ -2159,7 +2145,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 141
+      "rank": 140
     },
     {
       "address": "0xb4a134bde4261a45bf60d19f7a51cc1c2c451523",
@@ -2173,7 +2159,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 142
+      "rank": 141
     },
     {
       "address": "0xc5cdc90702049718b307de20042e8ba53795e3be",
@@ -2187,7 +2173,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 143
+      "rank": 142
     },
     {
       "address": "0x557c57e399921477f794043b1ed7ef7e9183575d",
@@ -2201,7 +2187,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 144
+      "rank": 143
     },
     {
       "address": "0x85ecd18097bde42cf4456d58f830dda9480aa762",
@@ -2215,7 +2201,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 145
+      "rank": 144
     },
     {
       "address": "0x10c195f57da35f2ba763e72103cb668cdca17f50",
@@ -2229,7 +2215,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 146
+      "rank": 145
     },
     {
       "address": "0x07d28c64e033dd7f172764a389663580d32e4388",
@@ -2243,7 +2229,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 147
+      "rank": 146
     },
     {
       "address": "0x9830ba8a332f2eb7cd000fe553d0ded070d454fd",
@@ -2257,7 +2243,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 148
+      "rank": 147
     },
     {
       "address": "0xe079c28a1064be7e9dd6384ae0d0ca281e0c98d6",
@@ -2271,7 +2257,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 149
+      "rank": 148
     },
     {
       "address": "0xe5e058f75ea95316831bab969734c32c93977b61",
@@ -2285,7 +2271,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 150
+      "rank": 149
     },
     {
       "address": "0xe381fa0100662d0707ec8211e75c5656a59ace79",
@@ -2299,7 +2285,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 151
+      "rank": 150
     },
     {
       "address": "0xb61fd6f023e4cb04882433b812b195245deb57e5",
@@ -2313,7 +2299,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 152
+      "rank": 151
     },
     {
       "address": "0x584c7c9b0a8fb3f648c3912316a2c5e873cf39bb",
@@ -2327,7 +2313,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 153
+      "rank": 152
     },
     {
       "address": "0xfdc6a17917115498a3ed417d4a89224685f26ea3",
@@ -2341,7 +2327,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 154
+      "rank": 153
     },
     {
       "address": "0xc7777c1a0cf7e22c51b44f7ced65cf2a6b06dc5c",
@@ -2355,7 +2341,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 155
+      "rank": 154
     },
     {
       "address": "0x9db4d30af39e163ac3d26345bf2453373220828f",
@@ -2369,7 +2355,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 156
+      "rank": 155
     },
     {
       "address": "0x74f8744020f5900a2c3a3289c6c2182f56a6901f",
@@ -2383,7 +2369,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 157
+      "rank": 156
     },
     {
       "address": "0x7a759a170c3aea65b3b373299d33bf5221785c48",
@@ -2397,7 +2383,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 158
+      "rank": 157
     },
     {
       "address": "0x7b2483d0f917a4f7a04d1e13743c99ad9d249462",
@@ -2411,7 +2397,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 159
+      "rank": 158
     },
     {
       "address": "0x315c2235d75880afe04310d71ec381dbfb29d307",
@@ -2425,7 +2411,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 160
+      "rank": 159
     },
     {
       "address": "0xd53c9fedcc95187307908d659846a443cb1e7350",
@@ -2439,7 +2425,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 161
+      "rank": 160
     },
     {
       "address": "0x994b93cc59b769caff5a8f4429c18831cc042f8e",
@@ -2453,7 +2439,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 162
+      "rank": 161
     },
     {
       "address": "0x1c99f36e53135ddc55d1947a99f23765a89f6cd0",
@@ -2467,7 +2453,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 163
+      "rank": 162
     },
     {
       "address": "0xd2a78bb82389d30075144d17e782964918999f7f",
@@ -2481,7 +2467,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 164
+      "rank": 163
     },
     {
       "address": "0xdac071edbe067499281f1272cf39f4ccb1e50ac8",
@@ -2495,7 +2481,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 165
+      "rank": 164
     },
     {
       "address": "0xe92a405afa5f6a1b55f87f4bff1dd03bfcb144c3",
@@ -2509,7 +2495,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 166
+      "rank": 165
     },
     {
       "address": "0x228c1334fc57eb6e02ecc448e749a041124321c1",
@@ -2523,7 +2509,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 167
+      "rank": 166
     },
     {
       "address": "0xd4c8d9f75e8d6070b37383c1dc000ebcf71b9747",
@@ -2537,7 +2523,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 168
+      "rank": 167
     },
     {
       "address": "0xf0ff3f79a9a9c459d59ea5bc447e9857c109137f",
@@ -2551,7 +2537,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 169
+      "rank": 168
     },
     {
       "address": "0x2ef46b73484b81e36076b18511da096d1a0677cf",
@@ -2565,7 +2551,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 170
+      "rank": 169
     },
     {
       "address": "0x8f9be4310f9abb0e5843cc6363908c9b01dfeb3f",
@@ -2579,7 +2565,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 171
+      "rank": 170
     },
     {
       "address": "0xaabd5fbcb8ad62d4fbbb02a2e9769a9f2ee7e883",
@@ -2593,7 +2579,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 172
+      "rank": 171
     },
     {
       "address": "0x97f0978c18de9b61840d4627040aea796090343f",
@@ -2607,7 +2593,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 173
+      "rank": 172
     },
     {
       "address": "0x043bd8f57401e46a5da19545ffb50370202cc179",
@@ -2621,7 +2607,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 174
+      "rank": 173
     },
     {
       "address": "0xb7c2fc9d44db04ff888037037aadfd10d7564d95",
@@ -2635,7 +2621,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 175
+      "rank": 174
     },
     {
       "address": "0xa59ab1d1a1cdd67b40da69aabe4392aa3df979dd",
@@ -2649,7 +2635,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 176
+      "rank": 175
     },
     {
       "address": "0x40dfc27ca78b6fbcfb78e91d3d2426cf6a281e39",
@@ -2663,7 +2649,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 177
+      "rank": 176
     },
     {
       "address": "0xc442c69f8593c782d0c8bd1f1871cc57175f9d52",
@@ -2677,7 +2663,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 178
+      "rank": 177
     },
     {
       "address": "0x1ad015a04c3a21330a388f6a0995c7c092e66f93",
@@ -2691,7 +2677,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 179
+      "rank": 178
     },
     {
       "address": "0x19fa0403a2f37bffe366aab068776aa966aef24c",
@@ -2705,7 +2691,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 180
+      "rank": 179
     },
     {
       "address": "0xa9fc04a6baac104b5eaf9e91fca2df1f8d09c38c",
@@ -2719,7 +2705,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 181
+      "rank": 180
     },
     {
       "address": "0x3fe9b3a4180c2e8c876f050be94c92632392263d",
@@ -2733,7 +2719,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 182
+      "rank": 181
     },
     {
       "address": "0x3caba50e426de2003f937ac961bd6834b206fb1c",
@@ -2747,7 +2733,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 183
+      "rank": 182
     },
     {
       "address": "0x28ad8e41f950568c6eb15e8426c9760b80becafe",
@@ -2761,7 +2747,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 184
+      "rank": 183
     },
     {
       "address": "0x4cf638d84829ac0c081f9ab6706a3926076c0e30",
@@ -2775,7 +2761,7 @@
           "tokens_outstanding": "0"
         }
       ],
-      "rank": 185
+      "rank": 184
     }
   ]
 }

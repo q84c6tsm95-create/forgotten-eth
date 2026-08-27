@@ -1,16 +1,16 @@
 {
   "contract": "0x77607588222e01bf892a29Abab45796A2047fc7b",
   "balance_source": "eth",
-  "contract_eth_balance": 11.74159749,
-  "total_eth_in_balances": 11.741472,
-  "addresses_with_balance": 27,
+  "contract_eth_balance": 11.71156937,
+  "total_eth_in_balances": 11.711444,
+  "addresses_with_balance": 26,
   "coverage_pct": 100.0,
-  "scan_date": "2026-08-10 10:26:16 UTC",
+  "scan_date": "2026-08-14 16:26:54 UTC",
   "description": "Unagii ETH Vault (uETH). Users deposited ETH and received uETH shares representing proportional ownership. The vault used strategies to generate yield. Users can withdraw by burning uETH shares via withdraw(shares, min). No fee, no time lock.",
   "distribution": {
     "1_plus": 1,
     "0.1_to_1": 3,
-    "0.01_to_0.1": 17,
+    "0.01_to_0.1": 16,
     "under_0.01": 6
   },
   "balances": [
@@ -93,88 +93,82 @@
       "rank": 13
     },
     {
-      "address": "0x7f2466ae8badee7dc0109edd0b6dde08c432236c",
-      "balance_wei": "30028119838755836",
-      "balance_eth": 0.030028,
-      "rank": 14
-    },
-    {
       "address": "0x9725a860b92f72755a5d324720a110726bce6957",
       "balance_wei": "25023433198963196",
       "balance_eth": 0.025023,
-      "rank": 15
+      "rank": 14
     },
     {
       "address": "0x6aa4e37240e5002c086867408cfe6fc5d2708de3",
       "balance_wei": "16706644940955788",
       "balance_eth": 0.016707,
-      "rank": 16
+      "rank": 15
     },
     {
       "address": "0x303a1247c72c5c2195e044629d826bcdbee3d942",
       "balance_wei": "15062460821175200",
       "balance_eth": 0.015062,
-      "rank": 17
+      "rank": 16
     },
     {
       "address": "0x8c63e70fe9879a192c70ec78a7a5bf47701462f6",
       "balance_wei": "11318507028668386",
       "balance_eth": 0.011319,
-      "rank": 18
+      "rank": 17
     },
     {
       "address": "0x764eab7f06f7dbd8b84d6f0949925b34efe72238",
       "balance_wei": "11075250087534770",
       "balance_eth": 0.011075,
-      "rank": 19
+      "rank": 18
     },
     {
       "address": "0xb65d8e33b35fb0c15df0d665fe742810455a6400",
       "balance_wei": "10062847392458002",
       "balance_eth": 0.010063,
-      "rank": 20
+      "rank": 19
     },
     {
       "address": "0xef2623fef4519158a93e47cc8baf97e0b93cd40c",
       "balance_wei": "10006070499696315",
       "balance_eth": 0.010006,
-      "rank": 21
+      "rank": 20
     },
     {
       "address": "0xa447663ed37a952580bad82ba4de0bbf00abd89a",
       "balance_wei": "9555285747672467",
       "balance_eth": 0.009555,
-      "rank": 22
+      "rank": 21
     },
     {
       "address": "0x51971cac4b182d7334f06e52c136998489ac910a",
       "balance_wei": "8375799914577039",
       "balance_eth": 0.008376,
-      "rank": 23
+      "rank": 22
     },
     {
       "address": "0x2036e58adbb279c695dbc29c2abed8cf54b68fe4",
       "balance_wei": "4683385757517951",
       "balance_eth": 0.004683,
-      "rank": 24
+      "rank": 23
     },
     {
       "address": "0x2e8d125262629910f68c64e2d12f85ba48ff05d0",
       "balance_wei": "4005541322612546",
       "balance_eth": 0.004006,
-      "rank": 25
+      "rank": 24
     },
     {
       "address": "0x82f9ea8d814a6eb335cfe17500cdcbb69c7ebbfe",
       "balance_wei": "1000937346528877",
       "balance_eth": 0.001001,
-      "rank": 26
+      "rank": 25
     },
     {
       "address": "0x4c4691a6f813d9c5853512632ec7af9b77ede6ce",
       "balance_wei": "100093704761619",
       "balance_eth": 0.0001,
-      "rank": 27
+      "rank": 26
     }
   ]
 }

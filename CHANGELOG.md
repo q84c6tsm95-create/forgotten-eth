@@ -5,6 +5,31 @@ Protocol additions and notable Forgotten ETH changes live here instead of in the
 Canonical web page: https://forgotteneth.com/changelog
 RSS: https://forgotteneth.com/feed.xml
 
+## August 2026
+
+### Aug 27 — AimBot (+66 ETH)
+Added the dividend tracker behind AimBot, an August 2023 Telegram trading-bot token that paid holders a share of revenue in ETH. Revenue deposits stopped that October, but the tracker was never closed. 66.02 ETH across 4,029 addresses; the sum of individual claims matches the tracker balance to the wei. Selling AIMBOT never forfeited accrued dividends. A further 2.29 ETH accrued to the burn address and is excluded as unclaimable.
+
+### Aug 6 — Set Protocol (TokenSets) (+527 ETH)
+Added the Set Protocol vault behind TokenSets, the automated portfolio product that ran from 2019 to 2021. Redemption was never disabled. 526.58 of the vault's 530.54 WETH is mapped across 1,382 addresses (99.25% coverage). Holdings nest three deep — wallet holds a rebalancing Set, which holds a collateral Set, which owns the WETH — so each position redeems separately.
+
+### Aug 6 — dYdX Solo Margin (+1,692 ETH)
+Added dYdX's original 2019 lending and margin market. All four markets remain solvent and every supplier balance is still withdrawable: 1,692 WETH plus 855k USDC and 1.58M DAI across 29,632 addresses at 99.96% coverage. Balances sit in numbered sub-accounts, so one wallet can hold several positions, each withdrawn with its own `operate()` call.
+
+### Aug 6 — Uniswap UNI Airdrop (12.5M UNI)
+Added the September 2020 UNI genesis distribution. The distributor never expired and was never swept, but the interface serving merkle proofs was retired. 12,535,161 UNI across 30,760 addresses is still unclaimed; proofs are recomputed against the on-chain merkle root and unclaimed status read from the contract's own bitmap.
+
+## July 2026
+
+### Jul 24 — SingularX Fund (+386 ETH)
+Added the SingularDTVFund reward pool behind the 2017 SingularX exchange (ConsenSys Tokit). It banked ETH trading fees for SNGX holders and still holds 386.5 ETH, fully backed and distributed pro-rata across 10,121 holders.
+
+### Jul 11 — Omen / Conditional Tokens (+168 ETH)
+Added the Gnosis Conditional Tokens framework, the settlement layer behind Omen prediction markets. Collateral from resolved markets that was never redeemed — ~168 ETH-equivalent in USDC, DAI, WETH and more across 511 addresses, redeemed per market.
+
+### Jul 7 — POW NFT (+72.3 ETH)
+Added POW NFT, a 2021 proof-of-work mineable ERC-721 where every token banks a share of the mining fees paid by all later tokens. 72.31 ETH claimable across 847 owners via per-token `withdraw(tokenId, withdrawUntil)`, verified against 15,117 historical Withdraw events.
+
 ## June 2026
 
 ### Jun 29 — PandaDAO Farewell and R1Exchange (+197 ETH)

@@ -1,17 +1,17 @@
 {
   "contract": "0x0b8d56c26d8cf16fe1bddf4967753503d974de06",
   "balance_source": "eth",
-  "contract_eth_balance": 41.104461,
-  "total_eth_in_balances": 18.63398609,
-  "addresses_with_balance": 115,
-  "coverage_pct": 45.33,
-  "scan_date": "2026-08-10 10:27:03 UTC",
+  "contract_eth_balance": 41.05446101,
+  "total_eth_in_balances": 18.58398609,
+  "addresses_with_balance": 114,
+  "coverage_pct": 45.27,
+  "scan_date": "2026-08-14 16:27:40 UTC",
   "description": "GavCoin 2015 bonding curve. refund(price, units) requires BOTH balance >= units AND receipt[price].units >= units. Each user may have multiple receipts at different prices from incremental buyins; this scan greedy-refunds price-descending against live balanceOf to compute the max claimable per address. Tokens that moved via transfer() leave receipts orphaned at the sender (receipt > balance, partly unrefundable) and unrefundable on the recipient (balance > 0, no receipt). Reconstructed via Buyin/Refund event replay from block 350000.",
   "distribution": {
     ">=10 ETH": 0,
     "1-10 ETH": 4,
     "0.1-1 ETH": 19,
-    "0.01-0.1 ETH": 46,
+    "0.01-0.1 ETH": 45,
     "<0.01 ETH": 46
   },
   "balances": [
@@ -533,20 +533,6 @@
       "rank": 33
     },
     {
-      "address": "0x46710560f82d6621a6c793c67241fa072724eac6",
-      "balance_wei": "49999992000000000",
-      "balance_eth": 0.049999992,
-      "token_balance": "2380952",
-      "refund_breakdown": [
-        {
-          "price": "21000000000000000",
-          "units": "2380952",
-          "wei": "49999992000000000"
-        }
-      ],
-      "rank": 34
-    },
-    {
       "address": "0x68acfd5353fa889b349b599c63202cc54af7a44d",
       "balance_wei": "49999992000000000",
       "balance_eth": 0.049999992,
@@ -558,7 +544,7 @@
           "wei": "49999992000000000"
         }
       ],
-      "rank": 35
+      "rank": 34
     },
     {
       "address": "0x00eb1d70c4bb880e888af962ffbed0d8ebb27dbf",
@@ -572,7 +558,7 @@
           "wei": "42000000000000000"
         }
       ],
-      "rank": 36
+      "rank": 35
     },
     {
       "address": "0xafce0f1914cc1d5246ec515687b347b9b2898075",
@@ -586,7 +572,7 @@
           "wei": "42000000000000000"
         }
       ],
-      "rank": 37
+      "rank": 36
     },
     {
       "address": "0x9791d060155feedc635a6c0a83b8e5c8e3816ce8",
@@ -600,7 +586,7 @@
           "wei": "34000000000000000"
         }
       ],
-      "rank": 38
+      "rank": 37
     },
     {
       "address": "0x0002ff24dc5b0c7c2b5ee3e5297da604b7b18739",
@@ -614,7 +600,7 @@
           "wei": "32000000000000000"
         }
       ],
-      "rank": 39
+      "rank": 38
     },
     {
       "address": "0x0092c5057b27a736417808d5fc2a85c8f24a6def",
@@ -628,7 +614,7 @@
           "wei": "32000000000000000"
         }
       ],
-      "rank": 40
+      "rank": 39
     },
     {
       "address": "0x06eb9b9aed025dfb2451d6ab8da56fd5c198b664",
@@ -642,7 +628,7 @@
           "wei": "26260000000000000"
         }
       ],
-      "rank": 41
+      "rank": 40
     },
     {
       "address": "0x3002908c1e97f7e3e938608e2ad178e202461a90",
@@ -656,7 +642,7 @@
           "wei": "26259740000000000"
         }
       ],
-      "rank": 42
+      "rank": 41
     },
     {
       "address": "0xfdf97eaa34a883647fac329926b1747e9ef601c6",
@@ -670,7 +656,7 @@
           "wei": "25999995000000000"
         }
       ],
-      "rank": 43
+      "rank": 42
     },
     {
       "address": "0x00cde2f39417eb9fd9f290c5ecae2d098f1ca559",
@@ -684,7 +670,7 @@
           "wei": "24999975000000000"
         }
       ],
-      "rank": 44
+      "rank": 43
     },
     {
       "address": "0x6a98d68952dfcb7c95449ced2100be5f4e242229",
@@ -698,7 +684,7 @@
           "wei": "23999997000000000"
         }
       ],
-      "rank": 45
+      "rank": 44
     },
     {
       "address": "0x878d6f8a9d4390cae5045a2ba3fd108fd9d43dff",
@@ -712,7 +698,7 @@
           "wei": "22000000000000000"
         }
       ],
-      "rank": 46
+      "rank": 45
     },
     {
       "address": "0xe4b6210b7b77d578bacb93556901f3d1251aaaee",
@@ -726,7 +712,7 @@
           "wei": "22000000000000000"
         }
       ],
-      "rank": 47
+      "rank": 46
     },
     {
       "address": "0x00dc86fed3c0a70474ed235d9fd4ac774fa7f622",
@@ -740,7 +726,7 @@
           "wei": "21999978000000000"
         }
       ],
-      "rank": 48
+      "rank": 47
     },
     {
       "address": "0x00005428a48b69a4d396e3114db65bac45276cbb",
@@ -754,7 +740,7 @@
           "wei": "21000000000000000"
         }
       ],
-      "rank": 49
+      "rank": 48
     },
     {
       "address": "0x0009a26e7862964a9727cc3af93c93eb5b21a998",
@@ -768,7 +754,7 @@
           "wei": "21000000000000000"
         }
       ],
-      "rank": 50
+      "rank": 49
     },
     {
       "address": "0x00f3d74df747e2fc800a4e331c4d843a007c5a72",
@@ -782,7 +768,7 @@
           "wei": "21000000000000000"
         }
       ],
-      "rank": 51
+      "rank": 50
     },
     {
       "address": "0x2abf3282f80657057ad565dd63ad440c0c9d73c0",
@@ -796,7 +782,7 @@
           "wei": "21000000000000000"
         }
       ],
-      "rank": 52
+      "rank": 51
     },
     {
       "address": "0x30a18b5c45f3adbe7157f48de6d89eab8168f634",
@@ -810,7 +796,7 @@
           "wei": "21000000000000000"
         }
       ],
-      "rank": 53
+      "rank": 52
     },
     {
       "address": "0xd96f129b274812ec82d85b761f844eda5221a39f",
@@ -824,7 +810,7 @@
           "wei": "21000000000000000"
         }
       ],
-      "rank": 54
+      "rank": 53
     },
     {
       "address": "0x0039f22efb07a647557c7c5d17854cfd6d489ef3",
@@ -838,7 +824,7 @@
           "wei": "20000000000000000"
         }
       ],
-      "rank": 55
+      "rank": 54
     },
     {
       "address": "0x008e0d8b2c959986952b2bdd7491d961b298595c",
@@ -852,7 +838,7 @@
           "wei": "20000000000000000"
         }
       ],
-      "rank": 56
+      "rank": 55
     },
     {
       "address": "0x6c35b50abbd6094f62936adc0f0e2e58bd19a407",
@@ -866,7 +852,7 @@
           "wei": "20000000000000000"
         }
       ],
-      "rank": 57
+      "rank": 56
     },
     {
       "address": "0x008a4eb0b328cf16905b3ec48d7a743a08e43723",
@@ -880,7 +866,7 @@
           "wei": "19999980000000000"
         }
       ],
-      "rank": 58
+      "rank": 57
     },
     {
       "address": "0x00bdfbf323ef803d38a5c3f7fb419ec83576d8a9",
@@ -894,7 +880,7 @@
           "wei": "16000000000000000"
         }
       ],
-      "rank": 59
+      "rank": 58
     },
     {
       "address": "0x009218942e20b423fa6d9c0e38f0af2622f056ed",
@@ -908,7 +894,7 @@
           "wei": "15000000000000000"
         }
       ],
-      "rank": 60
+      "rank": 59
     },
     {
       "address": "0x38796f8e197a534cfb92fb53ff2f140859d92600",
@@ -922,7 +908,7 @@
           "wei": "13999998000000000"
         }
       ],
-      "rank": 61
+      "rank": 60
     },
     {
       "address": "0x4bce130ef58c75b6a98032a5260c6357c50d9c6b",
@@ -936,7 +922,7 @@
           "wei": "12000000000000000"
         }
       ],
-      "rank": 62
+      "rank": 61
     },
     {
       "address": "0x3a7db224acae17de7798797d82cdf8253017dfa8",
@@ -950,7 +936,7 @@
           "wei": "11000000000000000"
         }
       ],
-      "rank": 63
+      "rank": 62
     },
     {
       "address": "0x000b1b387d42e0317bdce79d956ea393067c4774",
@@ -964,7 +950,7 @@
           "wei": "10000000000000000"
         }
       ],
-      "rank": 64
+      "rank": 63
     },
     {
       "address": "0x000b743367db1385d73a2d49890287aeaad9b52a",
@@ -978,7 +964,7 @@
           "wei": "10000000000000000"
         }
       ],
-      "rank": 65
+      "rank": 64
     },
     {
       "address": "0x000ebb8b36ed2fa0533d54c7134cb423743fd0dd",
@@ -992,7 +978,7 @@
           "wei": "10000000000000000"
         }
       ],
-      "rank": 66
+      "rank": 65
     },
     {
       "address": "0x0070527586027dcba7e78fcd78e90592bb786a3c",
@@ -1006,7 +992,7 @@
           "wei": "10000000000000000"
         }
       ],
-      "rank": 67
+      "rank": 66
     },
     {
       "address": "0x752cf3efca9e126bbebb54000acf7b22ebea3213",
@@ -1020,7 +1006,7 @@
           "wei": "10000000000000000"
         }
       ],
-      "rank": 68
+      "rank": 67
     },
     {
       "address": "0xc568f4948a04dc062009e1887bbcb4cce4d6aae2",
@@ -1034,7 +1020,7 @@
           "wei": "10000000000000000"
         }
       ],
-      "rank": 69
+      "rank": 68
     },
     {
       "address": "0x003186a8ec7c852878c692e08b5ce8ed01777d22",
@@ -1048,7 +1034,7 @@
           "wei": "9999990000000000"
         }
       ],
-      "rank": 70
+      "rank": 69
     },
     {
       "address": "0x0094103c5b0bcd76ce8e63c5cf13165891031c74",
@@ -1062,7 +1048,7 @@
           "wei": "9999990000000000"
         }
       ],
-      "rank": 71
+      "rank": 70
     },
     {
       "address": "0x00b089a286a4faac3b66c3a4ad92cc33d76adaac",
@@ -1076,7 +1062,7 @@
           "wei": "9999990000000000"
         }
       ],
-      "rank": 72
+      "rank": 71
     },
     {
       "address": "0x00bc894689f9202d7e7b18734c97453335548694",
@@ -1090,7 +1076,7 @@
           "wei": "9999990000000000"
         }
       ],
-      "rank": 73
+      "rank": 72
     },
     {
       "address": "0xdb30ace2f50db33d0dd6c940f05d9dba5657eb76",
@@ -1104,7 +1090,7 @@
           "wei": "9999990000000000"
         }
       ],
-      "rank": 74
+      "rank": 73
     },
     {
       "address": "0x004e7106c4df291ba773fddc9305f0fba03fe5df",
@@ -1118,7 +1104,7 @@
           "wei": "7899990000000000"
         }
       ],
-      "rank": 75
+      "rank": 74
     },
     {
       "address": "0x00d74c25bbf93df8b2a41d82b0076843b4db0349",
@@ -1132,7 +1118,7 @@
           "wei": "7885290000000000"
         }
       ],
-      "rank": 76
+      "rank": 75
     },
     {
       "address": "0x8f942338c828c42c56053a5fc3da6bc014ec69d2",
@@ -1151,7 +1137,7 @@
           "wei": "6731000000000000"
         }
       ],
-      "rank": 77
+      "rank": 76
     },
     {
       "address": "0x0079418d9dc201b95717806441698a949adb8fee",
@@ -1165,7 +1151,7 @@
           "wei": "7000000000000000"
         }
       ],
-      "rank": 78
+      "rank": 77
     },
     {
       "address": "0x4bfcc4ed47f8dc1bc5c0390ac8eb5e01da831320",
@@ -1179,7 +1165,7 @@
           "wei": "7000000000000000"
         }
       ],
-      "rank": 79
+      "rank": 78
     },
     {
       "address": "0x00f0c5cf9281dd2e981cc49a99c7068e399faeae",
@@ -1193,7 +1179,7 @@
           "wei": "5000000000000000"
         }
       ],
-      "rank": 80
+      "rank": 79
     },
     {
       "address": "0x023a5ae9d2dbfc534c362da5327847a6efa2d6b4",
@@ -1207,7 +1193,7 @@
           "wei": "5000000000000000"
         }
       ],
-      "rank": 81
+      "rank": 80
     },
     {
       "address": "0xacbb6e2b07cdaba10dbd9a484865de69caf5e064",
@@ -1221,7 +1207,7 @@
           "wei": "5000000000000000"
         }
       ],
-      "rank": 82
+      "rank": 81
     },
     {
       "address": "0x937b9de95764968a1533506841f02f16d956b422",
@@ -1235,7 +1221,7 @@
           "wei": "4999995000000000"
         }
       ],
-      "rank": 83
+      "rank": 82
     },
     {
       "address": "0x00a31b1da1ebf276dedf10aedbb2b553db3a1e3b",
@@ -1249,7 +1235,7 @@
           "wei": "4000000000000000"
         }
       ],
-      "rank": 84
+      "rank": 83
     },
     {
       "address": "0x3ff047e5e803e20f5ef55ea1029adb89618047db",
@@ -1263,7 +1249,7 @@
           "wei": "2666666000000000"
         }
       ],
-      "rank": 85
+      "rank": 84
     },
     {
       "address": "0xc2ec2bee757959919a98f426c20205e744a7c41e",
@@ -1277,7 +1263,7 @@
           "wei": "2100000000000000"
         }
       ],
-      "rank": 86
+      "rank": 85
     },
     {
       "address": "0x002776d3900e33eb568e3f3d560150f3663c1a03",
@@ -1291,7 +1277,7 @@
           "wei": "2099979000000000"
         }
       ],
-      "rank": 87
+      "rank": 86
     },
     {
       "address": "0x00b851eda9a38498f477fc4c4c41ff92bbd4ec77",
@@ -1305,7 +1291,7 @@
           "wei": "2000000000000000"
         }
       ],
-      "rank": 88
+      "rank": 87
     },
     {
       "address": "0x000e66639f17982ce2d1d71aafcf443154ed1e08",
@@ -1319,7 +1305,7 @@
           "wei": "999999000000000"
         }
       ],
-      "rank": 89
+      "rank": 88
     },
     {
       "address": "0x00261f3ac8f2bdc2624dc51fd134765e1f8e79da",
@@ -1333,7 +1319,7 @@
           "wei": "999999000000000"
         }
       ],
-      "rank": 90
+      "rank": 89
     },
     {
       "address": "0x003927043a70561ae447ca0a0b7905aee2c0eb11",
@@ -1347,7 +1333,7 @@
           "wei": "999999000000000"
         }
       ],
-      "rank": 91
+      "rank": 90
     },
     {
       "address": "0x009befe5643f9892c8ff4f6240e66f3e816b7a10",
@@ -1361,7 +1347,7 @@
           "wei": "999999000000000"
         }
       ],
-      "rank": 92
+      "rank": 91
     },
     {
       "address": "0x00a7592c85db3fcfd886763cea043bda86c7bfc5",
@@ -1375,7 +1361,7 @@
           "wei": "999999000000000"
         }
       ],
-      "rank": 93
+      "rank": 92
     },
     {
       "address": "0x00a9aebad6a9de41773c25eb27e94c012e5794a4",
@@ -1389,7 +1375,7 @@
           "wei": "999999000000000"
         }
       ],
-      "rank": 94
+      "rank": 93
     },
     {
       "address": "0x00acf767f7622e9f762db1a9fb61b437f6d941ee",
@@ -1403,7 +1389,7 @@
           "wei": "999999000000000"
         }
       ],
-      "rank": 95
+      "rank": 94
     },
     {
       "address": "0x00bea3abea24e93c685270a06de63a073a205784",
@@ -1417,7 +1403,7 @@
           "wei": "999999000000000"
         }
       ],
-      "rank": 96
+      "rank": 95
     },
     {
       "address": "0x162e478022fe7cbc64a66009428d74a940197a32",
@@ -1431,7 +1417,7 @@
           "wei": "999999000000000"
         }
       ],
-      "rank": 97
+      "rank": 96
     },
     {
       "address": "0x4238498bea0c72e56c617ed8d61e723d1f568214",
@@ -1445,7 +1431,7 @@
           "wei": "999999000000000"
         }
       ],
-      "rank": 98
+      "rank": 97
     },
     {
       "address": "0x8b104344f397afc33ee55c743a0fbd7d956201cd",
@@ -1459,7 +1445,7 @@
           "wei": "999999000000000"
         }
       ],
-      "rank": 99
+      "rank": 98
     },
     {
       "address": "0x007f5535abc02df8101b7b063d0277bec9bd9a97",
@@ -1473,7 +1459,7 @@
           "wei": "999988000000000"
         }
       ],
-      "rank": 100
+      "rank": 99
     },
     {
       "address": "0x6d604742bf758c334aea15121807357ef6b6bdbd",
@@ -1487,7 +1473,7 @@
           "wei": "999986000000000"
         }
       ],
-      "rank": 101
+      "rank": 100
     },
     {
       "address": "0xeb5ab487124ca50cc354ce17556e0e861aa78c62",
@@ -1501,7 +1487,7 @@
           "wei": "999810000000000"
         }
       ],
-      "rank": 102
+      "rank": 101
     },
     {
       "address": "0x003bc3a66b0ccd172d67d51c9100ec3f83d8de8b",
@@ -1515,7 +1501,7 @@
           "wei": "500000000000000"
         }
       ],
-      "rank": 103
+      "rank": 102
     },
     {
       "address": "0x00130fa56c1260c30d03cd167b2dd65ea3e7e70d",
@@ -1529,7 +1515,7 @@
           "wei": "99981000000000"
         }
       ],
-      "rank": 104
+      "rank": 103
     },
     {
       "address": "0x004d7f0dc9c5cf9e68171ed800dda8e0e8c65776",
@@ -1543,7 +1529,7 @@
           "wei": "99981000000000"
         }
       ],
-      "rank": 105
+      "rank": 104
     },
     {
       "address": "0xeed67a55986ffe1ac3f7a05f1d13c2ba3b9e7000",
@@ -1557,7 +1543,7 @@
           "wei": "99981000000000"
         }
       ],
-      "rank": 106
+      "rank": 105
     },
     {
       "address": "0x8cbe38659606603c811315aed9a77ed42bd41f4d",
@@ -1571,7 +1557,7 @@
           "wei": "89481000000000"
         }
       ],
-      "rank": 107
+      "rank": 106
     },
     {
       "address": "0x551e06af1c492655bb9f15c9b12459386b5ce015",
@@ -1585,7 +1571,7 @@
           "wei": "10000000000000"
         }
       ],
-      "rank": 108
+      "rank": 107
     },
     {
       "address": "0x00c4fd7096091f97a4e891180b56a9f670d14ddd",
@@ -1599,7 +1585,7 @@
           "wei": "9996000000000"
         }
       ],
-      "rank": 109
+      "rank": 108
     },
     {
       "address": "0x5da9e94410a1241a76dfd182777e5983ae4f7a15",
@@ -1613,7 +1599,7 @@
           "wei": "1000000000000"
         }
       ],
-      "rank": 110
+      "rank": 109
     },
     {
       "address": "0x00fa5b65c2d7b7c181d9bfe2ee754f3037e6583c",
@@ -1627,7 +1613,7 @@
           "wei": "987000000000"
         }
       ],
-      "rank": 111
+      "rank": 110
     },
     {
       "address": "0xe5b39eaf749bd4e156e385a4c133d40446c4a055",
@@ -1641,7 +1627,7 @@
           "wei": "138000000000"
         }
       ],
-      "rank": 112
+      "rank": 111
     },
     {
       "address": "0x00ebc108c2d8fc65dff1ece619442016c616c836",
@@ -1655,7 +1641,7 @@
           "wei": "84000000000"
         }
       ],
-      "rank": 113
+      "rank": 112
     },
     {
       "address": "0xd20ce27f650598c2d790714b4f6a7222b8ddce22",
@@ -1669,7 +1655,7 @@
           "wei": "24000000000"
         }
       ],
-      "rank": 114
+      "rank": 113
     },
     {
       "address": "0xf228e528bdc9665d19497dd8541ecf4b20e13809",
@@ -1683,7 +1669,7 @@
           "wei": "11000000000"
         }
       ],
-      "rank": 115
+      "rank": 114
     }
   ]
 }

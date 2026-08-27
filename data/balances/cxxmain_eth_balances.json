@@ -2,9 +2,9 @@
   "contract": "0xa4dce3845cb88a6fca0291d4eca9e5a96e75e2b4",
   "balance_source": "eth",
   "contract_eth_balance": 9.592799,
-  "total_eth_in_balances": 5.573811,
-  "addresses_with_balance": 178,
-  "coverage_pct": 58.1,
+  "total_eth_in_balances": 5.57392616,
+  "addresses_with_balance": 177,
+  "coverage_pct": 58.11,
   "scan_date": "2026-04-03 13:31:46 UTC",
   "description": "ETH balances in defunct CxxMain contract",
   "distribution": {
@@ -35,7 +35,7 @@
   },
   "token_checked": "0x0000000000000000000000000000000000000000",
   "total_addresses_scanned": 377,
-  "last_event_refresh": "2026-08-08 21:23:05 UTC",
+  "last_event_refresh": "2026-08-12T22:18:52Z",
   "balances": [
     {
       "rank": 1,
@@ -853,7 +853,8 @@
       "rank": 136,
       "address": "0xbf44e48b7e8c5e30b3b119173055b47a91864bee",
       "balance_wei": "130174224997467",
-      "balance_eth": 0.000130174224997467
+      "balance_eth": 0.000130174224997467,
+      "claimed": true
     },
     {
       "rank": 137,

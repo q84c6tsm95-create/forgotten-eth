@@ -1,10 +1,10 @@
 {
   "contract": "0x344285b2082d9c7981241dcc160beca6057637e6",
   "balance_source": "eth",
-  "contract_eth_balance": 20.67784531,
-  "total_eth_in_balances": 16.01514275,
-  "addresses_with_balance": 8,
-  "coverage_pct": 77.45,
+  "contract_eth_balance": 18.626475,
+  "total_eth_in_balances": 14.614522,
+  "addresses_with_balance": 7,
+  "coverage_pct": 78.46,
   "scan_date": "2026-05-09 19:33:17 UTC",
   "description": "JustHodlIt",
   "balances": [
@@ -28,9 +28,10 @@
     },
     {
       "address": "0x5aaa031e3f3d4be463b02c436a9d18573824cffa",
-      "balance_wei": "1400621055939093672",
-      "balance_eth": 1.4006210559390937,
-      "rank": 4
+      "balance_wei": "0",
+      "balance_eth": 0,
+      "rank": 4,
+      "claimed": true
     },
     {
       "address": "0x99de5626d5b7e10b137857b9a529451d6cae6343",
@@ -56,5 +57,6 @@
       "balance_eth": 0.07003105279695468,
       "rank": 8
     }
-  ]
+  ],
+  "last_event_refresh": "2026-08-16 19:23:05 UTC"
 }
